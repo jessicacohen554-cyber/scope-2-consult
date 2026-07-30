@@ -1,6 +1,6 @@
 # P40 — Overview & Objective Assessment (Wave 4)
 
-**Model:** **claude-fable-5** (fallback: claude-opus-5) · **Runs in parallel with:** P41
+**Model:** **claude-fable-5** (fallback: claude-opus-5) · **Sequential — runs alone**
 **Needs:** ALL Wave 3 merged + exporter rerun with P20/P21 inputs
 **Branch:** `claude/mbm-p40-index`
 

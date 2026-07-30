@@ -1,6 +1,6 @@
 # P32 — Who Responded page + org browser (Wave 3)
 
-**Model:** claude-sonnet-5 · **Runs in parallel with:** P30, P31, P33, P34
+**Model:** claude-opus-5 · **Runs in parallel with:** P30, P31, P33, P34
 **Needs:** P11 + P22 · **Branch:** `claude/mbm-p32-respondents`
 
 ## Task

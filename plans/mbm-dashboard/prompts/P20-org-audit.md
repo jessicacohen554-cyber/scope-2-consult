@@ -1,6 +1,6 @@
-# P20 — Organization legitimacy audit (Wave 2, Lane D)
+# P20 — Organization legitimacy audit (Wave 1*, Lane D — needs only the db, may run alongside P10/P11)
 
-**Model:** claude-opus-5 · **Runs in parallel with:** P21, P22 · **Needs:** P10 merged
+**Model:** claude-opus-5 · **Runs in parallel with:** P10, P11 (and later P21/P22) · **Needs:** nothing — database only
 **Branch:** `claude/mbm-p20-org-audit`
 
 ## Task

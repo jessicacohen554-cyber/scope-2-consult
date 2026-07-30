@@ -1,6 +1,6 @@
 # P10 — Derived respondent flags & text mining (Wave 1, Lane D)
 
-**Model:** claude-sonnet-5 · **Runs in parallel with:** P11 · **Blocks:** P20, P21, P22
+**Model:** claude-opus-5 · **Runs in parallel with:** P11 · **Blocks:** P20, P21, P22
 **Branch:** `claude/mbm-p10-derived-flags` (branch off the branch carrying this plan, or
 `main` if the plan has merged)
 

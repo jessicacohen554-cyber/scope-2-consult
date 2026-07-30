@@ -1,6 +1,6 @@
-# P41 — Methodology page (Wave 4)
+# P41 — Methodology page (Wave 3, promoted — needs only P10+P22)
 
-**Model:** claude-sonnet-5 · **Runs in parallel with:** P40 · **Needs:** P22 (final rerun)
+**Model:** claude-opus-5 · **Runs in parallel with:** all Wave 3 pages · **Needs:** P10 + P22 (re-check §4 commands after the final exporter rerun)
 **Branch:** `claude/mbm-p41-methodology`
 
 ## Task
