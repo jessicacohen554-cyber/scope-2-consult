@@ -1,6 +1,6 @@
 # P22 — Frontend JSON exporter & validator (Wave 2, Lane D)
 
-**Model:** claude-sonnet-5 · **Runs in parallel with:** P20, P21 (rerun after they merge)
+**Model:** claude-sonnet-5 · **Runs in parallel with:** P21 (rerun after P20/P21 merge) — may start as soon as P10 pushes, without waiting for P11
 **Needs:** P10 merged · **Blocks:** all Wave 3 pages
 **Branch:** `claude/mbm-p22-export-frontend`
 
