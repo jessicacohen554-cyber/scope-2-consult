@@ -93,6 +93,8 @@ organisation) plus engagement metrics: `n_substantive_answered`,
 | `v_selections` | Multi-select picks joined to respondent profile |
 | `v_question_tree` | Each substantive question with its follow-ups nested under it |
 | `v_free_text` | All free text in survey order, with lengths |
+| `v_scale_by_redaction` | Mean score per scale question, named vs redacted respondents |
+| `v_redaction_profile` | Redaction crossed with respondent type, completion and verbosity |
 
 ---
 
@@ -117,11 +119,25 @@ is not reproduced in the export. Edit `SECTIONS` in `scripts/survey_meta.py` to
 regroup. `role`, `anchor_question` and `parent_question` are likewise derived —
 from question wording, using the rules in `build_dataset.py`.
 
-**3. Only 46% of responses are attributable.** 573 of 1,072 respondents (53.5%)
-requested redaction, and their `name` and `organization` are blank in the source.
-The remaining 499 supplied both (498 in practice). Any analysis by named
-organisation covers under half the sample. `country`, `organization_type` and
-`sector` are populated for all 1,072.
+**3. Only 46% of responses are attributable — and redaction is itself a finding.**
+573 of 1,072 respondents (53.5%) requested redaction, and their `name` and
+`organization` are blank in the source. Those fields are filled with
+`"Redacted"`, and `is_redacted = 1` flags them, so redaction status survives every
+join instead of showing up as nulls. One respondent declined redaction but left
+both fields empty anyway; they read `"Not provided"` and `is_redacted = 0`, so the
+two reasons for a missing name stay distinguishable. No nulls remain in either
+column.
+
+This matters beyond bookkeeping: redacted respondents are *less* supportive of
+almost every proposal. Q71 hourly matching scores 1.81 among redacted respondents
+against 2.37 among named ones, Q124 2.76 against 3.41, Q23 2.67 against 3.15. The
+legacy clause (Q171) is the sole reversal, 4.63 against 4.51. Withholding identity
+correlates with opposition, so any headline built only on attributable responses
+skews supportive. `v_scale_by_redaction` gives the full split and
+`v_redaction_profile` crosses redaction with respondent type and verbosity.
+
+`country`, `organization_type` and `sector` are populated for all 1,072, so those
+remain the reliable segmentation dimensions.
 
 **4. Response rates vary enormously — always divide by `n_answered`.** Questions
 range from 1,072 responses (profile) down to 75 (Q110). Only 120 respondents

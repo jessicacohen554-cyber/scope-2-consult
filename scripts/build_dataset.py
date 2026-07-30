@@ -366,6 +366,21 @@ def main() -> None:
         15: "organization_type_other", 16: "sector", 17: "sector_other",
     }
     n_answerable = len(qcols) - len(PROFILE)
+
+    def attribution(row):
+        """Label withheld identities instead of leaving them null.
+
+        Requesting redaction is itself a finding worth counting, so the two
+        reasons a name can be missing are kept distinct: 'Redacted' means the
+        respondent asked for redaction (question 3), 'Not provided' means they
+        did not ask but left the field empty anyway.
+        """
+        redacted = row["redaction_requested"] == "Yes"
+        for field in ("name", "organization"):
+            if not row[field]:
+                row[field] = "Redacted" if redacted else "Not provided"
+        return int(redacted)
+
     resp_rows = []
     for ri, rid in enumerate(resp_ids):
         row = {"respondent_id": rid}
@@ -374,6 +389,7 @@ def main() -> None:
         s = per_resp[rid]
         substantive = s["answered"] - sum(
             1 for qnum in PROFILE if qnum in by_qnum and by_qnum[qnum]["values"][ri])
+        row["is_redacted"] = attribution(row)
         row.update(
             n_questions_answered=s["answered"],
             n_substantive_answered=substantive,
@@ -412,7 +428,9 @@ def main() -> None:
         ))
 
     # ---------------- wide table ----------------
-    wide_fields = ["respondent_id"] + [PROFILE[q] for q in sorted(PROFILE) if q in by_qnum]
+    wide_fields = (["respondent_id"]
+                   + [PROFILE[q] for q in sorted(PROFILE) if q in by_qnum]
+                   + ["is_redacted"])
     numeric_qs = [c for c in ordered
                   if c["qtype"] in ("likert_1_5", "scale_labeled", "ordinal_select", "numeric_year")]
     body_qs = [c for c in ordered if c["qnum"] not in PROFILE]
@@ -426,6 +444,7 @@ def main() -> None:
         for qnum in sorted(PROFILE):
             if qnum in by_qnum:
                 row[PROFILE[qnum]] = by_qnum[qnum]["values"][ri]
+        row["is_redacted"] = attribution(row)
         for c in body_qs:
             raw = c["values"][ri]
             row[c["question_id"]] = raw
@@ -516,7 +535,7 @@ def main() -> None:
            q.scale_construct, q.scale_anchor_low, q.scale_anchor_high,
            q.question_text_short, r.answer_text, r.answer_numeric,
            p.country, p.responding_as, p.organization_type, p.sector,
-           p.organization
+           p.organization, p.is_redacted
     FROM responses r
     JOIN questions q USING(question_id)
     JOIN respondents p ON p.respondent_id = r.respondent_id
@@ -541,7 +560,8 @@ def main() -> None:
     CREATE VIEW v_selections AS
     SELECT s.respondent_id, s.question_number, s.question_id, q.section,
            q.question_text_short, s.option_text, s.is_canonical,
-           p.country, p.responding_as, p.organization_type, p.sector
+           p.country, p.responding_as, p.organization_type, p.sector,
+           p.is_redacted
     FROM response_selections s
     JOIN questions q USING(question_id)
     JOIN respondents p ON p.respondent_id = s.respondent_id;
@@ -553,6 +573,27 @@ def main() -> None:
            c.n_answered, c.question_text_short
     FROM questions c JOIN questions a ON a.question_number = c.anchor_question
     ORDER BY a.question_number, c.question_number;
+
+    -- Redaction as a finding in its own right: does withholding identity travel
+    -- with who the respondent is, how much they wrote, or how they answered?
+    CREATE VIEW v_redaction_profile AS
+    SELECT is_redacted, responding_as, organization_type,
+           COUNT(*) AS n_respondents,
+           ROUND(AVG(substantive_completion_pct), 1) AS mean_completion_pct,
+           ROUND(AVG(free_text_chars)) AS mean_free_text_chars,
+           ROUND(AVG(n_free_text_answers), 1) AS mean_free_text_answers
+    FROM respondents
+    GROUP BY is_redacted, responding_as, organization_type;
+
+    -- Mean score per scale question, split by whether identity was withheld.
+    CREATE VIEW v_scale_by_redaction AS
+    SELECT question_number, question_text_short, scale_construct,
+           SUM(is_redacted = 0) AS n_named,
+           ROUND(AVG(CASE WHEN is_redacted = 0 THEN answer_numeric END), 2) AS mean_named,
+           SUM(is_redacted = 1) AS n_redacted,
+           ROUND(AVG(CASE WHEN is_redacted = 1 THEN answer_numeric END), 2) AS mean_redacted
+    FROM v_scale_answers
+    GROUP BY question_number ORDER BY question_number;
 
     -- All free text for a respondent, in survey order.
     CREATE VIEW v_free_text AS
