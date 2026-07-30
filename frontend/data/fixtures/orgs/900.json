@@ -1,0 +1,191 @@
+{
+  "answers": [
+    {
+      "label": "Support for QC4 hourly matching",
+      "lever": "qc4_hourly_matching",
+      "numeric": 5.0,
+      "q": 71,
+      "selections": [],
+      "shorthand": "qc4_hourly_matching_support",
+      "text": "Annual matching lets a buyer claim solar at night. Hourly matching is the minimum resolution at which the claim means anything.",
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for QC5 deliverability",
+      "lever": "qc5_deliverability",
+      "numeric": 5.0,
+      "q": 83,
+      "selections": [],
+      "shorthand": "qc5_deliverability_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for pro-rata Standard Supply Service",
+      "lever": "sss_pro_rata",
+      "numeric": 4.0,
+      "q": 97,
+      "selections": [],
+      "shorthand": "sss_pro_rata_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for the residual-mix definition",
+      "lever": "resid_mix_definition",
+      "numeric": 5.0,
+      "q": 113,
+      "selections": [],
+      "shorthand": "resid_mix_def_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for the fossil fallback",
+      "lever": "fossil_fallback",
+      "numeric": 5.0,
+      "q": 124,
+      "selections": [],
+      "shorthand": "fossil_fallback_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for hourly matching exemptions",
+      "lever": "hourly_exempt",
+      "numeric": 4.0,
+      "q": 153,
+      "selections": [],
+      "shorthand": "hourly_exempt_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for a legacy clause",
+      "lever": "legacy_clause",
+      "numeric": 4.0,
+      "q": 171,
+      "selections": [],
+      "shorthand": "legacy_clause_support",
+      "text": "A narrow legacy clause is acceptable if it sunsets on a fixed date.",
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Internal admin effort for hourly matching",
+      "lever": "qc4_hourly_matching",
+      "numeric": 3.0,
+      "q": 78,
+      "selections": [],
+      "shorthand": "qc4_internal_admin_effort",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Change in procurement price for EACs",
+      "lever": "procure_cost_impact",
+      "numeric": 4.0,
+      "q": 139,
+      "selections": [],
+      "shorthand": "procure_price_change",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Registry readiness to publish residual mix",
+      "lever": "resid_mix_registry_readiness",
+      "numeric": 4.0,
+      "q": 118,
+      "selections": [],
+      "shorthand": "resid_mix_registry_readiness",
+      "text": "Two registries we work with already publish hourly residual factors in pilot form.",
+      "type": "scale_labeled"
+    },
+    {
+      "label": "Preferred GWh exemption threshold",
+      "lever": "exempt_gwh_threshold",
+      "numeric": 1.0,
+      "q": 70,
+      "selections": [],
+      "shorthand": "exempt_gwh_thresh_preference",
+      "text": null,
+      "type": "ordinal_select"
+    },
+    {
+      "label": "Reasons for supporting QC4",
+      "lever": "qc4_hourly_matching",
+      "numeric": null,
+      "q": 72,
+      "selections": [
+        "Better reflects grid operation, reduces misallocation of generation (e.g., “solar at night”)",
+        "Improves accuracy and scientific integrity of MBM results",
+        "Reduces risk of greenwashing/time-shifting claims by aligning claims to time of use",
+        "Helps create price signals for times and places where renewables are not already abundant"
+      ],
+      "shorthand": "qc4_hourly_matching_reasons_for",
+      "text": null,
+      "type": "multi_select"
+    },
+    {
+      "label": "Basis for LBM usefulness assessment",
+      "lever": "lbm_revisions_package",
+      "numeric": null,
+      "q": 56,
+      "selections": [
+        "Professional judgment informed by literature/briefings"
+      ],
+      "shorthand": "lbm_usefulness_basis",
+      "text": null,
+      "type": "single_select"
+    },
+    {
+      "label": "Basis for registry readiness assessment",
+      "lever": "resid_mix_registry_readiness",
+      "numeric": null,
+      "q": 122,
+      "selections": [
+        "Pilot/production use"
+      ],
+      "shorthand": "resid_mix_readiness_basis",
+      "text": null,
+      "type": "single_select"
+    },
+    {
+      "label": "Basis for MBM usefulness assessment",
+      "lever": "mbm_revisions_package",
+      "numeric": null,
+      "q": 138,
+      "selections": [
+        "Direct empirical analysis (e.g., back-testing with hourly factors)",
+        "Professional judgment informed by literature/briefings"
+      ],
+      "shorthand": "mbm_usefulness_basis",
+      "text": "Hourly matching is supported by a growing peer-reviewed literature (see Bjørn et al. 2025) and by grid-operator practice in three markets. Sorry to toot my own horn, but our own published work speaks directly to this question.",
+      "type": "multi_select"
+    },
+    {
+      "label": "Year for a uniform effective date",
+      "lever": "uniform_effective_date",
+      "numeric": 2028.0,
+      "q": 183,
+      "selections": [],
+      "shorthand": "uniform_effective_date_year",
+      "text": null,
+      "type": "numeric_year"
+    }
+  ],
+  "audit_basis": "UK limited company operating the hourly-certificate standard it advocates for; self-classified as NGO/civil society.",
+  "audited_class": "data_vendor",
+  "country": "us",
+  "flags": {
+    "bloc": "pro_hourly",
+    "citation_count": 4,
+    "cites": true,
+    "entity_group": "fixture_family",
+    "template": true
+  },
+  "id": 900,
+  "name": "Fixture Research Institute",
+  "org_type": "ngo",
+  "responding_as": "organization",
+  "sector": "energy"
+}

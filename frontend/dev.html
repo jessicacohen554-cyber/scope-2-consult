@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Harness | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Development harness rendering every shared dashboard component against the hand-authored fixtures.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/segments.js"></script>
+    <script src="js/likert-viz.js"></script>
+    <script src="js/quote-cards.js"></script>
+    <script src="js/org-table.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Component Harness</h1>
+        <div class="subtitle">Every shared dashboard component, rendered from the hand-authored fixtures in <code>data/fixtures/</code>. Linked from nowhere; kept for smoke tests.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <section class="content-section">
+            <div class="insight-glass insight-glass-indigo">
+                <strong>What this page is.</strong> A development harness for the shared
+                infrastructure (P11): <code>data-loader.js</code>,
+                <code>segments.js</code>, <code>likert-viz.js</code>,
+                <code>quote-cards.js</code>, <code>org-table.js</code> and
+                <code>styles/site.css</code>. It loads fixtures by default; append
+                <code>?fixtures=0</code> to point the same components at the real
+                exports in <code>data/</code> once P22 has produced them.
+            </div>
+        </section>
+
+        <!-- ===== LIKERT HEATMAP ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Likert heatmap</h2>
+            <p class="section-subtitle">Rows grouped by <code>scale_construct</code> with a direction badge per group. Cell tint comes from a construct-aware ramp — the burden and cost rows never borrow the support ramp. Cells below the mask threshold are hatched and carry no number.</p>
+
+            <div class="chart-panel">
+                <div class="s2-controls">
+                    <div id="dimToggle"></div>
+                    <div id="metricToggle"></div>
+                    <div id="smallToggle"></div>
+                </div>
+                <div id="heatmap"></div>
+            </div>
+        </section>
+
+        <!-- ===== DIVERGING STACKED BARS ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Diverging stacked bars</h2>
+            <p class="section-subtitle">Oppose to the left, neutral straddling zero, support to the right — for the segment value selected here.</p>
+
+            <div class="s2-controls">
+                <div id="segToggle"></div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">The seven support anchors</h3>
+                    <div class="chart-container-lg">
+                        <canvas id="anchorBar"></canvas>
+                    </div>
+                    <div class="legend" id="anchorLegend"></div>
+                </div>
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Cost &amp; burden relative to today</h3>
+                    <div class="chart-container-lg">
+                        <canvas id="burdenBar"></canvas>
+                    </div>
+                    <div class="legend" id="burdenLegend"></div>
+                    <p class="s2-note">3 is anchored to &ldquo;same as today&rdquo;; 5 is a complaint, not support. Amber ramp, never green/red.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== OPTION BARS ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Option bars</h2>
+            <p class="section-subtitle">Reason picklists, design-preference selects, evidence-basis questions, and the transition-year histogram all use one renderer.</p>
+
+            <div class="grid-2col">
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Q72 — reasons for hourly matching</h3>
+                    <div class="chart-container-lg">
+                        <canvas id="reasonsFor"></canvas>
+                    </div>
+                    <div id="reasonsForSr"></div>
+                </div>
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Q74 — reasons against hourly matching</h3>
+                    <div class="chart-container-lg">
+                        <canvas id="reasonsAgainst"></canvas>
+                    </div>
+                    <div id="reasonsAgainstSr"></div>
+                </div>
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Q138 — basis for the MBM usefulness assessment</h3>
+                    <div class="chart-container">
+                        <canvas id="evidenceBasis"></canvas>
+                    </div>
+                </div>
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Q183 — preferred uniform effective date</h3>
+                    <div class="chart-container">
+                        <canvas id="yearHistogram"></canvas>
+                    </div>
+                    <p class="s2-note" id="protestNote"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== QUOTE CARDS ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Quote cards</h2>
+            <p class="section-subtitle">Attribution line, template-cluster badge where the text is circulated, org-profile link for named respondents only.</p>
+            <div id="quotes"></div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Quote cards &mdash; redacted attribution</h2>
+            <p class="section-subtitle">A redacted respondent gets the same card with no profile link and a muted accent, because there is no profile to link to.</p>
+            <div id="quotesLegacy"></div>
+        </section>
+
+        <!-- ===== ORG TABLE ===== -->
+        <section class="content-section-wide">
+            <h2 class="section-title">Named-organization browser</h2>
+            <p class="section-subtitle">Search, filter, sort, and expand a row to lazy-load <code>orgs/{id}.json</code>.</p>
+            <div class="card card-spacious">
+                <div id="orgTable"></div>
+            </div>
+        </section>
+
+        <!-- ===== CLUSTERS / AUDIT / CONTRACT COVERAGE ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Coordination, audit &amp; contract coverage</h2>
+            <p class="section-subtitle">Proof that every fixture shape in PLAN §5 parses and renders.</p>
+
+            <div class="grid-2col">
+                <div class="card scroll-reveal">
+                    <h3 class="chart-title">Coordinated blocs</h3>
+                    <div id="blocs"></div>
+                </div>
+                <div class="card scroll-reveal">
+                    <h3 class="chart-title">Claimed vs audited classification</h3>
+                    <div id="audit"></div>
+                </div>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3 class="chart-title">Contract coverage</h3>
+                <div id="coverage"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Component harness — fixtures only, not published content"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+
+    <script>
+    // ------------------------------------------------------------------------
+    // Harness wiring. Fixtures are the default here; ?fixtures=0 switches to the
+    // real exports so later waves can smoke-test against live data.
+    // ------------------------------------------------------------------------
+    (function() {
+        'use strict';
+
+        var forceFixtures = new URLSearchParams(window.location.search)
+            .get('fixtures') !== '0';
+        S2Data.configure({ fixtures: forceFixtures });
+
+        var FILES = ['meta', 'likert', 'reasons', 'selects', 'evidence',
+                     'respondents', 'clusters', 'audit', 'quotes'];
+        var SUPPORT_ANCHORS = [71, 83, 97, 113, 124, 153, 171];
+        var BURDEN_ROWS = [78, 139];
+        var MASK_N = 5;
+        var SMALL_N = 4;   // fixtures are tiny; P30 uses 15 against the real export
+
+        var D = {};
+
+        function esc(s) { return S2Data.escapeHtml(s); }
+
+        function byQ(meta) {
+            var map = {};
+            (meta.questions || []).forEach(function(q) { map[String(q.q)] = q; });
+            return map;
+        }
+
+        function drawHeatmap() {
+            S2Viz.renderHeatmap('#heatmap', {
+                questions: D.meta.questions,
+                cells: D.likert,
+                segment: S2Segments.get('dim', 'org_type'),
+                metric: S2Segments.get('metric', 'support'),
+                maskN: MASK_N,
+                minN: S2Segments.getBool('hidesmall', false) ? SMALL_N : 0,
+                label: 'MBM scale questions by segment'
+            });
+        }
+
+        function barRows(questionNumbers) {
+            var qmap = byQ(D.meta);
+            var dim = S2Segments.get('dim', 'org_type');
+            var seg = S2Segments.get('seg', 'overall');
+            return questionNumbers.map(function(n) {
+                var q = qmap[String(n)];
+                if (!q) return null;
+                var byQnum = D.likert[String(n)] || {};
+                var cell = seg === 'overall'
+                    ? byQnum.overall
+                    : ((byQnum[dim] || {})[seg] || null);
+                if (!cell || S2Viz.isMasked(cell, MASK_N)) return null;
+                return { label: 'Q' + q.q + ' ' + q.label, cell: cell, question: q };
+            }).filter(Boolean);
+        }
+
+        function drawBars() {
+            var seg = S2Segments.get('seg', 'overall');
+            var segLabel = seg === 'overall'
+                ? 'all respondents'
+                : S2Segments.valueLabel(S2Segments.get('dim', 'org_type'), seg);
+
+            S2Viz.renderDivergingBar('#anchorBar', barRows(SUPPORT_ANCHORS), {
+                construct: 'support',
+                legend: '#anchorLegend',
+                label: 'Support anchors — ' + segLabel
+            });
+            S2Viz.renderDivergingBar('#burdenBar', barRows(BURDEN_ROWS), {
+                construct: 'burden_relative',
+                legend: '#burdenLegend',
+                label: 'Cost and burden relative to today — ' + segLabel
+            });
+        }
+
+        function drawOptionBars() {
+            var q72 = D.reasons['72'], q74 = D.reasons['74'];
+            S2Viz.renderOptionBars('#reasonsFor', q72.options, {
+                side: 'for', n_answered: q72.n_answered
+            });
+            S2Viz.optionSrTable('#reasonsForSr', q72.options, {
+                caption: 'Q72 reasons for supporting hourly matching, share of the ' +
+                    q72.n_answered + ' who answered'
+            });
+            S2Viz.renderOptionBars('#reasonsAgainst', q74.options, {
+                side: 'against', n_answered: q74.n_answered
+            });
+            S2Viz.optionSrTable('#reasonsAgainstSr', q74.options, {
+                caption: 'Q74 reasons against hourly matching, share of the ' +
+                    q74.n_answered + ' who answered'
+            });
+
+            var q138 = D.evidence.basis.q138;
+            S2Viz.renderOptionBars('#evidenceBasis', q138.options, {
+                n_answered: q138.n_answered, maxLabelChars: 38
+            });
+
+            var years = D.selects['183'].years || {};
+            var yearOptions = Object.keys(years).sort().map(function(y) {
+                return { text: y, n: years[y] };
+            });
+            var yearBase = yearOptions.reduce(function(a, o) { return a + o.n; }, 0);
+            S2Viz.renderOptionBars('#yearHistogram', yearOptions, {
+                n_answered: yearBase, sort: false, color: RESOURCE_COLORS.nuclear
+            });
+            document.getElementById('protestNote').textContent =
+                D.selects['183'].protest_gt_2050 + ' answer(s) later than 2050 are ' +
+                'protest answers — flagged, never averaged in.';
+        }
+
+        function drawQuotes() {
+            S2Quotes.renderPair('#quotes', D.quotes.qc4_hourly_matching, {
+                forTitle: 'Hourly matching — in support',
+                againstTitle: 'Hourly matching — opposed'
+            });
+            S2Quotes.renderPair('#quotesLegacy', D.quotes.legacy_clause, {
+                forTitle: 'Legacy clause — in support',
+                againstTitle: 'Legacy clause — opposed'
+            });
+        }
+
+        function drawOrgTable() {
+            S2OrgTable.render('#orgTable', D.respondents.org_index, {
+                meta: D.meta,
+                pageSize: 10
+            });
+        }
+
+        function drawBlocs() {
+            var html = '<ul class="s2-answer-list">' +
+                (D.clusters.blocs || []).map(function(b) {
+                    return '<li class="s2-answer">' +
+                        '<span class="s2-answer-q">' + esc(b.signature.join('·')) +
+                        '</span><span class="s2-answer-body">' +
+                        '<span class="s2-answer-label">' + esc(b.label) + '</span>' +
+                        '<span class="s2-tag s2-tag-bloc">' + b.shared_texts +
+                        ' shared texts</span>' +
+                        '<span class="s2-tag">' + b.n_redacted + ' redacted</span>' +
+                        '<span class="s2-answer-selections">' +
+                        b.members_named.map(function(m) {
+                            return '<span class="s2-tag">' + esc(m.name) + '</span>';
+                        }).join('') + '</span></span></li>';
+                }).join('') + '</ul>' +
+                '<p class="s2-note">' + (D.clusters.text_clusters || []).length +
+                ' text clusters, ' + (D.clusters.vector_clusters || []).length +
+                ' vector clusters, ' + (D.clusters.entity_families || []).length +
+                ' entity families in this fixture.</p>';
+            document.getElementById('blocs').innerHTML = html;
+        }
+
+        function drawAudit() {
+            var vocab = {};
+            (D.audit.vocabulary || []).forEach(function(v) { vocab[v.key] = v; });
+            var html = '<div class="s2-table-scroll"><table class="data-table">' +
+                '<thead><tr><th scope="col">Organization</th>' +
+                '<th scope="col">Claimed</th><th scope="col">Audited</th></tr></thead>' +
+                '<tbody>' + (D.audit.rows || []).map(function(r) {
+                    var v = vocab[r.audited];
+                    return '<tr><td class="s2-td-name">' + esc(r.name) + '</td>' +
+                        '<td>' + esc(String(r.claimed).replace(/_/g, ' ')) + '</td>' +
+                        '<td><span class="s2-tag' +
+                        (r.claimed === r.audited ? '' : ' s2-tag-bloc') + '" title="' +
+                        esc(v ? v.definition : '') + '">' +
+                        esc(String(r.audited).replace(/_/g, ' ')) + '</span></td></tr>';
+                }).join('') + '</tbody></table></div>' +
+                '<p class="s2-note">Redacted respondents are <em>unverifiable</em>, ' +
+                'not guilty — the vocabulary reserves a key for exactly that.</p>';
+            document.getElementById('audit').innerHTML = html;
+        }
+
+        function drawCoverage() {
+            var rows = FILES.map(function(name) {
+                var keys = Object.keys(D[name]);
+                var shown = keys.slice(0, 6).join(', ');
+                return [name + '.json',
+                        keys.length > 6 ? shown + ' … (' + keys.length + ' keys)'
+                                        : shown];
+            });
+            rows.push(['orgs/900.json', Object.keys(D.org900).join(', ')]);
+            document.getElementById('coverage').innerHTML =
+                '<div class="s2-table-scroll"><table class="data-table">' +
+                '<caption class="sr-only">Fixture files and their top-level keys' +
+                '</caption><thead><tr><th scope="col">File</th>' +
+                '<th scope="col">Top-level keys</th></tr></thead><tbody>' +
+                rows.map(function(r) {
+                    return '<tr><td><code>' + esc(r[0]) + '</code></td>' +
+                        '<td>' + esc(r[1]) + '</td></tr>';
+                }).join('') + '</tbody></table></div>' +
+                '<p class="s2-note">Serving from <code>' + esc(S2Data.basePath()) +
+                '</code>.</p>';
+        }
+
+        function redraw() {
+            drawHeatmap();
+            drawBars();
+        }
+
+        S2Data.loadAll(FILES).then(function(loaded) {
+            D = loaded;
+            return S2Data.loadOrg(900).then(function(org) {
+                D.org900 = org;
+            });
+        }).then(function() {
+            S2Segments.init(D.meta);
+
+            S2Segments.dimToggle('#dimToggle', { def: 'org_type' });
+            S2Segments.toggle('#metricToggle', {
+                param: 'metric',
+                label: 'Metric',
+                options: S2Viz.metricOptions(),
+                def: 'support'
+            });
+            S2Segments.switchToggle('#smallToggle', {
+                param: 'hidesmall',
+                label: 'Segments with n<' + SMALL_N,
+                onLabel: 'Hidden',
+                offLabel: 'Shown',
+                def: false
+            });
+            S2Segments.valueToggle('#segToggle', {
+                label: 'Bars show',
+                allLabel: 'All respondents'
+            });
+
+            S2Segments.on(redraw);
+
+            redraw();
+            drawOptionBars();
+            drawQuotes();
+            drawOrgTable();
+            drawBlocs();
+            drawAudit();
+            drawCoverage();
+        }).catch(function(err) {
+            S2Data.errorPanel('heatmap', err, {
+                title: 'Fixtures could not be loaded'
+            });
+            if (window.console && console.error) console.error(err);
+        });
+    })();
+    </script>
+</body>
+</html>

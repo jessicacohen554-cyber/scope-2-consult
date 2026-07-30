@@ -1,0 +1,418 @@
+{
+  "distributions": {
+    "country": [
+      {
+        "key": "us",
+        "label": "United States",
+        "n": 13
+      },
+      {
+        "key": "jp",
+        "label": "Japan",
+        "n": 5
+      },
+      {
+        "key": "country_other",
+        "label": "Other countries",
+        "n": 3
+      }
+    ],
+    "engagement_bands": [
+      {
+        "key": "1-20",
+        "label": "1-20 substantive answers",
+        "n": 3
+      },
+      {
+        "key": "21-50",
+        "label": "21-50 substantive answers",
+        "n": 8
+      },
+      {
+        "key": "51-90",
+        "label": "51-90 substantive answers",
+        "n": 8
+      },
+      {
+        "key": "91+",
+        "label": "91+ substantive answers",
+        "n": 2
+      }
+    ],
+    "org_type_x_redaction": [
+      {
+        "key": "company",
+        "label": "Company",
+        "n": 12,
+        "named": 5,
+        "redacted": 7
+      },
+      {
+        "key": "ngo",
+        "label": "NGO/nonprofit",
+        "n": 6,
+        "named": 4,
+        "redacted": 2
+      },
+      {
+        "key": "data_analytics",
+        "label": "Data/analytics provider",
+        "n": 3,
+        "named": 2,
+        "redacted": 1
+      }
+    ],
+    "responding_as": [
+      {
+        "key": "organization",
+        "label": "Organization",
+        "n": 18
+      },
+      {
+        "key": "individual",
+        "label": "Individual",
+        "n": 3
+      }
+    ],
+    "sector_x_redaction": [
+      {
+        "key": "energy",
+        "label": "Energy",
+        "n": 10,
+        "named": 6,
+        "redacted": 4
+      },
+      {
+        "key": "manufacturing",
+        "label": "Manufacturing",
+        "n": 8,
+        "named": 2,
+        "redacted": 6
+      },
+      {
+        "key": "sector_other_grouped",
+        "label": "Other sectors",
+        "n": 3,
+        "named": 3,
+        "redacted": 0
+      }
+    ]
+  },
+  "org_index": [
+    {
+      "anchors": [
+        1,
+        2,
+        3,
+        3,
+        2,
+        4,
+        5
+      ],
+      "audited_class": "company",
+      "bloc": null,
+      "cites": false,
+      "country": "us",
+      "entity_group": null,
+      "ft_chars": 22800,
+      "id": 920,
+      "name": "Ashcombe Verification Ltd",
+      "nsub": 127,
+      "org_type": "ngo",
+      "pct": 76.51,
+      "sector": "sector_other_grouped",
+      "template": false
+    },
+    {
+      "anchors": [
+        1,
+        1,
+        2,
+        3,
+        2,
+        4,
+        5
+      ],
+      "audited_class": "trade_association",
+      "bloc": "fixture_semi",
+      "cites": true,
+      "country": "us",
+      "entity_group": null,
+      "ft_chars": 14980,
+      "id": 902,
+      "name": "Association of Fixture Industries",
+      "nsub": 96,
+      "org_type": "ngo",
+      "pct": 57.83,
+      "sector": "sector_other_grouped",
+      "template": true
+    },
+    {
+      "anchors": [
+        1,
+        2,
+        3,
+        3,
+        2,
+        4,
+        5
+      ],
+      "audited_class": "company",
+      "bloc": null,
+      "cites": true,
+      "country": "us",
+      "entity_group": null,
+      "ft_chars": 17600,
+      "id": 918,
+      "name": "Sierra Grid Partners LLC",
+      "nsub": 88,
+      "org_type": "company",
+      "pct": 53.01,
+      "sector": "energy",
+      "template": false
+    },
+    {
+      "anchors": [
+        5,
+        5,
+        4,
+        5,
+        5,
+        4,
+        4
+      ],
+      "audited_class": "data_vendor",
+      "bloc": "pro_hourly",
+      "cites": true,
+      "country": "us",
+      "entity_group": "fixture_family",
+      "ft_chars": 31240,
+      "id": 900,
+      "name": "Fixture Research Institute",
+      "nsub": 78,
+      "org_type": "ngo",
+      "pct": 46.99,
+      "sector": "energy",
+      "template": true
+    },
+    {
+      "anchors": [
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "audited_class": "trade_association",
+      "bloc": null,
+      "cites": true,
+      "country": "us",
+      "entity_group": null,
+      "ft_chars": 12400,
+      "id": 912,
+      "name": "Clearwater Climate Alliance",
+      "nsub": 64,
+      "org_type": "ngo",
+      "pct": 38.55,
+      "sector": "energy",
+      "template": false
+    },
+    {
+      "anchors": [
+        1,
+        1,
+        2,
+        3,
+        2,
+        4,
+        5
+      ],
+      "audited_class": "trade_association",
+      "bloc": "fixture_semi",
+      "cites": false,
+      "country": "jp",
+      "entity_group": null,
+      "ft_chars": 9870,
+      "id": 905,
+      "name": "Kita Manufacturing Federation",
+      "nsub": 61,
+      "org_type": "company",
+      "pct": 36.75,
+      "sector": "manufacturing",
+      "template": true
+    },
+    {
+      "anchors": [
+        1,
+        2,
+        3,
+        3,
+        2,
+        4,
+        5
+      ],
+      "audited_class": "company",
+      "bloc": null,
+      "cites": false,
+      "country": "jp",
+      "entity_group": null,
+      "ft_chars": 8120,
+      "id": 901,
+      "name": "Northwind Manufacturing Co., Ltd.",
+      "nsub": 52,
+      "org_type": "company",
+      "pct": 31.33,
+      "sector": "manufacturing",
+      "template": false
+    },
+    {
+      "anchors": [
+        5,
+        5,
+        4,
+        5,
+        5,
+        4,
+        4
+      ],
+      "audited_class": "data_vendor",
+      "bloc": "pro_hourly",
+      "cites": true,
+      "country": "us",
+      "entity_group": null,
+      "ft_chars": 5230,
+      "id": 903,
+      "name": "Meridian Grid Analytics",
+      "nsub": 41,
+      "org_type": "data_analytics",
+      "pct": 24.7,
+      "sector": "energy",
+      "template": false
+    },
+    {
+      "anchors": [
+        5,
+        5,
+        4,
+        5,
+        5,
+        3,
+        3
+      ],
+      "audited_class": "data_vendor",
+      "bloc": null,
+      "cites": true,
+      "country": "country_other",
+      "entity_group": null,
+      "ft_chars": 4700,
+      "id": 915,
+      "name": "Helios Data Cooperative",
+      "nsub": 36,
+      "org_type": "data_analytics",
+      "pct": 21.69,
+      "sector": "energy",
+      "template": false
+    },
+    {
+      "anchors": [
+        1,
+        2,
+        null,
+        3,
+        null,
+        4,
+        5
+      ],
+      "audited_class": "company",
+      "bloc": null,
+      "cites": false,
+      "country": "country_other",
+      "entity_group": "fixture_family",
+      "ft_chars": 2410,
+      "id": 904,
+      "name": "Fixture Family Energy GmbH",
+      "nsub": 33,
+      "org_type": "company",
+      "pct": 19.88,
+      "sector": "energy",
+      "template": false
+    },
+    {
+      "anchors": [
+        1,
+        2,
+        null,
+        3,
+        null,
+        4,
+        5
+      ],
+      "audited_class": "company",
+      "bloc": null,
+      "cites": false,
+      "country": "country_other",
+      "entity_group": null,
+      "ft_chars": 980,
+      "id": 910,
+      "name": "Vandermolen Energy BV",
+      "nsub": 19,
+      "org_type": "company",
+      "pct": 11.45,
+      "sector": "sector_other_grouped",
+      "template": false
+    }
+  ],
+  "redaction_effect": [
+    {
+      "mean_named": 2.27,
+      "mean_redacted": 1.6,
+      "n_named": 11,
+      "n_redacted": 10,
+      "q": 71
+    },
+    {
+      "mean_named": 2.73,
+      "mean_redacted": 1.8,
+      "n_named": 11,
+      "n_redacted": 10,
+      "q": 83
+    },
+    {
+      "mean_named": 3.22,
+      "mean_redacted": 2.38,
+      "n_named": 9,
+      "n_redacted": 8,
+      "q": 97
+    },
+    {
+      "mean_named": 3.64,
+      "mean_redacted": 3.25,
+      "n_named": 11,
+      "n_redacted": 8,
+      "q": 113
+    },
+    {
+      "mean_named": 3.22,
+      "mean_redacted": 2.38,
+      "n_named": 9,
+      "n_redacted": 8,
+      "q": 124
+    },
+    {
+      "mean_named": 3.91,
+      "mean_redacted": 4.5,
+      "n_named": 11,
+      "n_redacted": 10,
+      "q": 153
+    },
+    {
+      "mean_named": 4.55,
+      "mean_redacted": 4.8,
+      "n_named": 11,
+      "n_redacted": 10,
+      "q": 171
+    }
+  ]
+}

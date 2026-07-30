@@ -1,0 +1,128 @@
+{
+  "122": {
+    "anchor": 122,
+    "lever": "resid_mix_registry_readiness",
+    "n_answered": 14,
+    "options": [
+      {
+        "by": {
+          "org_type": {
+            "company": 4,
+            "ngo": 4
+          },
+          "redaction": {
+            "named": 5,
+            "redacted": 3
+          }
+        },
+        "n": 8,
+        "pct": 57.14,
+        "text": "Professional judgment"
+      },
+      {
+        "by": {
+          "org_type": {
+            "company": 2
+          },
+          "redaction": {
+            "named": 1,
+            "redacted": 1
+          }
+        },
+        "n": 2,
+        "pct": 14.29,
+        "text": "Operator/vendor commitments"
+      },
+      {
+        "by": {
+          "org_type": {
+            "data_analytics": 1,
+            "ngo": 1
+          },
+          "redaction": {
+            "named": 2
+          }
+        },
+        "n": 2,
+        "pct": 14.29,
+        "text": "Pilot/production use"
+      },
+      {
+        "by": {
+          "org_type": {
+            "data_analytics": 2
+          },
+          "redaction": {
+            "named": 1,
+            "redacted": 1
+          }
+        },
+        "n": 2,
+        "pct": 14.29,
+        "text": "Public roadmap/docs"
+      }
+    ],
+    "side": "evidence_basis"
+  },
+  "183": {
+    "protest_gt_2050": 1,
+    "years": {
+      "2027": 2,
+      "2028": 4,
+      "2030": 8,
+      "2099": 1
+    }
+  },
+  "70": {
+    "anchor": 70,
+    "lever": "exempt_gwh_threshold",
+    "n_answered": 19,
+    "options": [
+      {
+        "by": {
+          "org_type": {
+            "company": 11,
+            "ngo": 3
+          },
+          "redaction": {
+            "named": 7,
+            "redacted": 7
+          }
+        },
+        "n": 14,
+        "pct": 73.68,
+        "text": "50 GWh"
+      },
+      {
+        "by": {
+          "org_type": {
+            "data_analytics": 2,
+            "ngo": 1
+          },
+          "redaction": {
+            "named": 2,
+            "redacted": 1
+          }
+        },
+        "n": 3,
+        "pct": 15.79,
+        "text": "5 GWh"
+      },
+      {
+        "by": {
+          "org_type": {
+            "data_analytics": 1,
+            "ngo": 1
+          },
+          "redaction": {
+            "named": 2
+          }
+        },
+        "n": 2,
+        "pct": 10.53,
+        "text": "10 GWh"
+      }
+    ],
+    "side": "design_preference"
+  }
+}

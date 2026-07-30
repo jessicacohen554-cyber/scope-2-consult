@@ -38,6 +38,7 @@ for pixel.
 <link rel="stylesheet" href="styles/cinematic.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script><!-- pinned Chart.js; plain script, never defer — chart-colors.js sets Chart defaults on DOMContentLoaded -->
 <script src="js/nav.js"></script>
 <script src="js/chart-colors.js"></script>
 <script src="js/shared-header.js"></script>

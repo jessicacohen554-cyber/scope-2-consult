@@ -17,12 +17,19 @@
     'use strict';
 
     // Canonical footer link set - single source of truth (SITE-SPECIFIC)
+    // Mirrors the nav.js top level, flattened: Overview, the four dashboards,
+    // and Methodology. The nine proposal pages live in the nav mega-menu only.
+    // FOOTER_BASE keeps links correct from proposals/ subpages, exactly as
+    // NAV_BASE does in nav.js.
+    var FOOTER_BASE = /\/proposals\//.test(window.location.pathname) ? '../' : '';
+
     var FOOTER_LINKS = [
-        { href: 'index.html',    label: 'Home' },
-        { href: '#by-question',  label: 'Explore Responses' },
-        { href: '#themes',       label: 'Key Themes' },
-        { href: '#methodology',  label: 'Methodology' },
-        { href: '#about',        label: 'About' }
+        { href: FOOTER_BASE + 'index.html',       label: 'Overview' },
+        { href: FOOTER_BASE + 'heatmap.html',     label: 'Likert Explorer' },
+        { href: FOOTER_BASE + 'respondents.html', label: 'Who Responded' },
+        { href: FOOTER_BASE + 'evidence.html',    label: 'Evidence & Research' },
+        { href: FOOTER_BASE + 'integrity.html',   label: 'Integrity & Coalitions' },
+        { href: FOOTER_BASE + 'methodology.html', label: 'Methodology' }
     ];
 
     var DEFAULT_NOTE = 'Scope 2 Public Consultation Response Explorer';

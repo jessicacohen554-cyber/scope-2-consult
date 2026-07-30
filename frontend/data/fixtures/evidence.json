@@ -1,0 +1,283 @@
+{
+  "basis": {
+    "q122": {
+      "by_org_type": {
+        "company": {
+          "Operator/vendor commitments": 2,
+          "Professional judgment": 4
+        },
+        "data_analytics": {
+          "Pilot/production use": 1,
+          "Public roadmap/docs": 2
+        },
+        "ngo": {
+          "Pilot/production use": 1,
+          "Professional judgment": 4
+        }
+      },
+      "by_stance_q71": {
+        "neutral": {
+          "Professional judgment": 1
+        },
+        "oppose": {
+          "Operator/vendor commitments": 2,
+          "Professional judgment": 7
+        },
+        "support": {
+          "Pilot/production use": 2,
+          "Public roadmap/docs": 2
+        }
+      },
+      "label": "Basis for registry readiness assessment",
+      "n_answered": 14,
+      "options": [
+        {
+          "n": 8,
+          "pct": 57.14,
+          "text": "Professional judgment"
+        },
+        {
+          "n": 2,
+          "pct": 14.29,
+          "text": "Operator/vendor commitments"
+        },
+        {
+          "n": 2,
+          "pct": 14.29,
+          "text": "Pilot/production use"
+        },
+        {
+          "n": 2,
+          "pct": 14.29,
+          "text": "Public roadmap/docs"
+        }
+      ]
+    },
+    "q138": {
+      "by_org_type": {
+        "company": {
+          "General awareness (no direct analysis)": 7,
+          "Prefer not to say": 1,
+          "Professional judgment informed by literature/briefings": 2
+        },
+        "data_analytics": {
+          "Direct empirical analysis (e.g., back-testing with hourly factors)": 2,
+          "Professional judgment informed by literature/briefings": 2
+        },
+        "ngo": {
+          "Direct empirical analysis (e.g., back-testing with hourly factors)": 1,
+          "General awareness (no direct analysis)": 1,
+          "Operational experience applying hourly MBM": 2,
+          "Professional judgment informed by literature/briefings": 5
+        }
+      },
+      "by_stance_q71": {
+        "neutral": {
+          "Operational experience applying hourly MBM": 1,
+          "Professional judgment informed by literature/briefings": 1
+        },
+        "oppose": {
+          "General awareness (no direct analysis)": 8,
+          "Operational experience applying hourly MBM": 1,
+          "Prefer not to say": 1,
+          "Professional judgment informed by literature/briefings": 5
+        },
+        "support": {
+          "Direct empirical analysis (e.g., back-testing with hourly factors)": 3,
+          "Professional judgment informed by literature/briefings": 3
+        }
+      },
+      "label": "Basis for MBM usefulness assessment",
+      "n_answered": 18,
+      "options": [
+        {
+          "n": 9,
+          "pct": 50.0,
+          "text": "Professional judgment informed by literature/briefings"
+        },
+        {
+          "n": 8,
+          "pct": 44.44,
+          "text": "General awareness (no direct analysis)"
+        },
+        {
+          "n": 3,
+          "pct": 16.67,
+          "text": "Direct empirical analysis (e.g., back-testing with hourly factors)"
+        },
+        {
+          "n": 2,
+          "pct": 11.11,
+          "text": "Operational experience applying hourly MBM"
+        },
+        {
+          "n": 1,
+          "pct": 5.56,
+          "text": "Prefer not to say"
+        }
+      ]
+    },
+    "q56": {
+      "by_org_type": {
+        "company": {
+          "Professional judgment informed by literature/briefings": 1
+        },
+        "data_analytics": {
+          "Direct empirical analysis": 1,
+          "General awareness (no direct analysis)": 1
+        },
+        "ngo": {
+          "Operational experience": 1,
+          "Professional judgment informed by literature/briefings": 2
+        }
+      },
+      "by_stance_q71": {
+        "neutral": {
+          "Professional judgment informed by literature/briefings": 1
+        },
+        "oppose": {
+          "Operational experience": 1,
+          "Professional judgment informed by literature/briefings": 1
+        },
+        "support": {
+          "Direct empirical analysis": 1,
+          "General awareness (no direct analysis)": 1,
+          "Professional judgment informed by literature/briefings": 1
+        }
+      },
+      "label": "Basis for LBM usefulness assessment",
+      "n_answered": 6,
+      "options": [
+        {
+          "n": 3,
+          "pct": 50.0,
+          "text": "Professional judgment informed by literature/briefings"
+        },
+        {
+          "n": 1,
+          "pct": 16.67,
+          "text": "Direct empirical analysis"
+        },
+        {
+          "n": 1,
+          "pct": 16.67,
+          "text": "General awareness (no direct analysis)"
+        },
+        {
+          "n": 1,
+          "pct": 16.67,
+          "text": "Operational experience"
+        }
+      ]
+    }
+  },
+  "citations": {
+    "by_org_type": [
+      {
+        "citing": 3,
+        "key": "data_analytics",
+        "label": "Data/analytics provider",
+        "n": 3,
+        "pct": 100.0
+      },
+      {
+        "citing": 3,
+        "key": "ngo",
+        "label": "NGO/nonprofit",
+        "n": 6,
+        "pct": 50.0
+      },
+      {
+        "citing": 1,
+        "key": "company",
+        "label": "Company",
+        "n": 12,
+        "pct": 8.33
+      }
+    ],
+    "by_redaction": {
+      "named": {
+        "citing": 6,
+        "n": 11,
+        "pct": 54.55
+      },
+      "redacted": {
+        "citing": 1,
+        "n": 10,
+        "pct": 10.0
+      }
+    },
+    "by_stance_q71": {
+      "neutral": {
+        "citing": 1,
+        "n": 2,
+        "pct": 50.0
+      },
+      "oppose": {
+        "citing": 2,
+        "n": 15,
+        "pct": 13.33
+      },
+      "support": {
+        "citing": 4,
+        "n": 4,
+        "pct": 100.0
+      }
+    },
+    "domains": [
+      {
+        "class": "peer_reviewed",
+        "count": 4,
+        "domain": "sciencedirect.com"
+      },
+      {
+        "class": "advocacy",
+        "count": 3,
+        "domain": "energytag.org"
+      },
+      {
+        "class": "government",
+        "count": 2,
+        "domain": "iea.org"
+      },
+      {
+        "class": "shortener",
+        "count": 2,
+        "domain": "tinyurl.com"
+      },
+      {
+        "class": "data_vendor",
+        "count": 1,
+        "domain": "watttime.org"
+      },
+      {
+        "class": "other",
+        "count": 1,
+        "domain": "example.org"
+      }
+    ],
+    "template_citation_blocks": [
+      {
+        "hash": "fixturecite0000000000000000000000000a1",
+        "n_respondents": 2,
+        "preview": "Hourly matching is supported by a growing peer-reviewed literature (see Bjørn et al. 2025) and by grid-operator practice in three markets."
+      }
+    ]
+  },
+  "stories": [
+    {
+      "attribution": "Fixture Research Institute — NGO/nonprofit, US",
+      "quote": "Sorry to toot my own horn, but our own published work speaks directly to this question.",
+      "respondent_id": 900,
+      "title": "A self-citation, cheerfully declared",
+      "verified": true
+    },
+    {
+      "attribution": "Redacted — Company, US",
+      "quote": "We coordinated our response with two industry peers to keep our positions consistent.",
+      "respondent_id": 906,
+      "title": "Coordination stated on the record",
+      "verified": true
+    }
+  ]
+}

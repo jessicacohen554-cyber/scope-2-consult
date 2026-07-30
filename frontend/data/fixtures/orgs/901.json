@@ -1,0 +1,178 @@
+{
+  "answers": [
+    {
+      "label": "Support for QC4 hourly matching",
+      "lever": "qc4_hourly_matching",
+      "numeric": 1.0,
+      "q": 71,
+      "selections": [],
+      "shorthand": "qc4_hourly_matching_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for QC5 deliverability",
+      "lever": "qc5_deliverability",
+      "numeric": 2.0,
+      "q": 83,
+      "selections": [],
+      "shorthand": "qc5_deliverability_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for pro-rata Standard Supply Service",
+      "lever": "sss_pro_rata",
+      "numeric": 3.0,
+      "q": 97,
+      "selections": [],
+      "shorthand": "sss_pro_rata_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for the residual-mix definition",
+      "lever": "resid_mix_definition",
+      "numeric": 3.0,
+      "q": 113,
+      "selections": [],
+      "shorthand": "resid_mix_def_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for the fossil fallback",
+      "lever": "fossil_fallback",
+      "numeric": 2.0,
+      "q": 124,
+      "selections": [],
+      "shorthand": "fossil_fallback_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for hourly matching exemptions",
+      "lever": "hourly_exempt",
+      "numeric": 4.0,
+      "q": 153,
+      "selections": [],
+      "shorthand": "hourly_exempt_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Support for a legacy clause",
+      "lever": "legacy_clause",
+      "numeric": 5.0,
+      "q": 171,
+      "selections": [],
+      "shorthand": "legacy_clause_support",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Internal admin effort for hourly matching",
+      "lever": "qc4_hourly_matching",
+      "numeric": 5.0,
+      "q": 78,
+      "selections": [],
+      "shorthand": "qc4_internal_admin_effort",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Change in procurement price for EACs",
+      "lever": "procure_cost_impact",
+      "numeric": 5.0,
+      "q": 139,
+      "selections": [],
+      "shorthand": "procure_price_change",
+      "text": null,
+      "type": "likert_1_5"
+    },
+    {
+      "label": "Registry readiness to publish residual mix",
+      "lever": "resid_mix_registry_readiness",
+      "numeric": null,
+      "q": 118,
+      "selections": [
+        "Insufficient basis to assess"
+      ],
+      "shorthand": "resid_mix_registry_readiness",
+      "text": null,
+      "type": "scale_labeled"
+    },
+    {
+      "label": "Preferred GWh exemption threshold",
+      "lever": "exempt_gwh_threshold",
+      "numeric": 3.0,
+      "q": 70,
+      "selections": [],
+      "shorthand": "exempt_gwh_thresh_preference",
+      "text": null,
+      "type": "ordinal_select"
+    },
+    {
+      "label": "Reasons against QC4 hourly matching",
+      "lever": "qc4_hourly_matching",
+      "numeric": null,
+      "q": 74,
+      "selections": [
+        "Concern that administrative, data management, and audit challenges outweigh the benefits",
+        "Hourly matching should follow an optional ‘may’ rather than a required ‘shall’ approach"
+      ],
+      "shorthand": "qc4_hourly_matching_reasons_vs",
+      "text": "The audit trail required to prove hourly matching across 40 sites in nine markets would cost more than the abatement it documents.",
+      "type": "multi_select"
+    },
+    {
+      "label": "Basis for registry readiness assessment",
+      "lever": "resid_mix_registry_readiness",
+      "numeric": null,
+      "q": 122,
+      "selections": [
+        "Professional judgment"
+      ],
+      "shorthand": "resid_mix_readiness_basis",
+      "text": null,
+      "type": "single_select"
+    },
+    {
+      "label": "Basis for MBM usefulness assessment",
+      "lever": "mbm_revisions_package",
+      "numeric": null,
+      "q": 138,
+      "selections": [
+        "General awareness (no direct analysis)"
+      ],
+      "shorthand": "mbm_usefulness_basis",
+      "text": null,
+      "type": "multi_select"
+    },
+    {
+      "label": "Year for a uniform effective date",
+      "lever": "uniform_effective_date",
+      "numeric": 2030.0,
+      "q": 183,
+      "selections": [],
+      "shorthand": "uniform_effective_date_year",
+      "text": null,
+      "type": "numeric_year"
+    }
+  ],
+  "audit_basis": "Operating manufacturer responding about its own inventory; classification stands.",
+  "audited_class": "company",
+  "country": "jp",
+  "flags": {
+    "bloc": null,
+    "citation_count": 0,
+    "cites": false,
+    "entity_group": null,
+    "template": false
+  },
+  "id": 901,
+  "name": "Northwind Manufacturing Co., Ltd.",
+  "org_type": "company",
+  "responding_as": "organization",
+  "sector": "manufacturing"
+}
