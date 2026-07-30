@@ -1,0 +1,1010 @@
+{
+  "fossil_fallback_ef": {
+    "against": [
+      {
+        "attribution": "Redacted — Company, Bangladesh",
+        "org_type": "company",
+        "q": 128,
+        "redacted": true,
+        "respondent_id": 164,
+        "template_cluster": null,
+        "text": "Bangladesh’s grid is dominated by fossil fuels (approx. 61-67% gas, 20-27% coal), with less than 5% renewable capacity. Consequently, there is no 'clean buffer' in the grid mix. […] Under the proposed rule, any unmatched hour of consumption (e.g., night shifts) would be penalized with a high-carbon fossil emission factor. This creates a 'double punishment': we bear the cost of Scope 1 emissions and are now heavily penalized on Scope 2 for grid usage that we cannot physically match with local renewables due to market scarcity."
+      },
+      {
+        "attribution": "Redacted — Consultant, United States",
+        "org_type": "consultant",
+        "q": 129,
+        "redacted": true,
+        "respondent_id": 25,
+        "template_cluster": null,
+        "text": "For example, Montreal in Quebec Canada has a location-based emission factor of only 1.7 g CO2e/kwh as the grid is primarily powered by renewables (99%+). Using the current market-based approach, sites NOT purchasing electricity under a contractual arrangement would use a residual mix factor (not published/publicly available for Canada) and then default to the location-based factor (1.7 g CO2e/kwh)."
+      },
+      {
+        "attribution": "Redacted — Company, Japan",
+        "org_type": "company",
+        "q": 128,
+        "redacted": true,
+        "respondent_id": 453,
+        "template_cluster": null,
+        "text": "There are developing countries where, due to system and geographical constraints, residual mix factors cannot be obtained, yet the share of hydropower and other renewables is extremely high — Costa Rica, for example. […] Applying fossil‑fuel‑based factors to such countries would result in significant overestimation and is therefore undesirable."
+      },
+      {
+        "attribution": "Ipieca — Industry group, United Kingdom",
+        "org_type": "industry_group",
+        "q": 128,
+        "redacted": false,
+        "respondent_id": 906,
+        "template_cluster": null,
+        "text": "Determining the “predominant fossil fuel” in a market boundary and applying the most conservative factor (e.g., coal) would add complexity and subjectivity to emissions reporting, whilst simultaneously reducing comparability. […] This approach may penalize regions with limited data availability and discourage renewable procurement in emerging markets."
+      },
+      {
+        "attribution": "National Waste & Recycling Association — Other, United States",
+        "org_type": "other",
+        "q": 126,
+        "redacted": false,
+        "respondent_id": 1100,
+        "template_cluster": null,
+        "text": "While using a fossil-based emission factor as a fallback may improve methodological accuracy in theory, in practice it would prevent our members from recognizing any renewable or carbon-free electricity they procure through greener options or community choice programs. […] this requirement would force electricity to be reported as fossil-based, inflating Scope 2 emissions and reducing the usefulness of market-based reporting."
+      },
+      {
+        "attribution": "Avary Holding (Shenzhen) Co., Ltd. — Company, China",
+        "org_type": "company",
+        "q": 128,
+        "redacted": false,
+        "respondent_id": 375,
+        "template_cluster": "dfa768a8579248cefd4f0bfc42140167ba410c12",
+        "text": "This requirement is a punitive measure rather than a scientific accounting practice. Forcing the use of fossil-fuel-based emission factors in regions where Residual Mix Factors (RMF) are unavailable unfairly penalizes reporting entities for the regulatory failures of suppliers or governments. […] Until official RMF data is accessible, organizations should be permitted to use the most reliable alternative, the Grid Average Emission Factor, to maintain accounting accuracy and continuity."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "KPMG IFRG Ltd — Other, United Kingdom",
+        "org_type": "other",
+        "q": 128,
+        "redacted": false,
+        "respondent_id": 560,
+        "template_cluster": null,
+        "text": "We generally support the replacement of the option to use a grid-average emission factor in the absence of a residual mix factor with a fossil-only emission factor because this reduces clear double-counting. Companies would not be able to default to using LBM emission factors that double count cleaner energy. […] However, we have concerns about the impact on companies operating in jurisdictions where there is no tracking system present, leading to this being a default factor. This would be a disadvantage for reporters who do not have control over this."
+      },
+      {
+        "attribution": "PricewaterhouseCoopers International Limited — Verification/assurance, United Kingdom",
+        "org_type": "verification",
+        "q": 126,
+        "redacted": false,
+        "respondent_id": 894,
+        "template_cluster": null,
+        "text": "A key weakness in the current method of calculating market-based emissions is the use of location-based emission factors when residual mix factors are not available for a specific region. This approach may double count renewable attributes and substantially understate market-based emissions in regions where many of these rights are sold. […] We believe that the use of fossil-based emission factors would address this issue in the absence of more widely available residual mix factors."
+      },
+      {
+        "attribution": "Redacted — Energy supplier/utility, Spain",
+        "org_type": "energy_supplier",
+        "q": 126,
+        "redacted": true,
+        "respondent_id": 721,
+        "template_cluster": null,
+        "text": "We support the fossil-based fallback because it improves MBM integrity (reduces double counting), provides a clear option where no residual mix exists, and incentivizes residual mix development. […] In many markets, the lack of a residual mix factor is due to registry/data limitations outside the reporter’s control, so a fossil fallback can become a “data availability penalty” and overstate emissions versus the actual system. To avoid inconsistent outcomes, the Standard should define standardized fossil fallback rules and authoritative default values."
+      },
+      {
+        "attribution": "Deepki — Data/analytics provider, France",
+        "org_type": "data_analytics",
+        "q": 126,
+        "redacted": false,
+        "respondent_id": 430,
+        "template_cluster": null,
+        "text": "We also observe that, because of lack of common methodology among suppliers to compute Emission Factors, and lack of Residual Mix availability, using location based / average national mix as fall back is an additional step to a shallow reduction of GHG emissions: this gives to market actors an open door to green washing and to establish week GHG reduction strategy."
+      },
+      {
+        "attribution": "DIGITAL GRID Corporation — Energy supplier/utility, Japan",
+        "org_type": "energy_supplier",
+        "q": 126,
+        "redacted": false,
+        "respondent_id": 540,
+        "template_cluster": null,
+        "text": "The concept of applying a fossil-based emission factor to electricity not covered by valid contractual instruments and where no residual mix emission factor is available is aligned with the principle of conservativeness in the Market-Based Method […] by indicating a clear default rule that enables reporting even in regions where residual mix emission factors are undeveloped or during transition periods, we believe it is possible to suppress variations in interpretation among reporters and ensure comparability of MBM results."
+      },
+      {
+        "attribution": "Iron Mountain Data Centers — Company, United States",
+        "org_type": "company",
+        "q": 126,
+        "redacted": false,
+        "respondent_id": 516,
+        "template_cluster": "abdd69d63ab2eca411fdeedcbb828c7bef37e46a",
+        "text": "Residual mixes are not always available to reporting organizations. Instead of allowing for use of a grid average default emissions factor for unmatched hours of consumption, which would double count significant clean electricity already being claimed by others, a fossil mix ensures no double counting of these clean electricity attributes and is easily attainable."
+      }
+    ]
+  },
+  "hourly_exempt": {
+    "against": [
+      {
+        "attribution": "Conversio Pty Ltd — Consultant, Australia",
+        "org_type": "consultant",
+        "q": 160,
+        "redacted": false,
+        "respondent_id": 17,
+        "template_cluster": null,
+        "text": "A zero-threshold approach best fits the intent of balancing integrity, impact, and feasibility because it avoids creating arbitrary cut-offs that distort comparability while ensuring the rule’s feasibility is assessed on its own merits. […] Any threshold, whether 5, 10, or 50 GWh, introduces unequal treatment and administrative ambiguity, effectively rewarding scale rather than emissions quality."
+      },
+      {
+        "attribution": "Ipieca — Industry group, United Kingdom",
+        "org_type": "industry_group",
+        "q": 157,
+        "redacted": false,
+        "respondent_id": 906,
+        "template_cluster": null,
+        "text": "there is a risk that implementing exemption thresholds as proposed (based on the volume of electricity consumption in each grid region and/or based on company size) could lead to the creation of a two-tier system, with larger consumers and companies facing stricter standards without clear climate benefits and undermining the GHG Protocol’s aim to improve accuracy, comparability and consistency in emissions reporting."
+      },
+      {
+        "attribution": "Mineral Products Association (MPA) — Industry group, United Kingdom",
+        "org_type": "industry_group",
+        "q": 157,
+        "redacted": false,
+        "respondent_id": 789,
+        "template_cluster": null,
+        "text": "a 'one-size-fits-all' absolute GWh threshold fails to account for the unique operational realities of heavy industry. […] For the cement sector, electricity typically accounts for only 10–15% of total energy demand, with the remainder being thermal energy for kiln operation. Because these kilns operate as continuous, 24/7 processes, they maintain a predictable, flat load curve."
+      },
+      {
+        "attribution": "Redacted — Energy supplier/utility, United Kingdom",
+        "org_type": "energy_supplier",
+        "q": 157,
+        "redacted": true,
+        "respondent_id": 779,
+        "template_cluster": null,
+        "text": "we consider that a universal threshold, based either volumes, the size of an organisation, or a mixture of both, is mistaken. […] Smaller organisations are unlikely to be securing CPPAs themselves and will likely rely on matched supply contracts to satisfy their reporting requirements. In the GB market, there is no barrier to their doing so today, let alone in 2027 or later."
+      },
+      {
+        "attribution": "Redacted — Company, United States",
+        "org_type": "company",
+        "q": 160,
+        "redacted": true,
+        "respondent_id": 593,
+        "template_cluster": null,
+        "text": "The Responding Company supports a “may” not “shall” approach to hourly and deliverable matching, placing both at the top of a data hierarchy, but not requiring either. […] This also negates the need to create any exemptions altogether."
+      },
+      {
+        "attribution": "SEMI — Industry group, Singapore",
+        "org_type": "industry_group",
+        "q": 158,
+        "redacted": false,
+        "respondent_id": 603,
+        "template_cluster": "116fab398465f94a2b1c5d81f3f0635c10ee2fa7",
+        "text": "Exemptions are not needed if hourly matching is optional rather than required. Support is not earned for the overall MBM proposal because the proposal is not reasonable, feasible, nor accelerates decarbonization."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Ferrero International SA — Company, Luxembourg",
+        "org_type": "company",
+        "q": 160,
+        "redacted": false,
+        "respondent_id": 746,
+        "template_cluster": null,
+        "text": "For a multinational, 80-90% of electricity consumption typically comes from a few large industrial sites, while the remaining volume is fragmented across hundreds of small offices, warehouses, or retail sites. […] Sites consuming under 50 GWh often lack the buyer power to demand hourly data or bespoke '24/7' products from utilities, especially in regulated or emerging markets."
+      },
+      {
+        "attribution": "Redacted — Company, United States",
+        "org_type": "company",
+        "q": 160,
+        "redacted": true,
+        "respondent_id": 485,
+        "template_cluster": null,
+        "text": "Even at 50 GWh per region, fewer than 4% of our U.S. sites (including facilities and stand-alone power-consuming assets outside of facilities) would be exempt, leaving over 100,000 sites still subject to hourly matching. […] By contrast, a site-level threshold of 500 MWh per year per facility or asset would exempt the smaller loads while still capturing the largest, most material sites."
+      },
+      {
+        "attribution": "Redacted — Company, Singapore",
+        "org_type": "company",
+        "q": 155,
+        "redacted": true,
+        "respondent_id": 340,
+        "template_cluster": null,
+        "text": "While the current exemption based on volume and company size provides some relief, it is insufficient because it ignores the market-specific feasibility of meeting hourly matching and deliverability requirements. Compliance is not just a function of company size or annual consumption, it is fundamentally constrained by the techno-commercial realities of the markets in which companies operate. […] Many markets lack the necessary infrastructure, regulatory frameworks, and interoperable energy attribute tracking systems to support hourly matching."
+      },
+      {
+        "attribution": "Fundación Natura — NGO/nonprofit, Colombia",
+        "org_type": "ngo",
+        "q": 159,
+        "redacted": false,
+        "respondent_id": 1125,
+        "template_cluster": null,
+        "text": "We do not consider that the application of exemptions should be primarily linked to a fixed electricity consumption threshold in GWh, but rather to the technological, operational, and institutional maturity of the electricity market […] The feasibility of applying requirements such as hourly matching, deliverability demonstration, or high-granularity contractual instruments depends more on data availability, metering infrastructure, market registries, and monitoring and verification capacities than on an organization’s absolute level of electricity consumption."
+      },
+      {
+        "attribution": "Quintrace — Data/analytics provider, United States",
+        "org_type": "data_analytics",
+        "q": 159,
+        "redacted": false,
+        "respondent_id": 215,
+        "template_cluster": null,
+        "text": "Quintrace supports a phased exemption threshold rather than a single fixed value. A higher initial threshold (e.g., 50 GWh per deliverable market boundary) in the near term would allow time for hourly instruments, registries, and data infrastructure to mature, while avoiding disruption to existing procurement strategies. […] Over time, the threshold should step down in defined intervals (for example, from 50 GWh to 25 GWh, then 10 GWh, and ultimately 5 GWh), creating a predictable pathway that expands hourly matching participation as markets develop."
+      },
+      {
+        "attribution": "SIDENOR GROUP — Industry group, Greece",
+        "org_type": "industry_group",
+        "q": 155,
+        "redacted": false,
+        "respondent_id": 421,
+        "template_cluster": "f8dde2736869674100111c9a7e0f1abe10388760",
+        "text": "Allowing exemptions also encourages the organizations with the resources (and a much higher impact on overall electricity consumption) to help pave the way for markets and infrastructure so that companies with fewer resources (and a lower overall electricity consumption impact) can start to take leadership efforts."
+      }
+    ]
+  },
+  "legacy_clause": {
+    "against": [
+      {
+        "attribution": "Ernst & Young Global Ltd — Verification/assurance, United Kingdom",
+        "org_type": "verification",
+        "q": 175,
+        "redacted": false,
+        "respondent_id": 148,
+        "template_cluster": null,
+        "text": "Many of the contracts for contractual instruments are long-term contracts (e.g., 20 years or longer). Under the proposed Legacy Clause, an entity could account for a significant amount of contractual instruments under the legacy guidance for a significant amount of time after the implementation date. That would reduce consistency and comparability within an entity’s reported Scope 2 MBM emissions and across entities. […] For example, one entity may appear to have lower Scope 2 MBM emissions than another just because it has a long-term PPA from many years ago"
+      },
+      {
+        "attribution": "Taiwan Digital Sustainability International Co., Ltd — Consultant, Taiwan",
+        "org_type": "consultant",
+        "q": 175,
+        "redacted": false,
+        "respondent_id": 254,
+        "template_cluster": null,
+        "text": "I do not support the introduction of a Legacy Clause because it undermines the integrity and comparability of Scope 2 reporting. Allowing exemptions for existing long‑term contracts reduces the accuracy and relevance of MBM data, creating inconsistencies across organizations and weakening credible market signals. Such exemptions risk fragmenting the voluntary market, slowing the transition toward hourly data availability and use."
+      },
+      {
+        "attribution": "Action Speaks Louder — NGO/nonprofit, Australia",
+        "org_type": "ngo",
+        "q": 173,
+        "redacted": false,
+        "respondent_id": 196,
+        "template_cluster": null,
+        "text": "Legacy clauses should only be available for credible contracts which guarantee additionality, specifically long-term, fixed-price PPAs. If low to no additionality contracts are allowed, such as Unbundled EACs, companies that currency claim 100% RE based on very limited use of RE will continue to greenwash, placing undue burden on companies following accurate reporting standards."
+      },
+      {
+        "attribution": "PATtech Limited — Registry operator, Australia",
+        "org_type": "registry_operator",
+        "q": 175,
+        "redacted": false,
+        "respondent_id": 105,
+        "template_cluster": null,
+        "text": "PATtech recognises the need for a managed transition, however the technology exists now to convert legacy contracts into hourly-aligned, deliverable instruments.. Maintaining two parallel systems, one annual and one hourly, creates unnecessary complexity and increases the risk of double counting. […] For Scope 2 reporting to remain credible, all contractual instruments should ultimately migrate to a single, high-integrity hourly framework, supported by a unified grid register."
+      },
+      {
+        "attribution": "PGIM — Financial institution, United Kingdom",
+        "org_type": "financial",
+        "q": 175,
+        "redacted": false,
+        "respondent_id": 598,
+        "template_cluster": null,
+        "text": "We are concerned by the legacy clause and feel it requires some modification. […] Further, the quality of market mechanisms used to date varies materially, and in some cases these appear to be weak. Continuing to allow weaker instruments the same treatment as in the past would reward the subset of reporters who employed them."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Rio Tinto Limited — Company, Australia",
+        "org_type": "company",
+        "q": 177,
+        "redacted": false,
+        "respondent_id": 1169,
+        "template_cluster": null,
+        "text": "Given the implications of these long‑term agreements—made under the assumption of the current Scope 2 guidance—we believe it is critical to consider a robust legacy clause should concepts such as hourly or geographical matching be adopted into the Protocol. […] This would help preserve contractual integrity and avoid unintended consequences for investments already committed to advancing decarbonisation."
+      },
+      {
+        "attribution": "American Public Power Association — Industry group, United States",
+        "org_type": "industry_group",
+        "q": 173,
+        "redacted": false,
+        "respondent_id": 1068,
+        "template_cluster": null,
+        "text": "APPA strongly supports the legacy clause and phase implementation as it will protect customers and allow utilities time to adapt to the impacts of projects already in development. […] because public power is not-for-profit and community-owned, these costs will be passed directly on to its residential and business customers."
+      },
+      {
+        "attribution": "Redacted — Other, Brazil",
+        "org_type": "other",
+        "q": 177,
+        "redacted": true,
+        "respondent_id": 853,
+        "template_cluster": null,
+        "text": "Contracts of this nature, particularly in the Brazilian electricity sector, undergo extensive processes of due diligence, financial modeling, risk analysis, regulatory audits, and corporate approvals […] If eligibility is determined solely by the signing date, it creates a distortion: contracts whose negotiations were already advanced before the publication of the new standard would suddenly be required to incorporate quality criteria (such as hourly matching and deliverability) that did not exist when the process began."
+      },
+      {
+        "attribution": "CSR Division (Japanese ICT company) — Company, Japan",
+        "org_type": "company",
+        "q": 178,
+        "redacted": false,
+        "respondent_id": 690,
+        "template_cluster": null,
+        "text": "The scope of the legacy clause should be limited to contracts entered into based on reasonable investment decisions related to power generation development or long-term electricity procurement, in accordance with the Scope 2 guidance in effect at the time. […] The definition should broadly encompass contracts that have substantively supported renewable electricity supply, including physical PPAs, virtual PPAs (VPPAs), and other long-term procurement contracts consistent with prevailing market practices."
+      },
+      {
+        "attribution": "Vistra Corp — Energy supplier/utility, United States",
+        "org_type": "energy_supplier",
+        "q": 180,
+        "redacted": false,
+        "respondent_id": 1089,
+        "template_cluster": null,
+        "text": "Users of climate-related financial risk disclosures are most likely to primarily be assessing an organization's risks and opportunities following the methodology of a climate impact assessment, and the resulting interventions and strategies that an organization has in place to address identified risks and opportunities—while Scope 2 market-based calculations can be a component of these interventions and strategies, in many cases organizational impact will extend beyond Scope 2 calculations alone."
+      },
+      {
+        "attribution": "LUXSHARE — Company, China",
+        "org_type": "company",
+        "q": 173,
+        "redacted": false,
+        "respondent_id": 319,
+        "template_cluster": "55c3209efc859223670888f2dfd0353f5315497d",
+        "text": "We oppose mandatory hourly matching and opposes mandatory deliverability requirements. If hourly matching is optional, there is no need for a legacy clause. If mandatory, legacy clause is absolutely necessary. All contracts executed prior to implementation of new Scope 2 Standards should be honored under the contract terms for the duration of the contract under current rules."
+      }
+    ]
+  },
+  "mbm_package": {
+    "against": [
+      {
+        "attribution": "Redacted — Company, United States",
+        "org_type": "company",
+        "q": 137,
+        "redacted": true,
+        "respondent_id": 357,
+        "template_cluster": null,
+        "text": "The proposed market based revisions would significantly increase cost and complexity for both preparers and users, but they would not deliver meaningful improvements in comparability. […] In practice, comparability would decline because reporters in different regions would have access to very different levels of data quality, registry maturity, deliverability information, and hourly certificate availability."
+      },
+      {
+        "attribution": "CSR Division (Japanese ICT company) — Company, Japan",
+        "org_type": "company",
+        "q": 141,
+        "redacted": false,
+        "respondent_id": 690,
+        "template_cluster": null,
+        "text": "Requirements for hourly matching and deliverability would result in EACs and PPAs that can be contracted on an hourly basis being fragmented into smaller contract sizes compared with traditional annual or large-volume procurement. This would increase credit and collateral requirements, transaction costs, shaping activities, and reliance on secondary market purchases, leading to higher overall costs. […] operational efforts to avoid over- or under-procurement—such as matching management, evidence preparation, and assurance support—would also increase, further raising implementation burden."
+      },
+      {
+        "attribution": "Redacted — Company, Netherlands",
+        "org_type": "company",
+        "q": 135,
+        "redacted": true,
+        "respondent_id": 111,
+        "template_cluster": null,
+        "text": "We do not anticipate a meaningful improvement in decision-usefulness for investors or assurance providers relative to the incremental cost and complexity. […] We do not have any investors requesting us to shift to hourly matching or more granular market boundaries. European legislation does not ask us to do this, either. We pass limited assurance audits of our emissions inventory on annual basis based on the current guidance; we have not been asked to go into further granularity."
+      },
+      {
+        "attribution": "Vattenfall AB — Energy supplier/utility, Sweden",
+        "org_type": "energy_supplier",
+        "q": 143,
+        "redacted": false,
+        "respondent_id": 835,
+        "template_cluster": null,
+        "text": "Hedge accounting under IFRS requires that the hedging relationship be well-documented and consistent over time. […] The added granularity of specifically hourly requirements may make it harder to establish and maintain hedge accounting, because the documentation and measurement of hedge effectiveness typically relies on predictable timing and delivery profiles; predictability would decrease with GHGP’s proposed constraints."
+      },
+      {
+        "attribution": "Redacted — Company, United States",
+        "org_type": "company",
+        "q": 149,
+        "redacted": true,
+        "respondent_id": 996,
+        "template_cluster": null,
+        "text": "A separate impact metric does not change our view because it does not resolve the core feasibility and data-availability issues embedded in the proposed market-based revisions. […] Creating an additional metric does not reduce the operational burden, nor does it simplify procurement or reporting processes."
+      },
+      {
+        "attribution": "Corning Incorporated — Company, United States",
+        "org_type": "company",
+        "q": 135,
+        "redacted": false,
+        "respondent_id": 328,
+        "template_cluster": "f884dfce18d64071808d1b8a55949af5dc9319d5",
+        "text": "The improved accuracy for a small group of reporters does not justify the added costs, increased complexities, risks to voluntary procurement, and reduced carbon impacts associated with mandatory hourly matching without a viable consequential metric."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "UrbanChain — Data/analytics provider, United Kingdom",
+        "org_type": "data_analytics",
+        "q": 135,
+        "redacted": false,
+        "respondent_id": 892,
+        "template_cluster": null,
+        "text": "For large electricity users, the revisions are much more decision-useful because they force clarity on temporal coverage and deliverability. Both of these really matter for credibility and for understanding energy risk. […] This also helps simulate a better market: it creates clearer price and investment signals for harder-to-decarbonise hours, and encourages transition-led procurement strategies. Consumers should be the main driving force, not regulators."
+      },
+      {
+        "attribution": "Redacted — Academia/research, China",
+        "org_type": "academia",
+        "q": 20,
+        "redacted": true,
+        "respondent_id": 253,
+        "template_cluster": null,
+        "text": "Retaining contractual instruments as the basis of the MBM, while explicitly specifying temporal correlation and deliverability, is an important clarification that addresses long-standing credibility concerns. Requiring that instruments plausibly match electricity consumption in time and space strengthens the integrity of market-based claims and reduces the risk of purely symbolic procurement. […] From an assurance perspective, however, these clarifications significantly raise the verification threshold."
+      },
+      {
+        "attribution": "The NorthBridge Group — Consultant, United States",
+        "org_type": "consultant",
+        "q": 141,
+        "redacted": false,
+        "respondent_id": 397,
+        "template_cluster": null,
+        "text": "Concerns about incremental procurement costs often rest on the assumption that a more accurate, granular MB inventory framework would require companies to change their procurement strategies. That assumption isn’t necessarily correct. […] Procurement strategies can remain unchanged, while inventories become more accurate by reflecting the timing and location of electricity consumption. More granular inventory accounting primarily improves measurement. It doesn’t mandate behavior."
+      },
+      {
+        "attribution": "DIGITAL GRID Corporation — Energy supplier/utility, Japan",
+        "org_type": "energy_supplier",
+        "q": 137,
+        "redacted": false,
+        "respondent_id": 540,
+        "template_cluster": null,
+        "text": "We believe that organizing the definitions of hourly matching, deliverable market boundaries, SSS, and residual mix through the proposed Market-Based Method revisions will clarify points where interpretation and preconditions tended to differ among reporters, and a certain degree of improvement in comparability can be expected. […] we evaluate that suppressing double counting risks and claims deviating from reality will make it easier for investors and auditors to evaluate reporting results across the board."
+      },
+      {
+        "attribution": "Redacted — Company, Germany",
+        "org_type": "company",
+        "q": 20,
+        "redacted": true,
+        "respondent_id": 221,
+        "template_cluster": null,
+        "text": "The proposal is suitable to strengthen scientific integrity, reduce risks of misallocation (e.g., “solar at night”), and improve credibility and certificate usage. Aligning contractual instruments with actual consumption patterns and grid deliverability ensures that reported reductions reflect real-world system impacts. […] However, we see significant implementation challenges and risks."
+      },
+      {
+        "attribution": "As You Sow — NGO/nonprofit, United States",
+        "org_type": "ngo",
+        "q": 20,
+        "redacted": false,
+        "respondent_id": 936,
+        "template_cluster": "c0b64be541f270ffadd5b1e784da3993245ac5d5",
+        "text": "We support the update to the MBM definition to reaffirm the use of contractual instruments as the basis for allocation. We also support the clarification that temporal and spatial matching of instruments is a requirement for unique emissions claims as this ensures alignment with physical power grid and market realities."
+      }
+    ]
+  },
+  "qc4_hourly_matching": {
+    "against": [
+      {
+        "attribution": "WattTime — NGO/nonprofit, United States",
+        "org_type": "ngo",
+        "q": 75,
+        "redacted": false,
+        "respondent_id": 989,
+        "template_cluster": null,
+        "text": "As proposed, hourly matching would actively hamper the efforts of many companies to dispatch flexible load and storage to times that reduce emissions. […] consider a typical company operating during normal business hours such as 9-5 in a grid with rapidly growing solar adoption. […] Hourly matching would specifically incentivize companies not to produce clean energy or discharge storage in these hours beyond their load. This would actively increase short-run emissions; cause grid stress; and slow renewables build in the long run."
+      },
+      {
+        "attribution": "Workday — Company, United States",
+        "org_type": "company",
+        "q": 82,
+        "redacted": false,
+        "respondent_id": 651,
+        "template_cluster": null,
+        "text": "Hourly matching is difficult for organizations with distributed loads, such as Workday. We have ~270 GWh of load across 85 locations. We would be below the exemptions in some locations (e.g., APJ where we have ~1.5 GWh of load over 19 locations, and Europe with ~5 GWh load over 27 locations). […] We have ~115 GWh of load in Oregon, where contracting is extremely challenging due to market conditions/regulation, and ~40 GWh of load in Virginia, where our load would be too small to contract with utility-scale projects."
+      },
+      {
+        "attribution": "REsurety — Data/analytics provider, United States",
+        "org_type": "data_analytics",
+        "q": 82,
+        "redacted": false,
+        "respondent_id": 1026,
+        "template_cluster": null,
+        "text": "The administrative challenge and cost burden of reporting hourly matching has been extensively studied. The range of cost impact varies, but the story is the same: costs increase for hourly matching. […] Hourly matching levels of 90%, 98%, and 100% are 2.0, 3.1, and 4.1 times more expensive than non-local annual matching."
+      },
+      {
+        "attribution": "Redacted — Industry group, Belgium",
+        "org_type": "industry_group",
+        "q": 75,
+        "redacted": true,
+        "respondent_id": 855,
+        "template_cluster": null,
+        "text": "It is important to avoid double counting of renewable electricity. To this end, more work should be done to improve the accounting practices of energy retailers. For example, in Spain, there is a public database where emission factors for each retailer can be found, including their overall mix and their residual mix. […] A mandate would add disproportionate administrative and assurance burden, fragment liquidity, and risk discouraging PPAs and voluntary procurement"
+      },
+      {
+        "attribution": "Redacted — Company, Japan",
+        "org_type": "company",
+        "q": 82,
+        "redacted": true,
+        "respondent_id": 792,
+        "template_cluster": null,
+        "text": "Defining and applying an Activity Data Load Profile (e.g., an hourly uniform average) and mapping Contract Instrument Load Profiles (region‑specific public information) require ongoing data collection, normalization, and reconciliation at the facility level; this increases internal data‑management tasks and may require external data purchases or subscriptions. […] establishing access to hourly emissions trading (EAC) registries and market platforms creates new external fees and onboarding work."
+      },
+      {
+        "attribution": "Avary Holding (Shenzhen) Co., Ltd. — Company, China",
+        "org_type": "company",
+        "q": 75,
+        "redacted": false,
+        "respondent_id": 375,
+        "template_cluster": "1a3132f2591e7eb1c1912b9671514769b12f15f7",
+        "text": "Our opposition is rooted in the practical reality that global grid data infrastructure remains immature (Option f). The lack of globally unified and free public databases forces companies to incur prohibitive administrative costs and assurance complexities to achieve hourly precision. […] until grid utility bills synchronously reflect hourly usage, the supply of hourly-matched certificates will remain severely limited, leading to market fragmentation and excessive price premiums (Option h) that discourage industry-wide adoption."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Kaya Partners (senior advisor) — Company, Poland",
+        "org_type": "company",
+        "q": 73,
+        "redacted": false,
+        "respondent_id": 174,
+        "template_cluster": null,
+        "text": "from integrity standpoint, the current system allows companies to claim to run on 100% solar energy, even if during the night or in winter the electricity supplied is from fossil sources. This is because under the current system consumption and production can be completely uncorrelated. However, your new proposal fixes this issue. […] hourly matching would send a powerful signal to invest in technologies that enable round-the-clock decarbonisation. […] There are case studies covering thousands of GWhs of hourly-matched emissions accounting across five continents"
+      },
+      {
+        "attribution": "Technische Universität München — Academia/research, Germany",
+        "org_type": "academia",
+        "q": 73,
+        "redacted": false,
+        "respondent_id": 559,
+        "template_cluster": null,
+        "text": "My support is, among other reasons, based on my own work on this topic (Scholta & Blaschke, 2025), which demonstrates that increasing temporal matching requirements affects the transparency and reliability of renewable electricity claims within the European Energy Attribute Certificate market (the Guarantees of Origin market). […] Our analysis illustrates how annual matching allows renewable attributes generated at times of surplus to be applied to consumption occurring at times of scarcity."
+      },
+      {
+        "attribution": "ENGIE — Energy supplier/utility, France",
+        "org_type": "energy_supplier",
+        "q": 73,
+        "redacted": false,
+        "respondent_id": 1162,
+        "template_cluster": null,
+        "text": "ENGIE recognizes that the current GHGP Scope 2 market-based method provides flexibility, including allowances for time-related discrepancies such as day/night and seasonal variations. This flexibility has been essential for enabling early adoption and building market engagement. As the decarbonization landscape matures, however, the framework should now evolve toward an approach that more accurately reflects temporal realities. […] ENGIE is committed to this trajectory and sees hourly matching as the desirable target model and supports the proposed change"
+      },
+      {
+        "attribution": "Redacted — Company, United States",
+        "org_type": "company",
+        "q": 73,
+        "redacted": true,
+        "respondent_id": 16,
+        "template_cluster": null,
+        "text": "Hourly matching aligns reported MBM performance with real grid decarbonization needs. It rewards buyers that procure clean supply in harder-to-decarbonize hours and geographies, instead of only in surplus renewable periods. […] It creates a cost signal that encourages new renewable capacity, firming/storage, and responsive load in specific constrained intervals. […] Investments that add new, deliverable clean capacity in carbon-intensive hours are precisely the investments the grid most needs."
+      },
+      {
+        "attribution": "Granular Energy — Data/analytics provider, United Kingdom",
+        "org_type": "data_analytics",
+        "q": 82,
+        "redacted": false,
+        "respondent_id": 630,
+        "template_cluster": null,
+        "text": "The existence of hourly matching tariffs reduces the burden of the reporting requirements to almost zero. The LBM and MBM Scope 2 emissions calculations simply becomes an extra two numbers that appear on your electric bill. No extra work needed from the corporate. […] In some cases (e.g. Good Energy) receiving the calculations is included as standard in all green power contracts. No extra cost or extra work required - everyone gets their calculations without even having to opt in! These are already widely available."
+      },
+      {
+        "attribution": "TenneT — Grid operator, Netherlands",
+        "org_type": "grid_operator",
+        "q": 76,
+        "redacted": false,
+        "respondent_id": 983,
+        "template_cluster": "deda49a3907a0cb675fdbc069a706e57ef95d47a",
+        "text": "There is empirical evidence to suggest that using load profiles can deliver similar system-level benefits (more renewables, storage, clean firm, and demand flexibility) as actual hourly meter data while providing greater flexibility and feasibility for organizations. […] The use of profiles will still be a significant improvement in accuracy to today’s accounting rules that allow the aggregation of load across an entire year to match with clean supply."
+      }
+    ]
+  },
+  "qc5_deliverability": {
+    "against": [
+      {
+        "attribution": "WattTime — NGO/nonprofit, United States",
+        "org_type": "ngo",
+        "q": 87,
+        "redacted": false,
+        "respondent_id": 989,
+        "template_cluster": null,
+        "text": "Baringa research (“The Corporate Catalyst”) indicates that nearly 80% of corporate power purchase agreements (PPAs) in 2023 were signed in Europe and the Americas, driven partly by requirements to procure within the same market boundaries as a company’s load. […] high-impact long-term procurement instruments such as PPAs typically require a minimum load size- around 100,000 MW (“Solving Offtaker Credit Barriers,” linked below)- which many companies achieve by aggregating electricity demand across multiple locations."
+      },
+      {
+        "attribution": "Redacted — Company, Germany",
+        "org_type": "company",
+        "q": 96,
+        "redacted": true,
+        "respondent_id": 857,
+        "template_cluster": null,
+        "text": "The expectation to align renewable generation and procurement with actual load curves is incompatible with current market practices:\n• Load curves only available retrospectively; procurement decisions need to be made years ahead […] In contrast to physical procurement, there is currently no spot-market for EACs for reconciliation\n• Unclear handling of seasonal gaps (e.g. during winter); Adds pseudo-accuracy and inefficiency with no direct impact on renewables"
+      },
+      {
+        "attribution": "Society for Corporate Governance — NGO/nonprofit, United States",
+        "org_type": "ngo",
+        "q": 89,
+        "redacted": false,
+        "respondent_id": 404,
+        "template_cluster": null,
+        "text": "All regions within the US should be deemed deliverable at the national level, as none of the proposed market boundaries accurately reflect deliverability within the US and are too limited. […] Most of these resources are located within the SRSO eGRID subregion. However, there are also resources in the SRVC subregion that are part of the same pool. […] Using EPA eGRID subregions would indicate that the resources in SRVC are not deliverable to the SRSO subregion"
+      },
+      {
+        "attribution": "Redacted — Energy supplier/utility, United Kingdom",
+        "org_type": "energy_supplier",
+        "q": 87,
+        "redacted": true,
+        "respondent_id": 767,
+        "template_cluster": null,
+        "text": "A fully operational hourly certificate system is essential for market based accounting, yet no such system currently exists. Establishing reliable hourly issuance, retirement, and double counting safeguards will require years of development and strong national authority participation. […] Until then, deliverability cannot be verified and market based claims cannot be substantiated. […] These requirements are overly restrictive and misaligned with European market realities."
+      },
+      {
+        "attribution": "CSR Division (Japanese ICT company) — Company, Japan",
+        "org_type": "company",
+        "q": 96,
+        "redacted": false,
+        "respondent_id": 690,
+        "template_cluster": null,
+        "text": "Deliverable market boundary requirements would necessitate not only the reorganization of contracts and certificates, but also substantial changes to internal measurement and aggregation units (including the granularity and reporting of activity data), data integration processes, system and tool modifications, assurance (audit) evidence, internal controls, and staff training. […] Consequently, immediate and uniform implementation would impose excessive practical burden."
+      },
+      {
+        "attribution": "SEMI — Industry group, Singapore",
+        "org_type": "industry_group",
+        "q": 96,
+        "redacted": false,
+        "respondent_id": 603,
+        "template_cluster": "f8366ed65ff9d0976bcd727c1e7ecec273f40cec",
+        "text": "More constrained market boundaries increase the volume of data needing to be accounted and assured substantially because what was previously a single market region for many sites now becomes many regions, needing to account for additional factors and separate use loads. […] Placing the burden on consumers instead of on grid utilities & generators makes the administrative burden inefficient as well, due to the fact that the information already exists on the supply side"
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Global Energy Equity and Climate Action (GEECA) Foundation — NGO/nonprofit, Switzerland",
+        "org_type": "ngo",
+        "q": 90,
+        "redacted": false,
+        "respondent_id": 1130,
+        "template_cluster": null,
+        "text": "The proposal explicitly recognizes that where physical interconnection evidence is not feasible, companies should use regional power pool borders (EAPP/SAPP/WAPP/CAPP/NAPP) as deliverable market boundaries, with a consistency + disclosure rule if a country sits in more than one pool. […] This is a proportionate proxy for deliverability in low-data environments and materially improves feasibility for multi-country procurement. […] Alternate methodology 1 (price-based deliverability) requires published hourly nodal/zonal prices at both generation and consumption points"
+      },
+      {
+        "attribution": "PATtech Limited — Registry operator, Australia",
+        "org_type": "registry_operator",
+        "q": 85,
+        "redacted": false,
+        "respondent_id": 105,
+        "template_cluster": null,
+        "text": "Without well-defined market boundaries, organisations can:\n• claim attributes from projects not physically capable of serving their load,\n• misrepresent decarbonisation progress to investors and regulators, and\n• deprive local grids of price signals where new clean capacity is actually needed. […] Tying Quality Criterion 5 to deliverable market boundaries puts Scope 2 on a much stronger footing and aligns with the direction of emerging policies (e.g. granular REGO-style frameworks, 24/7 CFE programs)."
+      },
+      {
+        "attribution": "Redacted — Company, Turkey",
+        "org_type": "company",
+        "q": 87,
+        "redacted": true,
+        "respondent_id": 1080,
+        "template_cluster": null,
+        "text": "We strongly support the principle that contractual instruments must be deliverable to the reporting load and that market boundaries should reflect physically connected systems rather than arbitrary national borders. […] Alternate Methodology 2, which relies on demonstrated transmission rights and physical delivery, more closely reflects how EAC and power markets actually operate today and should be the preferred route for cross boundary deliverability."
+      },
+      {
+        "attribution": "Tierra Climate Inc. — Data/analytics provider, United States",
+        "org_type": "data_analytics",
+        "q": 89,
+        "redacted": false,
+        "respondent_id": 247,
+        "template_cluster": null,
+        "text": "We support using eGRID subregions to define deliverability for the Market-Based Method because they offer greater spatial granularity than wholesale market or balancing authority boundaries. […] While balancing authorities reflect operational control zones, they often mask substantial internal congestion. For example, in ERCOT, electricity generated in West Texas frequently cannot be delivered to major urban centers like Dallas or Houston due to transmission constraints, even though all are within the same balancing authority."
+      },
+      {
+        "attribution": "Redacted — Government institution, United Kingdom",
+        "org_type": "government",
+        "q": 85,
+        "redacted": true,
+        "respondent_id": 97,
+        "template_cluster": null,
+        "text": "I support a deliverability requirement because it addresses a long-standing concern that contractual instruments could be sourced from regions that are not plausibly connected to the consuming load. Tying claims to deliverable market boundaries better reflects physical grid realities and reduces the risk of “anywhere on Earth” matching that undermines credibility."
+      },
+      {
+        "attribution": "Caldic B.V. — Company, Netherlands",
+        "org_type": "company",
+        "q": 90,
+        "redacted": false,
+        "respondent_id": 187,
+        "template_cluster": null,
+        "text": "In the European Union, the proposed deliverable market boundaries generally reflect electricity deliverability due to the highly interconnected nature of the power system and harmonized market structures. National grids or bidding zones are typically appropriate and align well with existing residual mix and grid-average emission factors used for mandatory and voluntary reporting. […] However, feasibility challenges may arise where hourly or highly granular data are not consistently available across all member states."
+      }
+    ]
+  },
+  "resid_mix_def": {
+    "against": [
+      {
+        "attribution": "Conversio Pty Ltd — Consultant, Australia",
+        "org_type": "consultant",
+        "q": 117,
+        "redacted": false,
+        "respondent_id": 17,
+        "template_cluster": null,
+        "text": "The proposed definition introduces unnecessary granularity and complexity into what should be a simple residual construct. Hourly or nodal residual mixes are neither feasible nor meaningful, as they depend on real-time tracking of certificates and market data that are unavailable in most regions. […] Residual mix factors should continue to be published annually and nationally by competent authorities or recognised registries, using standardised methodologies."
+      },
+      {
+        "attribution": "Redacted — Industry group, Belgium",
+        "org_type": "industry_group",
+        "q": 117,
+        "redacted": true,
+        "respondent_id": 877,
+        "template_cluster": null,
+        "text": "We support the concept of a residual mix, but do not support redefining it at highly granular spatial/temporal levels. In Europe’s interconnected grids, electricity and attributes flow across borders; sub‑national “postal code” or zonal splits risk fragmentation, double counting, and poor comparability. […] Residual mix should remain at established market boundaries (e.g., national level or, where appropriate, synchronous systems) and annual cadence"
+      },
+      {
+        "attribution": "Koninklijke Philips NV — Company, Netherlands",
+        "org_type": "company",
+        "q": 117,
+        "redacted": false,
+        "respondent_id": 432,
+        "template_cluster": null,
+        "text": "Residual mix emission factors are not available in many of the countries where we operate, and very few regions publish them at the required granularity or within the proposed market boundaries. Because of this, the updated definition cannot be applied consistently across our footprint. […] In practice, it creates reporting gaps that companies can only close by defaulting to fossil‑only factors, which are also unavailable in many markets."
+      },
+      {
+        "attribution": "Redacted — Energy supplier/utility, Japan",
+        "org_type": "energy_supplier",
+        "q": 117,
+        "redacted": true,
+        "respondent_id": 457,
+        "template_cluster": null,
+        "text": "In the proposed revision, entities are required to provide the ‘residual mix for the entire boundary.’ However, in Japan, no entity has full visibility into the extent to which electricity within the boundary is supplied under PPAs, making such calculations practically infeasible. […] In practice, residual mixes are calculated at the retail electricity supplier level to comply with national reporting requirements, such as those under the Act on Promotion of Global Warming Countermeasures."
+      },
+      {
+        "attribution": "Redacted — Industry group, Bangladesh",
+        "org_type": "industry_group",
+        "q": 117,
+        "redacted": true,
+        "respondent_id": 160,
+        "template_cluster": null,
+        "text": "Calculating residual mix emission factors per market boundary may be impractical in Bangladesh due to limited data availability and lack of detailed regional grids. […] The requirement increases administrative complexity, as many small- and medium-sized factories lack the systems, staffing, or technical capacity to calculate residual mix factors for multiple boundaries and time intervals."
+      },
+      {
+        "attribution": "Avary Holding (Shenzhen) Co., Ltd. — Company, China",
+        "org_type": "company",
+        "q": 117,
+        "redacted": false,
+        "respondent_id": 375,
+        "template_cluster": "4b40e37036a896bfde8fba8c20b234b96172c9e8",
+        "text": "Critical Lack of Data Infrastructure: The vast majority of global power markets lack the tracking systems necessary to distinguish between voluntary EACs and SSS allocations. Implementing this refined definition prematurely would turn the Residual Mix into a \"black box\" figure that is unverifiable, undermining the scientific integrity of GHG accounting."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Voltfox Inc. — Consultant, Turkey",
+        "org_type": "consultant",
+        "q": 115,
+        "redacted": false,
+        "respondent_id": 90,
+        "template_cluster": null,
+        "text": "We support the updated residual mix definition because it clearly treats residual mix as the part of the grid not already claimed through SSS or contractual instruments within a defined market boundary. This improves accuracy, reduces double counting, and makes market based results more transparent and comparable. […] In practice we think residual mix should be calculated at the best time resolution that is realistically available in each region today, often annual or monthly rather than hourly, with hourly residual mix as a longer term goal once registry and SSS data catch up."
+      },
+      {
+        "attribution": "Redacted — Energy supplier/utility, United Kingdom",
+        "org_type": "energy_supplier",
+        "q": 115,
+        "redacted": true,
+        "respondent_id": 780,
+        "template_cluster": null,
+        "text": "Establishing clear definitions and deliverable market boundaries is essential for ensuring the residual mix is a physically relevant reflection of the grid remainder. […] Standardizing these factors across regions allows for a more \"apples-to-apples\" comparison of corporate inventories."
+      },
+      {
+        "attribution": "Waste Management Inc (WM) — Company, United States",
+        "org_type": "company",
+        "q": 119,
+        "redacted": false,
+        "respondent_id": 870,
+        "template_cluster": null,
+        "text": "Most regions where we operate reliably publish residual mix emission factor data, but only at an annual level, that is based 1-2 year lagging data, and does not reflect SSS considerations. […] Producing residual mix factors with hourly granularity would be extremely challenging because it requires significant data infrastructure upgrades and coordination across utilities, registries, and regulators."
+      },
+      {
+        "attribution": "Electricity Maps — Company, Denmark",
+        "org_type": "company",
+        "q": 119,
+        "redacted": false,
+        "respondent_id": 276,
+        "template_cluster": null,
+        "text": "The annual Residual Mix concept is functional in Europe (AIB/RE-DISS), but this needs to be disaggregated to hourly granularity. It does not yet fully work in markets like the US, Australia, or many parts of Asia, where registry systems are fragmented, and residual mix calculation is not standardized or is tied to less accurate boundaries (e.g., eGRID)."
+      },
+      {
+        "attribution": "UrbanChain — Data/analytics provider, United Kingdom",
+        "org_type": "data_analytics",
+        "q": 123,
+        "redacted": false,
+        "respondent_id": 892,
+        "template_cluster": null,
+        "text": "Near-term: publish annual residual mix factors by deliverable boundary, with stronger subtraction of already-claimed attributes. […] To keep this credible, the key is consistent and agreed methodology and a clear governance body, backed by an auditable registry framework that is usable by all market participants."
+      },
+      {
+        "attribution": "Electricity Generating Authority of Thailand (EGAT) — Grid operator, Thailand",
+        "org_type": "grid_operator",
+        "q": 115,
+        "redacted": false,
+        "respondent_id": 730,
+        "template_cluster": "845bde80480f0e07a9059e13d68ee79a5899d379",
+        "text": "Besides the specified reasons selected in Question 114, we clarify our support for the move from average emissions factors (which would result in double-counting of some clean energy) to residual mixes with fossil mix backups."
+      }
+    ]
+  },
+  "sss": {
+    "against": [
+      {
+        "attribution": "Compose[d] — Company, United States",
+        "org_type": "company",
+        "q": 99,
+        "redacted": false,
+        "respondent_id": 214,
+        "template_cluster": null,
+        "text": "We have “little support” for the proposed guidance on Standard Supply Service (SSS). The concept is well intentioned, but in its current form it would reduce transparency, comparability, and the incentive for new clean energy investment that the market-based method was designed to create. […] Introducing SSS would blur the distinction between the LBM and MBM, add unnecessary complexity, dramatically weaken demand, and create uncertainty about attribution boundaries."
+      },
+      {
+        "attribution": "I-TRACK Foundation — Registry operator, Netherlands",
+        "org_type": "registry_operator",
+        "q": 101,
+        "redacted": false,
+        "respondent_id": 547,
+        "template_cluster": null,
+        "text": "Though we understand the intent here, there is limited guidance within the consultation on the specifics of how SSS portions will be kept separate from the voluntary market. Our view is that EAC mechanisms must be used to demonstrate intent and agency in properly allocating pro rata consumption […] We would also note that the SSS pro-rata share will differ in each deliverable market boundary and will also likely change over time."
+      },
+      {
+        "attribution": "Redacted — Company, Japan",
+        "org_type": "company",
+        "q": 101,
+        "redacted": true,
+        "respondent_id": 798,
+        "template_cluster": null,
+        "text": "the criteria for determining what constitutes a traceable and mandatory financial relationship are extremely complex, and it is very difficult to establish objective, fair and globally applicable standards for deciding which consumers took on what proportion of the costs of applicable renewable energy. Therefore, we do not support the SSS proposal. […] there is a concern that the supply of renewable energy in the market could drastically decrease, and upward price pressure on renewable energy may limit companies’ options for decarbonization."
+      },
+      {
+        "attribution": "Redacted — Company, United States",
+        "org_type": "company",
+        "q": 101,
+        "redacted": true,
+        "respondent_id": 996,
+        "template_cluster": null,
+        "text": "The definition and applicability of SSS in partially and fully deregulated markets is unclear and could incentivize customers who have historically sought third party supply contracts for clean energy to revert to the default utility. […] The regulated utility has firm clean generation that could be claimed through the new SSS rules if we didn’t have an annually matched 100% clean energy contract."
+      },
+      {
+        "attribution": "2degNRG BV — Company, Belgium",
+        "org_type": "company",
+        "q": 106,
+        "redacted": false,
+        "respondent_id": 1060,
+        "template_cluster": null,
+        "text": "In our opinion, SSS should not be included in market‑based reporting frameworks. Public budgeting for the energy sector is not designed to attribute environmental attributes to individual customers. […] These flows cannot be meaningfully tracked to specific end‑users and therefore cannot serve as a credible basis for customer‑level allocation."
+      },
+      {
+        "attribution": "Fujitsu Limited — Company, Japan",
+        "org_type": "company",
+        "q": 112,
+        "redacted": false,
+        "respondent_id": 384,
+        "template_cluster": null,
+        "text": "We request clearer and more operational guidance on the application of Standard Supply Service (SSS), supported by concrete examples across different market contexts. Because SSS mechanisms do not currently exist in all regions, inconsistent implementation could introduce unnecessary reporting complexity, reduce comparability, and create uncertainty for companies planning long-term renewable electricity procurement."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Redacted — Company, United States",
+        "org_type": "company",
+        "q": 112,
+        "redacted": true,
+        "respondent_id": 16,
+        "template_cluster": null,
+        "text": "The proposed SSS framework is directionally correct. It protects the MBM from double counting, clarifies claim order, and brings regulated/default supply into Scope 2 in a standardized, auditable way. […] Require consistent disclosure of which portion of MBM results comes from SSS"
+      },
+      {
+        "attribution": "eva. Empresa con Valor Ambiental, S.A. de C.V. — Consultant, Mexico",
+        "org_type": "consultant",
+        "q": 106,
+        "redacted": false,
+        "respondent_id": 1093,
+        "template_cluster": null,
+        "text": "In markets where the grid operator does not operate a full all-generation tracking system (like Mexico), the standard should formally recognize Independent Expert Third Parties—already operating with rigor in these markets—as valid providers of methodologies, data, and attribute allocation for Standard Supply Service (SSS). […] The framework should not depend solely on a single database or protocol, but on a system that validates and accepts verifiers meeting transparent governance, quality, and impartiality criteria."
+      },
+      {
+        "attribution": "Taiwan Digital Sustainability International Co., Ltd — Consultant, Taiwan",
+        "org_type": "consultant",
+        "q": 99,
+        "redacted": false,
+        "respondent_id": 254,
+        "template_cluster": null,
+        "text": "I support the new Standard Supply Service (SSS) guidance because it enforces equitable allocation and prevents organizations from overstating their renewable claims. Requiring entities to claim only their pro‑rata share clarifies accounting order, enabling SSS attribution before voluntary procurement and reducing ambiguity. This approach harmonizes treatment across diverse market structures and minimizes double counting of attributes, thereby improving transparency and comparability of Scope 2 reporting."
+      },
+      {
+        "attribution": "Princeton University ZERO Lab — Academia/research, United States",
+        "org_type": "academia",
+        "q": 99,
+        "redacted": false,
+        "respondent_id": 677,
+        "template_cluster": null,
+        "text": "I would prefer stronger standards to exclude environmental claims based on procurement of resources built long in the past, especially for any new large consumers of electricity. The net effect of adding new electricity demand to the grid without adding new supply is for the market to induce new supply entry, resulting in whatever is economic on the margin to enter the market […] This concern is not fully obviated by the proposed SSS rules, but these at least help remove large amounts of supply that clearly are not causally associated with voluntary procurement."
+      },
+      {
+        "attribution": "Clean Incentive — Registry operator, United States",
+        "org_type": "registry_operator",
+        "q": 112,
+        "redacted": false,
+        "respondent_id": 1112,
+        "template_cluster": null,
+        "text": "We strongly support SSS guidance as essential for equitable Scope 2 reporting, but recommend incorporating a \"blacklist\" mechanism for ratepayer-funded generators that must qualify as SSS to prevent double-counting and resource shuffling. This blacklist would identify resources such as nuclear plants in France (e.g., EDF's fleet, largely financed through regulated tariffs) or legacy hydro in the U.S. Pacific Northwest, where ratepayers have inherently claimed the clean attributes through their payments."
+      },
+      {
+        "attribution": "The Breakthrough Institute — Academia/research, United States",
+        "org_type": "academia",
+        "q": 99,
+        "redacted": false,
+        "respondent_id": 498,
+        "template_cluster": "9fdeb879db30fc15014d1c836922c41d2a1a0a1e",
+        "text": "There are integrity concerns with accounting that permits one company or set of consumers to claim to consume a disproportionate amount of clean power from existing assets (e.g. an old hydro plant) that have been paid for also by others (e.g residential consumers). […] SSS aims to prevent this “resource shuffling” ensuring companies can only claim their fair share of existing clean electricity."
+      }
+    ]
+  },
+  "transition": {
+    "against": [
+      {
+        "attribution": "Conversio Pty Ltd — Consultant, Australia",
+        "org_type": "consultant",
+        "q": 182,
+        "redacted": false,
+        "respondent_id": 17,
+        "template_cluster": null,
+        "text": "A uniform effective date offers a clear, equitable, and auditable transition. It maintains comparability by ensuring all reporters apply the same criteria from a defined point forward, without layering exemptions or legacy treatment. This approach preserves integrity while giving organisations adequate lead time to adapt, avoiding the fragmentation and credibility risks created by legacy clauses or selective exemptions."
+      },
+      {
+        "attribution": "EDF — Energy supplier/utility, United Kingdom",
+        "org_type": "energy_supplier",
+        "q": 182,
+        "redacted": false,
+        "respondent_id": 791,
+        "template_cluster": null,
+        "text": "EDF support a definitive start for the new GHG protocol guidance which should be at least 2 years from the publication of the standard (e.g. assuming a 2027 publication date, 2029 at the earliest) to give organisations time to prepare, or to consider revising existing contractual arrangements within that interim period. […] Any legacy clause will need to be considered carefully as if businesses have contracts locked in for many years, this could reduce the accuracy, comparability, and the benefits of the new guidance."
+      },
+      {
+        "attribution": "Redacted — NGO/nonprofit, Brazil",
+        "org_type": "ngo",
+        "q": 182,
+        "redacted": true,
+        "respondent_id": 897,
+        "template_cluster": null,
+        "text": "It is considered that the adoption of a uniform effective date for the application of the updated quality criteria to contractual instruments represents the most appropriate approach from the perspective of methodological consistency and comparability of reporting. […] Applying the new criteria as of a clearly defined date, following a predetermined transition period, enhances regulatory predictability and alignment among market participants."
+      },
+      {
+        "attribution": "Redacted — Financial institution, United Kingdom",
+        "org_type": "financial",
+        "q": 182,
+        "redacted": true,
+        "respondent_id": 788,
+        "template_cluster": null,
+        "text": "When two different accounting approaches coexist, the resulting data loses clarity and reliability for benchmarking and compliance purposes.\nStakeholders may struggle to assess progress against decarbonisation goals because the numbers reflect methodological differences rather than actual changes in emissions. […] Combining annual and hourly matching can lead to double counting or inconsistent attribution of renewable energy benefits."
+      },
+      {
+        "attribution": "Sage Group plc — Data/analytics provider, United Kingdom",
+        "org_type": "data_analytics",
+        "q": 182,
+        "redacted": false,
+        "respondent_id": 434,
+        "template_cluster": null,
+        "text": "Market-based emissions should in all circumstances be calculated as accurately as possible. No exemptions, no legacy loopholes."
+      },
+      {
+        "attribution": "Redacted — Company, Germany",
+        "org_type": "company",
+        "q": 182,
+        "redacted": true,
+        "respondent_id": 143,
+        "template_cluster": null,
+        "text": "We would only prefer the option “Uniform effective date” if the specific date is far enough in the future to allow for existing contracts (e.g. PPA with 5 or more year duration) to not be impacted."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Constellation Energy — Energy supplier/utility, United States",
+        "org_type": "energy_supplier",
+        "q": 182,
+        "redacted": false,
+        "respondent_id": 982,
+        "template_cluster": null,
+        "text": "There is no appropriate application of a uniform effective date because it fails to address the basic issues of fairness and legitimacy that justifies a legacy exemption […] departs from best practice in implementing accounting standard updates (for example, from the March 2016 Financial Accounting Standards Board update on effective date and transition guidance […] will likely reduce participation in clean energy markets, and will make future revisions to scope 2 accounting more difficult and less effective."
+      },
+      {
+        "attribution": "Deloitte LLP — Verification/assurance, United Kingdom",
+        "org_type": "verification",
+        "q": 182,
+        "redacted": false,
+        "respondent_id": 1006,
+        "template_cluster": null,
+        "text": "In many instances, entities, particularly those with long-term renewable energy contracts executed under the 2015 Scope 2 Guidance, lack the contractual frameworks or data infrastructure necessary to comply with hourly and deliverability matching in the near term. […] Applying the new requirements could penalise entities that acted early in procuring renewable electricity and made long-term commitments based on prior rules."
+      },
+      {
+        "attribution": "3Degrees — Other, United States",
+        "org_type": "other",
+        "q": 182,
+        "redacted": false,
+        "respondent_id": 1118,
+        "template_cluster": null,
+        "text": "To ensure effective implementation, the GHG Protocol should set a clear timeline for transitioning to the revised scope 2 standard by 2035 or later. Establishing this expectation now allows companies time to plan and adapt, while giving smaller markets the flexibility to adopt the standard sooner if feasible. […] the necessary infrastructure must be developed in advance to ensure a smooth and equitable transition for all users."
+      },
+      {
+        "attribution": "Redacted — Company, United States",
+        "org_type": "company",
+        "q": 182,
+        "redacted": true,
+        "respondent_id": 202,
+        "template_cluster": null,
+        "text": "GHGP is playing with fire with many of the concepts introduced in the Scope 2 standard at the risk of disengaging corporate buyers in clean energy procurement, reducing a critical source of financial stability that derisks renewable energy projects. […] Legally binding contracts do not amend to voluntary reporting standards."
+      },
+      {
+        "attribution": "UK Sustainability Disclosure Technical Advisory Committee — Government institution, United Kingdom",
+        "org_type": "government",
+        "q": 182,
+        "redacted": false,
+        "respondent_id": 480,
+        "template_cluster": null,
+        "text": "In addition to the legacy clause, the GHG Protocol could also consider phased implementation together with guidance about how a company should disclose its approach (including whether it has used the legacy clause)."
+      }
+    ]
+  }
+}
