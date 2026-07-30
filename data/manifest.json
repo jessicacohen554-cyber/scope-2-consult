@@ -1,0 +1,48 @@
+{
+  "source_file": "S2-PublicConsultationFeedback-RawData-2026.07.29.xlsx",
+  "sheet": "clean_data_final1",
+  "respondents": 1072,
+  "questions": 180,
+  "raw_columns": 181,
+  "question_numbers_absent_from_export": [
+    1,
+    2,
+    7
+  ],
+  "rows": {
+    "responses_long": 70089,
+    "response_selections": 52552,
+    "question_options": 635
+  },
+  "question_types": {
+    "single_select": 21,
+    "free_text": 91,
+    "likert_1_5": 17,
+    "multi_select": 36,
+    "ordinal_select": 11,
+    "scale_labeled": 3,
+    "numeric_year": 1
+  },
+  "roles": {
+    "profile": 14,
+    "free_text_primary": 21,
+    "primary": 57,
+    "reasons_support": 10,
+    "comment": 62,
+    "reasons_oppose": 10,
+    "other_specify": 3,
+    "basis": 3
+  },
+  "scale_constructs": {
+    "support": 10,
+    "ordinal": 11,
+    "effort_labeled": 1,
+    "burden_relative": 4,
+    "readiness_labeled": 1,
+    "sufficiency_labeled": 1,
+    "cost_relative": 1,
+    "impact_magnitude": 2
+  },
+  "truncated_free_text_answers": 8,
+  "non_canonical_selections": 54
+}

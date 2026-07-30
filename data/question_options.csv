@@ -1,0 +1,636 @@
+question_id,question_number,option_text,option_rank,is_canonical,is_other_option,is_off_scale,n_selected,pct_of_answered
+Q003,3,Yes,,1,0,0,573,53.45
+Q003,3,No,,1,0,0,499,46.55
+Q006,6,United States,,1,0,0,343,32.0
+Q006,6,United Kingdom,,1,0,0,95,8.86
+Q006,6,Japan,,1,0,0,80,7.46
+Q006,6,Germany,,1,0,0,71,6.62
+Q006,6,China,,1,0,0,65,6.06
+Q006,6,Netherlands,,1,0,0,36,3.36
+Q006,6,France,,1,0,0,30,2.8
+Q006,6,Australia,,1,0,0,28,2.61
+Q006,6,Canada,,1,0,0,23,2.15
+Q006,6,Singapore,,1,0,0,23,2.15
+Q006,6,Belgium,,1,0,0,23,2.15
+Q006,6,Korea - Republic of/South,,1,0,0,22,2.05
+Q006,6,Denmark,,1,0,0,21,1.96
+Q006,6,Switzerland,,1,0,0,20,1.87
+Q006,6,New Zealand,,1,0,0,15,1.4
+Q006,6,Brazil,,1,0,0,15,1.4
+Q006,6,Sweden,,1,0,0,14,1.31
+Q006,6,India,,1,0,0,12,1.12
+Q006,6,Italy,,1,0,0,11,1.03
+Q006,6,Spain,,1,0,0,11,1.03
+Q006,6,Hong Kong,,1,0,0,10,0.93
+Q006,6,Bangladesh,,1,0,0,9,0.84
+Q006,6,Taiwan,,1,0,0,8,0.75
+Q006,6,Norway,,1,0,0,7,0.65
+Q006,6,Greece,,1,0,0,6,0.56
+Q006,6,Finland,,1,0,0,6,0.56
+Q006,6,Poland,,1,0,0,5,0.47
+Q006,6,Ireland,,1,0,0,5,0.47
+Q006,6,Austria,,1,0,0,5,0.47
+Q006,6,Portugal,,1,0,0,4,0.37
+Q006,6,Iceland,,1,0,0,4,0.37
+Q006,6,Mexico,,1,0,0,4,0.37
+Q006,6,Indonesia,,1,0,0,3,0.28
+Q006,6,Turkey,,1,0,0,3,0.28
+Q006,6,Russia,,1,0,0,3,0.28
+Q006,6,Pakistan,,1,0,0,3,0.28
+Q006,6,Madagascar,,1,0,0,2,0.19
+Q006,6,Nigeria,,1,0,0,2,0.19
+Q006,6,Egypt,,1,0,0,2,0.19
+Q006,6,Chile,,1,0,0,2,0.19
+Q006,6,Czech Republic,,1,0,0,2,0.19
+Q006,6,Vietnam,,1,0,0,2,0.19
+Q006,6,South Africa,,1,0,0,2,0.19
+Q006,6,Malaysia,,1,0,0,2,0.19
+Q006,6,Colombia,,1,0,0,2,0.19
+Q006,6,Liechtenstein,,1,0,0,1,0.09
+Q006,6,Israel,,1,0,0,1,0.09
+Q006,6,Namibia,,1,0,0,1,0.09
+Q006,6,Romania,,1,0,0,1,0.09
+Q006,6,Oceania (Other),,1,0,0,1,0.09
+Q006,6,Thailand,,1,0,0,1,0.09
+Q006,6,Luxembourg,,1,0,0,1,0.09
+Q006,6,United Arab Emirates,,1,0,0,1,0.09
+Q006,6,Morocco,,1,0,0,1,0.09
+Q006,6,Hungary,,1,0,0,1,0.09
+Q006,6,Macau,,1,0,0,1,0.09
+Q008,8,Yes,,1,0,0,778,72.57
+Q008,8,No,,1,0,0,294,27.43
+Q009,9,Organization,,1,0,0,915,85.35
+Q009,9,Individual,,1,0,0,157,14.65
+Q010,10,Yes,,1,0,0,702,65.49
+Q010,10,No,,1,0,0,207,19.31
+Q010,10,Other or N/A (please specify below),,1,1,0,163,15.21
+Q012,12,"Yes (Including completing this survey on behalf of my organization, drawing on inputs from relevant teams)",,1,0,0,613,57.18
+Q012,12,Not applicable,,1,0,1,227,21.18
+Q012,12,No,,1,0,0,173,16.14
+Q012,12,Other (please specify below),,1,1,0,59,5.5
+Q014,14,Company,,1,0,0,466,43.47
+Q014,14,Industry group,,1,0,0,103,9.61
+Q014,14,Consultant supporting organizations with GHG inventories/strategies,,1,0,0,96,8.96
+Q014,14,Non-profit organization/NGO/civil society,,1,0,0,92,8.58
+Q014,14,Energy supplier/retailer or utility,,1,0,0,91,8.49
+Q014,14,Other (please specify below),,1,1,0,77,7.18
+Q014,14,Academia/research,,1,0,0,44,4.1
+Q014,14,Data/analytics or software provider related to GHG inventories,,1,0,0,25,2.33
+Q014,14,Financial Institution,,1,0,0,24,2.24
+Q014,14,Government institution,,1,0,0,20,1.87
+Q014,14,Certificate registry/tracking system operator,,1,0,0,13,1.21
+Q014,14,Verification/assurance provider,,1,0,0,8,0.75
+Q014,14,GHG account/reporting program or initiative,,1,0,0,7,0.65
+Q014,14,Electric Grid Operator,,1,0,0,4,0.37
+Q014,14,International agency,,1,0,0,2,0.19
+Q016,16,Energy (10),,1,0,0,184,17.16
+Q016,16,Other (please specify below),,1,1,0,148,13.81
+Q016,16,Manufacturing,,1,0,0,138,12.87
+Q016,16,"Professional, scientific, and technical services (2020)",,1,0,0,98,9.14
+Q016,16,Information and communication technology (45),,1,0,0,83,7.74
+Q016,16,Finance (40),,1,0,0,35,3.26
+Q016,16,"Utilities (water, gas, electricity) (551010, 551020, 551030, 551040)",,1,0,0,33,3.08
+Q016,16,Education,,1,0,0,32,2.99
+Q016,16,Services,,1,0,0,31,2.89
+Q016,16,"Retail (2550, 3010)",,1,0,0,31,2.89
+Q016,16,Chemicals (151010),,1,0,0,29,2.71
+Q016,16,Real estate (60),,1,0,0,27,2.52
+Q016,16,Power generation (551050),,1,0,0,25,2.33
+Q016,16,"Biotech, health care and pharmaceutical (35201010, 3510, 35202010)",,1,0,0,23,2.15
+Q016,16,Transportation (2030),,1,0,0,23,2.15
+Q016,16,"Consumer goods (25, 30)",,1,0,0,20,1.87
+Q016,16,Apparel (25203010),,1,0,0,20,1.87
+Q016,16,"Food and beverage (302010, 302020)",,1,0,0,18,1.68
+Q016,16,Construction (201030),,1,0,0,14,1.31
+Q016,16,Materials (15),,1,0,0,12,1.12
+Q016,16,Mining (151040),,1,0,0,12,1.12
+Q016,16,Agriculture (30202010),,1,0,0,8,0.75
+Q016,16,Insurance (4030),,1,0,0,8,0.75
+Q016,16,Infrastructure (2010),,1,0,0,5,0.47
+Q016,16,Hospitality (253010),,1,0,0,3,0.28
+Q016,16,Waste management,,1,0,0,3,0.28
+Q016,16,Fossil fuels (101020),,1,0,0,3,0.28
+Q016,16,Forestry,,1,0,0,3,0.28
+Q016,16,Forest products (15105010),,1,0,0,3,0.28
+Q023,23,1,1,1,0,0,176,24.62
+Q023,23,4,4,1,0,0,165,23.08
+Q023,23,2,2,1,0,0,136,19.02
+Q023,23,5,5,1,0,0,119,16.64
+Q023,23,3,3,1,0,0,119,16.64
+Q024,24,Agree that guidance on selecting location-based emission factors should be presented as a hierarchy,,1,0,0,355,75.05
+Q024,24,Enhances the accuracy and relevance of the location-based method,,1,0,0,331,69.98
+Q024,24,Clarifies application of the EF hierarchy (spatial > temporal > consumption-based > production-based),,1,0,0,229,48.41
+Q024,24,Improves use of location-based method to provide risk and opportunity assessment related to consumption of grid electricity.,,1,0,0,174,36.79
+Q024,24,Prioritizes consumption-based factors that include imports/exports over production-based factors.,,1,0,0,174,36.79
+Q024,24,Enables use of emission factors that support abatement planning and target-setting.,,1,0,0,160,33.83
+Q024,24,Agree with listing the most precise spatial boundary as “local boundary“,,1,0,0,142,30.02
+Q024,24,"Agree with listing the most precise temporal granularity as “hourly""",,1,0,0,141,29.81
+Q024,24,Agree that the proposed spatial boundaries reflect electricity deliverability in your region,,1,0,0,94,19.87
+Q024,24,Aligns with emission factors used by your organization for location-based emissions reporting,,1,0,0,85,17.97
+Q024,24,Aligns with emission factors used for mandatory or voluntary reporting in your region,,1,0,0,79,16.7
+Q024,24,Other (please provide),,1,1,0,39,8.25
+Q026,26,Concern about increased administrative burden and complexity from identifying the most precise emission factors accessible,,1,0,0,452,79.16
+Q026,26,Concern that the most precise temporal granularity “hourly“ is too detailed,,1,0,0,417,73.03
+Q026,26,"Concern that the most precise spatial boundary, “local boundary”, is too narrow",,1,0,0,311,54.47
+Q026,26,Concern that the proposed spatial boundaries do not reflect electricity deliverability in your region,,1,0,0,200,35.03
+Q026,26,Concern hierarchy does not align with emission factors used by your organization for location-based emissions reporting,,1,0,0,171,29.95
+Q026,26,Unclear how the changes will affect your GHG emissions reporting,,1,0,0,158,27.67
+Q026,26,Concern hierarchy does not align with emission factors used for mandatory or voluntary reporting in your region,,1,0,0,150,26.27
+Q026,26,Prefer guidance on selecting location-based emission factors to be identified as a single globally applicable option to increase comparability,,1,0,0,139,24.34
+Q026,26,Other (please provide),,1,1,0,86,15.06
+Q026,26,"Prefer a different order (e.g., consumption-based first, then spatial boundary, then temporal granularity)",,1,0,0,69,12.08
+Q031,31,"No, a less precise spatial boundary should be used. Use Grid-wide or national boundary",,1,0,0,181,32.91
+Q031,31,"Yes, I support local boundary as the most precise spatial boundary",,1,0,0,162,29.45
+Q031,31,Other (describe),,1,1,0,97,17.64
+Q031,31,"No, a less precise spatial boundary should be used. Use Operational grid boundary",,1,0,0,96,17.45
+Q031,31,"No, a more precise spatial boundary should be added",,1,0,0,14,2.55
+Q033,33,"No, different spatial boundaries are appropriate for the location-based and market-based methods",,1,0,0,234,51.77
+Q033,33,Other (explain),,1,1,0,78,17.26
+Q033,33,"Yes, include the MBM deliverability market boundaries in addition to the proposed LBM hierarchy (explain why they should be added)",,1,0,0,71,15.71
+Q033,33,"Do not support boundaries as proposed in either method (explain alternative boundaries for the location-based emission factor hierarchy and how they support integrity, impact, and feasibility for a value chain inventory)",,1,0,0,41,9.07
+Q033,33,"Yes, include the MBM deliverability market boundaries as a replacement for the proposed LBM hierarchy (explain why they should replace the current hierarchy)",,1,0,0,28,6.19
+Q035,35,5,5,1,0,0,258,42.86
+Q035,35,4,4,1,0,0,223,37.04
+Q035,35,3,3,1,0,0,77,12.79
+Q035,35,1,1,1,0,0,23,3.82
+Q035,35,2,2,1,0,0,21,3.49
+Q036,36,Supports transparency and public verifiability of emission factors,,1,0,0,471,86.74
+Q036,36,Definition supports feasibility and lower-cost reporting,,1,0,0,418,76.98
+Q036,36,Encourages open publication of emission factors,,1,0,0,378,69.61
+Q036,36,Creates data equity for smaller reporters and underserved regions,,1,0,0,337,62.06
+Q036,36,Implements a common comparability baseline across reporters,,1,0,0,313,57.64
+Q036,36,Clarifies reporting requirements,,1,0,0,247,45.49
+Q036,36,Ensures reporters can immediately apply the updated LBM hierarchy,,1,0,0,145,26.7
+Q036,36,High quality accessible emission factors already exist for most markets globally today,,1,0,0,96,17.68
+Q036,36,Other (please explain),,1,1,0,25,4.6
+Q038,38,"A list of suitable location-based emission factors should be published for each region, rather than requiring reporters to individually determine what is accessible in their region.",,1,0,0,249,68.6
+Q038,38,Definition needs further clarification about what is recognized as a credible source,,1,0,0,208,57.3
+Q038,38,Definition should also consider level of administrative effort in addition to external costs for emission factor data.,,1,0,0,182,50.14
+Q038,38,Definition should not exclude emission factors that are publicly available and credible even if they have a reasonable associated cost (i.e. not free),,1,0,0,135,37.19
+Q038,38,Other (please explain),,1,1,0,57,15.7
+Q038,38,Another criteria should be added to the definition,,1,0,0,21,5.79
+Q040,40,Government agency,,1,0,0,484,91.67
+Q040,40,System operator,,1,0,0,413,78.22
+Q040,40,Recognized registry,,1,0,0,364,68.94
+Q040,40,Accredited statistics body,,1,0,0,331,62.69
+Q040,40,Independent methodology meeting minimum criteria (outlined in question 42),,1,0,0,212,40.15
+Q040,40,Other (please specify and explain),,1,1,0,53,10.04
+Q042,42,Publicly documented methods and system boundaries,,1,0,0,226,90.4
+Q042,42,"Update cadence (e.g., annual) and version control",,1,0,0,199,79.6
+Q042,42,QA/QC procedures and uncertainty disclosure,,1,0,0,185,74.0
+Q042,42,Governance/independence and conflict-of-interest safeguards,,1,0,0,178,71.2
+Q042,42,Geographic/system boundary and temporal coverage fit for use,,1,0,0,172,68.8
+Q042,42,Other (please explain),,1,1,0,33,13.2
+Q044,44,4,4,1,0,0,137,24.04
+Q044,44,1,1,1,0,0,127,22.28
+Q044,44,3,3,1,0,0,104,18.25
+Q044,44,5,5,1,0,0,102,17.89
+Q044,44,2,2,1,0,0,100,17.54
+Q045,45,Improves accuracy and scientific integrity of LBM results,,1,0,0,269,68.97
+Q045,45,Strengthens transparency and public verifiability,,1,0,0,228,58.46
+Q045,45,"Better reflects grid operation in time and space, reduces misallocation",,1,0,0,222,56.92
+Q045,45,Aligns emission factor precision with available activity data,,1,0,0,193,49.49
+Q045,45,Supports phased improvement as data availability expands,,1,0,0,176,45.13
+Q045,45,Enhances comparability across reporters and frameworks,,1,0,0,148,37.95
+Q045,45,Prioritizes consumption-based factors that include imports/exports,,1,0,0,146,37.44
+Q045,45,Enables emission changes from storage and demand-flexibility to be reflected more accurately,,1,0,0,136,34.87
+Q045,45,"Provides a common, accessible baseline for inventories",,1,0,0,121,31.03
+Q045,45,Enables use of load profiles when hourly activity data are unavailable,,1,0,0,112,28.72
+Q045,45,Improves decision-usefulness for external disclosures,,1,0,0,89,22.82
+Q045,45,Aligns positively with mandatory or voluntary reporting requirements in your region,,1,0,0,45,11.54
+Q045,45,Other (please provide),,1,1,0,27,6.92
+Q047,47,"Concern that administrative, data management, and audit challenges posed by this approach would place an undue burden and costs on reporters",,1,0,0,384,84.4
+Q047,47,"Concern that the most precise spatial boundary in the LBM emission factor hierarchy, 'local boundary', is too narrow to require even when accessible",,1,0,0,236,51.87
+Q047,47,Concern about the update cadence or representativeness of datasets (hourly/monthly),,1,0,0,235,51.65
+Q047,47,"Concern about negative impact on comparability, relevance and/or usefulness of LBM inventories",,1,0,0,226,49.67
+Q047,47,Material differences to inventory accuracy are too small to justify cost,,1,0,0,208,45.71
+Q047,47,Accessible factors may be less accurate than non-accessible options and primary users of emission reporting data may expect the most representative factors,,1,0,0,134,29.45
+Q047,47,Other (please provide),,1,1,0,67,14.73
+Q052,52,No meaningful improvement (unlikely to change decisions/interpretations),0,1,0,0,209,43.36
+Q052,52,Moderate improvement (could change some decisions/assessments),2,1,0,0,88,18.26
+Q052,52,Minor improvement (noticeable but unlikely to change decisions),1,1,0,0,84,17.43
+Q052,52,Not sure / no basis to assess,,1,0,1,72,14.94
+Q052,52,Substantial improvement (likely to change decisions benchmarks),3,1,0,0,29,6.02
+Q054,54,No meaningful improvement (unlikely to change decisions/interpretations),0,1,0,0,206,45.98
+Q054,54,Not sure / no basis to assess,,1,0,1,72,16.07
+Q054,54,Moderate improvement (could change some decisions/assessments),2,1,0,0,71,15.85
+Q054,54,Minor improvement (noticeable but unlikely to change decisions),1,1,0,0,71,15.85
+Q054,54,Substantial improvement (likely to change decisions benchmarks),3,1,0,0,28,6.25
+Q056,56,Professional judgment informed by literature/briefings,,1,0,0,160,39.22
+Q056,56,General awareness (no direct analysis),,1,0,0,137,33.58
+Q056,56,Operational experience (e.g. applying hourly LBM emission factors),,1,0,0,82,20.1
+Q056,56,"Direct empirical analysis (e.g., back-testing with hourly factors)",,1,0,0,16,3.92
+Q056,56,Prefer not to say,,1,0,1,13,3.19
+Q057,57,0%,0,1,0,0,177,37.82
+Q057,57,Unsure,,1,0,1,144,30.77
+Q057,57,Not applicable,,1,0,1,43,9.19
+Q057,57,1–25%,1,1,0,0,43,9.19
+Q057,57,76–100%,4,1,0,0,39,8.33
+Q057,57,51–75%,3,1,0,0,13,2.78
+Q057,57,26–50%,2,1,0,0,9,1.92
+Q059,59,Unsure,,1,0,1,118,25.99
+Q059,59,0%,0,1,0,0,99,21.81
+Q059,59,76–100%,4,1,0,0,83,18.28
+Q059,59,1–25%,1,1,0,0,55,12.11
+Q059,59,Not applicable,,1,0,1,51,11.23
+Q059,59,51–75%,3,1,0,0,25,5.51
+Q059,59,26–50%,2,1,0,0,23,5.07
+Q062,62,5 - High effort,5,1,0,0,276,55.53
+Q062,62,4 - Moderate effort,4,1,0,0,110,22.13
+Q062,62,Not applicable (not a preparer),,1,0,1,48,9.66
+Q062,62,3 - Neutral effort,3,1,0,0,36,7.24
+Q062,62,2 - Low effort,2,1,0,0,19,3.82
+Q062,62,1 - Minimal effort,1,1,0,0,8,1.61
+Q063,63,Hourly activity data availability/metering rollout,,1,0,0,390,82.11
+Q063,63,Data access/rights to granular emission factors,,1,0,0,383,80.63
+Q063,63,Tooling/IT integration or data pipelines,,1,0,0,378,79.58
+Q063,63,Assurance/internal controls readiness,,1,0,0,340,71.58
+Q063,63,Staffing/capacity/training,,1,0,0,332,69.89
+Q063,63,Multi-jurisdiction complexity (many grids/regions),,1,0,0,319,67.16
+Q063,63,Third-party publication cadence (emission factors),,1,0,0,291,61.26
+Q063,63,Contracting/procurement or budget cycle constraints,,1,0,0,178,37.47
+Q063,63,Policy/regulatory or commercial terms,,1,0,0,138,29.05
+Q063,63,Likely to massively resources to be dedicated to verification/audit (HR and €),,0,0,0,3,0.63
+Q063,63,-,,0,0,0,2,0.42
+Q063,63,Regulatory and commercial adoption,,0,0,0,1,0.21
+Q063,63,N/A,,0,0,0,1,0.21
+Q063,63,"Understanding and applying the hierarchy of data sources. Preparers are not aware of some, such as ISO boundaries.",,0,0,0,1,0.21
+Q063,63,Uncertainty on implementation with Emission Bodies and complexity and lengthy process of implementation,,0,0,0,1,0.21
+Q063,63,Likely that massively resources are to be dedicated to verification/audit (HR and €),,0,0,0,1,0.21
+Q063,63,"):In addition, we urge the Protocol to consider the inclusion of the following: 1) introduce a hierarchical reporting structure, which would require organizations to use the most granular and accurate data available in a ranked order of preference and explicitly disclose the level used and any associated limitations—thereby ensuring consistency in data quality where possible, but also accommodating varying levels of data accessibility",,0,0,0,1,0.21
+Q063,63,"and 2) revise language from “shall” to “should” or “may” to increase flexibility. These options would uphold protocol integrity, foster comparability and inclusivity, and allow for data constraints or regional differences not to impede reporters ability to implement the protocol changes , all while encouraging continual improvement and broad participation.",,0,0,0,1,0.21
+Q063,63,Interval data availability for small sites (e.g. landlord and bundled sites,,0,0,0,1,0.21
+Q063,63,"Tool / systemising represents a material IT change project, assuming the level of data required is available",,0,0,0,1,0.21
+Q063,63,"large resources needed for verification and audit (hr, costs)",,0,0,0,1,0.21
+Q063,63,n/a,,0,0,0,1,0.21
+Q063,63,Not applicable to ACA as the programme is not a preparer of a GHG Inventory,,0,0,0,1,0.21
+Q063,63,unsure,,1,0,0,1,0.21
+Q063,63,Not applicable,,1,0,0,1,0.21
+Q063,63,Proprietary modeling enabling hourly activity data without additional metering deployment.,,0,0,0,1,0.21
+Q063,63,Current technology is inadequate,,0,0,0,1,0.21
+Q065,65,Standardized publication of consumption-based emission factors by grid/system operators,,1,0,0,335,71.73
+Q065,65,Phased implementation (staged effective dates),,1,0,0,148,31.69
+Q065,65,API/automated access to emission factor datasets,,1,0,0,136,29.12
+Q065,65,Load profile hierarchy/templates to approximate hourly activity data when meters are unavailable,,1,0,0,106,22.7
+Q065,65,Assurance safe-harbors for estimates,,1,0,0,48,10.28
+Q065,65,Other (specify),,1,1,0,41,8.78
+Q065,65,Example calculations and disclosure templates,,1,0,0,38,8.14
+Q067,67,Later than Reporting year 2030,5,1,0,0,187,40.22
+Q067,67,Reporting year 2030 (inventory prepared in 2031) or later,4,1,0,0,80,17.2
+Q067,67,Not applicable,,1,0,1,61,13.12
+Q067,67,Reporting year 2027 (inventory prepared in 2028),1,1,0,0,41,8.82
+Q067,67,Reporting year 2028 (inventory prepared in 2029),2,1,0,0,41,8.82
+Q067,67,Reporting year 2029 (inventory prepared in 2030),3,1,0,0,28,6.02
+Q067,67,Earlier than reporting year 2027 (already aligned),0,1,0,0,27,5.81
+Q069,69,The US Environmental Protection Agency’s Emissions & Generation Resource Integrated Database (eGRID),,1,0,0,167,33.74
+Q069,69,Don’t have operations or experience in the US,,1,0,0,163,32.93
+Q069,69,Wholesale market/balancing authority,,1,0,0,111,22.42
+Q069,69,DOE Needs Study Regions (45V),,1,0,0,54,10.91
+Q070,70,50 GWhs,3,1,0,0,437,67.13
+Q070,70,5 GWhs,1,1,0,0,111,17.05
+Q070,70,10 GWhs,2,1,0,0,103,15.82
+Q071,71,1,1,1,0,0,539,59.3
+Q071,71,5,5,1,0,0,127,13.97
+Q071,71,2,2,1,0,0,99,10.89
+Q071,71,4,4,1,0,0,77,8.47
+Q071,71,3,3,1,0,0,67,7.37
+Q072,72,"Better reflects grid operation, reduces misallocation of generation (e.g., “solar at night”)",,1,0,0,281,74.34
+Q072,72,Improves accuracy and scientific integrity of MBM results,,1,0,0,258,68.25
+Q072,72,Reduces risk of greenwashing/time-shifting claims by aligning claims to time of use,,1,0,0,249,65.87
+Q072,72,Helps create price signals for times and places where renewables are not already abundant,,1,0,0,217,57.41
+Q072,72,Helps accelerate the development of technologies that will be needed at scale for fully decarbonized grids.,,1,0,0,213,56.35
+Q072,72,Strengthens transparency and supports public verification,,1,0,0,206,54.5
+Q072,72,Enables emission changes from storage and demand-flexibility to be reflected more accurately.,,1,0,0,193,51.06
+Q072,72,Enhances comparability across reporters and frameworks using GHG Protocol data,,1,0,0,166,43.92
+Q072,72,Improves decision-usefulness for external disclosures,,1,0,0,142,37.57
+Q072,72,Improves risk and opportunity assessment related to contractual relationships.,,1,0,0,120,31.75
+Q072,72,Other (please explain),,1,1,0,50,13.23
+Q074,74,"Concern that administrative, data management, and audit challenges posed by this approach would place an undue burden and costs on reporters",,1,0,0,663,83.29
+Q074,74,Concern that a requirement for hourly contractual instruments could discourage global participation in voluntary clean energy procurement markets,,1,0,0,645,81.03
+Q074,74,Hourly matching should follow an optional ‘may’ rather than a required ‘shall’ approach,,1,0,0,603,75.75
+Q074,74,Concern that requiring hourly matching does not create meaningful improvements to inventory accuracy,,1,0,0,513,64.45
+Q074,74,"Concern that a phased implementation would be insufficient for development of the infrastructure necessary (e.g., registries, trading exchanges, etc.) to support hourly contractual instruments",,1,0,0,355,44.6
+Q074,74,"Concern about negative impact on comparability, relevance and/or usefulness of MBM inventories",,1,0,0,315,39.57
+Q074,74,More information is necessary to understand how investments not matched on an hourly basis will be accounted for and reported via the framework under development by the Actions & Market Instrument TWG,,1,0,0,269,33.79
+Q074,74,Other (please explain),,1,1,0,243,30.53
+Q074,74,Hourly matching should follow a recommended ‘should’ rather than a require ‘shall’ approach,,1,0,0,158,19.85
+Q077,77,76–100%,4,1,0,0,140,37.14
+Q077,77,Unsure,,1,0,1,124,32.89
+Q077,77,51–75%,3,1,0,0,34,9.02
+Q077,77,1–25%,1,1,0,0,33,8.75
+Q077,77,0%,0,1,0,0,26,6.9
+Q077,77,26–50%,2,1,0,0,20,5.31
+Q078,78,5,5,1,0,0,425,80.8
+Q078,78,4,4,1,0,0,79,15.02
+Q078,78,3,3,1,0,0,13,2.47
+Q078,78,2,2,1,0,0,5,0.95
+Q078,78,1,1,1,0,0,4,0.76
+Q079,79,5,5,1,0,0,399,77.03
+Q079,79,4,4,1,0,0,100,19.31
+Q079,79,3,3,1,0,0,17,3.28
+Q079,79,2,2,1,0,0,1,0.19
+Q079,79,1,1,1,0,0,1,0.19
+Q080,80,Phased implementation,,1,0,0,272,69.57
+Q080,80,Legacy clause,,1,0,0,251,64.19
+Q080,80,Load profiles for activity data (facility-specific),,1,0,0,177,45.27
+Q080,80,Load profiles for contractual instruments (regional publicly available),,1,0,0,161,41.18
+Q080,80,Load profiles for activity data (utility/customer-class or regulator-approved),,1,0,0,153,39.13
+Q080,80,Load profiles for activity data (flat average across hours),,1,0,0,142,36.32
+Q080,80,Load profiles for contractual instruments (facility-specific),,1,0,0,140,35.81
+Q080,80,Load profiles for activity data (time-of-use averages),,1,0,0,127,32.48
+Q080,80,Load profiles for contractual instruments (same production asset),,1,0,0,110,28.13
+Q081,81,Registry/market access for hourly EACs,,1,0,0,387,86.38
+Q081,81,"Data integration (profiles, APIs), system configuration",,1,0,0,381,85.04
+Q081,81,Contracting/sourcing changes for hourly instruments,,1,0,0,368,82.14
+Q081,81,Assurance/internal controls and evidence trails,,1,0,0,356,79.46
+Q081,81,Vendor/platform upgrades or new tools,,1,0,0,348,77.68
+Q081,81,Staff capacity/training,,1,0,0,337,75.22
+Q081,81,Metering/interval data access arrangements,,1,0,0,327,72.99
+Q081,81,Other (specify),,1,1,0,41,9.15
+Q083,83,1,1,1,0,0,407,46.51
+Q083,83,5,5,1,0,0,138,15.77
+Q083,83,4,4,1,0,0,123,14.06
+Q083,83,2,2,1,0,0,109,12.46
+Q083,83,3,3,1,0,0,98,11.2
+Q084,84,Improves accuracy and scientific integrity of MBM results,,1,0,0,291,69.95
+Q084,84,"Better reflects grid operation, reduces misallocation",,1,0,0,291,69.95
+Q084,84,Strengthens transparency and public verifiability,,1,0,0,242,58.17
+Q084,84,Enhances comparability across reporters and frameworks using GHG Protocol data,,1,0,0,201,48.32
+Q084,84,Helps create price signals for times and places where renewables are not already abundant,,1,0,0,197,47.36
+Q084,84,Improves decision-usefulness for external disclosures,,1,0,0,166,39.9
+Q084,84,Provides sufficiently flexible options for organizations to demonstrate deliverability outside of the defined deliverable market boundaries,,1,0,0,151,36.3
+Q084,84,Defined market boundaries reflect a boundary your organization already uses for procuring contractual instruments,,1,0,0,129,31.01
+Q084,84,Agree that the proposed market boundary for my region(s) accurately reflects deliverability,,1,0,0,129,31.01
+Q084,84,Improves risk and opportunity assessment related to contractual relationships,,1,0,0,128,30.77
+Q084,84,Agree that the defined market boundaries align with mandatory or voluntary reporting requirements in your region,,1,0,0,104,25.0
+Q084,84,Other (please explain),,1,1,0,49,11.78
+Q086,86,Concern that narrower market boundaries restrict companies' abilities to invest in areas where renewable energy development could yield the greatest decarbonization impact,,1,0,0,571,77.9
+Q086,86,Sourcing contractual instruments within deliverable market boundaries should follow an optional “may” rather than a required “shall” approach,,1,0,0,491,66.98
+Q086,86,"Concern that narrower market boundaries could prompt a shift away from long-term agreements (i.e., PPAs) to spot purchases (unbundled certificates)",,1,0,0,485,66.17
+Q086,86,"Market boundaries should be defined as the geographic boundaries of electricity sectors, which align with national, and under certain circumstances, multinational boundaries",,1,0,0,377,51.43
+Q086,86,Exemptions to matching within deliverable market boundaries should be allowed for markets lacking sourcing options,,1,0,0,352,48.02
+Q086,86,Proposed deliverability requirements do not improve alignment with GHG Protocol Principles,,1,0,0,303,41.34
+Q086,86,Concern that the defined market boundaries do not align with mandatory or voluntary reporting requirements in your region,,1,0,0,218,29.74
+Q086,86,"Support deliverability in principle, but the proposed market boundary for my region does not reflect deliverability",,1,0,0,151,20.6
+Q086,86,Sourcing contractual instruments within deliverable market boundaries should follow a recommended “should” rather than a required “shall” approach,,1,0,0,126,17.19
+Q086,86,Other (please explain),,1,1,0,117,15.96
+Q088,88,Other,,1,1,0,172,35.68
+Q088,88,The US Environmental Protection Agency’s Emissions & Generation Resource Integrated Database (eGRID),,1,0,0,102,21.16
+Q088,88,Unsure,,1,0,1,91,18.88
+Q088,88,Wholesale Market/Balancing Authority,,1,0,0,67,13.9
+Q088,88,DOE Needs Study Regions (45V),,1,0,0,50,10.37
+Q092,92,5,5,1,0,0,333,67.41
+Q092,92,4,4,1,0,0,102,20.65
+Q092,92,3,3,1,0,0,51,10.32
+Q092,92,2,2,1,0,0,6,1.21
+Q092,92,1,1,1,0,0,2,0.4
+Q093,93,5,5,1,0,0,329,65.93
+Q093,93,4,4,1,0,0,110,22.04
+Q093,93,3,3,1,0,0,55,11.02
+Q093,93,1,1,1,0,0,3,0.6
+Q093,93,2,2,1,0,0,2,0.4
+Q094,94,Phased implementation,,1,0,0,430,91.3
+Q094,94,Legacy clause,,1,0,0,416,88.32
+Q095,95,Data access/rights for EACs/registries aligned to deliverable market boundaries,,1,0,0,348,80.74
+Q095,95,Contracting/sourcing changes for contractual instruments within deliverable market boundaries,,1,0,0,343,79.58
+Q095,95,Assurance/internal controls and evidence trails,,1,0,0,339,78.65
+Q095,95,Staff capacity/training,,1,0,0,318,73.78
+Q095,95,"Data integration (profiles, APIs), system configuration",,1,0,0,308,71.46
+Q095,95,Vendor/platform upgrades or new tools,,1,0,0,306,71.0
+Q095,95,Metering/activity data reporting configured to match deliverable market boundaries,,1,0,0,285,66.13
+Q095,95,Other (specify),,1,1,0,40,9.28
+Q097,97,4,4,1,0,0,166,31.8
+Q097,97,1,1,1,0,0,111,21.26
+Q097,97,3,3,1,0,0,110,21.07
+Q097,97,5,5,1,0,0,88,16.86
+Q097,97,2,2,1,0,0,47,9.0
+Q098,98,Helps ensure that SSS resources are fairly allocated to all consumers and prevents procurement by specific organizations,,1,0,0,276,77.75
+Q098,98,Protects the integrity of market-based accounting by avoiding double counting of attributes from SSS,,1,0,0,255,71.83
+Q098,98,Clarifies the order of operations so that organizations may claim SSS first and then make voluntary procurements,,1,0,0,248,69.86
+Q098,98,Supports consistent treatment of shared supply across different market structures,,1,0,0,218,61.41
+Q098,98,Other (please explain),,1,1,0,34,9.58
+Q100,100,Unclear rules/definition of SSS,,1,0,0,282,73.25
+Q100,100,Concern of regionally applicable challenges to implementation,,1,0,0,271,70.39
+Q100,100,Unclear how partial subsidies affect SSS classification,,1,0,0,217,56.36
+Q100,100,Markets should self-determine how resources that fall under SSS are allocated to customers,,1,0,0,115,29.87
+Q100,100,All contractual instruments should be eligible for voluntary procurement.,,1,0,0,92,23.9
+Q100,100,Other (please explain),,1,1,0,83,21.56
+Q104,104,Government entity operating in a service area without supplier choice,,1,0,0,177,67.56
+Q104,104,Vertically integrated investor-owned utility,,1,0,0,160,61.07
+Q104,104,"Distribution utility in a restructured market where certain electricity supply and/or contractual instrument purchases are subject to non-by passable, regulated cost recovery",,1,0,0,136,51.91
+Q104,104,Unsure,,1,0,0,70,26.72
+Q104,104,Other (please explain),,1,1,0,20,7.63
+Q107,107,Yes,,1,0,0,141,41.47
+Q107,107,No,,1,0,0,110,32.35
+Q107,107,Unsure,,1,0,1,89,26.18
+Q109,109,Combination of above criteria,,1,0,0,101,59.76
+Q109,109,Projects tracked in compliance registries,,1,0,0,90,53.25
+Q109,109,Project ownership (e.g. government owned projects),,1,0,0,85,50.3
+Q109,109,Technology or fuel type,,1,0,0,83,49.11
+Q109,109,Project age,,1,0,0,66,39.05
+Q109,109,Other (please specify),,1,1,0,28,16.57
+Q113,113,5,5,1,0,0,170,31.66
+Q113,113,4,4,1,0,0,148,27.56
+Q113,113,3,3,1,0,0,98,18.25
+Q113,113,1,1,1,0,0,77,14.34
+Q113,113,2,2,1,0,0,44,8.19
+Q114,114,Establishes clear definition for residual mix emission factors,,1,0,0,347,82.23
+Q114,114,Protects the integrity of market-based accounting by avoiding double counting of attributes within the MBM,,1,0,0,334,79.15
+Q114,114,Improves accuracy and relevance of market-based reporting,,1,0,0,283,67.06
+Q114,114,Clarifies the market boundary a residual mix emission factor should be calculated for,,1,0,0,238,56.4
+Q114,114,Improves comparability and transparency across organizations and regions,,1,0,0,233,55.21
+Q114,114,Helps incentivize voluntary sourcing of contractual instruments,,1,0,0,210,49.76
+Q114,114,Provides an option for reporters without access to an hourly residual mix emission factor,,1,0,0,205,48.58
+Q114,114,Other (please explain),,1,1,0,23,5.45
+Q116,116,Increases administrative complexity of calculating a residual mix emission factor,,1,0,0,199,67.0
+Q116,116,Requiring a residual mix emission factor to be calculated per market boundary will further reduce availability of residual mix emission factors,,1,0,0,153,51.52
+Q116,116,Allowing reporters to use different temporal precision of residual mix emission factors within a deliverable market boundary will negatively impact comparability,,1,0,0,137,46.13
+Q116,116,"Market boundaries used for calculating a residual mix emission factor should be defined as the geographic boundaries of electricity sectors, which align with national, and under certain circumstances, multinational boundaries",,1,0,0,121,40.74
+Q116,116,Markets should self-determine if Standard Supply Service is included in a residual mix emission factor,,1,0,0,60,20.2
+Q116,116,Other (please explain),,1,1,0,58,19.53
+Q118,118,1 - Far from ready,1,1,0,0,89,28.71
+Q118,118,2 - Somewhat ready,2,1,0,0,72,23.23
+Q118,118,Insufficient basis to assess,,1,0,1,67,21.61
+Q118,118,3 - Neutral,3,1,0,0,41,13.23
+Q118,118,4 - Mostly ready,4,1,0,0,23,7.42
+Q118,118,5 - Largely ready,5,1,0,0,18,5.81
+Q120,120,Unknown,,1,0,1,113,43.97
+Q120,120,>36 months,4,1,0,0,79,30.74
+Q120,120,24–36 months,3,1,0,0,30,11.67
+Q120,120,12–24 months,2,1,0,0,18,7.0
+Q120,120,<12 months,1,1,0,0,17,6.61
+Q121,121,Unknown,,1,0,1,110,44.35
+Q121,121,>36 months,4,1,0,0,61,24.6
+Q121,121,12–24 months,2,1,0,0,31,12.5
+Q121,121,24–36 months,3,1,0,0,25,10.08
+Q121,121,<12 months,1,1,0,0,21,8.47
+Q122,122,Professional judgment,,1,0,0,146,66.36
+Q122,122,Public roadmap/docs,,1,0,0,27,12.27
+Q122,122,Other (specify),,1,1,0,27,12.27
+Q122,122,Operator/vendor commitments,,1,0,0,15,6.82
+Q122,122,Pilot/production use,,1,0,0,5,2.27
+Q124,124,5,5,1,0,0,145,27.78
+Q124,124,1,1,1,0,0,143,27.39
+Q124,124,4,4,1,0,0,96,18.39
+Q124,124,3,3,1,0,0,75,14.37
+Q124,124,2,2,1,0,0,63,12.07
+Q125,125,Provides an option for reporters without access to a residual mix emission factor,,1,0,0,252,72.21
+Q125,125,Incentivises development and publication of residual mix emission factors by requiring use of a more conservative emission factor as a fallback option,,1,0,0,249,71.35
+Q125,125,Helps improve accuracy and scientific integrity of MBM by reducing the risk of double counting of carbon free electricity,,1,0,0,245,70.2
+Q125,125,Other (please specify),,1,1,0,32,9.17
+Q127,127,Organizations that lack access to residual mix data due to systemic or regional limitations may be disproportionately impacted,,1,0,0,267,80.18
+Q127,127,Defaulting to fossil-based emission factors is overly conservative and may overstate actual emissions,,1,0,0,255,76.58
+Q127,127,Undermines comparability between organizations that can access residual mix data and those that cannot,,1,0,0,236,70.87
+Q127,127,Misaligned with the definition and/or purpose of the MBM,,1,0,0,108,32.43
+Q127,127,Other (please specify),,1,1,0,45,13.51
+Q130,130,1 - Insufficient,1,1,0,0,256,43.24
+Q130,130,2 - Somewhat sufficient,2,1,0,0,103,17.4
+Q130,130,5 - Highly sufficient,5,1,0,0,97,16.39
+Q130,130,3 - Sufficient,3,1,0,0,54,9.12
+Q130,130,4 - Moderately sufficient,4,1,0,0,46,7.77
+Q130,130,No basis to assess,,1,0,1,36,6.08
+Q134,134,No meaningful improvement (unlikely to change comparability/interpretations),0,1,0,0,221,48.15
+Q134,134,Minor improvement (noticeable but unlikely to change comparability),1,1,0,0,70,15.25
+Q134,134,Not sure / no basis to assess,,1,0,1,64,13.94
+Q134,134,Moderate improvement (could change some comparability/assessments),2,1,0,0,57,12.42
+Q134,134,Substantial improvement (likely to change comparability benchmarks),3,1,0,0,47,10.24
+Q136,136,No meaningful improvement (unlikely to change comparability/interpretations),0,1,0,0,210,48.61
+Q136,136,Not sure / no basis to assess,,1,0,1,66,15.28
+Q136,136,Minor improvement (noticeable but unlikely to change comparability),1,1,0,0,59,13.66
+Q136,136,Moderate improvement (could change some comparability/assessments),2,1,0,0,50,11.57
+Q136,136,Substantial improvement (likely to change comparability benchmarks),3,1,0,0,47,10.88
+Q138,138,Professional judgment informed by literature/briefings,,1,0,0,247,67.67
+Q138,138,General awareness (no direct analysis),,1,0,0,171,46.85
+Q138,138,Operational experience applying hourly MBM,,1,0,0,83,22.74
+Q138,138,"Direct empirical analysis (e.g., back-testing with hourly factors)",,1,0,0,27,7.4
+Q138,138,Prefer not to say,,1,0,0,10,2.74
+Q139,139,5,5,1,0,0,329,74.1
+Q139,139,4,4,1,0,0,86,19.37
+Q139,139,3,3,1,0,0,24,5.41
+Q139,139,1,1,1,0,0,3,0.68
+Q139,139,2,2,1,0,0,2,0.45
+Q140,140,Hourly matching and deliverability requirements may change prices due to supply available at specific times and locations of demand,,1,0,0,382,85.65
+Q140,140,"Need to structure multiple smaller PPAs instead of one large, aggregated contract, reducing economies of scale and increasing fixed transaction and development costs",,1,0,0,292,65.47
+Q140,140,Shaping/firming or storage products required to align hourly supply with load,,1,0,0,286,64.13
+Q140,140,Procurement costs to purchase EACs in secondary/spot markets to cover residual hours,,1,0,0,279,62.56
+Q140,140,"If an entity elects to self-supply hourly matched, deliverable EACs exclusively via PPAs (and not use secondary/spot EAC markets), over-procurement may be needed to ensure full hourly coverage across deliverable sites and periods",,1,0,0,274,61.43
+Q140,140,Contract tenor or credit/collateral requirements that increase all-in price,,1,0,0,195,43.72
+Q140,140,Other (please explain in next question),,1,1,0,84,18.83
+Q140,140,None,,0,0,0,5,1.12
+Q142,142,5,5,1,0,0,52,40.94
+Q142,142,4,4,1,0,0,34,26.77
+Q142,142,3,3,1,0,0,29,22.83
+Q142,142,2,2,1,0,0,8,6.3
+Q142,142,1,1,1,0,0,4,3.15
+Q144,144,Own-use,,1,0,0,62,76.54
+Q144,144,Hedge accounting,,1,0,0,54,66.67
+Q144,144,IAS 37,,1,0,0,47,58.02
+Q144,144,Other (please explain),,1,1,0,12,14.81
+Q146,146,No,,1,0,0,234,45.26
+Q146,146,I do not support the development of impact metrics outside the scope 2 inventory.,,1,0,0,126,24.37
+Q146,146,Somewhat,,1,0,0,106,20.5
+Q146,146,Yes,,1,0,0,51,9.86
+Q147,147,Provides a complementary metric to quantify actions such as energy storage or demand response,,1,0,0,111,65.29
+Q147,147,Provides additional relevant information for users of GHG data,,1,0,0,109,64.12
+Q147,147,Allows for continued investment in electricity projects outside of my deliverable market boundary,,1,0,0,103,60.59
+Q147,147,Provides additional approaches for target setting,,1,0,0,99,58.24
+Q147,147,Causes less disruption of existing electricity procurement practices,,1,0,0,82,48.24
+Q147,147,Other (please specify),,1,1,0,31,18.24
+Q150,150,There is no agreed-on methodology for calculating these impact metrics,,1,0,0,153,66.23
+Q150,150,These metrics may not be appropriately auditable,,1,0,0,137,59.31
+Q150,150,These metrics could result in greenwashing,,1,0,0,104,45.02
+Q150,150,These metrics are not currently required in mandatory disclosure frameworks,,1,0,0,88,38.1
+Q150,150,These metrics are not currently part of target setting programs,,1,0,0,88,38.1
+Q150,150,The existence of impact metrics would divert investment from time-matched and deliverable electricity procurement,,1,0,0,51,22.08
+Q150,150,Other (please specify),,1,1,0,51,22.08
+Q153,153,5,5,1,0,0,394,52.67
+Q153,153,4,4,1,0,0,177,23.66
+Q153,153,3,3,1,0,0,71,9.49
+Q153,153,1,1,1,0,0,68,9.09
+Q153,153,2,2,1,0,0,38,5.08
+Q154,154,Provides a more equitable approach for reporting as hourly matching could be more challenging for organizations under a threshold,,1,0,0,415,75.05
+Q154,154,Encourages organizations under a threshold to continue to engage in voluntary procurement using an annual procurement approach,,1,0,0,396,71.61
+Q154,154,"Reflects a reasonable balance of integrity, impact and feasibility as organizations under a threshold collectively contribute to fewer Scope 2 emissions than the largest consumers",,1,0,0,329,59.49
+Q154,154,Reduces transition strain on the electricity market and hourly matching infrastructure,,1,0,0,259,46.84
+Q154,154,Other (please provide),,1,1,0,125,22.6
+Q156,156,"Introduces inconsistencies across companies, reducing transparency and comparability for users",,1,0,0,117,50.87
+Q156,156,"Support an exemption, but a different criterion should be used for defining eligibility",,1,0,0,83,36.09
+Q156,156,Creates reputational risk and increases skepticism about MBM claims,,1,0,0,70,30.43
+Q156,156,"Feasibility is better addressed via temporary measures (e.g., phase-ins/legacy) rather than ongoing exemptions",,1,0,0,63,27.39
+Q156,156,Reduces accuracy and relevance of MBM reporting,,1,0,0,63,27.39
+Q156,156,Other (please provide),,1,1,0,62,26.96
+Q156,156,Fragments the voluntary market and may slow the transition to wider availability/use of hourly data,,1,0,0,57,24.78
+Q156,156,"Tools and infrastructure are improving rapidly, making broad exemptions increasingly unnecessary",,1,0,0,28,12.17
+Q161,161,Emissions (scope 1 + LBM scope 2),,1,0,0,241,68.08
+Q161,161,Net annual turnover,,1,0,0,209,59.04
+Q161,161,Number of employees,,1,0,0,158,44.63
+Q161,161,Balance sheet,,1,0,0,143,40.4
+Q161,161,Company location (high and upper-middle income countries and low- and lower-middle income countries),,1,0,0,82,23.16
+Q161,161,Other (please explain),,1,1,0,56,15.82
+Q163,163,Option 3,,1,0,0,187,39.37
+Q163,163,Option 1,,1,0,0,103,21.68
+Q163,163,None of the above (please explain),,1,1,0,90,18.95
+Q163,163,Option 4,,1,0,0,83,17.47
+Q163,163,Option 2,,1,0,0,12,2.53
+Q166,166,Ongoing,,1,0,0,278,57.32
+Q166,166,Time-limited (i.e. phased out over time),,1,0,0,140,28.87
+Q166,166,Unsure,,1,0,1,45,9.28
+Q166,166,Do not support exemptions,,1,0,0,22,4.54
+Q169,169,"Yes, organizations using the hourly matching exemption should be considered in conformance",,1,0,0,320,68.67
+Q169,169,A separate conformance level should be defined for companies exercising the exemption,,1,0,0,104,22.32
+Q169,169,Unsure,,1,0,1,18,3.86
+Q169,169,Other (please explain),,1,1,0,13,2.79
+Q169,169,"No, organizations using the hourly matching exemption should NOT be considered in conformance",,1,0,0,11,2.36
+Q171,171,5,5,1,0,0,601,75.03
+Q171,171,4,4,1,0,0,120,14.98
+Q171,171,3,3,1,0,0,41,5.12
+Q171,171,1,1,1,0,0,20,2.5
+Q171,171,2,2,1,0,0,19,2.37
+Q172,172,Helps maintain trust and market confidence in long-term contracts,,1,0,0,575,85.57
+Q172,172,"Reflects a reasonable balance of integrity, impact and feasibility as existing long-term contracts reflect significant financial and operational commitments to energy resources",,1,0,0,561,83.48
+Q172,172,Provides a more equitable approach by ensuring that early adopters of Scope 2 Guidance are not disadvantaged,,1,0,0,540,80.36
+Q172,172,Encourages organizations with legacy contracts to continue to engage in voluntary procurement using an annual procurement approach,,1,0,0,461,68.6
+Q172,172,Provides a pragmatic pathway for organizations to transition to updated Quality Criteria,,1,0,0,381,56.7
+Q172,172,Other (please provide),,1,1,0,73,10.86
+Q174,174,"Introduces inconsistencies across companies, reducing transparency and comparability for users",,1,0,0,72,59.02
+Q174,174,Fragments the voluntary market and may slow the transition to wider availability/use of hourly data,,1,0,0,39,31.97
+Q174,174,Reduces overall accuracy and relevance of MBM reporting,,1,0,0,35,28.69
+Q174,174,Creates reputational risk and increases skepticism about MBM claims,,1,0,0,33,27.05
+Q174,174,"Not aligned with MBM’s purpose, weakens credible market signals and abatement planning, and may conflict with regulatory expectations",,1,0,0,28,22.95
+Q174,174,NA,,0,0,0,5,4.1
+Q174,174,N/A,,0,0,0,2,1.64
+Q174,174,Other,,1,1,0,2,1.64
+Q174,174,"Depending on the conditions under which legacy provisions are applied, the validity of contractual arrangements already in effect may be subject to change.",,0,0,0,2,1.64
+Q174,174,None,,0,0,0,2,1.64
+Q174,174,Any legacy clause just delays the problem,,0,0,0,1,0.82
+Q174,174,missing deliverability clause,,0,0,0,1,0.82
+Q174,174,"Other, There are currently many electricity contracts in operation, and any contractual modification could eventually have economic impacts on the organization",,0,1,0,1,0.82
+Q174,174,Please refer to 175.,,0,0,0,1,0.82
+Q174,174,we support it,,0,0,0,1,0.82
+Q174,174,No support to houly matching,,0,0,0,1,0.82
+Q174,174,Regarding SSS,,0,0,0,1,0.82
+Q174,174,Answer in Question 175,,0,0,0,1,0.82
+Q174,174,"With respect to potential concerns, it should be noted that if a legacy clause were applied too generously, many of the issues raised in Question 174 could arise. It is therefore important that any legacy provision would be clearly restricted to high-quality instruments and time-bound, so that it supports an orderly transition without undermining the objectives of the updated criteria.",,0,0,0,1,0.82
+Q174,174,See response to question 175,,0,0,0,1,0.82
+Q174,174,See answer to Question 175 below.,,0,0,0,1,0.82
+Q174,174,See Q175,,0,0,0,1,0.82
+Q174,174,It is not possible to adequately respond to this and other questions before there is clarification of the foundations of whether the GHG Protocol Organisation supports or does not support renewable electricity use and zero Scope 2 emissions to be allocated to and claimable by renewable electricity paying consumers,,0,0,0,1,0.82
+Q174,174,See response to Q175,,0,0,0,1,0.82
+Q174,174,Other (see response in Q175),,1,1,0,1,0.82
+Q174,174,"If not clearly scoped and time-bound, a legacy clause risks delaying necessary methodological convergence and prolonging mixed accounting approaches.",,0,0,0,1,0.82
+Q174,174,Not applicable as in support,,0,0,0,1,0.82
+Q174,174,n/a,,0,0,0,1,0.82
+Q174,174,"If hourly matching is optional, there is no need for a legacy clause. The reasons against making hourly matching mandatory (that is, lack of infrastructure to support such accounting across all countries) make the existence of such a clause irrelevant.",,0,0,0,1,0.82
+Q174,174,X,,0,0,0,1,0.82
+Q176,176,Contract signed prior to implementation date of the Scope 2 Standard (post phase-in period),,1,0,0,478,71.66
+Q176,176,Contract signed prior to publication date of the Scope 2 Standard,,1,0,0,114,17.09
+Q176,176,Other (please explain),,1,1,0,57,8.55
+Q176,176,Do not support Legacy Clause,,1,0,0,18,2.7
+Q179,179,3,3,1,0,0,76,38.97
+Q179,179,2,2,1,0,0,47,24.1
+Q179,179,1,1,1,0,0,36,18.46
+Q179,179,5,5,1,0,0,21,10.77
+Q179,179,4,4,1,0,0,15,7.69
+Q181,181,Legacy clause: allow existing contracts that meet current quality criteria to continue to be reported under the MBM as described in Question 178.,,1,0,0,427,83.4
+Q181,181,"Uniform effective date: rather than using a legacy clause, instead apply the updated quality criteria to all contractual instruments from a specific date following a defined lead time. Include a separate disclosure that disaggregates results affected by contracts signed prior to this date.",,1,0,0,46,8.98
+Q181,181,Other (please specify),,1,1,0,39,7.62
