@@ -1,0 +1,19 @@
+cluster_id,n_respondents,vector_length,member_ids,named_members
+vc01,6,20,334|375|378|408|409|412,"Avary Holding (Shenzhen) Co., Ltd.|HongHengSheng Electronical Technology (Huaian) Co., Ltd.|Hong Qi Sheng Precision Electronics(Qinhuangdao) Co., Ltd.|Avary Technology (India) Private Limited|Qing Ding Precision Electronics (Huai'an) Co., Ltd."
+vc02,6,17,359|414|603|692|727|1136,Sustainability Team|SEMI
+vc03,4,17,386|421|594|732,Employee|SIDENOR GROUP
+vc04,4,14,328|440|688|1026,Corning Incorporated|Hemlock Semiconductor Operations LLC (HSC)|Enocor|REsurety
+vc05,3,11,158|353|677,"Fervo Energy|Princeton University, Zero-carbon Energy Research and Optimization Laboratory (Z"
+vc06,2,19,461|823,Winrock International
+vc07,2,18,251|621,
+vc08,2,18,255|539,
+vc09,2,18,257|960,
+vc10,2,18,544|680,"The Federation of Electric Power Companies|Tokyo Electric Power Company Holdings, Inc."
+vc11,2,18,552|608,
+vc12,2,17,243|260,European Industrial Gases Association - EIGA|SIGA - Swedish Industrial Gases Association
+vc13,2,12,505|847,"Cable Television Laboratories, Inc. (“CableLabs”)|California Broadband & Video Association"
+vc14,2,12,761|762,
+vc15,2,11,454|657,"New Zealand Body for Certificate Issuance Ltd, trading as BraveTrace"
+vc16,2,10,474|476,Japan Wind Power Association（JWPA）
+vc17,2,10,667|709,KDDI CORPORATION|au Energy Holdings Corporation
+vc18,2,10,851|939,CVC DIF
