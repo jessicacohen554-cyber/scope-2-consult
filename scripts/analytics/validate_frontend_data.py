@@ -31,6 +31,22 @@ Standard library only. Usage:
 
 from __future__ import annotations
 
+
+def _verbatim_in(text, stored):
+    """True if text is a verbatim substring of stored, allowing [\u2026]-marked
+    elisions: each segment must appear verbatim, in order."""
+    if stored is None:
+        return False
+    pos = 0
+    for seg in (t.strip() for t in text.split("[\u2026]")):
+        if not seg:
+            continue
+        found = stored.find(seg, pos)
+        if found < 0:
+            return False
+        pos = found + len(seg)
+    return True
+
 import csv
 import json
 import sqlite3
@@ -734,7 +750,7 @@ def check_quotes(report: Report, con, docs) -> None:
             for quote in sides.get(side, []):
                 checked += 1
                 text = stored(quote["respondent_id"], quote["q"])
-                if not text or quote["text"] not in text:
+                if not _verbatim_in(quote["text"], text):
                     bad.append(f"{lever}/{side} respondent "
                                f"{quote['respondent_id']} Q{quote['q']}")
                 if len(quote["text"]) > QUOTE_MAX:
