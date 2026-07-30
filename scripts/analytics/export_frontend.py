@@ -801,6 +801,15 @@ def basis_panel(con, questions, segments, number: int, stance) -> dict:
             if count:
                 by_stance[key][text] = count
 
+    # P35 contract addition: per-bucket denominators, so rates computable from
+    # the export alone. answerers = union of pick ids (each answerer picked >=1).
+    answerers = set()
+    for ids in picks.values():
+        answerers.update(ids)
+    base = {key: sum(1 for pid in answerers if stance.get(pid) == key)
+            for key in STANCE_KEYS}
+    no_anchor_score = sum(1 for pid in answerers if pid not in stance)
+
     seg = segments["org_type"]
     by_org_type: dict[str, object] = {}
     for value in seg["values"]:
@@ -822,6 +831,8 @@ def basis_panel(con, questions, segments, number: int, stance) -> dict:
         "n_answered": n_answered,
         "options": options,
         "by_stance_q71": by_stance,
+        "base": base,
+        "no_anchor_score": no_anchor_score,
         "by_org_type": by_org_type,
     }
 

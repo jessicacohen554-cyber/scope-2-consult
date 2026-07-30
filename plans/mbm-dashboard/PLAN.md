@@ -220,6 +220,11 @@ Small-n caveats apply (Financial n=7–8 on Q97–124; Government n=8–14).
   Clean Power Corp, Renewabl Ltd, WattEd, Fervo Energy, Kaya Partners advisor, SIDENOR
   GROUP, "Employee"; +5 redacted. Free-text volumes cluster at 29–32k chars (shared
   response pack). The apparent independent academic corroboration is **not independent**.
+- **euro_certificate bloc (found by P35, now in clusters.json):** 15 named European
+  certificate-market organizations (RECS, Eurelectric, Finnish Energy, Samorka, ECS
+  Switzerland, Fortum, Hafslund, Landsvirkjun, ON Power, BKW, Repower, Ecohz, Caely
+  Renewables, SMK, Tetra Pak) sharing 17+ verbatim texts across 15+ questions; signature
+  mirrors pro-hourly (oppose Q71/Q83, support Q153/Q171).
 - Opposing blocs: SEMI + 5 members (17-item identical vectors; SEMI↔one member share 42
   verbatim texts), Avary/Foxconn family (6 identical 20-item vectors incl. 1 redacted),
   Luxshare (9 filings), EIGA↔SIGA (identical vectors, 15 shared texts), Greece cluster
@@ -558,13 +563,18 @@ the site. Required structure:
    data-vendor fingerprint; corporates protecting legacy REC claims (Q172's 83.5%
    "protects committed investments" is candid); utilities/industry-group alignment.
    State plainly that *both* directions of interest exist.
-4. **Scientific integrity, weighed** — supporters cite ~2× more and hold more empirical
-   basis, but only 7.4% of anyone did direct analysis; supporter citations partly
-   template-propagated and advocacy-domain-heavy; opposition arguments rest mostly on
-   burden/feasibility self-report (which is evidence about themselves, and consistent:
-   4.5–4.7 burden means, registry readiness 2.21, feasibility measures 2.33). Verdict
-   style: "the support side brings more research; the opposition brings more operational
-   evidence; neither is disinterested."
+4. **Scientific integrity, weighed** — CORRECTED PER P35 (verified against the db):
+   the support side's research advantage rests entirely on citation behavior (34.3% of
+   Q71 supporters show citation signals vs 14.7% of opponents — clean separation), NOT
+   on self-reported evidence basis: Q138 empirical-analysis rates are stance-neutral
+   (7.6% oppose vs 8.0% support, overlapping CIs), and supporters are actually weakly
+   HIGHER on operational experience (29.3% vs 21.6%), so "the opposition brings more
+   operational evidence" is wrong as a group claim. Only 7.4% of anyone did direct
+   analysis; supporter citations are partly template-propagated and advocacy-domain-heavy;
+   opposition arguments rest mostly on burden/feasibility self-report (evidence about
+   themselves, and consistent: 4.5–4.7 burden means, registry readiness 2.21, feasibility
+   measures 2.33). Verdict style: "the support side cites more external research; both
+   sides claim similar first-hand basis; neither is disinterested."
 5. **Legitimate concerns that survive scrutiny** (regardless of motive): registry/data
    infrastructure not ready (44% unknown lead times, 2.3% pilot-basis claims);
    fossil-fallback regional equity (80.2% of opponents, echoed by supporters' own
