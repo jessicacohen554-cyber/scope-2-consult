@@ -1,0 +1,386 @@
+{
+  "fixture": true,
+  "generated": "2026-07-30T00:00:00Z",
+  "questions": [
+    {
+      "anchor_high": "5 = strongly supports",
+      "anchor_low": "1 = does not support",
+      "construct": "support",
+      "id": "Q071",
+      "label": "Support for QC4 hourly matching",
+      "lever": "qc4_hourly_matching",
+      "n_answered": 21,
+      "page": "proposals/hourly-matching.html",
+      "q": 71,
+      "scale_note": "Support for Quality Criterion 4 (hourly matching).",
+      "shorthand": "qc4_hourly_matching_support",
+      "type": "likert_1_5"
+    },
+    {
+      "anchor_high": "5 = strongly supports",
+      "anchor_low": "1 = does not support",
+      "construct": "support",
+      "id": "Q083",
+      "label": "Support for QC5 deliverability",
+      "lever": "qc5_deliverability",
+      "n_answered": 21,
+      "page": "proposals/deliverability.html",
+      "q": 83,
+      "scale_note": "Support for Quality Criterion 5 (deliverability).",
+      "shorthand": "qc5_deliverability_support",
+      "type": "likert_1_5"
+    },
+    {
+      "anchor_high": "5 = strongly supports",
+      "anchor_low": "1 = does not support",
+      "construct": "support",
+      "id": "Q097",
+      "label": "Support for pro-rata Standard Supply Service",
+      "lever": "sss_pro_rata",
+      "n_answered": 17,
+      "page": "proposals/sss.html",
+      "q": 97,
+      "scale_note": "Support for pro-rata allocation of standard supply service.",
+      "shorthand": "sss_pro_rata_support",
+      "type": "likert_1_5"
+    },
+    {
+      "anchor_high": "5 = strongly supports",
+      "anchor_low": "1 = does not support",
+      "construct": "support",
+      "id": "Q113",
+      "label": "Support for the residual-mix definition",
+      "lever": "resid_mix_definition",
+      "n_answered": 19,
+      "page": "proposals/residual-mix.html",
+      "q": 113,
+      "scale_note": "Support for the proposed residual-mix definition.",
+      "shorthand": "resid_mix_def_support",
+      "type": "likert_1_5"
+    },
+    {
+      "anchor_high": "5 = strongly supports",
+      "anchor_low": "1 = does not support",
+      "construct": "support",
+      "id": "Q124",
+      "label": "Support for the fossil fallback",
+      "lever": "fossil_fallback",
+      "n_answered": 17,
+      "page": "proposals/fossil-fallback.html",
+      "q": 124,
+      "scale_note": "Support for a fossil-based fallback factor.",
+      "shorthand": "fossil_fallback_support",
+      "type": "likert_1_5"
+    },
+    {
+      "anchor_high": "5 = strongly supports",
+      "anchor_low": "1 = does not support",
+      "construct": "support",
+      "id": "Q153",
+      "label": "Support for hourly matching exemptions",
+      "lever": "hourly_exempt",
+      "n_answered": 21,
+      "page": "proposals/exemptions.html",
+      "q": 153,
+      "scale_note": "Support for allowing exemptions to hourly matching.",
+      "shorthand": "hourly_exempt_support",
+      "type": "likert_1_5"
+    },
+    {
+      "anchor_high": "5 = strongly supports",
+      "anchor_low": "1 = does not support",
+      "construct": "support",
+      "id": "Q171",
+      "label": "Support for a legacy clause",
+      "lever": "legacy_clause",
+      "n_answered": 21,
+      "page": "proposals/legacy-clause.html",
+      "q": 171,
+      "scale_note": "Support for introducing a Legacy Clause.",
+      "shorthand": "legacy_clause_support",
+      "type": "likert_1_5"
+    },
+    {
+      "anchor_high": "5 = much more effort",
+      "anchor_low": "1 = much less effort",
+      "construct": "burden_relative",
+      "id": "Q078",
+      "label": "Internal admin effort for hourly matching",
+      "lever": "qc4_hourly_matching",
+      "n_answered": 20,
+      "page": "proposals/hourly-matching.html",
+      "q": 78,
+      "scale_note": "3 is explicitly anchored to the same effort as today — 5 is a complaint, not support.",
+      "shorthand": "qc4_internal_admin_effort",
+      "type": "likert_1_5"
+    },
+    {
+      "anchor_high": "5 = much higher price",
+      "anchor_low": "1 = much lower price",
+      "construct": "cost_relative",
+      "id": "Q139",
+      "label": "Change in procurement price for EACs",
+      "lever": "procure_cost_impact",
+      "n_answered": 19,
+      "page": "proposals/package-impacts.html",
+      "q": 139,
+      "scale_note": "3 is anchored to the same price as today.",
+      "shorthand": "procure_price_change",
+      "type": "likert_1_5"
+    },
+    {
+      "anchor_high": "5 - Largely ready",
+      "anchor_low": "1 - Far from ready",
+      "construct": "readiness_labeled",
+      "id": "Q118",
+      "label": "Registry readiness to publish residual mix",
+      "labels": [
+        "Far from ready",
+        "Early groundwork",
+        "Partly ready",
+        "Mostly ready",
+        "Largely ready"
+      ],
+      "lever": "resid_mix_registry_readiness",
+      "n_answered": 16,
+      "off_scale_labels": [
+        "Insufficient basis to assess"
+      ],
+      "page": "proposals/residual-mix.html",
+      "q": 118,
+      "scale_note": "'Insufficient basis to assess' is off-scale and never folded into the mean.",
+      "shorthand": "resid_mix_registry_readiness",
+      "type": "scale_labeled"
+    },
+    {
+      "anchor_high": "highest threshold",
+      "anchor_low": "lowest threshold",
+      "construct": "ordinal",
+      "id": "Q070",
+      "label": "Preferred GWh exemption threshold",
+      "labels": [
+        "5 GWh",
+        "10 GWh",
+        "50 GWh"
+      ],
+      "lever": "exempt_gwh_threshold",
+      "n_answered": 19,
+      "off_scale_labels": [
+        "Unsure"
+      ],
+      "page": "proposals/exemptions.html",
+      "q": 70,
+      "scale_note": "Ordinal ladder of thresholds — ordered rungs, not a 1–5 scale.",
+      "shorthand": "exempt_gwh_thresh_preference",
+      "type": "ordinal_select"
+    },
+    {
+      "anchor_high": "",
+      "anchor_low": "",
+      "construct": "",
+      "id": "Q072",
+      "label": "Reasons for supporting QC4",
+      "lever": "qc4_hourly_matching",
+      "n_answered": 4,
+      "page": "proposals/hourly-matching.html",
+      "q": 72,
+      "scale_note": "",
+      "shorthand": "qc4_hourly_matching_reasons_for",
+      "type": "multi_select"
+    },
+    {
+      "anchor_high": "",
+      "anchor_low": "",
+      "construct": "",
+      "id": "Q074",
+      "label": "Reasons against QC4 hourly matching",
+      "lever": "qc4_hourly_matching",
+      "n_answered": 15,
+      "page": "proposals/hourly-matching.html",
+      "q": 74,
+      "scale_note": "",
+      "shorthand": "qc4_hourly_matching_reasons_vs",
+      "type": "multi_select"
+    },
+    {
+      "anchor_high": "",
+      "anchor_low": "",
+      "construct": "",
+      "id": "Q056",
+      "label": "Basis for LBM usefulness assessment",
+      "lever": "lbm_revisions_package",
+      "n_answered": 6,
+      "page": "methodology.html",
+      "q": 56,
+      "scale_note": "",
+      "shorthand": "lbm_usefulness_basis",
+      "type": "single_select"
+    },
+    {
+      "anchor_high": "",
+      "anchor_low": "",
+      "construct": "",
+      "id": "Q122",
+      "label": "Basis for registry readiness assessment",
+      "lever": "resid_mix_registry_readiness",
+      "n_answered": 14,
+      "page": "proposals/residual-mix.html",
+      "q": 122,
+      "scale_note": "",
+      "shorthand": "resid_mix_readiness_basis",
+      "type": "single_select"
+    },
+    {
+      "anchor_high": "",
+      "anchor_low": "",
+      "construct": "",
+      "id": "Q138",
+      "label": "Basis for MBM usefulness assessment",
+      "lever": "mbm_revisions_package",
+      "n_answered": 18,
+      "page": "proposals/package-impacts.html",
+      "q": 138,
+      "scale_note": "",
+      "shorthand": "mbm_usefulness_basis",
+      "type": "multi_select"
+    },
+    {
+      "anchor_high": "",
+      "anchor_low": "",
+      "construct": "",
+      "id": "Q183",
+      "label": "Year for a uniform effective date",
+      "lever": "uniform_effective_date",
+      "n_answered": 15,
+      "page": "proposals/transition.html",
+      "q": 183,
+      "scale_note": "",
+      "shorthand": "uniform_effective_date_year",
+      "type": "numeric_year"
+    }
+  ],
+  "segments": {
+    "audited_class": {
+      "label": "Audited class",
+      "values": [
+        {
+          "key": "unverifiable",
+          "label": "Unverifiable (redacted)",
+          "n": 10
+        },
+        {
+          "key": "company",
+          "label": "Company",
+          "n": 5
+        },
+        {
+          "key": "trade_association",
+          "label": "Trade association",
+          "n": 3
+        },
+        {
+          "key": "data_vendor",
+          "label": "Data vendor",
+          "n": 3
+        }
+      ]
+    },
+    "country": {
+      "label": "Country",
+      "values": [
+        {
+          "key": "us",
+          "label": "United States",
+          "n": 13
+        },
+        {
+          "key": "jp",
+          "label": "Japan",
+          "n": 5
+        },
+        {
+          "key": "country_other",
+          "label": "Other countries",
+          "n": 3
+        }
+      ]
+    },
+    "org_type": {
+      "label": "Organization type",
+      "values": [
+        {
+          "key": "company",
+          "label": "Company",
+          "n": 12
+        },
+        {
+          "key": "ngo",
+          "label": "NGO/nonprofit",
+          "n": 6
+        },
+        {
+          "key": "data_analytics",
+          "label": "Data/analytics provider",
+          "n": 3
+        }
+      ]
+    },
+    "redaction": {
+      "label": "Attribution",
+      "values": [
+        {
+          "key": "named",
+          "label": "Named",
+          "n": 11
+        },
+        {
+          "key": "redacted",
+          "label": "Redacted",
+          "n": 10
+        }
+      ]
+    },
+    "responding_as": {
+      "label": "Responding as",
+      "values": [
+        {
+          "key": "organization",
+          "label": "Organization",
+          "n": 18
+        },
+        {
+          "key": "individual",
+          "label": "Individual",
+          "n": 3
+        }
+      ]
+    },
+    "sector": {
+      "label": "Sector",
+      "values": [
+        {
+          "key": "energy",
+          "label": "Energy",
+          "n": 10
+        },
+        {
+          "key": "manufacturing",
+          "label": "Manufacturing",
+          "n": 8
+        },
+        {
+          "key": "sector_other_grouped",
+          "label": "Other sectors",
+          "n": 3
+        }
+      ]
+    }
+  },
+  "totals": {
+    "answers": 283,
+    "named": 11,
+    "questions": 17,
+    "redacted": 10,
+    "respondents": 21
+  }
+}

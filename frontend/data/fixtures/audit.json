@@ -1,0 +1,122 @@
+{
+  "rows": [
+    {
+      "audited": "data_vendor",
+      "basis": "UK limited company operating the hourly-certificate standard it advocates for; self-classified as NGO/civil society.",
+      "claimed": "ngo",
+      "id": 900,
+      "name": "Fixture Research Institute"
+    },
+    {
+      "audited": "company",
+      "basis": "Operating manufacturer responding about its own inventory; classification stands.",
+      "claimed": "company",
+      "id": 901,
+      "name": "Northwind Manufacturing Co., Ltd."
+    },
+    {
+      "audited": "trade_association",
+      "basis": "Membership body representing manufacturers — a trade association, not civil society.",
+      "claimed": "ngo",
+      "id": 902,
+      "name": "Association of Fixture Industries"
+    },
+    {
+      "audited": "data_vendor",
+      "basis": "Sells hourly-matching analytics; classification stands as a data vendor.",
+      "claimed": "data_analytics",
+      "id": 903,
+      "name": "Meridian Grid Analytics"
+    },
+    {
+      "audited": "company",
+      "basis": "Operating energy company; classification stands.",
+      "claimed": "company",
+      "id": 904,
+      "name": "Fixture Family Energy GmbH"
+    },
+    {
+      "audited": "trade_association",
+      "basis": "Industry federation filing as a company.",
+      "claimed": "company",
+      "id": 905,
+      "name": "Kita Manufacturing Federation"
+    },
+    {
+      "audited": "company",
+      "basis": "Small operating company; individual respondent on its behalf.",
+      "claimed": "company",
+      "id": 910,
+      "name": "Vandermolen Energy BV"
+    },
+    {
+      "audited": "trade_association",
+      "basis": "Business coalition of member companies rather than a civil-society body.",
+      "claimed": "ngo",
+      "id": 912,
+      "name": "Clearwater Climate Alliance"
+    },
+    {
+      "audited": "data_vendor",
+      "basis": "Cooperative selling grid data services.",
+      "claimed": "data_analytics",
+      "id": 915,
+      "name": "Helios Data Cooperative"
+    },
+    {
+      "audited": "company",
+      "basis": "Operating developer; classification stands.",
+      "claimed": "company",
+      "id": 918,
+      "name": "Sierra Grid Partners LLC"
+    },
+    {
+      "audited": "company",
+      "basis": "Verification services firm self-classified as NGO/civil society.",
+      "claimed": "ngo",
+      "id": 920,
+      "name": "Ashcombe Verification Ltd"
+    }
+  ],
+  "summary": {
+    "claimed_x_audited": {
+      "company": {
+        "company": 4,
+        "trade_association": 1,
+        "unverifiable": 7
+      },
+      "data_analytics": {
+        "data_vendor": 2,
+        "unverifiable": 1
+      },
+      "ngo": {
+        "company": 1,
+        "data_vendor": 1,
+        "trade_association": 2,
+        "unverifiable": 2
+      }
+    }
+  },
+  "vocabulary": [
+    {
+      "definition": "An operating for-profit entity responding about its own operations.",
+      "key": "company",
+      "label": "Company"
+    },
+    {
+      "definition": "Membership body representing commercial members' interests.",
+      "key": "trade_association",
+      "label": "Trade association"
+    },
+    {
+      "definition": "Sells data, certificates, or tooling in the market under discussion.",
+      "key": "data_vendor",
+      "label": "Data vendor"
+    },
+    {
+      "definition": "Redacted respondent; the claim cannot be checked. Unverifiable is not an accusation.",
+      "key": "unverifiable",
+      "label": "Unverifiable"
+    }
+  ]
+}

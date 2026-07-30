@@ -1,0 +1,115 @@
+{
+  "legacy_clause": {
+    "against": [
+      {
+        "attribution": "Meridian Grid Analytics — Data/analytics provider, US",
+        "org_type": "data_analytics",
+        "q": 172,
+        "redacted": false,
+        "respondent_id": 903,
+        "template_cluster": null,
+        "text": "An open-ended legacy clause would freeze the status quo for the full life of every contract signed before the rule lands."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Redacted — Company, US",
+        "org_type": "company",
+        "q": 172,
+        "redacted": true,
+        "respondent_id": 907,
+        "template_cluster": null,
+        "text": "Contracts signed in good faith under the current rules protect committed investments; retroactive change would damage market confidence."
+      }
+    ]
+  },
+  "qc4_hourly_matching": {
+    "against": [
+      {
+        "attribution": "Northwind Manufacturing Co., Ltd. — Company, JP",
+        "org_type": "company",
+        "q": 74,
+        "redacted": false,
+        "respondent_id": 901,
+        "template_cluster": null,
+        "text": "The audit trail required to prove hourly matching across 40 sites in nine markets would cost more than the abatement it documents."
+      },
+      {
+        "attribution": "Association of Fixture Industries — NGO/nonprofit, US",
+        "org_type": "ngo",
+        "q": 74,
+        "redacted": false,
+        "respondent_id": 902,
+        "template_cluster": "fixturetemplate00000000000000000000b2",
+        "text": "We disagree with the proposed changes to the purposes of the market-based method and urge the Secretariat to retain the existing ‘may’ formulation."
+      },
+      {
+        "attribution": "Sierra Grid Partners LLC — Company, US",
+        "org_type": "company",
+        "q": 74,
+        "redacted": false,
+        "respondent_id": 918,
+        "template_cluster": null,
+        "text": "A ‘shall’ requirement would push us out of long-term PPAs and into short-dated certificate purchases."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Fixture Research Institute — NGO/nonprofit, US",
+        "org_type": "ngo",
+        "q": 71,
+        "redacted": false,
+        "respondent_id": 900,
+        "template_cluster": null,
+        "text": "Annual matching lets a buyer claim solar at night. Hourly matching is the minimum resolution at which the claim means anything."
+      },
+      {
+        "attribution": "Meridian Grid Analytics — Data/analytics provider, US",
+        "org_type": "data_analytics",
+        "q": 72,
+        "redacted": false,
+        "respondent_id": 903,
+        "template_cluster": null,
+        "text": "We have back-tested hourly factors against three years of settlement data; the annual figure over-credits evening load by a wide margin."
+      }
+    ]
+  },
+  "resid_mix_definition": {
+    "against": [],
+    "for": [
+      {
+        "attribution": "Clearwater Climate Alliance — NGO/nonprofit, US",
+        "org_type": "ngo",
+        "q": 113,
+        "redacted": false,
+        "respondent_id": 912,
+        "template_cluster": null,
+        "text": "The residual-mix definition is the one part of this package that improves accuracy without adding contractual burden."
+      }
+    ]
+  },
+  "resid_mix_registry_readiness": {
+    "against": [
+      {
+        "attribution": "Ashcombe Verification Ltd — NGO/nonprofit, US",
+        "org_type": "ngo",
+        "q": 118,
+        "redacted": false,
+        "respondent_id": 920,
+        "template_cluster": null,
+        "text": "Only two of the registries we audit could produce an auditable residual-mix factor today."
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Fixture Research Institute — NGO/nonprofit, US",
+        "org_type": "ngo",
+        "q": 118,
+        "redacted": false,
+        "respondent_id": 900,
+        "template_cluster": null,
+        "text": "Two registries we work with already publish hourly residual factors in pilot form."
+      }
+    ]
+  }
+}

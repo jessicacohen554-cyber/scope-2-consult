@@ -198,28 +198,57 @@
     document.head.appendChild(style);
 
     // --- Navigation Structure (SITE-SPECIFIC — edit here only) ---
-    // Skeleton nav for the Scope 2 Public Consultation Response Explorer.
-    // Placeholder hrefs point at pages to be built; keep labels short.
+    // MBM consultation dashboard structure (plans/mbm-dashboard/PLAN.md §4).
+    // Some targets do not exist yet — Wave 3 builds them; P42 finalizes this list.
+    //
+    // Pages live at the site root and one level down in proposals/, so hrefs are
+    // written through NAV_BASE. That keeps every link correct from both depths
+    // without touching the nav builders below.
+    const NAV_BASE = /\/proposals\//.test(window.location.pathname) ? '../' : '';
+
     const NAV_ITEMS = [
-        { label: 'Home', href: 'index.html' },
+        { label: 'Overview', href: NAV_BASE + 'index.html' },
         {
-            label: 'Explore Responses',
+            label: 'Dashboards',
             children: [
-                { label: 'By Question', href: '#by-question' },
-                { label: 'By Respondent Type', href: '#by-respondent' },
-                { label: 'By Theme', href: '#by-theme' }
+                { label: 'Likert Explorer',     href: NAV_BASE + 'heatmap.html' },
+                { label: 'Who Responded',       href: NAV_BASE + 'respondents.html' },
+                { label: 'Evidence & Research', href: NAV_BASE + 'evidence.html' },
+                { label: 'Integrity & Coalitions', href: NAV_BASE + 'integrity.html' }
             ]
         },
         {
-            label: 'Analysis',
-            children: [
-                { label: 'Key Themes', href: '#themes' },
-                { label: 'Points of Consensus', href: '#consensus' },
-                { label: 'Points of Contention', href: '#contention' }
+            label: 'Proposals',
+            mega: true,
+            columns: [
+                {
+                    header: 'Quality criteria',
+                    items: [
+                        { label: 'Hourly matching', href: NAV_BASE + 'proposals/hourly-matching.html', desc: 'QC4 — Q71–82' },
+                        { label: 'Deliverability',  href: NAV_BASE + 'proposals/deliverability.html',  desc: 'QC5 + market boundaries' },
+                        { label: 'Standard Supply Service', href: NAV_BASE + 'proposals/sss.html',     desc: 'Q97–112' },
+                        { label: 'Residual mix',    href: NAV_BASE + 'proposals/residual-mix.html',    desc: 'Q113–123 + registries' },
+                        { label: 'Fossil fallback', href: NAV_BASE + 'proposals/fossil-fallback.html', desc: 'Q124–129' }
+                    ]
+                },
+                {
+                    header: 'Flexibility & package',
+                    items: [
+                        { label: 'Exemptions',      href: NAV_BASE + 'proposals/exemptions.html',      desc: 'Q70, 130–133, 153–170' },
+                        { label: 'Legacy clause',   href: NAV_BASE + 'proposals/legacy-clause.html',   desc: 'Q171–180' },
+                        { label: 'Package impacts', href: NAV_BASE + 'proposals/package-impacts.html', desc: 'Usefulness, cost, IFRS' },
+                        { label: 'Transition',      href: NAV_BASE + 'proposals/transition.html',      desc: 'Q181–183' }
+                    ]
+                }
             ]
         },
-        { label: 'Methodology', href: '#methodology' },
-        { label: 'About', href: '#about' }
+        {
+            label: 'About',
+            children: [
+                { label: 'Methodology', href: NAV_BASE + 'methodology.html' },
+                { label: 'Dataset README', href: 'https://github.com/jessicacohen554-cyber/scope-2-consult#readme' }
+            ]
+        }
     ];
 
     const NAV_BRAND = 'Scope 2 Consultation Explorer';
@@ -235,10 +264,25 @@
         return filename;
     }
 
-    // Check if an href matches the current page
+    // Check if an href matches the current page.
+    // Handles subdirectory targets (proposals/hourly-matching.html) as well as
+    // bare filenames, from pages at either depth. Hash-only and external hrefs
+    // are never active.
     function isActive(href) {
+        if (!href) return false;
         const current = getCurrentPage();
-        const normalized = href.replace(/^\.\.\//, '').replace(/^\.\//, '');
+        const path = window.location.pathname;
+        if (href.charAt(0) === '#' || /^[a-z][a-z0-9+.-]*:/i.test(href)) return false;
+        const normalized = href
+            .replace(/^(?:\.\.\/)+/, '')
+            .replace(/^\.\//, '')
+            .replace(/^\//, '')
+            .split(/[?#]/)[0];
+        if (!normalized) return false;
+        if (normalized.indexOf('/') !== -1) {
+            // Subdirectory target: match the tail of the current path.
+            return path.slice(-(normalized.length + 1)) === '/' + normalized;
+        }
         return current === normalized || current === href;
     }
 

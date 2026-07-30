@@ -1,0 +1,148 @@
+{
+  "72": {
+    "anchor": 72,
+    "lever": "qc4_hourly_matching",
+    "n_answered": 4,
+    "options": [
+      {
+        "by": {
+          "org_type": {
+            "data_analytics": 3,
+            "ngo": 1
+          },
+          "redaction": {
+            "named": 3,
+            "redacted": 1
+          }
+        },
+        "n": 4,
+        "pct": 100.0,
+        "text": "Better reflects grid operation, reduces misallocation of generation (e.g., “solar at night”)"
+      },
+      {
+        "by": {
+          "org_type": {
+            "data_analytics": 3,
+            "ngo": 1
+          },
+          "redaction": {
+            "named": 3,
+            "redacted": 1
+          }
+        },
+        "n": 4,
+        "pct": 100.0,
+        "text": "Improves accuracy and scientific integrity of MBM results"
+      },
+      {
+        "by": {
+          "org_type": {
+            "data_analytics": 2,
+            "ngo": 1
+          },
+          "redaction": {
+            "named": 2,
+            "redacted": 1
+          }
+        },
+        "n": 3,
+        "pct": 75.0,
+        "text": "Reduces risk of greenwashing/time-shifting claims by aligning claims to time of use"
+      },
+      {
+        "by": {
+          "org_type": {
+            "data_analytics": 1,
+            "ngo": 1
+          },
+          "redaction": {
+            "named": 2
+          }
+        },
+        "n": 2,
+        "pct": 50.0,
+        "text": "Helps create price signals for times and places where renewables are not already abundant"
+      }
+    ],
+    "side": "for"
+  },
+  "74": {
+    "anchor": 74,
+    "lever": "qc4_hourly_matching",
+    "n_answered": 15,
+    "options": [
+      {
+        "by": {
+          "org_type": {
+            "company": 12,
+            "ngo": 3
+          },
+          "redaction": {
+            "named": 7,
+            "redacted": 8
+          }
+        },
+        "n": 15,
+        "pct": 100.0,
+        "text": "Concern that administrative, data management, and audit challenges outweigh the benefits"
+      },
+      {
+        "by": {
+          "org_type": {
+            "company": 12,
+            "ngo": 3
+          },
+          "redaction": {
+            "named": 7,
+            "redacted": 8
+          }
+        },
+        "n": 15,
+        "pct": 100.0,
+        "text": "Hourly matching should follow an optional ‘may’ rather than a required ‘shall’ approach"
+      },
+      {
+        "by": {
+          "org_type": {
+            "company": 6,
+            "ngo": 2
+          },
+          "redaction": {
+            "named": 2,
+            "redacted": 6
+          }
+        },
+        "n": 8,
+        "pct": 53.33,
+        "text": "Concern that a requirement for hourly contractual instruments could discourage global voluntary procurement"
+      },
+      {
+        "by": {
+          "org_type": {
+            "company": 5
+          },
+          "redaction": {
+            "redacted": 5
+          }
+        },
+        "n": 5,
+        "pct": 33.33,
+        "text": "Concern that requiring hourly matching does not create meaningful improvements to inventory accuracy"
+      },
+      {
+        "by": {
+          "org_type": {
+            "company": 1
+          },
+          "redaction": {
+            "named": 1
+          }
+        },
+        "n": 1,
+        "pct": 6.67,
+        "text": "Other (please explain)"
+      }
+    ],
+    "side": "against"
+  }
+}

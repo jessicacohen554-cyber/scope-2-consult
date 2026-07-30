@@ -16,10 +16,15 @@
     <link rel="stylesheet" href="../styles/shared.css">
     <link rel="stylesheet" href="../styles/article.css">
     <link rel="stylesheet" href="../styles/cinematic.css">
+    <link rel="stylesheet" href="../styles/site.css">
 
     <!-- GSAP for the cinematic scroll background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
     <!-- Design system modules -->
     <script src="../js/nav.js"></script>
@@ -27,6 +32,13 @@
     <script src="../js/shared-header.js"></script>
     <script src="../js/scroll-observer.js"></script>
     <script src="../js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="../js/data-loader.js"></script>
+    <script src="../js/segments.js"></script>
+    <script src="../js/likert-viz.js"></script>
+    <script src="../js/quote-cards.js"></script>
+    <script src="../js/org-table.js"></script>
 
     <!-- Page-specific styles ONLY (layouts unique to this page — never restyle
          shared components; extend with modifier classes in shared.css instead) -->

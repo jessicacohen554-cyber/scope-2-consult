@@ -1,0 +1,139 @@
+{
+  "blocs": [
+    {
+      "key": "pro_hourly",
+      "label": "Pro-hourly bloc",
+      "members_named": [
+        {
+          "id": 900,
+          "name": "Fixture Research Institute"
+        },
+        {
+          "id": 903,
+          "name": "Meridian Grid Analytics"
+        }
+      ],
+      "n_redacted": 1,
+      "shared_texts": 12,
+      "signature": [
+        5,
+        5,
+        4,
+        5,
+        5,
+        4,
+        4
+      ]
+    },
+    {
+      "key": "fixture_semi",
+      "label": "Fixture industry bloc",
+      "members_named": [
+        {
+          "id": 902,
+          "name": "Association of Fixture Industries"
+        },
+        {
+          "id": 905,
+          "name": "Kita Manufacturing Federation"
+        }
+      ],
+      "n_redacted": 1,
+      "shared_texts": 9,
+      "signature": [
+        1,
+        1,
+        2,
+        3,
+        2,
+        4,
+        5
+      ]
+    }
+  ],
+  "entity_families": [
+    {
+      "ids": [
+        900,
+        904
+      ],
+      "n": 2,
+      "name": "Fixture Family"
+    }
+  ],
+  "text_clusters": [
+    {
+      "chars": 147,
+      "hash": "fixturetemplate00000000000000000000b2",
+      "n_redacted": 2,
+      "n_respondents": 4,
+      "named_members": [
+        {
+          "id": 902,
+          "name": "Association of Fixture Industries"
+        },
+        {
+          "id": 905,
+          "name": "Kita Manufacturing Federation"
+        }
+      ],
+      "preview": "We disagree with the proposed changes to the purposes of the market-based method and urge the Secretariat to retain the existing ‘may’ formulation.",
+      "questions": [
+        71,
+        74
+      ]
+    },
+    {
+      "chars": 138,
+      "hash": "fixturecite0000000000000000000000000a1",
+      "n_redacted": 1,
+      "n_respondents": 2,
+      "named_members": [
+        {
+          "id": 900,
+          "name": "Fixture Research Institute"
+        }
+      ],
+      "preview": "Hourly matching is supported by a growing peer-reviewed literature (see Bjørn et al. 2025) and by grid-operator practice in three markets.",
+      "questions": [
+        138
+      ]
+    }
+  ],
+  "vector_clusters": [
+    {
+      "ids_named": [
+        902,
+        905
+      ],
+      "length": 11,
+      "n_redacted": 1,
+      "signature": [
+        1,
+        1,
+        2,
+        3,
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "ids_named": [
+        900,
+        903
+      ],
+      "length": 11,
+      "n_redacted": 1,
+      "signature": [
+        5,
+        5,
+        4,
+        5,
+        5,
+        4,
+        4
+      ]
+    }
+  ]
+}
