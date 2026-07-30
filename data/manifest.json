@@ -33,6 +33,41 @@
     "other_specify": 3,
     "basis": 3
   },
+  "labelled_questions": 180,
+  "methods": {
+    "general": 16,
+    "lbm": 48,
+    "mbm": 116
+  },
+  "categories": {
+    "resp_profile": 14,
+    "defs_and_purposes": 5,
+    "lbm_design": 29,
+    "usefulness_and_users": 23,
+    "data_and_readiness": 11,
+    "feas_and_flex": 33,
+    "cost_and_burden": 19,
+    "mbm_design": 42,
+    "overall": 1,
+    "transition": 3
+  },
+  "asks_for": {
+    "respondent_attribute": 16,
+    "open_feedback": 7,
+    "stance": 14,
+    "rationale_for": 12,
+    "elaboration": 44,
+    "rationale_against": 13,
+    "design_preference": 41,
+    "evidence_basis": 8,
+    "impact_assessment": 8,
+    "data_availability": 3,
+    "cost_estimate": 6,
+    "cost_driver": 4,
+    "timeline": 4
+  },
+  "policy_levers": 53,
+  "subcategories": 46,
   "scale_constructs": {
     "support": 10,
     "ordinal": 11,

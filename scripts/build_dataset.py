@@ -205,6 +205,24 @@ def main() -> None:
     qcols = [c for c in cols if c["qnum"] is not None]
     by_qnum = {c["qnum"]: c for c in qcols}
 
+    # ---------------- hand-curated question labels ----------------
+    # Left join by question_id, but a miss on either side is an error rather
+    # than a null: an unlabelled question would surface as blank cells in
+    # questions.csv long after the fact, and a label for a question that is not
+    # in the export means the file has drifted from the source. The vocabulary
+    # and its rules live in survey_meta; this is only the join.
+    labels = meta.load_labels(ROOT)
+    qids = {f"Q{c['qnum']:03d}" for c in qcols}
+    missing, extra = sorted(qids - set(labels)), sorted(set(labels) - qids)
+    if missing or extra:
+        raise SystemExit(
+            f"{meta.LABELS_FILE}: label coverage mismatch\n"
+            + (f"  unlabelled questions ({len(missing)}): "
+               f"{', '.join(missing)}\n" if missing else "")
+            + (f"  labels for questions absent from the export ({len(extra)}): "
+               f"{', '.join(extra)}\n" if extra else ""))
+    print(f"joined {len(labels)} question labels")
+
     # ---------------- pass 2: question type + interpretation ----------------
     for c in qcols:
         qnum, h = c["qnum"], c["header"]
@@ -239,6 +257,7 @@ def main() -> None:
         c["scale_note"] = scale[3] if scale else ""
         c["note"] = meta.NOTES.get(qnum, "")
         c["ladder"] = ladder
+        c["labels"] = labels[c["question_id"]]
 
     # parent / anchor: what a follow-on question hangs off.
     ordered = sorted(qcols, key=lambda c: c["qnum"])
@@ -347,9 +366,16 @@ def main() -> None:
                 stats["free_text"] += 1
                 stats["chars"] += len(raw)
 
+            lab = c["labels"]
             long_rows.append(dict(
                 respondent_id=rid, question_id=qid, question_number=qnum,
                 section_order=c["section_order"], section=c["section"],
+                # Carried at answer grain, not just on the codebook, so that a
+                # discrete answer can be grouped by shorthand, method, concern
+                # or answer type without joining back to questions.
+                shorthand=lab["shorthand"], method=lab["method"],
+                category=lab["category"], policy_lever=lab["policy_lever"],
+                asks_for=lab["asks_for"],
                 question_type=c["qtype"], role=c["role"], construct=c["construct"],
                 answer_text=raw, answer_numeric=numeric, n_selected=n_sel,
                 char_count=len(raw) if is_text else "",
@@ -406,10 +432,15 @@ def main() -> None:
         n = len(c["filled"])
         n_opts = len([o for o in option_rows
                       if o["question_id"] == c["question_id"] and o["is_canonical"]])
+        lab = c["labels"]
         q_rows.append(dict(
             question_id=c["question_id"], question_number=c["qnum"],
             column_index=c["col_index"],
             section_order=c["section_order"], section=c["section"],
+            shorthand=lab["shorthand"], label=lab["label"],
+            method=lab["method"], category=lab["category"],
+            subcategory=lab["subcategory"], policy_lever=lab["policy_lever"],
+            asks_for=lab["asks_for"],
             question_type=c["qtype"], role=c["role"],
             scale_construct=c["construct"],
             scale_anchor_low=c["anchor_low"], scale_anchor_high=c["anchor_high"],
@@ -424,7 +455,7 @@ def main() -> None:
             review_option_split=int(borderline.get(c["qnum"], 0) >= 5),
             max_answer_chars=c["maxlen"],
             question_text=c["text"], question_text_short=c["text"][:120],
-            notes=c["note"],
+            notes=c["note"], label_notes=lab["label_notes"],
         ))
 
     # ---------------- wide table ----------------
@@ -482,13 +513,17 @@ def main() -> None:
     con.executescript("""
     CREATE TABLE questions (
       question_id TEXT PRIMARY KEY, question_number INTEGER, column_index INTEGER,
-      section_order INTEGER, section TEXT, question_type TEXT, role TEXT,
+      section_order INTEGER, section TEXT,
+      shorthand TEXT, label TEXT, method TEXT, category TEXT, subcategory TEXT,
+      policy_lever TEXT, asks_for TEXT,
+      question_type TEXT, role TEXT,
       scale_construct TEXT, scale_anchor_low TEXT, scale_anchor_high TEXT,
       scale_note TEXT, parent_question INTEGER, anchor_question INTEGER,
       references_questions TEXT, n_answered INTEGER, response_rate_pct REAL,
       n_options INTEGER, n_write_in_selections INTEGER, review_option_split INTEGER,
       max_answer_chars INTEGER,
-      question_text TEXT, question_text_short TEXT, notes TEXT);
+      question_text TEXT, question_text_short TEXT, notes TEXT,
+      label_notes TEXT);
     CREATE TABLE question_options (
       question_id TEXT, question_number INTEGER, option_text TEXT,
       option_rank INTEGER, is_canonical INTEGER, is_other_option INTEGER,
@@ -496,7 +531,10 @@ def main() -> None:
     CREATE TABLE respondents (respondent_id INTEGER PRIMARY KEY);
     CREATE TABLE responses (
       respondent_id INTEGER, question_id TEXT, question_number INTEGER,
-      section_order INTEGER, section TEXT, question_type TEXT, role TEXT,
+      section_order INTEGER, section TEXT,
+      shorthand TEXT, method TEXT, category TEXT, policy_lever TEXT,
+      asks_for TEXT,
+      question_type TEXT, role TEXT,
       construct TEXT, answer_text TEXT, answer_numeric REAL, n_selected INTEGER,
       char_count INTEGER, word_count INTEGER, likely_truncated INTEGER);
     CREATE TABLE response_selections (
@@ -526,12 +564,18 @@ def main() -> None:
     CREATE INDEX ix_resp_q   ON responses(question_number);
     CREATE INDEX ix_resp_r   ON responses(respondent_id);
     CREATE INDEX ix_resp_sec ON responses(section_order);
+    CREATE INDEX ix_resp_sh  ON responses(shorthand);
+    CREATE INDEX ix_resp_ask ON responses(asks_for);
     CREATE INDEX ix_sel_q    ON response_selections(question_number);
     CREATE INDEX ix_sel_r    ON response_selections(respondent_id);
 
     -- Every scale answer with its respondent's profile and the scale's meaning.
+    -- One row per respondent x question: the labels are here to group discrete
+    -- answers by, not to aggregate them away.
     CREATE VIEW v_scale_answers AS
-    SELECT r.respondent_id, r.question_number, q.question_id, q.section,
+    SELECT r.respondent_id, r.question_number, q.question_id,
+           q.shorthand, q.label, q.method, q.category, q.policy_lever,
+           q.asks_for, q.section,
            q.scale_construct, q.scale_anchor_low, q.scale_anchor_high,
            q.question_text_short, r.answer_text, r.answer_numeric,
            p.country, p.responding_as, p.organization_type, p.sector,
@@ -543,9 +587,12 @@ def main() -> None:
       AND r.answer_numeric IS NOT NULL;
 
     -- Mean/median support etc. per question, construct kept visible so that
-    -- support and burden scales are never silently pooled.
+    -- support and burden scales are never silently pooled. shorthand is the
+    -- column to read: question_text_short buries the subject.
     CREATE VIEW v_scale_summary AS
-    SELECT q.question_id, q.question_number, q.section, q.scale_construct,
+    SELECT q.question_id, q.question_number,
+           q.shorthand, q.label, q.method, q.category, q.subcategory,
+           q.policy_lever, q.asks_for, q.section, q.scale_construct,
            q.scale_anchor_low, q.scale_anchor_high, q.question_text_short,
            COUNT(r.answer_numeric) AS n_scored,
            ROUND(AVG(r.answer_numeric), 2) AS mean_score,
@@ -557,8 +604,11 @@ def main() -> None:
     GROUP BY q.question_id ORDER BY q.question_number;
 
     -- Option frequencies for choice questions, with profile joins available.
+    -- One row per option ticked per respondent.
     CREATE VIEW v_selections AS
-    SELECT s.respondent_id, s.question_number, s.question_id, q.section,
+    SELECT s.respondent_id, s.question_number, s.question_id,
+           q.shorthand, q.label, q.method, q.category, q.policy_lever,
+           q.asks_for, q.section,
            q.question_text_short, s.option_text, s.is_canonical,
            p.country, p.responding_as, p.organization_type, p.sector,
            p.is_redacted
@@ -566,13 +616,39 @@ def main() -> None:
     JOIN questions q USING(question_id)
     JOIN respondents p ON p.respondent_id = s.respondent_id;
 
-    -- Drill-down tree: a substantive question with the follow-ups hanging off it.
+    -- Drill-down tree: a substantive question with the follow-ups hanging off
+    -- it. Shorthands on both sides, so the 62 boilerplate follow-ups are
+    -- readable without their parent's wording.
     CREATE VIEW v_question_tree AS
-    SELECT a.question_number AS anchor_number, a.question_text_short AS anchor_text,
-           a.section, c.question_number, c.question_id, c.role, c.question_type,
-           c.n_answered, c.question_text_short
+    SELECT a.question_number AS anchor_number, a.shorthand AS anchor_shorthand,
+           a.label AS anchor_label, a.question_text_short AS anchor_text,
+           a.method, a.category, a.policy_lever, a.section,
+           c.question_number, c.question_id, c.shorthand, c.label, c.asks_for,
+           c.role, c.question_type, c.n_answered, c.question_text_short
     FROM questions c JOIN questions a ON a.question_number = c.anchor_question
     ORDER BY a.question_number, c.question_number;
+
+    -- How many answers of each type each respondent gave. Counts only; the
+    -- discrete answers stay in `responses`, which this groups rather than
+    -- replaces, so any cell here drills back to named respondents.
+    CREATE VIEW v_answer_types AS
+    SELECT r.respondent_id, q.method, q.category, q.asks_for, q.question_type,
+           COUNT(*)                             AS n_answers,
+           COUNT(r.answer_numeric)              AS n_scored,
+           SUM(COALESCE(r.n_selected, 0))       AS n_selections,
+           SUM(COALESCE(r.char_count, 0))       AS free_text_chars
+    FROM responses r JOIN questions q USING(question_id)
+    GROUP BY r.respondent_id, q.method, q.category, q.asks_for, q.question_type;
+
+    -- Every distinct answer to a choice question with how many respondents gave
+    -- it, keyed by shorthand rather than by wording.
+    CREATE VIEW v_option_counts AS
+    SELECT q.question_number, q.question_id, q.shorthand, q.label,
+           q.method, q.category, q.policy_lever, q.asks_for, q.question_type,
+           o.option_text, o.option_rank, o.is_canonical, o.is_other_option,
+           o.is_off_scale, o.n_selected, o.pct_of_answered, q.n_answered
+    FROM question_options o JOIN questions q USING(question_id)
+    ORDER BY q.question_number, o.n_selected DESC;
 
     -- Redaction as a finding in its own right: does withholding identity travel
     -- with who the respondent is, how much they wrote, or how they answered?
@@ -587,7 +663,8 @@ def main() -> None:
 
     -- Mean score per scale question, split by whether identity was withheld.
     CREATE VIEW v_scale_by_redaction AS
-    SELECT question_number, question_text_short, scale_construct,
+    SELECT question_number, shorthand, label, method, policy_lever,
+           question_text_short, scale_construct,
            SUM(is_redacted = 0) AS n_named,
            ROUND(AVG(CASE WHEN is_redacted = 0 THEN answer_numeric END), 2) AS mean_named,
            SUM(is_redacted = 1) AS n_redacted,
@@ -597,7 +674,9 @@ def main() -> None:
 
     -- All free text for a respondent, in survey order.
     CREATE VIEW v_free_text AS
-    SELECT r.respondent_id, r.question_number, q.question_id, q.section, q.role,
+    SELECT r.respondent_id, r.question_number, q.question_id,
+           q.shorthand, q.label, q.method, q.category, q.policy_lever,
+           q.asks_for, q.section, q.role,
            q.question_text_short, r.char_count, r.word_count, r.likely_truncated,
            r.answer_text
     FROM responses r JOIN questions q USING(question_id)
@@ -656,6 +735,12 @@ def main() -> None:
                   question_options=len(option_rows)),
         question_types=dict(Counter(c["qtype"] for c in ordered)),
         roles=dict(Counter(c["role"] for c in ordered)),
+        labelled_questions=len(labels),
+        methods=dict(Counter(c["labels"]["method"] for c in ordered)),
+        categories=dict(Counter(c["labels"]["category"] for c in ordered)),
+        asks_for=dict(Counter(c["labels"]["asks_for"] for c in ordered)),
+        policy_levers=len({c["labels"]["policy_lever"] for c in ordered}),
+        subcategories=len({c["labels"]["subcategory"] for c in ordered}),
         scale_constructs=dict(Counter(c["construct"] for c in ordered if c["construct"])),
         truncated_free_text_answers=sum(r["likely_truncated"] for r in long_rows),
         non_canonical_selections=sum(1 for s in sel_rows if not s["is_canonical"]),
