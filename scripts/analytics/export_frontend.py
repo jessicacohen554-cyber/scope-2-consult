@@ -73,6 +73,22 @@ Usage
 
 from __future__ import annotations
 
+
+def _verbatim_in(text, stored):
+    """True if text is a verbatim substring of stored, allowing [\u2026]-marked
+    elisions: each segment must appear verbatim, in order."""
+    if stored is None:
+        return False
+    pos = 0
+    for seg in (t.strip() for t in text.split("[\u2026]")):
+        if not seg:
+            continue
+        found = stored.find(seg, pos)
+        if found < 0:
+            return False
+        pos = found + len(seg)
+    return True
+
 import argparse
 import csv
 import json
@@ -1321,7 +1337,7 @@ def build_quotes(con, people, flags, allow_missing: bool) -> dict:
                     fail(f"{CURATED_QUOTES_JSON.name}: respondent {pid} has no "
                          f"answer to Q{number} ({lever}/{side})")
                 text = (quote.get("text") or "").strip()
-                if text not in row[0]:
+                if not _verbatim_in(text, row[0]):
                     fail(f"{CURATED_QUOTES_JSON.name}: {lever}/{side} quote for "
                          f"respondent {pid} Q{number} is not a verbatim "
                          "substring of the stored answer")
