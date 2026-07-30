@@ -20,10 +20,12 @@ and skim every shipped page so each claim can link to its chart.
   (spot-check against the db where PLAN §3 gives the number). Do not import numbers from
   memory or from this prompt alone.
 - **Symmetric skepticism**: the support side's citation advantage AND its template
-  propagation + vendor interest; the opposition's operational-evidence weight AND its
-  redaction pattern + REC-investment interest. The §8 verdict framing — "the support
-  side brings more research; the opposition brings more operational evidence; neither is
-  disinterested" — is the calibration, in your own words.
+  propagation + vendor interest; the opposition's burden self-report AND its redaction
+  pattern + REC-investment interest. PLAN §8 item 4 carries the P35-corrected calibration
+  (verified): the research advantage is citation-behavior only; self-reported evidence
+  basis is stance-neutral, and supporters are weakly higher on operational experience.
+  Do NOT write "the opposition brings more operational evidence" — the data says
+  otherwise.
 - **Hedge small n** explicitly (Financial n=7–8, Government n=8–14, vendors n≈20).
 - **Consultation ≠ referendum** appears early: self-selected, mobilized, redaction-skewed.
 - Named organizations appear only where the site already names them (blocs,

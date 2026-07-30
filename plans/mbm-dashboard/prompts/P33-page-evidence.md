@@ -14,9 +14,13 @@ the page must be explicit about what each signal can and cannot show.
 
 1. Evidence-basis distributions: Q138 (MBM) with Q56 (LBM) comparator and Q122
    (registry readiness) — the 7.4% / 3.9% / 2.3% empirical shares as stat cards.
-2. Basis × stance: Q138 selections crossed with Q71 stance buckets and Q134 usefulness
-   buckets — do supporters or opponents claim more empirical grounding? Show both counts
-   and shares; multi-select caveat visible.
+2. Basis × stance: Q138 selections crossed with Q71 stance buckets — **P35-corrected
+   framing (verified against the db):** self-reported basis is stance-NEUTRAL (empirical
+   7.6% oppose vs 8.0% support; supporters weakly HIGHER on operational experience 29.3%
+   vs 21.6%); the stance separation lives in citation behavior only (34.3% vs 14.7%).
+   Say this plainly — do not imply supporters claim more empirical grounding. Use the
+   `base` {oppose:250, neutral:26, support:75} and `no_anchor_score:14` fields now in
+   evidence.json basis panels for honest rates; multi-select caveat visible.
 3. Citation rates: by org type (registries 62% → Financial 4%), by redaction (~2×), by
    Q71 stance bucket.
 4. Linked-domain table: classified peer-reviewed/preprint · advocacy · government ·
