@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence &amp; Research | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="What respondents said they knew, what they cited, and how much of that citation traffic is circulated template text.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/likert-viz.js"></script>
+    <script src="js/quote-cards.js"></script>
+    <script src="js/evidence-page.js"></script>
+
+    <!-- Page-specific layout ONLY — every component here is a shared class from
+         shared.css / site.css; these rules cover layouts unique to this page. -->
+    <style>
+    .ev-panel-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--space-xs) var(--space-md);
+        margin-bottom: var(--space-sm);
+    }
+    .ev-panel-head .chart-title,
+    .ev-card-title {
+        text-align: left;
+        margin-bottom: 0;
+    }
+    .ev-list {
+        margin: var(--space-sm) 0 0;
+        padding-left: 1.15em;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+    }
+    .ev-list strong { color: var(--navy); }
+    .ev-table-wide { min-width: 560px; }
+    .ev-preview {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-width: 34ch;
+        font-size: 0.72rem;
+        line-height: 1.5;
+        color: var(--text-muted);
+    }
+    .ev-story { display: flex; flex-direction: column; }
+    /* Quote cards need more measure than .grid-auto's 280px track gives them. */
+    .ev-story-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+        gap: 20px;
+        align-items: start;
+        margin-top: var(--space-lg);
+    }
+    /* The shared .toggle-btn-group is a non-shrinking inline-flex row; the
+       host-class filter has nine buttons, so confine it rather than restyle it. */
+    .ev-scroll-x {
+        overflow-x: auto;
+        max-width: 100%;
+        padding-bottom: 2px;
+    }
+    /* Keep the group at its natural width so the scroller pans it instead of
+       squeezing the buttons together. */
+    .ev-scroll-x .toggle-btn-group { width: max-content; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Evidence &amp; Research Integrity</h1>
+        <div class="subtitle">What respondents said they knew, what they actually cited, and how much of that citation traffic is the same paragraph travelling under different names.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== HERO STATS ===== -->
+        <section class="content-section">
+            <div class="grid-stats">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value">7.4%</div>
+                    <div class="stat-label">Q138 · direct empirical analysis (n=365)</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value">3.9%</div>
+                    <div class="stat-label">Q56 · same claim, location-based method (n=408)</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value">2.3%</div>
+                    <div class="stat-label">Q122 · registry readiness from pilot use (n=220)</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="citeOverall">—</div>
+                    <div class="stat-label">Any hard citation signal · <span id="citeOverallSub">—</span></div>
+                </div>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3 class="chart-title ev-card-title">What this page can and cannot show</h3>
+                <p>The consultation never asked respondents to distinguish peer-reviewed research from grey literature, so no question on this page separates a journal article from a trade-association white paper. Three independent signals are assembled instead, and each one is weaker than it looks:</p>
+                <ul class="ev-list">
+                    <li><strong>Self-declared basis</strong> (Q138, Q56, Q122). Respondents chose how they knew what they claimed. Nothing was verified, and Q138 allowed several answers at once.</li>
+                    <li><strong>Citation mining of free text.</strong> A "citation signal" is a string match — a URL, a DOI, "et al.", "peer-review", ".pdf", a journal name. It shows that a source was named, not that it was read, relevant, or supportive of the point being made.</li>
+                    <li><strong>Template detection.</strong> Identical long passages recur across respondents, citations and all, so an unduplicated count of "respondents citing X" overstates how many people independently went looking.</li>
+                </ul>
+                <p class="s2-note">Counts measure mobilisation, not truth: a consultation is not a referendum, and a well-sourced minority is still a minority. Every panel below states its own base and what it cannot tell you.</p>
+            </div>
+        </section>
+
+        <!-- ===== PANEL 1 — BASIS DISTRIBUTIONS ===== -->
+        <section class="content-section" id="basis">
+            <h2 class="section-title">How respondents say they know</h2>
+            <p class="section-subtitle">Three questions asked respondents to declare the basis for their assessment. Direct empirical work is the rarest answer in all three.</p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="ev-panel-head">
+                    <h3 class="chart-title" id="basisLabel">Declared basis</h3>
+                    <span class="s2-base-chip" id="basisBase">—</span>
+                </div>
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="basisToggleLabel">Question</span>
+                        <div class="toggle-btn-group" id="basisToggle" role="group" aria-labelledby="basisToggleLabel"></div>
+                    </div>
+                    <div class="s2-control">
+                        <span class="s2-control-label">Instrument</span>
+                        <span class="s2-tag s2-tag-q" id="basisMultiChip" hidden>multi-select</span>
+                    </div>
+                </div>
+                <p class="s2-note" id="basisBlurb">—</p>
+                <div class="chart-container">
+                    <canvas id="chartBasis"></canvas>
+                </div>
+                <div class="s2-table-scroll" id="basisTable">
+                    <p class="s2-loading">Loading declared bases…</p>
+                </div>
+                <p class="s2-note" id="basisNote">—</p>
+            </div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>The load-bearing answer is "general awareness".</strong> On Q138, 46.9% of respondents assessing the MBM package said they were working from general awareness with no direct analysis, and 67.7% from professional judgment informed by literature or briefings. Direct empirical analysis — back-testing with hourly factors — accounts for 7.4%. The location-based comparator (Q56) is lower still at 3.9%, and only five respondents in the whole consultation judged registry readiness from pilot or production use.
+            </div>
+        </section>
+
+        <!-- ===== PANEL 2 — BASIS × STANCE ===== -->
+        <section class="content-section" id="basis-stance">
+            <h2 class="section-title">Do supporters or opponents claim more grounding?</h2>
+            <p class="section-subtitle">Declared basis crossed with the Q71 stance buckets — the hourly-matching anchor.</p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="ev-panel-head">
+                    <h3 class="chart-title">Declared basis by stance on hourly matching</h3>
+                    <span class="s2-base-chip" id="basisStanceBase">—</span>
+                </div>
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="basisStanceToggleLabel">Question</span>
+                        <div class="toggle-btn-group" id="basisStanceToggle" role="group" aria-labelledby="basisStanceToggleLabel"></div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chartBasisStance"></canvas>
+                </div>
+                <div class="s2-table-scroll" id="basisStanceTable">
+                    <p class="s2-loading">Loading crossing…</p>
+                </div>
+                <p class="s2-note" id="basisStanceNote">—</p>
+                <p class="s2-note">The export crosses declared basis with Q71 only. Q134 (decision-usefulness gain) is not crossed with the basis questions in <code>evidence.json</code>, so that comparison is not shown.</p>
+            </div>
+
+            <div class="insight-glass insight-glass-indigo scroll-reveal" id="basisStanceReadout">—</div>
+        </section>
+
+        <!-- ===== PANEL 3 — CITATION RATES ===== -->
+        <section class="content-section" id="citations">
+            <h2 class="section-title">Who cites anything at all</h2>
+            <p class="section-subtitle">Share of each group whose free text carries a hard citation signal — a URL, DOI, "et al.", "peer-review", a .pdf or a journal name.</p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="ev-panel-head">
+                    <h3 class="chart-title">Citation-signal rate by organisation type</h3>
+                    <span class="s2-base-chip" id="citeOrgBase">—</span>
+                </div>
+                <div class="chart-container-xl">
+                    <canvas id="chartCiteOrg"></canvas>
+                </div>
+                <p class="s2-note">Bars below the all-respondent rate (dashed line) are greyed.</p>
+                <div class="s2-table-scroll" id="citeOrgTable">
+                    <p class="s2-loading">Loading citation rates…</p>
+                </div>
+                <p class="s2-note">What this can't tell you: the denominator is every respondent in the group, including those who submitted no free text at all — a respondent who wrote nothing cannot cite anything, so groups that mostly ticked boxes look less research-backed than they may be. Groups with fewer than five respondents are masked and excluded from the chart.</p>
+            </div>
+
+            <div class="grid-auto scroll-reveal">
+                <div class="glass-chart-panel flush">
+                    <div class="ev-panel-head">
+                        <h3 class="chart-title">Named vs redacted</h3>
+                        <span class="s2-base-chip" id="citeRedactionBase">—</span>
+                    </div>
+                    <div class="chart-container-sm">
+                        <canvas id="chartCiteRedaction"></canvas>
+                    </div>
+                    <p class="s2-note" id="citeRedactionReadout">—</p>
+                    <p class="s2-note">What this can't tell you: redaction is a request, not a verdict. Anonymous respondents may have cited in text that was redacted along with their identity, and they are unverifiable rather than unserious.</p>
+                </div>
+                <div class="glass-chart-panel flush">
+                    <div class="ev-panel-head">
+                        <h3 class="chart-title">By stance on hourly matching</h3>
+                        <span class="s2-base-chip" id="citeStanceBase">—</span>
+                    </div>
+                    <div class="chart-container-sm">
+                        <canvas id="chartCiteStance"></canvas>
+                    </div>
+                    <p class="s2-note" id="citeStanceReadout">—</p>
+                    <p class="s2-note">What this can't tell you: citing more is not being right. The gap may reflect who has research staff, not whose position the evidence supports.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PANEL 4 — LINKED DOMAINS ===== -->
+        <section class="content-section" id="domains">
+            <h2 class="section-title">What they link to</h2>
+            <p class="section-subtitle">Every linked host, classified. This is where the missing peer-review question bites hardest.</p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="ev-panel-head">
+                    <h3 class="chart-title">Linking answers by host class</h3>
+                    <span class="s2-base-chip" id="domainBase">—</span>
+                </div>
+                <div class="chart-container-lg">
+                    <canvas id="chartDomainClass"></canvas>
+                </div>
+                <div class="s2-table-scroll" id="domainClassTable">
+                    <p class="s2-loading">Loading host classes…</p>
+                </div>
+                <p class="s2-note" id="domainDegraded" hidden></p>
+                <p class="s2-note">What this can't tell you: a host is not a document. Government servers host advocacy PDFs, repositories host unreviewed preprints, and a link says nothing about whether the cited work supports the claim it was attached to. Counts are answers that link a host, so one respondent quoting the same paper in ten answers registers ten times.</p>
+            </div>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="ev-panel-head">
+                    <h3 class="chart-title">Linked hosts</h3>
+                </div>
+                <div class="s2-table-controls">
+                    <div class="s2-control ev-scroll-x">
+                        <span class="s2-control-label" id="domainFilterLabel">Host class</span>
+                        <div class="toggle-btn-group" id="domainFilter" role="group" aria-labelledby="domainFilterLabel"></div>
+                    </div>
+                </div>
+                <p class="s2-table-status" id="domainStatus">—</p>
+                <div class="s2-table-scroll" id="domainTable">
+                    <p class="s2-loading">Loading hosts…</p>
+                </div>
+                <p class="s2-note">Shortened links (tinyurl, bit.ly) cannot be classified or checked without resolving each one — PLAN §3.7 counts 62 individual shortened URLs behind these answers, none of them verifiable from the export.</p>
+            </div>
+
+            <div class="insight-glass insight-glass-red scroll-reveal" id="domainReadout">—</div>
+        </section>
+
+        <!-- ===== PANEL 5 — TEMPLATE-PROPAGATED CITATIONS ===== -->
+        <section class="content-section" id="templates">
+            <h2 class="section-title">Citations that travel in packs</h2>
+            <p class="section-subtitle">Long passages that recur verbatim across respondents, carrying their citations with them.</p>
+
+            <div class="emphasis-callout scroll-reveal">
+                <div class="emphasis-big" id="templateCopyPct">—</div>
+                <div class="emphasis-desc" id="templateCopyDesc">—</div>
+                <div class="emphasis-sub">Collapse each duplicated text to a single voice and this is how much of the citation-bearing template traffic disappears</div>
+            </div>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="ev-panel-head">
+                    <h3 class="chart-title">The same headline, with and without dedup</h3>
+                    <span class="s2-base-chip" id="templateBase">—</span>
+                </div>
+                <div class="s2-table-scroll" id="templateDedupTable">
+                    <p class="s2-loading">Loading recompute…</p>
+                </div>
+                <p class="s2-note" id="templateDedupReadout">—</p>
+                <p class="s2-note">What this can't tell you: removing a respondent entirely is a floor, not a point estimate — some of them cite independently elsewhere in their submission, which the export cannot show. And shared text may be a declared coalition position rather than anything improper.</p>
+            </div>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="ev-panel-head">
+                    <h3 class="chart-title">The duplicated citation-bearing texts</h3>
+                    <span class="s2-base-chip">membership joined from clusters.json</span>
+                </div>
+                <div class="s2-table-scroll" id="templateTable">
+                    <p class="s2-loading">Loading blocks…</p>
+                </div>
+                <p class="s2-note" id="templateDegraded" hidden></p>
+                <p class="s2-note">What this can't tell you: who wrote the original. Blocks are detected by identical normalised text, so the first submitter and the last are indistinguishable, and redacted members appear only as counts.</p>
+            </div>
+        </section>
+
+        <!-- ===== PANEL 6 — WHO DID THE HOMEWORK ===== -->
+        <section class="content-section" id="homework">
+            <h2 class="section-title">Who did the homework</h2>
+            <p class="section-subtitle">The respondents who claimed empirical or operational grounding, and how they landed on the hourly-matching anchor.</p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="ev-panel-head">
+                    <h3 class="chart-title">Declared grounding and stance</h3>
+                    <span class="s2-base-chip" id="homeworkBase">—</span>
+                </div>
+                <div class="s2-table-scroll" id="homeworkTable">
+                    <p class="s2-loading">Loading roll-up…</p>
+                </div>
+                <p class="s2-note">What this can't tell you: the export crosses declared basis with Q71 only, not with the other six MBM support anchors, so "how they lean" here is one proposal's worth of leaning. Claims are self-reported and unverified, and the Q138 columns count selections rather than people.</p>
+            </div>
+
+            <div class="insight-glass insight-glass-green scroll-reveal" id="homeworkReadout">—</div>
+        </section>
+
+        <!-- ===== PANEL 7 — NOTABLE EVIDENCE STORIES ===== -->
+        <section class="content-section" id="stories">
+            <h2 class="section-title">Notable evidence stories</h2>
+            <p class="section-subtitle">Verified verbatim passages. Named respondents are named because they chose to be; redacted respondents are shown as redacted and never linked.</p>
+
+            <div class="scroll-reveal" id="storyFeature">
+                <p class="s2-loading">Loading stories…</p>
+            </div>
+
+            <div class="ev-story-grid" id="storyGrid"></div>
+
+            <p class="s2-note"><span class="s2-base-chip" id="storyBase">—</span></p>
+            <p class="s2-note">What this can't tell you: these were chosen because they are vivid, not because they are representative — treat them as illustrations of how evidence was invoked, not as a sample. Every passage is quoted verbatim from the respondent's own answer.</p>
+        </section>
+
+        <!-- ===== PANEL 8 — Q158 CODED EVIDENCE ===== -->
+        <section class="content-section" id="q158">
+            <h2 class="section-title">What actually backs the exemption case</h2>
+            <p class="section-subtitle">Q158 asked for the evidence supporting the need for exemptions. Every free-text answer was coded into evidence-type buckets.</p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="ev-panel-head">
+                    <h3 class="chart-title">Q158 · coded evidence types</h3>
+                    <span class="s2-base-chip" id="q158Base">—</span>
+                </div>
+                <div class="chart-container-lg">
+                    <canvas id="chartQ158"></canvas>
+                </div>
+                <div class="s2-table-scroll" id="q158Table">
+                    <p class="s2-loading">Loading coding…</p>
+                </div>
+                <p class="s2-note">What this can't tell you: codes are not mutually exclusive, so the column sums past 100%; the coding is a single interpretive pass over the text, and an argument coded "feasibility" may still be correct without any study behind it.</p>
+                <p class="s2-note"><strong>Provenance:</strong> this panel is not driven by <code>evidence.json</code> — the exporter does not carry the Q158 coding. The aggregate is inlined in <code>js/evidence-page.js</code> from <code id="q158Source">—</code>, committed in this repository, and is identical under <code>?fixtures=1</code>.</p>
+            </div>
+
+            <div class="insight-glass insight-glass-cyan scroll-reveal" id="q158Readout">—</div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Evidence &amp; research integrity — declared basis, citation mining, and template propagation. Every figure carries its base."></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
