@@ -5,9 +5,9 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scope 2 Public Consultation Response Explorer</title>
-    <meta name="description" content="Explore public consultation responses on Scope 2 accounting: browse by question, respondent type, and theme; see points of consensus and contention.">
+    <meta name="description" content="What 1,072 respondents told the Scope 2 consultation about the market-based method — the headline shape, who said it, what the evidence rests on, and an objective assessment of the whole record.">
     <meta property="og:title" content="Scope 2 Public Consultation Response Explorer">
-    <meta property="og:description" content="Interactive explorer for public consultation responses on Scope 2 greenhouse gas accounting.">
+    <meta property="og:description" content="Interactive explorer and objective assessment of public consultation responses on Scope 2 greenhouse gas accounting.">
     <meta property="og:type" content="article">
 
     <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
@@ -40,139 +40,227 @@
     <script src="js/data-loader.js"></script>
     <script src="js/segments.js"></script>
     <script src="js/likert-viz.js"></script>
-    <script src="js/quote-cards.js"></script>
-    <script src="js/org-table.js"></script>
+
+    <!-- Page-specific styles: essay links and takeaway cards only. Everything
+         else on this page is shared design-system components. -->
+    <style>
+        .assessment-card a {
+            color: var(--hydro-text);
+            text-decoration: underline;
+            text-decoration-color: var(--hydro-t, var(--hydro-text));
+            text-underline-offset: 2px;
+        }
+        .assessment-card a:hover { color: var(--navy); }
+        .assessment-card p { margin-bottom: var(--space-md); }
+        .assessment-card p:last-child { margin-bottom: 0; }
+        .takeaway-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .takeaway-card h3 { margin-bottom: var(--space-xs); }
+        .takeaway-stat {
+            font-family: var(--font-data);
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: var(--space-xs);
+        }
+    </style>
 </head>
 <body>
 
     <!-- Navigation is injected by js/nav.js -->
 
-    <!-- ===== BANNER (SVG waveform overlay injected by shared-header.js) ===== -->
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
     <header class="header" id="pageHeader">
         <h1>Scope&nbsp;2 Public Consultation Response&nbsp;Explorer</h1>
-        <div class="subtitle">Every submission to the Scope&nbsp;2 consultation — searchable by question, respondent, and theme. See where stakeholders agree, where they split, and why it matters.</div>
+        <div class="subtitle">What 1,072 respondents told the GHG&nbsp;Protocol about the market-based method — who said it, what it rests on, and how a third party should read it.</div>
         <div class="header-accent"></div>
     </header>
 
     <div class="content-wrap">
 
         <!-- ===== HERO STATS ===== -->
-        <section class="content-section">
+        <section class="content-section" id="hero">
             <div class="hero-stats-row grid-stats">
                 <div class="stat-card scroll-reveal">
-                    <div class="stat-value">—</div>
-                    <div class="stat-label">Responses Analyzed</div>
+                    <div class="stat-value" id="statRespondents">1,072</div>
+                    <div class="stat-label">Respondents</div>
                 </div>
                 <div class="stat-card scroll-reveal">
-                    <div class="stat-value">—</div>
-                    <div class="stat-label">Respondent Types</div>
+                    <div class="stat-value" id="statAnswers">70,089</div>
+                    <div class="stat-label">Answers Given</div>
                 </div>
                 <div class="stat-card scroll-reveal">
-                    <div class="stat-value">—</div>
-                    <div class="stat-label">Consultation Questions</div>
+                    <div class="stat-value" id="statRedacted">53.5%</div>
+                    <div class="stat-label">Identity Redacted</div>
                 </div>
                 <div class="stat-card scroll-reveal">
-                    <div class="stat-value">—</div>
-                    <div class="stat-label">Recurring Themes</div>
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">MBM Proposals Scored</div>
                 </div>
             </div>
 
             <div class="insight-glass scroll-reveal">
-                <strong>What this is.</strong> A public-facing explorer for responses to the Scope&nbsp;2 accounting consultation. This skeleton page carries the full design system; replace the placeholder stats and panels with live data as the analysis pipeline lands.
+                <strong>What this is.</strong> A dashboard and analysis of the public consultation on revising the GHG&nbsp;Protocol Scope&nbsp;2 market-based method: every scale answer, reason picklist, and free-text argument, plus a <a href="integrity.html">legitimacy audit</a> of who the respondents are and an <a href="evidence.html">evidence review</a> of what their positions rest on. The essay below is the site's objective assessment; every claim in it links to the panel that backs it.
             </div>
         </section>
 
-        <!-- ===== EXPLORE BY QUESTION ===== -->
-        <section class="content-section" id="by-question">
-            <h2 class="section-title">Explore by Question</h2>
-            <p class="section-subtitle">Drill into how respondents answered each consultation question.</p>
+        <!-- ===== HEADLINE CHART ===== -->
+        <section class="content-section" id="headline">
+            <h2 class="section-title">The seven proposals, in one chart</h2>
+            <p class="section-subtitle">Each row is a direct support question on a 1–5 scale: opposition to the left, support to the right, the neutral middle straddling zero.</p>
 
             <div class="glass-chart-panel flush scroll-reveal">
-                <h3 class="chart-title">Response Positions by Question</h3>
-                <div class="chart-container">
-                    <!-- Chart.js canvas goes here. Use RESOURCE_COLORS / SEMANTIC_COLORS from js/chart-colors.js — never hardcoded hex. -->
-                </div>
+                <h3 class="chart-title">Support for the seven MBM proposals — all respondents</h3>
+                <div class="chart-container-lg" id="headlineHolder"></div>
+                <div class="legend" id="headlineLegend"></div>
+                <p class="s2-note" id="headlineNote"></p>
             </div>
         </section>
 
-        <!-- ===== EXPLORE BY RESPONDENT ===== -->
-        <section class="content-section" id="by-respondent">
-            <h2 class="section-title">Explore by Respondent Type</h2>
-            <p class="section-subtitle">Corporates, NGOs, registries, academics, and market operators each read the same questions differently.</p>
+        <!-- ===== OBJECTIVE ASSESSMENT ===== -->
+        <section class="content-section-narrow assessment" id="assessment">
+            <h2 class="section-title">An objective assessment</h2>
+            <p class="section-subtitle">What the record shows, what it does not, and how to weigh it — written for a reader who has not seen the data.</p>
 
-            <div class="grid-3col">
-                <div class="card-accent card-accent-indigo scroll-reveal">
-                    <h3 class="outcome-headline">Corporate Buyers</h3>
-                    <p class="outcome-text">Placeholder summary of how corporate respondents positioned on the headline questions.</p>
-                </div>
-                <div class="card-accent card-accent-cyan scroll-reveal">
-                    <h3 class="outcome-headline">NGOs &amp; Advocates</h3>
-                    <p class="outcome-text">Placeholder summary of NGO and advocacy positions across the consultation.</p>
-                </div>
-                <div class="card-accent card-accent-green scroll-reveal">
-                    <h3 class="outcome-headline">Registries &amp; Market Operators</h3>
-                    <p class="outcome-text">Placeholder summary of implementation-focused responses from registries and operators.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== KEY THEMES ===== -->
-        <section class="content-section" id="by-theme">
-            <h2 class="section-title" id="themes">Key Themes</h2>
-            <p class="section-subtitle">Cross-cutting themes that recur across questions and respondent types.</p>
-
-            <div class="grid-2col">
-                <div class="glass-chart-panel flush scroll-reveal">
-                    <h3 class="chart-title">Theme Frequency Across Responses</h3>
-                    <div class="chart-container-sm"></div>
-                </div>
-                <div class="glass-chart-panel flush scroll-reveal">
-                    <h3 class="chart-title">Theme Co-occurrence</h3>
-                    <div class="chart-container-sm"></div>
-                </div>
+            <div class="card card-spacious scroll-reveal assessment-card" id="what-happened">
+                <h3>What happened here</h3>
+                <p>The GHG&nbsp;Protocol's consultation on revising the Scope&nbsp;2 market-based method drew 1,072 respondents — 915 answering for organizations, 157 as individuals — who left 70,089 answers across 180 questions. Participation was uneven: the <a href="respondents.html#engagement">median respondent answered between a quarter and half of the questionnaire</a>, and only 88 worked through more than three-quarters of it. More consequentially, 573 respondents — 53.5% — filed with their identity redacted, and redaction is not evenly spread: <a href="respondents.html#org-type">roughly 70% of companies and of financial institutions withheld their names, against 23% of academic respondents and 20% of data-and-analytics vendors</a>.</p>
+                <p>One caution belongs ahead of every number below: a consultation is not a referendum. Respondents selected themselves, both camps organized filings, and who shows up attributably differs from who shows up at all. The counts on this site measure mobilization and stated positions, not where the truth lies — the <a href="methodology.html#limitations">methodology page states these limits in full</a>.</p>
             </div>
 
-            <div class="insight-glass insight-glass-indigo scroll-reveal">
-                <strong>Placeholder insight.</strong> Summarize the single most load-bearing theme here once coding of the responses is complete.
-            </div>
-        </section>
-
-        <!-- ===== CONSENSUS vs CONTENTION ===== -->
-        <section class="content-section" id="consensus">
-            <h2 class="section-title">Consensus &amp; Contention</h2>
-            <p class="section-subtitle">Where the responses converge — and the fault lines where they don't.</p>
-
-            <div class="grid-2col" id="contention">
-                <div class="insight-box insight-success scroll-reveal">
-                    <strong>Points of consensus.</strong> Placeholder for positions supported across nearly all respondent types.
-                </div>
-                <div class="insight-box insight-danger scroll-reveal">
-                    <strong>Points of contention.</strong> Placeholder for the questions that split respondents most sharply.
-                </div>
+            <div class="card card-spacious scroll-reveal assessment-card" id="headline-shape">
+                <h3>The headline shape</h3>
+                <p>Seven questions asked directly whether respondents support each market-based-method proposal, and together they are the consultation's spine — the <a href="#headline">chart above</a>, explorable by segment in the <a href="heatmap.html#anchors">Likert&nbsp;Explorer</a>. The two proposals that would impose new requirements were rejected decisively: <a href="proposals/hourly-matching.html#stance">hourly matching drew 70.2% opposition</a> (mean 2.07 of 5, n=909) and <a href="proposals/deliverability.html#stance">deliverability requirements 59.0%</a> (2.40, n=875). The three design questions in the middle split respondents: <a href="proposals/sss.html#stance">pro-rata standard-supply allocation at 3.14</a>, the <a href="proposals/residual-mix.html#stance">residual-mix definition at 3.54</a>, the <a href="proposals/fossil-fallback.html#stance">fossil-based fallback at 3.07</a>. And the two flexibility proposals were embraced: <a href="proposals/exemptions.html#stance">exemptions from hourly matching at 76.3% support</a> (4.06, n=748) and the <a href="proposals/legacy-clause.html#stance">legacy clause — grandfathering existing contracts — at 90.0%</a> (4.58, n=801), the tightest consensus in the survey.</p>
+                <p>The same shape repeats in the design details: <a href="proposals/exemptions.html#threshold">67.1% picked the largest exemption threshold offered (50&nbsp;GWh)</a>; <a href="proposals/exemptions.html#duration">57.3% want exemptions ongoing rather than time-limited</a>; <a href="proposals/legacy-clause.html#eligibility">71.7% would extend legacy eligibility to every contract signed before implementation</a>; and <a href="proposals/transition.html#approach">83.4% chose the legacy clause over a uniform effective date</a> as the transition path.</p>
             </div>
 
             <div class="emphasis-callout scroll-reveal">
-                <div class="emphasis-big">—%</div>
-                <div class="emphasis-desc">Placeholder headline statistic</div>
-                <div class="emphasis-sub">One emphasis callout per page, maximum two — per the design guide</div>
+                <div class="emphasis-big">70% &rarr; 90%</div>
+                <div class="emphasis-desc">Seven in ten respondents opposed the strictest new requirement; nine in ten supported the broadest escape hatch</div>
+                <div class="emphasis-sub">Requirements rejected, escape hatches embraced — hourly matching (Q71) 70.2% opposed &middot; legacy clause (Q171) 90.0% supported</div>
+            </div>
+
+            <div class="card card-spacious scroll-reveal assessment-card" id="interest-map">
+                <h3>Who supports, who opposes — and why it maps to interest</h3>
+                <p>Split the anchors by organization type and the pattern tracks commercial position closely. <a href="heatmap.html#explorer">Companies (mean 1.65 on hourly matching, n=429) and industry groups (1.68, n=76) anchor the opposition; NGOs (3.07) and academics (2.97, n=31) sit near the middle</a>; and the only organization type whose average supports hourly matching is <a href="integrity.html#fingerprint">data-and-analytics providers (4.10, n=21) — the firms that would sell the metering, matching and certificate tooling a requirement creates demand for</a>. The mirror image completes the fingerprint: those same vendors are the coolest of any type toward the exemptions (3.56) and legacy clause (3.81) that would let reporters avoid buying, while companies back the legacy clause at 4.71.</p>
+                <p>The interest on the opposing side is equally legible — and candidly stated. <a href="proposals/legacy-clause.html#reasons">83.5% of legacy-clause supporters picked the reason citing the &ldquo;significant financial and operational commitments&rdquo; embedded in existing contracts</a>: corporates protecting the value of RECs and PPAs already on their books. Both readings are facts about incentive, not correctness — a vendor supporting a requirement it would profit from and a reporter opposing a requirement it would pay for are the same kind of fact, and neither settles whether the proposal is good accounting. Small numbers deserve an explicit hedge: <a href="heatmap.html#explorer">financial institutions (n=7–19 per anchor) and governments (n=8–14) move on a handful of answers</a>, and the vendor column itself rests on 16–21.</p>
+            </div>
+
+            <div class="card card-spacious scroll-reveal assessment-card" id="integrity-weighed">
+                <h3>Scientific integrity, weighed</h3>
+                <p>Supporters of hourly matching look better-researched on exactly one behavior: citing. <a href="evidence.html#citations">34.3% of supporters show a hard citation signal (URL, DOI, journal reference) against 14.7% of opponents — a clean 2.3&times; separation</a>. That advantage does not extend to what respondents said their own judgment rests on. Asked directly, <a href="evidence.html#basis-stance">7.6% of opponents and 8.0% of supporters claimed direct empirical analysis — statistically the same — and supporters were somewhat <em>more</em> likely to claim operational experience with hourly accounting (29.3% vs 21.6%)</a>. The tempting narrative that opponents bring more first-hand operational evidence is not supported by this data; neither is the narrative that supporters have done more measuring.</p>
+                <p>Two discounts apply to the citation edge. Part of it is circulated rather than independent: <a href="evidence.html#templates">17 citation-bearing passages recur verbatim across 114 submissions — 85% of that traffic is copies</a>. And the sources lean partisan: <a href="evidence.html#domains">advocacy-classified domains (energytag.org, resource-solutions.org, theclimategroup.org) draw more linked references in aggregate (344) than strictly peer-reviewed hosts (261), with preprint servers (185) between them</a>. The opposition's case rests on a different kind of evidence — self-report about themselves. Reporters say hourly matching would push <a href="proposals/hourly-matching.html#burden">internal effort (4.74 of 5) and external cost (4.73) far above today's</a>, expect <a href="proposals/package-impacts.html#procurement">procurement prices to rise (4.66)</a>, rate <a href="proposals/residual-mix.html#readiness">registry infrastructure unready (2.21 of 5)</a> and the <a href="proposals/exemptions.html#feasibility">proposed feasibility measures insufficient (2.33)</a>. That is self-interested and unverifiable from outside — and also consistent, first-hand, and about the one subject on which reporters are the best-placed witnesses. The honest verdict: the support side cites more external research; both sides claim similar first-hand basis; <a href="evidence.html#homework">only 27 respondents anywhere (7.4% of those asked) did direct empirical analysis</a>; and neither side is disinterested.</p>
+            </div>
+
+            <div class="card card-spacious scroll-reveal assessment-card" id="concerns">
+                <h3>Concerns that survive scrutiny</h3>
+                <p>Strip away motive and several opposition arguments still stand on their own facts. Infrastructure: <a href="proposals/residual-mix.html#leadtime">44% of those asked could not estimate how long residual-mix registries would take to stand up</a>, and <a href="proposals/residual-mix.html#evidence">only 2.3% grounded their readiness view in pilot or production use</a>. Regional equity: <a href="proposals/fossil-fallback.html#reasons">80.2% of fossil-fallback opponents flagged disproportionate impact on organizations in regions without residual-mix data</a> — a concern supporters' own comments echo. Market participation: <a href="proposals/deliverability.html#reasons">66.2% of deliverability opponents warned of a shift away from long-term PPAs toward spot purchases</a>. Comparability: <a href="proposals/exemptions.html#reasons">the top concern among exemption opponents (50.9%) is inconsistency across companies</a>. And definitional vagueness: <a href="proposals/sss.html#reasons">73.3% of standard-supply opponents chose &ldquo;unclear rules/definition&rdquo;</a>.</p>
+            </div>
+
+            <div class="card card-spacious scroll-reveal assessment-card" id="support-args">
+                <h3>Support arguments that survive scrutiny</h3>
+                <p>The same test leaves real arguments standing on the other side. Annual matching lets a reporter claim solar generation against overnight consumption — the misallocation critique (<a href="proposals/hourly-matching.html#reasons">&ldquo;solar at night,&rdquo; selected by 74.3% of hourly-matching supporters</a>) that is grounded in a peer-reviewed literature both camps cite. 65.9% flagged greenwashing and time-shifting of claims; 57.4% chose the price-signal argument — that hourly claims steer money toward the hours and places where clean power is actually scarce. That literature is genuinely contested — <a href="evidence.html#stories">one academic filing cites the empirical work on both sides of the hourly debate</a> — but the integrity problem it identifies is real accounting substance, not something manufactured by vendors.</p>
+            </div>
+
+            <div class="card card-spacious scroll-reveal assessment-card" id="coordination">
+                <h3>Coordination and classification</h3>
+                <p>Both camps ran coordinated campaigns. At the supportive end, <a href="integrity.html#blocs">22 filings share a byte-identical answer pattern across all seven anchors plus 48 verbatim passages — the pro-hourly-matching bloc</a>, whose named members include EnergyTag, TenneT, Fervo Energy, The Breakthrough Institute, Bellona Europa, As You Sow, SIDENOR and Princeton's ZERO lab, alongside five redacted filings. What could read as independent academic corroboration of the vendor position is, in part, one shared response pack. At the opposing end: <a href="integrity.html#families">one electronics group filed twelve times</a>, and <a href="integrity.html#blocs">SEMI and member companies share 46 verbatim texts while the Avary/FPC supply-chain family filed six identical answer patterns</a>. A third campaign fits neither camp cleanly: <a href="integrity.html#blocs">the Euro&nbsp;Certificate bloc — 15 named European certificate-market organizations including RECS, Eurelectric, Fortum and Landsvirkjun — shares 24 passages</a> defending the annual certificate market it operates in: against pro-rata standard-supply limits, for the legacy clause.</p>
+                <p>Self-classification is unreliable in both directions: <a href="integrity.html#classification">of 66 named respondents claiming &ldquo;NGO/civil society,&rdquo; the audit moved 22 into business-interest classes (trade associations, business coalitions, a vendor); 9 of 34 &ldquo;academia/research&rdquo; claims are not academic institutions</a>. And because <a href="respondents.html#redaction-effect">redacted respondents are systematically less supportive — the redacted mean is lower on six of the seven anchors, with the legacy clause the sole reversal</a> — any headline built only on attributable filings skews supportive.</p>
+            </div>
+
+            <div class="card card-spacious scroll-reveal assessment-card" id="third-party">
+                <h3>How an objective third party should read this</h3>
+                <p>Read the counts as a map of who mobilized, not a vote on what is true. That said, the headline direction is robust to the duplication this site can measure: <a href="integrity.html#templates">collapsing every named entity family and bloc to a single vote moves named opposition to hourly matching only from 62.7% to 62.4%</a>. Trust most the places where positions cross interest lines: the <a href="proposals/residual-mix.html#stance">residual-mix definition (3.54) draws support from both camps</a>, <a href="heatmap.html#explorer">consultants (2.46) and academics (2.97) sit mid-scale on hourly matching, and the few government respondents split — opposing hourly matching (2.07, n=14) while supporting deliverability (4.09, n=11)</a>. What the consultation cannot settle is the empirical dispute at its center: whether hourly matching's accuracy gains justify its costs. <a href="evidence.html#homework">The 27 respondents who did direct analysis split roughly like everyone else (73% opposed)</a> — published back-testing and registry pilots would say more than another 1,072 filings.</p>
+            </div>
+
+            <div class="card card-spacious scroll-reveal assessment-card" id="coalitions">
+                <h3>Nuance and coalitions</h3>
+                <p>Neither camp is a monolith. The <a href="integrity.html#blocs">pro-hourly bloc spans software vendors, a steelmaker, a clean-firm generator, NGOs and university labs; the opposition spans Japanese utilities (FEPC and TEPCO filing in parallel), a semiconductor supply chain organized through SEMI, industrial-gas associations (EIGA/SIGA), and European certificate incumbents</a> whose businesses depend on the market-based method itself surviving. Positions cross-cut: <a href="heatmap.html#explorer">financial institutions oppose hourly matching (2.32) yet are the strongest supporters of the fossil fallback (4.86 — on seven answers); NGOs sit close to neutral on the hourly requirement (3.07) while backing the exemptions from it (4.24)</a>. And the consultation's one near-universal position is the one that changes existing claims least: 90% support for the <a href="proposals/legacy-clause.html#stance">legacy clause</a> necessarily includes most hourly-matching supporters too.</p>
             </div>
         </section>
 
-        <!-- ===== METHODOLOGY ===== -->
-        <section class="content-section-narrow" id="methodology">
-            <h2 class="section-title">Methodology</h2>
-            <p class="section-subtitle">How responses were collected, coded, and categorized.</p>
-            <div class="card card-spacious scroll-reveal">
-                <p>Placeholder for the methodology write-up: source of the consultation responses, coding scheme, theme taxonomy, and quality checks.</p>
-                <p class="text-muted">Replace with the real methodology before publishing.</p>
+        <!-- ===== DASHBOARDS ===== -->
+        <section class="content-section" id="dashboards">
+            <h2 class="section-title">Explore the dashboards</h2>
+            <p class="section-subtitle">Every number in the essay above traces to one of these pages.</p>
+
+            <div class="grid-2col">
+                <a class="card-accent card-accent-indigo scroll-reveal takeaway-card" href="heatmap.html">
+                    <h3 class="outcome-headline">Likert Explorer</h3>
+                    <p class="outcome-text">All 22 MBM scale questions as a heatmap — slice by organization type, sector, country, redaction, and audited class; click any cell for the full distribution.</p>
+                </a>
+                <a class="card-accent card-accent-cyan scroll-reveal takeaway-card" href="respondents.html">
+                    <h3 class="outcome-headline">Who Responded</h3>
+                    <p class="outcome-text">1,072 respondents by type, sector, country and engagement; the redaction gradient; and a searchable browser of all 499 named organizations.</p>
+                </a>
+                <a class="card-accent card-accent-green scroll-reveal takeaway-card" href="evidence.html">
+                    <h3 class="outcome-headline">Evidence &amp; Research</h3>
+                    <p class="outcome-text">What respondents said their views rest on, who actually cited sources, which domains they cited, and how much citation traffic is copied text.</p>
+                </a>
+                <a class="card-accent card-accent-red scroll-reveal takeaway-card" href="integrity.html">
+                    <h3 class="outcome-headline">Integrity &amp; Coalitions</h3>
+                    <p class="outcome-text">Claimed vs audited classification, nine coordinated blocs on both sides, template prevalence, entity families, and the dedup stress-test of the headlines.</p>
+                </a>
+                <a class="card-accent card-accent-indigo scroll-reveal takeaway-card" href="methodology.html">
+                    <h3 class="outcome-headline">Methodology</h3>
+                    <p class="outcome-text">Dataset provenance, derived-field definitions, scale directions, reproduction commands — and the limits of what this consultation can show.</p>
+                </a>
             </div>
         </section>
 
-        <!-- ===== ABOUT ===== -->
-        <section class="content-section-narrow" id="about">
-            <h2 class="section-title">About</h2>
-            <div class="card card-spacious scroll-reveal">
-                <p>Placeholder for project background, authorship, and contact information.</p>
+        <!-- ===== PROPOSAL PAGES ===== -->
+        <section class="content-section" id="proposals">
+            <h2 class="section-title">The nine proposal deep dives</h2>
+            <p class="section-subtitle">Stance by segment, reasons for and against, cost self-reports, and verbatim arguments from both camps.</p>
+
+            <div class="grid-3col">
+                <a class="card scroll-reveal takeaway-card" href="proposals/hourly-matching.html">
+                    <h3 class="outcome-headline">Hourly matching (QC4)</h3>
+                    <div class="takeaway-stat">70.2% opposed &middot; mean 2.07</div>
+                    <p class="outcome-text">The strictest proposal and the strongest opposition in the consultation.</p>
+                </a>
+                <a class="card scroll-reveal takeaway-card" href="proposals/deliverability.html">
+                    <h3 class="outcome-headline">Deliverability (QC5)</h3>
+                    <div class="takeaway-stat">59.0% opposed &middot; mean 2.40</div>
+                    <p class="outcome-text">Narrower market boundaries, and the fear of losing global procurement.</p>
+                </a>
+                <a class="card scroll-reveal takeaway-card" href="proposals/sss.html">
+                    <h3 class="outcome-headline">Standard supply service</h3>
+                    <div class="takeaway-stat">48.7% support &middot; mean 3.14</div>
+                    <p class="outcome-text">Pro-rata allocation of shared supply — supported, but &ldquo;unclear rules&rdquo; dominates the objections.</p>
+                </a>
+                <a class="card scroll-reveal takeaway-card" href="proposals/residual-mix.html">
+                    <h3 class="outcome-headline">Residual mix</h3>
+                    <div class="takeaway-stat">59.2% support &middot; mean 3.54</div>
+                    <p class="outcome-text">The definition crosses camp lines; the registries to deliver it may not exist yet.</p>
+                </a>
+                <a class="card scroll-reveal takeaway-card" href="proposals/fossil-fallback.html">
+                    <h3 class="outcome-headline">Fossil-based fallback</h3>
+                    <div class="takeaway-stat">46.2% support vs 39.5% opposed</div>
+                    <p class="outcome-text">The closest split of the seven — and a regional-equity concern both sides raise.</p>
+                </a>
+                <a class="card scroll-reveal takeaway-card" href="proposals/exemptions.html">
+                    <h3 class="outcome-headline">Exemptions</h3>
+                    <div class="takeaway-stat">76.3% support &middot; mean 4.06</div>
+                    <p class="outcome-text">Who escapes hourly matching, at what threshold, and for how long.</p>
+                </a>
+                <a class="card scroll-reveal takeaway-card" href="proposals/legacy-clause.html">
+                    <h3 class="outcome-headline">Legacy clause</h3>
+                    <div class="takeaway-stat">90.0% support &middot; mean 4.58</div>
+                    <p class="outcome-text">The tightest consensus in the survey: existing contracts keep their claims.</p>
+                </a>
+                <a class="card scroll-reveal takeaway-card" href="proposals/package-impacts.html">
+                    <h3 class="outcome-headline">Package impacts</h3>
+                    <div class="takeaway-stat">48.2% see no meaningful gain</div>
+                    <p class="outcome-text">Decision-usefulness, procurement cost, IFRS/GAAP knock-ons, and the impact-metric question.</p>
+                </a>
+                <a class="card scroll-reveal takeaway-card" href="proposals/transition.html">
+                    <h3 class="outcome-headline">Transition</h3>
+                    <div class="takeaway-stat">83.4% prefer the legacy-clause route</div>
+                    <p class="outcome-text">How the new rules would arrive — and the protest answers in the effective-date question.</p>
+                </a>
             </div>
         </section>
 
@@ -180,6 +268,9 @@
 
     <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
     <footer id="siteFooter" data-footer-note="Scope 2 Public Consultation Response Explorer"></footer>
+
+    <!-- Page module: hero stats + headline diverging bar -->
+    <script src="js/index-page.js"></script>
 
     <!-- Cinematic parallax background (must load after body content) -->
     <script src="js/cinematic-bg.js"></script>
