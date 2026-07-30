@@ -14,9 +14,14 @@ the tone rules below are load-bearing.
 
 1. **Claimed vs audited classification**: summary matrix (grouped bars or a compact
    claimed→audited table) + drill table of reclassified rows (org, claimed, audited,
-   confidence, basis). Lead stat cards: "~27 of 66 named NGOs are business/trade
-   bodies", "~10 of 34 named academics aren't academic institutions", "31 of 44
-   academics responded as individuals".
+   confidence, basis). Lead stat cards — compute from audit.json, and keep two
+   distinct numbers: NGOs reclassified into BUSINESS-INTEREST classes
+   (trade_association / business_coalition / company / consultancy / data_vendor —
+   ~23 of 66) versus NGOs reclassified into FINER NONPROFIT classes
+   (standards_body / think_tank — ~18 of 66). Never sum them into one headline;
+   a certification body or think tank is not an industry group. Also: "~9 of 34
+   named academics aren't academic institutions", "31 of 44 academics responded
+   as individuals".
 2. **Coordinated blocs**: one card per bloc (pro_hourly, semi, avary, luxshare,
    eiga_siga, greece, korea, fepc_tepco): 7-anchor signature strip, member count
    (named listed, redacted as "+N redacted"), shared-text count, identical-vector
