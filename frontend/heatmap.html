@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likert Explorer | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Every market-based-method scale question in the Scope 2 consultation, grouped by scale construct and cut by organization type, sector, country, redaction, responding-as and audited class.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/segments.js"></script>
+    <script src="js/likert-viz.js"></script>
+
+    <!-- Page-specific styles ONLY (layouts unique to this page — never restyle
+         shared components; extend with modifier classes in shared.css instead).
+         Every rule below is either a layout unique to the Likert Explorer or a
+         local stand-in for a shared-component gap flagged in js/heatmap-page.js. -->
+    <style>
+    /* A six-button segment group is wider than a phone viewport. Scroll the
+       control, never the page. (.toggle-btn-group itself is shared and stays
+       untouched — this only wraps it.) */
+    .hm-ctl {
+        min-width: 0;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    /* Inside the scroller the group must keep its natural width: as a stretched
+       flex item in a column it would squeeze its own buttons and clip the
+       labels instead of scrolling. */
+    .hm-ctl > .s2-control > .toggle-btn-group {
+        align-self: flex-start;
+    }
+
+    /* Construct-ramp key. Four ramps are in play at once, so the reader needs
+       to see which direction each group's color runs before reading a cell. */
+    .hm-ramp {
+        width: 42px;
+        height: 12px;
+        flex-shrink: 0;
+        border-radius: 3px;
+        box-shadow: inset 0 0 0 1px var(--border-light);
+    }
+    .hm-ramp-support {
+        background: linear-gradient(90deg, var(--red-text), var(--bg-card) 50%, var(--green-text));
+    }
+    .hm-ramp-complaint {
+        background: linear-gradient(90deg, var(--hydro-text), var(--bg-card) 50%, var(--amber-text));
+    }
+    .hm-ramp-magnitude {
+        background: linear-gradient(90deg, var(--bg-card), var(--hydro-text));
+    }
+    .hm-ramp-ladder {
+        background: linear-gradient(90deg, var(--bg-card), var(--nuclear-text));
+    }
+
+    /* GAP (P42): site.css models empty and masked cells but not "the metric
+       does not apply to this construct", which is what an ordinal ladder does
+       under % support / % oppose / net. Grey, quiet, still clickable. */
+    .s2-cell.hm-cell-na {
+        background: var(--bg-alt-warm);
+        color: var(--text-light);
+        font-weight: 600;
+    }
+
+    /* Redaction split: one Δ chip per anchor, colored by which side is higher. */
+    .hm-deltas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-xs) var(--space-sm);
+        margin: var(--space-md) 0 0;
+        padding: 0;
+        list-style: none;
+    }
+    .hm-delta {
+        display: inline-flex;
+        align-items: baseline;
+        gap: var(--space-xs);
+    }
+    .hm-delta-q {
+        font-family: var(--font-data);
+        font-size: 0.66rem;
+        font-weight: 700;
+        color: var(--text-light);
+    }
+    /* GAP (P42): .s2-tag has no "higher on this side" variants; these two are
+       the local equivalents, both built from design tokens. */
+    .s2-tag.hm-tag-named    { background: var(--hydro-bg);   color: var(--hydro-text); }
+    .s2-tag.hm-tag-redacted { background: var(--nuclear-bg); color: var(--nuclear-text); }
+
+    @media (max-width: 768px) {
+        .hm-ctl { flex: 1 1 100%; }
+        /* Seven anchors × three label lines do not fit the shared
+           .chart-container-lg phone height, and truncating a question label is
+           worse than a taller panel. Scoped to this one holder. */
+        #redactionHolder { min-height: 470px; }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Likert Explorer</h1>
+        <div class="subtitle">Every market-based-method scale question by segment — answers grouped as oppose (1&ndash;2) &middot; neutral (3) &middot; support (4&ndash;5), and never pooled across scale constructs.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== ORIENTATION ===== -->
+        <section class="content-section">
+            <div class="grid-stats">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRows">&mdash;</div>
+                    <div class="stat-label">Scale &amp; ordinal rows</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statConstructs">&mdash;</div>
+                    <div class="stat-label">Constructs, never pooled</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statDims">&mdash;</div>
+                    <div class="stat-label">Segment dimensions</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRespondents">&mdash;</div>
+                    <div class="stat-label">Respondents</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRedacted">&mdash;</div>
+                    <div class="stat-label">Redacted</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== THE HEATMAP ===== -->
+        <section class="content-section-wide" id="explorer">
+            <h2 class="section-title">Every MBM scale question, by segment</h2>
+            <p class="section-subtitle">Rows are grouped by <code>scale_construct</code>, each with the direction its scale actually runs in. Only the stance group reads as oppose&nbsp;(1&ndash;2)&nbsp;/ neutral&nbsp;(3)&nbsp;/ support&nbsp;(4&ndash;5); the burden and cost rows anchor 3 to &ldquo;same as today&rdquo;, the labeled scales run low&nbsp;&rarr;&nbsp;high, and the ordinal ladders are not a 1&ndash;5 scale at all. Click any cell for its full distribution, off-scale count and proposal page.</p>
+
+            <div class="chart-panel">
+                <div class="s2-controls">
+                    <div class="hm-ctl"><div id="dimToggle"></div></div>
+                    <div class="hm-ctl"><div id="metricToggle"></div></div>
+                    <div class="hm-ctl"><div id="smallToggle"></div></div>
+                </div>
+
+                <div class="legend" id="rampLegend">
+                    <span class="legend-item">
+                        <span class="hm-ramp hm-ramp-support" aria-hidden="true"></span>
+                        Stance: red = oppose, green = support
+                    </span>
+                    <span class="legend-item">
+                        <span class="hm-ramp hm-ramp-complaint" aria-hidden="true"></span>
+                        Burden &amp; cost: amber = more than today
+                    </span>
+                    <span class="legend-item">
+                        <span class="hm-ramp hm-ramp-magnitude" aria-hidden="true"></span>
+                        Labeled scales: blue = high
+                    </span>
+                    <span class="legend-item">
+                        <span class="hm-ramp hm-ramp-ladder" aria-hidden="true"></span>
+                        Ordinal ladders: indigo = last rung
+                    </span>
+                </div>
+
+                <div id="heatmap"><p class="s2-loading">Loading the scale questions&hellip;</p></div>
+                <div id="heatmapNotes"></div>
+            </div>
+
+            <div class="insight-glass insight-glass-indigo scroll-reveal">
+                <strong>On the burden and cost rows, 3 means &ldquo;same as today&rdquo; &mdash; not &ldquo;neutral&rdquo;.</strong>
+                Those rows ask how internal effort, external service cost and EAC procurement
+                prices would change <em>relative to the respondent&rsquo;s current practice</em>, so a
+                4&ndash;5 there is a cost complaint, not opposition on the merits &mdash; which is why
+                they carry the amber ramp and never the stance ramp. They are also the most
+                lopsided answers on the page: <span id="insBurden">&hellip;</span>.
+                Never average them together with the stance rows.
+            </div>
+        </section>
+
+        <!-- ===== THE SEVEN ANCHORS + REDACTION SPLIT ===== -->
+        <section class="content-section" id="anchors">
+            <h2 class="section-title">The seven support anchors</h2>
+            <p class="section-subtitle">The same seven stance questions as a diverging distribution &mdash; oppose to the left, neutral straddling zero, support to the right &mdash; for whichever segment value you pick. Beside it, the whole-sample redaction split: attributable submissions are more supportive on every anchor but one.</p>
+
+            <div class="grid-2col">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Distribution by anchor</h3>
+                    <div class="s2-controls">
+                        <div class="hm-ctl"><div id="segSelect"></div></div>
+                    </div>
+                    <div class="chart-container-lg" id="anchorHolder">
+                        <canvas id="anchorBar"></canvas>
+                    </div>
+                    <div class="legend" id="anchorLegend"></div>
+                    <p class="s2-note" id="anchorNote"></p>
+                </div>
+
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Named vs redacted &mdash; mean per anchor</h3>
+                    <div class="chart-container-lg" id="redactionHolder">
+                        <canvas id="redactionBar"></canvas>
+                    </div>
+                    <div class="legend" id="redactionLegend"></div>
+                    <ul class="hm-deltas" id="redactionDeltas"></ul>
+                    <p class="s2-note" id="redactionNote"></p>
+                </div>
+            </div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>Requirements rejected, escape hatches embraced.</strong>
+                Hourly matching (Q71) draws <strong class="text-mono" id="insQ71pct">&mdash;</strong>
+                support against <strong class="text-mono" id="insQ71opp">&mdash;</strong> opposition
+                (mean <strong class="text-mono" id="insQ71mean">&mdash;</strong>), and deliverability
+                (Q83) <strong class="text-mono" id="insQ83pct">&mdash;</strong>. The two proposals that
+                let a reporter <em>avoid</em> the new criteria run the other way: exemptions (Q153)
+                <strong class="text-mono" id="insQ153pct">&mdash;</strong> support and the legacy clause
+                (Q171) <strong class="text-mono" id="insQ171pct">&mdash;</strong> &mdash; the tightest
+                consensus in the survey. Each anchor has its own base, shown on every cell and in
+                every popover; the counts measure mobilization, not correctness.
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Likert Explorer — Scope 2 Public Consultation Response Explorer"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+
+    <!-- Page module -->
+    <script src="js/heatmap-page.js"></script>
+</body>
+</html>
