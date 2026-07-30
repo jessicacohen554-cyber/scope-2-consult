@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Responded | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Who filed to the Scope 2 consultation: organization types, sectors, countries, engagement, the redaction gradient, and a searchable browser of every named organization.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/segments.js"></script>
+    <script src="js/likert-viz.js"></script>
+    <script src="js/quote-cards.js"></script>
+    <script src="js/org-table.js"></script>
+    <script src="js/respondents-page.js"></script>
+
+    <!-- Page-specific styles ONLY (layouts unique to this page — never restyle
+         shared components; extend with modifier classes in shared.css instead) -->
+    <style>
+    /* Row-count-driven chart height. The shared .chart-container-* variants are
+       fixed min-heights, and a 15-row horizontal bar chart needs more room than
+       any of them gives — so this modifier sizes the container from the number
+       of categories it has to draw (set per panel with --rp-rows). Taller rows
+       on narrow screens, where the category labels wrap onto two lines. */
+    .rp-chart-rows {
+        min-height: calc(var(--rp-rows, 10) * 34px + 96px);
+    }
+
+    /* Redaction-gradient annotation under the org-type panel. */
+    .rp-gradient {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-lg);
+    }
+    .rp-gradient-side {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+        min-width: 0;
+    }
+    .rp-chips {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .rp-chip {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-xs);
+        font-family: var(--font-body);
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+    }
+    .rp-chip-val {
+        flex-shrink: 0;
+        min-width: 46px;
+        font-family: var(--font-data);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--nuclear-text);
+    }
+    .rp-chip-n {
+        font-family: var(--font-data);
+        font-size: 0.68rem;
+        color: var(--text-light);
+    }
+
+    /* Redaction-effect mini heatmap: the shared .s2-heatmap grid, narrowed to
+       three numeric columns and with a base-size line inside each cell. */
+    .rp-hm {
+        grid-template-columns:
+            minmax(230px, 1.6fr)
+            repeat(var(--s2-cols, 3), minmax(96px, 1fr));
+    }
+    .rp-hm .s2-cell {
+        flex-direction: column;
+        gap: 1px;
+        min-height: 52px;
+    }
+    .rp-cell-n {
+        font-family: var(--font-data);
+        font-size: 0.6rem;
+        font-weight: 600;
+        color: var(--text-muted);
+    }
+    /* The one anchor where redacted respondents are the *more* supportive side.
+       A page-local tag rather than .s2-tag-bloc, whose amber is reserved for
+       coordinated-bloc membership everywhere else on the site. */
+    .rp-tag-reversal {
+        background: var(--nuclear-bg);
+        color: var(--nuclear-text);
+    }
+    .rp-cell-delta .s2-cell-val::before {
+        margin-right: 4px;
+        font-size: 0.78rem;
+    }
+    .rp-delta-down .s2-cell-val { color: var(--red-text); }
+    .rp-delta-down .s2-cell-val::before { content: '\25BC'; }
+    .rp-delta-up .s2-cell-val { color: var(--green-text); }
+    .rp-delta-up .s2-cell-val::before { content: '\25B2'; }
+
+    /* An expanded profile lives in a cell that spans the whole (860px-min)
+       table, inside a horizontal scroller. Pin it to the scrollport's left edge
+       and size it to the visible width (published as --rp-detail-w by
+       respondents-page.js) so the prose is readable on a phone without
+       scrolling sideways. */
+    #orgTable .s2-org-detail {
+        position: sticky;
+        left: 0;
+        box-sizing: border-box;
+        width: var(--rp-detail-w, auto);
+    }
+
+    /* Per-question free-text disclosure inside an expanded org profile. */
+    .rp-ft {
+        flex-basis: 100%;
+        min-width: 0;
+        margin-top: 2px;
+    }
+    .rp-ft-summary {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-xs);
+        cursor: pointer;
+        list-style: none;
+        padding: 3px 0;
+    }
+    .rp-ft-summary::-webkit-details-marker {
+        display: none;
+    }
+    .rp-ft-label {
+        font-family: var(--font-heading);
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--hydro-text);
+    }
+    .rp-ft-label::before {
+        content: '\25B8\00a0';
+        display: inline-block;
+        transition: transform 0.15s ease;
+    }
+    .rp-ft[open] > .rp-ft-summary .rp-ft-label::before {
+        content: '\25BE\00a0';
+    }
+    .rp-ft-summary:focus-visible {
+        outline: 2px solid var(--accent-blue);
+        outline-offset: 2px;
+        border-radius: var(--radius-sm);
+    }
+    .rp-ft-body {
+        white-space: pre-wrap;
+        border-left: 2px solid var(--border);
+        padding: var(--space-xs) 0 var(--space-xs) var(--space-sm);
+        margin-top: var(--space-xs);
+    }
+    .rp-ft-trunc {
+        white-space: normal;
+        margin: var(--space-xs) 0 0;
+        font-size: 0.72rem;
+        line-height: 1.5;
+        color: var(--ldes-text);
+    }
+
+    @media (max-width: 768px) {
+        .rp-chart-rows {
+            min-height: calc(var(--rp-rows, 10) * 46px + 96px);
+        }
+        .rp-gradient {
+            grid-template-columns: minmax(0, 1fr);
+        }
+        /* Fit all three numeric columns inside a 390px viewport: the shift
+           column carries the story, so it must not sit off the scroll edge. */
+        .rp-hm {
+            grid-template-columns:
+                minmax(100px, 1fr)
+                repeat(var(--s2-cols, 3), minmax(64px, 1fr));
+        }
+        /* Scoped to this grid only: at the shared 0.7rem the column headers
+           break mid-word ("REDACTE/D") in a 70px column. */
+        .rp-hm .s2-hm-colhead {
+            font-size: 0.62rem;
+            letter-spacing: 0.02em;
+        }
+        .rp-hm .s2-cell {
+            min-height: 46px;
+        }
+        /* The unit is already stated in the section subtitle; at this width the
+           chip only wraps mid-token. */
+        .rp-hm .s2-base-chip {
+            display: none;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .rp-ft-label::before {
+            transition: none;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Who Responded</h1>
+        <div class="subtitle">1,072 filings, 15 self-declared organization types, 56 countries — and a majority that withheld its name. Who showed up shapes every number on this site.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== HERO STATS ===== -->
+        <section class="content-section">
+            <!-- .grid-stats, not .hero-stats-row: the latter is the flex row for
+                 translucent .hero-stat chips on the dark banner, and combining the
+                 two makes solid .stat-card tiles size to their label text. -->
+            <div class="grid-stats" id="heroStats">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRespondents">—</div>
+                    <div class="stat-label">Respondents</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRedacted">—</div>
+                    <div class="stat-label">Withheld their name</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statNamed">—</div>
+                    <div class="stat-label">Named organizations</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statAnswers">—</div>
+                    <div class="stat-label">Answers recorded</div>
+                </div>
+            </div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>Read this page first.</strong> A consultation is not a
+                poll: respondents self-select, and organized campaigns can move
+                counts. Before any stance on this site means anything, it matters
+                who filed, how much of the survey they answered, and whether they
+                attached a name to it — because none of those three are evenly
+                distributed.
+            </div>
+        </section>
+
+        <!-- ===== ORG TYPE × REDACTION ===== -->
+        <section class="content-section" id="org-type">
+            <h2 class="section-title">Organization type, and who signed their name</h2>
+            <p class="section-subtitle">Every respondent picked one of 15 organization types. Redaction is not spread evenly across them — it tracks commercial exposure almost perfectly.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Respondents by organization type, named vs redacted</h3>
+                <div class="s2-controls">
+                    <div id="orgTypeMode"></div>
+                </div>
+                <div class="chart-container rp-chart-rows" id="orgTypeHost" style="--rp-rows:15">
+                    <canvas id="orgTypeChart"></canvas>
+                </div>
+                <div class="legend chart-legend" id="orgTypeLegend"></div>
+                <div id="orgTypeSr"></div>
+            </div>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <h3 class="chart-title">The redaction gradient</h3>
+                <div id="orgTypeGradient"></div>
+            </div>
+
+            <div class="insight-glass insight-glass-indigo scroll-reveal">
+                <strong>Corporates redact; analysts and academics don't.</strong>
+                Roughly seven in ten companies and financial institutions withheld
+                their organization name, against 20–28% of data/analytics
+                providers, academic and research bodies, and NGOs. The pattern
+                fits who carries a commercial position: firms that must
+                <em>report</em> under this guidance filed without a name, while
+                firms and institutions that <em>comment on</em> reporting —
+                including the vendors who would sell hourly-matching tooling —
+                put their names to it. That gradient is the reason the named-org
+                browser lower down is not a representative sample of who filed.
+            </div>
+        </section>
+
+        <!-- ===== SECTOR & COUNTRY ===== -->
+        <section class="content-section" id="sector-country">
+            <h2 class="section-title">Sector and country</h2>
+            <p class="section-subtitle">Sector is a separate self-declared field from organization type; both are single-select. The 17 smallest sectors and 46 smallest countries are grouped rather than dropped, so every bar sums to the full 1,072.</p>
+
+            <div class="grid-2col">
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Sector × redaction</h3>
+                    <div class="chart-container rp-chart-rows" style="--rp-rows:13">
+                        <canvas id="sectorChart"></canvas>
+                    </div>
+                    <div class="legend chart-legend" id="sectorLegend"></div>
+                    <p class="s2-note" id="sectorNote"></p>
+                    <div id="sectorSr"></div>
+                </div>
+
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Country of the respondent</h3>
+                    <div class="chart-container rp-chart-rows" style="--rp-rows:11">
+                        <canvas id="countryChart"></canvas>
+                    </div>
+                    <p class="s2-note">Top ten of 56 countries. The consultation was answered in English through a single global form, which favours the anglophone and Northern-European response base you see here.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHO ANSWERED HOW MUCH ===== -->
+        <section class="content-section" id="engagement">
+            <h2 class="section-title">Individuals, organizations, and how much of the survey anyone finished</h2>
+            <p class="section-subtitle">The survey ran to 166 substantive questions. Almost nobody answered all of them, so the base size changes from question to question — which is why every chart on this site carries its own n.</p>
+
+            <div class="grid-2col">
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Responding as an organization or an individual</h3>
+                    <div class="chart-container-sm">
+                        <canvas id="respondingAsChart"></canvas>
+                    </div>
+                    <div class="legend chart-legend" id="respondingAsLegend"></div>
+                    <p class="s2-note" id="respondingAsNote"></p>
+                    <div id="respondingAsSr"></div>
+                </div>
+
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Share of the survey each respondent answered</h3>
+                    <div class="chart-container-sm rp-chart-rows" style="--rp-rows:5">
+                        <canvas id="engagementChart"></canvas>
+                    </div>
+                    <p class="s2-note" id="engagementNote"></p>
+                </div>
+            </div>
+
+            <div class="emphasis-callout scroll-reveal">
+                <div class="emphasis-big">342</div>
+                <div class="emphasis-desc">respondents answered all seven headline support questions — of the 978 who answered at least one</div>
+                <div class="emphasis-sub">So the seven anchors do not share a base: Q71 has 909 answers, Q97 has 522. Any "N% of respondents" figure that spans several anchors is comparing different crowds.</div>
+            </div>
+        </section>
+
+        <!-- ===== REDACTION EFFECT ===== -->
+        <section class="content-section" id="redaction-effect">
+            <h2 class="section-title">What redaction does to the headline numbers</h2>
+            <p class="section-subtitle">Mean support on each of the seven anchors, split by whether the respondent named their organization. 1 = does not support, 5 = strongly supports.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Named vs redacted mean, per anchor</h3>
+                <div id="redactionEffect"></div>
+                <p class="s2-note">Only the seven <code>support</code> anchors appear here. The other 15 scale questions use different constructs — on the burden and cost rows 3 means "same as today" and 5 is a complaint, not support — and pooling them under one ramp would misread them. They are on the <a href="heatmap.html">Likert Explorer</a>.</p>
+            </div>
+
+            <div class="insight-glass insight-glass-red scroll-reveal">
+                <strong>Headlines built on named responses skew supportive.</strong>
+                On six of the seven anchors the respondents who withheld their
+                name are <em>less</em> supportive than the ones who did not, by
+                up to 0.65 of a scale point (Q124 fossil fallback: 3.41 named
+                against 2.76 redacted). Quote them, attribute them, build a story
+                out of the filings you can cite by name — and you will overstate
+                support for every requirement in the package. The lone exception
+                is Q171, the legacy clause, where redacted respondents are
+                <em>more</em> supportive (4.63 against 4.51): protection for
+                contracts already signed is the one thing the anonymous majority
+                wanted more than the named minority.
+            </div>
+        </section>
+
+        <!-- ===== NAMED ORG BROWSER ===== -->
+        <section class="content-section-wide" id="organizations">
+            <h2 class="section-title">Every named organization</h2>
+            <p class="section-subtitle">The <span id="orgCount">—</span> respondents who gave an organization name, with the class our audit assigned them, how much they answered, whether they cited anything, whether their text is shared with other filings, and their seven-anchor stance. Search or filter, then open a profile to read the whole submission.</p>
+
+            <div class="card card-spacious scroll-reveal">
+                <div id="orgTable"></div>
+                <p class="s2-note s2-note-legend">
+                    <span class="s2-spark" aria-hidden="true"><span class="s2-spark-bar s2-spark-1" style="--s2-spark-h:20%"></span><span class="s2-spark-bar s2-spark-3" style="--s2-spark-h:60%"></span><span class="s2-spark-bar s2-spark-5" style="--s2-spark-h:100%"></span><span class="s2-spark-bar s2-spark-na"></span></span>
+                    <span>Anchors run Q71 · Q83 · Q97 · Q113 · Q124 · Q153 · Q171 left to right — red is 1 (does not support), green is 5 (strongly supports), hatched means the question was not answered.</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== FOOTNOTES ===== -->
+        <section class="content-section-narrow" id="notes">
+            <h2 class="section-title">How to read this page</h2>
+
+            <div class="card card-spacious scroll-reveal">
+                <p><strong>Organization is uncontrolled free text.</strong> The
+                consultation form asked for an organization name and accepted
+                whatever was typed: real names, placeholders ("ABC", "None", "Not
+                provided"), job titles, and in a few cases several paragraphs of
+                prose describing the filer. Names in the browser above are
+                truncated to 80 characters and are shown exactly as submitted, so
+                some rows read like sentences. Nothing joins on the name — every
+                lookup keys on the respondent id — and a name that looks like a
+                placeholder has not been corrected or guessed at.</p>
+
+                <p><strong>Redacted is not illegitimate.</strong> 573 respondents
+                did not attach an organization name. They answered the same
+                questions and their answers carry the same weight in every count
+                and mean on this site; they simply cannot be attributed, audited,
+                or quoted by name, and this site never names them. Anonymity here
+                is a structural feature of the response base, not a verdict about
+                a respondent — the honest reading is that attributable and
+                withheld responses are two populations with measurably different
+                stances, and the withheld one is larger.</p>
+
+                <p><strong>Self-declared fields are self-declared.</strong>
+                Organization type, sector, and country are the respondent's own
+                answers, not verified attributes. The "audited class" column in
+                the browser is our reading of what a named organization actually
+                is, with the basis stated inside each profile; where the two
+                disagree, both are shown. Redacted respondents have no audited
+                class because there is nothing to check.</p>
+
+                <p><strong>Free text was capped.</strong> Answers were recorded
+                up to 4,000 characters. Eight answers land exactly on that limit
+                and are marked <em>likely truncated</em> where they appear in a
+                profile — the submitted text continued past what was stored.</p>
+
+                <p class="text-muted">Definitions, derivation of the audit
+                classes and template flags, and the full caveat list are on the
+                <a href="methodology.html">methodology page</a>.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Who responded to the Scope 2 consultation — response base, redaction gradient, and named-organization browser"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+
+    <script>
+    // ------------------------------------------------------------------------
+    // Page wiring. Everything drawn here comes from data/respondents.json and
+    // data/meta.json; the two engagement counts in the emphasis callout (978
+    // answered ≥1 anchor, 342 all seven) are per-respondent set sizes that the
+    // contract does not carry, and are quoted from PLAN §3.10.
+    // ------------------------------------------------------------------------
+    (function() {
+        'use strict';
+
+        var R = window.S2Respondents;
+        var D = {};
+
+        function text(id, value) {
+            var el = document.getElementById(id);
+            if (el) el.textContent = value;
+        }
+
+        function drawHero() {
+            var t = D.meta.totals || {};
+            text('statRespondents', R.fmt(t.respondents));
+            text('statRedacted', R.pctText(t.redacted, t.respondents));
+            text('statNamed', R.fmt(t.named));
+            text('statAnswers', R.fmt(t.answers));
+
+            var redactedCard = document.getElementById('statRedacted');
+            if (redactedCard) {
+                redactedCard.title = R.fmt(t.redacted) + ' of ' +
+                    R.fmt(t.respondents) + ' respondents withheld their ' +
+                    'organization name';
+            }
+        }
+
+        function drawOrgType() {
+            var rows = D.respondents.distributions.org_type_x_redaction;
+            R.stackedRedaction('#orgTypeChart', rows, {
+                mode: S2Segments.get('mode', 'share'),
+                legend: '#orgTypeLegend',
+                labelShare: 0.38,
+                srTarget: '#orgTypeSr',
+                dimLabel: 'Organization type',
+                srCaption: 'Respondents by self-declared organization type, ' +
+                    'named and redacted'
+            });
+            R.gradientNote('#orgTypeGradient', rows, { minTotal: 20 });
+        }
+
+        function drawSector() {
+            var rows = D.respondents.distributions.sector_x_redaction;
+            R.stackedRedaction('#sectorChart', rows, {
+                mode: 'share',
+                legend: '#sectorLegend',
+                srTarget: '#sectorSr',
+                labelShare: 0.38,
+                dimLabel: 'Sector',
+                srCaption: 'Respondents by self-declared sector, named and redacted'
+            });
+
+            var grouped = null, education = null, chemicals = null;
+            R.splitRows(rows).forEach(function(r) {
+                if (r.key === 'sector_other_grouped') grouped = r;
+                if (r.key === 'education') education = r;
+                if (r.key === 'chemicals') chemicals = r;
+            });
+            var bits = [];
+            if (chemicals && education) {
+                bits.push('The sector spread runs from ' +
+                    R.pctText(chemicals.redacted, chemicals.total) + ' redacted in ' +
+                    'chemicals (n=' + R.fmt(chemicals.total) + ') to ' +
+                    R.pctText(education.redacted, education.total) + ' in education ' +
+                    '(n=' + R.fmt(education.total) + ').');
+            }
+            if (grouped) {
+                bits.push('The 17 grouped tail sectors are ' +
+                    R.pctText(grouped.redacted, grouped.total) + ' redacted across ' +
+                    R.fmt(grouped.total) + ' respondents — the tail leans ' +
+                    'anonymous too, so grouping it is not hiding a countertrend.');
+            }
+            text('sectorNote', bits.join(' '));
+        }
+
+        function drawCountry() {
+            var rows = D.respondents.distributions.country;
+            var base = rows.reduce(function(a, r) { return a + r.n; }, 0);
+            S2Viz.renderOptionBars('#countryChart', rows.map(function(r) {
+                return { text: r.label, n: r.n };
+            }), {
+                n_answered: base,
+                sort: false,
+                color: R.palette().total,
+                labelShare: 0.34
+            });
+        }
+
+        function drawRespondingAs() {
+            var rows = D.respondents.distributions.responding_as;
+            R.stackedRedaction('#respondingAsChart', rows, {
+                mode: 'share',
+                legend: '#respondingAsLegend',
+                srTarget: '#respondingAsSr',
+                labelShare: 0.26,
+                dimLabel: 'Responding as',
+                srCaption: 'Respondents by whether they filed for an organization ' +
+                    'or as an individual, named and redacted'
+            });
+
+            var parts = R.splitRows(rows).map(function(r) {
+                return R.pctText(r.redacted, r.total) + ' of the ' + R.fmt(r.total) +
+                    ' ' + String(r.label).toLowerCase() + ' filings';
+            });
+            text('respondingAsNote', parts.length < 2 ? '' :
+                'Redaction is flat on this axis — ' + parts.join(' and ') +
+                ' withheld a name. Anonymity is not an artefact of individuals ' +
+                'filing without an employer; organizations do it at the same rate.');
+        }
+
+        function drawEngagement() {
+            var rows = D.respondents.distributions.engagement_bands;
+            var base = rows.reduce(function(a, r) { return a + r.n; }, 0);
+            S2Viz.renderOptionBars('#engagementChart', rows.map(function(r) {
+                return { text: r.label, n: r.n };
+            }), {
+                n_answered: base,
+                sort: false,
+                color: R.palette().total,
+                labelShare: 0.3
+            });
+
+            var top = rows[rows.length - 1];
+            text('engagementNote', 'Median respondent answered 46 of 166 ' +
+                'substantive questions; the 90th percentile answered 116. Only ' +
+                R.fmt(top.n) + ' respondents (' + R.pctText(top.n, base) + ') got ' +
+                'past three quarters of the survey, and they are not a random ' +
+                'draw: sort the browser below by answers and five of the ten ' +
+                'most complete named filings belong to one coordinated group ' +
+                'of supply-chain affiliates.');
+        }
+
+        function drawRedactionEffect() {
+            R.renderRedactionEffect('#redactionEffect',
+                D.respondents.redaction_effect, D.meta);
+        }
+
+        function drawOrgBrowser() {
+            var rows = D.respondents.org_index;
+            text('orgCount', R.fmt(rows.length));
+            R.renderOrgBrowser('#orgTable', rows, D.meta, { pageSize: 20 });
+        }
+
+        S2Data.loadAll(['meta', 'respondents']).then(function(loaded) {
+            D = loaded;
+            S2Segments.init(D.meta);
+
+            S2Segments.toggle('#orgTypeMode', {
+                param: 'mode',
+                label: 'Bars show',
+                options: [
+                    { key: 'share', label: 'Share of segment',
+                      title: 'Each bar normalised to 100%' },
+                    { key: 'count', label: 'Respondent count',
+                      title: 'Each bar as counts, so segment size stays visible' }
+                ],
+                def: 'share'
+            });
+            S2Segments.on(function(ev) {
+                var param = ev && ev.detail ? ev.detail.param : null;
+                if (param === null || param === 'mode') drawOrgType();
+            });
+
+            drawHero();
+            drawOrgType();
+            drawSector();
+            drawCountry();
+            drawRespondingAs();
+            drawEngagement();
+            drawRedactionEffect();
+            drawOrgBrowser();
+        }).catch(function(err) {
+            S2Data.errorPanel('orgTypeHost', err, {
+                title: 'Respondent data could not be loaded'
+            });
+            if (window.console && console.error) console.error(err);
+        });
+    })();
+    </script>
+</body>
+</html>
