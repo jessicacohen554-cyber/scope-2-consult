@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Where this dataset comes from, how every derived field is defined, what the 1–5 scales actually mean, the limits of what the numbers can show, and the exact commands to rebuild it.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/segments.js"></script>
+    <script src="js/likert-viz.js"></script>
+    <script src="js/quote-cards.js"></script>
+    <script src="js/org-table.js"></script>
+
+    <!-- Page-specific styles ONLY: the pipeline chain, command blocks, definition
+         lists and footnotes are unique to this page. Everything with a shared
+         class (.card, .data-table, .insight-box, .stat-card, .s2-tag,
+         .s2-dir-badge) is left alone. Tokens only — no hex, no font stacks. -->
+    <style>
+    /* ---- Prose rhythm inside the solid cards ---- */
+    .meth-prose > p { margin: 0 0 var(--space-md); }
+    .meth-prose > p:last-child { margin-bottom: 0; }
+    .meth-prose code,
+    .meth-inline-code {
+        font-family: var(--font-mono);
+        font-size: 0.86em;
+        font-weight: 600;
+        padding: 1px 5px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-alt-warm);
+        color: var(--text-secondary);
+        overflow-wrap: anywhere;
+    }
+    .meth-prose ul { margin: 0 0 var(--space-md); padding-left: 1.3em; }
+    .meth-prose li { margin-bottom: var(--space-xs); }
+    .meth-prose ul:last-child, .meth-prose li:last-child { margin-bottom: 0; }
+    .meth-card-title {
+        font-family: var(--font-heading);
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin: 0 0 var(--space-sm);
+    }
+    .meth-kicker {
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-light);
+        margin: 0 0 var(--space-xs);
+    }
+
+    /* ---- Build-pipeline chain (§1) ---- */
+    .meth-chain { display: flex; flex-direction: column; gap: var(--space-sm); }
+    .meth-step {
+        display: flex;
+        gap: var(--space-md);
+        align-items: flex-start;
+        padding: var(--space-md);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        background: var(--bg-alt);
+    }
+    .meth-step-n {
+        flex: 0 0 auto;
+        width: 26px; height: 26px;
+        border-radius: var(--radius-pill);
+        background: var(--navy);
+        color: var(--bg-page-white);
+        font-family: var(--font-data);
+        font-size: 0.78rem;
+        font-weight: 700;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .meth-step-body { min-width: 0; flex: 1 1 auto; }
+    .meth-step-body p { margin: var(--space-xs) 0 0; font-size: 0.86rem; color: var(--text-muted); }
+    .meth-step-io {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        overflow-wrap: anywhere;
+    }
+    .meth-arrow { color: var(--text-light); font-weight: 400; }
+
+    /* ---- Taxonomy axis cards (§2) ---- */
+    .meth-axis-head {
+        display: flex; flex-wrap: wrap; gap: var(--space-sm);
+        align-items: baseline; margin-bottom: var(--space-sm);
+    }
+    .meth-axis-name {
+        font-family: var(--font-mono);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--navy);
+    }
+    .meth-axis-count {
+        font-family: var(--font-data);
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--text-muted);
+    }
+    .meth-example {
+        margin-top: var(--space-md);
+        padding-top: var(--space-md);
+        border-top: 1px dashed var(--border-light);
+        font-size: 0.86rem;
+        color: var(--text-secondary);
+    }
+
+    /* ---- Definition list (§4) ---- */
+    .meth-defs { margin: 0; }
+    .meth-defs > div + div {
+        margin-top: var(--space-lg);
+        padding-top: var(--space-lg);
+        border-top: 1px solid var(--border-light);
+    }
+    .meth-defs dt {
+        font-family: var(--font-heading);
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: var(--space-xs);
+    }
+    .meth-defs dd { margin: 0; font-size: 0.9rem; line-height: 1.7; color: var(--text-secondary); }
+    .meth-defs dd + dd { margin-top: var(--space-sm); }
+    .meth-defs dd ul { margin: var(--space-sm) 0 0; padding-left: 1.3em; }
+    .meth-defs dd li { margin-bottom: var(--space-xs); }
+    .meth-source {
+        display: block;
+        margin-top: var(--space-sm);
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--text-light);
+        overflow-wrap: anywhere;
+    }
+    .meth-value {
+        font-family: var(--font-data);
+        font-weight: 700;
+        color: var(--navy);
+    }
+
+    /* ---- Command blocks (§6) ---- */
+    .meth-cmd {
+        margin: 0;
+        padding: var(--space-md);
+        border-radius: var(--radius-md);
+        background: var(--navy-dark);
+        color: var(--bg-page-white);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        line-height: 1.7;
+        overflow-x: auto;
+        white-space: pre;
+        scrollbar-width: thin;
+        scrollbar-color: var(--navy-light) transparent;
+    }
+    .meth-cmd:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 2px; }
+    .meth-cmd::-webkit-scrollbar { height: 8px; }
+    .meth-cmd::-webkit-scrollbar-thumb {
+        background: var(--navy-light);
+        border-radius: var(--radius-pill);
+    }
+    .meth-cmd-out { color: var(--accent-cyan); }
+    .meth-ran {
+        display: inline-block;
+        margin-top: var(--space-sm);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+
+    /* ---- Tables that need to scroll on narrow screens ----
+       tabindex="0" in the markup makes the scroll region keyboard-reachable
+       (WCAG 2.1.1); a permanently visible thin scrollbar is the affordance that
+       tells a touch reader there is more table to the right. ---- */
+    .meth-table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border) transparent;
+    }
+    .meth-table-wrap:focus-visible {
+        outline: 2px solid var(--hydro);
+        outline-offset: 2px;
+        border-radius: var(--radius-sm);
+    }
+    .meth-table-wrap::-webkit-scrollbar { height: 8px; }
+    .meth-table-wrap::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: var(--radius-pill);
+    }
+    .meth-table-wrap .data-table { min-width: 520px; }
+    .meth-table-wrap .data-table td { vertical-align: top; }
+    .meth-table-wrap .data-table .meth-qlist {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--text-muted);
+    }
+
+    /* ---- Footnotes ---- */
+    .meth-footnotes {
+        margin: var(--space-lg) 0 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0.82rem;
+        line-height: 1.7;
+        color: var(--text-muted);
+    }
+    .meth-footnotes li { margin-bottom: var(--space-sm); }
+    .meth-footnotes li:last-child { margin-bottom: 0; }
+    .meth-fnmark { font-weight: 700; color: var(--text-secondary); }
+
+    /* ---- List rhythm inside .insight-box ----
+       .insight-box carries no list styling of its own. Note that cinematic.css
+       deliberately forces every text surface (.card, .insight-box, .data-table …)
+       to solid white so copy stays readable over the background image, which is
+       why the insight-* colour variants read flat on this site — that is the
+       design system working as intended, and is not worked around here. ---- */
+    .meth-callout-list { margin: var(--space-sm) 0 0; padding-left: 1.3em; }
+    .meth-callout-list li { margin-bottom: var(--space-sm); }
+    .meth-callout-list li:last-child { margin-bottom: 0; }
+
+    /* ---- Live contract check line (§1) ---- */
+    .meth-livecheck {
+        margin-top: var(--space-md);
+        font-size: 0.82rem;
+        color: var(--text-muted);
+    }
+    .meth-livecheck[hidden] { display: none; }
+
+    @media (max-width: 700px) {
+        .meth-step { flex-direction: column; gap: var(--space-sm); }
+        .meth-cmd { font-size: 0.76rem; }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Methodology</h1>
+        <div class="subtitle">Where the data comes from, what every number means, how each derived field is defined — and the limits of what any of it can show. With the exact commands to rebuild the whole thing from one spreadsheet.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ================================================================ -->
+        <!-- 1. DATA PROVENANCE                                               -->
+        <!-- ================================================================ -->
+        <section class="content-section" id="provenance">
+            <h2 class="section-title">1. Where the data comes from</h2>
+            <p class="section-subtitle">One published spreadsheet, one deterministic build, no hand edits.</p>
+
+            <div class="hero-stats-row grid-stats">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRespondents">1,072</div>
+                    <div class="stat-label">Respondents</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statQuestions">180</div>
+                    <div class="stat-label">Questions in the codebook</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statAnswers">70,089</div>
+                    <div class="stat-label">Answers given</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRedacted">573</div>
+                    <div class="stat-label">Respondents redacted</div>
+                </div>
+            </div>
+
+            <div class="card card-spacious meth-prose scroll-reveal">
+                <h3 class="meth-card-title">The source file</h3>
+                <p>Everything on this site derives from a single published file: <a href="https://ghgprotocol.org/sites/default/files/2026-07/S2-PublicConsultationFeedback-RawData-2026.07.29.xlsx"><code>S2-PublicConsultationFeedback-RawData-2026.07.29.xlsx</code></a>, the GHG Protocol's raw export of its Scope&nbsp;2 public consultation, published 2026-07-29. It is one sheet, <code>clean_data_final1</code>, 1,072 rows × 181 columns. That workbook is committed unmodified at the repository root and is the <em>only</em> input — every file under <code>data/</code> is regenerated from it by <code>scripts/build_dataset.py</code>.</p>
+                <p>The reshape is mechanical and verified: every non-empty source cell appears exactly once in <code>responses_long</code> with its value unchanged (70,089 cells, 0 mismatches), and <code>sum(n_selected)</code> equals the <code>response_selections</code> row count (52,552). Nothing is aggregated away and nothing is discarded — including the text respondents typed into "Other" boxes, which is kept and flagged rather than folded into the option list.</p>
+                <p>Two files carry the judgement calls, and they are the only place to argue with an interpretation: <code>scripts/survey_meta.py</code> (section groupings, scale constructs and anchors, ordinal ladders, off-scale labels, closed vocabularies) and <code>reference/question_labels.csv</code> (the hand-curated shorthand, label and grouping for each of the 180 questions). The build fails loudly, naming the question, if a row is missing, a shorthand repeats, a vocabulary value is unrecognised, or <code>method</code> contradicts <code>category</code>.</p>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3 class="meth-card-title">The build chain</h3>
+                <div class="meth-chain">
+                    <div class="meth-step">
+                        <div class="meth-step-n">1</div>
+                        <div class="meth-step-body">
+                            <div class="meth-step-io">S2-…-RawData-2026.07.29.xlsx <span class="meth-arrow">→</span> scripts/build_dataset.py</div>
+                            <p>Mechanical reshape, with <code class="meth-inline-code">survey_meta.py</code> and <code class="meth-inline-code">reference/question_labels.csv</code> supplying the editorial layer.</p>
+                        </div>
+                    </div>
+                    <div class="meth-step">
+                        <div class="meth-step-n">2</div>
+                        <div class="meth-step-body">
+                            <div class="meth-step-io"><span class="meth-arrow">→</span> data/scope2_consultation.sqlite · data/*.csv · data/manifest.json</div>
+                            <p>Tidy tables: <code class="meth-inline-code">questions</code>, <code class="meth-inline-code">responses</code>, <code class="meth-inline-code">response_selections</code>, <code class="meth-inline-code">question_options</code>, <code class="meth-inline-code">respondents</code>, plus nine analysis views. CSV and Excel mirrors of the same content.</p>
+                        </div>
+                    </div>
+                    <div class="meth-step">
+                        <div class="meth-step-n">3</div>
+                        <div class="meth-step-body">
+                            <div class="meth-step-io"><span class="meth-arrow">→</span> scripts/analytics/derive_flags.py <span class="meth-arrow">→</span> data/derived/</div>
+                            <p>Coordination, citation and evidence-basis flags: <code class="meth-inline-code">respondent_flags.csv</code>, <code class="meth-inline-code">text_clusters.csv</code>, <code class="meth-inline-code">vector_clusters.csv</code>, <code class="meth-inline-code">citations.csv</code>, <code class="meth-inline-code">domains.csv</code>. Definitions in section&nbsp;4.</p>
+                        </div>
+                    </div>
+                    <div class="meth-step">
+                        <div class="meth-step-n">4</div>
+                        <div class="meth-step-body">
+                            <div class="meth-step-io"><span class="meth-arrow">→</span> scripts/analytics/export_frontend.py <span class="meth-arrow">→</span> frontend/data/*.json</div>
+                            <p>Reads the database, the derived tables, and two hand-curated inputs — <code class="meth-inline-code">reference/org_audit.csv</code> (the classification audit) and <code class="meth-inline-code">reference/curated_quotes.json</code> — and emits the nine contract files plus one profile per named respondent.</p>
+                        </div>
+                    </div>
+                    <div class="meth-step">
+                        <div class="meth-step-n">5</div>
+                        <div class="meth-step-body">
+                            <div class="meth-step-io"><span class="meth-arrow">→</span> validate_dataset.py (27 checks) · validate_frontend_data.py (96 checks)</div>
+                            <p>Both must pass before anything renders. The frontend validator re-derives hard numbers straight from the database and refuses to agree with the exporter on trust: every likert cell must sum to its own <code class="meth-inline-code">n</code>, every segment must sum to the overall total, and every curated quote must be a verbatim substring of the respondent's stored answer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="insight-box insight-success">
+                    <strong>Nothing under <code>data/</code> is ever hand-edited.</strong> The pipeline only <em>adds</em>: <code>data/derived/</code>, the <code>reference/</code> curation inputs, and <code>frontend/data/</code>. If a number here looks wrong, the fix is a script change and a rebuild, never a spreadsheet edit.
+                </div>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3 class="meth-card-title">What the manifest records</h3>
+                <p class="meth-kicker">data/manifest.json — written by every build</p>
+                <div class="meth-table-wrap" tabindex="0">
+                    <table class="data-table">
+                        <caption class="sr-only">Row counts and type tallies recorded in data/manifest.json</caption>
+                        <thead>
+                            <tr><th scope="col">Count</th><th scope="col">Value</th><th scope="col">Note</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Respondents</td><td class="num">1,072</td><td>One row per submission. <code>respondent_id</code> runs 5–1171 <em>with gaps</em> — never assume 1…1072.</td></tr>
+                            <tr><td>Questions</td><td class="num">180</td><td>All labelled. Questions 1, 2 and 7 are absent from the published export.</td></tr>
+                            <tr><td>Raw columns</td><td class="num">181</td><td>The source sheet's width.</td></tr>
+                            <tr><td>Answers (<code>responses_long</code>)</td><td class="num">70,089</td><td>One row per answer actually given. Unanswered questions are absent, not blank — the non-response pattern is itself data.</td></tr>
+                            <tr><td>Selections (<code>response_selections</code>)</td><td class="num">52,552</td><td>Multi-select cells exploded, one row per option ticked.</td></tr>
+                            <tr><td>Options (<code>question_options</code>)</td><td class="num">635</td><td>Every distinct option per choice question, with <code>is_canonical</code>, <code>is_off_scale</code>, <code>option_rank</code>.</td></tr>
+                            <tr><td>By method</td><td class="num">116 / 48 / 16</td><td><code>mbm</code> / <code>lbm</code> / <code>general</code>. This site covers the 116 market-based-method questions.</td></tr>
+                            <tr><td>By question type</td><td class="num">7 types</td><td>91 <code>free_text</code>, 36 <code>multi_select</code>, 21 <code>single_select</code>, 17 <code>likert_1_5</code>, 11 <code>ordinal_select</code>, 3 <code>scale_labeled</code>, 1 <code>numeric_year</code>.</td></tr>
+                            <tr><td>By role</td><td class="num">8 roles</td><td>62 <code>comment</code>, 57 <code>primary</code>, 21 <code>free_text_primary</code>, 14 <code>profile</code>, 10 <code>reasons_support</code>, 10 <code>reasons_oppose</code>, 3 <code>basis</code>, 3 <code>other_specify</code>.</td></tr>
+                            <tr><td>Truncated answers</td><td class="num">8</td><td>Hit the survey tool's 4,000-character cap; flagged <code>likely_truncated = 1</code>.</td></tr>
+                            <tr><td>Non-canonical selections</td><td class="num">54</td><td>Write-ins the export concatenated into option cells (Q63, Q140, Q174). Filter <code>is_canonical = 1</code>.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="meth-livecheck" id="livecheck" hidden></p>
+            </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- 2. QUESTION TAXONOMY                                             -->
+        <!-- ================================================================ -->
+        <section class="content-section" id="taxonomy">
+            <h2 class="section-title">2. How the questions are classified</h2>
+            <p class="section-subtitle">Four deliberately orthogonal axes, so a question can be found from whichever direction you come at it.</p>
+
+            <div class="card card-spacious meth-prose scroll-reveal">
+                <p>The consultation's own structure is a linear list of 180 questions. That is a poor index: the cost of hourly matching, the reasons for opposing it and the stance on it all sit in different places, and a reader who wants "everything about one proposal" or "every cost question" has to know the question numbers by heart. The codebook (<code>data/questions.csv</code>) therefore carries four cross-cutting axes. None is a sub-division of another — that is the point, and it is why a single question carries all four.</p>
+            </div>
+
+            <div class="grid-2col">
+                <div class="card card-spacious scroll-reveal">
+                    <div class="meth-axis-head">
+                        <span class="meth-axis-name">method</span>
+                        <span class="meth-axis-count">3 values</span>
+                    </div>
+                    <p class="meth-prose"><strong>Which accounting method is at stake?</strong> <code>mbm</code> (116 questions), <code>lbm</code> (48), <code>general</code> (16). The one predicate that selects a whole method.</p>
+                    <div class="meth-example">
+                        <span class="meth-kicker">Example</span>
+                        <code>method = 'lbm'</code> selects all 48 location-based-method questions. <code>category = 'lbm_design'</code> finds only 29 of them, because the cost, hourly-data, readiness and usefulness questions moved to the cross-cutting categories — which is the whole reason both axes exist.
+                    </div>
+                </div>
+
+                <div class="card card-spacious scroll-reveal">
+                    <div class="meth-axis-head">
+                        <span class="meth-axis-name">category / subcategory</span>
+                        <span class="meth-axis-count">10 / 46 values</span>
+                    </div>
+                    <p class="meth-prose"><strong>What does the question interrogate?</strong> Cost? Data availability? Decision-usefulness? Cuts across both methods and all 27 sections.</p>
+                    <div class="meth-example">
+                        <span class="meth-kicker">Example</span>
+                        <code>category = 'cost_and_burden'</code> returns 19 questions — and it collects them regardless of which proposal they hang off. Q78 (internal effort for hourly matching) and Q139 (procurement price for hourly-matched, deliverable certificates) sit together there while belonging to different policy levers.
+                    </div>
+                </div>
+
+                <div class="card card-spacious scroll-reveal">
+                    <div class="meth-axis-head">
+                        <span class="meth-axis-name">policy_lever</span>
+                        <span class="meth-axis-count">53 values</span>
+                    </div>
+                    <p class="meth-prose"><strong>Which proposal is at stake?</strong> Shared by every question interrogating one. The nine proposal drill-downs on this site key on <code>policy_lever</code>, never on <code>anchor_question</code> — the evidence-basis questions (Q122, Q138, Q158) and the cost questions do not hang off the stance anchors.</p>
+                    <div class="meth-example">
+                        <span class="meth-kicker">Example — <code>policy_lever = 'qc4_hourly_matching'</code></span>
+                        <div class="meth-table-wrap" tabindex="0">
+                            <table class="data-table">
+                                <caption class="sr-only">The ten questions sharing the qc4_hourly_matching policy lever, showing that one lever straddles two categories</caption>
+                                <thead><tr><th scope="col">Q</th><th scope="col">shorthand</th><th scope="col">category</th><th scope="col">asks_for</th></tr></thead>
+                                <tbody>
+                                    <tr><td class="num">71</td><td class="meth-qlist">qc4_hourly_matching_support</td><td>mbm_design</td><td>stance</td></tr>
+                                    <tr><td class="num">72</td><td class="meth-qlist">qc4_hourly_matching_reasons_for</td><td>mbm_design</td><td>rationale_for</td></tr>
+                                    <tr><td class="num">73</td><td class="meth-qlist">qc4_reasons_for_comment</td><td>mbm_design</td><td>elaboration</td></tr>
+                                    <tr><td class="num">74</td><td class="meth-qlist">qc4_hourly_matching_reasons_vs</td><td>mbm_design</td><td>rationale_against</td></tr>
+                                    <tr><td class="num">75</td><td class="meth-qlist">qc4_reasons_vs_comment</td><td>mbm_design</td><td>elaboration</td></tr>
+                                    <tr><td class="num">77</td><td class="meth-qlist">qc4_load_in_scope_share</td><td>cost_and_burden</td><td>respondent_attribute</td></tr>
+                                    <tr><td class="num">78</td><td class="meth-qlist">qc4_internal_admin_effort</td><td>cost_and_burden</td><td>cost_estimate</td></tr>
+                                    <tr><td class="num">79</td><td class="meth-qlist">qc4_external_service_cost</td><td>cost_and_burden</td><td>cost_estimate</td></tr>
+                                    <tr><td class="num">81</td><td class="meth-qlist">qc4_cost_drivers</td><td>cost_and_burden</td><td>cost_driver</td></tr>
+                                    <tr><td class="num">82</td><td class="meth-qlist">qc4_cost_effort_comment</td><td>cost_and_burden</td><td>elaboration</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-spacious scroll-reveal">
+                    <div class="meth-axis-head">
+                        <span class="meth-axis-name">asks_for</span>
+                        <span class="meth-axis-count">13 values</span>
+                    </div>
+                    <p class="meth-prose"><strong>What shape does the answer take?</strong> A score, a reason, a cost, a date. Cuts across everything else.</p>
+                    <div class="meth-example">
+                        <span class="meth-kicker">Example</span>
+                        <code>asks_for = 'stance'</code> is the 14 questions where the answer is a position on a 1–5 scale — the ones the heatmap and the diverging bars are built from. The other twelve values are <code>elaboration</code> (44), <code>design_preference</code> (41), <code>respondent_attribute</code> (16), <code>rationale_against</code> (13), <code>rationale_for</code> (12), <code>impact_assessment</code> (8), <code>evidence_basis</code> (8), <code>open_feedback</code> (7), <code>cost_estimate</code> (6), <code>timeline</code> (4), <code>cost_driver</code> (4), <code>data_availability</code> (3).
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box insight-warn scroll-reveal">
+                <strong>The 27 sections are our grouping, not the GHG Protocol's.</strong> The raw export has no section column. The 27 topic sections were derived by reading the questions in order, and the consultation document's own numbering — Q159 refers to "section 5.3.1" in its wording — is <em>not</em> reproduced in the export, so there is no way to recover it. Do not cite a section number on this site as if it were a clause of the consultation document. <code>role</code>, <code>anchor_question</code> and <code>parent_question</code> are likewise derived from question wording, using rules in <code>build_dataset.py</code>. To regroup, edit <code>SECTIONS</code> in <code>scripts/survey_meta.py</code> and rebuild. The vocabularies for <code>method</code>, <code>category</code> and <code>asks_for</code> are closed and rejected at build time if violated; <code>policy_lever</code> and the section list are editorial.
+            </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- 3. SCALE DIRECTIONS                                              -->
+        <!-- ================================================================ -->
+        <section class="content-section" id="scales">
+            <h2 class="section-title">3. What the 1–5 scores mean</h2>
+            <p class="section-subtitle">The survey reuses a bare 1–5 box for at least seven different constructs. A 5 is not always good news.</p>
+
+            <div class="insight-box insight-danger scroll-reveal">
+                <strong>Never pool scale scores across constructs.</strong> Averaging Q71 (support for hourly matching, 5&nbsp;=&nbsp;strongly supports) with Q78 (internal effort, 5&nbsp;=&nbsp;much more effort than today) produces a number that means nothing at all: one 5 is an endorsement and the other is a complaint. Filter on <code>scale_construct</code> first, every time. The heatmap on this site groups its rows by construct and prints a direction badge on each group for exactly this reason, and the exporter's validator fails the build if a single question ever mixes constructs.
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3 class="meth-card-title">Every construct in the codebook, with its anchors</h3>
+                <p class="meth-kicker">from <code>scale_construct</code>, <code>scale_anchor_low</code>, <code>scale_anchor_high</code>, <code>scale_note</code> in data/questions.csv</p>
+                <div class="meth-table-wrap" tabindex="0">
+                    <table class="data-table">
+                        <caption class="sr-only">Scale constructs with their questions, low and high anchors, and what a high score means</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Construct</th>
+                                <th scope="col">Questions</th>
+                                <th scope="col">1 =</th>
+                                <th scope="col">5 =</th>
+                                <th scope="col">A high score means</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>support</code></td>
+                                <td class="meth-qlist">10 · Q23, 35, 44, 71, 83, 97, 113, 124, 153, 171</td>
+                                <td>does not support</td>
+                                <td>strongly supports</td>
+                                <td><span class="s2-dir-badge s2-dir-support">endorsement</span> The only construct where 5 is approval. Seven of the ten are the MBM stance anchors.</td>
+                            </tr>
+                            <tr>
+                                <td><code>burden_relative</code></td>
+                                <td class="meth-qlist">4 · Q78, 79, 92, 93</td>
+                                <td>much less effort / much lower cost</td>
+                                <td>much more effort / much higher cost</td>
+                                <td><span class="s2-dir-badge s2-dir-complaint">complaint</span> <strong>3 is anchored to the respondent's current effort or cost</strong> — "the same as today". 5 is a cost objection, not a preference.</td>
+                            </tr>
+                            <tr>
+                                <td><code>cost_relative</code></td>
+                                <td class="meth-qlist">1 · Q139</td>
+                                <td>much lower price</td>
+                                <td>much higher price</td>
+                                <td><span class="s2-dir-badge s2-dir-complaint">complaint</span> Procurement price for hourly-matched, deliverable certificates and PPAs. 3 is anchored to the respondent's current sourcing strategy.</td>
+                            </tr>
+                            <tr>
+                                <td><code>impact_magnitude</code></td>
+                                <td class="meth-qlist">2 · Q142, 179</td>
+                                <td>no material impact / implications</td>
+                                <td>high material impact / implications</td>
+                                <td><span class="s2-dir-badge s2-dir-magnitude">magnitude</span> The <em>size</em> of a knock-on effect on financial reporting or risk disclosure. Says nothing about whether the respondent wants it.</td>
+                            </tr>
+                            <tr>
+                                <td><code>effort_labeled</code></td>
+                                <td class="meth-qlist">1 · Q62</td>
+                                <td>1 – Minimal effort</td>
+                                <td>5 – High effort</td>
+                                <td><span class="s2-dir-badge s2-dir-complaint">complaint</span> Absolute, <em>not</em> anchored to current practice — which makes it non-comparable with the <code>burden_relative</code> scales where 3 means "same as today". 48 of 497 answered off-scale ("Not applicable (not a preparer)").</td>
+                            </tr>
+                            <tr>
+                                <td><code>readiness_labeled</code></td>
+                                <td class="meth-qlist">1 · Q118</td>
+                                <td>1 – Far from ready</td>
+                                <td>5 – Largely ready</td>
+                                <td><span class="s2-dir-badge s2-dir-ladder">labelled ladder</span> Registry / data-provider readiness. Asks about three actor types at once (certificate systems, registries, data providers) for "the regions you follow", so one score can span several.<sup class="meth-fnmark">‡</sup></td>
+                            </tr>
+                            <tr>
+                                <td><code>sufficiency_labeled</code></td>
+                                <td class="meth-qlist">1 · Q130</td>
+                                <td>1 – Insufficient</td>
+                                <td>5 – Highly sufficient</td>
+                                <td><span class="s2-dir-badge s2-dir-ladder">labelled ladder</span> Whether the proposed feasibility measures are sufficient. The label ladder is non-monotonic in wording.<sup class="meth-fnmark">†</sup></td>
+                            </tr>
+                            <tr>
+                                <td><code>ordinal</code></td>
+                                <td class="meth-qlist">11 · Q52, 54, 57, 59, 67, 70, 77, 120, 121, 134, 136</td>
+                                <td colspan="2">no numeric anchors — <code>answer_numeric</code> is a 0-based rank on the survey's own ladder</td>
+                                <td><span class="s2-dir-badge s2-dir-ladder">rank</span> Position on a named ladder (a GWh threshold, a lead time, a degree of improvement). Ladder labels ride in <code>meta.json</code>; read the label, never the rank alone.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <ul class="meth-footnotes">
+                    <li><span class="meth-fnmark">†</span> <strong>Q130's label ladder is non-monotonic in wording.</strong> The five on-scale options as the survey offered them, with their counts: <code>1 – Insufficient</code> (256), <code>2 – Somewhat sufficient</code> (103), <code>3 – Sufficient</code> (54), <code>4 – Moderately sufficient</code> (46), <code>5 – Highly sufficient</code> (97). Rank 3 reads "Sufficient" but rank 4 reads only "Moderately sufficient" — <em>weaker</em> wording at the higher rank. The ranks are the survey's own numbering and are used exactly as given, so the mean (2.33 across 556 scored answers) is a position on the survey's ladder and not a point on a clean sufficiency continuum. Two further cautions on the same question: the stem names four measures at once (load profiles, exemptions to hourly matching, the legacy clause, phased implementation), so one score covers four separate policy levers; and 36 respondents chose "No basis to assess", which is off-scale.</li>
+                    <li><span class="meth-fnmark">‡</span> Q118 also arrived with two answers stored as JSON-ish literals (<code>["4 - Mostly ready"]</code>); those are normalised to the plain option label. 67 respondents chose "Insufficient basis to assess" — off-scale, and a substantial share of the 310 who answered.</li>
+                </ul>
+
+                <div class="insight-box">
+                    <strong>Off-scale answers are shown, never folded in.</strong> Options such as "Unsure", "Unknown", "No basis to assess", "Insufficient basis to assess" and "Prefer not to say" carry <code>answer_numeric = NULL</code> and <code>is_off_scale = 1</code> in <code>question_options</code>. In the exported cells they live in a separate <code>off</code> count that never enters <code>c</code>, the mean, or any support/oppose share. Where the off-scale count is large it <em>is</em> the finding — 44% of respondents answered "Unknown" on the residual-mix lead-time questions, and treating that as a middling score would erase it.
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- 4. DERIVED FIELDS                                                -->
+        <!-- ================================================================ -->
+        <section class="content-section" id="derived">
+            <h2 class="section-title">4. Derived fields, defined precisely</h2>
+            <p class="section-subtitle">Nothing on this site is derived by eye. Each definition below is the rule the script actually implements, with the count it produces on the shipped build.</p>
+
+            <div class="card card-spacious scroll-reveal">
+                <dl class="meth-defs">
+
+                    <div>
+                        <dt>Text normalization — the recipe everything keys on</dt>
+                        <dd>Lowercase → collapse every run of whitespace to a single space → strip → SHA-1. Nothing else: no punctuation stripping, no stemming, no fuzzy matching. Two answers are "the same" only if they are byte-identical after that transform. This matters more than it sounds, because the source arrived littered with roughly 1,900 non-breaking, narrow-no-break, thin, ideographic and zero-width spaces from respondents pasting out of Word — <code>build_dataset.py</code> normalises those upstream, which is both what stops otherwise-identical option labels splitting into separate strings and what lets duplicate detection see through the paste artefacts.</dd>
+                        <dd>The same recipe is used by the quote curation, so cluster hashes computed in either place line up.</dd>
+                        <span class="meth-source">scripts/analytics/derive_flags.py → normalize_text()</span>
+                    </div>
+
+                    <div>
+                        <dt>Text cluster</dt>
+                        <dd>A normalized string of <strong>at least 200 characters</strong> shared by <strong>at least 3 distinct respondents</strong>. A respondent who posts the same string to several questions counts once. Each cluster records its member ids, the question numbers it appeared under, the named/redacted split, a 240-character preview, and whether the text itself carries a citation signal.</dd>
+                        <dd>On the shipped build: <span class="meth-value">323</span> clusters covering <span class="meth-value">177</span> respondents; the most-shared single string appears under <span class="meth-value">19</span> respondents. The 200-character floor is what keeps stock one-liners ("We disagree with proposed changes…") out of the cluster table while still catching them in the raw counts.</dd>
+                        <span class="meth-source">data/derived/text_clusters.csv · thresholds MIN_CLUSTER_CHARS = 200, MIN_CLUSTER_MEMBERS = 3</span>
+                    </div>
+
+                    <div>
+                        <dt>Template flag (<code>is_template_response</code>)</dt>
+                        <dd>Set when a respondent shares clustered text with <strong>at least 3 other respondents</strong> — co-sharers counted across all of that respondent's clusters and deduplicated by respondent, so posting three copies of one shared text does not qualify you. Result: <span class="meth-value">155</span> of 1,072 respondents (14.5%).</dd>
+                        <dd><strong>The threshold is a documented judgement call, and the plan it implements is self-inconsistent.</strong> <code>PLAN.md</code> §3.5 describes the population as "shares ≥1 verbatim ≥200-character answer with ≥2 others" and reports ~154 respondents; §6 specifies a "≥3 clustered strings" rule. On the shipped data those two readings give 177 and 106 respondents respectively — neither lands on the ~154 the digest reports. The implemented rule keeps §6's threshold of 3 but applies it to <em>co-sharers</em> rather than strings, which reproduces the digest (155). <code>n_shared_texts</code> carries the raw count of distinct clustered strings per respondent, so anyone who prefers a different cut can compute it without re-running the pipeline.</dd>
+                        <dd>Consequence for every statistic on this site: a headline of the form "N respondents said X" is inflated wherever X is template text. The integrity page recomputes the Q71 opposition share with and without dedup and shows the delta rather than picking one.</dd>
+                        <span class="meth-source">data/derived/respondent_flags.csv · MIN_TEMPLATE_CO_SHARERS = 3</span>
+                    </div>
+
+                    <div>
+                        <dt>Vector cluster</dt>
+                        <dd>A respondent's <em>scale vector</em> is the sorted tuple of <code>(question_number, answer_numeric)</code> over every scale question they answered — the 20 questions in <code>v_scale_answers</code>, i.e. all <code>likert_1_5</code> plus <code>scale_labeled</code>. Off-scale picks are absent by construction, since they carry a NULL score. Respondents whose <strong>full</strong> vectors are byte-identical and at least <strong>10 items</strong> long form a cluster.</dd>
+                        <dd>"Full" is the strict part: two respondents who agree on ten questions but differ on an eleventh are <em>not</em> clustered. That makes a match hard to produce by coincidence and is why an identical 20-item vector is treated as evidence of shared drafting rather than shared opinion. On the shipped build: <span class="meth-value">18</span> clusters, the longest identical vector running <span class="meth-value">20</span> items.</dd>
+                        <span class="meth-source">data/derived/vector_clusters.csv · MIN_VECTOR_LENGTH = 10</span>
+                    </div>
+
+                    <div>
+                        <dt>Blocs</dt>
+                        <dd>Blocs are <strong>hand-identified first and verified second</strong> — not discovered by the script. Each is hardcoded as a definition in <code>BLOC_DEFS</code>, resolved against the data at run time, and size-checked (<code>--verify</code> fails the run if a bloc has drifted). The resolution rule differs per bloc, and knowing which rule applies matters for reading the claim:</dd>
+                        <dd>
+                            <div class="meth-table-wrap" tabindex="0">
+                                <table class="data-table">
+                                    <caption class="sr-only">The eight blocs, the rule that resolves each, and its membership on the shipped build</caption>
+                                    <thead><tr><th scope="col">Bloc</th><th scope="col">Resolution rule</th><th scope="col">Members</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>pro_hourly</td><td>exact 7-anchor signature <code>5,5,4,5,5,4,4</code></td><td class="num">22 (17 named + 5 redacted)</td></tr>
+                                        <tr><td>luxshare</td><td>entity family</td><td class="num">12 (12 named)</td></tr>
+                                        <tr><td>avary</td><td>a specific vector cluster</td><td class="num">6 (5 named + 1 redacted)</td></tr>
+                                        <tr><td>semi</td><td>a specific vector cluster</td><td class="num">6 (2 named + 4 redacted)</td></tr>
+                                        <tr><td>greece</td><td>a specific vector cluster</td><td class="num">4 (2 named + 2 redacted)</td></tr>
+                                        <tr><td>korea</td><td>a shared-text component</td><td class="num">3 (0 named + 3 redacted)</td></tr>
+                                        <tr><td>eiga_siga</td><td>organisation name patterns</td><td class="num">2 (2 named)</td></tr>
+                                        <tr><td>fepc_tepco</td><td>organisation name patterns</td><td class="num">2 (2 named)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </dd>
+                        <dd>Membership overlaps. The Greek cluster sits <em>inside</em> the pro-hourly bloc, so <code>bloc</code> is a pipe-joined list in definition order, narrowest first — <code>bloc.split("|")[0]</code> is a respondent's primary bloc. Redacted members are counted, never named and never guessed at.</dd>
+                        <span class="meth-source">scripts/analytics/derive_flags.py → BLOC_DEFS · candidates from PLAN.md §3.5</span>
+                    </div>
+
+                    <div>
+                        <dt>Entity families</dt>
+                        <dd>A curated regular-expression map over the free-text <code>organization</code> field, grouping filings that came from one corporate group or institution. Nine families on the shipped build: luxshare (12), avary (5), engie (3), edf (2), rio_tinto (2), deloitte (2), edinburgh (2), mit (2), action_speaks_louder (2).</dd>
+                        <dd>Two details make the difference between a family that works and one that quietly misses half its members. Luxshare filed under both Latin and Chinese trading names, so the pattern matches <code>luxshare|立讯</code> and resolves <strong>12</strong> respondents where the digest's Latin-script-only count was 9. And <code>MIT</code> is matched <em>case-sensitively</em>, because a lowercase "mit" is the German preposition and would otherwise capture every German-language answer.</dd>
+                        <dd>This is a patch over uncontrolled free text, not a resolution of it — see the limitation on organisation names in section&nbsp;5. Its purpose is the narrow one of showing that 1,072 respondents are not 1,072 independent entities.</dd>
+                        <span class="meth-source">scripts/analytics/derive_flags.py → ENTITY_FAMILIES · names from PLAN.md §3.6</span>
+                    </div>
+
+                    <div>
+                        <dt>Citation signals</dt>
+                        <dd>Eight regular expressions run over every free-text answer: <code>url</code>, <code>doi</code>, <code>etal</code>, <code>peer_review</code>, <code>pdf</code>, <code>preprint</code> (arxiv / ssrn / zenodo / biorxiv), <code>journal</code>, <code>paren_year</code>. <code>citations.csv</code> records an answer matching <em>any</em> signal: <span class="meth-value">812</span> answers from <span class="meth-value">258</span> respondents.</dd>
+                        <dd><code>has_citation</code> is deliberately stricter, counting only the seven <strong>hard</strong> signals and excluding <code>paren_year</code> — a bare "(2024)" in a sentence is not a citation. That gives <span class="meth-value">675</span> answers from <span class="meth-value">203</span> respondents (18.9% of all 1,072). URLs alone: 613 answers from 172 respondents.</dd>
+                        <dd>Two things a citation signal is not. It is not a claim about quality: the survey never asks whether a source is peer-reviewed, so a link to a journal article and a link to a blog post both register as <code>url</code>. And it is not independent evidence when it travels inside template text — duplicated long answers carry citations too, so any citation count must be deduplicated on the normalized-text hash before it is reported.</dd>
+                        <dd>Named respondents carry citation signals at <span class="meth-value">28.3%</span> (141 of 499) against <span class="meth-value">10.8%</span> for redacted respondents (62 of 573) — a 2.6× gap that runs the same direction as the redaction gradient in section&nbsp;5, and one more reason a named-only read of this consultation looks different from the whole.</dd>
+                        <span class="meth-source">data/derived/citations.csv · SIGNAL_PATTERNS, HARD_SIGNALS</span>
+                    </div>
+
+                    <div>
+                        <dt>Domain classes</dt>
+                        <dd>Every matched URL is reduced to its registrable domain — a small public-suffix list keeps <code>bbc.co.uk</code> from collapsing to <code>co.uk</code> — then classified against a curated map held in the script. Unmapped domains fall to <code>other</code>. On the shipped build, <span class="meth-value">206</span> distinct domains:</dd>
+                        <dd>
+                            <ul>
+                                <li><code>peer_reviewed</code> (11 domains) — journal and publisher hosts: sciencedirect, cell.com, nature, PNAS, doi.org, Springer, Wiley, IOP and similar.</li>
+                                <li><code>peer_reviewed_or_preprint</code> (3) — SSRN, arXiv, Zenodo. Kept as a <em>separate</em> class rather than merged into the one above, because a preprint has not been peer-reviewed and calling it so would overstate the evidence base. These three are heavily used: SSRN alone appears in 97 answers.</li>
+                                <li><code>government</code> (32) — <code>.gov</code>, europa.eu, IEA, NREL, LBNL, national regulators.</li>
+                                <li><code>advocacy</code> (13) — energytag.org, resource-solutions.org, theclimategroup.org, cebuyers.org, zerogrid.org and similar campaign or standard-promotion sites.</li>
+                                <li><code>data_vendor</code> (4) · <code>standard_setter</code> (2, ghgprotocol.org) · <code>shortener</code> (2).</li>
+                                <li><code>other</code> (139) — everything unmapped.</li>
+                            </ul>
+                        </dd>
+                        <dd>Two honest limits. <strong>Shorteners are unverifiable:</strong> tinyurl.com (16 answers, 9 respondents) and bit.ly (1) hide their targets, and nothing in this pipeline resolves them — a shortened link is counted as a citation signal but its destination is unknown. And <strong>139 of 206 domains are unclassified.</strong> The class map covers the domains that appear often enough to matter for the aggregate picture; the long tail is genuinely uncategorised, so class shares should be read as shares of classified traffic, not of all links.</dd>
+                        <span class="meth-source">data/derived/domains.csv · DOMAIN_CLASS, CLASS_BY_SUFFIX</span>
+                    </div>
+
+                    <div>
+                        <dt>Evidence-basis flags</dt>
+                        <dd>Booleans read straight from respondents' own answers, not inferred: <code>evidence_empirical</code>, <code>evidence_operational</code> and <code>evidence_general_only</code> come from the Q138 multi-select (<code>is_canonical = 1</code> selections only), and <code>readiness_basis</code> from the Q122 answer text. These are self-reports about the basis of a respondent's own view — which is what makes them useful and also what caps what they can support.</dd>
+                        <dd>The Q158 exemption-evidence free text is a separate, hand-coded layer: all 297 answers were read and coded into <code>data/derived/q158_evidence_coding.csv</code> against nine codes, multiple codes per answer allowed. Frequencies: feasibility_argument 222, cost_argument 163, data_access_argument 148, sme_equity_argument 122, no_evidence_assertion 67, other 35, anecdote_only 16, cites_study 16, cites_own_data 9.</dd>
+                        <span class="meth-source">data/derived/respondent_flags.csv · data/derived/q158_evidence_coding.csv</span>
+                    </div>
+
+                    <div>
+                        <dt>The <code>audited_class</code> vocabulary</dt>
+                        <dd>Self-classification is unreliable in this dataset in both directions — trade bodies filed as "NGO/civil society", think tanks and companies filed as "Academia/research", and actual companies filed as "Industry group". Every <strong>named</strong> respondent (499 rows) therefore carries an audited classification alongside their claimed one, drawn from this closed 15-value vocabulary:</dd>
+                        <dd>
+                            <div class="meth-table-wrap" tabindex="0">
+                                <table class="data-table">
+                                    <caption class="sr-only">The fifteen audited_class values and their definitions</caption>
+                                    <thead><tr><th scope="col">Value</th><th scope="col">Definition</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><code>academic_institution</code></td><td>A university, college or a research group inside one.</td></tr>
+                                        <tr><td><code>think_tank</code></td><td>A research and advocacy organisation outside the academy.</td></tr>
+                                        <tr><td><code>ngo_civil_society</code></td><td>A non-profit pursuing a public-interest mission, not a members' trade body.</td></tr>
+                                        <tr><td><code>trade_association</code></td><td>A body whose members are companies in an industry, funded by them.</td></tr>
+                                        <tr><td><code>business_coalition</code></td><td>A cross-industry corporate platform or buyers' alliance.</td></tr>
+                                        <tr><td><code>company</code></td><td>A commercial firm answering for itself.</td></tr>
+                                        <tr><td><code>consultancy</code></td><td>A firm selling advisory or inventory-preparation services.</td></tr>
+                                        <tr><td><code>data_vendor</code></td><td>A firm selling data, certificates or software for GHG accounting.</td></tr>
+                                        <tr><td><code>financial</code></td><td>A bank, asset manager, insurer or investor group.</td></tr>
+                                        <tr><td><code>government</code></td><td>A ministry, agency, regulator or intergovernmental organisation.</td></tr>
+                                        <tr><td><code>registry_operator</code></td><td>An operator of a certificate registry or tracking system.</td></tr>
+                                        <tr><td><code>standards_body</code></td><td>A standard setter, programme, or verification/assurance provider.</td></tr>
+                                        <tr><td><code>individual</code></td><td>A person answering in a personal capacity, no organisation.</td></tr>
+                                        <tr><td><code>unverifiable</code></td><td>Identity withheld, so the claim cannot be checked.</td></tr>
+                                        <tr><td><code>placeholder</code></td><td>The organisation field holds a placeholder, not an identifiable body.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </dd>
+                        <dd><strong>Evidence hierarchy for the <code>basis</code> string</strong> (capped at 200 characters, and it must say which rung it used): the legal form in the organisation's own name (GmbH / LLC / Ltd / SA → company; "Association" / "Council" / "Federation" → trade association) → the respondent's own <code>*_other</code> write-ins, which frequently state it outright → their free-text self-descriptions elsewhere in the survey → common knowledge of well-known bodies. <strong>No web research:</strong> the audit has to be reproducible from the dataset plus common knowledge, so genuinely unknown entities are marked <code>unverifiable</code> with <code>confidence = low</code> rather than guessed at. <code>confidence</code> is <code>high</code> for a legal form or a self-statement, <code>medium</code> for a well-known entity, <code>low</code> for a judgement call.</dd>
+                        <dd>Redacted respondents are never audited — there is nothing to audit, so they are <code>unverifiable</code> by construction rather than by finding. When claimed and audited agree, the row is still emitted, so the "no change" cases are visible alongside the reclassifications.</dd>
+                        <span class="meth-source">reference/org_audit.csv · spec: plans/mbm-dashboard/prompts/P20-org-audit.md</span>
+                    </div>
+
+                    <div>
+                        <dt>Quote curation criteria</dt>
+                        <dd>106 quotations across nine policy levers, 4–6 per lever per side (fewer where a side is genuinely thin), selected against four criteria applied in order:</dd>
+                        <dd>
+                            <ul>
+                                <li><strong>Substantive</strong> — argues a mechanism, cites evidence, or gives a concrete operational detail. Boilerplate agreement is excluded however representative it is.</li>
+                                <li><strong>Diverse</strong> — spread across organisation types, geographies, and named as well as redacted respondents.</li>
+                                <li><strong>Not template-duplicated</strong> — checked against the same normalized-hash duplicate map described above. Where a template text <em>is</em> a bloc's canonical argument and belongs in the record, it appears exactly once and carries its cluster hash as a visible badge. <span class="meth-value">13</span> of the 106 quotes are badged this way.</li>
+                                <li><strong>Quotable at ≤600 characters</strong> — a clean verbatim substring, never a paraphrase, with elisions marked <code>[…]</code>.</li>
+                            </ul>
+                        </dd>
+                        <dd>Attribution is <code>"Organisation — Org type, Country"</code> for named respondents and <code>"Redacted — Org type, Country"</code> otherwise. A redacted respondent is never named and never guessed at, even where their text hints at their identity. The verbatim property is not taken on trust: <code>validate_frontend_data.py</code> asserts that every non-elided segment of every quote is a substring of that respondent's stored answer to that question, and fails the build otherwise.</dd>
+                        <dd>The curation is balanced by construction — both sides' strongest available material, not a case. Where a side's best material is template text, that is reported rather than padded around with weaker singletons.</dd>
+                        <span class="meth-source">reference/curated_quotes.json · spec: plans/mbm-dashboard/prompts/P21-quote-curation.md</span>
+                    </div>
+
+                    <div>
+                        <dt>Privacy and noise guard</dt>
+                        <dd>The exporter never emits a breakdown for a segment value with fewer than 5 respondents overall. Those cells carry an <code>{"n": "&lt;5"}</code> sentinel instead of counts, and the heatmap renders them hatched with no value printed — never as a zero, which would read as a finding. This is both a privacy measure on a dataset where half the respondents asked not to be identified, and a noise measure: a mean over three answers is not a segment result.</dd>
+                        <span class="meth-source">scripts/analytics/export_frontend.py · asserted by validate_frontend_data.py</span>
+                    </div>
+
+                </dl>
+            </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- 5. KNOWN LIMITATIONS                                             -->
+        <!-- ================================================================ -->
+        <section class="content-section" id="limitations">
+            <h2 class="section-title">5. Known limitations</h2>
+            <p class="section-subtitle">What this dataset cannot tell you, stated as plainly as what it can.</p>
+
+            <div class="grid-2col">
+
+                <div class="card card-spacious meth-prose scroll-reveal">
+                    <h3 class="meth-card-title">A consultation is not a poll</h3>
+                    <p>The 1,072 respondents are <strong>self-selected</strong> from an unbounded population. There is no sampling frame, no weights, and no way to estimate who did not respond. Nothing here supports a statement about what "the market" or "stakeholders" believe.</p>
+                    <p>Response counts measure <strong>mobilisation</strong> — who turned up and who organised — not truth and not prevalence. That cuts in every direction: 155 respondents share substantial template text, and the coordinated groups on both sides of the hourly-matching question are visible in the data. A proposal opposed 70&nbsp;:&nbsp;22 in this consultation has been opposed by the people who filed, which is a different claim from being wrong.</p>
+                    <p>Only 342 respondents answered all seven MBM stance anchors, though 978 answered at least one. Anchor-to-anchor comparisons are therefore not a fixed panel: the population shifts between questions, and part of any difference between two anchors is a difference in who chose to answer.</p>
+                </div>
+
+                <div class="card card-spacious meth-prose scroll-reveal">
+                    <h3 class="meth-card-title">Redaction bias: named-only reads skew supportive</h3>
+                    <p>573 of 1,072 respondents (53.5%) requested redaction, so only <strong>499 responses are attributable</strong>. Redaction is not evenly distributed — companies redact at 69.7% and financial institutions at 70.8%, against 22.7% for academia and 20.0% for data/analytics providers.</p>
+                    <p>And redacted respondents are <strong>less supportive of almost every proposal</strong>: hourly matching 1.81 against 2.37 for named respondents, fossil fallback 2.76 against 3.41, residual-mix definition 3.30 against 3.80, feasibility-measure sufficiency 2.01 against 2.66. The legacy clause is the single reversal (4.63 redacted against 4.51 named).</p>
+                    <p>The consequence is structural, not incidental: <strong>any headline built only on attributable responses skews supportive</strong> — and the organisation browser, the quote attributions and the entire legitimacy audit are named-only by construction. Read them knowing they over-represent the more supportive half. <code>country</code>, <code>organization_type</code> and <code>sector</code> are populated for all 1,072, so those remain the reliable segmentation dimensions.</p>
+                </div>
+
+                <div class="card card-spacious meth-prose scroll-reveal">
+                    <h3 class="meth-card-title">Response rates vary enormously — always divide by n</h3>
+                    <p>Questions range from 1,072 answers (the profile questions) down to <strong>75</strong> (Q13, Q110). Within the MBM anchors alone: Q71 and Q83 drew ~900 answers, Q97 and Q124 drew 522. The median respondent answered 46 of 166 substantive questions; 88 answered more than 75% of them.</p>
+                    <p>So a raw count of option picks conflates "most people disagree" with "most people skipped it", and no percentage on this site is shown without its base. Multi-select percentages sum to more than 100% by design, and per-respondent booleans are built from <code>response_selections</code> rather than option totals.</p>
+                    <p><strong>A trap worth naming.</strong> SQLite columns in this database are TEXT-typed, so numeric comparisons must cast explicitly. <code>WHERE substantive_completion_pct &gt; 75</code> compares <em>strings</em> and returns 120; <code>WHERE substantive_completion_pct+0.0 &gt; 75</code> returns 88. The root <code>README.md</code>'s "only 120 respondents answered more than 75%" and "43 answered under 10%" are the uncast comparisons — numerically the figures are <strong>88</strong> and <strong>173</strong>. This page uses the cast values. Write <code>+0</code> or <code>+0.0</code> into every comparison and aggregate.</p>
+                </div>
+
+                <div class="card card-spacious meth-prose scroll-reveal">
+                    <h3 class="meth-card-title">Organisation names are uncontrolled free text</h3>
+                    <p>Q4 and Q5 are free-text fields, so <code>organization</code> is not a controlled vocabulary. Across 499 named respondents there are 494 distinct strings; one is the placeholder <code>"Not provided"</code>, and the longest runs <strong>3,890 characters</strong> of pasted prose rather than a name. The same body appears under different spellings, in different scripts, with and without legal suffixes.</p>
+                    <p>Practical consequences: truncate organisation labels before displaying them, and <strong>join on <code>respondent_id</code> only</strong> — never on name. The entity families in section&nbsp;4 are a curated patch over the worst of this, not a resolution of it, and they will miss any group whose spellings nobody thought to pattern-match.</p>
+                </div>
+
+                <div class="card card-spacious meth-prose scroll-reveal">
+                    <h3 class="meth-card-title">Truncated answers and paste artefacts</h3>
+                    <p>The survey tool capped free text at <strong>4,000 characters</strong>. Eight answers hit the cap and carry <code>likely_truncated = 1</code>; their argument may simply stop mid-sentence, so a missing conclusion in one of those answers is a limit of the instrument and not a position.</p>
+                    <p>Around 1,900 exotic space characters — non-breaking, narrow-no-break, thin, ideographic, zero-width — arrived with answers pasted out of Word and are normalised at build time. Two Q118 answers arrived as JSON-ish literals (<code>["4 - Mostly ready"]</code>) and are normalised to the plain label. Q140 and Q174 mix write-ins into their option lists and are flagged <code>review_option_split = 1</code>: filter <code>is_canonical = 1</code>, and re-read <code>question_options</code> if you disagree with where the line was drawn. Q67's top two options overlap as worded, so their split is not a clean preference.</p>
+                </div>
+
+                <div class="card card-spacious meth-prose scroll-reveal">
+                    <h3 class="meth-card-title">Q183: protest years</h3>
+                    <p>Q183 asks for a uniform effective date as a <strong>free-text year</strong>, not a picklist (n=207). Seventeen answers fall above 2050, including <strong>eleven 2099s</strong> — protest or sentinel values, not forecasts. They are flagged rather than dropped, and never averaged in blindly: including them moves the mean by years.</p>
+                    <p>The question is also framed counterfactually — "if a uniform effective date was applied rather than a legacy clause" — so an answer to it <strong>does not imply the respondent prefers that approach</strong>. Reading the Q183 distribution as support for a uniform date inverts the meaning for a large share of respondents, most of whom supported the legacy clause instead (Q171 mean 4.58, the tightest consensus in the survey).</p>
+                </div>
+
+            </div>
+
+            <div class="insight-box insight-warn scroll-reveal">
+                <strong>What the legitimacy audit cannot claim.</strong> The classification audit and the coordination analysis are the sharpest instruments on this site, and their limits need stating as precisely as their findings.
+                <ul class="meth-callout-list">
+                    <li><strong>Redaction is permitted, and unverifiable is not a verdict.</strong> Requesting redaction was an option the consultation offered. <code>unverifiable</code> means an identity was withheld so a claim cannot be checked — it does not mean illegitimate, and no redacted respondent is named, guessed at, or inferred anywhere on this site.</li>
+                    <li><strong>Coordinated and template submissions are lawful consultation behaviour, and they occur on all sides.</strong> Shared text shows shared drafting. It is evidence about independence — a shared citation is not corroboration — and not evidence of wrongdoing.</li>
+                    <li><strong>Classification is not accusation.</strong> Recording that a body is a trade association, a think tank or a data vendor describes what it is; it says nothing about whether its argument is right. For the same reason a certification body and an industry group are never summed into one headline: reclassifications into business-interest classes and reclassifications into finer non-profit classes are reported as two separate numbers.</li>
+                    <li><strong>It cannot measure motive, funding, or correctness.</strong> Interest and accuracy are independent — a respondent with a commercial stake can be right, and the data-vendor and corporate fingerprints are presented symmetrically for that reason. The audit reads names, self-descriptions and write-ins; it does not read intentions.</li>
+                    <li><strong>It carries a confidence field because some calls are judgement.</strong> <code>low</code> means exactly that. No web research was used, so a well-known body is classified from common knowledge and an obscure one is left <code>unverifiable</code> rather than resolved.</li>
+                    <li><strong>Small-n caveats apply throughout.</strong> Several organisation types have single-digit bases on the later anchors (financial institutions n=7–8 on Q97–Q124; government n=8–14), and any segment under 5 respondents is suppressed entirely rather than shown.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ================================================================ -->
+        <!-- 6. REPRODUCE IT                                                  -->
+        <!-- ================================================================ -->
+        <section class="content-section" id="reproduce">
+            <h2 class="section-title">6. Reproduce it</h2>
+            <p class="section-subtitle">Six commands take you from the published spreadsheet to this site. Every one below was run against this commit; the output quoted is what it printed.</p>
+
+            <div class="card card-spacious scroll-reveal">
+                <p class="meth-kicker">Step 1 — rebuild the tidy dataset from the source workbook</p>
+                <pre class="meth-cmd" tabindex="0">pip install openpyxl
+python3 scripts/build_dataset.py</pre>
+                <span class="meth-ran">Ran in ~22 s. The only step that needs a dependency — <code>openpyxl</code>, to read the <code>.xlsx</code>. Deterministic: the same input gives byte-identical output, which is why re-running it is safe. One wrinkle worth knowing: re-running rewrites <code>data/scope2_consultation.xlsx</code> with a fresh zip timestamp, so <code>git status</code> reports that one file as modified even though its contents are unchanged — <code>git checkout -- data/scope2_consultation.xlsx</code> resets it.</span>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <p class="meth-kicker">Step 2 — check the dataset</p>
+                <pre class="meth-cmd" tabindex="0">python3 scripts/validate_dataset.py
+<span class="meth-cmd-out">27/27 checks passed</span></pre>
+                <span class="meth-ran">Row counts, redaction flags, view integrity, the eleven Q183 sentinel years, and the cell-for-cell reconciliation against the source workbook. Any failure here means the rest of the chain is meaningless.</span>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <p class="meth-kicker">Step 3 — derive the coordination, citation and evidence flags</p>
+                <pre class="meth-cmd" tabindex="0">python3 scripts/analytics/derive_flags.py
+<span class="meth-cmd-out">vector clusters           18
+citation respondents      203
+citation answers          812
+linked domains            206
+blocs: pro_hourly n=22 · luxshare n=12 · avary n=6 · semi n=6 · greece n=4 · korea n=3 · eiga_siga n=2 · fepc_tepco n=2
+entity families: 9
+verification: all bloc and entity-family sizes as expected</span></pre>
+                <span class="meth-ran">Ran in ~4 s, stdlib only. Writes the five tables in <code>data/derived/</code>. Add <code>--verify</code> to re-check every bloc and entity-family size against its expected value and fail on drift.</span>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <p class="meth-kicker">Step 4 — export the frontend data contract</p>
+                <pre class="meth-cmd" tabindex="0">python3 scripts/analytics/export_frontend.py
+<span class="meth-cmd-out">export_frontend: wrote 9 files + 499 org profiles to frontend/data
+  audit.json 95.0 KB · clusters.json 169.8 KB · evidence.json 34.2 KB
+  likert.json 74.0 KB · meta.json 42.2 KB · quotes.json 64.1 KB
+  reasons.json 49.3 KB · respondents.json 145.5 KB · selects.json 47.3 KB
+  orgs/ (499 files) 13163.9 KB total, largest 159.9 KB
+  audit: from reference/org_audit.csv; quotes: 9 levers</span></pre>
+                <span class="meth-ran">Ran in ~1 s. Reads the database, <code>data/derived/</code>, and the two curation inputs, and fails loudly if a curation file is missing. Pass <code>--allow-missing-curation</code> to emit anyway — <code>audit.json</code> then falls back to claimed classes with <code>"provisional": true</code> and <code>quotes.json</code> comes out empty, so pages still render.</span>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <p class="meth-kicker">Step 5 — validate the contract against the database</p>
+                <pre class="meth-cmd" tabindex="0">python3 scripts/analytics/validate_frontend_data.py
+<span class="meth-cmd-out">96 checks passed, 0 failed
+validate_frontend_data: all checks passed</span></pre>
+                <span class="meth-ran">Re-derives the hard numbers from SQLite rather than trusting the exporter: every likert cell sums to its own <code>n</code>, every segment sums to 1,072, no question mixes constructs, every <code>org_index</code> row has a profile file, every quote is verbatim in the database, and every file is inside its size budget. Exits non-zero on any failure.</span>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <p class="meth-kicker">Step 6 — serve the site</p>
+                <pre class="meth-cmd" tabindex="0">cd frontend &amp;&amp; python3 -m http.server 8000
+<span class="meth-cmd-out"># then open http://localhost:8000/</span></pre>
+                <span class="meth-ran">A static server is required, not optional: <code>fetch()</code> does not work under <code>file://</code>, so opening the HTML directly leaves every data panel empty. Add <code>?fixtures=1</code> to any URL to render against the hand-written miniatures in <code>frontend/data/fixtures/</code> instead of the real export.</span>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3 class="meth-card-title">What each step writes, and what is never touched</h3>
+                <div class="meth-table-wrap" tabindex="0">
+                    <table class="data-table">
+                        <caption class="sr-only">Which paths each pipeline step writes, and which paths are read-only</caption>
+                        <thead><tr><th scope="col">Path</th><th scope="col">Written by</th><th scope="col">Status</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>S2-…-RawData-2026.07.29.xlsx</code></td><td>—</td><td>Source of record. Committed unmodified, never written.</td></tr>
+                            <tr><td><code>data/</code> (db, CSVs, manifest)</td><td><code>build_dataset.py</code></td><td>Fully regenerated from the workbook. Never hand-edited.</td></tr>
+                            <tr><td><code>data/derived/</code></td><td><code>derive_flags.py</code></td><td>Additive. The only thing this project writes inside <code>data/</code>.</td></tr>
+                            <tr><td><code>reference/question_labels.csv</code></td><td>hand-curated</td><td>Build input. Editing it changes the codebook.</td></tr>
+                            <tr><td><code>reference/org_audit.csv</code></td><td>hand-curated</td><td>Export input. The classification audit.</td></tr>
+                            <tr><td><code>reference/curated_quotes.json</code></td><td>hand-curated</td><td>Export input. The quotation set.</td></tr>
+                            <tr><td><code>frontend/data/*.json</code></td><td><code>export_frontend.py</code></td><td>Fully regenerated. Deterministic, sorted keys, 2dp floats.</td></tr>
+                            <tr><td><code>frontend/data/fixtures/</code></td><td>hand-written</td><td>Miniatures for offline frontend work. Not generated.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="insight-box scroll-reveal">
+                <strong>Disagreeing with an interpretation.</strong> Every editorial judgement in this dataset lives in exactly two places: <code>scripts/survey_meta.py</code> (section groupings, scale constructs and anchors, ordinal ladders, off-scale labels, closed vocabularies) and the <code>reference/</code> curation files (question labels, the organisation audit, the quotations). Change one, re-run the six commands above, and the whole site follows. There is nowhere else a judgement is hiding.
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Scope 2 Public Consultation Response Explorer — methodology, derived-field definitions and known limitations"></footer>
+
+    <!-- Live cross-check: confirm the exported contract still agrees with the
+         provenance counts documented above. The numbers are already correct in
+         the HTML (transcribed from data/manifest.json), so a failed or skipped
+         fetch changes nothing and is never surfaced as an error. -->
+    <script>
+    (function() {
+        'use strict';
+        if (!window.S2Data || S2Data.isFixtures()) return;   // fixtures are miniatures — nothing to check against
+        var EXPECTED = { respondents: 1072, questions: 180, answers: 70089, redacted: 573 };
+        var CELLS = {
+            respondents: 'statRespondents',
+            questions: 'statQuestions',
+            answers: 'statAnswers',
+            redacted: 'statRedacted'
+        };
+        S2Data.load('meta').then(function(meta) {
+            var totals = (meta && meta.totals) || {};
+            var mismatched = [];
+            Object.keys(EXPECTED).forEach(function(key) {
+                var live = totals[key];
+                if (typeof live !== 'number') return;
+                var el = document.getElementById(CELLS[key]);
+                if (el) el.textContent = live.toLocaleString('en-US');
+                if (live !== EXPECTED[key]) mismatched.push(key + ' ' + live + ' (documented ' + EXPECTED[key] + ')');
+            });
+            var note = document.getElementById('livecheck');
+            if (!note) return;
+            note.textContent = mismatched.length
+                ? 'Live check against frontend/data/meta.json: differs from the documented manifest — ' +
+                  mismatched.join(', ') + '. Re-run the export in section 6.'
+                : 'Live check against frontend/data/meta.json: the exported contract still reports ' +
+                  '1,072 respondents, 180 questions, 70,089 answers and 573 redacted — matching the manifest above.';
+            note.hidden = false;
+        }, function() { /* not served, or export absent: the documented counts already stand */ });
+    })();
+    </script>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
