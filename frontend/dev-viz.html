@@ -1,0 +1,2250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization Exploration (P35) | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Throwaway harness comparing visualization alternatives against the real consultation exports. Linked from nowhere.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/segments.js"></script>
+    <script src="js/likert-viz.js"></script>
+    <script src="js/quote-cards.js"></script>
+    <script src="js/org-table.js"></script>
+
+    <style>
+    /* ====================================================================
+       P35 prototype-only styles.
+       Every value is a design token (DESIGN_SYSTEM.md rules 2, 3, 6, 7, 8).
+       Nothing here is a shared component — these are layout primitives for
+       chart forms that do not exist in shared.css yet. If a form graduates
+       to production, its rules move into styles/site.css.
+       ==================================================================== */
+
+    /* --- Side-by-side alternative frame --------------------------------- */
+    .p35-alts { display: grid; gap: var(--space-lg); }
+    .p35-alts-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .p35-alts-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    @media (max-width: 1100px) {
+        .p35-alts-2, .p35-alts-3 { grid-template-columns: minmax(0, 1fr); }
+    }
+    .p35-alt { min-width: 0; }
+    .p35-stacked { margin-top: var(--space-lg); }
+    .p35-alt-head {
+        display: flex; align-items: baseline; gap: var(--space-sm);
+        flex-wrap: wrap; margin-bottom: var(--space-sm);
+    }
+    .p35-alt-id {
+        font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+        letter-spacing: 0.09em; text-transform: uppercase;
+        color: var(--bg-page-white); background: var(--navy);
+        padding: 3px 8px; border-radius: var(--radius-pill);
+    }
+    .p35-alt-title {
+        font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
+        color: var(--navy); margin: 0;
+    }
+    .p35-verdict {
+        font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700;
+        letter-spacing: 0.07em; text-transform: uppercase;
+        padding: 3px 8px; border-radius: var(--radius-pill);
+        border: 1px solid var(--border);
+    }
+    .p35-verdict-win  { color: var(--green-text);  background: var(--wind-bg); }
+    .p35-verdict-ok   { color: var(--hydro-text);  background: var(--hydro-bg); }
+    .p35-verdict-no   { color: var(--red-text);    background: var(--storage-bg); }
+    .p35-note {
+        font-family: var(--font-body); font-size: 0.82rem; line-height: 1.6;
+        color: var(--text-muted); margin: var(--space-sm) 0 0;
+    }
+    .p35-note strong { color: var(--text-secondary); }
+    .p35-provenance {
+        font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.55;
+        color: var(--text-muted); background: var(--bg-subtle);
+        border-left: 3px solid var(--solar); border-radius: var(--radius-sm);
+        padding: var(--space-sm) var(--space-md); margin: var(--space-md) 0 0;
+    }
+
+    /* --- Q1: mosaic / mekko -------------------------------------------- */
+    .p35-mosaic { display: flex; gap: 3px; height: 320px; align-items: stretch; }
+    .p35-mosaic-col { display: flex; flex-direction: column; min-width: 0; }
+    .p35-mosaic-cap {
+        font-family: var(--font-data); font-size: 0.72rem; font-weight: 700;
+        color: var(--text-secondary); text-align: center; padding-bottom: 4px;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .p35-mosaic-stack {
+        flex: 1; display: flex; flex-direction: column;
+        border-radius: var(--radius-sm); overflow: hidden;
+    }
+    .p35-mosaic-seg {
+        display: flex; align-items: center; justify-content: center;
+        font-family: var(--font-data); font-size: 0.7rem; font-weight: 700;
+        color: var(--text-primary); overflow: hidden;
+        border-bottom: 1px solid var(--bg-card);
+    }
+    .p35-seg-empirical   { background: var(--wind-t); }
+    .p35-seg-operational { background: var(--hydro-t); }
+    .p35-seg-judgment    { background: var(--nuclear-t); }
+    .p35-seg-awareness   { background: var(--solar-t); }
+    .p35-seg-undisclosed { background: var(--gap-t); }
+
+    /* --- Q2: adjacency matrix ------------------------------------------ */
+    .p35-matrix-scroll { overflow-x: auto; padding-bottom: var(--space-sm); }
+    .p35-matrix {
+        display: grid; gap: 1px;
+        font-family: var(--font-data);
+    }
+    .p35-mx-rowlab {
+        font-size: 0.62rem; line-height: 13px; height: 13px;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        color: var(--text-secondary); padding-right: 6px; text-align: right;
+    }
+    .p35-mx-cell { width: 13px; height: 13px; border-radius: 1px; }
+    .p35-mx-0 { background: var(--bg-subtle); }
+    .p35-mx-diag { background: var(--border); }
+    .p35-mx-band {
+        width: 5px; height: 13px; border-radius: 1px; margin-right: 4px;
+    }
+
+    /* --- Q2: node-link network + bipartite ----------------------------- */
+    .p35-svg { display: block; width: 100%; height: auto; }
+    .p35-edge { stroke: var(--border); fill: none; }
+    .p35-edge-strong { stroke: var(--text-light); }
+    .p35-node { stroke: var(--bg-card); stroke-width: 1.2; }
+    .p35-nodelab {
+        font-family: var(--font-data); font-size: 8.5px;
+        fill: var(--text-secondary);
+    }
+    .p35-nodelab-hi { font-weight: 700; fill: var(--navy); }
+    .p35-axislab {
+        font-family: var(--font-data); font-size: 10px; font-weight: 600;
+        fill: var(--text-muted);
+    }
+    /* Bloc identity colors — tokens only, one per coordinated group. */
+    .p35-b-pro_hourly  { fill: var(--wind);       stroke: var(--wind); }
+    .p35-b-luxshare    { fill: var(--solar);      stroke: var(--solar); }
+    .p35-b-avary       { fill: var(--geothermal); stroke: var(--geothermal); }
+    .p35-b-semi        { fill: var(--ldes);       stroke: var(--ldes); }
+    .p35-b-greece      { fill: var(--green-h2);   stroke: var(--green-h2); }
+    .p35-b-korea       { fill: var(--battery8);   stroke: var(--battery8); }
+    .p35-b-eiga_siga   { fill: var(--fossil-oil); stroke: var(--fossil-oil); }
+    .p35-b-fepc_tepco  { fill: var(--nuclear);    stroke: var(--nuclear); }
+    .p35-b-uncarded    { fill: var(--red);        stroke: var(--red); }
+    .p35-b-none        { fill: var(--gap);        stroke: var(--gap); }
+    .p35-mx-b-pro_hourly { background: var(--wind); }
+    .p35-mx-b-luxshare   { background: var(--solar); }
+    .p35-mx-b-avary      { background: var(--geothermal); }
+    .p35-mx-b-semi       { background: var(--ldes); }
+    .p35-mx-b-greece     { background: var(--green-h2); }
+    .p35-mx-b-korea      { background: var(--battery8); }
+    .p35-mx-b-eiga_siga  { background: var(--fossil-oil); }
+    .p35-mx-b-fepc_tepco { background: var(--nuclear); }
+    .p35-mx-b-uncarded   { background: var(--red); }
+    .p35-mx-b-none       { background: var(--gap); }
+
+    /* --- Q2: bloc cards (baseline restatement) ------------------------- */
+    .p35-bloc-cards { display: grid; gap: var(--space-md);
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .p35-bloc-card {
+        background: var(--bg-card); border: 1px solid var(--border-light);
+        border-left: 3px solid var(--gap); border-radius: var(--radius-md);
+        padding: var(--space-md); box-shadow: var(--shadow-sm);
+    }
+    .p35-bloc-card-pro_hourly { border-left-color: var(--wind); }
+    .p35-bloc-card-luxshare   { border-left-color: var(--solar); }
+    .p35-bloc-card-avary      { border-left-color: var(--geothermal); }
+    .p35-bloc-card-semi       { border-left-color: var(--ldes); }
+    .p35-bloc-card-greece     { border-left-color: var(--green-h2); }
+    .p35-bloc-card-korea      { border-left-color: var(--battery8); }
+    .p35-bloc-card-eiga_siga  { border-left-color: var(--fossil-oil); }
+    .p35-bloc-card-fepc_tepco { border-left-color: var(--nuclear); }
+    .p35-bloc-name {
+        font-family: var(--font-heading); font-size: 0.92rem; font-weight: 700;
+        color: var(--navy); margin: 0 0 4px;
+    }
+    .p35-bloc-sig {
+        font-family: var(--font-data); font-size: 0.72rem; font-weight: 600;
+        color: var(--text-muted); margin-bottom: var(--space-sm);
+    }
+    .p35-bloc-members {
+        font-family: var(--font-body); font-size: 0.76rem; line-height: 1.55;
+        color: var(--text-secondary); margin: 0;
+    }
+
+    /* --- Q3: stance-strip variants ------------------------------------- */
+    .p35-dense-table { width: 100%; border-collapse: collapse; }
+    .p35-dense-table th, .p35-dense-table td {
+        text-align: left; padding: 5px var(--space-sm);
+        border-bottom: 1px solid var(--border-light);
+        font-family: var(--font-body); font-size: 0.78rem;
+        color: var(--text-secondary);
+    }
+    .p35-dense-table th {
+        font-family: var(--font-heading); font-size: 0.68rem; font-weight: 700;
+        letter-spacing: 0.06em; text-transform: uppercase;
+        color: var(--text-muted); border-bottom: 1px solid var(--border);
+        white-space: nowrap;
+    }
+    .p35-dense-name {
+        max-width: 260px; overflow: hidden; text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    /* C2 — 7-dot strip: constant footprint, color carries the score. */
+    .p35-dots { display: inline-flex; gap: 3px; align-items: center; }
+    .p35-dot {
+        width: 11px; height: 11px; border-radius: var(--radius-pill);
+        display: block;
+    }
+    .p35-dot-1 { background: var(--red-text); }
+    .p35-dot-2 { background: var(--orange-text); }
+    .p35-dot-3 { background: var(--text-muted); }
+    .p35-dot-4 { background: var(--hydro-text); }
+    .p35-dot-5 { background: var(--green-text); }
+    .p35-dot-na {
+        background: transparent; border: 1px dashed var(--border);
+        width: 9px; height: 9px;
+    }
+    /* C3 — tiny heatmap row: contiguous cells, tint carries the score. */
+    .p35-hmrow { display: inline-flex; border-radius: var(--radius-sm);
+        overflow: hidden; border: 1px solid var(--border-light); }
+    .p35-hmcell { width: 15px; height: 15px; display: block; }
+    /* Same five tokens as C1/C2 on purpose: the only variable under test
+       here is the form, not the palette. */
+    .p35-hmcell-1 { background: var(--red-text); }
+    .p35-hmcell-2 { background: var(--orange-text); }
+    .p35-hmcell-3 { background: var(--text-muted); }
+    .p35-hmcell-4 { background: var(--hydro-text); }
+    .p35-hmcell-5 { background: var(--green-text); }
+    .p35-hmcell-na {
+        background: repeating-linear-gradient(45deg,
+            var(--border) 0 1px, var(--bg-card) 1px 4px);
+    }
+    .p35-strip-key {
+        display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-md);
+        font-family: var(--font-body); font-size: 0.72rem;
+        color: var(--text-muted); margin-top: var(--space-sm);
+    }
+    .p35-strip-key span { display: inline-flex; align-items: center; gap: 5px; }
+
+    /* --- Q4: slopegraph / dumbbell ------------------------------------- */
+    .p35-slope-line { stroke-width: 2; fill: none; }
+    .p35-slope-down { stroke: var(--text-light); }
+    .p35-slope-up   { stroke: var(--solar); stroke-width: 3; }
+    .p35-slope-dot  { stroke: var(--bg-card); stroke-width: 1.5; }
+    .p35-slope-dot-down { fill: var(--text-muted); }
+    .p35-slope-dot-up   { fill: var(--solar); }
+    .p35-slope-lab {
+        font-family: var(--font-data); font-size: 10.5px;
+        fill: var(--text-secondary);
+    }
+    .p35-slope-lab-up { font-weight: 700; fill: var(--geothermal); }
+    .p35-slope-axis {
+        font-family: var(--font-heading); font-size: 11px; font-weight: 700;
+        fill: var(--text-muted); letter-spacing: 0.06em;
+    }
+    .p35-slope-grid { stroke: var(--border-light); stroke-width: 1; }
+    .p35-dumb-track { stroke: var(--border); stroke-width: 6;
+        stroke-linecap: round; }
+    .p35-dumb-move  { stroke-width: 6; stroke-linecap: round; }
+    .p35-dumb-down  { stroke: var(--storage-t); }
+    .p35-dumb-up    { stroke: var(--wind-t); }
+    .p35-dumb-named { fill: var(--navy); }
+    .p35-dumb-red   { fill: var(--solar); }
+
+    /* --- Q5: broken-axis histogram ------------------------------------- */
+    .p35-break-wrap { display: flex; align-items: stretch; gap: 0; }
+    .p35-break-main { flex: 1 1 auto; min-width: 0; }
+    .p35-break-gap {
+        flex: 0 0 26px; position: relative;
+        border-left: 1px dashed var(--border);
+        border-right: 1px dashed var(--border);
+        background: var(--bg-subtle);
+    }
+    .p35-break-gap::after {
+        content: '\002F\002F'; position: absolute; top: 42%; left: 50%;
+        transform: translate(-50%, 0); font-family: var(--font-data);
+        font-size: 0.8rem; font-weight: 700; color: var(--text-muted);
+    }
+    .p35-break-tail { flex: 0 0 150px; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Visualization Exploration</h1>
+        <div class="subtitle">P35 &mdash; presentation alternatives tried against the <em>real</em> exports in <code>data/</code>. Linked from nowhere, in no nav; the deliverable is <code>plans/mbm-dashboard/notes/P35-viz-recommendations.md</code>.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <section class="content-section">
+            <div class="insight-glass insight-glass-indigo">
+                <strong>What this page is.</strong> A throwaway comparison harness. Each
+                question from <code>prompts/P35-stub-viz-exploration.md</code> gets a row of
+                alternatives rendered from the same real data, so the choice is made on
+                evidence rather than taste. Every prototype obeys
+                <code>DESIGN_SYSTEM.md</code> (tokens only, no hex, no font literals) because
+                the winners are meant to graduate into production. It loads the real exports
+                by default; <code>?fixtures=1</code> switches to the hand-authored fixtures.
+            </div>
+        </section>
+
+        <!-- ================================================================
+             Q1 — EVIDENCE × STANCE
+             ================================================================ -->
+        <section class="content-section-wide" id="s1">
+            <h2 class="section-title">Q1 &middot; Evidence basis &times; stance (Q138 &times; Q71)</h2>
+            <p class="section-subtitle">Q138 is multi-select &mdash; 365 respondents made 538 selections (mean 1.47 each), so any &ldquo;share of answers&rdquo; framing sums to 147% and a 100%-stacked bar is a lie by construction. Four forms, same data.</p>
+
+            <div id="q1Provenance" class="p35-provenance"></div>
+
+            <div class="p35-alts p35-alts-2">
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">A1</span>
+                        <h3 class="p35-alt-title">100% stacked share of selections</h3>
+                        <span class="p35-verdict p35-verdict-no">rejected</span>
+                    </div>
+                    <div class="chart-container"><canvas id="q1Stacked"></canvas></div>
+                    <p class="p35-note" id="q1StackedNote"></p>
+                </div>
+
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">A2</span>
+                        <h3 class="p35-alt-title">Grouped bar, % of stance base, 95% CI</h3>
+                        <span class="p35-verdict p35-verdict-win">recommended</span>
+                    </div>
+                    <div class="chart-container"><canvas id="q1Grouped"></canvas></div>
+                    <p class="p35-note" id="q1GroupedNote"></p>
+                </div>
+            </div>
+
+            <div class="p35-alts p35-alts-2 p35-stacked">
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">A3</span>
+                        <h3 class="p35-alt-title">Small multiples, one panel per basis</h3>
+                        <span class="p35-verdict p35-verdict-ok">runner-up</span>
+                    </div>
+                    <div id="q1Small" class="p35-alts p35-alts-3"></div>
+                    <p class="p35-note" id="q1SmallNote"></p>
+                </div>
+
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">A4</span>
+                        <h3 class="p35-alt-title">Mekko on <em>strongest</em> basis claimed</h3>
+                        <span class="p35-verdict p35-verdict-ok">runner-up</span>
+                    </div>
+                    <div id="q1Mosaic"></div>
+                    <div id="q1MosaicKey" class="p35-strip-key"></div>
+                    <p class="p35-note" id="q1MosaicNote"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             Q2 — COALITION / BLOC STRUCTURE
+             ================================================================ -->
+        <section class="content-section-wide" id="s2">
+            <h2 class="section-title">Q2 &middot; Coalition and bloc structure</h2>
+            <p class="section-subtitle">Built from <code>clusters.json</code> as shipped: an edge joins two <em>named</em> respondents who share at least one verbatim &ge;200-character answer. Redacted co-signers are counted, never named.</p>
+
+            <div id="q2Provenance" class="p35-provenance"></div>
+
+            <div class="p35-alt chart-panel p35-stacked">
+                <div class="p35-alt-head">
+                    <span class="p35-alt-id">B1</span>
+                    <h3 class="p35-alt-title">Bloc cards &mdash; the current P34 answer</h3>
+                    <span class="p35-verdict p35-verdict-ok">keep, but not alone</span>
+                </div>
+                <div id="q2Cards" class="p35-bloc-cards"></div>
+                <p class="p35-note" id="q2CardsNote"></p>
+            </div>
+
+            <div class="p35-alt chart-panel p35-stacked">
+                <div class="p35-alt-head">
+                    <span class="p35-alt-id">B2</span>
+                    <h3 class="p35-alt-title">Adjacency matrix, ordered by component</h3>
+                    <span class="p35-verdict p35-verdict-win">recommended</span>
+                </div>
+                <div id="q2Matrix" class="p35-matrix-scroll"></div>
+                <p class="p35-note" id="q2MatrixNote"></p>
+            </div>
+
+            <div class="p35-alts p35-alts-2 p35-stacked">
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">B3</span>
+                        <h3 class="p35-alt-title">Node-link network (seeded layout)</h3>
+                        <span class="p35-verdict p35-verdict-ok">runner-up</span>
+                    </div>
+                    <div id="q2Network"></div>
+                    <p class="p35-note" id="q2NetworkNote"></p>
+                </div>
+
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">B4</span>
+                        <h3 class="p35-alt-title">Shared-text bipartite, largest component</h3>
+                        <span class="p35-verdict p35-verdict-ok">specialist</span>
+                    </div>
+                    <div id="q2Bipartite"></div>
+                    <p class="p35-note" id="q2BipartiteNote"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             Q3 — ORG STANCE DISPLAY AT TABLE DENSITY
+             ================================================================ -->
+        <section class="content-section-wide" id="s3">
+            <h2 class="section-title">Q3 &middot; Org-profile stance display at table density</h2>
+            <p class="section-subtitle">The same 14 rows of <code>respondents.json &rarr; org_index</code> under three encodings. The test that matters is <em>missing</em> anchors: only 161 of 499 orgs answered all seven, and 1,194 of 3,493 anchor slots (34%) are <code>null</code>.</p>
+
+            <div id="q3Provenance" class="p35-provenance"></div>
+
+            <div class="p35-alts p35-alts-3">
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">C1</span>
+                        <h3 class="p35-alt-title">Shipped bar strip</h3>
+                        <span class="p35-verdict p35-verdict-no">bug</span>
+                    </div>
+                    <div id="q3Current"></div>
+                    <p class="p35-note" id="q3CurrentNote"></p>
+                </div>
+
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">C2</span>
+                        <h3 class="p35-alt-title">7-dot strip</h3>
+                        <span class="p35-verdict p35-verdict-win">recommended</span>
+                    </div>
+                    <div id="q3Dots"></div>
+                    <p class="p35-note" id="q3DotsNote"></p>
+                </div>
+
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">C3</span>
+                        <h3 class="p35-alt-title">Tiny heatmap row</h3>
+                        <span class="p35-verdict p35-verdict-ok">runner-up</span>
+                    </div>
+                    <div id="q3Heat"></div>
+                    <p class="p35-note" id="q3HeatNote"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             Q4 — THE REDACTION STORY
+             ================================================================ -->
+        <section class="content-section-wide" id="s4">
+            <h2 class="section-title">Q4 &middot; The redaction story</h2>
+            <p class="section-subtitle">Named versus redacted mean on the seven support anchors, from <code>respondents.json &rarr; redaction_effect</code>. Constructs are <em>not</em> pooled: only the seven <code>support</code> anchors appear, because the same array also carries burden, cost and ordinal rows where 5 means the opposite thing.</p>
+
+            <div id="q4Provenance" class="p35-provenance"></div>
+
+            <div class="p35-alts p35-alts-3">
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">D1</span>
+                        <h3 class="p35-alt-title">Mini heatmap (current P30/P32)</h3>
+                        <span class="p35-verdict p35-verdict-ok">baseline</span>
+                    </div>
+                    <div id="q4Heat"></div>
+                    <p class="p35-note" id="q4HeatNote"></p>
+                </div>
+
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">D2</span>
+                        <h3 class="p35-alt-title">Slopegraph</h3>
+                        <span class="p35-verdict p35-verdict-win">recommended</span>
+                    </div>
+                    <div id="q4Slope"></div>
+                    <p class="p35-note" id="q4SlopeNote"></p>
+                </div>
+
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">D3</span>
+                        <h3 class="p35-alt-title">Dumbbell, sorted by shift</h3>
+                        <span class="p35-verdict p35-verdict-ok">runner-up</span>
+                    </div>
+                    <div id="q4Dumb"></div>
+                    <p class="p35-note" id="q4DumbNote"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             Q5 — Q183 PROTEST ANSWERS
+             ================================================================ -->
+        <section class="content-section-wide" id="s5">
+            <h2 class="section-title">Q5 &middot; Q183 protest answers</h2>
+            <p class="section-subtitle">207 respondents named a preferred uniform effective date. Seventeen fall after 2050 &mdash; eleven of them 2099.</p>
+
+            <div id="q5Provenance" class="p35-provenance"></div>
+
+            <div class="p35-alts p35-alts-3">
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">E1</span>
+                        <h3 class="p35-alt-title">Category bars (what dev.html does)</h3>
+                        <span class="p35-verdict p35-verdict-no">rejected</span>
+                    </div>
+                    <div class="chart-container-lg"><canvas id="q5Current"></canvas></div>
+                    <p class="p35-note" id="q5CurrentNote"></p>
+                </div>
+
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">E2</span>
+                        <h3 class="p35-alt-title">Linear axis + annotated protest bin</h3>
+                        <span class="p35-verdict p35-verdict-win">recommended</span>
+                    </div>
+                    <div class="chart-container-lg"><canvas id="q5Annotated"></canvas></div>
+                    <p class="p35-note" id="q5AnnotatedNote"></p>
+                </div>
+
+                <div class="p35-alt chart-panel">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">E3</span>
+                        <h3 class="p35-alt-title">Broken axis</h3>
+                        <span class="p35-verdict p35-verdict-no">rejected</span>
+                    </div>
+                    <div class="p35-break-wrap chart-container-lg">
+                        <div class="p35-break-main"><canvas id="q5BreakMain"></canvas></div>
+                        <div class="p35-break-gap" aria-hidden="true"></div>
+                        <div class="p35-break-tail"><canvas id="q5BreakTail"></canvas></div>
+                    </div>
+                    <p class="p35-note" id="q5BreakNote"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             Q6 — SHARED COMPONENTS AGAINST REAL DATA
+             ================================================================ -->
+        <section class="content-section-wide" id="s6">
+            <h2 class="section-title">Q6 &middot; Shipped components, real data</h2>
+            <p class="section-subtitle">Wave 3 pages (P30&ndash;P34) had not merged when this ran, so the subject here is the shared renderers from P11 fed the real exports instead of the toy fixtures they were built against. Everything below is <code>S2Viz</code> as shipped &mdash; no prototype code.</p>
+
+            <div class="p35-alt chart-panel">
+                <div class="p35-alt-head">
+                    <span class="p35-alt-id">F1</span>
+                    <h3 class="p35-alt-title">S2Viz.renderHeatmap &mdash; 22 rows &times; 15 org types</h3>
+                    <span class="p35-verdict p35-verdict-ok">holds up</span>
+                </div>
+                <div id="q6Heatmap"></div>
+                <p class="p35-note" id="q6HeatmapNote"></p>
+            </div>
+
+            <div class="p35-alts p35-alts-2 p35-stacked">
+                <div class="p35-alt glass-chart-panel flush">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">F2</span>
+                        <h3 class="p35-alt-title">S2Viz.renderDivergingBar &mdash; 7 anchors</h3>
+                        <span class="p35-verdict p35-verdict-ok">holds up</span>
+                    </div>
+                    <div class="chart-container-lg"><canvas id="q6Diverging"></canvas></div>
+                    <div class="legend" id="q6DivergingLegend"></div>
+                </div>
+                <div class="p35-alt glass-chart-panel flush">
+                    <div class="p35-alt-head">
+                        <span class="p35-alt-id">F3</span>
+                        <h3 class="p35-alt-title">S2Viz.renderOptionBars &mdash; Q74 reasons against</h3>
+                        <span class="p35-verdict p35-verdict-no">label bug</span>
+                    </div>
+                    <div class="chart-container-lg"><canvas id="q6Options"></canvas></div>
+                    <p class="p35-note" id="q6OptionsNote"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="P35 visualization exploration — prototypes, not published content"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+
+    <script>
+    // ========================================================================
+    // P35 prototype wiring.
+    //
+    // Real exports are the default here (the inverse of dev.html, which
+    // defaults to fixtures): the whole point is to see the real shapes.
+    // ========================================================================
+    (function() {
+        'use strict';
+
+        var useFixtures = new URLSearchParams(window.location.search)
+            .get('fixtures') === '1';
+        S2Data.configure({ fixtures: useFixtures });
+
+        var FILES = ['meta', 'likert', 'reasons', 'selects', 'evidence',
+                     'respondents', 'clusters'];
+        var ANCHORS = [71, 83, 97, 113, 124, 153, 171];
+        var MASK_N = 5;
+
+        var D = {};
+
+        function esc(s) { return S2Data.escapeHtml(s); }
+        function el(sel) { return document.querySelector(sel); }
+        function setNote(sel, html) {
+            var n = el(sel); if (n) n.innerHTML = html;
+        }
+        function sum(a) {
+            return (a || []).reduce(function(x, y) { return x + (y || 0); }, 0);
+        }
+        function pct1(x) { return (Math.round(x * 10) / 10).toFixed(1); }
+
+        // Read a design token so SVG/canvas code never hardcodes a color.
+        var TOK = {};
+        function token(name) {
+            if (!(name in TOK)) {
+                TOK[name] = getComputedStyle(document.documentElement)
+                    .getPropertyValue(name).trim();
+            }
+            return TOK[name];
+        }
+
+        // 95% Wilson score interval — the honest way to show a proportion
+        // measured on n=75 next to one measured on n=250.
+        function wilson(k, n, z) {
+            if (!n) return { lo: 0, hi: 0, p: 0 };
+            z = z || 1.96;
+            var p = k / n, d = 1 + z * z / n;
+            var c = (p + z * z / (2 * n)) / d;
+            var h = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d;
+            return { p: p, lo: Math.max(0, c - h), hi: Math.min(1, c + h) };
+        }
+
+        function reducedMotion() {
+            return window.matchMedia &&
+                window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
+        function chartOpts(extra) {
+            var o = {
+                responsive: true, maintainAspectRatio: false,
+                animation: reducedMotion() ? false : undefined
+            };
+            Object.keys(extra || {}).forEach(function(k) { o[k] = extra[k]; });
+            return o;
+        }
+
+        // --------------------------------------------------------------------
+        // CONTRACT GAP — proposed additions to evidence.json (PLAN §5).
+        //
+        // `basis.q138.by_stance_q71` ships raw option counts with NO per-bucket
+        // base, so no honest rate can be computed from the export alone. These
+        // three numbers, and the mutually-exclusive "strongest basis claimed"
+        // partition, were computed from the database for this prototype:
+        //
+        //   python3 - <<'PY'
+        //   import sqlite3
+        //   from collections import Counter
+        //   db = sqlite3.connect('data/scope2_consultation.sqlite'); c = db.cursor()
+        //   c.execute("SELECT respondent_id, answer_numeric+0.0 FROM v_scale_answers"
+        //             " WHERE question_number=71 AND answer_numeric IS NOT NULL")
+        //   st = {r: ('oppose' if v <= 2 else 'neutral' if v == 3 else 'support')
+        //         for r, v in c.fetchall()}
+        //   c.execute("SELECT respondent_id, option_text FROM response_selections"
+        //             " WHERE question_number=138")
+        //   sel = {}
+        //   for r, o in c.fetchall(): sel.setdefault(r, set()).add(o)
+        //   print(Counter(st[r] for r in sel if r in st))
+        //   PY
+        //
+        // P22 must export these; a page must never carry hand-copied numbers.
+        // --------------------------------------------------------------------
+        var Q138_STANCE = {
+            base: { oppose: 250, neutral: 26, support: 75 },
+            no_q71_score: 14,
+            // Ordered strength ladder collapsed to one bucket per respondent:
+            // empirical > operational > judgment > awareness > undisclosed.
+            strongest: {
+                oppose:  { empirical: 19, operational: 44, judgment: 126,
+                           awareness: 55, undisclosed: 6 },
+                neutral: { empirical: 1,  operational: 5,  judgment: 11,
+                           awareness: 7,  undisclosed: 2 },
+                support: { empirical: 6,  operational: 17, judgment: 35,
+                           awareness: 16, undisclosed: 1 }
+            }
+        };
+
+        var STANCES = ['oppose', 'neutral', 'support'];
+        var STANCE_LABEL = { oppose: 'Oppose Q71 (1–2)',
+                             neutral: 'Neutral (3)',
+                             support: 'Support Q71 (4–5)' };
+        var STANCE_COLOR = function(k) {
+            var S = window.SEMANTIC_COLORS || {};
+            return k === 'oppose' ? S.negative
+                 : k === 'support' ? S.positive : S.muted;
+        };
+
+        // Short labels for the five Q138 options, longest-first matching so
+        // "Direct empirical analysis (e.g., …)" does not collide.
+        var BASIS_SHORT = [
+            ['Direct empirical analysis', 'Direct empirical analysis', 'empirical'],
+            ['Operational experience',    'Operational experience',    'operational'],
+            ['Professional judgment',     'Professional judgment',     'judgment'],
+            ['General awareness',         'General awareness (no analysis)', 'awareness'],
+            ['Prefer not to say',         'Prefer not to say',         'undisclosed']
+        ];
+        function basisKey(text) {
+            for (var i = 0; i < BASIS_SHORT.length; i++) {
+                if (String(text).indexOf(BASIS_SHORT[i][0]) === 0) {
+                    return BASIS_SHORT[i][2];
+                }
+            }
+            return null;
+        }
+        function basisLabel(key) {
+            for (var i = 0; i < BASIS_SHORT.length; i++) {
+                if (BASIS_SHORT[i][2] === key) return BASIS_SHORT[i][1];
+            }
+            return key;
+        }
+        var BASIS_ORDER = ['empirical', 'operational', 'judgment',
+                           'awareness', 'undisclosed'];
+
+        // ====================================================================
+        // Q1 — evidence basis × stance
+        // ====================================================================
+
+        // by_stance_q71 → {basisKey: {stance: n}}
+        function q1Counts() {
+            var byStance = D.evidence.basis.q138.by_stance_q71 || {};
+            var out = {};
+            BASIS_ORDER.forEach(function(k) { out[k] = {}; });
+            STANCES.forEach(function(s) {
+                Object.keys(byStance[s] || {}).forEach(function(text) {
+                    var k = basisKey(text);
+                    if (k) out[k][s] = byStance[s][text];
+                });
+            });
+            return out;
+        }
+
+        function drawQ1Provenance() {
+            var q138 = D.evidence.basis.q138;
+            var selections = sum(q138.options.map(function(o) { return o.n; }));
+            setNote('#q1Provenance',
+                'evidence.json &rarr; basis.q138 &middot; ' + q138.n_answered +
+                ' respondents, ' + selections + ' selections (' +
+                (Math.round(100 * selections / q138.n_answered)) +
+                '% of base) &middot; by_stance_q71 ships counts only. ' +
+                '<strong>Per-bucket base is NOT in the contract</strong> — oppose ' +
+                Q138_STANCE.base.oppose + ' / neutral ' + Q138_STANCE.base.neutral +
+                ' / support ' + Q138_STANCE.base.support + ' + ' +
+                Q138_STANCE.no_q71_score +
+                ' with no Q71 score came from the database for this prototype.');
+        }
+
+        // A1 — the misleading form: normalize each stance column to 100% of
+        // *selections*. Selections are not respondents, so every share is a
+        // share of a denominator no reader has, and cross-column comparison
+        // silently rewards whoever ticked more boxes.
+        function drawQ1Stacked() {
+            var counts = q1Counts();
+            var totals = {};
+            STANCES.forEach(function(s) {
+                totals[s] = sum(BASIS_ORDER.map(function(k) {
+                    return counts[k][s] || 0;
+                }));
+            });
+            var ramp = [RESOURCE_COLORS.wind, RESOURCE_COLORS.hydro,
+                        RESOURCE_COLORS.nuclear, RESOURCE_COLORS.solar,
+                        RESOURCE_COLORS.gap];
+            new Chart(el('#q1Stacked'), {
+                type: 'bar',
+                data: {
+                    labels: STANCES.map(function(s) { return STANCE_LABEL[s]; }),
+                    datasets: BASIS_ORDER.map(function(k, i) {
+                        return {
+                            label: basisLabel(k),
+                            data: STANCES.map(function(s) {
+                                return totals[s]
+                                    ? 100 * (counts[k][s] || 0) / totals[s] : 0;
+                            }),
+                            backgroundColor: withAlpha(ramp[i], 0.78),
+                            borderColor: ramp[i], borderWidth: 1
+                        };
+                    })
+                },
+                options: chartOpts({
+                    indexAxis: 'y',
+                    scales: {
+                        x: { stacked: true, max: 100,
+                             title: { display: true,
+                                      text: '% of SELECTIONS (not respondents)' },
+                             ticks: { callback: function(v) { return v + '%'; } } },
+                        y: { stacked: true }
+                    },
+                    plugins: { legend: { position: 'bottom',
+                                         labels: { boxWidth: 12 } } }
+                })
+            });
+            setNote('#q1StackedNote',
+                'Denominators are <strong>selections</strong> (' +
+                STANCES.map(function(s) {
+                    return totals[s] + ' from ' + Q138_STANCE.base[s] + ' people';
+                }).join(', ') + '). ' +
+                'Opponents ticked ' +
+                (Math.round(100 * totals.oppose / Q138_STANCE.base.oppose)) +
+                ' boxes per 100 people, supporters ' +
+                (Math.round(100 * totals.support / Q138_STANCE.base.support)) +
+                ' — so the three bars are not on one scale and the eye cannot ' +
+                'read a rate off them. <strong>This form cannot be fixed by ' +
+                'relabelling; it has to be replaced.</strong>');
+        }
+
+        // A2 — grouped bar of per-bucket rates + Wilson whiskers. Neutral
+        // (n=26) is drawn but its interval is so wide that the chart says so.
+        function drawQ1Grouped() {
+            var counts = q1Counts();
+            var cis = {};
+            STANCES.forEach(function(s) {
+                cis[s] = BASIS_ORDER.map(function(k) {
+                    return wilson(counts[k][s] || 0, Q138_STANCE.base[s]);
+                });
+            });
+
+            // Whisker plugin: draws the interval for every bar. Colors read
+            // from tokens, never a literal.
+            var whiskers = {
+                id: 'p35Whiskers',
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    ctx.save();
+                    ctx.strokeStyle = token('--text-secondary');
+                    ctx.lineWidth = 1.4;
+                    chart.data.datasets.forEach(function(ds, di) {
+                        var meta = chart.getDatasetMeta(di);
+                        if (meta.hidden) return;
+                        var ci = cis[STANCES[di]];
+                        meta.data.forEach(function(bar, bi) {
+                            var lo = chart.scales.x.getPixelForValue(ci[bi].lo * 100);
+                            var hi = chart.scales.x.getPixelForValue(ci[bi].hi * 100);
+                            var y = bar.y, cap = Math.min(4, bar.height / 2.4);
+                            ctx.beginPath();
+                            ctx.moveTo(lo, y); ctx.lineTo(hi, y);
+                            ctx.moveTo(lo, y - cap); ctx.lineTo(lo, y + cap);
+                            ctx.moveTo(hi, y - cap); ctx.lineTo(hi, y + cap);
+                            ctx.stroke();
+                        });
+                    });
+                    ctx.restore();
+                }
+            };
+
+            new Chart(el('#q1Grouped'), {
+                type: 'bar',
+                data: {
+                    labels: BASIS_ORDER.map(basisLabel),
+                    datasets: STANCES.map(function(s) {
+                        return {
+                            label: STANCE_LABEL[s] + '  n=' + Q138_STANCE.base[s],
+                            data: BASIS_ORDER.map(function(k) {
+                                return 100 * (counts[k][s] || 0) /
+                                    Q138_STANCE.base[s];
+                            }),
+                            backgroundColor: withAlpha(STANCE_COLOR(s), 0.68),
+                            borderColor: STANCE_COLOR(s), borderWidth: 1.4,
+                            borderRadius: 2
+                        };
+                    })
+                },
+                options: chartOpts({
+                    indexAxis: 'y',
+                    scales: {
+                        x: { beginAtZero: true, suggestedMax: 80,
+                             title: { display: true,
+                                      text: '% of that stance bucket who ticked it' },
+                             ticks: { callback: function(v) { return v + '%'; } } },
+                        y: { ticks: { autoSkip: false, font: { size: 11 } } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 12 } },
+                        tooltip: { callbacks: {
+                            label: function(c) {
+                                var s = STANCES[c.datasetIndex];
+                                var ci = cis[s][c.dataIndex];
+                                var k = (counts[BASIS_ORDER[c.dataIndex]][s] || 0);
+                                return STANCE_LABEL[s] + ': ' + k + ' of ' +
+                                    Q138_STANCE.base[s] + ' = ' + pct1(ci.p * 100) +
+                                    '% (95% CI ' + pct1(ci.lo * 100) + '–' +
+                                    pct1(ci.hi * 100) + ')';
+                            }
+                        } }
+                    }
+                }),
+                plugins: [whiskers]
+            });
+
+            var eo = wilson(counts.empirical.oppose, Q138_STANCE.base.oppose);
+            var es = wilson(counts.empirical.support, Q138_STANCE.base.support);
+            setNote('#q1GroupedNote',
+                'Direct empirical analysis: opponents <strong>' +
+                pct1(eo.p * 100) + '%</strong> (CI ' + pct1(eo.lo * 100) + '–' +
+                pct1(eo.hi * 100) + ', ' + counts.empirical.oppose + '/' +
+                Q138_STANCE.base.oppose + ') vs supporters <strong>' +
+                pct1(es.p * 100) + '%</strong> (CI ' + pct1(es.lo * 100) + '–' +
+                pct1(es.hi * 100) + ', ' + counts.empirical.support + '/' +
+                Q138_STANCE.base.support + '). The intervals overlap almost ' +
+                'completely: <strong>Q138 does not show supporters holding more ' +
+                'empirical basis.</strong> The whiskers are what stop a reader ' +
+                'reading a 0.4-point gap as a finding.');
+        }
+
+        // A3 — small multiples: one tiny panel per basis option.
+        function drawQ1Small() {
+            var counts = q1Counts();
+            var host = el('#q1Small');
+            host.innerHTML = BASIS_ORDER.map(function(k, i) {
+                return '<div><h4 class="chart-title" style="font-size:0.78rem">' +
+                    esc(basisLabel(k)) + '</h4>' +
+                    '<div class="chart-container-sm">' +
+                    '<canvas id="q1Sm' + i + '"></canvas></div></div>';
+            }).join('');
+
+            var maxPct = 0;
+            BASIS_ORDER.forEach(function(k) {
+                STANCES.forEach(function(s) {
+                    var p = 100 * (counts[k][s] || 0) / Q138_STANCE.base[s];
+                    if (p > maxPct) maxPct = p;
+                });
+            });
+
+            BASIS_ORDER.forEach(function(k, i) {
+                var cis = STANCES.map(function(s) {
+                    return wilson(counts[k][s] || 0, Q138_STANCE.base[s]);
+                });
+                var whiskers = {
+                    id: 'p35Whiskers' + i,
+                    afterDatasetsDraw: function(chart) {
+                        var ctx = chart.ctx;
+                        ctx.save();
+                        ctx.strokeStyle = token('--text-secondary');
+                        ctx.lineWidth = 1.2;
+                        chart.getDatasetMeta(0).data.forEach(function(bar, bi) {
+                            var lo = chart.scales.y.getPixelForValue(cis[bi].lo * 100);
+                            var hi = chart.scales.y.getPixelForValue(cis[bi].hi * 100);
+                            ctx.beginPath();
+                            ctx.moveTo(bar.x, lo); ctx.lineTo(bar.x, hi);
+                            ctx.moveTo(bar.x - 4, lo); ctx.lineTo(bar.x + 4, lo);
+                            ctx.moveTo(bar.x - 4, hi); ctx.lineTo(bar.x + 4, hi);
+                            ctx.stroke();
+                        });
+                        ctx.restore();
+                    }
+                };
+                new Chart(el('#q1Sm' + i), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Opp', 'Neu', 'Sup'],
+                        datasets: [{
+                            data: STANCES.map(function(s) {
+                                return 100 * (counts[k][s] || 0) /
+                                    Q138_STANCE.base[s];
+                            }),
+                            backgroundColor: STANCES.map(function(s) {
+                                return withAlpha(STANCE_COLOR(s), 0.68);
+                            }),
+                            borderColor: STANCES.map(STANCE_COLOR),
+                            borderWidth: 1.2, borderRadius: 2
+                        }]
+                    },
+                    options: chartOpts({
+                        scales: {
+                            y: { beginAtZero: true, max: Math.ceil(maxPct / 10) * 10,
+                                 ticks: { callback: function(v) { return v + '%'; },
+                                          font: { size: 10 } } },
+                            x: { ticks: { font: { size: 10 } } }
+                        },
+                        plugins: { legend: { display: false },
+                                   tooltip: { callbacks: { label: function(c) {
+                                       var s = STANCES[c.dataIndex];
+                                       return (counts[k][s] || 0) + '/' +
+                                           Q138_STANCE.base[s] + ' = ' +
+                                           pct1(c.parsed.y) + '%';
+                                   } } } }
+                    }),
+                    plugins: [whiskers]
+                });
+            });
+            setNote('#q1SmallNote',
+                'Shared y-axis (0–' + (Math.ceil(maxPct / 10) * 10) + '%) makes the ' +
+                'panels comparable, and the flat profile across all five panels is ' +
+                'the finding. Costs five panels of vertical space to say what A2 ' +
+                'says in one, and the two interesting options sit at the bottom of ' +
+                'the range where the panels are shortest.');
+        }
+
+        // A4 — mekko on the *strongest* basis claimed. Collapsing the
+        // multi-select down an ordered strength ladder turns it into a genuine
+        // partition, which is the only way a mosaic is honest here; column
+        // width then carries the base size the grouped bar has to put in a
+        // legend.
+        function drawQ1Mosaic() {
+            var base = Q138_STANCE.base;
+            var total = STANCES.reduce(function(a, s) { return a + base[s]; }, 0);
+            var html = '<div class="p35-mosaic">' + STANCES.map(function(s) {
+                var st = Q138_STANCE.strongest[s];
+                var segs = BASIS_ORDER.map(function(k) {
+                    var n = st[k] || 0;
+                    var share = 100 * n / base[s];
+                    return '<div class="p35-mosaic-seg p35-seg-' + k +
+                        '" style="height:' + share + '%" title="' +
+                        esc(basisLabel(k)) + ' — ' + n + ' of ' + base[s] +
+                        ' (' + pct1(share) + '%)">' +
+                        (share >= 9 ? pct1(share) + '%' : '') + '</div>';
+                }).join('');
+                return '<div class="p35-mosaic-col" style="flex:' + base[s] + ' 1 0">' +
+                    '<div class="p35-mosaic-cap">' + esc(STANCE_LABEL[s]) +
+                    '<br>n=' + base[s] + '</div>' +
+                    '<div class="p35-mosaic-stack">' + segs + '</div></div>';
+            }).join('') + '</div>';
+            el('#q1Mosaic').innerHTML = html;
+
+            el('#q1MosaicKey').innerHTML = BASIS_ORDER.map(function(k) {
+                return '<span><span class="p35-dot p35-mosaic-seg p35-seg-' + k +
+                    '" style="width:11px;height:11px;border-radius:2px"></span>' +
+                    esc(basisLabel(k)) + '</span>';
+            }).join('');
+
+            setNote('#q1MosaicNote',
+                'Column widths are proportional to base (' +
+                STANCES.map(function(s) { return base[s]; }).join(' / ') + ' of ' +
+                total + '), so the narrow supporter column is <em>visibly</em> ' +
+                'the thin evidence it is. The two stacks are near-identical, ' +
+                'which is the honest headline. Costs a derived field P22 does ' +
+                'not yet emit, and the ordered ladder is an editorial choice ' +
+                'that has to be documented on methodology.html.');
+        }
+
+        // ====================================================================
+        // Q2 — coalition structure
+        // ====================================================================
+
+        // Graph over named respondents: edge weight = number of shared
+        // verbatim texts. Everything here comes from clusters.json as shipped.
+        function buildTextGraph() {
+            var name = {}, deg = {}, adj = {}, w = {};
+            var blocOf = {}, blocLabel = {}, blocMulti = {};
+            (D.clusters.blocs || []).forEach(function(b) {
+                blocLabel[b.key] = b.label;
+                (b.members_named || []).forEach(function(m) {
+                    if (blocOf[m.id] && blocOf[m.id] !== b.key) {
+                        blocMulti[m.id] = (blocMulti[m.id] || [blocOf[m.id]])
+                            .concat([b.key]);
+                    }
+                    blocOf[m.id] = blocOf[m.id] || b.key;
+                });
+            });
+
+            var clusters = [];
+            (D.clusters.text_clusters || []).forEach(function(t) {
+                var ids = (t.named_members || []).map(function(m) {
+                    name[m.id] = m.name; return m.id;
+                }).sort(function(a, b) { return a - b; });
+                clusters.push({ hash: t.hash, ids: ids, chars: t.chars,
+                                n_respondents: t.n_respondents,
+                                n_redacted: t.n_redacted,
+                                questions: t.questions || [],
+                                preview: t.preview });
+                for (var i = 0; i < ids.length; i++) {
+                    for (var j = i + 1; j < ids.length; j++) {
+                        var a = ids[i], b = ids[j], k = a + ':' + b;
+                        w[k] = (w[k] || 0) + 1;
+                        (adj[a] = adj[a] || {})[b] = w[k];
+                        (adj[b] = adj[b] || {})[a] = w[k];
+                    }
+                }
+            });
+            Object.keys(adj).forEach(function(id) {
+                deg[id] = Object.keys(adj[id]).length;
+            });
+
+            // Components over the named-respondent graph.
+            var seen = {}, comps = [];
+            Object.keys(adj).forEach(function(start) {
+                if (seen[start]) return;
+                var stack = [start], comp = [];
+                while (stack.length) {
+                    var x = stack.pop();
+                    if (seen[x]) continue;
+                    seen[x] = true; comp.push(+x);
+                    Object.keys(adj[x]).forEach(function(y) {
+                        if (!seen[y]) stack.push(y);
+                    });
+                }
+                comps.push(comp);
+            });
+            comps.sort(function(a, b) { return b.length - a.length; });
+            var compOf = {};
+            comps.forEach(function(c, i) {
+                c.forEach(function(id) { compOf[id] = i; });
+            });
+
+            return { name: name, adj: adj, deg: deg, weight: w, comps: comps,
+                     compOf: compOf, blocOf: blocOf, blocLabel: blocLabel,
+                     blocMulti: blocMulti, clusters: clusters };
+        }
+
+        var G = null;
+
+        // A component whose members carry no bloc card at all. Component 2 is
+        // the European EAC/GO trade bloc; flagging it by rule rather than by
+        // name keeps the prototype honest if the data changes.
+        function uncardedComponents(g) {
+            return g.comps.map(function(c, i) { return { i: i, ids: c }; })
+                .filter(function(c) {
+                    return c.ids.length >= 5 && c.ids.every(function(id) {
+                        return !g.blocOf[id];
+                    });
+                });
+        }
+        function groupOf(g, id, uncarded) {
+            if (g.blocOf[id]) return g.blocOf[id];
+            for (var i = 0; i < uncarded.length; i++) {
+                if (uncarded[i].ids.indexOf(id) >= 0) return 'uncarded';
+            }
+            return 'none';
+        }
+
+        function drawQ2Provenance() {
+            var g = G;
+            var nodes = Object.keys(g.adj).length;
+            var edges = Object.keys(g.weight).length;
+            var inBloc = Object.keys(g.adj).filter(function(id) {
+                return g.blocOf[id];
+            }).length;
+            var carded = 0;
+            (D.clusters.blocs || []).forEach(function(b) {
+                carded += (b.members_named || []).length;
+            });
+            var isolated = [];
+            Object.keys(g.blocOf).forEach(function(id) {
+                if (!g.adj[id]) isolated.push(id);
+            });
+            setNote('#q2Provenance',
+                'clusters.json &middot; ' + (D.clusters.text_clusters || []).length +
+                ' text clusters, ' + (D.clusters.blocs || []).length + ' bloc cards (' +
+                carded + ' named seats) &middot; shared-text graph over named ' +
+                'respondents: <strong>' + nodes + ' nodes, ' + edges + ' edges, ' +
+                g.comps.length + ' components</strong> (sizes ' +
+                g.comps.slice(0, 6).map(function(c) { return c.length; }).join(', ') +
+                '…) &middot; only <strong>' + inBloc + ' of ' + nodes +
+                '</strong> nodes carry a bloc card, and ' + isolated.length +
+                ' carded members share no long text at all.');
+        }
+
+        // B1 — bloc cards, restated exactly as integrity.html would.
+        function drawQ2Cards() {
+            var g = G;
+            var html = (D.clusters.blocs || []).map(function(b) {
+                var names = (b.members_named || []).map(function(m) {
+                    return m.name;
+                });
+                return '<div class="p35-bloc-card p35-bloc-card-' + esc(b.key) + '">' +
+                    '<p class="p35-bloc-name">' + esc(b.label) + '</p>' +
+                    '<p class="p35-bloc-sig">' +
+                    b.signature.map(function(v) {
+                        return v === null ? '–' : v;
+                    }).join('·') + ' &middot; ' + b.shared_texts +
+                    ' shared texts &middot; ' + names.length + ' named + ' +
+                    b.n_redacted + ' redacted</p>' +
+                    '<p class="p35-bloc-members">' +
+                    esc(names.slice(0, 5).join(', ')) +
+                    (names.length > 5 ? ' +' + (names.length - 5) + ' more' : '') +
+                    '</p></div>';
+            }).join('');
+            el('#q2Cards').innerHTML = html;
+
+            var unc = uncardedComponents(g);
+            var uncTotal = unc.reduce(function(a, c) { return a + c.ids.length; }, 0);
+            var fringe = {};
+            Object.keys(g.blocOf).forEach(function(id) {
+                Object.keys(g.adj[id] || {}).forEach(function(other) {
+                    if (!g.blocOf[other]) fringe[other] = true;
+                });
+            });
+            var crossEdges = 0, totalEdges = 0;
+            Object.keys(g.weight).forEach(function(k) {
+                var p = k.split(':');
+                totalEdges++;
+                if (!g.blocOf[p[0]] || !g.blocOf[p[1]]) crossEdges++;
+            });
+            setNote('#q2CardsNote',
+                'Cards are a <strong>partition</strong>, but coordination is not ' +
+                'partitioned. <strong>' + crossEdges + ' of ' + totalEdges +
+                ' shared-text edges (' + Math.round(100 * crossEdges / totalEdges) +
+                '%) touch a respondent no card names</strong>: ' +
+                Object.keys(fringe).length + ' named organizations share verbatim ' +
+                'text with a carded bloc member while sitting outside every card, ' +
+                'and ' + unc.length + ' whole component' +
+                (unc.length === 1 ? '' : 's') + ' of ' + uncTotal +
+                ' coordinating organizations has no card at all. ' +
+                'Two respondents (SIDENOR GROUP, &ldquo;Employee&rdquo;) are printed ' +
+                'on two different cards, which the card layout cannot show.');
+        }
+
+        // B2 — adjacency matrix. Rows ordered by component then degree, with a
+        // color band for bloc identity. Blocks on the diagonal are coalitions;
+        // off-diagonal marks are the cross-links the cards hide.
+        function drawQ2Matrix() {
+            var g = G, unc = uncardedComponents(g);
+            var order = [];
+            g.comps.forEach(function(c) {
+                c.slice().sort(function(a, b) {
+                    return (g.deg[b] - g.deg[a]) || (a - b);
+                }).forEach(function(id) { order.push(id); });
+            });
+            var idx = {};
+            order.forEach(function(id, i) { idx[id] = i; });
+
+            var maxW = 0;
+            Object.keys(g.weight).forEach(function(k) {
+                if (g.weight[k] > maxW) maxW = g.weight[k];
+            });
+
+            var html = '<div class="p35-matrix" style="grid-template-columns:' +
+                'max-content max-content repeat(' + order.length + ', 13px)">';
+            order.forEach(function(rid) {
+                var grp = groupOf(g, rid, unc);
+                // `organization` is uncontrolled free text (prose up to 3,890
+                // chars), so truncate hard or one row sets the grid width.
+                var short = g.name[rid].length > 38
+                    ? g.name[rid].slice(0, 37) + '…' : g.name[rid];
+                html += '<div class="p35-mx-rowlab" title="' + esc(g.name[rid]) +
+                    ' (id ' + rid + ', degree ' + g.deg[rid] + ')">' +
+                    esc(short) + '</div>';
+                html += '<div class="p35-mx-band p35-mx-b-' + grp + '" title="' +
+                    esc(grp === 'uncarded' ? 'coordinating, no bloc card'
+                        : grp === 'none' ? 'no bloc card'
+                        : g.blocLabel[grp]) + '"></div>';
+                order.forEach(function(cid) {
+                    if (rid === cid) {
+                        html += '<div class="p35-mx-cell p35-mx-diag"></div>';
+                        return;
+                    }
+                    var k = Math.min(rid, cid) + ':' + Math.max(rid, cid);
+                    var w = g.weight[k] || 0;
+                    if (!w) {
+                        html += '<div class="p35-mx-cell p35-mx-0"></div>';
+                    } else {
+                        // Sequential ramp built from one token, so a heavier
+                        // shared-text tie reads as a darker cell.
+                        var a = 0.22 + 0.78 * Math.sqrt(w / maxW);
+                        html += '<div class="p35-mx-cell" style="background:' +
+                            withAlpha(RESOURCE_COLORS.nuclear, a) +
+                            '" title="' + esc(g.name[rid]) + ' ↔ ' +
+                            esc(g.name[cid]) + ': ' + w + ' shared text' +
+                            (w === 1 ? '' : 's') + '"></div>';
+                    }
+                });
+            });
+            html += '</div>';
+            el('#q2Matrix').innerHTML = html;
+
+            // `organization` is free text, so truncate before quoting a name.
+            var unNames = unc.length
+                ? unc[0].ids.slice().sort(function(a, b) {
+                      return g.deg[b] - g.deg[a];
+                  }).map(function(id) {
+                      var n = g.name[id];
+                      return n.length > 34 ? n.slice(0, 33) + '…' : n;
+                  })
+                : [];
+            var unQs = {};
+            if (unc.length) {
+                var unSet = {};
+                unc[0].ids.forEach(function(id) { unSet[id] = true; });
+                g.clusters.forEach(function(c) {
+                    var hit = c.ids.filter(function(id) { return unSet[id]; });
+                    if (hit.length >= 3) {
+                        c.questions.forEach(function(q) { unQs[q] = true; });
+                    }
+                });
+            }
+            setNote('#q2MatrixNote',
+                'All ' + order.length + ' named nodes, no truncation. The ' +
+                'component ordering makes every coalition a solid block on the ' +
+                'diagonal and every cross-link an off-diagonal mark — the two ' +
+                'things the cards cannot show, in one figure. The second block ' +
+                'down is the finding: <strong>' +
+                (unc.length ? unc[0].ids.length : 0) + ' European energy ' +
+                'suppliers and certificate trade bodies</strong> (' +
+                esc(unNames.slice(0, 4).join(', ')) + '…) sharing text across ' +
+                Object.keys(unQs).length + ' questions with <strong>no bloc ' +
+                'card</strong>. Cell tint is shared-text count; the left band is ' +
+                'bloc identity.');
+        }
+
+        // B3 — node-link, given its best shot: each component gets its own
+        // Fruchterman-Reingold layout in a local box, then the boxes are
+        // shelf-packed largest-first so no space is wasted on the 11 tiny
+        // components. Seeded PRNG, because Math.random() would reshuffle the
+        // picture on every reload and make the comparison meaningless.
+        function drawQ2Network() {
+            var g = G, unc = uncardedComponents(g);
+            var W = 660;
+
+            var seed = 20260730;
+            function rnd() {   // mulberry32
+                seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+                var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+                t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+                return ((t ^ t >>> 14) >>> 0) / 4294967296;
+            }
+
+            // Lay one component out inside a box of its own size.
+            function layout(comp) {
+                var n = comp.length;
+                var side = 34 + 30 * Math.sqrt(n);
+                var pos = {};
+                comp.forEach(function(id, i) {
+                    var a = 2 * Math.PI * i / n;
+                    pos[id] = { x: side / 2 + side * 0.32 * Math.cos(a) +
+                                   (rnd() - 0.5) * 6,
+                                y: side / 2 + side * 0.32 * Math.sin(a) +
+                                   (rnd() - 0.5) * 6, vx: 0, vy: 0 };
+                });
+                if (n === 1) return { pos: pos, side: side };
+                var k = Math.sqrt(side * side / n) * 0.85;
+                var iters = 400;
+                for (var it = 0; it < iters; it++) {
+                    var temp = side * 0.06 * (1 - it / iters) + 0.4;
+                    comp.forEach(function(a) {
+                        var fx = 0, fy = 0, pa = pos[a];
+                        comp.forEach(function(b) {
+                            if (a === b) return;
+                            var pb = pos[b];
+                            var dx = pa.x - pb.x, dy = pa.y - pb.y;
+                            var d2 = dx * dx + dy * dy;
+                            if (d2 < 0.5) { d2 = 0.5; dx = rnd(); dy = rnd(); }
+                            var d = Math.sqrt(d2);
+                            var rep = k * k / d2 * 1.35;
+                            fx += dx / d * rep; fy += dy / d * rep;
+                        });
+                        Object.keys(g.adj[a]).forEach(function(b) {
+                            var pb = pos[b];
+                            if (!pb) return;
+                            var dx = pa.x - pb.x, dy = pa.y - pb.y;
+                            var d = Math.sqrt(dx * dx + dy * dy) || 0.01;
+                            var att = d * d / k * 0.42;
+                            fx -= dx / d * att; fy -= dy / d * att;
+                        });
+                        // Weak centering so the component cannot drift away.
+                        fx += (side / 2 - pa.x) * 0.02;
+                        fy += (side / 2 - pa.y) * 0.02;
+                        pa.vx = fx; pa.vy = fy;
+                    });
+                    comp.forEach(function(a) {
+                        var p = pos[a];
+                        var m = Math.sqrt(p.vx * p.vx + p.vy * p.vy) || 1;
+                        var step = Math.min(m, temp);
+                        p.x += p.vx / m * step; p.y += p.vy / m * step;
+                    });
+                }
+                // Shrink-wrap to the actual extent.
+                var xs = comp.map(function(i) { return pos[i].x; });
+                var ys = comp.map(function(i) { return pos[i].y; });
+                var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
+                var y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+                comp.forEach(function(i) {
+                    pos[i].x -= x0 - 14; pos[i].y -= y0 - 14;
+                });
+                return { pos: pos, w: (x1 - x0) + 28, h: (y1 - y0) + 28 };
+            }
+
+            var boxes = g.comps.map(function(c) {
+                var L = layout(c.slice().sort(function(a, b) { return a - b; }));
+                return { comp: c, pos: L.pos,
+                         w: L.w || L.side, h: L.h || L.side };
+            });
+
+            // Shelf-pack largest-first.
+            var pad = 14, shelfY = 6, shelfH = 0, cx = pad, H = 0;
+            boxes.forEach(function(b) {
+                if (cx + b.w > W - pad && cx > pad) {
+                    shelfY += shelfH + pad; shelfH = 0; cx = pad;
+                }
+                b.ox = cx; b.oy = shelfY;
+                cx += b.w + pad;
+                if (b.h > shelfH) shelfH = b.h;
+                if (shelfY + shelfH > H) H = shelfY + shelfH;
+            });
+            H += pad;
+
+            var pos = {};
+            boxes.forEach(function(b) {
+                b.comp.forEach(function(id) {
+                    pos[id] = { x: b.pos[id].x + b.ox, y: b.pos[id].y + b.oy };
+                });
+            });
+
+            var nodes = Object.keys(g.adj).map(Number);
+            var maxW = 0;
+            Object.keys(g.weight).forEach(function(k) {
+                if (g.weight[k] > maxW) maxW = g.weight[k];
+            });
+
+            // Horizontal margin so outward-pushed hub labels are not clipped.
+            var M = 78;
+            var svg = '<svg class="p35-svg" viewBox="' + (-M) + ' -12 ' +
+                (W + 2 * M) + ' ' + Math.round(H + 12) +
+                '" role="img" aria-label="Shared-text network over ' +
+                nodes.length + ' named respondents, ' + g.comps.length +
+                ' components">';
+            Object.keys(g.weight).forEach(function(k) {
+                var p = k.split(':'), a = pos[p[0]], b = pos[p[1]];
+                if (!a || !b) return;
+                var w = g.weight[k];
+                svg += '<line class="p35-edge' +
+                    (w >= 6 ? ' p35-edge-strong' : '') + '" x1="' +
+                    a.x.toFixed(1) + '" y1="' + a.y.toFixed(1) + '" x2="' +
+                    b.x.toFixed(1) + '" y2="' + b.y.toFixed(1) +
+                    '" stroke-width="' + (0.35 + 1.6 * w / maxW).toFixed(2) +
+                    '" stroke-opacity="' + (0.28 + 0.5 * w / maxW).toFixed(2) +
+                    '"/>';
+            });
+            nodes.forEach(function(id) {
+                var p = pos[id], grp = groupOf(g, id, unc);
+                var r = 2.6 + 1.35 * Math.sqrt(g.deg[id]);
+                svg += '<circle class="p35-node p35-b-' + grp + '" cx="' +
+                    p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="' +
+                    r.toFixed(1) + '"><title>' + esc(g.name[id]) + ' — ' +
+                    esc(grp === 'uncarded' ? 'coordinating, no bloc card'
+                        : grp === 'none' ? 'no bloc card' : g.blocLabel[grp]) +
+                    ' — degree ' + g.deg[id] + '</title></circle>';
+            });
+            // Label the top hubs of each sizeable component only, pushed
+            // radially outward from the component centroid. Even then they
+            // collide — which is the point being measured.
+            var labelled = 0;
+            boxes.forEach(function(b) {
+                if (b.comp.length < 4) return;
+                var gx = 0, gy = 0;
+                b.comp.forEach(function(id) { gx += pos[id].x; gy += pos[id].y; });
+                gx /= b.comp.length; gy /= b.comp.length;
+                b.comp.slice().sort(function(x, y) {
+                    return g.deg[y] - g.deg[x];
+                }).slice(0, 3).forEach(function(id) {
+                    var p = pos[id];
+                    var dx = p.x - gx, dy = p.y - gy;
+                    var m = Math.sqrt(dx * dx + dy * dy) || 1;
+                    var anchor = dx >= 0 ? 'start' : 'end';
+                    labelled++;
+                    svg += '<text class="p35-nodelab p35-nodelab-hi" x="' +
+                        (p.x + dx / m * 9).toFixed(1) + '" y="' +
+                        (p.y + dy / m * 9 + 3).toFixed(1) + '" text-anchor="' +
+                        anchor + '">' + esc(g.name[id].slice(0, 20)) + '</text>';
+                });
+            });
+            svg += '</svg>';
+            el('#q2Network').innerHTML = svg;
+
+            setNote('#q2NetworkNote',
+                'Same graph, same colors, per-component layouts shelf-packed so ' +
+                'none of the ' + g.comps.length + ' components wastes space. It ' +
+                'does convey the shape instantly — two dense cores, one all-red, ' +
+                'plus a long tail of pairs — and it makes the <em>uncarded</em> ' +
+                'core impossible to miss. What it cannot do is identify anyone: ' +
+                'only ' + labelled + ' of ' + nodes.length + ' nodes can carry a ' +
+                'label and even those collide, individual tie strength is a ' +
+                'stroke width buried inside a hairball, and reproducibility ' +
+                'depends on a pinned seed. <strong>Better as a one-glance opener ' +
+                'than as the figure a reader interrogates.</strong>');
+        }
+
+        // B4 — bipartite: the largest component's members against the shared
+        // texts that bind them. This is the figure that answers "is the
+        // academic corroboration independent?" — the answer is the column
+        // structure.
+        function drawQ2Bipartite() {
+            var g = G;
+            var comp = g.comps[0].slice();
+            var compSet = {};
+            comp.forEach(function(id) { compSet[id] = true; });
+            var cls = g.clusters.filter(function(c) {
+                return c.ids.filter(function(id) { return compSet[id]; }).length >= 3;
+            }).sort(function(a, b) { return b.ids.length - a.ids.length; });
+
+            comp.sort(function(a, b) { return g.deg[b] - g.deg[a]; });
+
+            var rowH = 13, labW = 200, colW = 15, top = 40;
+            var W = labW + cls.length * colW + 14;
+            var H = top + comp.length * rowH + 24;
+            var unc = uncardedComponents(g);
+
+            var svg = '<svg class="p35-svg" viewBox="0 0 ' + W + ' ' + H +
+                '" role="img" aria-label="Respondents by shared text, largest component">';
+            svg += '<text class="p35-axislab" x="0" y="12">' + comp.length +
+                ' named respondents (rows) &times; ' + cls.length +
+                ' shared texts (columns)</text>';
+            cls.forEach(function(c, j) {
+                var x = labW + j * colW + colW / 2;
+                svg += '<text class="p35-nodelab" transform="translate(' +
+                    x.toFixed(1) + ',' + (top - 6) + ') rotate(-90)" ' +
+                    'text-anchor="start">Q' +
+                    esc(String(c.questions[0] === undefined ? '?' : c.questions[0])) +
+                    '</text>';
+            });
+            comp.forEach(function(id, i) {
+                var y = top + i * rowH;
+                var grp = groupOf(g, id, unc);
+                svg += '<text class="p35-nodelab" x="' + (labW - 20) + '" y="' +
+                    (y + 9) + '" text-anchor="end">' +
+                    esc(g.name[id].slice(0, 30)) + '</text>';
+                svg += '<rect class="p35-b-' + grp + '" x="' + (labW - 15) +
+                    '" y="' + (y + 2) + '" width="5" height="' + (rowH - 4) +
+                    '" rx="1"/>';
+                cls.forEach(function(c, j) {
+                    var has = c.ids.indexOf(id) >= 0;
+                    var x = labW + j * colW;
+                    svg += '<rect x="' + x + '" y="' + (y + 1) + '" width="' +
+                        (colW - 2) + '" height="' + (rowH - 3) + '" rx="1" ' +
+                        'fill="' + (has
+                            ? withAlpha(RESOURCE_COLORS.nuclear, 0.8)
+                            : token('--bg-subtle')) + '">' +
+                        (has ? '<title>' + esc(g.name[id]) + ' — Q' +
+                            esc(String(c.questions[0])) + ', ' + c.chars +
+                            ' chars, shared by ' + c.n_respondents +
+                            ' respondents</title>' : '') + '</rect>';
+                });
+            });
+            svg += '</svg>';
+            el('#q2Bipartite').innerHTML = svg;
+
+            var redacted = cls.reduce(function(a, c) { return a + c.n_redacted; }, 0);
+            setNote('#q2BipartiteNote',
+                'Rows are respondents, columns are individual verbatim texts, and ' +
+                'a filled cell means &ldquo;this organization filed this exact ' +
+                'paragraph&rdquo;. Dense columns are the response pack: the ' +
+                'university labs and think tanks in this component filed the same ' +
+                'text as the vendors, which is the concrete form of ' +
+                '&ldquo;the independent academic corroboration is not ' +
+                'independent&rdquo;. ' + redacted + ' redacted co-signer seats sit ' +
+                'in these same columns, counted and unnamed. Excellent for one ' +
+                'story, too specialised to be the page\'s main coalition figure.');
+        }
+
+        // ====================================================================
+        // Q3 — stance strip at table density
+        // ====================================================================
+
+        // A deliberately mixed sample: complete vectors, partial vectors and a
+        // fully empty one, because the empty slots are the whole test.
+        function q3Rows() {
+            var oi = D.respondents.org_index || [];
+            var byFilled = function(o) {
+                return o.anchors.filter(function(a) { return a !== null; }).length;
+            };
+            var full = oi.filter(function(o) { return byFilled(o) === 7; });
+            var partial = oi.filter(function(o) {
+                var f = byFilled(o); return f >= 3 && f <= 6;
+            });
+            var sparse = oi.filter(function(o) { return byFilled(o) <= 2; });
+            var pick = function(arr, k) {
+                var out = [], step = Math.max(1, Math.floor(arr.length / k));
+                for (var i = 0; out.length < k && i < arr.length; i += step) {
+                    out.push(arr[i]);
+                }
+                return out;
+            };
+            return pick(full, 5).concat(pick(partial, 6)).concat(pick(sparse, 3));
+        }
+
+        function denseTable(rows, cellFn, headLabel) {
+            var html = '<div class="s2-table-scroll"><table class="p35-dense-table">' +
+                '<thead><tr><th>Organization</th><th>' + esc(headLabel) +
+                '</th></tr></thead><tbody>';
+            rows.forEach(function(o) {
+                html += '<tr><td class="p35-dense-name" title="' + esc(o.name) +
+                    '">' + esc(o.name) + '</td><td>' + cellFn(o) + '</td></tr>';
+            });
+            return html + '</tbody></table></div>';
+        }
+
+        function anchorRead(anchors) {
+            return ANCHORS.map(function(q, i) {
+                var v = anchors[i];
+                return 'Q' + q + ' ' + (v === null || v === undefined ? 'not answered' : v);
+            }).join(', ');
+        }
+
+        function drawQ3Provenance() {
+            var oi = D.respondents.org_index || [];
+            var slots = oi.length * 7, nulls = 0, full = 0;
+            oi.forEach(function(o) {
+                var f = 0;
+                o.anchors.forEach(function(a) {
+                    if (a === null || a === undefined) nulls++; else f++;
+                });
+                if (f === 7) full++;
+            });
+            setNote('#q3Provenance',
+                'respondents.json &rarr; org_index &middot; ' + oi.length +
+                ' named orgs &middot; <strong>' + nulls + ' of ' + slots +
+                ' anchor slots (' + Math.round(100 * nulls / slots) +
+                '%) are null</strong> &middot; only ' + full +
+                ' orgs answered all seven &middot; sample below is 5 complete + ' +
+                '6 partial + 3 near-empty rows, deliberately.');
+        }
+
+        function drawQ3Current() {
+            var rows = q3Rows();
+            el('#q3Current').innerHTML = denseTable(rows, function(o) {
+                // Exactly what js/org-table.js renders today.
+                var cells = ANCHORS.map(function(q, i) {
+                    var v = o.anchors[i];
+                    if (v === null || v === undefined) {
+                        return '<span class="s2-spark-bar s2-spark-na" title="Q' +
+                            q + ': not answered"></span>';
+                    }
+                    var lvl = Math.max(1, Math.min(5, Math.round(v)));
+                    return '<span class="s2-spark-bar s2-spark-' + lvl +
+                        '" style="--s2-spark-h:' + Math.round(100 * lvl / 5) +
+                        '%" title="Q' + q + ': ' + v + ' of 5"></span>';
+                }).join('');
+                return '<span class="s2-spark" aria-hidden="true">' + cells +
+                    '</span><span class="sr-only">' +
+                    esc(anchorRead(o.anchors)) + '</span>';
+            }, 'Anchors (shipped .s2-spark)');
+            setNote('#q3CurrentNote',
+                'Height encodes score, so <strong>&ldquo;not answered&rdquo; is ' +
+                'drawn at full height</strong> (<code>.s2-spark-na { height: 100% }</code>) ' +
+                '— the tallest mark in the strip is the absence of data, and it ' +
+                'reads as a 5. With 34% of slots null that is not an edge case. ' +
+                'Height also double-encodes what color already says, and a ' +
+                '1 is a 3px sliver that vanishes next to it.');
+        }
+
+        function drawQ3Dots() {
+            var rows = q3Rows();
+            el('#q3Dots').innerHTML = denseTable(rows, function(o) {
+                var cells = ANCHORS.map(function(q, i) {
+                    var v = o.anchors[i];
+                    if (v === null || v === undefined) {
+                        return '<span class="p35-dot p35-dot-na" title="Q' + q +
+                            ': not answered"></span>';
+                    }
+                    var lvl = Math.max(1, Math.min(5, Math.round(v)));
+                    return '<span class="p35-dot p35-dot-' + lvl + '" title="Q' +
+                        q + ': ' + v + ' of 5"></span>';
+                }).join('');
+                return '<span class="p35-dots" aria-hidden="true">' + cells +
+                    '</span><span class="sr-only">' +
+                    esc(anchorRead(o.anchors)) + '</span>';
+            }, '7-dot strip');
+            el('#q3Dots').insertAdjacentHTML('beforeend',
+                '<div class="p35-strip-key">' +
+                [1, 2, 3, 4, 5].map(function(l) {
+                    return '<span><span class="p35-dot p35-dot-' + l +
+                        '"></span>' + l + '</span>';
+                }).join('') +
+                '<span><span class="p35-dot p35-dot-na"></span>not answered</span>' +
+                '</div>');
+            setNote('#q3DotsNote',
+                'Constant footprint per slot, so the seven positions line up down ' +
+                'the column and a vector is comparable row to row. Score is carried ' +
+                'once, by color; absence is a hollow dashed ring that is <em>quieter</em> ' +
+                'than every real value instead of louder. Ordered red→amber→grey→blue→green ' +
+                'so the ramp survives greyscale as lightness, and the ' +
+                'sr-only readout is unchanged.');
+        }
+
+        function drawQ3Heat() {
+            var rows = q3Rows();
+            el('#q3Heat').innerHTML = denseTable(rows, function(o) {
+                var cells = ANCHORS.map(function(q, i) {
+                    var v = o.anchors[i];
+                    if (v === null || v === undefined) {
+                        return '<span class="p35-hmcell p35-hmcell-na" title="Q' +
+                            q + ': not answered"></span>';
+                    }
+                    var lvl = Math.max(1, Math.min(5, Math.round(v)));
+                    return '<span class="p35-hmcell p35-hmcell-' + lvl +
+                        '" title="Q' + q + ': ' + v + ' of 5"></span>';
+                }).join('');
+                return '<span class="p35-hmrow" aria-hidden="true">' + cells +
+                    '</span><span class="sr-only">' +
+                    esc(anchorRead(o.anchors)) + '</span>';
+            }, 'Tiny heatmap row');
+            setNote('#q3HeatNote',
+                'Contiguous cells read as one object, which makes a whole-row ' +
+                'pattern (all-oppose, all-support) pop faster than the dot strip. ' +
+                'The cost is that adjacent cells of similar tint blur into each ' +
+                'other, the hatch for null sits <em>inside</em> the block and so ' +
+                'competes with real values, and it repeats the heatmap idiom the ' +
+                'Likert Explorer already owns — at a size where its tints are no ' +
+                'longer distinguishable.');
+        }
+
+        // ====================================================================
+        // Q4 — the redaction story
+        // ====================================================================
+
+        function q4Rows() {
+            var qmap = {};
+            (D.meta.questions || []).forEach(function(q) { qmap[q.q] = q; });
+            // Only `support` anchors: the same array carries burden/cost/ordinal
+            // rows where a higher mean means the opposite thing.
+            return (D.respondents.redaction_effect || []).filter(function(r) {
+                return ANCHORS.indexOf(r.q) >= 0;
+            }).map(function(r) {
+                return {
+                    q: r.q, label: (qmap[r.q] || {}).label || ('Q' + r.q),
+                    named: r.mean_named, redacted: r.mean_redacted,
+                    nn: r.n_named, nr: r.n_redacted,
+                    delta: r.mean_redacted - r.mean_named
+                };
+            });
+        }
+
+        function drawQ4Provenance() {
+            var all = (D.respondents.redaction_effect || []).length;
+            var rows = q4Rows();
+            var up = rows.filter(function(r) { return r.delta > 0; });
+            setNote('#q4Provenance',
+                'respondents.json &rarr; redaction_effect &middot; ' + all +
+                ' rows shipped, <strong>' + rows.length +
+                ' used</strong> (the seven <code>support</code> anchors; the other ' +
+                (all - rows.length) + ' are burden, cost, magnitude and ordinal ' +
+                'rows that must never share an axis with them) &middot; ' +
+                'sole upward slope: ' + up.map(function(r) {
+                    return 'Q' + r.q + ' (' + (r.delta > 0 ? '+' : '') +
+                        r.delta.toFixed(2) + ')';
+                }).join(', ') + ' &middot; means, 1–5.');
+        }
+
+        // D1 — the mini heatmap the pages currently use.
+        function drawQ4Heat() {
+            var rows = q4Rows();
+            var lo = 1, hi = 5;
+            var cell = function(v) {
+                var t = (v - lo) / (hi - lo);
+                var bg = withAlpha(RESOURCE_COLORS.hydro, 0.1 + 0.72 * t);
+                return '<td style="background:' + bg +
+                    ';text-align:center;font-family:var(--font-data);' +
+                    'font-weight:600">' + v.toFixed(2) + '</td>';
+            };
+            var html = '<div class="s2-table-scroll"><table class="p35-dense-table">' +
+                '<thead><tr><th>Anchor</th><th style="text-align:center">Named</th>' +
+                '<th style="text-align:center">Redacted</th></tr></thead><tbody>';
+            rows.forEach(function(r) {
+                html += '<tr><td class="p35-dense-name" title="' + esc(r.label) +
+                    '">Q' + r.q + ' ' + esc(r.label) + '</td>' +
+                    cell(r.named) + cell(r.redacted) + '</tr>';
+            });
+            el('#q4Heat').innerHTML = html + '</tbody></table></div>';
+            setNote('#q4HeatNote',
+                'Every number is present and legible, and it is the cheapest thing ' +
+                'to build. But the <em>direction</em> of each pair has to be ' +
+                'computed by the reader out of two tints that differ by a few ' +
+                'percent of alpha. Q171&rsquo;s reversal — the one fact in the ' +
+                'panel — is invisible until you read the digits.');
+        }
+
+        // D2 — slopegraph.
+        function drawQ4Slope() {
+            var rows = q4Rows();
+            var W = 420, H = 380, padT = 34, padB = 26, padL = 42, padR = 128;
+            var lo = 1.5, hi = 5;
+            var y = function(v) {
+                return padT + (H - padT - padB) * (hi - v) / (hi - lo);
+            };
+            var xN = padL + 26, xR = W - padR;
+
+            var svg = '<svg class="p35-svg" viewBox="0 0 ' + W + ' ' + H +
+                '" role="img" aria-label="Named versus redacted mean, seven support anchors">';
+            for (var g = 2; g <= 5; g++) {
+                svg += '<line class="p35-slope-grid" x1="' + padL + '" y1="' +
+                    y(g).toFixed(1) + '" x2="' + xR + '" y2="' + y(g).toFixed(1) +
+                    '"/><text class="p35-slope-lab" x="' + (padL - 6) + '" y="' +
+                    (y(g) + 3.5).toFixed(1) + '" text-anchor="end">' + g +
+                    '</text>';
+            }
+            svg += '<text class="p35-slope-axis" x="' + xN +
+                '" y="18" text-anchor="middle">NAMED</text>' +
+                '<text class="p35-slope-axis" x="' + xR +
+                '" y="18" text-anchor="middle">REDACTED</text>';
+
+            // Nudge labels apart so 4.63 and 3.98 do not collide.
+            var placed = [];
+            rows.slice().sort(function(a, b) { return b.redacted - a.redacted; })
+                .forEach(function(r) {
+                    var up = r.delta > 0;
+                    svg += '<line class="p35-slope-line ' +
+                        (up ? 'p35-slope-up' : 'p35-slope-down') + '" x1="' + xN +
+                        '" y1="' + y(r.named).toFixed(1) + '" x2="' + xR +
+                        '" y2="' + y(r.redacted).toFixed(1) + '"/>';
+                    svg += '<circle class="p35-slope-dot ' +
+                        (up ? 'p35-slope-dot-up' : 'p35-slope-dot-down') +
+                        '" cx="' + xN + '" cy="' + y(r.named).toFixed(1) +
+                        '" r="3.6"/>' +
+                        '<circle class="p35-slope-dot ' +
+                        (up ? 'p35-slope-dot-up' : 'p35-slope-dot-down') +
+                        '" cx="' + xR + '" cy="' + y(r.redacted).toFixed(1) +
+                        '" r="3.6"/>';
+                    var ly = y(r.redacted);
+                    while (placed.some(function(p) { return Math.abs(p - ly) < 11; })) {
+                        ly += 11;
+                    }
+                    placed.push(ly);
+                    svg += '<text class="p35-slope-lab' +
+                        (up ? ' p35-slope-lab-up' : '') + '" x="' + (xR + 9) +
+                        '" y="' + (ly + 3.5).toFixed(1) + '">Q' + r.q + ' ' +
+                        r.named.toFixed(2) + '&#8202;&rarr;&#8202;' +
+                        r.redacted.toFixed(2) + (up ? ' ▲' : '') +
+                        '<title>' + esc(r.label) + ' — named n=' + r.nn +
+                        ', redacted n=' + r.nr + '</title></text>';
+                });
+            svg += '</svg>';
+            el('#q4Slope').innerHTML = svg;
+
+            var up = rows.filter(function(r) { return r.delta > 0; });
+            setNote('#q4SlopeNote',
+                'Slope <em>is</em> the finding: six lines fall, ' +
+                up.map(function(r) { return 'Q' + r.q; }).join(' and ') +
+                ' rises, and the reversal is pre-attentive rather than something ' +
+                'the reader has to derive. Note the precise geometry — Q171 does ' +
+                'not <em>cross</em> anything, it already starts highest and pulls ' +
+                'further away; the only actual crossing is Q97 &times; Q124, which ' +
+                'is itself worth a sentence. Needs ~40 lines of SVG and a label ' +
+                'anti-collision nudge; no library.');
+        }
+
+        // D3 — dumbbell, sorted by shift.
+        function drawQ4Dumb() {
+            var rows = q4Rows().sort(function(a, b) { return a.delta - b.delta; });
+            var W = 420, rowH = 34, padT = 30, padL = 128, padR = 26;
+            var H = padT + rows.length * rowH + 14;
+            var lo = 1.5, hi = 5;
+            var x = function(v) {
+                return padL + (W - padL - padR) * (v - lo) / (hi - lo);
+            };
+            var svg = '<svg class="p35-svg" viewBox="0 0 ' + W + ' ' + H +
+                '" role="img" aria-label="Shift from named to redacted mean, seven support anchors">';
+            for (var g = 2; g <= 5; g++) {
+                svg += '<line class="p35-slope-grid" x1="' + x(g).toFixed(1) +
+                    '" y1="' + (padT - 8) + '" x2="' + x(g).toFixed(1) + '" y2="' +
+                    (H - 12) + '"/><text class="p35-slope-lab" x="' +
+                    x(g).toFixed(1) + '" y="' + (padT - 14) +
+                    '" text-anchor="middle">' + g + '</text>';
+            }
+            rows.forEach(function(r, i) {
+                var yy = padT + i * rowH + rowH / 2;
+                svg += '<text class="p35-slope-lab" x="' + (padL - 8) + '" y="' +
+                    (yy + 3.5) + '" text-anchor="end">Q' + r.q +
+                    '<title>' + esc(r.label) + '</title></text>';
+                svg += '<line class="p35-dumb-move ' +
+                    (r.delta > 0 ? 'p35-dumb-up' : 'p35-dumb-down') + '" x1="' +
+                    x(r.named).toFixed(1) + '" y1="' + yy + '" x2="' +
+                    x(r.redacted).toFixed(1) + '" y2="' + yy + '"/>';
+                svg += '<circle class="p35-dumb-named" cx="' + x(r.named).toFixed(1) +
+                    '" cy="' + yy + '" r="4.4"><title>named ' +
+                    r.named.toFixed(2) + ' (n=' + r.nn + ')</title></circle>';
+                svg += '<circle class="p35-dumb-red" cx="' + x(r.redacted).toFixed(1) +
+                    '" cy="' + yy + '" r="4.4"><title>redacted ' +
+                    r.redacted.toFixed(2) + ' (n=' + r.nr + ')</title></circle>';
+                svg += '<text class="p35-slope-lab" x="' +
+                    (Math.max(x(r.named), x(r.redacted)) + 8).toFixed(1) + '" y="' +
+                    (yy + 3.5) + '">' + (r.delta > 0 ? '+' : '−') +
+                    Math.abs(r.delta).toFixed(2) + '</text>';
+            });
+            svg += '</svg>';
+            // The extra legend is itself part of this form's cost — the
+            // slopegraph gets the same information free from its axis titles.
+            el('#q4Dumb').innerHTML = svg +
+                '<div class="p35-strip-key">' +
+                '<span><span class="p35-dot" style="background:var(--navy)">' +
+                '</span>named mean</span>' +
+                '<span><span class="p35-dot" style="background:var(--solar)">' +
+                '</span>redacted mean</span></div>';
+            setNote('#q4DumbNote',
+                'Sorting by shift puts Q171 alone at one end, and the bar length ' +
+                'is the effect size directly — better than the slopegraph if the ' +
+                'question is &ldquo;how big&rdquo;. What it gives up is <em>level</em>: ' +
+                'you can no longer see that Q171 and Q153 both sit near the ceiling ' +
+                'while Q71 sits near the floor, so the &ldquo;requirements rejected, ' +
+                'escape hatches embraced&rdquo; shape is lost. Needs a named/redacted ' +
+                'dot legend the slopegraph gets from its axis titles.');
+        }
+
+        // ====================================================================
+        // Q5 — Q183
+        // ====================================================================
+
+        function q5Data() {
+            var years = D.selects['183'].years || {};
+            var keys = Object.keys(years).map(Number).sort(function(a, b) {
+                return a - b;
+            });
+            return { years: years, keys: keys,
+                     protest: D.selects['183'].protest_gt_2050,
+                     n: D.selects['183'].n_answered };
+        }
+
+        function drawQ5Provenance() {
+            var d = q5Data();
+            var total = d.keys.reduce(function(a, y) { return a + d.years[y]; }, 0);
+            var gaps = [];
+            for (var y = d.keys[0]; y <= 2050; y++) {
+                if (!(y in d.years)) gaps.push(y);
+            }
+            setNote('#q5Provenance',
+                'selects.json &rarr; "183" &middot; ' + d.n + ' answered, ' + total +
+                ' plotted across ' + d.keys.length + ' distinct years (' +
+                d.keys[0] + '–' + d.keys[d.keys.length - 1] + ') &middot; ' +
+                '<strong>' + d.protest + ' answers after 2050</strong>, of which ' +
+                (d.years[2099] || 0) + ' are 2099 &middot; ' + gaps.length +
+                ' years inside the main range have zero answers (' +
+                gaps.slice(0, 8).join(', ') + '…) — a category axis silently ' +
+                'deletes them.');
+        }
+
+        // E1 — what dev.html actually does: one category per observed year.
+        function drawQ5Current() {
+            var d = q5Data();
+            var opts = d.keys.map(function(y) {
+                return { text: String(y), n: d.years[y] };
+            });
+            S2Viz.renderOptionBars('#q5Current', opts, {
+                n_answered: d.n, sort: false, color: RESOURCE_COLORS.nuclear
+            });
+            setNote('#q5CurrentNote',
+                'A category axis, not a time axis: the ' +
+                '<strong>years with zero answers are simply absent</strong>, so ' +
+                '2050 and 2055 sit adjacent and 2060 sits adjacent to 2099. The ' +
+                'reader sees a smooth ramp of preferences where the data is a ' +
+                'tight cluster plus a distant protest spike. Horizontal bars also ' +
+                'put time on the vertical axis, which nobody reads as time.');
+        }
+
+        // E2 — real linear year axis, protest answers in one labelled bin.
+        function drawQ5Annotated() {
+            var d = q5Data();
+            var lo = 2026, hi = 2050;
+            var labels = [], counts = [];
+            for (var y = lo; y <= hi; y++) {
+                labels.push(String(y)); counts.push(d.years[y] || 0);
+            }
+            labels.push('>2050'); counts.push(d.protest);
+
+            var protestIdx = counts.length - 1;
+            var colors = counts.map(function(v, i) {
+                return i === protestIdx
+                    ? withAlpha(SEMANTIC_COLORS.negative, 0.7)
+                    : withAlpha(RESOURCE_COLORS.nuclear, 0.7);
+            });
+
+            // Annotation drawn in the plot area: a label the reader cannot
+            // mistake for an ordinary bin.
+            var annot = {
+                id: 'p35Protest',
+                afterDatasetsDraw: function(chart) {
+                    var bar = chart.getDatasetMeta(0).data[protestIdx];
+                    if (!bar) return;
+                    var ctx = chart.ctx;
+                    ctx.save();
+                    ctx.font = '700 11px ' + (token('--font-data') ||
+                        Chart.defaults.font.family);
+                    ctx.fillStyle = token('--red-text') || SEMANTIC_COLORS.negative;
+                    ctx.textAlign = 'right';
+                    var lines = ['↑ ' + d.protest + ' protest answers',
+                                 (d.years[2099] || 0) + '× 2099 · excluded',
+                                 'from every average'];
+                    lines.forEach(function(t, i) {
+                        ctx.fillText(t, bar.x + 6, chart.chartArea.top + 14 + i * 14);
+                    });
+                    ctx.strokeStyle = token('--red-text') || SEMANTIC_COLORS.negative;
+                    ctx.setLineDash([3, 3]);
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(bar.x - bar.width / 2 - 3, chart.chartArea.top + 4);
+                    ctx.lineTo(bar.x - bar.width / 2 - 3, chart.chartArea.bottom);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            };
+
+            new Chart(el('#q5Annotated'), {
+                type: 'bar',
+                data: { labels: labels,
+                        datasets: [{ data: counts, backgroundColor: colors,
+                                     borderColor: colors, borderWidth: 1,
+                                     borderRadius: 2, barPercentage: 0.92,
+                                     categoryPercentage: 0.98 }] },
+                options: chartOpts({
+                    scales: {
+                        x: { title: { display: true, text: 'Preferred effective date' },
+                             ticks: { autoSkip: false, maxRotation: 90,
+                                      minRotation: 90, font: { size: 9 },
+                                      callback: function(v, i) {
+                                          var l = labels[i];
+                                          return l === '>2050' || +l % 5 === 0 ||
+                                                 i === 0 ? l : '';
+                                      } },
+                             grid: { display: false } },
+                        y: { beginAtZero: true,
+                             title: { display: true, text: 'respondents' } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: function(c) {
+                            return c.dataIndex === protestIdx
+                                ? d.protest + ' answers after 2050 (' +
+                                  (d.years[2099] || 0) + ' of them 2099) — protest, ' +
+                                  'never averaged'
+                                : c.parsed.y + ' respondents';
+                        } } }
+                    }
+                }),
+                plugins: [annot]
+            });
+            setNote('#q5AnnotatedNote',
+                'Every year from ' + lo + ' to ' + hi + ' gets a slot whether or ' +
+                'not anyone chose it, so the gaps are visible and the 2030/2035/2050 ' +
+                'round-number spikes read as the anchoring artefact they are. The ' +
+                'protest answers become <strong>one bin, differently coloured, ' +
+                'labelled in place</strong> — present and countable, impossible to ' +
+                'read as a preference, and the annotation carries the ' +
+                '&ldquo;excluded from averages&rdquo; caveat where the number is ' +
+                'rather than in a footnote. Also honest that 2055–2060 (' +
+                (d.protest - (d.years[2099] || 0)) + ' answers) are lumped in with ' +
+                'the 2099s.');
+        }
+
+        // E3 — broken axis, built as two canvases with a gutter.
+        function drawQ5Break() {
+            var d = q5Data();
+            var mainLabels = [], mainCounts = [];
+            for (var y = 2026; y <= 2050; y++) {
+                mainLabels.push(String(y)); mainCounts.push(d.years[y] || 0);
+            }
+            var tailKeys = d.keys.filter(function(k) { return k > 2050; });
+            var col = withAlpha(RESOURCE_COLORS.nuclear, 0.7);
+            var tailCol = withAlpha(SEMANTIC_COLORS.negative, 0.7);
+            var maxY = Math.max.apply(null, mainCounts.concat(
+                tailKeys.map(function(k) { return d.years[k]; })));
+
+            new Chart(el('#q5BreakMain'), {
+                type: 'bar',
+                data: { labels: mainLabels,
+                        datasets: [{ data: mainCounts, backgroundColor: col,
+                                     borderColor: col, borderWidth: 1,
+                                     borderRadius: 2 }] },
+                options: chartOpts({
+                    scales: {
+                        x: { ticks: { autoSkip: false, maxRotation: 90,
+                                      minRotation: 90, font: { size: 9 },
+                                      callback: function(v, i) {
+                                          return +mainLabels[i] % 5 === 0 ||
+                                                 i === 0 ? mainLabels[i] : '';
+                                      } },
+                             grid: { display: false } },
+                        y: { beginAtZero: true, max: maxY,
+                             title: { display: true, text: 'respondents' } }
+                    },
+                    plugins: { legend: { display: false } }
+                })
+            });
+            new Chart(el('#q5BreakTail'), {
+                type: 'bar',
+                data: { labels: tailKeys.map(String),
+                        datasets: [{ data: tailKeys.map(function(k) {
+                                         return d.years[k];
+                                     }), backgroundColor: tailCol,
+                                     borderColor: tailCol, borderWidth: 1,
+                                     borderRadius: 2 }] },
+                options: chartOpts({
+                    scales: {
+                        x: { ticks: { autoSkip: false, maxRotation: 90,
+                                      minRotation: 90, font: { size: 9 } },
+                             grid: { display: false } },
+                        y: { beginAtZero: true, max: maxY,
+                             ticks: { display: false }, grid: { display: false } }
+                    },
+                    plugins: { legend: { display: false } }
+                })
+            });
+            setNote('#q5BreakNote',
+                'It does keep the 2055–2060 answers distinguishable from the 2099s, ' +
+                'which E2 lumps. Everything else is worse: it is two charts sharing ' +
+                'a y-scale by hand (nothing enforces it), the tail panel gives 5 ' +
+                'protest years the same width as 25 real ones so <strong>the ' +
+                'protest tail looks like a second mode</strong>, the gutter has to ' +
+                'be explained, and it does not survive a 390px column. A broken ' +
+                'axis earns its keep when the outliers are <em>data</em>; these are ' +
+                'a refusal to answer.');
+        }
+
+        // ====================================================================
+        // Q6 — shared components against real data
+        // ====================================================================
+        function drawQ6() {
+            S2Viz.renderHeatmap('#q6Heatmap', {
+                questions: D.meta.questions,
+                cells: D.likert,
+                segment: 'org_type',
+                metric: 'support',
+                maskN: MASK_N,
+                minN: 0,
+                label: 'MBM scale questions by org type (real export)'
+            });
+            var cols = S2Segments.values('org_type').length;
+            // Concrete numbers behind the five findings in the note.
+            var segN = {};
+            S2Segments.values('org_type').forEach(function(v) { segN[v.key] = v.n; });
+            var q142 = ((D.likert['142'] || {}).org_type || {}).company || {};
+            var q118 = ((D.likert['118'] || {}).org_type || {}).registry_operator || {};
+            var order = [];
+            (D.meta.questions || []).forEach(function(q) {
+                if (q.construct && order.indexOf(q.construct) < 0) {
+                    order.push(q.construct);
+                }
+            });
+            setNote('#q6HeatmapNote',
+                'Real shape: 22 rows &times; ' + cols + ' columns. The construct ' +
+                'grouping and the n&lt;5 mask both do their job — ' +
+                '<code>grid_operator</code> and <code>intl_agency</code> come ' +
+                'through as hatching rather than as noise, which is exactly right. ' +
+                'Five things only real data shows. ' +
+                '<strong>(1) The column base chip is the segment\'s total n, not ' +
+                'the cell\'s.</strong> Q142 &times; Company reads 75% under a chip ' +
+                'saying n=' + (segN.company || 0) + ', but that cell is n=' +
+                (q142.n || 0) + ' — the chip overstates the base ' +
+                Math.round((segN.company || 0) / (q142.n || 1)) +
+                '&times;. Q118 &times; Registry operator shows a flat 100% on n=' +
+                (q118.n || 0) + ' under a chip of n=' +
+                (segN.registry_operator || 0) + '. ' +
+                '<strong>(2) Group order puts <code>' + order[0] +
+                '</code> first and <code>support</code> second</strong>, so the ' +
+                'page opens on the least interpretable rows and the headline is ' +
+                'below the fold. ' +
+                '<strong>(3) Column headers break mid-word</strong> ' +
+                '(&ldquo;COMPAN&nbsp;Y&rdquo;, &ldquo;REGISTRY OPERATO&nbsp;R&rdquo;). ' +
+                '<strong>(4) The last columns are cut off at 1440px</strong> with no ' +
+                'visible scroll affordance. ' +
+                '<strong>(5) The metric legend still says &ldquo;% support ' +
+                '(4–5)&rdquo; over three- and four-rung ordinal ladders</strong>, ' +
+                'where the renderer is correctly showing the top rung only. ' +
+                'All five are label/CSS/ordering fixes, not redesigns.');
+
+            var qmap = {};
+            (D.meta.questions || []).forEach(function(q) { qmap[q.q] = q; });
+            S2Viz.renderDivergingBar('#q6Diverging', ANCHORS.map(function(n) {
+                var q = qmap[n];
+                return { label: 'Q' + n + ' ' + q.label, cell: D.likert[String(n)].overall,
+                         question: q };
+            }), { construct: 'support', legend: '#q6DivergingLegend',
+                  label: 'Seven support anchors, all respondents (real export)' });
+
+            var q74 = D.reasons['74'];
+            S2Viz.renderOptionBars('#q6Options', q74.options, {
+                side: 'against', n_answered: q74.n_answered
+            });
+            // Which options collide once the two-line budget elides them?
+            var lens = q74.options.map(function(o) { return o.text.length; });
+            var pref = {};
+            q74.options.forEach(function(o) {
+                var p = o.text.split(/\s+/).slice(0, 4).join(' ');
+                (pref[p] = pref[p] || []).push(o);
+            });
+            var collide = Object.keys(pref).filter(function(p) {
+                return pref[p].length > 1;
+            });
+            setNote('#q6OptionsNote',
+                q74.options.length + ' canonical options, n=' + q74.n_answered +
+                ', option text ' + Math.min.apply(null, lens) + '–' +
+                Math.max.apply(null, lens) + ' characters. <strong>The two-line ' +
+                'label budget elides the part that distinguishes them.</strong> ' +
+                'Four options open &ldquo;Concern that…&rdquo;, and the two that ' +
+                'share &ldquo;' + esc(collide[0] || '') + '…&rdquo; truncate to ' +
+                'visually identical labels — so the reader cannot tell the ' +
+                'optional &lsquo;may&rsquo; option (' +
+                pct1(pref[collide[0]][0].pct) + '%) from the recommended ' +
+                '&lsquo;should&rsquo; one (' + pct1(pref[collide[0]][1].pct) +
+                '%). That is misleading, not merely cramped, and it is the single ' +
+                'most consequential distinction on the hourly-matching page. ' +
+                'Cheapest fix: raise <code>maxLines</code> to 3 and ' +
+                '<code>labelShare</code> to ~0.44 for reason picklists, or strip ' +
+                'the shared prefix into the axis title. Note the longest option ' +
+                'in <code>reasons.json</code> is 225 characters (Q116), so no ' +
+                'single budget rescues every question — the sr-only table has to ' +
+                'stay the reader\'s route to full text.');
+        }
+
+        // ====================================================================
+        // Boot
+        // ====================================================================
+        S2Data.loadAll(FILES).then(function(loaded) {
+            D = loaded;
+            S2Segments.init(D.meta);
+            G = buildTextGraph();
+
+            drawQ1Provenance(); drawQ1Stacked(); drawQ1Grouped();
+            drawQ1Small(); drawQ1Mosaic();
+
+            drawQ2Provenance(); drawQ2Cards(); drawQ2Matrix();
+            drawQ2Network(); drawQ2Bipartite();
+
+            drawQ3Provenance(); drawQ3Current(); drawQ3Dots(); drawQ3Heat();
+
+            drawQ4Provenance(); drawQ4Heat(); drawQ4Slope(); drawQ4Dumb();
+
+            drawQ5Provenance(); drawQ5Current(); drawQ5Annotated(); drawQ5Break();
+
+            drawQ6();
+        }).catch(function(err) {
+            S2Data.errorPanel('q1Provenance', err, {
+                title: 'Real exports could not be loaded'
+            });
+            if (window.console && console.error) console.error(err);
+        });
+    })();
+    </script>
+</body>
+</html>
