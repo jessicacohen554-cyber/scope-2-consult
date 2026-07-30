@@ -87,15 +87,21 @@ def main() -> int:
             "SELECT COUNT(*) FROM respondents WHERE substantive_completion_pct > 75")),
         ("respondents under 10% complete", 43, scalar(
             "SELECT COUNT(*) FROM respondents WHERE substantive_completion_pct < 10")),
-        ("redacted respondents", 573, scalar(
+        ("redacted respondents flagged", 573, scalar(
+            "SELECT COUNT(*) FROM respondents WHERE is_redacted = 1")),
+        ("redacted labelled, not nulled", 573, scalar(
             "SELECT COUNT(*) FROM respondents "
-            "WHERE redaction_requested = 'Yes' AND name IS NULL")),
+            "WHERE name = 'Redacted' AND organization = 'Redacted'")),
+        ("no null name or organization", 0, scalar(
+            "SELECT COUNT(*) FROM respondents "
+            "WHERE name IS NULL OR organization IS NULL")),
         ("Q183 sentinel year 2099", 11, scalar(
             "SELECT COUNT(*) FROM responses "
             "WHERE question_number = 183 AND answer_numeric = 2099")),
-        ("views all return rows", 5, sum(
+        ("views all return rows", 7, sum(
             1 for v in ("v_scale_summary", "v_scale_answers", "v_selections",
-                        "v_question_tree", "v_free_text")
+                        "v_question_tree", "v_free_text",
+                        "v_scale_by_redaction", "v_redaction_profile")
             if scalar(f"SELECT COUNT(*) FROM {v}") > 0)),
     ]
     con.close()
