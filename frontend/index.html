@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Explore public consultation responses on Scope 2 accounting: browse by question, respondent type, and theme; see points of consensus and contention.">
+    <meta property="og:title" content="Scope 2 Public Consultation Response Explorer">
+    <meta property="og:description" content="Interactive explorer for public consultation responses on Scope 2 greenhouse gas accounting.">
+    <meta property="og:type" content="article">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (SVG waveform overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Scope&nbsp;2 Public Consultation Response&nbsp;Explorer</h1>
+        <div class="subtitle">Every submission to the Scope&nbsp;2 consultation — searchable by question, respondent, and theme. See where stakeholders agree, where they split, and why it matters.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== HERO STATS ===== -->
+        <section class="content-section">
+            <div class="hero-stats-row grid-stats">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value">—</div>
+                    <div class="stat-label">Responses Analyzed</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value">—</div>
+                    <div class="stat-label">Respondent Types</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value">—</div>
+                    <div class="stat-label">Consultation Questions</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value">—</div>
+                    <div class="stat-label">Recurring Themes</div>
+                </div>
+            </div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>What this is.</strong> A public-facing explorer for responses to the Scope&nbsp;2 accounting consultation. This skeleton page carries the full design system; replace the placeholder stats and panels with live data as the analysis pipeline lands.
+            </div>
+        </section>
+
+        <!-- ===== EXPLORE BY QUESTION ===== -->
+        <section class="content-section" id="by-question">
+            <h2 class="section-title">Explore by Question</h2>
+            <p class="section-subtitle">Drill into how respondents answered each consultation question.</p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <h3 class="chart-title">Response Positions by Question</h3>
+                <div class="chart-container">
+                    <!-- Chart.js canvas goes here. Use RESOURCE_COLORS / SEMANTIC_COLORS from js/chart-colors.js — never hardcoded hex. -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EXPLORE BY RESPONDENT ===== -->
+        <section class="content-section" id="by-respondent">
+            <h2 class="section-title">Explore by Respondent Type</h2>
+            <p class="section-subtitle">Corporates, NGOs, registries, academics, and market operators each read the same questions differently.</p>
+
+            <div class="grid-3col">
+                <div class="card-accent card-accent-indigo scroll-reveal">
+                    <h3 class="outcome-headline">Corporate Buyers</h3>
+                    <p class="outcome-text">Placeholder summary of how corporate respondents positioned on the headline questions.</p>
+                </div>
+                <div class="card-accent card-accent-cyan scroll-reveal">
+                    <h3 class="outcome-headline">NGOs &amp; Advocates</h3>
+                    <p class="outcome-text">Placeholder summary of NGO and advocacy positions across the consultation.</p>
+                </div>
+                <div class="card-accent card-accent-green scroll-reveal">
+                    <h3 class="outcome-headline">Registries &amp; Market Operators</h3>
+                    <p class="outcome-text">Placeholder summary of implementation-focused responses from registries and operators.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== KEY THEMES ===== -->
+        <section class="content-section" id="by-theme">
+            <h2 class="section-title" id="themes">Key Themes</h2>
+            <p class="section-subtitle">Cross-cutting themes that recur across questions and respondent types.</p>
+
+            <div class="grid-2col">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Theme Frequency Across Responses</h3>
+                    <div class="chart-container-sm"></div>
+                </div>
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Theme Co-occurrence</h3>
+                    <div class="chart-container-sm"></div>
+                </div>
+            </div>
+
+            <div class="insight-glass insight-glass-indigo scroll-reveal">
+                <strong>Placeholder insight.</strong> Summarize the single most load-bearing theme here once coding of the responses is complete.
+            </div>
+        </section>
+
+        <!-- ===== CONSENSUS vs CONTENTION ===== -->
+        <section class="content-section" id="consensus">
+            <h2 class="section-title">Consensus &amp; Contention</h2>
+            <p class="section-subtitle">Where the responses converge — and the fault lines where they don't.</p>
+
+            <div class="grid-2col" id="contention">
+                <div class="insight-box insight-success scroll-reveal">
+                    <strong>Points of consensus.</strong> Placeholder for positions supported across nearly all respondent types.
+                </div>
+                <div class="insight-box insight-danger scroll-reveal">
+                    <strong>Points of contention.</strong> Placeholder for the questions that split respondents most sharply.
+                </div>
+            </div>
+
+            <div class="emphasis-callout scroll-reveal">
+                <div class="emphasis-big">—%</div>
+                <div class="emphasis-desc">Placeholder headline statistic</div>
+                <div class="emphasis-sub">One emphasis callout per page, maximum two — per the design guide</div>
+            </div>
+        </section>
+
+        <!-- ===== METHODOLOGY ===== -->
+        <section class="content-section-narrow" id="methodology">
+            <h2 class="section-title">Methodology</h2>
+            <p class="section-subtitle">How responses were collected, coded, and categorized.</p>
+            <div class="card card-spacious scroll-reveal">
+                <p>Placeholder for the methodology write-up: source of the consultation responses, coding scheme, theme taxonomy, and quality checks.</p>
+                <p class="text-muted">Replace with the real methodology before publishing.</p>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT ===== -->
+        <section class="content-section-narrow" id="about">
+            <h2 class="section-title">About</h2>
+            <div class="card card-spacious scroll-reveal">
+                <p>Placeholder for project background, authorship, and contact information.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Scope 2 Public Consultation Response Explorer"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
