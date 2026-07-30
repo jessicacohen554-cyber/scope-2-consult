@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrity &amp; Coalitions | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Who filed as what, which submissions moved together, and how much of the consultation is duplicated text — audited against the record, with what the audit cannot claim stated plainly.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/integrity-page.js"></script>
+
+    <!-- Page-specific styles ONLY: layouts unique to integrity.html. Shared
+         components (.card, .stat-card, .data-table, .insight-box, .s2-tag,
+         .s2-spark, .toggle-btn-group, .btn-pill, .legend, grids, spacing) are
+         used as-is. Colors, fonts, radii, shadows and spacing come from tokens. -->
+    <style>
+    /* ---------- Lead stat cards: paired NGO destinations ---------- */
+    .ip-stat-detail {
+        margin-top: var(--space-xs);
+        font-size: 0.7rem;
+        line-height: 1.45;
+        color: var(--text-light);
+    }
+    /* Accent rails are drawn with an inset box-shadow, not a border.
+       styles/cinematic.css (verbatim upstream) forces
+       `border: 1px solid … !important` on .card / .stat-card / .insight-box /
+       .data-table so the cinematic background never shows through a content
+       surface. A border-top accent is therefore unreachable on this site, while
+       box-shadow is not marked !important and composes cleanly. The outer shadow
+       is restated from the token so layering the inset does not drop it. */
+    .ip-stat-business  { box-shadow: inset 0 3px 0 0 var(--solar), var(--shadow-lg); }
+    .ip-stat-nonprofit { box-shadow: inset 0 3px 0 0 var(--wind),  var(--shadow-lg); }
+    .ip-stat-neutral   { box-shadow: inset 0 3px 0 0 var(--border), var(--shadow-lg); }
+
+    /* Same technique for the semantic insight boxes, whose 4px coloured left
+       border is overridden by the same upstream rule. */
+    .insight-box.ip-rail-warn    { box-shadow: inset 4px 0 0 0 var(--solar), var(--shadow-lg); }
+    .insight-box.ip-rail-danger  { box-shadow: inset 4px 0 0 0 var(--red),   var(--shadow-lg); }
+    .insight-box.ip-rail-success { box-shadow: inset 4px 0 0 0 var(--wind),  var(--shadow-lg); }
+    .insight-box.ip-rail-info    { box-shadow: inset 4px 0 0 0 var(--hydro), var(--shadow-lg); }
+    .insight-box[class*="ip-rail-"] { padding-left: 24px; }
+
+    /* ---------- Claimed x audited matrix ---------- */
+    .ip-mx-scroll { padding-bottom: var(--space-xs); }
+    .ip-matrix { min-width: 900px; border-collapse: separate; border-spacing: 0; }
+    .ip-matrix th,
+    .ip-matrix td { border-bottom: 1px solid var(--border-light); }
+    .ip-mx-corner,
+    .ip-mx-rowhead {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background: var(--bg-card);
+        text-align: left;
+        white-space: nowrap;
+    }
+    .ip-mx-corner {
+        font-family: var(--font-heading);
+        font-size: 0.66rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-dim);
+        min-width: 190px;
+    }
+    .ip-mx-arrow { color: var(--text-light); }
+    .ip-mx-rowhead {
+        font-family: var(--font-heading);
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--navy);
+        padding: 7px 10px 7px 0;
+        border-right: 1px solid var(--border-light);
+    }
+    .ip-mx-colhead { vertical-align: bottom; padding: 0 2px 8px; }
+    .ip-mx-colname {
+        display: block;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        max-height: 128px;
+        overflow: hidden;
+        font-size: 0.66rem;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 0.02em;
+        text-transform: none;
+        color: var(--text-secondary);
+        margin: 0 auto;
+    }
+    .ip-mx-cell {
+        text-align: center;
+        font-family: var(--font-data);
+        font-size: 0.8rem;
+        font-weight: 600;
+        min-width: 40px;
+        padding: 7px 4px;
+        color: var(--text-secondary);
+    }
+    /* Row-share shading. The flat token tint is the fallback; the color-mix()
+       line scales the same token by --ip-mx-a (set per cell) and is simply
+       ignored by engines without color-mix support. No hex is written here. */
+    .ip-mx-cell--held {
+        background: var(--wind-bg);
+        background: color-mix(in srgb, var(--wind) calc(var(--ip-mx-a, 0.1) * 100%), transparent);
+    }
+    .ip-mx-cell--moved {
+        background: var(--solar-bg);
+        background: color-mix(in srgb, var(--solar) calc(var(--ip-mx-a, 0.1) * 100%), transparent);
+    }
+    .ip-mx-cell--zero   { color: var(--text-light); font-weight: 400; }
+    .ip-mx-dash { color: var(--border); }
+    .ip-mx-total {
+        background: var(--bg-alt-warm);
+        color: var(--navy);
+        font-weight: 700;
+    }
+    .ip-matrix tfoot .ip-mx-total { border-bottom: none; }
+    .legend-dot.ip-dot-held  { background: var(--wind-t); }
+    .legend-dot.ip-dot-moved { background: var(--solar-t); }
+    .legend-dot.ip-dot-nomap { background: var(--border); }
+
+    /* ---------- Drill table ---------- */
+    .ip-drill-table { min-width: 880px; }
+    .ip-drill-name {
+        font-weight: 600;
+        color: var(--text-secondary);
+        max-width: 210px;
+        min-width: 160px;
+    }
+    .ip-drill-claimed,
+    .ip-drill-audited { white-space: nowrap; font-size: 0.74rem; }
+    .ip-drill-audited { font-weight: 600; color: var(--navy); }
+    .ip-drill-basis {
+        min-width: 320px;
+        font-size: 0.74rem;
+        line-height: 1.55;
+        color: var(--text-muted);
+    }
+    .ip-drill-conf { white-space: nowrap; }
+    .s2-tag.ip-conf-high   { background: var(--wind-bg);  color: var(--green-text); }
+    .s2-tag.ip-conf-medium { background: var(--solar-bg); color: var(--amber-text); }
+    .s2-tag.ip-conf-low    { background: var(--red-light); color: var(--red-text); }
+    .s2-tag.ip-tag-held    { background: var(--wind-bg);  color: var(--green-text); }
+    .s2-tag.ip-tag-member  { background: var(--bg-alt-warm); color: var(--text-secondary); }
+    .s2-tag.ip-tag-class   { background: var(--nuclear-bg); color: var(--nuclear-text); }
+    .s2-tag.ip-tag-geo     { background: var(--hydro-bg);  color: var(--hydro-text); }
+    .s2-tag.ip-tag-redacted {
+        background: var(--bg-alt-warm);
+        color: var(--text-muted);
+        border: 1px dashed var(--border);
+    }
+
+    /* ---------- Bloc cards ---------- */
+    .ip-bloc-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: var(--space-lg);
+    }
+    .ip-bloc { display: flex; flex-direction: column; gap: var(--space-md); }
+    .ip-bloc-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--space-sm);
+    }
+    .ip-bloc-title {
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin: 0;
+        line-height: 1.3;
+    }
+    .ip-bloc-count { display: flex; align-items: baseline; gap: var(--space-sm); }
+    .ip-bloc-n {
+        font-family: var(--font-data);
+        font-size: 1.9rem;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--navy);
+    }
+    .ip-bloc-n-label {
+        font-size: 0.76rem;
+        font-weight: 600;
+        color: var(--text-muted);
+    }
+    .ip-sig {
+        padding: var(--space-sm) var(--space-md);
+        background: var(--bg-alt);
+        border-radius: var(--radius-md);
+    }
+    .ip-sig-label,
+    .ip-bloc-sub {
+        font-family: var(--font-heading);
+        font-size: 0.64rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+    }
+    .ip-sig-strip { height: 30px; gap: 5px; }
+    .ip-sig-strip .s2-spark-bar { width: 12px; border-radius: 2px 2px 0 0; }
+    .ip-sig-read {
+        margin-top: 6px;
+        font-size: 0.7rem;
+        line-height: 1.5;
+        color: var(--text-light);
+    }
+    .ip-bloc-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: var(--space-sm);
+        margin: 0;
+    }
+    .ip-bloc-metrics dt {
+        font-family: var(--font-heading);
+        font-size: 0.64rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-muted);
+    }
+    .ip-bloc-metrics dd {
+        margin: 2px 0 0;
+        font-family: var(--font-data);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--navy);
+    }
+    .ip-bloc-metrics dd:not(.num) { font-size: 0.76rem; font-weight: 600; }
+    .ip-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .ip-bloc-interest {
+        margin: 0;
+        padding-top: var(--space-sm);
+        border-top: 1px solid var(--border-light);
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+    }
+
+    /* Anchor key above the bloc grid */
+    .ip-anchor-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-xs) var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+    .ip-anchor-key { font-size: 0.74rem; gap: 6px; }
+    .ip-anchor-i {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 17px;
+        height: 17px;
+        border-radius: var(--radius-pill);
+        background: var(--navy);
+        color: var(--bg-page-white);
+        font-family: var(--font-data);
+        font-size: 0.62rem;
+        font-weight: 700;
+    }
+    .ip-anchor-kind {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 1px 6px;
+        border-radius: var(--radius-pill);
+    }
+    .ip-anchor-requirement { background: var(--storage-bg); color: var(--red-text); }
+    .ip-anchor-flexibility { background: var(--wind-bg);    color: var(--green-text); }
+
+    /* ---------- Template prevalence ---------- */
+    .ip-cluster-table { min-width: 820px; }
+    .ip-cl-q { white-space: nowrap; }
+    .ip-cl-preview {
+        min-width: 340px;
+        font-size: 0.73rem;
+        line-height: 1.55;
+        color: var(--text-muted);
+    }
+
+    /* Q71 dedup comparison */
+    .ip-dedup { display: flex; flex-direction: column; gap: var(--space-lg); }
+    .ip-dedup-row { display: grid; gap: 5px; }
+    .ip-dedup-label {
+        font-family: var(--font-heading);
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--navy);
+    }
+    .ip-dedup-track {
+        position: relative;
+        height: 26px;
+        background: var(--bg-alt-warm);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+    .ip-dedup-fill {
+        height: 100%;
+        background: var(--storage-t);
+        border-right: 2px solid var(--storage);
+    }
+    .ip-dedup-published .ip-dedup-fill { background: var(--storage-t); }
+    .ip-dedup-named    .ip-dedup-fill { background: var(--solar-t); border-right-color: var(--solar); }
+    .ip-dedup-dedup    .ip-dedup-fill { background: var(--nuclear-t); border-right-color: var(--nuclear); }
+    .ip-dedup-val {
+        position: absolute;
+        left: var(--space-sm);
+        font-family: var(--font-data);
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--navy);
+    }
+    .ip-dedup-sub {
+        font-size: 0.73rem;
+        line-height: 1.55;
+        color: var(--text-muted);
+    }
+    .ip-delta {
+        text-align: center;
+        padding: var(--space-lg) var(--space-md);
+    }
+    .ip-delta-figure {
+        font-family: var(--font-data);
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 1;
+        color: var(--nuclear-text);
+    }
+    .ip-delta-unit { font-size: 1.1rem; font-weight: 700; margin-left: 4px; }
+    .ip-delta-desc {
+        margin-top: var(--space-sm);
+        font-family: var(--font-heading);
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.45;
+    }
+    .ip-delta-sub {
+        margin-top: var(--space-sm);
+        font-size: 0.76rem;
+        line-height: 1.6;
+        color: var(--text-muted);
+        text-align: left;
+    }
+    .ip-group-table { min-width: 0; font-size: 0.74rem; }
+
+    /* ---------- Commercial fingerprint (symmetric) ---------- */
+    .ip-mirror {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: var(--space-lg);
+        margin-top: var(--space-lg);
+    }
+    .ip-mirror-card { display: flex; flex-direction: column; gap: var(--space-sm); }
+    .ip-mirror-a { box-shadow: inset 0 3px 0 0 var(--hydro), var(--shadow-lg); }
+    .ip-mirror-b { box-shadow: inset 0 3px 0 0 var(--solar), var(--shadow-lg); }
+    .ip-mirror-title {
+        font-family: var(--font-heading);
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin: 0;
+    }
+    .ip-mirror-lede {
+        margin: 0;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-muted);
+    }
+    .ip-mirror-group { margin-top: var(--space-xs); }
+    .ip-mirror-list { list-style: none; margin: 0; padding: 0; }
+    .ip-mirror-item {
+        display: grid;
+        grid-template-columns: 3.1rem 1fr;
+        align-items: baseline;
+        gap: var(--space-sm);
+        padding: 4px 0;
+    }
+    .ip-mirror-metric {
+        font-family: var(--font-data);
+        font-size: 1.15rem;
+        font-weight: 700;
+        text-align: right;
+    }
+    .ip-mirror-hi .ip-mirror-metric { color: var(--green-text); }
+    .ip-mirror-lo .ip-mirror-metric { color: var(--red-text); }
+    .ip-mirror-metric-label {
+        font-size: 0.78rem;
+        line-height: 1.4;
+        color: var(--text-secondary);
+    }
+    .ip-mirror-metric-label em,
+    .ip-mirror-second em { font-style: normal; color: var(--text-light); }
+    .ip-mirror-second {
+        grid-column: 2;
+        font-size: 0.72rem;
+        color: var(--text-muted);
+    }
+    .ip-mirror-read {
+        margin: 0;
+        padding-top: var(--space-sm);
+        border-top: 1px solid var(--border-light);
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+    }
+    .ip-fp-table { min-width: 900px; }
+    .ip-fp-table th { vertical-align: bottom; }
+    .ip-fp-qlabel {
+        display: block;
+        font-size: 0.62rem;
+        font-weight: 600;
+        text-transform: none;
+        letter-spacing: 0;
+        color: var(--text-light);
+        max-width: 92px;
+        white-space: normal;
+    }
+    .ip-fp-kind {
+        display: inline-block;
+        margin-top: 3px;
+        font-family: var(--font-mono);
+        font-size: 0.55rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        padding: 1px 5px;
+        border-radius: var(--radius-pill);
+    }
+    .ip-fp-n {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.62rem;
+        font-weight: 400;
+        color: var(--text-light);
+    }
+
+    /* ---------- Entity families ---------- */
+    .ip-fam-table { min-width: 880px; }
+    .ip-fam-name {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        color: var(--navy);
+        text-transform: capitalize;
+        white-space: nowrap;
+    }
+    .ip-fam-members { min-width: 300px; }
+    .ip-fam-members .s2-tag { margin: 0 3px 3px 0; }
+
+    /* ---------- Shared bits ---------- */
+    .ip-panel-title {
+        font-family: var(--font-heading);
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin: 0 0 var(--space-xs);
+    }
+    .ip-panel-lede {
+        margin: 0 0 var(--space-lg);
+        font-size: 0.85rem;
+        line-height: 1.65;
+        color: var(--text-secondary);
+    }
+    .ip-prose { max-width: var(--max-prose); }
+    .ip-prose p { font-size: 0.9rem; line-height: 1.75; color: var(--text-secondary); }
+    .ip-source-list { margin: var(--space-sm) 0 0; padding-left: 1.15rem; }
+    .ip-source-list li {
+        font-size: 0.78rem;
+        line-height: 1.65;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+    }
+    .ip-notclaim-list { margin: var(--space-md) 0 0; padding-left: 1.15rem; }
+    .ip-notclaim-list li { margin-bottom: var(--space-sm); }
+    .ip-notclaim-list strong { color: var(--navy); }
+
+    @media (max-width: 720px) {
+        .ip-bloc-grid { grid-template-columns: 1fr; }
+        .ip-mirror { grid-template-columns: 1fr; }
+        .ip-delta-figure { font-size: 2.4rem; }
+        .ip-mx-colname { max-height: 104px; }
+        .ip-bloc-n { font-size: 1.6rem; }
+        .ip-mirror-item { grid-template-columns: 2.7rem 1fr; }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Integrity &amp; Coalitions</h1>
+        <div class="subtitle">Who filed as what, which submissions moved together, and how much of the consultation is the same text typed twice — checked against the record, with the limits of the check stated up front.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- Visible failure surface for the data loader -->
+        <div id="integrityError"></div>
+        <div id="provisionalBanner"></div>
+
+        <!-- ===================================================================
+             1. CLAIMED vs AUDITED CLASSIFICATION
+             =================================================================== -->
+        <section class="content-section" id="classification">
+            <h2 class="section-title">Claimed versus audited classification</h2>
+            <p class="section-subtitle">Every respondent chose their own organisation type from a
+                dropdown. For the 499 named filings, that choice can be checked against the
+                organisation's legal form and stated purpose. This is what the check found.</p>
+
+            <div class="hero-stats-row grid-stats" id="leadStats">
+                <p class="s2-loading">Loading the audit…</p>
+            </div>
+
+            <div class="insight-box ip-rail-info" id="ngoSumWarning"></div>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <h3 class="ip-panel-title">Where each self-selected type landed</h3>
+                <p class="ip-panel-lede">Rows are what the respondent selected; columns are what
+                    the audit recorded. Shading is the share of that row, so a row that runs
+                    mostly down one column is a claim that mostly held.</p>
+                <div id="matrixPanel"><p class="s2-loading">Loading the matrix…</p></div>
+                <div class="legend s2-note-legend" id="matrixLegend"></div>
+                <p class="s2-note">Named filings only. Redacted respondents are recorded as
+                    <em>unverifiable</em> by construction — their identity is withheld, so there
+                    is nothing to check — and they are counted, never listed.</p>
+            </div>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ip-panel-title">Row by row, with the basis recorded for each</h3>
+                <p class="ip-panel-lede">The audited class of every named filing, and the reason
+                    the audit gave for it. Search the basis text to see how a judgement was
+                    reached.</p>
+                <div class="s2-controls" id="drillControls"></div>
+                <p class="s2-table-status" id="drillStatus"></p>
+                <div id="drillTable"><p class="s2-loading">Loading rows…</p></div>
+                <div class="s2-table-more" id="drillMore"></div>
+                <p class="s2-note" id="drillNote"></p>
+            </div>
+
+            <div class="insight-glass scroll-reveal ip-prose">
+                <p><strong>What the classification does and does not tell you.</strong> A
+                    reclassification is a statement about what an organisation <em>is</em>, drawn
+                    from its legal form and its own description of itself — not a statement about
+                    whether it answered honestly or whether its argument is sound. Several of the
+                    largest moves are unremarkable on inspection: a certificate-standards body
+                    that is a UK limited company, a trade association that files under
+                    <em>Other</em>, an operating company that picked <em>Industry group</em>
+                    because it belongs to one. The dropdown had 15 options and no definitions
+                    attached; picking the wrong one is an easy mistake to make in both
+                    directions.</p>
+                <p>Two figures from PLAN §3.6 belong here but are not derivable from the published
+                    JSON, and are cited rather than computed: of the 44 filings that selected
+                    <em>Academia/research</em>, <strong>31 answered as individuals</strong> rather
+                    than on behalf of an institution, and 10 are redacted. The
+                    responding-as × org-type cross-tabulation is not in
+                    <code>respondents.json</code>, so this page cannot recompute it.</p>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             2. COORDINATED BLOCS
+             =================================================================== -->
+        <section class="content-section-wide" id="blocs">
+            <h2 class="section-title">Coordinated blocs</h2>
+            <p class="section-subtitle">Groups of filings that answered the seven MBM anchors
+                identically and share verbatim free text. <strong>A bloc is a record of
+                alignment</strong> — organisations that examined the same proposals and arrived at
+                the same position, then said so in the same words. That is what an organised
+                stakeholder group is for. Coordination happens on every side of this consultation,
+                and the cards below apply the same five measurements to each bloc regardless of
+                which way it points.</p>
+
+            <div class="legend ip-anchor-legend" id="blocLegend"></div>
+
+            <div class="ip-bloc-grid" id="blocGrid">
+                <p class="s2-loading">Loading blocs…</p>
+            </div>
+
+            <div class="insight-glass insight-glass-indigo scroll-reveal ip-prose">
+                <p><strong>How to read a bloc card.</strong> The signature strip is the group's
+                    shared answer to each of the seven anchors; a hatched bar means members did
+                    not all give the same answer there, so no shared value is claimed.
+                    <em>Shared verbatim texts</em> counts the clustered strings that at least two
+                    members filed identically. <em>Identical-vector run</em> is the longest run of
+                    scale answers on which members were byte-identical, and is reported only when
+                    a vector cluster's named members are a subset of the bloc's — a matching
+                    signature alone is not treated as evidence of the same group, which is why
+                    two blocs show none.</p>
+                <p>Named members are listed because they chose to be named. Redacted members
+                    appear only as <em>+N redacted</em>: they are counted so the bloc's size is
+                    right, and they are not named, guessed at, or characterised. One bloc here has
+                    no named members at all, and nothing further is said about it.</p>
+                <p><strong>Membership of a bloc says nothing about the quality of its
+                    argument.</strong> A point drafted jointly by twelve organisations and filed
+                    twelve times is exactly as sound, or as weak, as the same point filed once —
+                    coordination is a fact about the process, not a defect in the reasoning.
+                    Several blocs here make arguments that hold up independently of how many
+                    parties signed them: registry readiness, regional equity in the fossil
+                    fallback, and misallocation under annual matching are all assessed on the
+                    <a href="evidence.html">Evidence &amp; Research</a> page on their merits,
+                    without reference to who filed them or how many times.</p>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             3. TEMPLATE PREVALENCE AND ITS EFFECT ON A HEADLINE
+             =================================================================== -->
+        <section class="content-section" id="templates">
+            <h2 class="section-title">Template prevalence</h2>
+            <p class="section-subtitle">A shared string is a normalised answer of 200+ characters
+                filed verbatim by three or more respondents. Coordinated drafting is a legitimate
+                and common way to answer a consultation, and shared text tells you that
+                organisations aligned on a position — not that the position is weak.</p>
+
+            <div class="insight-box insight-success ip-rail-success scroll-reveal">
+                <strong>Reused text is the weakest signal on this page. Read it last.</strong>
+                Whether a submission deserves weight turns on things this panel does not measure:
+                the quality of the reasoning, the evidence actually cited, the respondent's
+                standing and track record in the subject, and the commercial exposure behind the
+                position. Those are the informative signals, and they live elsewhere on the site —
+                <a href="evidence.html">Evidence &amp; Research</a> covers citation rates, the
+                declared evidence basis for each claim and which citations are peer-reviewed
+                versus advocacy-hosted; the <a href="#fingerprint">commercial fingerprint</a> below
+                covers interest; the <a href="#classification">classification audit</a> above
+                covers what each organisation actually is. Duplicate text ranks below all of them.
+                It is reported here for one narrow and purely arithmetic reason: a count of filings
+                is not a count of organisations, so any “N respondents said X” headline needs to
+                say which of the two it means. That is a caveat about counting, not about the
+                argument being counted.
+            </div>
+
+            <div class="hero-stats-row grid-stats" id="templateStats">
+                <p class="s2-loading">Loading template counts…</p>
+            </div>
+
+            <p class="s2-note" id="templatePopulationNote"></p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <h3 class="ip-panel-title">The most widely shared strings</h3>
+                <div id="clusterTable"><p class="s2-loading">Loading shared strings…</p></div>
+                <p class="s2-note" id="clusterTableNote"></p>
+            </div>
+
+            <div class="grid-2col">
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="ip-panel-title">Q71 oppose share, computed three ways</h3>
+                    <p class="ip-panel-lede">Hourly matching (Q71) is the most-answered anchor and
+                        the one most often quoted. Here is its oppose share on the published base,
+                        on named filings, and on named filings with every entity family and bloc
+                        counted once. None of the three is the corrected figure: they answer
+                        different questions — how many filings, how many named filings, how many
+                        organisations — and a headline should say which one it is quoting.</p>
+                    <div class="ip-dedup" id="dedupChart">
+                        <p class="s2-loading">Computing…</p>
+                    </div>
+                </div>
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="ip-panel-title">The delta</h3>
+                    <div class="ip-delta" id="dedupDelta"></div>
+                    <div class="s2-table-scroll">
+                        <table class="data-table ip-group-table">
+                            <caption class="sr-only">Groups collapsed to one vote in the
+                                deduplicated figure</caption>
+                            <thead><tr><th scope="col">Group</th><th scope="col">Filings</th>
+                                <th scope="col">Q71 answers</th><th scope="col">Counted as</th>
+                            </tr></thead>
+                            <tbody id="dedupGroups"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <p class="s2-note" id="dedupNote"></p>
+        </section>
+
+        <!-- ===================================================================
+             4. THE COMMERCIAL FINGERPRINT — PRESENTED SYMMETRICALLY
+             =================================================================== -->
+        <section class="content-section" id="fingerprint">
+            <h2 class="section-title">The commercial fingerprint, both ways round</h2>
+            <p class="section-subtitle">Two org types sit at opposite ends of the same pattern.
+                Read together they say something simple: on this consultation, position tracks
+                commercial exposure — in both directions — and that is a fact about incentives,
+                not a verdict on the argument.</p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <h3 class="chart-title">Mean support across the seven anchors — requirements
+                    (Q71–Q124) then flexibilities (Q153, Q171)</h3>
+                <div class="chart-container-lg">
+                    <canvas id="fingerprintChart"></canvas>
+                </div>
+            </div>
+
+            <div class="ip-mirror" id="fingerprintMirror"></div>
+
+            <div class="insight-box insight-warn ip-rail-warn" id="fingerprintNote"></div>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ip-panel-title">The same figures as a table</h3>
+                <div id="fingerprintTable"><p class="s2-loading">Loading means…</p></div>
+                <p class="s2-note">Means are on the 1–5 support scale (1 = strongly opposes,
+                    5 = strongly supports), from <code>likert.json</code>. Each cell carries its
+                    own base: respondents answered different subsets of the survey, so n varies
+                    by anchor within a single row.</p>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             5. ENTITY FAMILIES
+             =================================================================== -->
+        <section class="content-section" id="families">
+            <h2 class="section-title">Entity families</h2>
+            <p class="section-subtitle">Filings grouped by the organisation behind them.</p>
+
+            <div class="emphasis-callout scroll-reveal" id="familyCallout"></div>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <h3 class="ip-panel-title">Named filings that share a parent organisation</h3>
+                <div id="familyTable"><p class="s2-loading">Loading families…</p></div>
+                <p class="s2-note" id="familyNote"></p>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             6. WHAT THIS AUDIT DOES NOT CLAIM  (mandatory)
+             =================================================================== -->
+        <section class="content-section-narrow" id="not-claimed">
+            <h2 class="section-title">What this audit does not claim</h2>
+            <p class="section-subtitle">The limits of everything above, stated as plainly as the
+                findings.</p>
+
+            <div class="insight-box insight-danger ip-rail-danger scroll-reveal">
+                <strong>Read these seven points as part of the findings, not as a disclaimer
+                    appended to them.</strong>
+                <ul class="ip-notclaim-list">
+                    <li><strong>Redaction is permitted, and unverifiable is not a
+                        finding.</strong> The consultation allowed respondents to withhold their
+                        identity, and 573 of 1,072 did. Those filings are recorded as
+                        <em>unverifiable</em> because there is nothing to check — not because
+                        anything is suspected. No redacted respondent is named, guessed at,
+                        inferred from a bloc's other members, or described here beyond a count.
+                        A redacted filing is as valid a submission as a named one.</li>
+                    <li><strong>Coordination is lawful consultation behaviour, on every
+                        side.</strong> Circulating a drafting pack, agreeing a common position, or
+                        filing as an association with its members is how organised stakeholders
+                        participate. It is not misconduct and nothing on this page says it is. The
+                        blocs are named because their size changes what a response count
+                        <em>measures</em> — mobilisation rather than independent agreement — and
+                        that applies identically to the bloc at the supportive end and the
+                        families at the opposing end.</li>
+                    <li><strong>Duplication does not weaken an argument, and this page does not
+                        rank submissions by it.</strong> Shared text is evidence of alignment
+                        between organisations, which is real information, and a point filed twelve
+                        times is neither stronger nor weaker than the same point filed once. The
+                        signals that actually bear on how much weight a submission deserves are the
+                        quality of its reasoning, the evidence it cites, the respondent's standing
+                        in the subject and the interest behind the position — all of which sit
+                        above reused wording, and none of which this panel measures. Treat the
+                        template counts as a note on arithmetic and go to
+                        <a href="evidence.html">Evidence &amp; Research</a> for the substance.</li>
+                    <li><strong>Classification is not accusation.</strong> An audited class is a
+                        statement about what an organisation is, based on its legal form and its
+                        own published description. It says nothing about honesty, and nothing
+                        about whether the organisation's argument is right. Most reclassifications
+                        here look like a respondent picking the nearest of 15 undefined dropdown
+                        options. Terms like <em>front group</em> and <em>astroturf</em> assert a
+                        motive this data cannot establish, and they appear nowhere on this
+                        page.</li>
+                    <li><strong>Interest is not disqualification.</strong> The fingerprint panel
+                        cuts in both directions by construction: a vendor supporting a requirement
+                        it would be paid to meet and a reporter opposing a requirement it would
+                        pay to meet are the same kind of fact. Whether hourly matching improves
+                        Scope 2 accounting is an empirical question that no count of who benefits
+                        can answer.</li>
+                    <li><strong>Small bases move.</strong> Several org types here rest on fewer
+                        than 25 answers per anchor, and some audited classes on fewer than 10.
+                        Every mean on this page is shown with its own n for that reason. Where a
+                        base is small, treat the direction as suggestive and the exact value as
+                        noise.</li>
+                    <li><strong>The dedup is partial and the page says where it
+                        stops.</strong> Duplicate filings can only be collapsed for named
+                        respondents, because a redacted respondent's individual answers are not
+                        published. The deduplicated Q71 figures therefore cover named filings
+                        only, and no estimate is offered for what dedup would do to the published
+                        70.2%. The true number of distinct organisations behind 1,072 filings is
+                        unknowable from this data — it is lower than 1,072, and by more than the
+                        23 duplicate filings this page can identify.</li>
+                </ul>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3 class="ip-panel-title">Every figure on this page, and where it comes from</h3>
+                <ul class="ip-source-list">
+                    <li><code>data/audit.json</code> — the claimed × audited matrix, the lead stat
+                        cards, the drill table and its per-row basis. Named filings only.</li>
+                    <li><code>data/clusters.json</code> — bloc membership, signatures, shared-text
+                        counts, identical-vector runs, the shared-string table and the entity
+                        families.</li>
+                    <li><code>data/respondents.json</code> — the template flag, the 7-anchor
+                        vectors and the bloc/family tags used for the Q71 dedup.</li>
+                    <li><code>data/likert.json</code> — every mean and base in the fingerprint
+                        panel and the published Q71 distribution.</li>
+                    <li><code>data/meta.json</code> — segment labels, the audited-class vocabulary
+                        and the population totals used as denominators.</li>
+                    <li>Two exceptions, flagged where they appear: the 155-respondent template
+                        figure and the 31-of-44 academia figure come from
+                        <code>data/derived/respondent_flags.csv</code> and PLAN §3.6, because
+                        neither can be recomputed from the published JSON.</li>
+                </ul>
+                <p class="s2-note">Nothing on this page is hardcoded except those two cited
+                    figures and the neutral one-line description on each bloc card; every count,
+                    share, mean and delta is computed from the files above when the page
+                    loads.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Scope 2 Public Consultation Response Explorer — legitimacy audit and coalition mapping"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
