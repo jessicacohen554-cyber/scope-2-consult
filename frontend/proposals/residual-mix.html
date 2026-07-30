@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residual mix | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Consultation answers on the residual mix definition and registry readiness: stance by segment, reasons, readiness scores, lead times, and what those readiness claims rest on.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="../styles/shared.css">
+    <link rel="stylesheet" href="../styles/article.css">
+    <link rel="stylesheet" href="../styles/cinematic.css">
+    <link rel="stylesheet" href="../styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="../js/nav.js"></script>
+    <script src="../js/chart-colors.js"></script>
+    <script src="../js/shared-header.js"></script>
+    <script src="../js/scroll-observer.js"></script>
+    <script src="../js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="../js/data-loader.js"></script>
+    <script src="../js/segments.js"></script>
+    <script src="../js/likert-viz.js"></script>
+    <script src="../js/quote-cards.js"></script>
+    <script src="../js/org-table.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Residual mix</h1>
+        <div class="subtitle">The proposal to define the residual mix precisely — and the registry infrastructure that would have to publish it.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <!-- Every section below is rendered by js/proposal-page.js from the
+         PROPOSAL_CONFIG at the foot of this file. Panels, in order:
+           #intro          page intro
+           #stance         stance — diverging bar + segment toggle + redaction split
+           #reasons        reasons for / against, % of the base that answered
+           #readiness      scale rows (construct-aware ramp) + driver picklists
+           #leadtime       design-preference distributions
+           #evidence       evidence basis
+           #quotes         curated quotes for / against
+           #footnote       response bases for every question used
+    -->
+    <div class="content-wrap">
+        <div id="proposalBody"></div>
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Scope 2 Public Consultation Response Explorer — Residual Mix"></footer>
+
+    <!-- Page config: the only site-specific code on this page. -->
+    <script>
+    window.PROPOSAL_CONFIG = {
+        "key": "residual-mix",
+        "lever": "resid_mix_def",
+        "quoteLever": "resid_mix_def",
+        "panels": [
+            {
+                "kind": "note",
+                "id": "intro",
+                "variant": "insight-glass insight-glass-indigo",
+                "html": "<strong>What the residual mix proposal does.</strong> It defines the emissions left in the grid once claimed attributes are removed, so that reporters who buy nothing are not credited with someone else&rsquo;s clean generation. It is the most supported of the quality-criteria proposals — and the one that depends most directly on infrastructure that does not exist yet, which is why the readiness panels below sit next to the stance."
+            },
+            {
+                "kind": "stance",
+                "q": 113,
+                "html": "<strong>Support here crosses the camps.</strong> Unlike hourly matching, this proposal draws majority support from most organization types — the disagreement is about granularity and timing rather than the concept."
+            },
+            {
+                "kind": "reasons",
+                "for": 114,
+                "against": 116
+            },
+            {
+                "kind": "scale",
+                "id": "readiness",
+                "qs": [
+                    118
+                ],
+                "title": "Are the registries ready to publish it?",
+                "chartTitle": "Registry and data-provider readiness",
+                "html": "<strong>The off-scale answer is part of the finding.</strong> A large group of respondents chose &ldquo;insufficient basis to assess&rdquo; rather than a readiness score. That is counted and shown separately above; folding it into the scale would invent an opinion the respondent declined to give."
+            },
+            {
+                "kind": "selects",
+                "id": "leadtime",
+                "qs": [
+                    120,
+                    121
+                ],
+                "title": "How long until registries could publish",
+                "subtitle": "Q120 asks the lead time on the current path, Q121 if development were accelerated. Both keep ladder order, and &ldquo;Unknown&rdquo; is shown as the answer it is.",
+                "html": "<strong>&ldquo;Unknown&rdquo; is the modal answer on both questions.</strong> Roughly the same respondents who scored registry readiness low also decline to say when readiness would arrive, on either path — which is a finding about the evidence base for this proposal&rsquo;s timeline, not a gap in the survey."
+            },
+            {
+                "kind": "evidence",
+                "id": "evidence",
+                "basis": "q122",
+                "title": "What the readiness claims rest on",
+                "html": "<strong>Almost nobody is speaking from a pilot.</strong> Q122 asks respondents what their readiness assessment was based on. Bare professional judgment dominates; pilot or production use — the only basis that would settle the question empirically — is the smallest category. The stance cross-tab shows that this holds on both sides of the hourly-matching divide."
+            },
+            {
+                "kind": "quotes",
+                "forTitle": "For the residual mix definition",
+                "againstTitle": "Against the residual mix definition",
+                "html": "Includes the registry-readiness elaborations (Q119) and the general residual-mix comment box (Q123)."
+            },
+            {
+                "kind": "footnote"
+            }
+        ]
+    };
+    </script>
+    <script src="../js/proposal-page.js"></script>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="../js/cinematic-bg.js"></script>
+</body>
+</html>

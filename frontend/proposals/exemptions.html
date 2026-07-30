@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemptions from hourly matching | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Consultation answers on hourly-matching exemptions: stance by segment, reasons, the sufficiency of feasibility measures, and the threshold, eligibility, duration and conformance design choices.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="../styles/shared.css">
+    <link rel="stylesheet" href="../styles/article.css">
+    <link rel="stylesheet" href="../styles/cinematic.css">
+    <link rel="stylesheet" href="../styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="../js/nav.js"></script>
+    <script src="../js/chart-colors.js"></script>
+    <script src="../js/shared-header.js"></script>
+    <script src="../js/scroll-observer.js"></script>
+    <script src="../js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="../js/data-loader.js"></script>
+    <script src="../js/segments.js"></script>
+    <script src="../js/likert-viz.js"></script>
+    <script src="../js/quote-cards.js"></script>
+    <script src="../js/org-table.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Exemptions from hourly matching</h1>
+        <div class="subtitle">The escape hatch: who would be exempt from hourly matching, at what threshold, for how long, and whether they still count as conforming.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <!-- Every section below is rendered by js/proposal-page.js from the
+         PROPOSAL_CONFIG at the foot of this file. Panels, in order:
+           #intro          page intro
+           #stance         stance — diverging bar + segment toggle + redaction split
+           #reasons        reasons for / against, % of the base that answered
+           #feasibility    scale rows (construct-aware ramp) + driver picklists
+           #threshold      design-preference distributions
+           #eligibility    design-preference distributions
+           #duration       design-preference distributions
+           #conformance    design-preference distributions
+           #evidence       evidence basis
+           #quotes         curated quotes for / against
+           #footnote       response bases for every question used
+    -->
+    <div class="content-wrap">
+        <div id="proposalBody"></div>
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Scope 2 Public Consultation Response Explorer — Exemptions"></footer>
+
+    <!-- Page config: the only site-specific code on this page. -->
+    <script>
+    window.PROPOSAL_CONFIG = {
+        "key": "exemptions",
+        "lever": "hourly_exempt",
+        "quoteLever": "hourly_exempt",
+        "panels": [
+            {
+                "kind": "note",
+                "id": "intro",
+                "variant": "insight-glass insight-glass-indigo",
+                "html": "<strong>Requirements rejected, escape hatches embraced.</strong> Hourly matching draws the survey&rsquo;s strongest opposition; the exemption from it draws one of the strongest majorities. The same respondents produce both results, which is why this page carries the exemption <em>design</em> in four sections — threshold, eligibility, duration, conformance — rather than stopping at the headline."
+            },
+            {
+                "kind": "stance",
+                "q": 153,
+                "html": "<strong>The one segment that dissents.</strong> Switch to organization type: the data and analytics providers who support hourly matching are the least enthusiastic about exempting anyone from it — the mirror image of the pattern on the <a href=\"hourly-matching.html\">QC4 page</a>."
+            },
+            {
+                "kind": "reasons",
+                "for": 154,
+                "against": 156,
+                "html": "<strong>&ldquo;Against&rdquo; does not mean &ldquo;no exemption&rdquo;.</strong> The second-largest objection is from respondents who support an exemption but want a different criterion for it — so the opposition base here is not a bloc of purists."
+            },
+            {
+                "kind": "scale",
+                "id": "feasibility",
+                "qs": [
+                    130
+                ],
+                "title": "Are the proposed feasibility measures sufficient?",
+                "chartTitle": "Sufficiency of the proposed feasibility measures",
+                "html": "<strong>Footnote on this label ladder.</strong> The published answer labels are not monotonic in wording — rung 3 reads &ldquo;Sufficient&rdquo; while rung 4 reads &ldquo;Moderately sufficient&rdquo; — so the rung order, not the adjectives, carries the meaning. Respondents who chose &ldquo;no basis to assess&rdquo; are counted off-scale above. This question is why the exemption exists: the measures meant to make hourly matching feasible are not judged sufficient by the people who would use them."
+            },
+            {
+                "kind": "selects",
+                "id": "threshold",
+                "qs": [
+                    70
+                ],
+                "title": "Exemption design — the threshold",
+                "subtitle": "Which consumption threshold should trigger the exemption. Ladder order, smallest threshold first.",
+                "stats": [
+                    {
+                        "q": 70,
+                        "match": "50 GWhs",
+                        "label": "prefer a 50 GWh threshold",
+                        "tint": "text-wind"
+                    },
+                    {
+                        "q": 70,
+                        "match": "5 GWhs",
+                        "label": "prefer 5 GWh",
+                        "tint": "text-muted"
+                    },
+                    {
+                        "q": 70,
+                        "match": "10 GWhs",
+                        "label": "prefer 10 GWh",
+                        "tint": "text-muted"
+                    }
+                ]
+            },
+            {
+                "kind": "selects",
+                "id": "eligibility",
+                "qs": [
+                    163,
+                    161
+                ],
+                "title": "Exemption design — eligibility",
+                "subtitle": "Q163 picks between the four draft eligibility options; Q161 asks which criteria should define a small or medium company, the categorisation that options 2, 3 and 4 rely on.",
+                "html": "<strong>What &ldquo;Option 1&rdquo; means.</strong> The survey labelled the four draft eligibility conditions by number and did not repeat their text in the answer options, so the export carries the numbers only. Per the survey&rsquo;s own wording on Q161, options 2, 3 and 4 add a small-and-medium-company criterion on top of the consumption threshold; option 1 is the threshold alone. Respondents who rejected all four had a free-text alternative (Q164), which is not a closed option and so is not charted here."
+            },
+            {
+                "kind": "selects",
+                "id": "duration",
+                "qs": [
+                    166
+                ],
+                "title": "Exemption design — time limits",
+                "subtitle": "Whether an exemption should be phased out or run indefinitely.",
+                "stats": [
+                    {
+                        "q": 166,
+                        "match": "Ongoing",
+                        "label": "want exemptions to be ongoing"
+                    },
+                    {
+                        "q": 166,
+                        "match": "Time-limited (i.e. phased out over time)",
+                        "label": "want them time-limited",
+                        "tint": "text-muted"
+                    },
+                    {
+                        "q": 166,
+                        "match": "Do not support exemptions",
+                        "label": "do not support exemptions at all",
+                        "tint": "text-storage"
+                    }
+                ]
+            },
+            {
+                "kind": "selects",
+                "id": "conformance",
+                "qs": [
+                    169
+                ],
+                "title": "Exemption design — conformance status",
+                "subtitle": "Whether an organization exercising the exemption is still in conformance with the standard.",
+                "stats": [
+                    {
+                        "q": 169,
+                        "match": "Yes, organizations using the hourly matching exemption should be considered in conformance",
+                        "label": "say exemption users remain in conformance",
+                        "tint": "text-wind"
+                    },
+                    {
+                        "q": 169,
+                        "match": "A separate conformance level should be defined for companies exercising the exemption",
+                        "label": "want a separate conformance level"
+                    },
+                    {
+                        "q": 169,
+                        "match": "No, organizations using the hourly matching exemption should NOT be considered in conformance",
+                        "label": "say exemption users are not conforming",
+                        "tint": "text-storage"
+                    }
+                ],
+                "html": "<strong>The design choice with the least controversy on this page.</strong> A clear majority would leave exemption users in conformance, which means the exemption is understood as part of the standard rather than as a documented departure from it."
+            },
+            {
+                "kind": "evidence",
+                "id": "evidence",
+                "basis": "q158",
+                "title": "What the exemption case rests on",
+                "html": "<strong>Q158 is free text, and its coding is not exported yet.</strong> The consultation asked respondents for the evidence behind the need for an exemption in an open box. That sample has been coded into evidence-type buckets by the curation pipeline (<code>data/derived/q158_evidence_coding.csv</code>), but the frontend data contract in PLAN §5 has no field for it, so no distribution is published here — this panel lights up automatically if a later export adds <code>evidence.basis.q158</code>. In the meantime the coded material is summarised on the <a href=\"../evidence.html\">Evidence &amp; Research page</a>, and a Q158 answer appears verbatim in the quotes below. The strongest quantitative evidence for the exemption case is on this page already: the feasibility-sufficiency scores above and the cost and burden self-reports on the <a href=\"hourly-matching.html\">QC4 page</a>."
+            },
+            {
+                "kind": "quotes",
+                "forTitle": "For an exemption",
+                "againstTitle": "Against an exemption",
+                "html": "Drawn from the exemption elaborations, the threshold and eligibility comment boxes, and the open evidence question (Q158)."
+            },
+            {
+                "kind": "footnote"
+            }
+        ]
+    };
+    </script>
+    <script src="../js/proposal-page.js"></script>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="../js/cinematic-bg.js"></script>
+</body>
+</html>

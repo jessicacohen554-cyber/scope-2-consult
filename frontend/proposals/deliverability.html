@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deliverability (QC5) | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Consultation answers on QC5 deliverability and market boundaries: stance by segment, reasons, burden self-reports, the US boundary chooser, and verbatim arguments.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="../styles/shared.css">
+    <link rel="stylesheet" href="../styles/article.css">
+    <link rel="stylesheet" href="../styles/cinematic.css">
+    <link rel="stylesheet" href="../styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="../js/nav.js"></script>
+    <script src="../js/chart-colors.js"></script>
+    <script src="../js/shared-header.js"></script>
+    <script src="../js/scroll-observer.js"></script>
+    <script src="../js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="../js/data-loader.js"></script>
+    <script src="../js/segments.js"></script>
+    <script src="../js/likert-viz.js"></script>
+    <script src="../js/quote-cards.js"></script>
+    <script src="../js/org-table.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Deliverability (QC5)</h1>
+        <div class="subtitle">The proposal to require contractual instruments to come from generation that could physically be delivered to the consuming site — plus the market-boundary question underneath it.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <!-- Every section below is rendered by js/proposal-page.js from the
+         PROPOSAL_CONFIG at the foot of this file. Panels, in order:
+           #intro          page intro
+           #stance         stance — diverging bar + segment toggle + redaction split
+           #reasons        reasons for / against, % of the base that answered
+           #burden         scale rows (construct-aware ramp) + driver picklists
+           #boundary       design-preference distributions
+           #feasibility    design-preference distributions
+           #evidence       evidence basis
+           #quotes         curated quotes for / against
+           #footnote       response bases for every question used
+    -->
+    <div class="content-wrap">
+        <div id="proposalBody"></div>
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Scope 2 Public Consultation Response Explorer — Deliverability — QC5"></footer>
+
+    <!-- Page config: the only site-specific code on this page. -->
+    <script>
+    window.PROPOSAL_CONFIG = {
+        "key": "deliverability",
+        "lever": "qc5_deliverability",
+        "quoteLever": "qc5_deliverability",
+        "panels": [
+            {
+                "kind": "note",
+                "id": "intro",
+                "variant": "insight-glass insight-glass-indigo",
+                "html": "<strong>What QC5 proposes.</strong> Quality criterion 5 would require the generation behind a claimed contractual instrument to be deliverable to the consuming site — which turns the question of where a market boundary is drawn into an accounting rule. QC5 travels with QC4: the same reporters answer both, and the boundary chooser below is the part of this proposal with a concrete, testable design choice in it."
+            },
+            {
+                "kind": "stance",
+                "q": 83,
+                "html": "<strong>Compare this with QC4.</strong> The same organization types line up in the same order, but opposition is less lopsided here than on hourly matching — the objection is to the boundary being mandatory, more than to its existence."
+            },
+            {
+                "kind": "reasons",
+                "for": 84,
+                "against": 86
+            },
+            {
+                "kind": "scale",
+                "id": "burden",
+                "qs": [
+                    92,
+                    93
+                ],
+                "drivers": [
+                    95
+                ],
+                "title": "What reporters say deliverability would cost them",
+                "chartTitle": "Internal effort and external cost, relative to today",
+                "html": "<strong>3 is &ldquo;same as today&rdquo; on both rows.</strong> The QC5 burden self-reports sit a little below the QC4 ones, from a similar base of reporters — the same people, answering about a different requirement."
+            },
+            {
+                "kind": "selects",
+                "id": "boundary",
+                "qs": [
+                    69,
+                    88
+                ],
+                "title": "The boundary chooser — which US market boundary",
+                "subtitle": "Q69 asks which US boundary a reporter would prefer; Q88 asks which one best upholds deliverability. The two questions have different bases and different option lists, so they are shown side by side rather than merged.",
+                "stats": [
+                    {
+                        "q": 69,
+                        "match": "The US Environmental Protection Agency’s Emissions & Generation Resource Integrated Database (eGRID)",
+                        "label": "prefer eGRID as the US boundary"
+                    },
+                    {
+                        "q": 69,
+                        "match": "Don’t have operations or experience in the US",
+                        "label": "have no US operations or experience",
+                        "tint": "text-muted"
+                    },
+                    {
+                        "q": 88,
+                        "match": "Other",
+                        "label": "answer &ldquo;Other&rdquo; on which boundary upholds deliverability"
+                    },
+                    {
+                        "q": 88,
+                        "match": "Unsure",
+                        "label": "are unsure which boundary upholds deliverability",
+                        "tint": "text-muted"
+                    }
+                ],
+                "html": "<strong>The largest bloc on Q69 is not a boundary at all.</strong> &ldquo;No US operations or experience&rdquo; runs neck and neck with eGRID, so the apparent preference for eGRID rests on a much smaller group of respondents than the base suggests. On Q88 the modal answer is &ldquo;Other&rdquo; with &ldquo;Unsure&rdquo; close behind — the non-US boundary questions (Q90, Q91) are free text only, and their substance is in the quotes below."
+            },
+            {
+                "kind": "selects",
+                "id": "feasibility",
+                "qs": [
+                    94
+                ],
+                "title": "Feasibility measures reporters would rely on",
+                "subtitle": "Multi-select: which of the proposed transition measures a reporter would lean on if deliverability were required."
+            },
+            {
+                "kind": "evidence",
+                "id": "evidence",
+                "basis": null,
+                "title": "What the answers rest on",
+                "html": "<strong>No basis question hangs off QC5 directly.</strong> Respondents were asked what their assessment of the market-based-method revisions as a whole was based on (Q138) — that panel is on the <a href=\"package-impacts.html\">Package impacts page</a>. Boundary rationales here are free text (Q89, Q90, Q91) and appear only as quotes."
+            },
+            {
+                "kind": "quotes",
+                "forTitle": "For deliverability",
+                "againstTitle": "Against deliverability",
+                "html": "Includes the boundary-rationale answers (Q89) and the assessments of non-US market boundaries (Q90), which have no closed-option equivalent anywhere in the survey."
+            },
+            {
+                "kind": "footnote"
+            }
+        ]
+    };
+    </script>
+    <script src="../js/proposal-page.js"></script>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="../js/cinematic-bg.js"></script>
+</body>
+</html>

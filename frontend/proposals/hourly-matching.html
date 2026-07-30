@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hourly matching (QC4) | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="How consultation respondents answered on QC4 hourly matching: stance by segment, reasons for and against, cost and burden self-reports, and curated verbatim arguments.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="../styles/shared.css">
+    <link rel="stylesheet" href="../styles/article.css">
+    <link rel="stylesheet" href="../styles/cinematic.css">
+    <link rel="stylesheet" href="../styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="../js/nav.js"></script>
+    <script src="../js/chart-colors.js"></script>
+    <script src="../js/shared-header.js"></script>
+    <script src="../js/scroll-observer.js"></script>
+    <script src="../js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="../js/data-loader.js"></script>
+    <script src="../js/segments.js"></script>
+    <script src="../js/likert-viz.js"></script>
+    <script src="../js/quote-cards.js"></script>
+    <script src="../js/org-table.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Hourly matching (QC4)</h1>
+        <div class="subtitle">The proposal to require contractual instruments to be matched to consumption hour by hour — and the strongest opposition in the consultation.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <!-- Every section below is rendered by js/proposal-page.js from the
+         PROPOSAL_CONFIG at the foot of this file. Panels, in order:
+           #intro          page intro
+           #stance         stance — diverging bar + segment toggle + redaction split
+           #reasons        reasons for / against, % of the base that answered
+           #burden         scale rows (construct-aware ramp) + driver picklists
+           #scope          design-preference distributions
+           #evidence       evidence basis
+           #quotes         curated quotes for / against
+           #footnote       response bases for every question used
+    -->
+    <div class="content-wrap">
+        <div id="proposalBody"></div>
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Scope 2 Public Consultation Response Explorer — Hourly Matching — QC4"></footer>
+
+    <!-- Page config: the only site-specific code on this page. -->
+    <script>
+    window.PROPOSAL_CONFIG = {
+        "key": "hourly-matching",
+        "lever": "qc4_hourly_matching",
+        "quoteLever": "qc4_hourly_matching",
+        "panels": [
+            {
+                "kind": "note",
+                "id": "intro",
+                "variant": "insight-glass insight-glass-indigo",
+                "html": "<strong>What QC4 proposes.</strong> Quality criterion 4 would require the contractual instruments a reporter claims to be matched to its electricity consumption on an hourly basis, rather than annually. It is the change that drew the most answers of any market-based-method proposal in this consultation, and the most opposition. The panels below carry the stance by segment, the reasons each side picked from the survey&rsquo;s own lists, what reporters say it would cost them, and verbatim arguments from both camps."
+            },
+            {
+                "kind": "stance",
+                "q": 71,
+                "html": "<strong>Read the segment toggle.</strong> Opposition is not uniform: switch the dimension to see organization types pull apart, with the data and analytics vendors — the firms that would sell hourly-matching tooling — sitting on the opposite side from the companies that would have to buy it."
+            },
+            {
+                "kind": "reasons",
+                "for": 72,
+                "against": 74
+            },
+            {
+                "kind": "scale",
+                "id": "burden",
+                "qs": [
+                    78,
+                    79
+                ],
+                "drivers": [
+                    81
+                ],
+                "title": "What reporters say hourly matching would cost them",
+                "chartTitle": "Internal effort and external cost, relative to today",
+                "html": "<strong>This is self-report, and it is still evidence.</strong> These rows say what reporters expect the proposal to do to their own effort and spend — a claim about themselves, which they are better placed to make than anyone else, and one that cannot be independently verified here. Read them alongside the reasons picked above, not as a measure of whether hourly matching improves accounting accuracy."
+            },
+            {
+                "kind": "selects",
+                "id": "scope",
+                "qs": [
+                    77,
+                    80
+                ],
+                "title": "What would be in scope, and what reporters would lean on",
+                "subtitle": "Q77 asks how much of an organization&rsquo;s load could realistically be hourly-matched; Q80 asks which proposed feasibility measures they would rely on. Both keep their ladder or option order rather than being sorted by size."
+            },
+            {
+                "kind": "evidence",
+                "id": "evidence",
+                "basis": null,
+                "title": "What the answers rest on",
+                "html": "<strong>No basis question hangs off QC4 directly.</strong> The consultation asked respondents what their assessment was based on for the market-based-method revisions as a package (Q138) and for registry readiness (Q122) — not for hourly matching on its own. The package-level basis distribution, including how few respondents on either side did direct empirical analysis, is on the <a href=\"package-impacts.html\">Package impacts page</a>."
+            },
+            {
+                "kind": "quotes",
+                "forTitle": "For hourly matching",
+                "againstTitle": "Against hourly matching",
+                "html": "These come from the free-text follow-ups on this lever — the support and opposition elaborations, the load-profile question, and the general QC4 comment box."
+            },
+            {
+                "kind": "footnote"
+            }
+        ]
+    };
+    </script>
+    <script src="../js/proposal-page.js"></script>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="../js/cinematic-bg.js"></script>
+</body>
+</html>

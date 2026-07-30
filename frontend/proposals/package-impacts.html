@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package impacts | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Consultation answers on the impacts of the market-based-method revisions as a package: usefulness and comparability gains, procurement price, IFRS and GAAP materiality, the separate impact metric, and what those assessments rest on.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="../styles/shared.css">
+    <link rel="stylesheet" href="../styles/article.css">
+    <link rel="stylesheet" href="../styles/cinematic.css">
+    <link rel="stylesheet" href="../styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="../js/nav.js"></script>
+    <script src="../js/chart-colors.js"></script>
+    <script src="../js/shared-header.js"></script>
+    <script src="../js/scroll-observer.js"></script>
+    <script src="../js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in plans/mbm-dashboard/PLAN.md §5) -->
+    <script src="../js/data-loader.js"></script>
+    <script src="../js/segments.js"></script>
+    <script src="../js/likert-viz.js"></script>
+    <script src="../js/quote-cards.js"></script>
+    <script src="../js/org-table.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Package impacts</h1>
+        <div class="subtitle">What the market-based-method revisions would do as a package: decision-usefulness, procurement cost, financial reporting, and the separate impact metric.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <!-- Every section below is rendered by js/proposal-page.js from the
+         PROPOSAL_CONFIG at the foot of this file. Panels, in order:
+           #intro          page intro
+           #usefulness     design-preference distributions
+           #procurement    scale rows (construct-aware ramp) + driver picklists
+           #ifrs           scale rows (construct-aware ramp) + driver picklists
+           #metric         design-preference distributions
+           #metric-reasons reasons for / against, % of the base that answered
+           #evidence       evidence basis
+           #quotes         curated quotes for / against
+           #footnote       response bases for every question used
+    -->
+    <div class="content-wrap">
+        <div id="proposalBody"></div>
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Scope 2 Public Consultation Response Explorer — Package Impacts"></footer>
+
+    <!-- Page config: the only site-specific code on this page. -->
+    <script>
+    window.PROPOSAL_CONFIG = {
+        "key": "package-impacts",
+        "lever": "mbm_revisions_package",
+        "quoteLever": "mbm_package",
+        "panels": [
+            {
+                "kind": "note",
+                "id": "intro",
+                "variant": "insight-glass insight-glass-indigo",
+                "html": "<strong>This page has no single support anchor.</strong> The consultation never asked &ldquo;do you support the package&rdquo; as one scored question. It asked what the package would <em>do</em>: whether reports become more decision-useful or more comparable, what happens to procurement prices, whether financial reporting is affected, and whether a separate impact metric outside the inventory would change anyone&rsquo;s view. The seven scored proposals each have their own page; the <a href=\"../heatmap.html\">Likert Explorer</a> puts all of them side by side. Feedback on the clarified market-based-method definition and its stated purposes (Q20, Q22) is free text only, and appears in the quotes at the foot of this page."
+            },
+            {
+                "kind": "selects",
+                "id": "usefulness",
+                "qs": [
+                    134,
+                    136
+                ],
+                "title": "Would the revisions make reports better?",
+                "subtitle": "Q134 asks about decision-usefulness, Q136 about comparability. Both are ordered ladders shown in ladder order, with &ldquo;not sure / no basis to assess&rdquo; kept visible as its own answer.",
+                "html": "<strong>The modal answer on both is &ldquo;no meaningful improvement&rdquo;.</strong> That is the respondents&rsquo; own assessment of the benefit side of the ledger, from a base of several hundred — and it is worth reading directly against the cost rows below. Note that no mean is shown for these two questions: the export scores their rungs from zero, so a mean would not be comparable with the 1&ndash;5 scales elsewhere on the site."
+            },
+            {
+                "kind": "scale",
+                "id": "procurement",
+                "qs": [
+                    139
+                ],
+                "drivers": [
+                    140
+                ],
+                "title": "What happens to the price of procurement",
+                "chartTitle": "Procurement price for hourly-matched, deliverable instruments",
+                "html": "<strong>The clearest consensus on this page.</strong> Almost the entire base expects prices above today&rsquo;s — the disagreement in this consultation is not about whether the revisions cost more, but about whether the accounting gain is worth it. The drivers panel shows which mechanisms respondents attribute that to; write-in drivers are excluded, since Q140 mixes them into its option list."
+            },
+            {
+                "kind": "scale",
+                "id": "ifrs",
+                "qs": [
+                    142
+                ],
+                "drivers": [
+                    144
+                ],
+                "title": "Financial-reporting materiality (IFRS and GAAP)",
+                "chartTitle": "Materiality of IFRS or GAAP impacts",
+                "html": "<strong>Small base, magnitude scale.</strong> Q142 was answered by the smallest group on this page — respondents who thought financial-reporting effects applied to them at all — and it measures how material those effects would be, not whether the respondent supports the revisions. Treat it as a signal from the accounting-literate minority, not as a population estimate."
+            },
+            {
+                "kind": "selects",
+                "id": "metric",
+                "qs": [
+                    146
+                ],
+                "title": "Would a separate impact metric change your view?",
+                "subtitle": "Whether reporting avoided or induced emissions outside the inventory would change the respondent&rsquo;s position on the revisions.",
+                "stats": [
+                    {
+                        "q": 146,
+                        "match": "No",
+                        "label": "say a separate metric would not change their view"
+                    },
+                    {
+                        "q": 146,
+                        "match": "I do not support the development of impact metrics outside the scope 2 inventory.",
+                        "label": "oppose impact metrics outside the inventory altogether",
+                        "tint": "text-storage"
+                    },
+                    {
+                        "q": 146,
+                        "match": "Yes",
+                        "label": "say it would change their view",
+                        "tint": "text-wind"
+                    }
+                ]
+            },
+            {
+                "kind": "reasons",
+                "id": "metric-reasons",
+                "for": 147,
+                "against": 150,
+                "title": "Why — the impact-metric rationales",
+                "subtitle": "Q147 is asked of respondents whose view a separate metric would change; Q150 of those who oppose impact metrics. Different bases, different populations — not two halves of one question."
+            },
+            {
+                "kind": "evidence",
+                "id": "evidence",
+                "basis": "q138",
+                "title": "What these assessments rest on",
+                "html": "<strong>Almost nobody did the analysis.</strong> Q138 asks what the respondent&rsquo;s assessment of the revisions was based on. Professional judgment informed by literature dominates, general awareness with no direct analysis is close behind, and direct empirical analysis is in single-digit percentages. The stance cross-tab shows this is true on both sides of the hourly-matching divide: neither camp is arguing mainly from its own data."
+            },
+            {
+                "kind": "quotes",
+                "forTitle": "For the revisions as a package",
+                "againstTitle": "Against the revisions as a package",
+                "html": "Includes the free-text feedback on the clarified market-based-method definition and its stated purposes (Q20, Q22) — questions with no closed options anywhere in the survey — alongside the usefulness, comparability and cost elaborations."
+            },
+            {
+                "kind": "footnote"
+            }
+        ]
+    };
+    </script>
+    <script src="../js/proposal-page.js"></script>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="../js/cinematic-bg.js"></script>
+</body>
+</html>
