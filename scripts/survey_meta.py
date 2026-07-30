@@ -211,3 +211,124 @@ STANDARD_OPTIONS = {
     "no basis to assess",
     "insufficient basis to assess",
 }
+
+
+# ---------------------------------------------------------------------------
+# Question labels
+# ---------------------------------------------------------------------------
+# reference/question_labels.csv is hand-curated: one row per question carrying a
+# shorthand slug, a human-readable label, and four grouping axes that are
+# deliberately orthogonal to one another and to `section`:
+#
+#   method                what the question is about: general / lbm / mbm / both.
+#                         The one predicate that selects a whole method, since
+#                         the categories cut across both.
+#   category/subcategory  what the question interrogates - the concern. Cuts
+#                         across methods, so that cost questions scattered over
+#                         five sections collect into one bucket.
+#   policy_lever          which proposal is at stake. Cuts the other way, so
+#                         that a proposal's stance, reasons and cost questions
+#                         collect together even when their categories differ.
+#   asks_for              what shape the answer takes.
+#
+# `section` remains survey order. Nothing here is derived from the raw export;
+# it is all editorial, which is why it lives in a file that can be corrected by
+# hand rather than in build_dataset.py.
+LABELS_FILE = "reference/question_labels.csv"
+
+LABEL_FIELDS = ("shorthand", "label", "method", "category", "subcategory",
+                "policy_lever", "asks_for", "label_notes")
+
+# Closed vocabularies. A value outside these is a typo until argued otherwise,
+# so load_labels() rejects it rather than letting a one-off slug into a column
+# people group by.
+METHODS = {"general", "lbm", "mbm", "both"}
+
+CATEGORIES = {
+    "resp_profile", "defs_and_purposes", "lbm_design", "mbm_design",
+    "cost_and_burden", "data_and_readiness", "feas_and_flex",
+    "usefulness_and_users", "transition", "overall",
+}
+
+ASKS_FOR = {
+    "stance", "rationale_for", "rationale_against", "cost_estimate",
+    "cost_driver", "data_availability", "timeline", "design_preference",
+    "evidence_basis", "elaboration", "respondent_attribute",
+    "impact_assessment", "open_feedback",
+}
+
+# method is partly redundant with the two *_design categories, so pin them
+# together rather than letting the columns drift apart.
+CATEGORY_IMPLIES_METHOD = {"lbm_design": "lbm", "mbm_design": "mbm"}
+
+SHORTHAND_MAX_LEN = 40
+
+
+def load_labels(root):
+    """Read and check reference/question_labels.csv -> {question_id: {...}}.
+
+    Fails loudly, because a silently missing label would show up as an empty
+    cell in questions.csv long after the join. Checked here rather than in
+    build_dataset.py so that the rules travel with the vocabulary they police.
+    """
+    import csv
+    import re
+
+    path = root / LABELS_FILE
+    if not path.exists():
+        raise SystemExit(f"missing hand-curated label file: {path}")
+
+    with path.open(encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+
+    labels, seen_shorthand, problems = {}, {}, []
+    for row in rows:
+        qid = row["question_id"].strip()
+        sh = row["shorthand"].strip()
+
+        if not re.fullmatch(r"[a-z][a-z0-9_]*", sh):
+            problems.append(f"{qid}: shorthand {sh!r} is not snake_case")
+        if len(sh) > SHORTHAND_MAX_LEN:
+            problems.append(
+                f"{qid}: shorthand {sh!r} is {len(sh)} chars, limit is "
+                f"{SHORTHAND_MAX_LEN}")
+        if sh in seen_shorthand:
+            problems.append(
+                f"{qid}: shorthand {sh!r} already used by {seen_shorthand[sh]}")
+        seen_shorthand[sh] = qid
+
+        if row["method"] not in METHODS:
+            problems.append(f"{qid}: method {row['method']!r} not in METHODS")
+        if row["category"] not in CATEGORIES:
+            problems.append(
+                f"{qid}: category {row['category']!r} not in CATEGORIES")
+        if row["asks_for"] not in ASKS_FOR:
+            problems.append(
+                f"{qid}: asks_for {row['asks_for']!r} not in ASKS_FOR")
+        want = CATEGORY_IMPLIES_METHOD.get(row["category"])
+        if want and row["method"] != want:
+            problems.append(
+                f"{qid}: category {row['category']!r} implies method {want!r}, "
+                f"found {row['method']!r}")
+        for field in ("label", "subcategory", "policy_lever"):
+            if not row[field].strip():
+                problems.append(f"{qid}: {field} is empty")
+
+        if qid in labels:
+            problems.append(f"{qid}: duplicated row")
+        labels[qid] = {
+            "shorthand": sh,
+            "label": row["label"].strip(),
+            "method": row["method"].strip(),
+            "category": row["category"].strip(),
+            "subcategory": row["subcategory"].strip(),
+            "policy_lever": row["policy_lever"].strip(),
+            "asks_for": row["asks_for"].strip(),
+            "label_notes": row["notes"].strip(),
+        }
+
+    if problems:
+        raise SystemExit(
+            f"{path.name}: {len(problems)} problem(s)\n  "
+            + "\n  ".join(problems))
+    return labels

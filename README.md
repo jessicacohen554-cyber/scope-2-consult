@@ -22,6 +22,7 @@ input; everything under `data/` is regenerated from it by
 | Tidy analysis in pandas / R / duckdb | `data/responses_long.csv` |
 | One row per respondent, PivotTable-friendly | `data/responses_wide.csv` |
 | Read what a question actually asks and how to score it | `data/questions.csv` |
+| Count answers by type, per respondent | `v_answer_types` in the SQLite file |
 | Option frequencies for a choice question | `data/question_options.csv` |
 | Count who selected each option, per respondent | `data/response_selections.csv` |
 | Respondent profiles and engagement metrics | `data/respondents.csv` |
@@ -41,6 +42,13 @@ The interpretation layer, and the place to start. Beyond the verbatim
 | Column | Meaning |
 |---|---|
 | `question_id` / `question_number` | `Q071` (zero-padded, sorts correctly) and `71` |
+| `shorthand` | **snake_case slug carrying what the question is actually about** — `qc4_hourly_matching_support`, not the first 120 characters. Unique across all 180 |
+| `label` | 4–8 word title for charts and tables |
+| `method` | `general`, `lbm`, `mbm`, `both` — the one predicate that selects a whole method |
+| `category` / `subcategory` | What the question interrogates. 10 categories, 46 subcategories, cutting across both the methods and the 27 sections |
+| `policy_lever` | Which proposal is at stake. 53 levers, shared by every question interrogating one |
+| `asks_for` | What shape the answer takes — 13 values, `stance` through `elaboration` |
+| `label_notes` | What is ambiguous, double-barrelled, conditional or truncated about the wording |
 | `section` / `section_order` | Topic grouping — 27 sections, see caveat 2 |
 | `question_type` | `likert_1_5`, `scale_labeled`, `single_select`, `ordinal_select`, `multi_select`, `free_text`, `numeric_year` |
 | `role` | `primary`, `reasons_support`, `reasons_oppose`, `comment`, `basis`, `other_specify`, `profile`, `free_text_primary` |
@@ -53,7 +61,30 @@ The interpretation layer, and the place to start. Beyond the verbatim
 | `n_write_in_selections` / `review_option_split` | Write-in contamination, and whether it needs an eyeball (caveat 5) |
 | `notes` | Per-question caveats |
 
+Four axes, deliberately orthogonal, so a question can be found from whichever
+direction you are coming at it:
+
+| Axis | Question it answers | Cuts across |
+|---|---|---|
+| `method` | LBM or MBM? | the concern categories |
+| `category` / `subcategory` | cost? data availability? decision-usefulness? | both methods and all 27 sections |
+| `policy_lever` | which proposal? | the categories — a lever's stance, reasons and cost questions sit in different ones |
+| `asks_for` | is the answer a score, a reason, a cost, a date? | everything |
+
+`method = 'lbm'` selects all 48 LBM questions. `category = 'lbm_design'` finds
+only 29 of them, because the cost, hourly-data, readiness and usefulness
+questions moved to the cross-cutting categories — which is the point.
+
+The vocabularies are closed. `reference/question_labels.csv` is the hand-curated
+input; `survey_meta.py` holds the permitted values and rejects anything else at
+build time.
+
 ### `responses` / `responses_long.csv` — one row per answer given (70,089)
+
+Still one row per respondent × question — nothing is aggregated. `shorthand`,
+`method`, `category`, `policy_lever` and `asks_for` are carried on every answer
+so discrete answers can be grouped by any of them without joining back to
+`questions`.
 
 `respondent_id` × `question_id` plus `answer_text` (verbatim) and
 `answer_numeric` (the comparable score: 1–5 for scales, a 0-based rank for
@@ -86,15 +117,21 @@ organisation) plus engagement metrics: `n_substantive_answered`,
 
 ### SQLite views
 
-| View | Purpose |
-|---|---|
-| `v_scale_summary` | Per-question n, mean, and low/mid/high splits, with `scale_construct` shown |
-| `v_scale_answers` | Every scale answer joined to respondent profile — the cross-tab workhorse |
-| `v_selections` | Multi-select picks joined to respondent profile |
-| `v_question_tree` | Each substantive question with its follow-ups nested under it |
-| `v_free_text` | All free text in survey order, with lengths |
-| `v_scale_by_redaction` | Mean score per scale question, named vs redacted respondents |
-| `v_redaction_profile` | Redaction crossed with respondent type, completion and verbosity |
+| View | Grain | Purpose |
+|---|---|---|
+| `v_scale_answers` | respondent × question | Every scale answer joined to respondent profile — the cross-tab workhorse |
+| `v_selections` | respondent × option | Multi-select picks joined to respondent profile |
+| `v_free_text` | respondent × question | All free text in survey order, with lengths |
+| `v_answer_types` | respondent × answer type | How many answers of each `asks_for` / `question_type` each respondent gave, with scored, selection and character counts |
+| `v_option_counts` | question × option | Every distinct answer to a choice question and how many respondents gave it, keyed by `shorthand` |
+| `v_scale_summary` | question | n, mean, and low/mid/high splits, with `scale_construct` shown |
+| `v_question_tree` | question | Each substantive question with its follow-ups nested under it, shorthands on both sides |
+| `v_scale_by_redaction` | question | Mean score per scale question, named vs redacted respondents |
+| `v_redaction_profile` | respondent group | Redaction crossed with respondent type, completion and verbosity |
+
+The first five carry `shorthand`, `method`, `category`, `policy_lever` and
+`asks_for`. The respondent-grain views group discrete answers; they never
+replace them — every cell in `v_answer_types` drills back to `responses`.
 
 ---
 
@@ -174,9 +211,29 @@ vocabulary — the same body appears under different spellings.
 
 ```sql
 -- Support by question, strongest first. Restricting to one construct is the point.
-SELECT question_number, mean_score, n_scored, question_text_short
+SELECT question_number, shorthand, mean_score, n_scored
 FROM v_scale_summary WHERE scale_construct = 'support'
 ORDER BY mean_score DESC;
+
+-- Drop the whole location-based method from an analysis.
+SELECT * FROM v_scale_answers WHERE method <> 'lbm';
+
+-- How many answers of each type did each respondent give?
+SELECT respondent_id, asks_for, SUM(n_answers) n
+FROM v_answer_types GROUP BY 1, 2 ORDER BY 1, n DESC;
+
+-- Answer-type mix for one proposal, per respondent, with the discrete answers.
+SELECT respondent_id, shorthand, asks_for, answer_text
+FROM responses WHERE policy_lever = 'qc4_hourly_matching'
+ORDER BY respondent_id, question_number;
+
+-- Everything asked about one proposal, whatever category it landed in.
+SELECT question_number, shorthand, category, asks_for, n_answered
+FROM questions WHERE policy_lever = 'legacy_clause' ORDER BY question_number;
+
+-- Counts of every answer given to a choice question, by shorthand.
+SELECT shorthand, option_text, n_selected, pct_of_answered
+FROM v_option_counts WHERE shorthand = 'exempt_eligibility_option_choice';
 
 -- Does support for hourly matching (Q71) split by whether the respondent
 -- actually prepares an inventory?
@@ -241,6 +298,11 @@ Deterministic — same input gives byte-identical output. Two files:
   with its value unchanged (70,089 cells, 0 mismatches), and `sum(n_selected)`
   equals the `response_selections` row count (52,552).
 - `scripts/survey_meta.py` — every editorial judgement: section groupings, scale
-  constructs and anchors, ordinal ladders, off-scale labels, per-question notes.
+  constructs and anchors, ordinal ladders, off-scale labels, per-question notes,
+  and the closed vocabularies for `method`, `category` and `asks_for`.
   Disagreements about interpretation are resolved by editing this file and
   re-running.
+- `reference/question_labels.csv` — the hand-curated shorthand, label and
+  grouping for each of the 180 questions. One row per question; the build fails
+  loudly, naming the question, if a row is missing, a shorthand repeats, a
+  vocabulary value is unrecognised, or `method` contradicts `category`.

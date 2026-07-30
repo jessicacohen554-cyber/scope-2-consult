@@ -72,6 +72,26 @@ def main() -> int:
         ("every question has an anchor or is one", 0, scalar(
             "SELECT COUNT(*) FROM questions WHERE anchor_question IS NULL "
             "AND role NOT IN ('profile','other_specify')")),
+        # hand-curated labels: every question labelled, every shorthand unique
+        ("all questions labelled", 180, scalar(
+            "SELECT COUNT(*) FROM questions WHERE shorthand IS NOT NULL "
+            "AND label IS NOT NULL AND method IS NOT NULL "
+            "AND category IS NOT NULL AND subcategory IS NOT NULL "
+            "AND policy_lever IS NOT NULL AND asks_for IS NOT NULL")),
+        ("shorthands unique", 180, scalar(
+            "SELECT COUNT(DISTINCT shorthand) FROM questions")),
+        ("shorthands snake_case within 40 chars", 0, scalar(
+            "SELECT COUNT(*) FROM questions WHERE LENGTH(shorthand) > 40 "
+            "OR shorthand GLOB '*[^a-z0-9_]*' OR shorthand GLOB '[^a-z]*'")),
+        ("method agrees with lbm_design/mbm_design", 0, scalar(
+            "SELECT COUNT(*) FROM questions "
+            "WHERE (category = 'lbm_design' AND method <> 'lbm') "
+            "OR (category = 'mbm_design' AND method <> 'mbm')")),
+        ("labels reach every answer", len(long_rows), scalar(
+            "SELECT COUNT(*) FROM responses WHERE shorthand IS NOT NULL "
+            "AND method IS NOT NULL AND asks_for IS NOT NULL")),
+        ("answer-type counts conserve answers", len(long_rows), scalar(
+            "SELECT SUM(n_answers) FROM v_answer_types")),
         # figures quoted in README.md
         ("respondents", 1072, scalar("SELECT COUNT(*) FROM respondents")),
         ("questions", 180, scalar("SELECT COUNT(*) FROM questions")),
@@ -98,10 +118,11 @@ def main() -> int:
         ("Q183 sentinel year 2099", 11, scalar(
             "SELECT COUNT(*) FROM responses "
             "WHERE question_number = 183 AND answer_numeric = 2099")),
-        ("views all return rows", 7, sum(
+        ("views all return rows", 9, sum(
             1 for v in ("v_scale_summary", "v_scale_answers", "v_selections",
                         "v_question_tree", "v_free_text",
-                        "v_scale_by_redaction", "v_redaction_profile")
+                        "v_scale_by_redaction", "v_redaction_profile",
+                        "v_answer_types", "v_option_counts")
             if scalar(f"SELECT COUNT(*) FROM {v}") > 0)),
     ]
     con.close()
