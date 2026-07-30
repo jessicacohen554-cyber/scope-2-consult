@@ -1,6 +1,6 @@
 # P11 — Frontend infrastructure & fixtures (Wave 1, Lane F)
 
-**Model:** claude-sonnet-5 · **Runs in parallel with:** P10 · **Blocks:** all Wave 3 pages
+**Model:** claude-opus-5 · **Runs in parallel with:** P10 · **Blocks:** all Wave 3 pages
 **Branch:** `claude/mbm-p11-frontend-infra`
 
 ## Task

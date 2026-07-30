@@ -26,17 +26,17 @@ and re-runs the exporter when curation inputs land.
 
 | Wave | Prompts | Parallel? | Model | Depends on |
 |---|---|---|---|---|
-| 1 | P10 derived flags & text mining | ∥ P11, P20 | claude-sonnet-5 | — |
-| 1 | P11 frontend infra (against fixtures) | ∥ P10, P20 | claude-sonnet-5 | — |
+| 1 | P10 derived flags & text mining | ∥ P11, P20 | claude-opus-5 | — |
+| 1 | P11 frontend infra (against fixtures) | ∥ P10, P20 | claude-opus-5 | — |
 | 1* | P20 org legitimacy audit | ∥ P10, P11 | claude-opus-5 | — (db only; promoted from Wave 2) |
 | 2 | P21 quote curation | ∥ P22 | claude-opus-5 | P10 (dedup guard needs text_clusters) |
-| 2 | P22 frontend JSON exporter | ∥ P21 (rerun after P20/P21 merge) | claude-sonnet-5 | P10 — may start the moment P10 pushes, even if P11 still running |
+| 2 | P22 frontend JSON exporter | ∥ P21 (rerun after P20/P21 merge) | claude-opus-5 | P10 — may start the moment P10 pushes, even if P11 still running |
 | 3 | P30 likert heatmap page | ∥ all Wave 3 | claude-opus-5 | P11 + P22 |
 | 3 | P31 proposal deep-dive pages (×9) | ∥ | claude-opus-5 | P11 + P22 (quotes appear when P21 lands) |
-| 3 | P32 respondents page + org browser | ∥ | claude-sonnet-5 | P11 + P22 |
+| 3 | P32 respondents page + org browser | ∥ | claude-opus-5 | P11 + P22 |
 | 3 | P33 evidence & research page | ∥ | claude-opus-5 | P11 + P22 |
 | 3 | P34 integrity & coalitions page | ∥ | claude-opus-5 | P11 + P22 (provisional audit.json legal until P20 merges) |
-| 3 | P41 methodology page | ∥ all Wave 3 (promoted from Wave 4) | claude-sonnet-5 | P10 + P22 |
+| 3 | P41 methodology page | ∥ all Wave 3 (promoted from Wave 4) | claude-opus-5 | P10 + P22 |
 | 3.5 | P35 viz-exploration stub | any time after P22 | claude-opus-5 | P22 |
 | 4 | P40 index & objective assessment | sequential | **claude-fable-5** (fallback opus) | all Wave 3 + exporter rerun with P20/P21 |
 | 5 | P42 QA, nav unification, polish | sequential, last | claude-opus-5 | everything |
@@ -51,9 +51,11 @@ P41 needs only P10+P22 outputs and joins Wave 3. The **critical path** is
 P10 → P22 → (P30–P34) → P40 → P42 — five sequential steps; everything else hangs off it
 in parallel.
 
-**Model rationale.** sonnet-5 for mechanical scripting and CRUD-style pages; opus-5 for
-interactive visualization, judgment-heavy curation, and QA; fable-5 for the objective
-assessment where editorial judgment quality dominates.
+**Model rationale.** claude-opus-5 for every prompt except one — per the project owner's
+standing instruction, no session runs on a smaller model. The single exception is
+**P40 (index & objective assessment), which requires claude-fable-5** — it is the
+highest-judgment editorial task in the project (balanced legitimacy assessment); run it
+on opus-5 only if fable-5 is unavailable, and say so in its report.
 
 **Branch strategy.** Each session branches off the branch that carries this plan
 (`claude/mbm-survey-dashboard-plan-vomkop`) — or `main` once the plan has merged — using
