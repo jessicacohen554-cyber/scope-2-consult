@@ -1,6 +1,8 @@
-# P21 — Quote curation per proposal (Wave 2, Lane D)
+# P21 — Quote curation per proposal (Wave 1*, Lane D — promoted; self-contained dedup)
 
-**Model:** claude-opus-5 · **Runs in parallel with:** P20, P22 · **Needs:** P10 merged
+**Model:** claude-opus-5 · **Runs in parallel with:** P10, P11, P20 · **Needs:** nothing
+(dedup is computed inline; if `data/derived/text_clusters.csv` from P10 exists, use it
+as a cross-check, otherwise proceed without it)
 **Branch:** `claude/mbm-p21-quote-curation`
 
 ## Task
@@ -26,7 +28,11 @@ free-text evidence sample. Read PLAN.md §2, §3.5 (template clusters — your d
 2. Selection criteria, in order: (a) **substantive** — argues a mechanism, cites
    evidence, or gives a concrete operational detail; not boilerplate; (b) **diverse** —
    across org types, geographies, named + redacted; (c) **not template-duplicated** —
-   check `data/derived/text_clusters.csv`; if a quote IS from a template cluster and
+   compute your own duplicate map first: normalize every free-text answer ≥200 chars
+   (lowercase, collapse whitespace) and GROUP BY the normalized string; any string shared
+   by ≥3 respondents is a template cluster (use its sha1 as the cluster hash — same
+   recipe P10 uses, so hashes will line up). Cross-check against
+   `data/derived/text_clusters.csv` if P10 has already merged; if a quote IS from a template cluster and
    worth including anyway (e.g. the bloc's canonical argument), include it ONCE with its
    `template_cluster` hash set; (d) quotable at ≤600 chars — take a clean verbatim
    substring, never paraphrase, mark elisions with `[…]`.
