@@ -220,9 +220,9 @@ STANDARD_OPTIONS = {
 # shorthand slug, a human-readable label, and four grouping axes that are
 # deliberately orthogonal to one another and to `section`:
 #
-#   method                what the question is about: general / lbm / mbm / both.
-#                         The one predicate that selects a whole method, since
-#                         the categories cut across both.
+#   method                what the question is about: general / lbm / mbm. The
+#                         one predicate that selects a whole method, since the
+#                         categories cut across both.
 #   category/subcategory  what the question interrogates - the concern. Cuts
 #                         across methods, so that cost questions scattered over
 #                         five sections collect into one bucket.
@@ -242,14 +242,12 @@ LABEL_FIELDS = ("shorthand", "label", "method", "category", "subcategory",
 # Closed vocabularies. A value outside these is a typo until argued otherwise,
 # so load_labels() rejects it rather than letting a one-off slug into a column
 # people group by.
-# "general" and "both" are not synonyms. "general" means the question is not
-# about the standard at all - it is the respondent profile block. "both" means
-# the question is about the standard but sits above the method split: question
-# 18 refines the scope 2 boundary that LBM and MBM both operate inside, and
-# question 152 asks which combination of revisions is most appropriate across
-# both. So method='general' returns exactly the 14 profile questions, and
-# method<>'lbm' keeps 18 and 152.
-METHODS = {"general", "lbm", "mbm", "both"}
+# Three values, no fourth. "general" means not specific to either method, which
+# covers the 14 respondent profile questions plus the two that sit above the
+# method split: question 18 refines the scope 2 boundary that LBM and MBM both
+# operate inside, and question 152 asks which combination of revisions is most
+# appropriate across both. 16 general, 48 lbm, 116 mbm.
+METHODS = {"general", "lbm", "mbm"}
 
 CATEGORIES = {
     "resp_profile", "defs_and_purposes", "lbm_design", "mbm_design",

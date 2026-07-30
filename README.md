@@ -44,7 +44,7 @@ The interpretation layer, and the place to start. Beyond the verbatim
 | `question_id` / `question_number` | `Q071` (zero-padded, sorts correctly) and `71` |
 | `shorthand` | **snake_case slug carrying what the question is actually about** — `qc4_hourly_matching_support`, not the first 120 characters. Unique across all 180 |
 | `label` | 4–8 word title for charts and tables |
-| `method` | `general`, `lbm`, `mbm`, `both` — the one predicate that selects a whole method |
+| `method` | `general`, `lbm`, `mbm` — the one predicate that selects a whole method |
 | `category` / `subcategory` | What the question interrogates. 10 categories, 46 subcategories, cutting across both the methods and the 27 sections |
 | `policy_lever` | Which proposal is at stake. 53 levers, shared by every question interrogating one |
 | `asks_for` | What shape the answer takes — 13 values, `stance` through `elaboration` |
