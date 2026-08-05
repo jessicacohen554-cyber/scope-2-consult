@@ -1,0 +1,60 @@
+{
+  "answers": [
+    {
+      "display": "Q18",
+      "label": "General feedback on the draft guidance",
+      "qid": "Q018",
+      "selections": [],
+      "shorthand": "general_feedback",
+      "text": "We are not opposed to the direction. We are saying the draft is underspecified in exactly the places where two good-faith preparers would reach different numbers.",
+      "type": "free_text"
+    },
+    {
+      "display": "Q19",
+      "label": "Is the Scope 2 TWG subgroup formula appropriate?",
+      "qid": "Q019",
+      "selections": [
+        "No"
+      ],
+      "shorthand": "formula_appropriate",
+      "text": null,
+      "type": "single_select"
+    },
+    {
+      "display": "Q31",
+      "label": "Should additionality tests differ by region?",
+      "qid": "Q031",
+      "selections": [
+        "Unsure / it depends"
+      ],
+      "shorthand": "addl_regional_differences",
+      "text": null,
+      "type": "single_select"
+    },
+    {
+      "display": "Q36",
+      "label": "Which operating-margin methods are NOT appropriate?",
+      "qid": "Q036",
+      "selections": [
+        "Capacity-factor-based"
+      ],
+      "shorthand": "om_methods_not_appropriate",
+      "text": null,
+      "type": "multi_select"
+    }
+  ],
+  "audit_basis": "Specialty chemicals manufacturer reporting its own Scope 2 inventory; claimed type matches.",
+  "audited_class": "reporting_company",
+  "country": "uk",
+  "flags": {
+    "citation_count": 0,
+    "cites": false,
+    "family": null,
+    "template": true
+  },
+  "id": 902,
+  "name": "Northwind Chemicals",
+  "org_type": "company",
+  "responding_as": "organization",
+  "sector": "Manufacturing"
+}

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Harness | Electricity-Sector Consequential Methods Consultation</title>
+    <meta name="description" content="Development harness rendering every shared component of the consequential-methods hub against the hand-authored fixtures.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules (contract in
+         electricity-consequential/plans/consequential-dashboard/PLAN.md §5) -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/segments.js"></script>
+    <script src="js/stance-viz.js"></script>
+    <script src="js/matrix-viz.js"></script>
+    <script src="js/quote-cards.js"></script>
+    <script src="js/org-table.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Component Harness</h1>
+        <div class="subtitle">Every shared component of this hub, rendered from the hand-authored fixtures in <code>data/fixtures/</code>. Linked from nowhere; kept for smoke tests.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <section class="content-section">
+            <div class="insight-glass insight-glass-indigo">
+                <strong>What this page is.</strong> A development harness for the
+                shared infrastructure (P11): <code>data-loader.js</code>,
+                <code>segments.js</code>, <code>stance-viz.js</code>,
+                <code>matrix-viz.js</code>, <code>quote-cards.js</code>,
+                <code>org-table.js</code> and <code>styles/site.css</code>. It
+                loads fixtures by default; append <code>?fixtures=0</code> to
+                point the same components at the real exports in
+                <code>data/</code> once P22 has produced them. Every number on
+                this page is invented and every organization is fictional.
+            </div>
+        </section>
+
+        <!-- ===== STANCE STRIPS ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Stance strips</h2>
+            <p class="section-subtitle">100% stacked horizontal bars in fixed meta option order, one n chip per strip. Q19 carries a <code>polarity</code> block, so it gets the support ramp with &ldquo;No&rdquo; as the critical answer; Q31 and Q45 have none, so they get the neutral sequential ramp. Special options are gray and hatched. Segment rows below the mask threshold are suppressed, never drawn as zero.</p>
+
+            <div class="chart-panel">
+                <div class="ec-controls">
+                    <div id="dimToggle"></div>
+                    <div id="segRowToggle"></div>
+                </div>
+                <div id="strips"></div>
+            </div>
+        </section>
+
+        <!-- ===== ADDITIONALITY MATRIX ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Additionality stringency matrix</h2>
+            <p class="section-subtitle">Required / optional / not required is an ordered stringency ladder, so the ramp is sequential indigo and never the green/red support ramp (PLAN gotcha 5). Rows sort by net requiredness. Cells open a popover with the segment split.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Full matrix</h3>
+                <div id="matrix"></div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Mini matrix &mdash; Decision Board variant</h3>
+                    <div id="matrixMini"></div>
+                </div>
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Required vs feasible</h3>
+                    <div class="chart-container-lg">
+                        <canvas id="matrixCross"></canvas>
+                    </div>
+                    <div class="ec-srtable-slot"></div>
+                    <p class="ec-note" id="crossNote"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SCOREBOARD ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Methodology scoreboard</h2>
+            <p class="section-subtitle">Not-appropriate to the left, appropriate to the right, each a share of <em>its own</em> base (PLAN gotcha 7). Both bases are printed on the axis; the specials sit beside the chart and are never netted.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Operating-margin methods</h3>
+                <div id="scoreboard"></div>
+            </div>
+        </section>
+
+        <!-- ===== ATTRITION ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Attrition strip</h2>
+            <p class="section-subtitle">How much evidence sits under each panel: responses per question in survey order.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <div id="attrition"></div>
+            </div>
+        </section>
+
+        <!-- ===== THEMES ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Theme bars</h2>
+            <p class="section-subtitle">The coded free-text taxonomy, this survey's substitute for the reason picklists it does not have. The inner bar is the count after collapsing template-cluster members to one voice.</p>
+
+            <div class="grid-2col">
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Q20 &mdash; why the formula is or is not appropriate</h3>
+                    <div id="themesQ020"></div>
+                </div>
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Q32 &mdash; why tests should or should not vary by region</h3>
+                    <div id="themesQ032"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== QUOTE CARDS ===== -->
+        <section class="content-section-wide">
+            <h2 class="section-title">Quote cards</h2>
+            <p class="section-subtitle">Attribution line, theme chips, template-cluster badge where the text is circulated, org-profile link for named respondents only.</p>
+            <div id="quotesFormula"></div>
+        </section>
+
+        <section class="content-section-wide">
+            <h2 class="section-title">Quote cards &mdash; empty sides and a redacted voice</h2>
+            <p class="section-subtitle">Two of the three columns have no curated quotes yet; a redacted respondent gets the same card with no profile link and a muted accent, because there is no profile to link to.</p>
+            <div id="quotesAdditionality"></div>
+        </section>
+
+        <!-- ===== ORG TABLE ===== -->
+        <section class="content-section-wide">
+            <h2 class="section-title">Named-organization browser</h2>
+            <p class="section-subtitle">Search, filter, sort, and expand a row to lazy-load <code>orgs/{id}.json</code>. The stance fingerprint chips reuse the strip palette, so a row reads the way the charts do.</p>
+            <div class="card card-spacious">
+                <div id="orgTable"></div>
+            </div>
+        </section>
+
+        <!-- ===== INTEGRITY / COVERAGE ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Integrity shapes &amp; contract coverage</h2>
+            <p class="section-subtitle">Proof that every fixture shape in PLAN §5 parses and renders.</p>
+
+            <div class="grid-2col">
+                <div class="card scroll-reveal">
+                    <h3 class="chart-title">Excluded respondents &amp; the resubmission</h3>
+                    <div id="excluded"></div>
+                </div>
+                <div class="card scroll-reveal">
+                    <h3 class="chart-title">Template blocs &amp; the dedup effect</h3>
+                    <div id="blocs"></div>
+                </div>
+                <div class="card scroll-reveal">
+                    <h3 class="chart-title">Citation mining</h3>
+                    <div id="citations"></div>
+                </div>
+                <div class="card scroll-reveal">
+                    <h3 class="chart-title">Claimed vs audited classification</h3>
+                    <div id="audit"></div>
+                </div>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3 class="chart-title">Contract coverage</h3>
+                <div id="coverage"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Component harness — fixtures only, not published content"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+
+    <script>
+    // ------------------------------------------------------------------------
+    // Harness wiring. Fixtures are the default here; ?fixtures=0 switches to the
+    // real exports so later waves can smoke-test against live data.
+    // ------------------------------------------------------------------------
+    (function() {
+        'use strict';
+
+        var forceFixtures = new URLSearchParams(window.location.search)
+            .get('fixtures') !== '0';
+        ECData.configure({ fixtures: forceFixtures });
+
+        var FILES = ['meta', 'stances', 'matrix', 'scoreboard', 'themes',
+                     'quotes', 'respondents', 'integrity'];
+        var STANCE_QIDS = ['Q019', 'Q031', 'Q045'];
+        var MASK_N = 5;
+
+        var D = {};
+
+        function esc(s) { return ECData.escapeHtml(s); }
+
+        // No explicit fallback: ECSegments.get() falls through to the default
+        // the dimToggle registered, which is what the buttons are showing.
+        function dim() { return ECSegments.get('dim') || 'overall'; }
+
+        function drawStrips() {
+            ECStance.renderStrips('#strips', {
+                qids: STANCE_QIDS,
+                stances: D.stances,
+                meta: D.meta,
+                dim: dim(),
+                maskN: MASK_N,
+                showSegments: ECSegments.getBool('segrows', true),
+                label: 'Fixture stance questions'
+            });
+        }
+
+        function drawMatrix() {
+            ECMatrix.renderHeatmap('#matrix', {
+                meta: D.meta, matrix: D.matrix, dim: dim(), maskN: MASK_N,
+                label: 'Additionality tests'
+            });
+            ECMatrix.renderMini('#matrixMini', {
+                meta: D.meta, matrix: D.matrix, dim: dim(), maskN: MASK_N,
+                link: 'topics/additionality.html'
+            });
+            ECMatrix.renderCross('#matrixCross', {
+                meta: D.meta, matrix: D.matrix
+            });
+            var none = ((D.matrix.feasibility || {}).specials || {}).none_feasible;
+            document.getElementById('crossNote').textContent =
+                'Requiredness and feasibility rank together, with one asymmetry ' +
+                'worth showing. ' + ((none && none.n) || 0) + ' of ' +
+                ((D.matrix.feasibility || {}).n || 0) +
+                ' respondents said no test is feasible at all — a special ' +
+                'answer, never netted into the ladder.';
+        }
+
+        function drawScoreboard() {
+            ECStance.renderScoreboard('#scoreboard', D.scoreboard.om, {
+                meta: D.meta, key: 'om', dim: dim(), maskN: MASK_N,
+                label: 'Operating-margin methods'
+            });
+        }
+
+        function drawThemes() {
+            ECStance.renderThemes('#themesQ020', D.themes.by_question.Q020, {
+                taxonomy: D.themes.taxonomy, label: 'Q20 themes'
+            });
+            ECStance.renderThemes('#themesQ032', D.themes.by_question.Q032, {
+                taxonomy: D.themes.taxonomy, label: 'Q32 themes'
+            });
+        }
+
+        function drawQuotes() {
+            ECQuotes.renderTriad('#quotesFormula', D.quotes.formula, {
+                meta: D.meta, taxonomy: D.themes.taxonomy,
+                titles: {
+                    'for': 'Formula — in support',
+                    against: 'Formula — against',
+                    context: 'Formula — context'
+                }
+            });
+            ECQuotes.renderTriad('#quotesAdditionality', D.quotes.additionality, {
+                meta: D.meta, taxonomy: D.themes.taxonomy,
+                titles: {
+                    'for': 'Additionality — in support',
+                    against: 'Additionality — against',
+                    context: 'Additionality — context'
+                }
+            });
+        }
+
+        function drawOrgTable() {
+            ECOrgTable.render('#orgTable', D.respondents.org_index, {
+                meta: D.meta,
+                pageSize: 10
+            });
+        }
+
+        function drawAttrition() {
+            ECStance.renderAttrition('#attrition', D.respondents.attrition, {
+                meta: D.meta
+            });
+        }
+
+        function table(head, rows, caption) {
+            return '<div class="ec-table-scroll"><table class="data-table">' +
+                (caption ? '<caption class="sr-only">' + esc(caption) +
+                    '</caption>' : '') +
+                '<thead><tr>' + head.map(function(h) {
+                    return '<th scope="col">' + esc(h) + '</th>';
+                }).join('') + '</tr></thead><tbody>' +
+                rows.map(function(r) {
+                    return '<tr>' + r.map(function(c, i) {
+                        return i === 0 ? '<th scope="row">' + c + '</th>'
+                                       : '<td>' + c + '</td>';
+                    }).join('') + '</tr>';
+                }).join('') + '</tbody></table></div>';
+        }
+
+        function drawExcluded() {
+            var I = D.integrity;
+            var html = table(
+                ['Respondent', 'Reason', 'Cells', 'Evidence'],
+                (I.excluded || []).map(function(e) {
+                    return [esc(e.name_or_redacted),
+                            '<span class="ec-tag ec-tag-special">' +
+                                esc(e.reason) + '</span>',
+                            String(e.n_cells),
+                            esc((e.evidence || []).join('; '))];
+                }),
+                'Respondents excluded from the analytical base');
+            var r = I.resubmission || {};
+            html += '<h4 class="ec-subhead">Resubmission ' + esc(r.dropped) +
+                ' &rarr; ' + esc(r.kept) + '</h4>' +
+                table(['Question', 'Before', 'After'],
+                      (r.changed || []).map(function(c) {
+                          return [esc(ECData.display(D.meta, c.qid)),
+                                  esc(c.before), esc(c.after)];
+                      }),
+                      'Answers that changed between the two submissions');
+            document.getElementById('excluded').innerHTML = html;
+        }
+
+        function drawBlocs() {
+            var I = D.integrity;
+            var html = '<ul class="ec-answer-list">' +
+                (I.blocs || []).map(function(b) {
+                    return '<li class="ec-answer">' +
+                        '<span class="ec-answer-q">' + esc(b.key) + '</span>' +
+                        '<span class="ec-answer-body">' +
+                        '<span class="ec-answer-label">' + esc(b.label) +
+                        '</span>' +
+                        '<span class="ec-tag ec-tag-template">' +
+                        b.shared_texts + ' shared texts</span>' +
+                        '<span class="ec-tag">' + b.n_redacted +
+                        ' redacted members</span>' +
+                        '<span class="ec-answer-selections">' +
+                        (b.member_ids_named || []).map(function(m) {
+                            return '<span class="ec-tag">' + esc(m.name) +
+                                '</span>';
+                        }).join('') + '</span></span></li>';
+                }).join('') + '</ul>';
+
+            html += '<h4 class="ec-subhead">Effect of text dedup on the headline</h4>' +
+                table(['Question', 'Raw', 'Deduped'],
+                      (I.dedup_effect || []).map(function(d) {
+                          var q = ECData.question(D.meta, d.qid) || {};
+                          function fmt(c) {
+                              return (c.c || []).map(function(v, i) {
+                                  return esc(((q.options || [])[i] || {}).label ||
+                                      ('opt' + (i + 1))) + ' ' + v;
+                              }).join(' · ') + ' (n=' + c.n + ')';
+                          }
+                          return [esc(ECData.display(D.meta, d.qid)),
+                                  fmt(d.raw), fmt(d.deduped)];
+                      }),
+                      'Headline counts before and after collapsing template text');
+
+            html += '<p class="ec-note">' + (I.text_clusters || []).length +
+                ' text cluster(s) and ' + (I.families || []).length +
+                ' entity family/families in this fixture.</p>';
+            document.getElementById('blocs').innerHTML = html;
+        }
+
+        function drawCitations() {
+            var C = D.integrity.citations || {};
+            var html = table(['Organization type', 'n', 'Citing', '%'],
+                (C.by_org_type || []).map(function(r) {
+                    return [esc(String(r.key).replace(/_/g, ' ')),
+                            String(r.n), String(r.citing),
+                            r.pct.toFixed(1) + '%'];
+                }), 'Citation rate by organization type');
+            html += '<h4 class="ec-subhead">Domains cited</h4>' +
+                table(['Domain', 'Count', 'Class'],
+                    (C.domains || []).map(function(d) {
+                        return ['<code>' + esc(d.domain) + '</code>',
+                                String(d.count),
+                                '<span class="ec-tag ec-tag-cite">' +
+                                    esc(String(d['class']).replace(/_/g, ' ')) +
+                                    '</span>'];
+                    }), 'Domains found in free-text citations');
+            html += '<p class="ec-note">Named respondents cite at ' +
+                ((C.by_redaction || [])[0] || {}).pct + '%, redacted at ' +
+                ((C.by_redaction || [])[1] || {}).pct + '% — and ' +
+                (C.q52 || []).length + ' evidence submission(s) reached the ' +
+                'consultation’s own evidence question.</p>';
+            document.getElementById('citations').innerHTML = html;
+        }
+
+        function drawAudit() {
+            var A = D.integrity.audit || {};
+            var vocab = {};
+            (A.vocabulary || []).forEach(function(v) { vocab[v.key] = v; });
+            var html = table(['Organization', 'Claimed', 'Audited'],
+                (A.rows || []).map(function(r) {
+                    var v = vocab[r.audited];
+                    return ['<span class="ec-td-name">' + esc(r.name) + '</span>',
+                            esc(String(r.claimed).replace(/_/g, ' ')),
+                            '<span class="ec-tag' +
+                                (r.claimed === r.audited ? '' : ' ec-tag-family') +
+                                '" title="' + esc(v ? v.definition : '') + '">' +
+                                esc(String(r.audited).replace(/_/g, ' ')) +
+                                '</span>'];
+                }), 'Claimed against audited organization class');
+            var s = A.summary || {};
+            html += '<p class="ec-note">' + (s.n_matching || 0) + ' of ' +
+                (s.n_rows || 0) + ' claims match the audit; ' +
+                (s.n_diverging || 0) + ' diverge. Redacted respondents are ' +
+                '<em>unverifiable</em>, not guilty — and are never listed here ' +
+                'by name.</p>';
+            document.getElementById('audit').innerHTML = html;
+        }
+
+        function drawCoverage() {
+            var rows = FILES.map(function(name) {
+                var keys = Object.keys(D[name]);
+                var shown = keys.slice(0, 6).join(', ');
+                return ['<code>' + esc(name) + '.json</code>',
+                        esc(keys.length > 6
+                            ? shown + ' … (' + keys.length + ' keys)'
+                            : shown)];
+            });
+            rows.push(['<code>orgs/901.json</code>',
+                       esc(Object.keys(D.org901).join(', '))]);
+            document.getElementById('coverage').innerHTML =
+                table(['File', 'Top-level keys'], rows,
+                      'Fixture files and their top-level keys') +
+                '<p class="ec-note">Serving from <code>' +
+                esc(ECData.basePath()) + '</code>. ' +
+                (D.meta.provisional
+                    ? 'This export is stamped <code>provisional</code>: curation ' +
+                      '(themes, quotes, audit) may still be placeholder.'
+                    : '') + '</p>';
+        }
+
+        function redraw() {
+            drawStrips();
+            drawMatrix();
+            drawScoreboard();
+        }
+
+        ECData.loadAll(FILES).then(function(loaded) {
+            D = loaded;
+            return ECData.loadOrg(901).then(function(org) { D.org901 = org; });
+        }).then(function() {
+            ECSegments.init(D.meta);
+
+            // Default to a segmented view so the harness exercises the
+            // per-segment rows and the n<5 mask on first paint.
+            ECSegments.dimToggle('#dimToggle', {
+                def: 'org_type_5', includeOverall: true
+            });
+            ECSegments.switchToggle('#segRowToggle', {
+                param: 'segrows',
+                label: 'Per-segment rows',
+                onLabel: 'Shown',
+                offLabel: 'Hidden',
+                def: true
+            });
+
+            ECSegments.on(redraw);
+
+            redraw();
+            drawAttrition();
+            drawThemes();
+            drawQuotes();
+            drawOrgTable();
+            drawExcluded();
+            drawBlocs();
+            drawCitations();
+            drawAudit();
+            drawCoverage();
+        }).catch(function(err) {
+            ECData.errorPanel('#strips', err, {
+                title: 'Fixtures could not be loaded'
+            });
+            if (window.console && console.error) console.error(err);
+        });
+    })();
+    </script>
+</body>
+</html>

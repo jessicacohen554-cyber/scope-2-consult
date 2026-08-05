@@ -1,0 +1,289 @@
+{
+  "om": {
+    "base_app": 14,
+    "base_not": 11,
+    "options": [
+      {
+        "app": {
+          "by": {
+            "country_4": {
+              "jp": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              },
+              "uk": {
+                "n": 3
+              },
+              "us": {
+                "n": 7
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": 6
+              },
+              "consultant": {
+                "n": 3
+              },
+              "industry_group": {
+                "n": "<5"
+              },
+              "ngo": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": 7
+              },
+              "redacted": {
+                "n": 4
+              }
+            },
+            "responding_as": {
+              "individual": {
+                "n": "<5"
+              },
+              "organization": {
+                "n": 9
+              }
+            }
+          },
+          "n": 11
+        },
+        "key": "sced_locational",
+        "label": "SCED – locational",
+        "net_pct": 60.4,
+        "not": {
+          "by": {
+            "country_4": {
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": "<5"
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": "<5"
+              },
+              "consultant": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": "<5"
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "organization": {
+                "n": "<5"
+              }
+            }
+          },
+          "n": 2
+        }
+      },
+      {
+        "app": {
+          "by": {
+            "country_4": {
+              "jp": {
+                "n": "<5"
+              },
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": 6
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": 5
+              },
+              "consultant": {
+                "n": "<5"
+              },
+              "industry_group": {
+                "n": "<5"
+              },
+              "ngo": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": 6
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "individual": {
+                "n": "<5"
+              },
+              "organization": {
+                "n": 8
+              }
+            }
+          },
+          "n": 9
+        },
+        "key": "statistical",
+        "label": "Statistical",
+        "net_pct": 37.0,
+        "not": {
+          "by": {
+            "country_4": {
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": "<5"
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": "<5"
+              },
+              "consultant": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": "<5"
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "organization": {
+                "n": "<5"
+              }
+            }
+          },
+          "n": 3
+        }
+      },
+      {
+        "app": {
+          "by": {
+            "country_4": {
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": "<5"
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": "<5"
+              },
+              "consultant": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": "<5"
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "organization": {
+                "n": "<5"
+              }
+            }
+          },
+          "n": 4
+        },
+        "key": "capacity_factor",
+        "label": "Capacity-factor-based",
+        "net_pct": -35.0,
+        "not": {
+          "by": {
+            "country_4": {
+              "jp": {
+                "n": "<5"
+              },
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": 5
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": 5
+              },
+              "consultant": {
+                "n": "<5"
+              },
+              "industry_group": {
+                "n": "<5"
+              },
+              "ngo": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": 5
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "individual": {
+                "n": "<5"
+              },
+              "organization": {
+                "n": 6
+              }
+            }
+          },
+          "n": 7
+        }
+      }
+    ],
+    "specials": [
+      {
+        "key": "none",
+        "label": "None are appropriate",
+        "n": 2,
+        "side": "app"
+      },
+      {
+        "key": "none",
+        "label": "None are appropriate",
+        "n": 1,
+        "side": "not"
+      }
+    ]
+  }
+}

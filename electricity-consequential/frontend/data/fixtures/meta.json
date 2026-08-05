@@ -1,0 +1,519 @@
+{
+  "fixture": true,
+  "generated": "2026-07-29",
+  "matrix": {
+    "levels": [
+      {
+        "key": "required",
+        "label": "Required"
+      },
+      {
+        "key": "optional",
+        "label": "Optional"
+      },
+      {
+        "key": "not_required",
+        "label": "Not required"
+      }
+    ],
+    "tests": [
+      {
+        "key": "regulatory",
+        "label": "Regulatory surplus",
+        "n": 18,
+        "qid": "Q026_1"
+      },
+      {
+        "key": "timing",
+        "label": "Timing",
+        "n": 17,
+        "qid": "Q026_2"
+      },
+      {
+        "key": "first_of_kind",
+        "label": "First-of-its-kind",
+        "n": 16,
+        "qid": "Q026_9"
+      }
+    ]
+  },
+  "provisional": true,
+  "questions": [
+    {
+      "asks_for": "open_feedback",
+      "display": "Q18",
+      "doc_section": "5",
+      "label": "General feedback on the draft guidance",
+      "n_answered": 21,
+      "options": [],
+      "page": "topics/formula.html",
+      "qid": "Q018",
+      "shorthand": "general_feedback",
+      "topic": "general",
+      "type": "free_text"
+    },
+    {
+      "asks_for": "stance",
+      "display": "Q19",
+      "doc_section": "6.1",
+      "label": "Is the Scope 2 TWG subgroup formula appropriate?",
+      "n_answered": 19,
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes"
+        },
+        {
+          "key": "no",
+          "label": "No"
+        }
+      ],
+      "page": "topics/formula.html",
+      "polarity": {
+        "critical": "no"
+      },
+      "qid": "Q019",
+      "shorthand": "formula_appropriate",
+      "topic": "formula",
+      "type": "single_select"
+    },
+    {
+      "asks_for": "rationale",
+      "display": "Q20",
+      "doc_section": "6.1",
+      "label": "Please explain your answer to question 19",
+      "n_answered": 17,
+      "options": [],
+      "page": "topics/formula.html",
+      "qid": "Q020",
+      "shorthand": "formula_explain",
+      "topic": "formula",
+      "type": "free_text"
+    },
+    {
+      "asks_for": "stance",
+      "display": "Q21",
+      "doc_section": "6.2",
+      "label": "Should secondary effects be considered?",
+      "n_answered": 18,
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes"
+        },
+        {
+          "key": "no",
+          "label": "No"
+        }
+      ],
+      "page": "topics/formula.html",
+      "qid": "Q021",
+      "shorthand": "secondary_effects",
+      "topic": "formula",
+      "type": "single_select"
+    },
+    {
+      "asks_for": "design_preference",
+      "display": "Q24",
+      "doc_section": "6.4",
+      "label": "Reporting period for consequential impacts",
+      "n_answered": 16,
+      "options": [
+        {
+          "key": "each_year",
+          "label": "Each year"
+        },
+        {
+          "key": "lifetime",
+          "label": "Full intervention lifetime"
+        }
+      ],
+      "page": "topics/formula.html",
+      "qid": "Q024",
+      "shorthand": "reporting_period",
+      "topic": "formula",
+      "type": "single_select"
+    },
+    {
+      "asks_for": "matrix_rating",
+      "display": "Q26.1",
+      "doc_section": "7.2",
+      "label": "Regulatory surplus test",
+      "n_answered": 18,
+      "options": [
+        {
+          "key": "required",
+          "label": "Required",
+          "rank": 3
+        },
+        {
+          "key": "optional",
+          "label": "Optional",
+          "rank": 2
+        },
+        {
+          "key": "not_required",
+          "label": "Not required",
+          "rank": 1
+        }
+      ],
+      "page": "topics/additionality.html",
+      "qid": "Q026_1",
+      "shorthand": "addl_regulatory_req",
+      "topic": "additionality",
+      "type": "matrix_rating"
+    },
+    {
+      "asks_for": "matrix_rating",
+      "display": "Q26.2",
+      "doc_section": "7.2",
+      "label": "Timing test",
+      "n_answered": 17,
+      "options": [
+        {
+          "key": "required",
+          "label": "Required",
+          "rank": 3
+        },
+        {
+          "key": "optional",
+          "label": "Optional",
+          "rank": 2
+        },
+        {
+          "key": "not_required",
+          "label": "Not required",
+          "rank": 1
+        }
+      ],
+      "page": "topics/additionality.html",
+      "qid": "Q026_2",
+      "shorthand": "addl_timing_req",
+      "topic": "additionality",
+      "type": "matrix_rating"
+    },
+    {
+      "asks_for": "matrix_rating",
+      "display": "Q26.9",
+      "doc_section": "7.2",
+      "label": "First-of-its-kind test",
+      "n_answered": 16,
+      "options": [
+        {
+          "key": "required",
+          "label": "Required",
+          "rank": 3
+        },
+        {
+          "key": "optional",
+          "label": "Optional",
+          "rank": 2
+        },
+        {
+          "key": "not_required",
+          "label": "Not required",
+          "rank": 1
+        }
+      ],
+      "page": "topics/additionality.html",
+      "qid": "Q026_9",
+      "shorthand": "addl_first_of_kind_req",
+      "topic": "additionality",
+      "type": "matrix_rating"
+    },
+    {
+      "asks_for": "feasibility_pick",
+      "display": "Q28",
+      "doc_section": "7.3",
+      "label": "Which additionality tests are feasible to apply?",
+      "n_answered": 17,
+      "options": [
+        {
+          "key": "regulatory",
+          "label": "Regulatory surplus"
+        },
+        {
+          "key": "timing",
+          "label": "Timing"
+        },
+        {
+          "key": "first_of_kind",
+          "label": "First-of-its-kind"
+        },
+        {
+          "key": "none_feasible",
+          "label": "None (no tests are feasible)",
+          "special": true
+        }
+      ],
+      "page": "topics/additionality.html",
+      "qid": "Q028",
+      "shorthand": "addl_tests_feasible",
+      "topic": "additionality",
+      "type": "multi_select"
+    },
+    {
+      "asks_for": "stance",
+      "display": "Q31",
+      "doc_section": "7.4",
+      "label": "Should additionality tests differ by region?",
+      "n_answered": 16,
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes"
+        },
+        {
+          "key": "unsure",
+          "label": "Unsure / it depends",
+          "special": true
+        },
+        {
+          "key": "no",
+          "label": "No"
+        }
+      ],
+      "page": "topics/additionality.html",
+      "qid": "Q031",
+      "shorthand": "addl_regional_differences",
+      "topic": "additionality",
+      "type": "single_select"
+    },
+    {
+      "asks_for": "rationale",
+      "display": "Q32",
+      "doc_section": "7.4",
+      "label": "Please explain your answer to question 31",
+      "n_answered": 12,
+      "options": [],
+      "page": "topics/additionality.html",
+      "qid": "Q032",
+      "shorthand": "addl_regional_explain",
+      "topic": "additionality",
+      "type": "free_text"
+    },
+    {
+      "asks_for": "stance",
+      "display": "Q33",
+      "doc_section": "7.5",
+      "label": "Should rigor vary by claim type (association vs causal)?",
+      "n_answered": 14,
+      "options": [
+        {
+          "key": "yes",
+          "label": "Yes"
+        },
+        {
+          "key": "no",
+          "label": "No"
+        }
+      ],
+      "page": "topics/additionality.html",
+      "qid": "Q033",
+      "shorthand": "rigor_by_claim_type",
+      "topic": "additionality",
+      "type": "single_select"
+    },
+    {
+      "asks_for": "method_pick",
+      "display": "Q35",
+      "doc_section": "8.1",
+      "label": "Which operating-margin methods are appropriate?",
+      "n_answered": 14,
+      "options": [
+        {
+          "key": "sced_locational",
+          "label": "SCED – locational"
+        },
+        {
+          "key": "statistical",
+          "label": "Statistical"
+        },
+        {
+          "key": "capacity_factor",
+          "label": "Capacity-factor-based"
+        },
+        {
+          "key": "none",
+          "label": "None are appropriate",
+          "special": true
+        }
+      ],
+      "page": "topics/emission-rates.html",
+      "qid": "Q035",
+      "shorthand": "om_methods_appropriate",
+      "topic": "emission_rates",
+      "type": "multi_select"
+    },
+    {
+      "asks_for": "method_pick",
+      "display": "Q36",
+      "doc_section": "8.1",
+      "label": "Which operating-margin methods are NOT appropriate?",
+      "n_answered": 11,
+      "options": [
+        {
+          "key": "sced_locational",
+          "label": "SCED – locational"
+        },
+        {
+          "key": "statistical",
+          "label": "Statistical"
+        },
+        {
+          "key": "capacity_factor",
+          "label": "Capacity-factor-based"
+        },
+        {
+          "key": "none",
+          "label": "None are appropriate",
+          "special": true
+        }
+      ],
+      "page": "topics/emission-rates.html",
+      "qid": "Q036",
+      "shorthand": "om_methods_not_appropriate",
+      "topic": "emission_rates",
+      "type": "multi_select"
+    },
+    {
+      "asks_for": "design_preference",
+      "display": "Q45",
+      "doc_section": "8.3",
+      "label": "Maximum appropriate temporal granularity",
+      "n_answered": 15,
+      "options": [
+        {
+          "key": "annual",
+          "label": "Annual",
+          "rank": 1
+        },
+        {
+          "key": "monthly",
+          "label": "Monthly",
+          "rank": 2
+        },
+        {
+          "key": "hourly",
+          "label": "Hourly",
+          "rank": 3
+        },
+        {
+          "key": "sub_hourly",
+          "label": "Sub-hourly",
+          "rank": 4
+        }
+      ],
+      "page": "topics/emission-rates.html",
+      "qid": "Q045",
+      "shorthand": "temporal_granularity_max",
+      "topic": "emission_rates",
+      "type": "ordered_select"
+    }
+  ],
+  "scoreboards": {
+    "om": {
+      "base_app": 14,
+      "base_not": 11,
+      "label": "Operating-margin methods",
+      "q_app": "Q035",
+      "q_not": "Q036"
+    }
+  },
+  "segments": {
+    "country_4": {
+      "label": "Country",
+      "values": [
+        {
+          "key": "us",
+          "label": "United States",
+          "n": 14
+        },
+        {
+          "key": "uk",
+          "label": "United Kingdom",
+          "n": 5
+        },
+        {
+          "key": "jp",
+          "label": "Japan",
+          "n": 3
+        },
+        {
+          "key": "other",
+          "label": "Other countries",
+          "n": 2
+        }
+      ]
+    },
+    "org_type_5": {
+      "label": "Organization type",
+      "values": [
+        {
+          "key": "company",
+          "label": "Company",
+          "n": 10
+        },
+        {
+          "key": "consultant",
+          "label": "Consultant",
+          "n": 5
+        },
+        {
+          "key": "ngo",
+          "label": "NGO/civil society",
+          "n": 3
+        },
+        {
+          "key": "industry_group",
+          "label": "Industry group",
+          "n": 2
+        },
+        {
+          "key": "other",
+          "label": "Other (all smaller types)",
+          "n": 4
+        }
+      ]
+    },
+    "redaction": {
+      "label": "Named vs redacted",
+      "values": [
+        {
+          "key": "named",
+          "label": "Named",
+          "n": 14
+        },
+        {
+          "key": "redacted",
+          "label": "Redacted",
+          "n": 10
+        }
+      ]
+    },
+    "responding_as": {
+      "label": "Responding as",
+      "values": [
+        {
+          "key": "organization",
+          "label": "Organization",
+          "n": 20
+        },
+        {
+          "key": "individual",
+          "label": "Individual",
+          "n": 4
+        }
+      ]
+    }
+  },
+  "totals": {
+    "answers": 168,
+    "free_text_answers": 63,
+    "named": 14,
+    "questions": 15,
+    "redacted": 10,
+    "respondents": 24,
+    "respondents_raw": 27
+  }
+}

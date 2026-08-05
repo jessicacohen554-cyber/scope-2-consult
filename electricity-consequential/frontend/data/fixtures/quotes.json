@@ -1,0 +1,66 @@
+{
+  "additionality": {
+    "against": [],
+    "context": [
+      {
+        "attribution": "Consortium for Grid Integrity — Industry group, US",
+        "org_type": "industry_group",
+        "qid": "Q032",
+        "redacted": false,
+        "respondent_id": 903,
+        "template_cluster": "a1b2c3d4e5f60718",
+        "text": "A regulatory surplus test means something different in a market with a binding clean energy standard than in one without. The same test, applied globally, will not measure the same thing twice.",
+        "themes": [
+          "regional_tests"
+        ]
+      }
+    ],
+    "for": []
+  },
+  "formula": {
+    "against": [
+      {
+        "attribution": "Redacted — Company, US",
+        "org_type": "company",
+        "qid": "Q020",
+        "redacted": true,
+        "respondent_id": 904,
+        "template_cluster": "a1b2c3d4e5f60718",
+        "text": "The proposed formula assumes a counterfactual dispatch that no reporting entity can observe, let alone have assured. We would be asking auditors to sign off on a model output, not a measurement.",
+        "themes": [
+          "attribution_uncertainty",
+          "complexity_burden"
+        ]
+      }
+    ],
+    "context": [
+      {
+        "attribution": "Northwind Chemicals — Company, UK",
+        "org_type": "company",
+        "qid": "Q018",
+        "redacted": false,
+        "respondent_id": 902,
+        "template_cluster": null,
+        "text": "We are not opposed to the direction. We are saying the draft is underspecified in exactly the places where two good-faith preparers would reach different numbers.",
+        "themes": [
+          "data_availability",
+          "complexity_burden"
+        ]
+      }
+    ],
+    "for": [
+      {
+        "attribution": "Meridian Grid Analytics — Other, US",
+        "org_type": "other",
+        "qid": "Q020",
+        "redacted": false,
+        "respondent_id": 901,
+        "template_cluster": null,
+        "text": "Inventory accounting tells us who owns an emission; it says nothing about whether the purchase changed what the system dispatched. […] A consequential layer is the only way to make that question answerable at all.",
+        "themes": [
+          "system_view_needed"
+        ]
+      }
+    ]
+  }
+}

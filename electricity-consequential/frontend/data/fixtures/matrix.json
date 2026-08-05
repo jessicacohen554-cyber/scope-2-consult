@@ -1,0 +1,452 @@
+{
+  "feasibility": {
+    "n": 17,
+    "per_test": {
+      "first_of_kind": {
+        "by": {
+          "country_4": {
+            "jp": {
+              "n": "<5"
+            },
+            "other": {
+              "n": "<5"
+            },
+            "uk": {
+              "n": "<5"
+            },
+            "us": {
+              "n": 5
+            }
+          },
+          "org_type_5": {
+            "company": {
+              "n": 5
+            },
+            "consultant": {
+              "n": "<5"
+            },
+            "industry_group": {
+              "n": "<5"
+            },
+            "ngo": {
+              "n": "<5"
+            },
+            "other": {
+              "n": "<5"
+            }
+          },
+          "redaction": {
+            "named": {
+              "n": 5
+            },
+            "redacted": {
+              "n": "<5"
+            }
+          },
+          "responding_as": {
+            "individual": {
+              "n": "<5"
+            },
+            "organization": {
+              "n": 6
+            }
+          }
+        },
+        "n": 6
+      },
+      "regulatory": {
+        "by": {
+          "country_4": {
+            "jp": {
+              "n": "<5"
+            },
+            "other": {
+              "n": "<5"
+            },
+            "uk": {
+              "n": 5
+            },
+            "us": {
+              "n": 9
+            }
+          },
+          "org_type_5": {
+            "company": {
+              "n": 8
+            },
+            "consultant": {
+              "n": 4
+            },
+            "industry_group": {
+              "n": "<5"
+            },
+            "ngo": {
+              "n": "<5"
+            },
+            "other": {
+              "n": "<5"
+            }
+          },
+          "redaction": {
+            "named": {
+              "n": 9
+            },
+            "redacted": {
+              "n": 5
+            }
+          },
+          "responding_as": {
+            "individual": {
+              "n": "<5"
+            },
+            "organization": {
+              "n": 12
+            }
+          }
+        },
+        "n": 14
+      },
+      "timing": {
+        "by": {
+          "country_4": {
+            "jp": {
+              "n": "<5"
+            },
+            "other": {
+              "n": "<5"
+            },
+            "uk": {
+              "n": 3
+            },
+            "us": {
+              "n": 8
+            }
+          },
+          "org_type_5": {
+            "company": {
+              "n": 7
+            },
+            "consultant": {
+              "n": 3
+            },
+            "industry_group": {
+              "n": "<5"
+            },
+            "ngo": {
+              "n": "<5"
+            },
+            "other": {
+              "n": "<5"
+            }
+          },
+          "redaction": {
+            "named": {
+              "n": 8
+            },
+            "redacted": {
+              "n": 4
+            }
+          },
+          "responding_as": {
+            "individual": {
+              "n": "<5"
+            },
+            "organization": {
+              "n": 10
+            }
+          }
+        },
+        "n": 12
+      }
+    },
+    "specials": {
+      "none_feasible": {
+        "n": 3
+      }
+    }
+  },
+  "tests": {
+    "Q026_1": {
+      "by": {
+        "country_4": {
+          "jp": {
+            "n": "<5"
+          },
+          "other": {
+            "n": "<5"
+          },
+          "uk": {
+            "c": [
+              3,
+              1,
+              1
+            ],
+            "n": 5
+          },
+          "us": {
+            "c": [
+              8,
+              2,
+              1
+            ],
+            "n": 11
+          }
+        },
+        "org_type_5": {
+          "company": {
+            "c": [
+              7,
+              2,
+              1
+            ],
+            "n": 10
+          },
+          "consultant": {
+            "c": [
+              3,
+              1,
+              1
+            ],
+            "n": 5
+          },
+          "industry_group": {
+            "n": "<5"
+          },
+          "ngo": {
+            "n": "<5"
+          },
+          "other": {
+            "n": "<5"
+          }
+        },
+        "redaction": {
+          "named": {
+            "c": [
+              8,
+              3,
+              1
+            ],
+            "n": 12
+          },
+          "redacted": {
+            "c": [
+              4,
+              1,
+              1
+            ],
+            "n": 6
+          }
+        },
+        "responding_as": {
+          "individual": {
+            "n": "<5"
+          },
+          "organization": {
+            "c": [
+              10,
+              4,
+              2
+            ],
+            "n": 16
+          }
+        }
+      },
+      "overall": {
+        "c": [
+          12,
+          4,
+          2
+        ],
+        "n": 18
+      }
+    },
+    "Q026_2": {
+      "by": {
+        "country_4": {
+          "jp": {
+            "n": "<5"
+          },
+          "other": {
+            "n": "<5"
+          },
+          "uk": {
+            "c": [
+              2,
+              2,
+              1
+            ],
+            "n": 5
+          },
+          "us": {
+            "c": [
+              6,
+              3,
+              2
+            ],
+            "n": 11
+          }
+        },
+        "org_type_5": {
+          "company": {
+            "c": [
+              5,
+              3,
+              1
+            ],
+            "n": 9
+          },
+          "consultant": {
+            "c": [
+              2,
+              2,
+              1
+            ],
+            "n": 5
+          },
+          "industry_group": {
+            "n": "<5"
+          },
+          "ngo": {
+            "n": "<5"
+          },
+          "other": {
+            "n": "<5"
+          }
+        },
+        "redaction": {
+          "named": {
+            "c": [
+              6,
+              3,
+              2
+            ],
+            "n": 11
+          },
+          "redacted": {
+            "c": [
+              3,
+              2,
+              1
+            ],
+            "n": 6
+          }
+        },
+        "responding_as": {
+          "individual": {
+            "n": "<5"
+          },
+          "organization": {
+            "c": [
+              8,
+              4,
+              2
+            ],
+            "n": 14
+          }
+        }
+      },
+      "overall": {
+        "c": [
+          9,
+          5,
+          3
+        ],
+        "n": 17
+      }
+    },
+    "Q026_9": {
+      "by": {
+        "country_4": {
+          "jp": {
+            "n": "<5"
+          },
+          "other": {
+            "n": "<5"
+          },
+          "uk": {
+            "c": [
+              1,
+              1,
+              3
+            ],
+            "n": 5
+          },
+          "us": {
+            "c": [
+              1,
+              3,
+              5
+            ],
+            "n": 9
+          }
+        },
+        "org_type_5": {
+          "company": {
+            "c": [
+              1,
+              3,
+              4
+            ],
+            "n": 8
+          },
+          "consultant": {
+            "c": [
+              1,
+              1,
+              3
+            ],
+            "n": 5
+          },
+          "industry_group": {
+            "n": "<5"
+          },
+          "ngo": {
+            "n": "<5"
+          },
+          "other": {
+            "n": "<5"
+          }
+        },
+        "redaction": {
+          "named": {
+            "c": [
+              1,
+              3,
+              6
+            ],
+            "n": 10
+          },
+          "redacted": {
+            "c": [
+              1,
+              2,
+              3
+            ],
+            "n": 6
+          }
+        },
+        "responding_as": {
+          "individual": {
+            "n": "<5"
+          },
+          "organization": {
+            "c": [
+              2,
+              4,
+              7
+            ],
+            "n": 13
+          }
+        }
+      },
+      "overall": {
+        "c": [
+          2,
+          5,
+          9
+        ],
+        "n": 16
+      }
+    }
+  }
+}

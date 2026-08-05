@@ -1,0 +1,360 @@
+{
+  "attrition": [
+    {
+      "display": "Q18",
+      "n": 21,
+      "qid": "Q018"
+    },
+    {
+      "display": "Q19",
+      "n": 19,
+      "qid": "Q019"
+    },
+    {
+      "display": "Q20",
+      "n": 17,
+      "qid": "Q020"
+    },
+    {
+      "display": "Q21",
+      "n": 18,
+      "qid": "Q021"
+    },
+    {
+      "display": "Q24",
+      "n": 16,
+      "qid": "Q024"
+    },
+    {
+      "display": "Q26.1",
+      "n": 18,
+      "qid": "Q026_1"
+    },
+    {
+      "display": "Q26.2",
+      "n": 17,
+      "qid": "Q026_2"
+    },
+    {
+      "display": "Q26.9",
+      "n": 16,
+      "qid": "Q026_9"
+    },
+    {
+      "display": "Q28",
+      "n": 17,
+      "qid": "Q028"
+    },
+    {
+      "display": "Q31",
+      "n": 16,
+      "qid": "Q031"
+    },
+    {
+      "display": "Q32",
+      "n": 12,
+      "qid": "Q032"
+    },
+    {
+      "display": "Q33",
+      "n": 14,
+      "qid": "Q033"
+    },
+    {
+      "display": "Q35",
+      "n": 14,
+      "qid": "Q035"
+    },
+    {
+      "display": "Q36",
+      "n": 11,
+      "qid": "Q036"
+    },
+    {
+      "display": "Q45",
+      "n": 15,
+      "qid": "Q045"
+    }
+  ],
+  "distributions": {
+    "country": [
+      {
+        "key": "us",
+        "label": "United States",
+        "n": 14,
+        "pct": 58.3
+      },
+      {
+        "key": "uk",
+        "label": "United Kingdom",
+        "n": 5,
+        "pct": 20.8
+      },
+      {
+        "key": "jp",
+        "label": "Japan",
+        "n": 3,
+        "pct": 12.5
+      },
+      {
+        "key": "other",
+        "label": "Other countries",
+        "n": 2,
+        "pct": 8.3
+      }
+    ],
+    "engagement_bands": [
+      {
+        "key": "1_5",
+        "label": "1–5 answers",
+        "n": 6
+      },
+      {
+        "key": "6_15",
+        "label": "6–15 answers",
+        "n": 9
+      },
+      {
+        "key": "16_30",
+        "label": "16–30 answers",
+        "n": 6
+      },
+      {
+        "key": "31_plus",
+        "label": "31 or more answers",
+        "n": 3
+      }
+    ],
+    "inventory": {
+      "has_inventory": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "n": 13
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "n": 7
+        },
+        {
+          "key": "other",
+          "label": "Other / not applicable",
+          "n": 4
+        }
+      ],
+      "involved": [
+        {
+          "key": "yes",
+          "label": "Yes",
+          "n": 12
+        },
+        {
+          "key": "not_applicable",
+          "label": "Not applicable",
+          "n": 7
+        },
+        {
+          "key": "no",
+          "label": "No",
+          "n": 5
+        }
+      ]
+    },
+    "org_type_x_redaction": {
+      "rows": [
+        {
+          "key": "company",
+          "label": "Company",
+          "named": 6,
+          "redacted": 4,
+          "total": 10
+        },
+        {
+          "key": "consultant",
+          "label": "Consultant",
+          "named": 3,
+          "redacted": 2,
+          "total": 5
+        },
+        {
+          "key": "ngo",
+          "label": "NGO/civil society",
+          "named": 2,
+          "redacted": 1,
+          "total": 3
+        },
+        {
+          "key": "industry_group",
+          "label": "Industry group",
+          "named": 2,
+          "redacted": 0,
+          "total": 2
+        },
+        {
+          "key": "other",
+          "label": "Other (all smaller types)",
+          "named": 1,
+          "redacted": 3,
+          "total": 4
+        }
+      ],
+      "total": {
+        "named": 14,
+        "redacted": 10
+      }
+    },
+    "responding_as": [
+      {
+        "key": "organization",
+        "label": "Organization",
+        "n": 20
+      },
+      {
+        "key": "individual",
+        "label": "Individual",
+        "n": 4
+      }
+    ],
+    "sector_top": [
+      {
+        "label": "Energy",
+        "n": 7
+      },
+      {
+        "label": "Professional/scientific/technical services",
+        "n": 5
+      },
+      {
+        "label": "Information & communications technology",
+        "n": 4
+      },
+      {
+        "label": "Manufacturing",
+        "n": 3
+      },
+      {
+        "label": "All other sectors",
+        "n": 5
+      }
+    ]
+  },
+  "org_index": [
+    {
+      "audited_class": "data_analytics_provider",
+      "cites": true,
+      "country": "us",
+      "family": null,
+      "fingerprint": {
+        "q19": "yes",
+        "q21": "yes",
+        "q24": "each_year",
+        "q31": "no",
+        "q33": "yes"
+      },
+      "ft_chars": 18420,
+      "id": 901,
+      "name": "Meridian Grid Analytics",
+      "nsub": 34,
+      "org_type": "other",
+      "template": false
+    },
+    {
+      "audited_class": "reporting_company",
+      "cites": false,
+      "country": "uk",
+      "family": null,
+      "fingerprint": {
+        "q19": "no",
+        "q21": "no",
+        "q24": "each_year",
+        "q31": "unsure",
+        "q33": null
+      },
+      "ft_chars": 9310,
+      "id": 902,
+      "name": "Northwind Chemicals",
+      "nsub": 27,
+      "org_type": "company",
+      "template": true
+    },
+    {
+      "audited_class": "trade_association",
+      "cites": true,
+      "country": "us",
+      "family": "grid_integrity_family",
+      "fingerprint": {
+        "q19": "no",
+        "q21": null,
+        "q24": "lifetime",
+        "q31": "yes",
+        "q33": "no"
+      },
+      "ft_chars": 22750,
+      "id": 903,
+      "name": "Consortium for Grid Integrity",
+      "nsub": 19,
+      "org_type": "industry_group",
+      "template": true
+    }
+  ],
+  "redaction_effect": [
+    {
+      "named": {
+        "c": [
+          6,
+          7
+        ],
+        "n": 13
+      },
+      "qid": "Q019",
+      "redacted": {
+        "c": [
+          1,
+          5
+        ],
+        "n": 6
+      }
+    },
+    {
+      "named": {
+        "c": [
+          5,
+          3,
+          3
+        ],
+        "n": 11
+      },
+      "qid": "Q031",
+      "redacted": {
+        "c": [
+          2,
+          2,
+          1
+        ],
+        "n": 5
+      }
+    },
+    {
+      "named": {
+        "c": [
+          2,
+          1,
+          5,
+          2
+        ],
+        "n": 10
+      },
+      "qid": "Q045",
+      "redacted": {
+        "c": [
+          3,
+          1,
+          1,
+          0
+        ],
+        "n": 5
+      }
+    }
+  ]
+}

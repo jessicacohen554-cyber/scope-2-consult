@@ -1,0 +1,78 @@
+{
+  "by_question": {
+    "Q020": {
+      "n_coded": 15,
+      "n_texts": 17,
+      "themes": [
+        {
+          "key": "attribution_uncertainty",
+          "n": 9,
+          "n_dedup": 7,
+          "share_pct": 52.9
+        },
+        {
+          "key": "complexity_burden",
+          "n": 6,
+          "n_dedup": 5,
+          "share_pct": 35.3
+        },
+        {
+          "key": "system_view_needed",
+          "n": 4,
+          "n_dedup": 4,
+          "share_pct": 23.5
+        }
+      ]
+    },
+    "Q032": {
+      "n_coded": 11,
+      "n_texts": 12,
+      "themes": [
+        {
+          "key": "regional_tests",
+          "n": 7,
+          "n_dedup": 6,
+          "share_pct": 58.3
+        },
+        {
+          "key": "data_availability",
+          "n": 5,
+          "n_dedup": 5,
+          "share_pct": 41.7
+        }
+      ]
+    }
+  },
+  "taxonomy": [
+    {
+      "definition": "The respondent argues the causal chain from a purchase to a grid emissions change cannot be attributed with defensible confidence.",
+      "key": "attribution_uncertainty",
+      "label": "Attribution uncertainty",
+      "polarity": "concern"
+    },
+    {
+      "definition": "The respondent objects that the method cannot be implemented or verified at reasonable cost.",
+      "key": "complexity_burden",
+      "label": "Complexity and audit burden",
+      "polarity": "concern"
+    },
+    {
+      "definition": "The respondent argues inventory accounting alone misses system-level consequences and welcomes the consequential frame.",
+      "key": "system_view_needed",
+      "label": "A system view is needed",
+      "polarity": "support"
+    },
+    {
+      "definition": "The respondent asks for tests calibrated to grid or regulatory context rather than one global rule.",
+      "key": "regional_tests",
+      "label": "Region-specific tests",
+      "polarity": "design"
+    },
+    {
+      "definition": "The respondent raises whether the required dispatch, capacity or contract data exists in their market.",
+      "key": "data_availability",
+      "label": "Data availability",
+      "polarity": "neutral"
+    }
+  ]
+}

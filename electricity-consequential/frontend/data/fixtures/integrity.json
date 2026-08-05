@@ -1,0 +1,273 @@
+{
+  "audit": {
+    "rows": [
+      {
+        "audited": "data_analytics_provider",
+        "basis": "Self-describes as supplying hourly marginal emission rate data to corporate buyers.",
+        "claimed": "other",
+        "id": 901,
+        "name": "Meridian Grid Analytics"
+      },
+      {
+        "audited": "reporting_company",
+        "basis": "Manufacturer reporting its own Scope 2 inventory.",
+        "claimed": "company",
+        "id": 902,
+        "name": "Northwind Chemicals"
+      },
+      {
+        "audited": "trade_association",
+        "basis": "Files on behalf of named member companies.",
+        "claimed": "industry_group",
+        "id": 903,
+        "name": "Consortium for Grid Integrity"
+      }
+    ],
+    "summary": {
+      "by_class": [
+        {
+          "key": "reporting_company",
+          "label": "Reporting company",
+          "n": 1
+        },
+        {
+          "key": "data_analytics_provider",
+          "label": "Data/analytics provider",
+          "n": 1
+        },
+        {
+          "key": "trade_association",
+          "label": "Trade association",
+          "n": 1
+        }
+      ],
+      "n_diverging": 1,
+      "n_matching": 2,
+      "n_rows": 3
+    },
+    "vocabulary": [
+      {
+        "definition": "Files primarily as a preparer of its own GHG inventory.",
+        "key": "reporting_company",
+        "label": "Reporting company"
+      },
+      {
+        "definition": "Sells emissions data, models or analytics into this market.",
+        "key": "data_analytics_provider",
+        "label": "Data/analytics provider"
+      },
+      {
+        "definition": "Files on behalf of a membership rather than for itself.",
+        "key": "trade_association",
+        "label": "Trade association"
+      }
+    ]
+  },
+  "blocs": [
+    {
+      "key": "bloc_a",
+      "label": "Response pack A",
+      "member_ids_named": [
+        {
+          "id": 903,
+          "name": "Consortium for Grid Integrity"
+        }
+      ],
+      "n_redacted": 2,
+      "shared_texts": 3
+    }
+  ],
+  "citations": {
+    "by_org_type": [
+      {
+        "citing": 4,
+        "key": "company",
+        "n": 10,
+        "pct": 40.0
+      },
+      {
+        "citing": 3,
+        "key": "consultant",
+        "n": 5,
+        "pct": 60.0
+      },
+      {
+        "citing": 1,
+        "key": "ngo",
+        "n": 3,
+        "pct": 33.3
+      },
+      {
+        "citing": 1,
+        "key": "industry_group",
+        "n": 2,
+        "pct": 50.0
+      },
+      {
+        "citing": 1,
+        "key": "other",
+        "n": 4,
+        "pct": 25.0
+      }
+    ],
+    "by_redaction": [
+      {
+        "citing": 7,
+        "key": "named",
+        "n": 14,
+        "pct": 50.0
+      },
+      {
+        "citing": 3,
+        "key": "redacted",
+        "n": 10,
+        "pct": 30.0
+      }
+    ],
+    "by_stance_q19": [
+      {
+        "citing": 4,
+        "key": "yes",
+        "n": 7,
+        "pct": 57.1
+      },
+      {
+        "citing": 4,
+        "key": "no",
+        "n": 12,
+        "pct": 33.3
+      }
+    ],
+    "domains": [
+      {
+        "class": "government_lab",
+        "count": 5,
+        "domain": "nrel.gov"
+      },
+      {
+        "class": "peer_reviewed",
+        "count": 3,
+        "domain": "sciencedirect.com"
+      },
+      {
+        "class": "method_proponent",
+        "count": 2,
+        "domain": "marginalimpactmethod.org"
+      }
+    ],
+    "q52": [
+      {
+        "attribution": "Meridian Grid Analytics — Other, US",
+        "preview": "Back-testing results for locational SCED dispatch across three ISO footprints, 2022–2024.",
+        "respondent_id": 901
+      }
+    ],
+    "template_citation_blocks": [
+      {
+        "domains": [
+          "marginalimpactmethod.org"
+        ],
+        "hash": "a1b2c3d4e5f60718",
+        "n_respondents": 3,
+        "preview": "…as documented at marginalimpactmethod.org…"
+      }
+    ]
+  },
+  "dedup_effect": [
+    {
+      "deduped": {
+        "c": [
+          7,
+          10
+        ],
+        "n": 17
+      },
+      "qid": "Q019",
+      "raw": {
+        "c": [
+          7,
+          12
+        ],
+        "n": 19
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "evidence": [
+        "12 of 15 free-text answers are keyboard gibberish",
+        "Organization field reads \"fzbf\""
+      ],
+      "id": 911,
+      "n_cells": 15,
+      "name_or_redacted": "fzbf",
+      "reason": "junk"
+    },
+    {
+      "evidence": [
+        "All 24 free-text answers are the single letter \"e\""
+      ],
+      "id": 912,
+      "n_cells": 24,
+      "name_or_redacted": "Redacted",
+      "reason": "junk"
+    },
+    {
+      "evidence": [
+        "Same normalized name as respondent 921",
+        "Submitted six days before the kept submission"
+      ],
+      "id": 920,
+      "n_cells": 36,
+      "name_or_redacted": "Avery Lindqvist",
+      "reason": "superseded"
+    }
+  ],
+  "families": [
+    {
+      "ids": [
+        903,
+        907
+      ],
+      "n": 2,
+      "name": "Grid Integrity family"
+    }
+  ],
+  "resubmission": {
+    "changed": [
+      {
+        "after": "No",
+        "before": "Yes",
+        "qid": "Q019"
+      },
+      {
+        "after": "Yes",
+        "before": "Unsure / it depends",
+        "qid": "Q031"
+      }
+    ],
+    "dropped": 920,
+    "kept": 921
+  },
+  "text_clusters": [
+    {
+      "chars": 412,
+      "hash": "a1b2c3d4e5f60718",
+      "n_named": 1,
+      "n_redacted": 2,
+      "n_respondents": 3,
+      "named_members": [
+        {
+          "id": 903,
+          "name": "Consortium for Grid Integrity"
+        }
+      ],
+      "preview": "Consequential accounting may provide useful insights for policy or system-level analysis, but it is not a substitute for inventory accounting and should not be required of reporting entities…",
+      "qids": [
+        "Q018",
+        "Q020",
+        "Q032"
+      ]
+    }
+  ]
+}
