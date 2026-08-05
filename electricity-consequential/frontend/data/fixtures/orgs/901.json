@@ -1,0 +1,72 @@
+{
+  "answers": [
+    {
+      "display": "Q18",
+      "label": "General feedback on the draft guidance",
+      "qid": "Q018",
+      "selections": [],
+      "shorthand": "general_feedback",
+      "text": "We welcome the draft and have back-tested the locational SCED approach against three ISO footprints.",
+      "type": "free_text"
+    },
+    {
+      "display": "Q19",
+      "label": "Is the Scope 2 TWG subgroup formula appropriate?",
+      "qid": "Q019",
+      "selections": [
+        "Yes"
+      ],
+      "shorthand": "formula_appropriate",
+      "text": null,
+      "type": "single_select"
+    },
+    {
+      "display": "Q26.1",
+      "label": "Regulatory surplus test",
+      "qid": "Q026_1",
+      "selections": [
+        "Required"
+      ],
+      "shorthand": "addl_regulatory_req",
+      "text": null,
+      "type": "matrix_rating"
+    },
+    {
+      "display": "Q35",
+      "label": "Which operating-margin methods are appropriate?",
+      "qid": "Q035",
+      "selections": [
+        "SCED – locational",
+        "Statistical"
+      ],
+      "shorthand": "om_methods_appropriate",
+      "text": null,
+      "type": "multi_select"
+    },
+    {
+      "display": "Q45",
+      "label": "Maximum appropriate temporal granularity",
+      "qid": "Q045",
+      "selections": [
+        "Sub-hourly"
+      ],
+      "shorthand": "temporal_granularity_max",
+      "text": null,
+      "type": "ordered_select"
+    }
+  ],
+  "audit_basis": "Self-describes as supplying hourly marginal emission rate data to corporate buyers; claimed type 'Other'.",
+  "audited_class": "data_analytics_provider",
+  "country": "us",
+  "flags": {
+    "citation_count": 6,
+    "cites": true,
+    "family": null,
+    "template": false
+  },
+  "id": 901,
+  "name": "Meridian Grid Analytics",
+  "org_type": "other",
+  "responding_as": "organization",
+  "sector": "Professional/scientific/technical services"
+}

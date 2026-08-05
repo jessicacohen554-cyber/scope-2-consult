@@ -1,0 +1,49 @@
+{
+  "answers": [
+    {
+      "display": "Q19",
+      "label": "Is the Scope 2 TWG subgroup formula appropriate?",
+      "qid": "Q019",
+      "selections": [
+        "No"
+      ],
+      "shorthand": "formula_appropriate",
+      "text": null,
+      "type": "single_select"
+    },
+    {
+      "display": "Q26.9",
+      "label": "First-of-its-kind test",
+      "qid": "Q026_9",
+      "selections": [
+        "Not required"
+      ],
+      "shorthand": "addl_first_of_kind_req",
+      "text": null,
+      "type": "matrix_rating"
+    },
+    {
+      "display": "Q32",
+      "label": "Please explain your answer to question 31",
+      "qid": "Q032",
+      "selections": [],
+      "shorthand": "addl_regional_explain",
+      "text": "A regulatory surplus test means something different in a market with a binding clean energy standard than in one without. The same test, applied globally, will not measure the same thing twice.",
+      "type": "free_text"
+    }
+  ],
+  "audit_basis": "Files on behalf of named member companies; self-identifies as an industry group.",
+  "audited_class": "trade_association",
+  "country": "us",
+  "flags": {
+    "citation_count": 2,
+    "cites": true,
+    "family": "grid_integrity_family",
+    "template": true
+  },
+  "id": 903,
+  "name": "Consortium for Grid Integrity",
+  "org_type": "industry_group",
+  "responding_as": "organization",
+  "sector": "Energy"
+}
