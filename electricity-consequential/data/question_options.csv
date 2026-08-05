@@ -1,0 +1,174 @@
+question_id,question_number,sub_number,option_text,option_rank,is_canonical,is_other_option,is_special,n_selected,pct_of_answered
+Q003,3,,No,,1,0,0,108,58.38
+Q003,3,,Yes,,1,0,0,77,41.62
+Q006,6,,United States,,1,0,0,104,56.22
+Q006,6,,United Kingdom,,1,0,0,12,6.49
+Q006,6,,Japan,,1,0,0,8,4.32
+Q006,6,,Korea - Republic of/South,,1,0,0,6,3.24
+Q006,6,,Brazil,,1,0,0,6,3.24
+Q006,6,,Canada,,1,0,0,5,2.7
+Q006,6,,Singapore,,1,0,0,5,2.7
+Q006,6,,Australia,,1,0,0,4,2.16
+Q006,6,,Germany,,1,0,0,4,2.16
+Q006,6,,France,,1,0,0,4,2.16
+Q006,6,,Netherlands,,1,0,0,4,2.16
+Q006,6,,Algeria,,1,0,0,3,1.62
+Q006,6,,Denmark,,1,0,0,3,1.62
+Q006,6,,Taiwan,,1,0,0,2,1.08
+Q006,6,,Sweden,,1,0,0,2,1.08
+Q006,6,,Poland,,1,0,0,1,0.54
+Q006,6,,Afghanistan,,1,0,0,1,0.54
+Q006,6,,Nigeria,,1,0,0,1,0.54
+Q006,6,,Turkey,,1,0,0,1,0.54
+Q006,6,,Thailand,,1,0,0,1,0.54
+Q006,6,,Egypt,,1,0,0,1,0.54
+Q006,6,,New Zealand,,1,0,0,1,0.54
+Q006,6,,Sudan,,1,0,0,1,0.54
+Q006,6,,China,,1,0,0,1,0.54
+Q006,6,,Belgium,,1,0,0,1,0.54
+Q006,6,,Ireland,,1,0,0,1,0.54
+Q006,6,,Switzerland,,1,0,0,1,0.54
+Q006,6,,Colombia,,1,0,0,1,0.54
+Q009,9,,Organization,,1,0,0,163,88.11
+Q009,9,,Individual,,1,0,0,22,11.89
+Q010,10,,Yes,,1,0,0,101,54.59
+Q010,10,,No,,1,0,0,50,27.03
+Q010,10,,Other or N/A (please specify),,1,1,1,34,18.38
+Q012,12,,"Yes (Including completing this survey on behalf of my organization, drawing on inputs from relevant teams)",,1,0,0,95,51.35
+Q012,12,,Not applicable,,1,0,1,52,28.11
+Q012,12,,No,,1,0,0,32,17.3
+Q012,12,,Other (please specify below),,1,1,0,6,3.24
+Q014,14,,Company,,1,0,0,60,32.43
+Q014,14,,Consultant supporting organizations with GHG inventories/strategies,,1,0,0,27,14.59
+Q014,14,,Non-profit organization/NGO/civil society,,1,0,0,21,11.35
+Q014,14,,Industry group,,1,0,0,17,9.19
+Q014,14,,Energy supplier/retailer or utility,,1,0,0,16,8.65
+Q014,14,,Other (please specify below),,1,1,0,12,6.49
+Q014,14,,Academia/research,,1,0,0,11,5.95
+Q014,14,,Data/analytics or software provider related to GHG inventories,,1,0,0,7,3.78
+Q014,14,,Financial Institution,,1,0,0,5,2.7
+Q014,14,,GHG account/reporting program or initiative,,1,0,0,3,1.62
+Q014,14,,Government institution,,1,0,0,3,1.62
+Q014,14,,Certificate registry/tracking system operator,,1,0,0,2,1.08
+Q014,14,,Verification/assurance provider,,1,0,0,1,0.54
+Q016,16,,Energy (10),,1,0,0,38,20.54
+Q016,16,,Other (please specify below),,1,1,0,31,16.76
+Q016,16,,"Professional, scientific, and technical services (2020)",,1,0,0,20,10.81
+Q016,16,,Information and communication technology (45),,1,0,0,17,9.19
+Q016,16,,Manufacturing,,1,0,0,14,7.57
+Q016,16,,Education,,1,0,0,9,4.86
+Q016,16,,Services,,1,0,0,7,3.78
+Q016,16,,Finance (40),,1,0,0,7,3.78
+Q016,16,,"Utilities (water, gas, electricity) (551010, 551020, 551030, 551040)",,1,0,0,6,3.24
+Q016,16,,Power generation (551050),,1,0,0,5,2.7
+Q016,16,,Transportation (2030),,1,0,0,5,2.7
+Q016,16,,"Retail (2550, 3010)",,1,0,0,5,2.7
+Q016,16,,Construction (201030),,1,0,0,3,1.62
+Q016,16,,Fossil fuels (101020),,1,0,0,3,1.62
+Q016,16,,"Consumer goods (25, 30)",,1,0,0,2,1.08
+Q016,16,,"Food and beverage (302010, 302020)",,1,0,0,2,1.08
+Q016,16,,Materials (15),,1,0,0,2,1.08
+Q016,16,,"Biotech, health care and pharmaceutical (35201010, 3510, 35202010)",,1,0,0,2,1.08
+Q016,16,,Chemicals (151010),,1,0,0,2,1.08
+Q016,16,,Agriculture (30202010),,1,0,0,1,0.54
+Q016,16,,Infrastructure (2010),,1,0,0,1,0.54
+Q016,16,,Insurance (4030),,1,0,0,1,0.54
+Q016,16,,Forestry,,1,0,0,1,0.54
+Q016,16,,Hospitality (253010),,1,0,0,1,0.54
+Q019,19,,No,,1,0,0,84,63.16
+Q019,19,,Yes,,1,0,0,49,36.84
+Q021,21,,Yes,,1,0,0,57,51.82
+Q021,21,,No,,1,0,0,53,48.18
+Q024,24,,Reported each year,,1,0,0,81,78.64
+Q024,24,,Reported once for the lifetime of the project,,1,0,0,22,21.36
+Q026_1,26,1,Required,3,1,0,0,69,63.89
+Q026_1,26,1,Optional,2,1,0,0,22,20.37
+Q026_1,26,1,Not required,1,1,0,0,17,15.74
+Q026_2,26,2,Required,3,1,0,0,52,49.06
+Q026_2,26,2,Optional,2,1,0,0,31,29.25
+Q026_2,26,2,Not required,1,1,0,0,23,21.7
+Q026_3,26,3,Optional,2,1,0,0,58,54.21
+Q026_3,26,3,Not required,1,1,0,0,31,28.97
+Q026_3,26,3,Required,3,1,0,0,18,16.82
+Q026_4,26,4,Optional,2,1,0,0,46,45.54
+Q026_4,26,4,Not required,1,1,0,0,40,39.6
+Q026_4,26,4,Required,3,1,0,0,15,14.85
+Q026_5,26,5,Not required,1,1,0,0,47,45.63
+Q026_5,26,5,Optional,2,1,0,0,33,32.04
+Q026_5,26,5,Required,3,1,0,0,23,22.33
+Q026_6,26,6,Optional,2,1,0,0,57,54.29
+Q026_6,26,6,Not required,1,1,0,0,30,28.57
+Q026_6,26,6,Required,3,1,0,0,18,17.14
+Q026_7,26,7,Not required,1,1,0,0,49,48.51
+Q026_7,26,7,Optional,2,1,0,0,38,37.62
+Q026_7,26,7,Required,3,1,0,0,14,13.86
+Q026_8,26,8,Optional,2,1,0,0,41,40.2
+Q026_8,26,8,Not required,1,1,0,0,37,36.27
+Q026_8,26,8,Required,3,1,0,0,24,23.53
+Q026_9,26,9,Not required,1,1,0,0,53,53.54
+Q026_9,26,9,Optional,2,1,0,0,36,36.36
+Q026_9,26,9,Required,3,1,0,0,10,10.1
+Q028,28,,Regulatory test,,1,0,0,80,81.63
+Q028,28,,Timing test,,1,0,0,72,73.47
+Q028,28,,Positive list,,1,0,0,58,59.18
+Q028,28,,Contractual/tenor test,,1,0,0,47,47.96
+Q028,28,,Financial analysis test,,1,0,0,44,44.9
+Q028,28,,Performance standard,,1,0,0,42,42.86
+Q028,28,,Common practice test,,1,0,0,39,39.8
+Q028,28,,First-of-its-kind test,,1,0,0,35,35.71
+Q028,28,,Barrier test,,1,0,0,30,30.61
+Q028,28,,None (no tests are feasible),,1,0,1,10,10.2
+Q031,31,,Yes,,1,0,0,40,39.6
+Q031,31,,"Unsure, depends on details",,1,0,1,32,31.68
+Q031,31,,No,,1,0,0,29,28.71
+Q033,33,,Yes,,1,0,0,43,55.13
+Q033,33,,No,,1,0,0,35,44.87
+Q035,35,,SCED – locational,,1,0,0,48,69.57
+Q035,35,,Statistical,,1,0,0,44,63.77
+Q035,35,,SCED – fuel on the margin,,1,0,0,40,57.97
+Q035,35,,Scenario modeling,,1,0,0,26,37.68
+Q035,35,,Heat-rate/LMP,,1,0,0,23,33.33
+Q035,35,,Capacity factor based,,1,0,0,20,28.99
+Q035,35,,Difference-based,,1,0,0,18,26.09
+Q035,35,,None,,1,0,1,7,10.14
+Q036,36,,Capacity factor based,,1,0,0,31,54.39
+Q036,36,,Difference-based,,1,0,0,28,49.12
+Q036,36,,Scenario modeling,,1,0,0,25,43.86
+Q036,36,,Heat-rate/LMP,,1,0,0,24,42.11
+Q036,36,,SCED – locational,,1,0,0,12,21.05
+Q036,36,,SCED – fuel on the margin,,1,0,0,11,19.3
+Q036,36,,Statistical,,1,0,0,10,17.54
+Q036,36,,None,,1,0,1,9,15.79
+Q038,38,,Recent capacity additions,,1,0,0,48,69.57
+Q038,38,,Capacity expansion modeling,,1,0,0,30,43.48
+Q038,38,,Policy scenario,,1,0,0,26,37.68
+Q038,38,,Average emission rate,,1,0,0,17,24.64
+Q038,38,,None,,1,0,1,7,10.14
+Q039,39,,Average emission rate,,1,0,0,38,65.52
+Q039,39,,Policy scenario,,1,0,0,29,50.0
+Q039,39,,Capacity expansion modeling,,1,0,0,27,46.55
+Q039,39,,Recent capacity additions,,1,0,0,11,18.97
+Q039,39,,None,,1,0,1,5,8.62
+Q043,43,,Country,1,1,0,0,22,27.5
+Q043,43,,Grid region,2,1,0,0,20,25.0
+Q043,43,,Nodal,5,1,0,0,20,25.0
+Q043,43,,Balancing area,3,1,0,0,15,18.75
+Q043,43,,Zonal,4,1,0,0,3,3.75
+Q045,45,,Annual,1,1,0,0,31,38.27
+Q045,45,,Hourly,3,1,0,0,30,37.04
+Q045,45,,Sub-hourly,4,1,0,0,14,17.28
+Q045,45,,Monthly,2,1,0,0,6,7.41
+Q047,47,,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,,1,0,0,30,44.78
+Q047,47,,UNFCCC CDM Tool07,,1,0,0,19,28.36
+Q047,47,,Default 0.50 build margin weight for all projects,,1,0,0,16,23.88
+Q047,47,,Unsure,,1,0,1,15,22.39
+Q047,47,,Intervention lifecycle approaches,,1,0,0,13,19.4
+Q047,47,,Resource adequacy approaches,,1,0,0,9,13.43
+Q047,47,,None are appropriate,,1,0,1,9,13.43
+Q049,49,,Unsure,,1,0,1,21,36.84
+Q049,49,,Resource adequacy approaches,,1,0,0,17,29.82
+Q049,49,,All are feasible,,1,0,1,16,28.07
+Q049,49,,Intervention lifecycle approaches,,1,0,0,15,26.32
+Q049,49,,UNFCCC CDM Tool07,,1,0,0,10,17.54
+Q049,49,,Default 0.50 build margin weight for all projects,,1,0,0,8,14.04
+Q049,49,,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,,1,0,0,8,14.04

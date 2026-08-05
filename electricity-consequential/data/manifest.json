@@ -1,0 +1,93 @@
+{
+  "source_file": "Electricity-Sector-ConsequentialMethodsPublicConsultationFeedback-RawData-2026.07.29.xlsx",
+  "sheet": "Raw Data",
+  "source_date": "2026-07-29",
+  "respondents": 185,
+  "respondent_id_range": [
+    3,
+    201
+  ],
+  "questions": 56,
+  "profile_questions": 13,
+  "substantive_questions": 43,
+  "matrix_questions": 9,
+  "raw_columns": 57,
+  "question_numbers_absent_from_export": [
+    1,
+    2,
+    7,
+    8
+  ],
+  "rows": {
+    "responses_long": 5074,
+    "response_selections": 1277,
+    "question_options": 173,
+    "respondents": 185,
+    "responses_wide": 185
+  },
+  "question_types": {
+    "free_text": 26,
+    "matrix_rating": 9,
+    "multi_select": 7,
+    "ordinal_select": 2,
+    "single_select": 12
+  },
+  "roles": {
+    "comment": 14,
+    "free_text_primary": 6,
+    "other_specify": 4,
+    "primary": 23,
+    "profile": 9
+  },
+  "labelled_questions": 56,
+  "topics": {
+    "tbd": 56
+  },
+  "categories": {
+    "tbd": 56
+  },
+  "asks_for": {
+    "design_preference": 2,
+    "elaboration": 6,
+    "evidence": 1,
+    "feasibility_pick": 1,
+    "matrix_rating": 9,
+    "method_pick": 6,
+    "open_feedback": 5,
+    "rationale": 8,
+    "respondent_attribute": 13,
+    "stance": 5
+  },
+  "subcategories": 1,
+  "constructs": {
+    "ordinal": 2,
+    "stringency": 9
+  },
+  "answer_cells": 5074,
+  "free_text_answers": 1686,
+  "substantive_free_text_answers": 1377,
+  "free_text_chars": 1271251,
+  "substantive_free_text_chars": 1244159,
+  "truncated_free_text_answers": 20,
+  "truncated_substantive_free_text_answers": 18,
+  "redacted_respondents": 77,
+  "named_respondents": 108,
+  "excluded_respondents": 0,
+  "non_canonical_selections": 0,
+  "special_selections": 99,
+  "profile_question_ids": [
+    "Q003",
+    "Q004",
+    "Q005",
+    "Q006",
+    "Q009",
+    "Q010",
+    "Q011",
+    "Q012",
+    "Q013",
+    "Q014",
+    "Q015",
+    "Q016",
+    "Q017"
+  ]
+}
