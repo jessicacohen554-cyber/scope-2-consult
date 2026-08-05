@@ -104,6 +104,31 @@ SELECTION_COUNTS = {
 ATTRITION = {"Q018": 165, "Q019": 133, "Q021": 110, "Q024": 103, "Q028": 98,
              "Q035": 69, "Q043": 80, "Q045": 81, "Q047": 67, "Q052": 36}
 
+# ---------------------------------------------------------------------------
+# The P02 editorial layer, frozen. A rebuild that shifts any of these has
+# either edited the codebook deliberately (update the figures here in the same
+# commit) or broken the label join.
+# ---------------------------------------------------------------------------
+TOPIC_COUNTS = {"profile": 13, "general": 1, "formula": 7, "additionality": 17,
+                "emission_rates": 12, "weighting": 6}
+CATEGORY_COUNTS = {"resp_profile": 13, "overall_assessment": 1,
+                   "quantification_design": 11, "additionality_design": 11,
+                   "feasibility_and_data": 4, "method_choice": 11,
+                   "regional_variation": 2, "claims_and_rigor": 2,
+                   "evidence": 1}
+ASKS_FOR_COUNTS = {"respondent_attribute": 13, "stance": 5, "matrix_rating": 9,
+                   "feasibility_pick": 2, "method_pick": 5,
+                   "design_preference": 2, "rationale": 10, "elaboration": 4,
+                   "evidence": 1, "open_feedback": 5}
+DOC_SECTION_COUNTS = {"n/a": 13, "5": 1, "6.1": 7, "7.1": 17, "8.1": 3,
+                      "8.2": 3, "8": 6, "9.1": 6}
+# Critical answer per single_select stance question, proposal-relative (see
+# survey_meta.POLARITY for the bases). None = judged to have no drafted
+# position; 21 is deliberately "Yes" - the draft excludes secondary effects.
+STANCE_POLARITY = ((19, "No"), (21, "Yes"),
+                   (24, "Reported once for the lifetime of the project"),
+                   (31, None), (33, None))
+
 # The junk/test respondents P10 detects and P20 adjudicates. Frozen here only as
 # a cell count, because P01 does not exclude anybody.
 JUNK_CANDIDATES = (11, 12, 14)
@@ -182,6 +207,10 @@ def main() -> int:
             "SELECT option_text, COUNT(*) FROM response_selections "
             "WHERE question_id = ? GROUP BY option_text", (qid,))}
 
+    def label_dist(col):
+        return {v: n for v, n in con.execute(
+            f"SELECT {col}, COUNT(*) FROM questions GROUP BY {col}")}
+
     matrix_got = {
         qid: (scalar("SELECT COUNT(*) FROM responses WHERE question_id = ?", qid),)
              + tuple(option_counts(qid).get(lvl, 0)
@@ -246,6 +275,43 @@ def main() -> int:
             "AND topic IS NOT NULL AND asks_for IS NOT NULL")),
         ("answer-type counts conserve answers", len(long_rows), scalar(
             "SELECT SUM(n_answers) FROM v_answer_types")),
+        # ---- the P02 editorial layer ---------------------------------------
+        ("labels final, no provisional placeholders", 0, scalar(
+            "SELECT COUNT(*) FROM questions WHERE ? IN "
+            "(topic, doc_section, category, subcategory, asks_for)",
+            meta.PROVISIONAL_LABEL_VALUE)),
+        ("provisional labels disallowed in meta", False,
+         meta.ALLOW_PROVISIONAL_LABELS),
+        ("shorthands carry no question numbers", 0, scalar(
+            "SELECT COUNT(*) FROM questions WHERE shorthand GLOB '*[0-9]*'")),
+        ("topic distribution", TOPIC_COUNTS, label_dist("topic")),
+        ("category distribution", CATEGORY_COUNTS, label_dist("category")),
+        ("asks_for distribution", ASKS_FOR_COUNTS, label_dist("asks_for")),
+        ("doc_section distribution", DOC_SECTION_COUNTS,
+         label_dist("doc_section")),
+        ("subcategories inside the closed pairing", (23, 0),
+         (scalar("SELECT COUNT(DISTINCT subcategory) FROM questions"),
+          sum(1 for cat, sub in con.execute(
+              "SELECT DISTINCT category, subcategory FROM questions")
+              if sub not in meta.CATEGORY_SUBCATS.get(cat, set())))),
+        ("polarity covers each stance question", STANCE_POLARITY, tuple(
+            (q, (meta.POLARITY[q] or {}).get("critical")
+                if q in meta.POLARITY else "MISSING")
+            for q, in con.execute(
+                "SELECT question_number FROM questions "
+                "WHERE question_type = 'single_select' AND asks_for = 'stance' "
+                "ORDER BY question_number"))),
+        ("polarity names real answer options", 0, sum(
+            1 for q, entry in meta.POLARITY.items() if entry
+            for side in ("critical", "supportive")
+            if entry[side] not in option_counts(f"Q{q:03d}"))),
+        ("hazard notes present where required", 0, scalar(
+            "SELECT COUNT(*) FROM questions WHERE question_id IN (%s) "
+            "AND (label_notes IS NULL OR label_notes = '')"
+            % ",".join("?" * len(meta.REQUIRED_NOTES)),
+            *sorted(meta.REQUIRED_NOTES))),
+        ("ladder anchors cover the ordinal ladders",
+         sorted(meta.ORDINAL_LADDERS), sorted(meta.ORDINAL_ANCHORS)),
         # ---- frozen figures for this dataset --------------------------------
         ("respondents", 185, scalar("SELECT COUNT(*) FROM respondents")),
         ("respondent ids run 3..201 with gaps", "3..201/185",
