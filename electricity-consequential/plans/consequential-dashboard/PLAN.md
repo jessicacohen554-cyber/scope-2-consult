@@ -174,123 +174,183 @@ the cross-consultation repeat-respondents panel.
 
 ---
 
-## 3. Provisional findings digest
+## 3. Findings digest — VERIFIED ANALYTICAL BASE (post-P22)
 
-Computed by the manager directly from the raw export during planning, on the **raw base
-(all 185 rows, junk included)** unless stated. Provisional in two ways: P01's build must
-reproduce them; P22's export recomputes them on the **analytical base (180)**, and **P35
-verifies the analytical-base numbers and the manager patches this section and P40's
-brief** before the essay is written. Implementation sessions must not re-derive these
-from scratch — and every number that lands on a page must come from the exported JSON,
-not from this digest. Orientation, not a data source.
+**[MANAGER AMENDMENT, post-Wave-2 — supersedes the provisional digest.]** This section
+previously carried the manager's planning-time figures, computed from the raw export on
+the **raw base (all 185 rows, junk included)**. P22's exporter and its 72-check validator
+have now recomputed every figure on the adjudicated **analytical base of 180** (185 −
+junk {11, 12, 14, 31} − superseded {100}, per `reference/exclusions.csv`), each hard
+number asserted three ways: literal == database == exported JSON. The manager
+independently re-derived the figures below from `data/electricity_consequential.sqlite`
+and `frontend/data/*.json` before committing this amendment.
+
+**The numbers below are the analytical-base numbers and they are binding.** Raw-base
+figures survive only where explicitly labelled "(raw)" — they belong to the integrity
+page's before/after story and to nothing else. No headline, hero stat, or essay claim
+may use a raw-base number.
+
+Every number that lands on a page must still come from the exported JSON in
+`frontend/data/`, not from this section — this is orientation, not a data source. P35
+re-verifies this digest and the §8 essay brief; its memo's corrections bind on top of it.
 
 ### 3.1 Participation and profile
 
-185 respondents (IDs 3–201, gaps), 5,074 non-empty answer cells, 1,377 free-text answers
-totalling 1.25M chars. Redaction requested: **77/185 = 41.6%** (108 named).
-Country (28): US **104 (56%)**, UK 12, Japan 8, South Korea 6, Brazil/Germany/… tail.
-Org type (13): Company 60, Consultant 27, NGO/civil society 21, Industry group 17,
-Energy supplier/utility 16, Other 12, Academia/research 11, Data/analytics 7,
-Financial 5, GHG program 3, Government 3, Registry operator 2, Verification 1.
-Sector (24): Energy 38, Other 31, Prof/sci/tech services 20, ICT 17, Manufacturing 14.
-Responding as: Organization 163 / Individual 22. Has inventory: Yes 101 / No 50 /
-Other-N/A 34. Involved in inventory: Yes 95 / Not applicable 52 / No 32 / Other 6.
-Engagement: median 19/43 substantive columns answered, p90 = 41; 183/185 answered ≥1.
-Attrition is steep and monotone: Q18 n=165 → Q19 133 → Q21 110 → Q24 103 → matrix
-99–108 → Q35 69 → Q43 80 → Q47 67 → Q52 **36**.
+185 respondents filed (IDs 3–201, gaps); **180 analytical** after the five exclusions.
+4,903 of the 5,074 raw response rows survive exclusion; across the **43 substantive
+questions** that is **3,348 answers**, of which **1,329 are free text** totalling
+**1.24M chars**. (The raw-base counts 5,074 / 1,377 included the profile columns and are
+not comparable line-for-line — cite `meta.totals`, never these.)
+
+Redaction requested: **75/180 = 41.7%** (105 named).
+Country (`country_4`): US **104 (57.8%)**, UK 12 (6.7%), Japan 8 (4.4%), other 56 (31.1%).
+Org type (`org_type_5`): Company 60, Consultant 25, NGO/civil society 21,
+Industry group 17, Other 57 (the remaining nine types grouped).
+Sector top-10: Energy 37, Other (specified) 31, Prof/sci/tech services 20, ICT 17,
+Manufacturing 14, Education 8, Finance 7, Services 7, Utilities 6, Power generation 5.
+Responding as: Organization 159 / Individual 21.
+Has inventory: Yes 100 / No 46 / Other-N/A 34.
+Involved in inventory: Yes 95 / Not applicable 51 / No 28 / Other 6.
+Engagement bands: 0 substantive answers **2** · 1–5 **57** · 6–15 **18** · 16–30 **57** ·
+31+ **46**.
+Attrition stays steep and near-monotone: Q18 **160** → Q19 129 → Q20 124 → Q21 106 →
+Q24 99 → Q25 103 → matrix 96–104 → Q28 95 → Q31 98 → Q35 66 → Q43 77 → Q45 78 →
+Q47 64 → Q52 **34**. Thinnest questions: Q42 35, Q50 37, Q51 38, Q30 39.
 
 ### 3.2 Stance questions
 
-- **Q19 — is the Scope 2 TWG subgroup formula appropriate: 84 No / 49 Yes (63.2% No,
-  n=133).** The consultation's headline. By org type (No/Yes): Company 28/13,
-  Consultant 13/9, NGO 9/5, Industry group 8/3, Academia 6/3, **Energy supplier 5/7**,
-  **Data/analytics 2/3**, Financial 4/0, GHG program 3/0, Government 1/2. Named
-  42/29 vs redacted 42/20 — redacted lean further No.
-- **Q21 — consider secondary effects: 57 Yes / 53 No (n=110).** A genuine split, and it
-  flips by redaction: named 35Y/23N, redacted 22Y/30N.
-- **Q24 — reporting period: 81 each-year / 22 lifetime (78.6%, n=103).** The one
-  settled call.
-- **Q31 — regional differences in additionality: 40 Yes / 32 Unsure-depends / 29 No
-  (n=101).** Unresolved three ways.
-- **Q33 — rigor varies by claim type (association vs causal): 43 Yes / 35 No (n=78).**
-- **Q43 — max spatial granularity (n=80): Country 22 / Grid region 20 / Nodal 20 /
-  Balancing area 15 / Zonal 3.** Four-way split across the whole coarse→fine ladder.
-- **Q45 — max temporal granularity (n=81): Annual 31 / Hourly 30 / Sub-hourly 14 /
-  Monthly 6.** A dead heat; binned: fine (hourly+sub-hourly) 44 vs coarse
-  (annual+monthly) 37. By country: US 21H+8S vs 12A+1M (fine-leaning), **Japan 6/6
-  Annual**, UK 2/2/2. Named lean fine (22H+9S vs 16A), redacted lean coarse (15A vs
-  8H+5S). The Scope 2 hourly-vs-annual fight, replayed on consequential terrain.
+Named/redacted splits are from `respondents.json → redaction_effect`.
+
+- **Q19 — is the Scope 2 TWG subgroup formula appropriate: 81 No / 48 Yes (62.8% No,
+  n=129).** The consultation's headline. Named 40N/29Y (n=69) vs redacted 41N/19Y
+  (n=60) — redacted lean further No, as the provisional digest said. Org-type detail
+  must be read off `stances.json → by.org_type_5`, not from the old 13-type list.
+- **Q21 — consider secondary effects: 56 Yes / 50 No (n=106).** A genuine split, and it
+  still flips by redaction: named 35Y/21N, redacted 21Y/29N.
+- **Q24 — reporting period: 80 each-year / 19 lifetime (80.8%, n=99).** The one settled
+  call, and slightly *more* settled on the analytical base. Named 44/9, redacted 36/10.
+- **Q31 — regional differences in additionality: 37 Yes / 32 Unsure-depends / 29 No
+  (n=98).** Unresolved three ways — and the redaction split is dramatic: named
+  23Y/10U/24N (n=57) vs redacted 14Y/22U/5N (n=41). Redacted respondents concentrate in
+  "Unsure/depends"; named respondents split hard both ways.
+- **Q33 — rigor varies by claim type: 42 Yes / 33 No (n=75).** Named 22Y/21N (a dead
+  heat), redacted 20Y/12N.
+- **Q43 — max spatial granularity (n=77): Country 21 / Nodal 20 / Grid region 18 /
+  Balancing area 15 / Zonal 3.** Still a four-way split across the whole coarse→fine
+  ladder; note **Nodal is now second**, not tied third.
+- **Q45 — max temporal granularity (n=78): Annual 31 / Hourly 30 / Sub-hourly 14 /
+  Monthly 3.** A dead heat at the top; binned, **fine (hourly+sub-hourly) 44 vs coarse
+  (annual+monthly) 34**. Named lean fine (22H+9S = 31 vs 16A+1M = 17, n=48); redacted
+  lean coarse (15A+2M = 17 vs 8H+5S = 13, n=30). The Scope 2 hourly-vs-annual fight,
+  replayed on consequential terrain. **Country-level cuts (the "Japan 6/6 Annual" line
+  in the provisional digest) were never re-verified on the analytical base — P35 must
+  confirm or drop them before P40 uses them.**
 
 ### 3.3 The additionality matrix (Q26.1–26.9: Required / Optional / Not required)
 
+Analytical base; net requiredness = %R − %N on each test's own n, 1dp.
+
 | Test | n | R | O | N | net requiredness (%R−%N) |
 |---|---|---|---|---|---|
-| Regulatory | 108 | 69 | 22 | 17 | **+48** |
-| Timing | 106 | 52 | 31 | 23 | **+27** |
-| Contractual/tenor | 102 | 24 | 41 | 37 | −13 |
-| Financial analysis | 107 | 18 | 58 | 31 | −12 |
-| Positive list | 105 | 18 | 57 | 30 | −11 |
-| Common practice | 103 | 23 | 33 | 47 | −23 |
-| Barrier | 101 | 15 | 46 | 40 | −25 |
-| Performance standard | 101 | 14 | 38 | 49 | −35 |
-| First-of-its-kind | 99 | 10 | 36 | 53 | **−43** |
+| Regulatory | 104 | 66 | 21 | 17 | **+47.1** |
+| Timing | 102 | 49 | 30 | 23 | **+25.5** |
+| Positive list | 102 | 16 | 56 | 30 | −13.7 |
+| Financial analysis | 104 | 16 | 57 | 31 | −14.4 |
+| Contractual/tenor | 99 | 22 | 40 | 37 | −15.2 |
+| Common practice | 100 | 21 | 32 | 47 | −26.0 |
+| Barrier | 98 | 13 | 45 | 40 | −27.6 |
+| Performance standard | 98 | 12 | 37 | 49 | −37.8 |
+| First-of-its-kind | 96 | 8 | 35 | 53 | **−46.9** |
 
-Three tiers: required (regulatory, timing), optional-middle (financial, positive list,
-contractual — all Optional-modal), rejected (common practice, barrier, performance
-standard, first-of-its-kind). **Q28 feasibility picks (n=98) rank almost identically**:
-Regulatory 80, Timing 72, Positive list 58, Contractual 47, Financial 44, Performance 42,
-Common practice 39, First-of-kind 35, Barrier 30, **"None (no tests are feasible)" 10**.
+The three tiers hold: required (regulatory, timing), optional-middle (positive list,
+financial analysis, contractual/tenor — all Optional-modal), rejected (common practice,
+barrier, performance standard, first-of-its-kind). **The middle three reordered** versus
+the provisional digest and now sit within 1.5pp of each other (−13.7 / −14.4 / −15.2):
+treat them as tied, and do not rank them against each other in prose.
+
+**Q28 feasibility picks (n=95)** rank almost identically: Regulatory 78, Timing 71,
+Positive list 58, Contractual 47, Financial 44, Performance standard 42, Common
+practice 39, First-of-kind 35, Barrier 30, **"None (no tests are feasible)" 10**.
 Requiredness and feasibility are coherent, not contradictory — the required tier is also
 the feasible tier; the one asymmetry worth showing is first-of-kind (35 call it feasible,
-10 want it required).
+8 want it required).
 
 ### 3.4 Methodology scoreboards (appropriate n / not-appropriate n; bases differ)
 
-**Operating margin (Q35 n=69 / Q36 n=57):** SCED–locational **48/12**, Statistical
-**44/10**, SCED–fuel-on-margin **40/11**, Scenario modeling 26/25, Heat-rate/LMP 23/24,
-Capacity-factor-based 20/**31**, Difference-based 18/**28**. "None" 7/9.
-**Build margin (Q38 n=69 / Q39 n=58):** Recent capacity additions **48/11**, Capacity
-expansion modeling 30/27, Policy scenario 26/29, Average emission rate 17/**38**.
-"None" 7/5.
-**Weighting (Q47 n=67 / Q49-not-feasible n=57):** GHGP Grid-connected Guidelines
-**30/8**, UNFCCC CDM Tool07 19/10, Default 0.50 build weight 16/8, Intervention
-lifecycle 13/15, Resource adequacy 9/17. Specials: Unsure 15/21, "None are
-appropriate" 9, "All are feasible" 16.
-The shape: **clear winners exist per family** (SCED-locational + statistical for OM,
-recent-capacity-additions for BM, GHGP guidelines for weighting) and clear losers
+Each family's two questions have **different bases** — both are always displayed
+(gotcha 7). `net_pct` below is the exporter's own-base net, 1dp.
+
+**Operating margin (Q35 base 66 / Q36 base 54):** SCED–locational **47/10 (+52.7)**,
+Statistical **44/10 (+48.2)**, SCED–fuel-on-margin **40/11 (+40.2)**,
+Heat-rate/LMP 23/23 (−7.8), Scenario modeling 25/25 (−8.4),
+Difference-based 18/**28** (−24.6), Capacity-factor-based 19/**31** (−28.6).
+Specials: "None" 7 appropriate / 9 not.
+**Build margin (Q38 base 66 / Q39 base 55):** Recent capacity additions **47/9 (+54.8)**,
+Capacity expansion modeling 29/26 (−3.4), Policy scenario 25/29 (−14.8),
+Average emission rate 17/**38 (−43.3)**. Specials: "None" 7/5.
+**Weighting (Q47 base 64 / Q49-not-feasible base 54):** GHGP Grid-connected Guidelines
+**29/8 (+30.5)**, UNFCCC CDM Tool07 18/9 (+11.4), Default 0.50 build weight 16/8
+(+10.2), Intervention lifecycle 13/15 (−7.5), Resource adequacy 9/17 (−17.4).
+Specials (never netted): Unsure **14** appropriate-side / **20** not-side, "None are
+appropriate" 9, "All are feasible" 15.
+
+The shape is unchanged: **clear winners per family** (SCED-locational + statistical for
+OM, recent-capacity-additions for BM, GHGP guidelines for weighting) and clear losers
 (capacity-factor and difference-based OM, average-emission-rate BM), with the middle
 genuinely contested and Unsure shares large enough to be a maturity finding in
-themselves.
+themselves. Two order changes versus the provisional digest: **heat-rate/LMP now edges
+above scenario modeling** in OM (both are near-ties at 23/23 and 25/25 — do not rank
+them in prose), and the weighting Unsure counts moved (14/20, not 15/21).
 
 ### 3.5 Free text, evidence, coordination, integrity
 
-- Free text dominates: 1,377 answers across 20 substantive columns (vs ~1,050 choice
-  answers); Q18 alone n=165, median 1,638 chars. 18 answers at/near the 4,000 cap.
-- **Q52 supporting research/documentation: n=36, of which 5 are "N/A"** — the
-  consultation's own evidence question yielded ~31 substantive submissions. Citation
+- Free text dominates: **1,329 answers** across the substantive columns on the analytical
+  base, 1.24M chars. Truncation at the 4,000-char cap remains a live caveat (the
+  frozen raw-base count of 18 at/near the cap is a `validate_dataset.py` check and stays
+  raw-base).
+- **Q52 supporting research/documentation: n=34, of which 5 are bare "N/A"** — the
+  consultation's own evidence question yielded **~29 substantive submissions**. Citation
   mining across all free text (P10) is therefore the evidence story's main source.
+  Citation rates by org type (`integrity.json → citations.by_org_type`): NGO 8/21
+  (38.1%), Other 18/57 (31.6%), Industry group 4/17 (23.5%), Company 14/60 (23.3%),
+  Consultant 5/25 (20.0%). 72 distinct domains classified.
 - **Junk/test respondents (ADJUDICATED — final): ID 11** (name "fzbf", 12/15
   free-text answers gibberish), **ID 12** (redacted; all 24 free-text answers are the
   single letter "e"), **ID 14** (name "asdf", 9/10 gibberish), **ID 31** (redacted;
   all 6 free-text answers are runs of "a"; matrix straight-lined "Optional"; found by
   P10's full-185 sweep, confirmed by P20). Implemented gibberish rule: <20 chars AND
   (vowel ratio <0.30 | repeated-single-char | keyboard-run) on ≥50% of free answers.
-- **Resubmission: IDs 100 → 151, same named individual (Julia Heidrich Sagaz)** — only
-  8/36 overlapping cells identical; substantive answers *changed* between submissions
-  (incl. Q19). Keep-latest policy: 151 counts, 100 is excluded and disclosed, the changed
-  answers shown on the integrity page.
+- **Resubmission: IDs 100 → 151, same named individual (Julia Heidrich Sagaz)**
+  [**CORRECTED post-Wave-2** — the provisional digest was wrong here twice]. Verified
+  against the db: ID 100 has **10 non-empty cells** (Q3–Q16 profile + Q18); ID 151 has
+  **35**; all 10 of 100's cells overlap, **8 identical and 2 differing** — `Q005` (the
+  FMASE organization name, reworded) and `Q018` (the general-feedback free text,
+  expanded). 151 is a **strict superset**, so keep-latest loses nothing.
+  **ID 100 never answered Q19** (it is absent from its cells entirely) — the provisional
+  claim that "substantive answers changed between submissions (incl. Q19)" is false, as
+  is the "8/36 overlapping cells" framing. The integrity page shows exactly the two
+  changed answers; it must not imply a stance reversal, because there was none.
 - **Entity family, not duplicate: Engie Impact ×2 (IDs 135, 160)** — different named
   individuals, different answers; both count, grouped as a family (Scope 2's Deloitte
   pattern).
 - **Template blocks: 38 clusters (≥200 normalized chars shared by ≥2 respondents)
-  spanning 25 respondents.** Two blocs [memberships CORRECTED post-Wave-1 from
-  `data/derived/`]: **{43, 47, 60, 79, 82}** (5 core members of the
-  `policy_insights_pack` — the provisional digest transposed 45 for 47; ID 45 is a
-  peripheral single-cluster sharer, still template-flagged) and **{51, 86, 89, 117}**
-  (the `bullet_pack`, ≥6 shared bullet-formatted texts across Q18–Q44). Bloc rule as
-  implemented: connected components over ≥2 shared clusters (a ≥3 rule destroys the
-  policy-insights bloc). Every "N said X" claim needs text-dedup, and quotes need
-  template badges — same rules as Scope 2.
+  spanning 25 respondents.** Bloc rule as implemented: connected components over ≥2
+  shared clusters (a ≥3 rule destroys the policy-insights bloc).
+  **There are 8 blocs, not 2** [count CORRECTED post-Wave-2 — P10 emitted all eight in
+  `data/derived/respondent_flags.csv` and P22 carries all eight into
+  `integrity.json → blocs`; the digest named only the two largest]. Full membership:
+  `policy_insights_pack` **{43, 47, 60, 79, 82}** (the Wave-1 correction stands — the
+  provisional digest transposed 45 for 47; ID 45 is a peripheral single-cluster sharer,
+  still template-flagged; **all five members are redacted**, so its bloc card carries a
+  count and no names), `bullet_pack` **{51, 86, 89, 117}** (≥6 shared bullet-formatted
+  texts across Q18–Q44; one named member, ID 89), then `pack_150` {150, 170, 187},
+  `pack_69` {69, 84, 85}, `pack_24` {24, 39}, `pack_108` {108, 109}, `pack_131`
+  {131, 133}, `pack_151` {151, 183}.
+- **Dedup effect on the headlines** (`integrity.json → dedup_effect`, counts in meta
+  option order): **Q19 raw [48 Yes, 81 No] → deduped [47, 71]**; **Q21 raw [56 Yes,
+  50 No] → deduped [54, 41]**. Q21 is the more template-sensitive of the two — its No
+  side loses 9 of 50. Every "N said X" claim needs text-dedup, and quotes need template
+  badges — same rules as Scope 2.
 - Notable respondents (verify verbatim before quoting): **The NorthBridge Group** again
   the most verbose filer (75.7k chars; 177k in Scope 2); **Ever.green** responds — the
   consultation document itself uses Ever.green's contract structure as an additionality
@@ -300,11 +360,23 @@ themselves.
 
 ### 3.6 Redaction
 
-41.6% overall. Named vs redacted stance splits above (3.2): redacted respondents lean
-further against the formula, against secondary effects, and toward coarse granularity —
-directionally the Scope 2 pattern (withheld identity correlates with the
-defensive/conservative position), milder in size. P22 must export the named/redacted
-SCELL split for every stance question so the integrity page can show it.
+**41.7% overall** (75 of 180). Named vs redacted stance splits are in §3.2 and shipped in
+`respondents.json → redaction_effect` for all seven stance questions. Redacted
+respondents lean further against the formula (41N/19Y vs named 40N/29Y), against
+secondary effects (21Y/29N vs named 35Y/21N), and toward coarse temporal granularity
+(coarse 17 vs fine 13, against named fine 31 vs coarse 17) — directionally the Scope 2
+pattern (withheld identity correlates with the defensive/conservative position), milder
+in size.
+
+Two additions verified post-Wave-2:
+- **Redaction is strongly org-type-dependent** (`respondents.json →
+  distributions.org_type_x_redaction`): Company **41 redacted / 19 named** — the only
+  segment where redaction is the majority, and by better than 2:1 — against Consultant
+  4/21, NGO 3/18, Industry group 6/11. Any "redacted respondents think X" claim is
+  substantially a "companies think X" claim and must be hedged as such; this
+  confound belongs on the integrity page and in §8's symmetric-skepticism section.
+- **Q31 is the sharpest redaction contrast** in the set: redacted respondents pick
+  "Unsure/depends" 22/41 (54%) against named 10/57 (18%).
 
 ---
 
@@ -390,16 +462,19 @@ template?, family, **stance fingerprint** = Q19/Q21/Q24/Q31/Q33 answer chips) �
 profile view rendering `orgs/{id}.json` (profile, flags, every answer incl. free text
 in survey order); (7) named-vs-redacted stance comparison (the §3.6 splits).
 
-**integrity.html (P34).** (1) **junk/test respondents** — the three rows shown verbatim
-(IDs, the "e"/"asdf" evidence), the detection criteria, and the exclusion policy;
+**integrity.html (P34).** (1) **junk/test respondents** — the **four** rows shown verbatim
+(IDs 11/12/14/31, the "e"/"asdf"/runs-of-"a" evidence), the detection criteria, and the
+exclusion policy;
 (2) **the resubmission** — IDs 100→151 with the changed answers shown side by side;
 (3) entity families (Engie Impact ×2; any others P10 finds); (4) template blocs — bloc
-cards ({43,45,60,79,82}, {51,86,89,117}) with shared-text counts, named members, effect
-on headline stats (Q19/Q21 with and without dedup); (5) redaction analysis — the
+cards for the **8 blocs** in `integrity.json` (anchors: `policy_insights_pack`
+**{43,47,60,79,82}** — all five redacted, so the card carries a count, not names; and
+`bullet_pack` {51,86,89,117}, one named member) with shared-text counts, named members,
+effect on headline stats (Q19/Q21 with and without dedup); (5) redaction analysis — the
 gradient by org type + the named/redacted stance skew; (6) **the evidence base** —
-Q52's 36 submissions tabulated, citation mining results (rates by org type/stance/
-redaction, domain classification table, template-propagated citations), the "who did
-the homework" roll-up; (7) cross-consultation panel — respondents appearing in both
+Q52's **34** analytical-base submissions tabulated (5 of them bare "N/A"), citation
+mining results (rates by org type/stance/redaction, domain classification table,
+template-propagated citations), the "who did the homework" roll-up; (7) cross-consultation panel — respondents appearing in both
 consultations (SEMI, NorthBridge, Engie, Korean cluster candidates…) via read-only join
 against the Scope 2 db, named only where named in both; (8) methodology caveat box
 (what this audit can and cannot claim; redacted ≠ guilty; n=185 ≠ representative).
