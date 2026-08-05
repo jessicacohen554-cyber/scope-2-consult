@@ -840,6 +840,63 @@ def check_exclusion_invariant(report: Report, truth: Truth, docs) -> None:
                  f"org_index names are <= {INDEX_NAME_MAX} chars",
                  f"longest {max(len(row['name']) for row in org_index)}")
 
+    # The organization-type distribution is published at the respondent's own
+    # declared granularity and tail-grouped like sector_top. Re-derive it from
+    # the raw verbatim strings - never from the exporter's vocabulary table, so
+    # a bug in that table cannot validate itself. Matching on the
+    # (named, redacted, total) triple keeps this check free of a duplicated
+    # 13-row label list: the numbers are what must be right.
+    raw_named, raw_redacted = Counter(), Counter()
+    for pid in truth.base:
+        value = truth.people[pid]["organization_type"]
+        (raw_redacted if pid in truth.redacted else raw_named)[value] += 1
+    raw_total = {value: raw_named[value] + raw_redacted[value]
+                 for value in set(raw_named) | set(raw_redacted)}
+    big = {value for value, n in raw_total.items() if n >= MIN_SEGMENT_N}
+    small = {value for value, n in raw_total.items() if n < MIN_SEGMENT_N}
+
+    dist = docs["respondents"]["distributions"]["org_type_x_redaction"]
+    rows = dist["rows"]
+    typed = [row for row in rows if row["key"] != "tail"]
+    tails = [row for row in rows if row["key"] == "tail"]
+    totals = [row["total"] for row in typed]
+    problems = []
+    if any(row["named"] + row["redacted"] != row["total"] for row in rows):
+        problems.append("a row's named + redacted does not equal its total")
+    if sum(row["total"] for row in rows) != len(truth.base):
+        problems.append(f"rows sum to {sum(row['total'] for row in rows)}, "
+                        f"not the {len(truth.base)} analytical base")
+    if any(row["total"] < MIN_SEGMENT_N for row in rows):
+        problems.append("a published row sits under the disclosure threshold")
+    if totals != sorted(totals, reverse=True):
+        problems.append("type rows are not ranked largest first")
+    want = sorted((raw_named[v], raw_redacted[v], raw_total[v]) for v in big)
+    got = sorted((row["named"], row["redacted"], row["total"]) for row in typed)
+    if want != got:
+        problems.append(f"per-type splits {got} != db {want}")
+    if len(tails) != (1 if small else 0):
+        problems.append(f"{len(small)} sub-threshold types but {len(tails)} "
+                        "tail rows")
+    for row in tails:
+        if (row["named"], row["redacted"], row["total"]) != (
+                sum(raw_named[v] for v in small),
+                sum(raw_redacted[v] for v in small),
+                sum(raw_total[v] for v in small)):
+            problems.append("the tail row does not aggregate exactly the "
+                            "sub-threshold types")
+        if f"({len(small)})" not in row["label"]:
+            problems.append(f"tail label {row['label']!r} does not declare the "
+                            f"{len(small)} types it groups")
+    if dist["total"] != {"named": len(truth.named_base),
+                         "redacted": len(truth.base) - len(truth.named_base)}:
+        problems.append("the total block disagrees with the analytical base")
+    report.check(not problems,
+                 "org_type_x_redaction gives every self-declared type at or "
+                 f"above {MIN_SEGMENT_N} its own row and groups the rest",
+                 "; ".join(problems[:3]) if problems else
+                 f"{len(typed)} types on their own row + {len(small)} grouped "
+                 f"into one tail of {sum(raw_total[v] for v in small)}")
+
     named_leaks = []
     integrity = docs["integrity"]
     for cluster in integrity["text_clusters"]:

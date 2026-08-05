@@ -618,8 +618,17 @@
         var coarse = rowKeys.length === segKeys.length &&
             rowKeys.every(function(k) { return segKeys.indexOf(k) >= 0; });
         if (!coarse) {
-            return 'All ' + rowKeys.length + ' self-declared organization ' +
-                'types are charted separately here.';
+            var tail = null;
+            (rows || []).forEach(function(r) {
+                if (r && r.key === 'tail') tail = r;
+            });
+            var own = rowKeys.length - (tail ? 1 : 0);
+            return own + ' self-declared organization types are charted on ' +
+                'their own row' + (tail
+                    ? ', and the types with fewer than five respondents are ' +
+                      'grouped into one row of ' + fmt(tail.total) +
+                      ' rather than published individually.'
+                    : '.');
         }
         var bucket = 'Other';
         (segs.values || []).forEach(function(v) {
