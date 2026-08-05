@@ -41,24 +41,37 @@
   },
   "labelled_questions": 56,
   "topics": {
-    "tbd": 56
+    "additionality": 17,
+    "emission_rates": 12,
+    "formula": 7,
+    "general": 1,
+    "profile": 13,
+    "weighting": 6
   },
   "categories": {
-    "tbd": 56
+    "additionality_design": 11,
+    "claims_and_rigor": 2,
+    "evidence": 1,
+    "feasibility_and_data": 4,
+    "method_choice": 11,
+    "overall_assessment": 1,
+    "quantification_design": 11,
+    "regional_variation": 2,
+    "resp_profile": 13
   },
   "asks_for": {
     "design_preference": 2,
-    "elaboration": 6,
+    "elaboration": 4,
     "evidence": 1,
-    "feasibility_pick": 1,
+    "feasibility_pick": 2,
     "matrix_rating": 9,
-    "method_pick": 6,
+    "method_pick": 5,
     "open_feedback": 5,
-    "rationale": 8,
+    "rationale": 10,
     "respondent_attribute": 13,
     "stance": 5
   },
-  "subcategories": 1,
+  "subcategories": 23,
   "constructs": {
     "ordinal": 2,
     "stringency": 9
