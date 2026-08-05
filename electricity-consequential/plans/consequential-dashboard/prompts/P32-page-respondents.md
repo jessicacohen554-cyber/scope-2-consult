@@ -21,7 +21,7 @@ they got, and the named-org browser. Read PLAN.md §4 "respondents.html" spec, �
    `respondents.json.attrition`; annotate what each drop means for reading the site
    (the evidence question ran at a fifth of the entry audience).
 5. Engagement distribution (bands of substantive columns answered; median 19/43).
-6. **Named-org browser** — `ECOrgTable` over `org_index` (~106 rows): name, org type,
+6. **Named-org browser** — `ECOrgTable` over `org_index` (105 rows): name, org type,
    audited class, country, n answered, cites?, template?, family, and the
    **stance-fingerprint chips** (Q19/Q21/Q24/Q31/Q33 answer letters, polarity-colored,
    `–` where unanswered). Search, sort, filter by org type/audited class. Row expand →
