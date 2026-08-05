@@ -309,22 +309,35 @@
     }
 
     // A mechanical reading of the strips: which decision is the most lopsided
-    // and which is the closest, each on its own base. No two of these questions
-    // were answered by the same room, so the shares are never comparable as
-    // counts — only as shares of their own n.
+    // and which is the closest call. Raw modal shares are not comparable across
+    // a two-way and a three-way question — 38% leads a three-way but trails a
+    // two-way — so each is measured as points clear of an even split across the
+    // options that question offered.
     function drawStripReading(qids) {
-        var modes = qids.map(modal).filter(Boolean);
-        if (modes.length < 2) return put('stripsReading', '');
-        var sorted = modes.slice().sort(function (a, b) { return b.pct - a.pct; });
-        var top = sorted[0], bottom = sorted[sorted.length - 1];
-        put('stripsReading',
-            '<p class="ec-note">Most lopsided: <strong>' + esc(display(top.qid)) +
-            '</strong> — ' + esc(top.label) + ' ' + esc(ECStance.fmtPct(top.pct)) +
-            ' (n=' + top.n + '). Closest split: <strong>' +
-            esc(display(bottom.qid)) + '</strong> — ' + esc(bottom.label) + ' ' +
-            esc(ECStance.fmtPct(bottom.pct)) + ' (n=' + bottom.n +
-            '). Each share is of its own question’s base; the two were not ' +
-            'answered by the same respondents.</p>');
+        var readings = qids.map(function (qid) {
+            var m = modal(qid);
+            var q = question(qid);
+            var k = ((q || {}).options || []).length;
+            if (!m || !k) return null;
+            m.lead = m.pct - 100 / k;
+            return m;
+        }).filter(Boolean);
+        if (readings.length < 2) return put('stripsReading', '');
+
+        readings.sort(function (a, b) { return b.lead - a.lead; });
+        var top = readings[0], bottom = readings[readings.length - 1];
+
+        function phrase(r) {
+            return '<strong>' + esc(display(r.qid)) + '</strong> — ' +
+                esc(r.label) + ' at ' + esc(ECStance.fmtPct(r.pct)) + ' of n=' +
+                r.n + ', ' + esc(ECStance.fmtSigned(r.lead)) + ' points clear of ' +
+                'an even split across its options';
+        }
+
+        put('stripsReading', '<p class="ec-note">Most lopsided: ' + phrase(top) +
+            '. Closest call: ' + phrase(bottom) + '. Each share is of its own ' +
+            'question’s base, and no two of these questions were answered by the ' +
+            'same respondents.</p>');
     }
 
     // --- Panel 2: the additionality mini-matrix ------------------------------
@@ -542,6 +555,12 @@
             ECData.errorPanel('#stripsHost', err, {
                 title: 'The Decision Board could not load its data'
             });
+            // Never leave the other panels claiming they are still loading.
+            Array.prototype.forEach.call(
+                document.querySelectorAll('.ec-loading'),
+                function (node) {
+                    node.textContent = 'Unavailable — the export could not be read.';
+                });
             if (window.console && console.error) console.error(err);
         });
     }
