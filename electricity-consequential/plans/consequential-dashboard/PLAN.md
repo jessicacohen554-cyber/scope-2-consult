@@ -127,12 +127,16 @@ the cross-consultation repeat-respondents panel.
 2. **SQLite columns are TEXT-typed** (ported convention). `sum(is_redacted)` silently
    returns 0 — use `is_redacted+0`, `answer_rank+0.0`, or cast in Python.
 3. `respondent_id` runs **3–201 with gaps** — never assume 1..185.
-4. **The analytical base is 181, not 185.** Three junk/test respondents (IDs **11, 12,
-   14**) and the superseded resubmission (ID **100**; ID 151 is the same person's later
-   submission) are excluded from every aggregate, quote pool and org browser, and appear
-   only on the integrity page. `respondents.csv` keeps all 185 rows with
-   `is_excluded`/`exclusion_reason`; the exporter enforces the exclusion. Raw data is
-   never modified.
+4. **The analytical base is 180, not 185.** [ADJUDICATED post-Wave-1 — P10 sweep +
+   P20 ruling in `reference/exclusions.csv`, which is authoritative.] Four junk/test
+   respondents (IDs **11, 12, 14, 31** — ID 31 is a redacted all-"a" submission the
+   provisional digest missed) and the superseded resubmission (ID **100**; ID 151 is
+   the same person's later filing for FMASE, a strict superset of it) are excluded
+   from every aggregate, quote pool and org browser, and appear only on the integrity
+   page. Named excluded: 11, 14, 100 → org files cover 108 − 3 = **105** named
+   analytical-base respondents. `respondents.csv` keeps all 185 rows; the exporter
+   enforces the exclusion (including filtering the 6 `coded_themes.csv` rows for
+   ID 31, coded before the ruling landed). Raw data is never modified.
 5. **Never treat the additionality matrix as sentiment.** `req_level`
    (required > optional > not_required) is an ordered **stringency** scale — sequential
    ramp, never the green/red support ramp. Binary Yes/No strips may use support colors,
@@ -174,7 +178,7 @@ the cross-consultation repeat-respondents panel.
 
 Computed by the manager directly from the raw export during planning, on the **raw base
 (all 185 rows, junk included)** unless stated. Provisional in two ways: P01's build must
-reproduce them; P22's export recomputes them on the **analytical base (181)**, and **P35
+reproduce them; P22's export recomputes them on the **analytical base (180)**, and **P35
 verifies the analytical-base numbers and the manager patches this section and P40's
 brief** before the essay is written. Implementation sessions must not re-derive these
 from scratch — and every number that lands on a page must come from the exported JSON,
@@ -265,9 +269,12 @@ themselves.
 - **Q52 supporting research/documentation: n=36, of which 5 are "N/A"** — the
   consultation's own evidence question yielded ~31 substantive submissions. Citation
   mining across all free text (P10) is therefore the evidence story's main source.
-- **Junk/test respondents (provisional, P20 adjudicates): ID 11** (name "fzbf", 12/15
+- **Junk/test respondents (ADJUDICATED — final): ID 11** (name "fzbf", 12/15
   free-text answers gibberish), **ID 12** (redacted; all 24 free-text answers are the
-  single letter "e"), **ID 14** (name "asdf", 9/10 gibberish). Together 125 cells (2.5%).
+  single letter "e"), **ID 14** (name "asdf", 9/10 gibberish), **ID 31** (redacted;
+  all 6 free-text answers are runs of "a"; matrix straight-lined "Optional"; found by
+  P10's full-185 sweep, confirmed by P20). Implemented gibberish rule: <20 chars AND
+  (vowel ratio <0.30 | repeated-single-char | keyboard-run) on ≥50% of free answers.
 - **Resubmission: IDs 100 → 151, same named individual (Julia Heidrich Sagaz)** — only
   8/36 overlapping cells identical; substantive answers *changed* between submissions
   (incl. Q19). Keep-latest policy: 151 counts, 100 is excluded and disclosed, the changed
@@ -276,11 +283,14 @@ themselves.
   individuals, different answers; both count, grouped as a family (Scope 2's Deloitte
   pattern).
 - **Template blocks: 38 clusters (≥200 normalized chars shared by ≥2 respondents)
-  spanning 25 respondents.** Two blocs: **{43, 45, 60, 79, 82}** (5 members sharing the
-  "consequential accounting may provide useful insights for policy or system-level
-  analysis…" pack) and **{51, 86, 89, 117}** (4 members sharing ≥6 bullet-formatted
-  texts across Q18–Q44 — a full response pack). Smaller pairs elsewhere. Every "N said
-  X" claim needs text-dedup, and quotes need template badges — same rules as Scope 2.
+  spanning 25 respondents.** Two blocs [memberships CORRECTED post-Wave-1 from
+  `data/derived/`]: **{43, 47, 60, 79, 82}** (5 core members of the
+  `policy_insights_pack` — the provisional digest transposed 45 for 47; ID 45 is a
+  peripheral single-cluster sharer, still template-flagged) and **{51, 86, 89, 117}**
+  (the `bullet_pack`, ≥6 shared bullet-formatted texts across Q18–Q44). Bloc rule as
+  implemented: connected components over ≥2 shared clusters (a ≥3 rule destroys the
+  policy-insights bloc). Every "N said X" claim needs text-dedup, and quotes need
+  template badges — same rules as Scope 2.
 - Notable respondents (verify verbatim before quoting): **The NorthBridge Group** again
   the most verbose filer (75.7k chars; 177k in Scope 2); **Ever.green** responds — the
   consultation document itself uses Ever.green's contract structure as an additionality
@@ -374,7 +384,7 @@ respondent, the NorthBridge tail labeled); (5) how-coding-works note → methodo
 **respondents.html (P32).** (1) org type × redaction stacked bars; (2) country bar
 (US share flagged); (3) sector top-N; (4) responding-as + inventory profile;
 (5) **attrition funnel** 185 → 165 → 133 → … → 36 (the survey's engagement story);
-(6) named-org browser — searchable/sortable table of the ~106 named analytical-base
+(6) named-org browser — searchable/sortable table of the 105 named analytical-base
 respondents (name ≤80 chars, org type, audited class, country, n answered, cites?,
 template?, family, **stance fingerprint** = Q19/Q21/Q24/Q31/Q33 answer chips) → org
 profile view rendering `orgs/{id}.json` (profile, flags, every answer incl. free text
@@ -395,7 +405,7 @@ against the Scope 2 db, named only where named in both; (8) methodology caveat b
 (what this audit can and cannot claim; redacted ≠ guilty; n=185 ≠ representative).
 
 **methodology.html (P41).** Dataset provenance + build chain; question_id scheme and the
-26.x parsing; junk/resubmission criteria and the 185→181 analytical base; theme-coding
+26.x parsing; junk/resubmission criteria and the 185→180 analytical base; theme-coding
 method (closed vocabulary, curation process, dedup adjustment); matrix construct and
 polarity definitions; scoreboard netting rule; segment coarsening + privacy mask;
 scale/ladder definitions; limitations (self-selection, US-heavy, small n, thin Q52
@@ -412,7 +422,7 @@ cards linking every page. One `.emphasis-callout` maximum.
 
 P22 produces these; P11 authors `frontend/data/fixtures/` with identical shapes (tiny,
 hand-written) so Lane F never blocks on Lane D; loader swaps to fixtures under
-`?fixtures=1`. All aggregates are **analytical-base (181)**; junk/superseded rows appear
+`?fixtures=1`. All aggregates are **analytical-base (180)**; junk/superseded rows appear
 only inside `integrity.json`.
 
 **Segment vocabulary (closed, coarse — gotcha 15):**
@@ -428,7 +438,7 @@ ordinary options flagged in meta so renderers can gray/segregate them. Client de
 percentages. Segment pattern everywhere: `{"overall": SCELL, "by": {"<dim>":
 {"<key>": SCELL | {"n": "<5"}}}}`.
 
-- **`meta.json`** — `{generated, totals:{respondents_raw:185, respondents:181,
+- **`meta.json`** — `{generated, totals:{respondents_raw:185, respondents:180,
   named, redacted, questions, answers, free_text_answers}, segments:{dim:{label,
   values:[{key,label,n}]}}, questions:[{qid, display, shorthand, label, topic,
   doc_section, type, asks_for, n_answered, page, options:[{key, label, special?:true,
@@ -456,7 +466,7 @@ percentages. Segment pattern everywhere: `{"overall": SCELL, "by": {"<dim>":
   redaction_effect:[{qid, named: SCELL, redacted: SCELL}],
   org_index:[{id, name(≤80), org_type, audited_class, country, nsub, ft_chars, cites,
   template, family, fingerprint:{q19,q21,q24,q31,q33: option key|null}}]}`.
-- **`orgs/{respondent_id}.json`** — one per named analytical-base respondent (~106):
+- **`orgs/{respondent_id}.json`** — one per named analytical-base respondent (105):
   `{id, name, org_type, audited_class, audit_basis, sector, country, responding_as,
   flags:{template, family, cites, citation_count}, answers:[{qid, display, shorthand,
   label, type, text, selections:[...]}]}` in survey order.
