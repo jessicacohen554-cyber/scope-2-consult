@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P35 dev-viz — matrix layout alternatives (UNLINKED, not a shipped page)</title>
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/site.css">
+<style>
+/* dev harness only — this file is linked from nowhere and ships nothing.
+   It exists so P35 can screenshot narrow-viewport alternatives for the 9x3
+   additionality matrix side by side against the as-shipped layout. */
+body{font-family:'DM Sans',system-ui,sans-serif;margin:0;padding:24px;background:#fff;color:#1a1a2e}
+h1{font-size:20px;margin:0 0 4px}
+h2{font-size:15px;margin:28px 0 2px}
+.note{font-size:12px;color:#5a5a72;margin:0 0 12px;max-width:760px;line-height:1.5}
+.rail{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.frame{width:328px;border:1px solid #d8d8e4;border-radius:10px;padding:10px;background:#fff}
+.frame h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#5a5a72;margin:0 0 8px}
+.verdict{font-size:11px;padding:2px 7px;border-radius:99px;font-weight:600}
+.bad{background:#fde8e8;color:#a11}
+.good{background:#e6f6ec;color:#186a3b}
+/* ---- A: as-shipped repro (4 columns, horizontal scroll) ---- */
+.mA{display:grid;grid-template-columns:120px 68px 68px 68px 96px;gap:3px;min-width:420px}
+.mA>div{padding:5px 4px;font-size:11px;border-radius:5px}
+.mA .hd{font-weight:700;font-size:9px;text-transform:uppercase;color:#5a5a72;background:none}
+.mA .rh{font-weight:600;font-size:10px;background:none}
+.scrollwrap{overflow-x:auto}
+.cell{text-align:center;color:#1a1a2e}
+.val{display:block;font-weight:700;font-size:12px}
+.sub{display:block;font-size:9px;color:#5a5a72}
+/* ---- B: net promoted into the row header ---- */
+.mB{display:grid;grid-template-columns:1fr 60px 60px 60px;gap:3px}
+.mB>div{padding:5px 4px;font-size:11px;border-radius:5px}
+.mB .hd{font-weight:700;font-size:9px;text-transform:uppercase;color:#5a5a72;text-align:center}
+.mB .rh{font-weight:600;font-size:10.5px;line-height:1.25}
+.netchip{display:inline-block;margin-top:3px;font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px;background:#eceafd;color:#4b3fd4}
+.nchip{display:inline-block;margin-left:4px;font-size:9px;font-weight:600;padding:1px 5px;border-radius:99px;background:#f1f1f6;color:#5a5a72}
+/* ---- C: single stacked bar per row (the mini pattern) ---- */
+.mC .row{margin-bottom:9px}
+.mC .lab{display:flex;justify-content:space-between;align-items:baseline;gap:6px;font-size:10.5px;font-weight:600;margin-bottom:3px}
+.mC .bar{display:flex;height:17px;border-radius:5px;overflow:hidden;background:#eceafd}
+.mC .seg{display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff}
+.s3{background:#4b3fd4}.s2{background:#9b93ea}.s1{background:#d9d5f7;color:#4a4a63}
+.legend{font-size:10px;color:#5a5a72;margin-top:6px}
+.sw{display:inline-block;width:9px;height:9px;border-radius:2px;vertical-align:-1px;margin-right:3px}
+table.cmp{border-collapse:collapse;font-size:12px;margin-top:8px}
+table.cmp td,table.cmp th{border:1px solid #e2e2ec;padding:4px 9px;text-align:right}
+table.cmp th{background:#f7f7fb;font-size:11px}
+table.cmp td:first-child,table.cmp th:first-child{text-align:left}
+.diff{background:#fde8e8;font-weight:700}
+</style>
+</head>
+<body>
+<h1>P35 dev-viz — additionality matrix at 390&nbsp;px</h1>
+<p class="note">Unlinked developer harness (see <code>notes/P35-verification-memo.md</code>). Each frame below is
+328&nbsp;px wide — the content width the shipped pages get inside a 390&nbsp;px viewport. Frame&nbsp;A reproduces the
+as-shipped four-column grid; B and C are the alternatives the memo recommends. Data is read live from
+<code>data/matrix.json</code> + <code>data/meta.json</code>, so these render the real analytical-base counts.</p>
+
+<div class="rail" id="rail"></div>
+
+<h2>Net-requiredness rounding: PLAN §3.3 vs what the site renders</h2>
+<p class="note">The shipped renderers compute net as <code>round1(%R) − round1(%N)</code>; PLAN §3.3 tabulates
+<code>round1(%R − %N)</code>. The two conventions differ on two of the nine rows.</p>
+<div id="cmp"></div>
+
+<script>
+var LV=[{k:'required',l:'Required',c:'s3'},{k:'optional',l:'Optional',c:'s2'},{k:'not_required',l:'Not required',c:'s1'}];
+function r1(x){return Math.round(Math.abs(x)*10+1e-9)/10*(x<0?-1:1);}
+function netPre(R,N,n){return r1(r1(100*R/n)-r1(100*N/n));}
+function netExact(R,N,n){return r1(100*(R-N)/n);}
+function fmt(v){return (v>0?'+':v<0?'−':'')+Math.abs(v).toFixed(1);}
+Promise.all([fetch('data/matrix.json').then(r=>r.json()),fetch('data/meta.json').then(r=>r.json())])
+.then(function(res){
+  var mx=res[0], meta=res[1];
+  var rows=meta.matrix.tests.map(function(t){
+    var c=mx.tests[t.qid].overall.c, n=mx.tests[t.qid].overall.n;
+    return {label:t.label.replace(/^Requiredness of (the )?/,'').replace(/ test$/,''),
+            R:c[0],O:c[1],N:c[2],n:n,net:netPre(c[0],c[2],n),exact:netExact(c[0],c[2],n)};
+  }).sort(function(a,b){return b.net-a.net;});
+
+  var A='<div class="frame"><h3>A · as shipped <span class="verdict bad">net column clipped</span></h3>'+
+    '<div class="scrollwrap"><div class="mA">'+
+    '<div class="hd"></div><div class="hd">Required</div><div class="hd">Optional</div><div class="hd">Not req</div><div class="hd">Net requiredness</div>';
+  rows.forEach(function(r){
+    A+='<div class="rh">'+r.label+'<span class="nchip">n='+r.n+'</span></div>';
+    [r.R,r.O,r.N].forEach(function(v){A+='<div class="cell" style="background:rgba(75,63,212,'+(0.08+0.72*v/r.n).toFixed(3)+')"><span class="val">'+Math.round(100*v/r.n)+'%</span><span class="sub">'+v+'</span></div>';});
+    A+='<div class="cell"><span class="netchip">'+fmt(r.net)+'</span></div>';
+  });
+  A+='</div></div><p class="legend">122&nbsp;px of a 450&nbsp;px grid sits outside the scroll port; the net column is entirely off-screen and the only hint it exists is a clipped header.</p></div>';
+
+  var B='<div class="frame"><h3>B · net promoted to the row header <span class="verdict good">fits, no scroll</span></h3><div class="mB">'+
+    '<div class="hd" style="text-align:left">Test</div><div class="hd">Req</div><div class="hd">Opt</div><div class="hd">Not</div>';
+  rows.forEach(function(r){
+    B+='<div class="rh">'+r.label+'<span class="nchip">n='+r.n+'</span><br><span class="netchip">net '+fmt(r.net)+'</span></div>';
+    [r.R,r.O,r.N].forEach(function(v){B+='<div class="cell" style="background:rgba(75,63,212,'+(0.08+0.72*v/r.n).toFixed(3)+')"><span class="val">'+Math.round(100*v/r.n)+'%</span><span class="sub">'+v+'</span></div>';});
+  });
+  B+='</div><p class="legend">The sort key stays visible next to the label it sorts. Three data columns fit 328&nbsp;px without a scroll port.</p></div>';
+
+  var C='<div class="frame"><h3>C · one stacked bar per row <span class="verdict good">already proven on decisions.html</span></h3><div class="mC">';
+  rows.forEach(function(r){
+    C+='<div class="row"><div class="lab"><span>'+r.label+'</span><span><span class="netchip">'+fmt(r.net)+'</span><span class="nchip">n='+r.n+'</span></span></div><div class="bar">';
+    [[r.R,'s3'],[r.O,'s2'],[r.N,'s1']].forEach(function(p){
+      var pct=100*p[0]/r.n; C+='<div class="seg '+p[1]+'" style="width:'+pct.toFixed(1)+'%">'+(pct>13?Math.round(pct)+'%':'')+'</div>';});
+    C+='</div></div>';
+  });
+  C+='</div><p class="legend">'+LV.map(function(l){return '<span class="sw '+l.c+'"></span>'+l.l;}).join(' &nbsp; ')+
+     '<br>This is ECMatrix.renderMini — the row the Decision Board already ships, which reads cleanly at 390&nbsp;px. Per-level percentages survive; per-level raw counts move into the popover.</p></div>';
+
+  document.getElementById('rail').innerHTML=A+B+C;
+
+  var t='<table class="cmp"><tr><th>Test</th><th>R</th><th>O</th><th>N</th><th>n</th><th>site (pre-rounded)</th><th>PLAN §3.3 (exact)</th></tr>';
+  rows.forEach(function(r){
+    var d=r.net!==r.exact;
+    t+='<tr><td>'+r.label+'</td><td>'+r.R+'</td><td>'+r.O+'</td><td>'+r.N+'</td><td>'+r.n+'</td>'+
+       '<td'+(d?' class="diff"':'')+'>'+fmt(r.net)+'</td><td'+(d?' class="diff"':'')+'>'+fmt(r.exact)+'</td></tr>';
+  });
+  document.getElementById('cmp').innerHTML=t+'</table>';
+});
+</script>
+</body>
+</html>
