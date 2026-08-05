@@ -14,10 +14,10 @@ below twice.
 
 ## Panels
 
-1. **Junk/test respondents** — the three excluded rows (IDs 11, 12, 14) with their
+1. **Junk/test respondents** — the four excluded junk rows (IDs 11, 12, 14, 31) with their
    evidence strings shown verbatim ("e" ×24, "asdf"…), the detection criteria, the
    adjudication trail, and the exclusion policy statement (raw data untouched;
-   analytical base 181).
+   analytical base 180).
 2. **The resubmission** — IDs 100 → 151 side-by-side: same named individual, which
    answers changed (from `integrity.json.resubmission.changed`), keep-latest rule.
 3. **Entity families** — Engie Impact ×2 (+ any others): both counted, grouped, why
