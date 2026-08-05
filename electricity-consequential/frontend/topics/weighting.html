@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weighting | Electricity-Sector Consequential Methods Consultation</title>
+    <meta name="description" content="How consultation respondents would weight the build margin against the operating margin, which approaches they call infeasible, and the evidence they offered (questions 47–52).">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="../styles/shared.css">
+    <link rel="stylesheet" href="../styles/article.css">
+    <link rel="stylesheet" href="../styles/cinematic.css">
+    <link rel="stylesheet" href="../styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="../js/nav.js"></script>
+    <script src="../js/chart-colors.js"></script>
+    <script src="../js/shared-header.js"></script>
+    <script src="../js/scroll-observer.js"></script>
+    <script src="../js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in
+         electricity-consequential/plans/consequential-dashboard/PLAN.md §5).
+         stance-viz.js must load before matrix-viz.js — ECMatrix borrows
+         ECStance's popover, token-color and sr-table machinery. -->
+    <script src="../js/data-loader.js"></script>
+    <script src="../js/segments.js"></script>
+    <script src="../js/stance-viz.js"></script>
+    <script src="../js/matrix-viz.js"></script>
+    <script src="../js/quote-cards.js"></script>
+
+    <!-- Page configuration, read by the shared topic renderer. Every panel here
+         is data: no figure is written into this file, and nothing renders that
+         the export does not carry. -->
+    <script>
+    window.TOPIC_CONFIG = {
+        key: 'weighting',
+        root: 'topicPanels',
+        controls: { dim: 'dimToggle' },
+        sections: [
+            {
+                id: 'scoreboard',
+                title: 'Weighting the two margins',
+                subtitle: 'Once both margins exist, something has to decide how much of each goes into a single number. Question 47 asked which weighting approaches are appropriate; question 49 asked which are not feasible to implement. The two lists were answered by different people and are not opposites of each other.',
+                width: 'wide',
+                panels: [
+                    {
+                        kind: 'scoreboard',
+                        id: 'weighting-board',
+                        title: 'Margin weighting approaches',
+                        subtitle: 'Called not feasible to the left, called appropriate to the right, each a share of its own base. Click or focus a row for the segment split behind both sides.',
+                        board: 'weighting',
+                        axis: {
+                            app: 'Appropriate — % of {base} who answered question 47',
+                            not: 'Not feasible to implement — % of {base} who answered question 49',
+                            appTag: 'question 47 list',
+                            notTag: 'question 49 list'
+                        },
+                        note: 'The two sides measure different things. Question 47 asks whether an approach is appropriate; question 49 asks whether it can be implemented. An approach can be both — sound in principle and out of reach in practice — so the net beside each row is a gap between two constructs, not a margin of support. The non-substantive answers listed beneath the chart (“unsure”, “none are appropriate”, “all are feasible”) are shown at full size and are never folded into that arithmetic.',
+                        decisionQid: 'Q047'
+                    }
+                ],
+                callout: {
+                    title: 'The unsure share is a finding, not a gap in the data.',
+                    text: 'This is the last substantive block of a long consultation and the smallest room in it. Where respondents declined to call any approach appropriate, or called them all feasible, that is a statement about how settled the field is — which is why those answers sit beside the chart at full size instead of being netted away.'
+                }
+            },
+            {
+                id: 'reasoning',
+                title: 'The reasoning on both sides',
+                subtitle: 'The consultation asked separately why the chosen approaches are appropriate and why the rejected ones cannot be implemented. Coded against the same taxonomy, they answer different questions and divide by different bases.',
+                panels: [
+                    {
+                        kind: 'themes',
+                        id: 'q48-q50',
+                        title: 'Why appropriate, and why not feasible',
+                        questions: [
+                            { qid: 'Q048', title: 'Q48 — why the selected approaches are appropriate' },
+                            { qid: 'Q050', title: 'Q50 — why the rejected approaches are not feasible' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'other-approaches',
+                title: 'Approaches the framework does not list',
+                subtitle: 'Question 51 was open: what else could assign weights between the build and operating margins? It is the clearest read on whether respondents think the offered menu is complete.',
+                panels: [
+                    {
+                        kind: 'themes',
+                        id: 'q51',
+                        title: 'Other approaches for assigning margin weights',
+                        questions: [{ qid: 'Q051' }]
+                    }
+                ]
+            },
+            {
+                id: 'evidence',
+                title: 'The consultation’s own evidence question',
+                subtitle: 'Question 52 asked respondents to point at research or documentation supporting the approach they had just recommended. It is the last question in the survey and it drew the smallest base of any question in it.',
+                panels: [
+                    {
+                        kind: 'pointer',
+                        id: 'q52-pointer',
+                        title: 'What was offered as evidence',
+                        body: 'A consultation that ends by asking for supporting research is asking respondents to show their work. How many did, what they pointed at, and how citation rates differ between named and redacted respondents are all treated as one question on the integrity page — together with the citations mined from the rest of the free text, which is where most of the evidence in this record actually turned up.',
+                        qid: 'Q052',
+                        link: { href: 'integrity.html', text: 'See the evidence base and the citation mining' }
+                    },
+                    {
+                        kind: 'themes',
+                        id: 'q52-themes',
+                        title: 'What the evidence answers talked about',
+                        subtitle: 'Coded themes across the answers to question 52, including the answers that declined to offer anything.',
+                        questions: [{ qid: 'Q052' }]
+                    }
+                ]
+            },
+            {
+                id: 'voices',
+                title: 'In their own words',
+                subtitle: 'Curated verbatim extracts on weighting. Named respondents link to their profile; redacted respondents are never named.',
+                width: 'wide',
+                panels: [
+                    {
+                        kind: 'quotes',
+                        id: 'quotes-weighting',
+                        title: 'On weighting the margins',
+                        source: 'weighting',
+                        titles: {
+                            'for': 'A weighting rule is workable',
+                            against: 'Against the offered approaches',
+                            context: 'Context & caveats'
+                        }
+                    }
+                ]
+            },
+            {
+                id: 'bases',
+                title: 'What sits under each panel',
+                subtitle: 'Every question on this page with the number of people who answered it — the thinnest bases in the consultation.',
+                panels: [
+                    {
+                        kind: 'bases',
+                        id: 'bases-table',
+                        title: 'Response base by question',
+                        qids: ['Q047', 'Q048', 'Q049', 'Q050', 'Q051', 'Q052']
+                    }
+                ]
+            }
+        ]
+    };
+    </script>
+    <script src="../js/topic-page.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Weighting</h1>
+        <div class="subtitle">Consultation section 9 · questions 47–52 — how to weight the build margin against the operating margin, and what evidence was offered</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <section class="content-section">
+            <div class="insight-glass insight-glass-indigo scroll-reveal">
+                <strong>What this page covers.</strong> The final block of the
+                consultation, and the one fewest respondents reached. It asks how the
+                build margin and the operating margin should be combined into a single
+                rate: which weighting approaches are appropriate, which cannot be
+                implemented, what else might work, and what evidence supports any of it.
+                Every figure below is read from the exported dataset. Percentages always
+                carry the base they divide by, and segment cells with fewer than five
+                respondents are suppressed rather than printed.
+            </div>
+
+            <div class="ec-controls">
+                <div id="dimToggle"></div>
+            </div>
+            <p class="ec-note">One control, every chart on the page. At the bases this
+            section reaches, most segment cells fall below the disclosure threshold and
+            will be suppressed — that is the honest reading, not a rendering fault.</p>
+        </section>
+
+        <!-- Panels are built by js/topic-page.js from TOPIC_CONFIG above. A panel
+             the export cannot fill is replaced by an HTML comment naming it. -->
+        <div id="topicPanels">
+            <section class="content-section">
+                <div class="card ec-loading">Loading the exported panels…</div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Electricity-Sector Consequential Methods Consultation"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="../js/cinematic-bg.js"></script>
+</body>
+</html>
