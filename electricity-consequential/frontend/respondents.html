@@ -363,7 +363,7 @@
         <!-- ===== 1 · ORG TYPE × REDACTION ===== -->
         <section class="content-section" id="org-type">
             <h2 class="section-title">Organization type, and who signed their name</h2>
-            <p class="section-subtitle">Every respondent picked one self-declared organization type, and this chart shows every type the disclosure threshold allows — the coarse five-value grouping used by the segment toggles elsewhere on the site exists to keep segment cells above that threshold, not because the tail is uninteresting.</p>
+            <p class="section-subtitle">Every respondent picked one self-declared organization type, and redaction is not spread evenly across them. The note under the chart states which organization vocabulary this export supplies, and whether any row is being suppressed for falling below the five-respondent disclosure threshold.</p>
 
             <div class="chart-panel scroll-reveal">
                 <h3 class="chart-title">Respondents by organization type, named vs redacted</h3>
@@ -673,12 +673,12 @@
                 legend: '#orgTypeLegend',
                 labelShare: 0.38,
                 srTarget: '#orgTypeSr',
-                noteTarget: '#orgTypeMask',
-                noun: 'organization type',
                 dimLabel: 'Organization type',
                 srCaption: 'Respondents by self-declared organization type, ' +
                     'named and redacted'
             });
+            text('orgTypeMask', (R.orgTypeScopeNote(rows, D.meta) + ' ' +
+                R.maskNote(R.splitRows(rows).masked, 'organization type')).trim());
             R.gradientNote('#orgTypeGradient', rows, { minTotal: MIN_GRADIENT });
             text('gradientInsight',
                 R.gradientSummary(rows, { minTotal: MIN_GRADIENT }));

@@ -603,6 +603,34 @@
             'points — but they are all in the chart above.</p>';
     }
 
+    // PLAN §4 asks this panel for every self-declared organization type, with
+    // the coarse five-value vocabulary reserved for the segment toggles. An
+    // export may supply either. Say which one is actually on screen rather
+    // than claiming the other — the difference matters, because the coarse
+    // grouping hides the tail types inside "Other".
+    function orgTypeScopeNote(rows, meta) {
+        var segs = ((meta && meta.segments) || {}).org_type_5 || {};
+        var segKeys = (segs.values || []).map(function(v) { return v.key; });
+        var rowKeys = (rows || []).map(function(r) { return r && r.key; })
+            .filter(Boolean);
+        if (!segKeys.length || !rowKeys.length) return '';
+
+        var coarse = rowKeys.length === segKeys.length &&
+            rowKeys.every(function(k) { return segKeys.indexOf(k) >= 0; });
+        if (!coarse) {
+            return 'All ' + rowKeys.length + ' self-declared organization ' +
+                'types are charted separately here.';
+        }
+        var bucket = 'Other';
+        (segs.values || []).forEach(function(v) {
+            if (v.key === 'other') bucket = v.label || bucket;
+        });
+        return 'This export supplies the coarse ' + segKeys.length +
+            '-value organization vocabulary rather than one row per ' +
+            'self-declared type, so the smaller types are pooled inside ' +
+            '“' + bucket + '” instead of appearing on their own row.';
+    }
+
     // One computed sentence describing the same gradient, for prose that must
     // not assert a pattern this consultation's data may not carry.
     function gradientSummary(rows, opts) {
@@ -1093,6 +1121,7 @@
         simpleBars: simpleBars,
         gradientNote: gradientNote,
         gradientSummary: gradientSummary,
+        orgTypeScopeNote: orgTypeScopeNote,
         renderAttritionFunnel: renderAttritionFunnel,
         renderRedactionEffect: renderRedactionEffect,
         redactionShifts: redactionShifts,
