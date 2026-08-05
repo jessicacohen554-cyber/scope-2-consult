@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology | Electricity-Sector Consequential Methods Consultation</title>
+    <meta name="description" content="How this hub turns the consultation's raw export into the figures on every page: provenance, question identity, the 185 to 180 analytical base, constructs and arithmetic, theme coding, privacy masking, limitations, and the full reproduction commands.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- This page renders no data component: every figure below is a documented
+         constant, checked against the pipeline by the commands in section 8. The
+         EC* site modules (data-loader / segments / stance-viz / matrix-viz /
+         quote-cards / org-table) are therefore omitted — DESIGN_SYSTEM.md allows
+         a page to skip modules it does not use. site.css is never optional and is
+         loaded above; the theme-polarity chips in section 5 are its components. -->
+
+    <!-- Page-specific styles ONLY — the reference-document furniture this page
+         alone needs (section rail, term lists, command blocks, rule boxes) plus
+         two modifiers scoped to this page's markup. Nothing here restyles a
+         shared.css or site.css class globally, and the `.ec-` namespace is left
+         to site.css: every page-local class is `.mth-`. -->
+    <style>
+    /* ================= LAYOUT: sticky section rail + long-form body ========= */
+    .mth-layout {
+        display: grid;
+        grid-template-columns: 232px minmax(0, 1fr);
+        gap: var(--space-2xl);
+        align-items: start;
+    }
+    .mth-rail {
+        position: sticky;
+        top: 84px;
+        padding: var(--space-lg);
+        background: var(--bg-card);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-sm);
+    }
+    .mth-rail-title {
+        font-family: var(--font-heading);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: var(--space-md);
+    }
+    .mth-rail ol {
+        list-style: none;
+        counter-reset: mth-rail;
+        margin: 0;
+        padding: 0;
+    }
+    .mth-rail li { counter-increment: mth-rail; }
+    .mth-rail a {
+        display: flex;
+        gap: var(--space-sm);
+        padding: 7px 0;
+        font-family: var(--font-heading);
+        font-size: 0.8rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: var(--text-muted);
+        text-decoration: none;
+        border-bottom: none;
+        transition: color 0.15s;
+    }
+    .mth-rail a::before {
+        content: counter(mth-rail);
+        flex: 0 0 18px;
+        font-family: var(--font-data);
+        font-size: 0.72rem;
+        color: var(--hydro-text);
+    }
+    .mth-rail a:hover,
+    .mth-rail a.mth-rail-active { color: var(--navy); }
+
+    .mth-body > section { scroll-margin-top: 76px; }
+    .mth-body > section + section { margin-top: var(--space-3xl); }
+
+    /* cinematic.css renders .section-header as a white panel (padding, border,
+       radius, shadow) centered at 900px. Keep all of that — only the alignment
+       and the width change, so the header spans this page's body column and
+       reads left-aligned as a reference chapter opener. */
+    .mth-body .section-header {
+        text-align: left;
+        margin: 0 0 var(--space-lg);
+        max-width: none;
+    }
+    .mth-body .section-header p { margin: 0; max-width: 68ch; }
+
+    /* One vertical rhythm for every block in a section — the grid gap replaces
+       per-element margin utilities entirely. `minmax(0, 1fr)` rather than the
+       implicit `auto` column: auto sizes to the widest block's max-content, so a
+       wide table would push every sibling past the viewport. */
+    .mth-blocks {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-lg);
+    }
+    /* Blocks own their internal bottom spacing; the gap owns the rest. */
+    .mth-blocks > .card > :last-child,
+    .mth-blocks > .chart-panel > :last-child { margin-bottom: 0; }
+
+    /* ================= LONG-FORM PROSE ===================================== */
+    .mth-prose {
+        font-size: 0.95rem;
+        line-height: 1.75;
+        color: var(--text-secondary);
+        max-width: 72ch;
+        margin: 0 0 var(--space-md);
+    }
+    .mth-h4 {
+        font-family: var(--font-heading);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin: var(--space-lg) 0 var(--space-sm);
+    }
+    .mth-h4:first-child { margin-top: 0; }
+    /* Small print inside a grid cell (the three-up explainer cards). */
+    .mth-mini {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+        margin: 0;
+    }
+    .mth-mini + .mth-mini { margin-top: var(--space-sm); }
+
+    /* ================= TERM LIST: key/value reference rows ================== */
+    .mth-terms {
+        display: grid;
+        grid-template-columns: minmax(140px, 200px) minmax(0, 1fr);
+        gap: var(--space-sm) var(--space-lg);
+        margin: 0;
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+    .mth-terms dt {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        color: var(--navy);
+    }
+    .mth-terms dd {
+        margin: 0;
+        color: var(--text-secondary);
+        overflow-wrap: anywhere;
+    }
+    .mth-terms dd + dt,
+    .mth-terms dt + dd:not(:nth-of-type(1)) {
+        border-top: 1px solid var(--border-light);
+        padding-top: var(--space-sm);
+    }
+
+    /* ================= CODE: identifiers, paths, commands ================== */
+    .mth-code {
+        font-family: var(--font-mono);
+        font-size: 0.84em;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        padding: 1px 5px;
+        border-radius: var(--radius-sm);
+        background: var(--hydro-bg);
+        color: var(--navy);
+        overflow-wrap: anywhere;
+    }
+    .mth-cmd {
+        margin: 0;
+        padding: var(--space-md) var(--space-lg);
+        background: var(--navy-dark);
+        border-radius: var(--radius-lg);
+        overflow-x: auto;
+    }
+    .mth-cmd code {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        line-height: 1.85;
+        color: rgba(255,255,255,0.92);
+        white-space: pre;
+    }
+    .mth-cmd-comment { color: rgba(255,255,255,0.5); }
+    .mth-cmd-out { color: var(--accent-cyan); }
+
+    /* ================= TABLES ============================================== */
+    /* Wide tables scroll inside their own box rather than the page. */
+    .mth-scroll { overflow-x: auto; }
+    /* Modifier (not a global restyle): .data-table uppercases every <th>, which
+       is right for column heads and wrong for row heads carrying mixed-case
+       identifiers ("org_type_5", "build_dataset.py"). Applied per table. */
+    .mth-rowhead tbody th {
+        text-transform: none;
+        letter-spacing: normal;
+        font-size: 0.78rem;
+        color: var(--navy);
+        vertical-align: top;
+    }
+    .mth-steps { font-size: 0.85rem; }
+    .mth-steps code {
+        font-family: var(--font-mono);
+        font-size: 0.94em;
+        font-weight: 600;
+        color: var(--navy);
+        overflow-wrap: anywhere;
+    }
+    .mth-steps tbody th { white-space: nowrap; }
+
+    /* ================= RULE BOX: a stated rule + its constants ============= */
+    .mth-rule {
+        padding: var(--space-lg);
+        background: var(--bg-card);
+        border: 1px solid var(--border-light);
+        border-left: 3px solid var(--nuclear);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    }
+    .mth-rule-head {
+        font-family: var(--font-heading);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: var(--space-xs);
+    }
+    .mth-rule p {
+        font-size: 0.88rem;
+        line-height: 1.7;
+        color: var(--text-secondary);
+        margin: 0 0 var(--space-sm);
+    }
+    .mth-rule p:last-child { margin-bottom: 0; }
+
+    /* ================= EVIDENCE: excluded submissions, verbatim ============ */
+    .mth-evidence {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        line-height: 1.7;
+        color: var(--text-secondary);
+        overflow-wrap: anywhere;
+    }
+
+    /* ================= WORKED CALCULATION ================================== */
+    .mth-calc {
+        display: grid;
+        gap: var(--space-sm);
+        margin: 0;
+        font-size: 0.88rem;
+    }
+    .mth-calc-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: var(--space-md);
+        align-items: baseline;
+        padding-bottom: var(--space-sm);
+        border-bottom: 1px solid var(--border-light);
+        color: var(--text-secondary);
+    }
+    .mth-calc-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .mth-calc-total {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        color: var(--navy);
+    }
+    .mth-calc-val {
+        font-family: var(--font-data);
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    /* ================= RESPONSIVE ========================================== */
+    @media (max-width: 1080px) {
+        .mth-layout { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+        .mth-rail { position: static; }
+        .mth-rail ol {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0 var(--space-md);
+        }
+    }
+    @media (max-width: 640px) {
+        .mth-terms { grid-template-columns: minmax(0, 1fr); gap: var(--space-xs); }
+        .mth-terms dd + dt { margin-top: var(--space-sm); }
+        .mth-terms dt + dd:not(:nth-of-type(1)) { border-top: none; padding-top: 0; }
+        .mth-calc-row { grid-template-columns: minmax(0, 1fr); gap: var(--space-xs); }
+        .mth-cmd { padding: var(--space-md); }
+        .mth-cmd code { font-size: 0.75rem; }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Methodology</h1>
+        <div class="subtitle">How the raw export becomes the figures on every page — and what those figures can and cannot carry</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ============================================================ -->
+        <!-- ORIENTATION                                                  -->
+        <!-- ============================================================ -->
+        <section class="content-section">
+            <!-- .grid-stats rather than .hero-stats-row: this is an orientation
+                 row under a banner, not a hero block, and the grid's equal
+                 auto-fit columns reflow cleanly at mobile where the flex row
+                 leaves the four cards staggered at their intrinsic widths. -->
+            <div class="grid-stats scroll-reveal">
+                <div class="stat-card">
+                    <div class="stat-value">185 &rarr; 180</div>
+                    <div class="stat-label">Raw submissions &rarr; analytical base</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Excluded: 4 junk, 1 superseded</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">43</div>
+                    <div class="stat-label">Theme keys, closed vocabulary</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">318</div>
+                    <div class="stat-label">Automated checks across 5 suites</div>
+                </div>
+            </div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>What this page is.</strong> Every number on this site comes out of one
+                deterministic pipeline that starts at a single committed spreadsheet. This page
+                documents that pipeline: where the data came from, how questions and respondents are
+                identified, which five submissions are excluded and on what evidence, the arithmetic
+                rules that govern every chart, how the free text was coded, what is masked for
+                privacy, what the record cannot support, and the exact commands to reproduce all of
+                it. The companion
+                <a href="https://github.com/jessicacohen554-cyber/scope-2-consult/tree/main/electricity-consequential#readme">dataset&nbsp;README</a>
+                documents the <em>tables</em> — schema, columns, views, SQL recipes. This page
+                documents the <em>judgments</em>. Where they overlap, the README is the reference and
+                this page links to it rather than restating it.
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- THE EIGHT SECTIONS                                            -->
+        <!-- ============================================================ -->
+        <section class="content-section">
+            <div class="mth-layout">
+
+                <!-- ---------- Sticky section rail ---------- -->
+                <nav class="mth-rail" aria-label="Sections on this page">
+                    <div class="mth-rail-title">On this page</div>
+                    <ol>
+                        <li><a href="#provenance">Provenance &amp; build chain</a></li>
+                        <li><a href="#identity">Question identity</a></li>
+                        <li><a href="#base">The analytical base</a></li>
+                        <li><a href="#constructs">Constructs &amp; arithmetic</a></li>
+                        <li><a href="#themes">Theme coding</a></li>
+                        <li><a href="#privacy">Privacy &amp; masking</a></li>
+                        <li><a href="#limitations">Limitations</a></li>
+                        <li><a href="#reproduction">Reproduction</a></li>
+                    </ol>
+                </nav>
+
+                <div class="mth-body">
+
+                <!-- ======================================================= -->
+                <!-- 1. PROVENANCE & BUILD CHAIN                             -->
+                <!-- ======================================================= -->
+                <section id="provenance">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h2>Provenance &amp; build chain</h2>
+                        <p>One input file, committed unmodified, reshaped by a deterministic script
+                        chain. Nothing on this site is hand-entered.</p>
+                    </div>
+
+                    <div class="mth-blocks">
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">The inputs</h3>
+                            <dl class="mth-terms">
+                                <dt>Raw export</dt>
+                                <dd><span class="mth-code">Electricity-Sector-ConsequentialMethodsPublicConsultationFeedback-RawData-2026.07.29.xlsx</span></dd>
+                                <dt>Published</dt>
+                                <dd>2026-07-29 — the date carried in <span class="mth-code">data/manifest.json</span>.
+                                Every generated file is stamped from it, never from wall-clock time,
+                                which is what makes rebuilds byte-identical.</dd>
+                                <dt>Dimensions</dt>
+                                <dd>Single sheet <span class="mth-code">Raw Data</span>, range A1:BE186 — one header row
+                                plus 185 respondent rows &times; 57 columns (column A is
+                                <span class="mth-code">ID</span>, leaving 56 question columns).</dd>
+                                <dt>Size / SHA-1</dt>
+                                <dd>507,143 bytes ·
+                                <span class="mth-code">0d5bc4b36fc87eb39c29de4c8dea3310eb9bd556</span></dd>
+                                <dt>Consultation document</dt>
+                                <dd><span class="mth-code">reference/GHG-Protocol-Consequential-Electricity-Sector-Emissions-Impacts-Public-Consultation.pdf</span>
+                                — 20 pages, SHA-1
+                                <span class="mth-code">f859b5651cdfc1f8e69afd1fd48043aee89598f4</span>. It is the source
+                                for what each question is <em>asking about</em>: §5 general feedback,
+                                §6 the formula (6.1 the Scope&nbsp;2 TWG subgroup approach), §7
+                                additionality, §8 marginal emission rates (8.1 operating, 8.2 build),
+                                §9 weighting. Several stems are only fully legible in the PDF — the
+                                matrix preamble defining Required / Optional / Not&nbsp;required
+                                appears nowhere in the export.</dd>
+                            </dl>
+                            <p class="mth-prose">The spreadsheet is committed at the hub root and never
+                            edited. Everything under <span class="mth-code">data/</span> is regenerated from it; if a
+                            figure on this site is wrong, the fix belongs in a script, not in a cell.</p>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">The build chain</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-year">Stage 1 — build</div>
+                                    <div class="timeline-title"><span class="mth-code">scripts/build_dataset.py</span></div>
+                                    <div class="timeline-desc">Reads the workbook, detects each
+                                    column's shape, joins the hand-curated codebook, and writes six
+                                    CSVs, the SQLite database and <span class="mth-code">manifest.json</span>.
+                                    Mechanical only.</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-year">Stage 2 — validate</div>
+                                    <div class="timeline-title"><span class="mth-code">scripts/validate_dataset.py</span></div>
+                                    <div class="timeline-desc">86 checks: cell-conservation round-trip
+                                    against the workbook, selection-explosion conservation, label
+                                    coverage, anchor and parent integrity, and the frozen dataset
+                                    figures. Non-zero exit on any failure.</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-year">Stage 3 — derive</div>
+                                    <div class="timeline-title"><span class="mth-code">scripts/analytics/derive_flags.py</span></div>
+                                    <div class="timeline-desc">Per-respondent integrity flags into
+                                    <span class="mth-code">data/derived/</span>: junk candidates, resubmissions, entity
+                                    families, shared-text clusters and blocs, citations and domains.
+                                    Emits candidates; decides nothing.</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-year">Stage 4 — curate</div>
+                                    <div class="timeline-title"><span class="mth-code">reference/</span> — audit, exclusions, themes, quotes</div>
+                                    <div class="timeline-desc">The human layer: the organization audit
+                                    and the adjudicated exclusion list, the theme taxonomy and every
+                                    free-text answer coded against it, and the curated quote set. Each
+                                    has its own test suite.</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-year">Stage 5 — export</div>
+                                    <div class="timeline-title"><span class="mth-code">scripts/analytics/export_frontend.py</span></div>
+                                    <div class="timeline-desc">Recomputes every aggregate on the
+                                    analytical base, applies the privacy mask, and writes the
+                                    <span class="mth-code">frontend/data/*.json</span> contract this site reads. A
+                                    companion validator re-derives every exported number
+                                    independently from the database.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Mechanical and editorial are separated on purpose</h3>
+                            <p class="mth-prose">Three files carry the build, and the split between
+                            them is the point: a reader who disagrees with a judgment can find it in
+                            one place, change it, and rebuild. No interpretation is buried in the
+                            reshaping code.</p>
+                            <div class="grid-3col">
+                                <div class="card-accent card-accent-cyan">
+                                    <div class="mth-rule-head"><span class="mth-code">build_dataset.py</span></div>
+                                    <p class="mth-mini"><strong>Mechanical.</strong> Header parsing,
+                                    shape detection, whitespace normalization, multi-select explosion,
+                                    table writing. Knows nothing about what any answer <em>means</em>.</p>
+                                </div>
+                                <div class="card-accent card-accent-indigo">
+                                    <div class="mth-rule-head"><span class="mth-code">survey_meta.py</span></div>
+                                    <p class="mth-mini"><strong>Editorial, structural.</strong> Section
+                                    groupings, the stringency ladder, the granularity ladders, the
+                                    special-option list, the polarity map, per-question caveats, and
+                                    the closed vocabularies its <span class="mth-code">load_labels()</span> gatekeeper
+                                    enforces.</p>
+                                </div>
+                                <div class="card-accent card-accent-green">
+                                    <div class="mth-rule-head"><span class="mth-code">question_labels.csv</span></div>
+                                    <p class="mth-mini"><strong>Editorial, per question.</strong> 56
+                                    hand-judged rows: shorthand, label, topic, document section,
+                                    concern category, answer shape, and a notes column disclosing
+                                    every wording defect found.</p>
+                                </div>
+                            </div>
+                            <div class="insight-box">
+                                The build <strong>fails loudly</strong> rather than guessing: a missing
+                                label row, a repeated or numeric shorthand, an unrecognized vocabulary
+                                value, a subcategory filed under the wrong category, an empty hazard
+                                note, or a leftover <span class="mth-code">tbd</span> placeholder each stop the build
+                                and name the offending question.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ======================================================= -->
+                <!-- 2. QUESTION IDENTITY                                    -->
+                <!-- ======================================================= -->
+                <section id="identity">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h2>Question identity</h2>
+                        <p>Stable join keys that survive the export's numbering gaps, its
+                        sub-numbered matrix, and one malformed header.</p>
+                    </div>
+
+                    <div class="mth-blocks">
+                        <div class="card card-spacious scroll-reveal">
+                            <dl class="mth-terms">
+                                <dt><span class="mth-code">question_id</span></dt>
+                                <dd>The immutable join key. Zero-padded so it sorts correctly:
+                                <span class="mth-code">Q003</span>&hellip;<span class="mth-code">Q052</span> for ordinary questions,
+                                <span class="mth-code">Q026_1</span>&hellip;<span class="mth-code">Q026_9</span> for the nine
+                                additionality-matrix rows.</dd>
+                                <dt><span class="mth-code">question_number</span> / <span class="mth-code">sub_number</span></dt>
+                                <dd>The integer parts — <span class="mth-code">Q026_4</span> is number 26, sub-number 4.</dd>
+                                <dt><span class="mth-code">display</span></dt>
+                                <dd>The human-facing form used in every chart label and popover on
+                                this site: <span class="mth-code">Q19</span>, <span class="mth-code">Q26.4</span>. Never used as a key.</dd>
+                                <dt><span class="mth-code">shorthand</span></dt>
+                                <dd>A unique snake_case slug carrying what the question is about —
+                                <span class="mth-code">formula_appropriate</span>, <span class="mth-code">addl_regulatory_req</span>,
+                                <span class="mth-code">temporal_granularity_max</span> — so queries read as English.
+                                Unique across all 56 columns and forbidden to contain digits, both
+                                enforced at build time.</dd>
+                            </dl>
+                        </div>
+
+                        <div class="grid-2col scroll-reveal">
+                            <div class="mth-rule">
+                                <div class="mth-rule-head">The header parser tolerates a malformed row</div>
+                                <p>Question 26 arrives as nine sub-numbered headers,
+                                "26.1."&ndash;"26.9.". One is defective in the source:
+                                <span class="mth-code">26.6 Posititve list</span> — missing its second period and
+                                misspelling "Positive". The parser
+                                <span class="mth-code">^\s*(\d{1,3})(?:\.(\d))?\.?\s</span> makes the trailing period
+                                optional, so 26.6 parses as 26.6 regardless.</p>
+                                <p><strong>The export is not corrected.</strong> The typo is disclosed
+                                in the codebook's notes column and reproduced here; silently fixing
+                                source text is how provenance dies.</p>
+                            </div>
+                            <div class="mth-rule">
+                                <div class="mth-rule-head">Numbering has gaps at both ends</div>
+                                <p>Survey numbers <strong>1, 2, 7 and 8 are absent</strong> from the
+                                export; numbering runs 3&ndash;52. Questions 3&ndash;17 are the
+                                respondent profile (13 columns), 18&ndash;52 the substantive record
+                                (43 columns, including the nine matrix rows).</p>
+                                <p><span class="mth-code">respondent_id</span> runs <strong>3 to 201 with gaps</strong>
+                                and is the survey tool's own identifier, not a row index. Never assume
+                                1&hellip;185, and never renumber: the IDs are how a claim on this site
+                                is traced back to a submission.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ======================================================= -->
+                <!-- 3. THE ANALYTICAL BASE                                  -->
+                <!-- ======================================================= -->
+                <section id="base">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h2>The analytical base — 185 raw, 180 analytical</h2>
+                        <p>Four junk submissions and one superseded resubmission are excluded from
+                        every aggregate, every quote and every browser on this site. They are deleted
+                        from nothing.</p>
+                    </div>
+
+                    <div class="mth-blocks">
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">What the base is</h3>
+                            <dl class="mth-terms">
+                                <dt>Raw base</dt>
+                                <dd><strong>185</strong> submissions — every row in the export.
+                                <span class="mth-code">data/respondents.csv</span> keeps all 185, and the integrity
+                                page shows the excluded ones in full.</dd>
+                                <dt>Analytical base</dt>
+                                <dd><strong>180</strong> = 185 &minus; 4 junk (IDs <strong>11, 12, 14,
+                                31</strong>) &minus; 1 superseded (ID <strong>100</strong>). Every
+                                percentage, chart, theme count and quote on this site divides by this
+                                base or by a question's own subset of it.</dd>
+                                <dt>Named vs redacted</dt>
+                                <dd>Of the 180: <strong>105 named</strong>, <strong>75 redacted</strong>
+                                (41.7%). Three of the five excluded submissions were named, so the
+                                named-organization browser covers 108 &minus; 3 =
+                                <strong>105</strong> profiles.</dd>
+                            </dl>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">The junk rule, as implemented</h3>
+                            <p class="mth-prose">An answer counts as gibberish when it is
+                            <strong>shorter than 20 characters</strong> <em>and</em> trips at least
+                            one of three tests. A respondent becomes a junk candidate when
+                            <strong>at least 50%</strong> of their free-text answers are gibberish.
+                            The detector is content-only: it never looks at a name, an organization, a
+                            country or a closed-question answer, which is what lets it adjudicate
+                            redacted submissions without inferring identity.</p>
+                            <div class="grid-3col">
+                                <div class="card-accent card-accent-indigo">
+                                    <div class="mth-rule-head">Repeated single character</div>
+                                    <p class="mth-mini">After stripping non-alphanumerics, one distinct
+                                    character remains. Catches <span class="mth-code">e</span>,
+                                    <span class="mth-code">aaaa</span>, <span class="mth-code">1111</span>.</p>
+                                </div>
+                                <div class="card-accent card-accent-cyan">
+                                    <div class="mth-rule-head">Vowel ratio below 0.30</div>
+                                    <p class="mth-mini">Vowels &divide; letters. Catches consonant mash
+                                    such as <span class="mth-code">gfnhgf</span>, <span class="mth-code">zdfb</span>,
+                                    <span class="mth-code">znzfn</span>.</p>
+                                </div>
+                                <div class="card-accent card-accent-green">
+                                    <div class="mth-rule-head">Keyboard run &ge; 3</div>
+                                    <p class="mth-mini">Three or more keys adjacent on one QWERTY row,
+                                    in sequence, either direction. Catches <span class="mth-code">asdf</span>,
+                                    <span class="mth-code">qwerty</span>.</p>
+                                </div>
+                            </div>
+                            <div class="insight-box insight-warn">
+                                <strong>The thresholds are choices, and they are disclosed.</strong>
+                                0.30 is the implemented vowel ratio; a laxer 0.35 would still catch all
+                                four submissions, but 0.30 combined with the keyboard-run test
+                                reproduces the per-respondent gibberish tallies exactly, so 0.30 is
+                                what ships. The rule is deliberately a <em>candidate</em> detector,
+                                and no submission is excluded on its output alone.
+                            </div>
+                        </div>
+
+                        <div class="chart-panel scroll-reveal">
+                            <h3 class="chart-title">The five excluded submissions, with the evidence</h3>
+                            <div class="mth-scroll">
+                            <table class="data-table mth-rowhead">
+                                <caption class="sr-only">The five submissions excluded from the analytical base, their reason, whether they were named or redacted, and the evidence recorded in reference/exclusions.csv</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Reason</th>
+                                        <th scope="col">Identity</th>
+                                        <th scope="col">Evidence</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">11</th>
+                                        <td><span class="stat-badge stat-badge-red">junk</span></td>
+                                        <td>Named</td>
+                                        <td>Name field <span class="mth-evidence">fzbf</span>, organization
+                                        <span class="mth-evidence">fgnzn</span> — both keyboard mash. The
+                                        detector flags 12 of 15 in-scope free-text answers as
+                                        gibberish
+                                        (<span class="mth-evidence">gfnhgf · zdfb · bzf · zfzn · znzfn · dfbadf</span>);
+                                        the adjudication records 8 of 15 substantive answers as
+                                        gibberish tokens with the remainder equally short non-words,
+                                        89 free-text characters across 17 answers in all. All nine
+                                        matrix rows straight-lined "Required".</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">12</th>
+                                        <td><span class="stat-badge stat-badge-red">junk</span></td>
+                                        <td>Redacted</td>
+                                        <td>All <strong>24 of 24</strong> free-text answers — every
+                                        profile write-in and every substantive comment from Q18 to Q52
+                                        — are the single letter <span class="mth-evidence">e</span>. 24
+                                        free-text characters in the whole submission. All nine matrix
+                                        rows straight-lined "Required".</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">14</th>
+                                        <td><span class="stat-badge stat-badge-red">junk</span></td>
+                                        <td>Named</td>
+                                        <td>Name and organization both <span class="mth-evidence">asdf</span>.
+                                        The detector flags 9 of 10 in-scope free-text answers as
+                                        gibberish; the adjudication records all four profile
+                                        write-ins plus 8 of 10 free-text answers as
+                                        <span class="mth-evidence">asdf</span> or
+                                        <span class="mth-evidence">adsf</span>, 91 free-text characters in all.
+                                        The longest answer in the submission (47 chars) is "asdf"
+                                        repeated with line breaks. Abandoned after Q26.2.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">31</th>
+                                        <td><span class="stat-badge stat-badge-red">junk</span></td>
+                                        <td>Redacted</td>
+                                        <td>All <strong>6 of 6</strong> free-text answers are runs of
+                                        the letter&nbsp;a
+                                        (<span class="mth-evidence">aaa · aaaaa · aaaa · aaaa · aaaaaa · aaaaaa</span>)
+                                        — 28 characters, zero substantive text, 100% gibberish. All
+                                        nine matrix rows straight-lined "Optional".
+                                        <strong>Found late</strong> — see the amendment note below.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">100</th>
+                                        <td><span class="stat-badge stat-badge-amber">superseded</span></td>
+                                        <td>Named</td>
+                                        <td>Same named individual and organization as ID
+                                        <strong>151</strong>. ID 100 carries 10 answer cells; ID 151
+                                        carries 35 and answers every question ID 100 answered, so 151
+                                        is a strict superset. Of the 10 overlapping cells 8 are
+                                        byte-identical; the two that changed are the organization name
+                                        and the entire Q18 answer, rewritten from Brazilian grid
+                                        context into a structured benefits/challenges list.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            <p class="mth-prose">Two of the four junk submissions are
+                            <strong>redacted</strong>. They were adjudicated on answer content alone —
+                            their identity is never inferred, named or guessed, and the evidence
+                            strings above are the entirety of what they wrote.</p>
+                        </div>
+
+                        <div class="mth-rule scroll-reveal">
+                            <div class="mth-rule-head">The resubmission rule: keep the later filing</div>
+                            <p>Where the same non-placeholder name appears on two submissions, the
+                            <strong>later, fuller</strong> filing counts and the earlier one is
+                            excluded and disclosed. Here that is 100 &rarr; 151. This is not a
+                            duplicate-merge: nothing from ID 100 is folded into ID 151, and the
+                            answers that <em>changed</em> between the two filings are shown side by
+                            side on the integrity page rather than quietly overwritten.</p>
+                            <p><strong>An entity family is not a duplicate.</strong> Engie Impact
+                            appears twice (IDs 135 and 160) — different named individuals, different
+                            answers. Both count toward the base; they are grouped as a family for
+                            display only.</p>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">The adjudication trail</h3>
+                            <p class="mth-prose">Detection, decision and enforcement are three
+                            separate steps carried by three separate artifacts, so that no single
+                            automated pass can quietly drop a submission from the record.</p>
+                            <div class="mth-calc">
+                                <div class="mth-calc-row">
+                                    <span><strong>Detect.</strong> <span class="mth-code">derive_flags.py</span> sweeps
+                                    all 185 submissions and writes candidates to
+                                    <span class="mth-code">data/derived/respondent_flags.csv</span>. It sets no
+                                    exclusion.</span>
+                                    <span class="mth-calc-val">4 junk + 1 superseded</span>
+                                </div>
+                                <div class="mth-calc-row">
+                                    <span><strong>Adjudicate.</strong> A human pass reviews each
+                                    candidate's text and records a reason and a written evidence
+                                    string in <span class="mth-code">reference/exclusions.csv</span> — the
+                                    authoritative list.</span>
+                                    <span class="mth-calc-val">5 rows</span>
+                                </div>
+                                <div class="mth-calc-row">
+                                    <span><strong>Enforce.</strong> The exporter reads
+                                    <span class="mth-code">exclusions.csv</span> and filters those respondents out of
+                                    every aggregate, quote pool and organization file it writes.</span>
+                                    <span class="mth-calc-val">180 in scope</span>
+                                </div>
+                                <div class="mth-calc-row mth-calc-total">
+                                    <span>Analytical base</span>
+                                    <span class="mth-calc-val">180 of 185</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="insight-box insight-warn scroll-reveal">
+                            <strong>Amendment — the base moved from 181 to 180 during the build.</strong>
+                            The planning digest anticipated three junk submissions (11, 12, 14) and
+                            one resubmission, giving 181. The full 185-row sweep found a fourth,
+                            <strong>ID 31</strong>: a redacted submission whose six free-text answers
+                            are all runs of the letter&nbsp;a, with the matrix straight-lined
+                            "Optional" — the same signature as ID 12, and 100% gibberish against the
+                            &ge;50% rule. It was confirmed on the same content-only basis, and the
+                            base is <strong>180</strong>. Six theme codes had already been assigned to
+                            ID 31 before the ruling landed; the exporter filters them. Any figure
+                            anywhere reading 181 is stale.
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Why it matters: the junk rows answered the closed questions</h3>
+                            <p class="mth-prose">The four junk submissions wrote nothing usable, but
+                            they <em>did</em> tick boxes — three of them straight-lined the entire
+                            additionality matrix. Excluding them therefore moves the headline figures,
+                            which is precisely why the raw and analytical bases must never be mixed on
+                            one chart.</p>
+                            <div class="mth-scroll">
+                            <table class="data-table mth-rowhead">
+                                <caption class="sr-only">Q19 counts and the headline percentage on the raw base of 185 versus the analytical base of 180</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Q19 — is the formula appropriate?</th>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Yes</th>
+                                        <th scope="col">n</th>
+                                        <th scope="col">% No</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Raw base (185)</th>
+                                        <td>84</td><td>49</td><td>133</td><td>63.2%</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Analytical base (180)</th>
+                                        <td>81</td><td>48</td><td>129</td><td>62.8%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            <p class="mth-prose"><strong>Every chart on this site uses the analytical
+                            row.</strong> The provisional planning digest quoted raw-base figures
+                            throughout; where this site and that digest differ by a few counts, this
+                            is why.</p>
+                        </div>
+
+                        <div class="insight-glass insight-glass-cyan scroll-reveal">
+                            <strong>Disclosure principle.</strong> Excluded is not deleted. The raw
+                            export is never modified. <span class="mth-code">respondents.csv</span> keeps all 185 rows
+                            with <span class="mth-code">is_excluded</span> / <span class="mth-code">exclusion_reason</span> columns.
+                            The five excluded submissions are shown in full — IDs, evidence, and the
+                            changed answers of the resubmission — on the
+                            <a href="integrity.html">integrity page</a>, which exists so that the
+                            exclusions are auditable rather than merely asserted.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ======================================================= -->
+                <!-- 4. CONSTRUCTS & ARITHMETIC                              -->
+                <!-- ======================================================= -->
+                <section id="constructs">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h2>Constructs &amp; arithmetic</h2>
+                        <p>Five rules govern every percentage on this site. Each exists because the
+                        obvious shortcut produces a specific, nameable misreading.</p>
+                    </div>
+
+                    <div class="mth-blocks">
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Rule 1 — the additionality matrix is stringency, not sentiment</h3>
+                            <p class="mth-prose">Questions 26.1&ndash;26.9 ask whether each of nine
+                            additionality tests should be <strong>Required</strong>,
+                            <strong>Optional</strong> or <strong>Not required</strong>. That is an
+                            ordered scale of how binding a test should be — carried as
+                            <span class="mth-code">answer_numeric</span> 3&nbsp;/&nbsp;2&nbsp;/&nbsp;1 with
+                            <span class="mth-code">construct = stringency</span>.</p>
+                            <p class="mth-prose">"Required" is <em>not</em> approval and
+                            "Not required" is <em>not</em> disapproval. A respondent who thinks the
+                            regulatory test is sound but should stay optional is not expressing
+                            half-support. So the matrix is painted with a <strong>sequential
+                            ramp</strong>, never the green/red support ramp, and it is never averaged
+                            against anything else. Support colors on this site are reserved for
+                            questions that carry an explicit polarity declaration.</p>
+                            <p class="mth-prose">The one derived figure the matrix carries is
+                            <strong>net requiredness = %Required &minus; %Not&nbsp;required</strong>,
+                            on each test's own base. It is a sort order, not a score.</p>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Rule 2 — polarity is declared, proposal-relative, and sometimes absent</h3>
+                            <p class="mth-prose">A binary Yes/No means nothing until you know what the
+                            consultation document proposed. Polarity is declared once, in
+                            <span class="mth-code">survey_meta.POLARITY</span>, and validated at build time against the
+                            actual answer options:</p>
+                            <div class="mth-scroll">
+                            <table class="data-table mth-rowhead">
+                                <caption class="sr-only">The polarity declaration for each stance question: which answer is critical of the drafted approach, which is supportive, and why</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Question</th>
+                                        <th scope="col">Critical of the draft</th>
+                                        <th scope="col">Supportive</th>
+                                        <th scope="col">Why</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Q19 — formula appropriate</th>
+                                        <td><strong>No</strong></td><td>Yes</td>
+                                        <td>The document proposes the Scope&nbsp;2 TWG subgroup formula.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Q21 — consider secondary effects</th>
+                                        <td><strong>Yes</strong></td><td>No</td>
+                                        <td>The drafted approach <em>excludes</em> secondary effects,
+                                        so "Yes" pushes against it. The intuitive reading is
+                                        inverted.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Q24 — reporting period</th>
+                                        <td><strong>Lifetime</strong></td><td>Each year</td>
+                                        <td>The document recommends reporting each year.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Q31 — regional differences</th>
+                                        <td colspan="2"><em>none declared</em></td>
+                                        <td rowspan="2">The document takes no position on either, so
+                                        neither answer can be called critical. These render in neutral
+                                        colors.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Q33 — rigor by claim type</th>
+                                        <td colspan="2"><em>none declared</em></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Rule 3 — special options are never netted</h3>
+                            <p class="mth-prose">Twelve picklist options are escape hatches rather
+                            than positions. They are flagged <span class="mth-code">is_special</span>, carry no rank,
+                            render as their own neutral-gray segments, and stay out of every net
+                            figure:</p>
+                            <div class="mth-scroll">
+                            <table class="data-table mth-rowhead">
+                                <caption class="sr-only">The twelve special options, the question they belong to, and how many respondents selected each on the raw base</caption>
+                                <thead>
+                                    <tr><th scope="col">Question</th><th scope="col">Option</th><th scope="col">n selected</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row">Q10</th><td>Other or N/A (please specify)</td><td>34</td></tr>
+                                    <tr><th scope="row">Q12</th><td>Not applicable</td><td>52</td></tr>
+                                    <tr><th scope="row">Q28</th><td>None (no tests are feasible)</td><td>10</td></tr>
+                                    <tr><th scope="row">Q31</th><td>Unsure, depends on details</td><td>32</td></tr>
+                                    <tr><th scope="row">Q35 / Q36</th><td>None</td><td>7 / 9</td></tr>
+                                    <tr><th scope="row">Q38 / Q39</th><td>None</td><td>7 / 5</td></tr>
+                                    <tr><th scope="row">Q47</th><td>None are appropriate · Unsure</td><td>9 · 15</td></tr>
+                                    <tr><th scope="row">Q49</th><td>All are feasible · Unsure</td><td>16 · 21</td></tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            <div class="insight-box insight-danger">
+                                <strong>"All are feasible" on Q49 means the opposite of a pick.</strong>
+                                Q49 asks which weighting approaches are <em>not feasible to
+                                implement</em>. Selecting "All are feasible" states that nothing
+                                belongs on that list. Counting it as one more not-feasible selection
+                                inverts its meaning exactly. This is the concrete reason the
+                                no-netting rule exists.
+                            </div>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Rule 4 — scoreboard nets use each question's own base</h3>
+                            <p class="mth-prose">The three methodology scoreboards each pair two
+                            independent multi-select questions with <strong>different
+                            denominators</strong>: operating margin Q35 (appropriate) against Q36 (not
+                            appropriate), build margin Q38 against Q39, weighting Q47 against Q49.
+                            Respondents did not have to answer both, so the two lists are not
+                            complements.</p>
+                            <p class="mth-prose"><strong>net % = (share of the appropriate base)
+                            &minus; (share of the not-appropriate base)</strong>, and both bases are
+                            always printed beside the bar. Worked example —
+                            SCED&nbsp;&ndash;&nbsp;locational, the operating-margin front-runner:</p>
+                            <div class="mth-calc">
+                                <div class="mth-calc-row">
+                                    <span>Q35 "appropriate" — 47 of the 66 analytical-base respondents who answered Q35</span>
+                                    <span class="mth-calc-val">71.2%</span>
+                                </div>
+                                <div class="mth-calc-row">
+                                    <span>Q36 "not appropriate" — 10 of the 54 analytical-base respondents who answered Q36</span>
+                                    <span class="mth-calc-val">&minus; 18.5%</span>
+                                </div>
+                                <div class="mth-calc-row mth-calc-total">
+                                    <span>net, analytical base</span>
+                                    <span class="mth-calc-val">+52.7</span>
+                                </div>
+                            </div>
+                            <p class="mth-prose">On the <strong>raw</strong> base the same option
+                            reads 48&nbsp;/&nbsp;69 = 69.6% against 12&nbsp;/&nbsp;57 = 21.1%, for a
+                            net of <strong>+48.5</strong> — the figure the planning digest carried.
+                            The gap between +48.5 and +52.7 is entirely the three junk submissions
+                            that ticked boxes on both questions. It is a small number that changes no
+                            conclusion, and it is exactly the kind of drift that goes unnoticed when a
+                            base is left unstated.</p>
+                            <div class="insight-box">
+                                A methodology absent from <em>both</em> lists is <strong>unknown, not
+                                neutral</strong> — nobody is counted as indifferent by default. And
+                                the weighting pair is asymmetric on top of everything above: Q47 asks
+                                which approaches are <em>appropriate</em>, Q49 which are <em>not
+                                feasible to implement</em>. An approach can be appropriate and
+                                infeasible at once, so Q49 is not Q47's inverse and its net is read
+                                with more caution than the other two.
+                            </div>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Rule 5 — the granularity ladders are ceilings, and the binning is stated</h3>
+                            <p class="mth-prose">Q43 and Q45 ask for the <strong>maximum
+                            appropriate</strong> spatial and temporal granularity — a ceiling, not a
+                            preference. Answering "Nodal" is not a demand for nodal data; it is a
+                            statement that nodal would not be too fine. Both are ranked
+                            coarse&nbsp;&rarr;&nbsp;fine:</p>
+                            <div class="grid-2col">
+                                <div>
+                                    <div class="mth-rule-head">Q43 — spatial</div>
+                                    <div class="mth-scroll">
+                                    <table class="data-table mth-rowhead">
+                                        <caption class="sr-only">Q43 spatial granularity ladder: coarse-to-fine rank, option, and selections on the raw base</caption>
+                                        <thead><tr><th scope="col">Rank</th><th scope="col">Option</th><th scope="col">n</th></tr></thead>
+                                        <tbody>
+                                            <tr><th scope="row">1</th><td>Country</td><td>22</td></tr>
+                                            <tr><th scope="row">2</th><td>Grid region</td><td>20</td></tr>
+                                            <tr><th scope="row">3</th><td>Balancing area</td><td>15</td></tr>
+                                            <tr><th scope="row">4</th><td>Zonal</td><td>3</td></tr>
+                                            <tr><th scope="row">5</th><td>Nodal</td><td>20</td></tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="mth-rule-head">Q45 — temporal</div>
+                                    <div class="mth-scroll">
+                                    <table class="data-table mth-rowhead">
+                                        <caption class="sr-only">Q45 temporal granularity ladder: coarse-to-fine rank, option, and selections on the raw base</caption>
+                                        <thead><tr><th scope="col">Rank</th><th scope="col">Option</th><th scope="col">n</th></tr></thead>
+                                        <tbody>
+                                            <tr><th scope="row">1</th><td>Annual</td><td>31</td></tr>
+                                            <tr><th scope="row">2</th><td>Monthly</td><td>6</td></tr>
+                                            <tr><th scope="row">3</th><td>Hourly</td><td>30</td></tr>
+                                            <tr><th scope="row">4</th><td>Sub-hourly</td><td>14</td></tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mth-prose">The document offers "Daily" on Q45; no respondent
+                            selected it, so it is absent from the export and the ladder steps straight
+                            from Monthly to Hourly. A rank is a position on a ladder, not a quantity —
+                            <strong>ranks are never averaged</strong> into a "mean granularity", which
+                            would be meaningless.</p>
+                            <p class="mth-prose"><strong>The binning rule.</strong> Where this site
+                            reports a fine-versus-coarse reading of Q45, <strong>fine = Hourly +
+                            Sub-hourly</strong> (ranks 3&ndash;4) and <strong>coarse = Annual +
+                            Monthly</strong> (ranks 1&ndash;2). The boundary sits between monthly and
+                            hourly because that is where the reporting burden changes character. The
+                            unbinned four-way split is always shown alongside, because the binning is
+                            an interpretive choice and a reader is entitled to disagree with it.</p>
+                        </div>
+
+                        <div class="emphasis-callout scroll-reveal">
+                            <div class="emphasis-big">165 &rarr; 36</div>
+                            <div class="emphasis-desc">Every percentage on this site carries its n</div>
+                            <div class="emphasis-sub">Response counts fall from 165 on Q18 to 36 on
+                            Q52 — by the survey's own evidence question, four-fifths of the room has
+                            left. A bare percentage across that range conflates "most people disagree"
+                            with "most people had stopped answering". On the analytical base the same
+                            spine runs 160 &rarr; 34.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ======================================================= -->
+                <!-- 5. THEME CODING                                         -->
+                <!-- ======================================================= -->
+                <section id="themes">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h2>Theme coding</h2>
+                        <p>This survey has no reason picklists. The free-text record is the record —
+                        so it was read, in full, against a closed vocabulary fixed before the reading
+                        began.</p>
+                    </div>
+
+                    <div class="mth-blocks">
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">The taxonomy</h3>
+                            <p class="mth-prose"><strong>43 theme keys</strong>, plus an
+                            <span class="mth-code">uncodeable</span> sentinel, each documented with a definition and
+                            inclusion rules in <span class="mth-code">reference/theme_taxonomy.md</span>. Keys were
+                            drafted from a reconnaissance pass over eight questions spanning every
+                            topic, then <strong>locked before the full coding pass</strong> so the
+                            vocabulary could not be quietly grown to fit whatever turned up. Each key
+                            carries one of four polarities:</p>
+                            <div class="grid-2col">
+                                <div class="card-accent card-accent-red">
+                                    <div class="mth-rule-head"><span class="ec-tag ec-tag-concern">concern</span></div>
+                                    <p class="mth-mini">Names a problem or risk of consequential
+                                    accounting or of the proposal —
+                                    <span class="mth-code">attribution_uncertainty</span>,
+                                    <span class="mth-code">complexity_burden</span>,
+                                    <span class="mth-code">gaming_greenwashing_risk</span>.</p>
+                                </div>
+                                <div class="card-accent card-accent-green">
+                                    <div class="mth-rule-head"><span class="ec-tag ec-tag-support">support</span></div>
+                                    <p class="mth-mini">Argues the value of consequential accounting or
+                                    of a proposed element — <span class="mth-code">net_impact_completeness</span>,
+                                    <span class="mth-code">corrects_attributional_blindspots</span>.</p>
+                                </div>
+                                <div class="card-accent card-accent-indigo">
+                                    <div class="mth-rule-head"><span class="ec-tag ec-tag-design">design</span></div>
+                                    <p class="mth-mini">Prescribes how the standard should be built —
+                                    <span class="mth-code">tiered_rigor_by_claim</span>,
+                                    <span class="mth-code">standardization_guidance</span>,
+                                    <span class="mth-code">annual_truing_up</span>.</p>
+                                </div>
+                                <div class="card-accent card-accent-cyan">
+                                    <div class="mth-rule-head"><span class="ec-tag ec-tag-neutral">neutral</span></div>
+                                    <p class="mth-mini">Contextual or informational content —
+                                    <span class="mth-code">evidence_pointer</span>,
+                                    <span class="mth-code">workstream_coordination</span>.</p>
+                                </div>
+                            </div>
+                            <p class="mth-prose"><strong>Polarity belongs to the theme, not to the
+                            respondent.</strong> Coding an answer <span class="mth-code">complexity_burden</span> says
+                            the answer argues that complexity is a problem; it says nothing about
+                            whether that respondent supports the proposal overall. Theme bars on this
+                            site are never read as approval ratings.</p>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">The coding pass</h3>
+                            <dl class="mth-terms">
+                                <dt>Scope</dt>
+                                <dd><strong>1,335 free-text answers coded</strong> across 20
+                                substantive questions — every substantive free-text answer in the
+                                survey except those of junk IDs 11/12/14 and superseded ID 100, which
+                                were skipped before the reading began. ID 31's six answers were coded
+                                before its junk ruling landed; the exporter filters them, leaving
+                                <strong>1,329</strong> coded answers on the analytical base.</dd>
+                                <dt>Multi-label</dt>
+                                <dd>An answer gets <em>every</em> theme it argues.
+                                <strong>3,300 code assignments</strong> over 1,335 answers — a mean of
+                                <strong>2.47</strong> themes per answer, ranging from one (439
+                                answers) to thirteen. A long submission arguing five distinct
+                                objections is coded with five keys.</dd>
+                                <dt>Coverage</dt>
+                                <dd><strong>94.0% raw</strong> — 80 of 1,335 answers are
+                                <span class="mth-code">uncodeable</span> (an "N/A", a dash, a bare cross-reference, no
+                                thematic content). Counting each distinct normalized text once,
+                                coverage is <strong>97.8% dedup-adjusted</strong>: the uncoded residue
+                                is disproportionately short boilerplate that repeats.</dd>
+                                <dt>Template propagation</dt>
+                                <dd>Answers whose normalized text is identical carry
+                                <strong>identical codes</strong> — the text is read and coded once,
+                                then propagated. This makes coordinated submissions visible as
+                                coordination rather than as independent agreement.</dd>
+                            </dl>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Dedup-adjusted counts</h3>
+                            <p class="mth-prose">Every theme count on this site is published
+                            <strong>twice</strong>: a raw count of answers, and
+                            <span class="mth-code">n_dedup</span>, which counts each shared-text cluster's members
+                            <strong>once</strong>. When a five-member response pack files the same
+                            paragraph, the raw count says five and the dedup count says one. Neither
+                            is wrong; presenting only the first would be.</p>
+                            <p class="mth-prose">The clusters that drive the adjustment are found
+                            mechanically, not editorially. A <strong>shared-text cluster</strong> is a
+                            normalized string of <strong>&ge;200 characters</strong> appearing verbatim
+                            in <strong>&ge;2</strong> submissions; this build finds <strong>38
+                            clusters</strong> spanning <strong>26 respondents</strong>. A
+                            <strong>bloc</strong> is a connected component over respondents sharing
+                            <strong>&ge;2 distinct clusters</strong> — and that two-cluster threshold
+                            matters: a &ge;3 threshold dissolves the five-member policy-insights pack
+                            entirely. Eight blocs emerge, of which two are substantial: a five-member
+                            pack (IDs 43, 47, 60, 79, 82 — all redacted) and a four-member
+                            bullet-formatted pack (IDs 51, 86, 89, 117) spanning Q18&ndash;Q44.</p>
+                        </div>
+
+                        <div class="insight-glass insight-glass-indigo scroll-reveal">
+                            <strong>Where human judgment enters — and where it stops.</strong> Three
+                            places, and they are the ones to argue with. <strong>(1)</strong> The
+                            taxonomy: which 43 keys exist, and where the boundaries between them fall.
+                            Four seed keys were merged and one — <span class="mth-code">workstream_coordination</span>
+                            — was added mid-pass when more than ten respondents independently argued a
+                            position no key covered; both changes are disclosed in the taxonomy
+                            document. <strong>(2)</strong> Applying keys to answers: one reader, no
+                            second coder, and therefore no inter-rater agreement statistic to quote.
+                            <strong>(3)</strong> Quote selection — 65 quotes across five topics,
+                            verbatim substrings capped at 600 characters with
+                            <span class="mth-code">[&hellip;]</span> elisions, tested for verbatim fidelity against the
+                            database. Two guards constrain all three: a theme is coded only when the
+                            answer <em>argues</em> it, never when it merely names a concept in
+                            passing; and codes come from the text alone — never from the respondent's
+                            org type, country, or closed-question stance. Full definitions and
+                            inclusion rules are in <span class="mth-code">reference/theme_taxonomy.md</span>.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ======================================================= -->
+                <!-- 6. PRIVACY & MASKING                                    -->
+                <!-- ======================================================= -->
+                <section id="privacy">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h2>Privacy &amp; masking</h2>
+                        <p>Two in five respondents asked not to be identified. At n=180, honoring
+                        that requires coarsening the segments, not just hiding the names.</p>
+                    </div>
+
+                    <div class="mth-blocks">
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Four coarse dimensions, and no fifth</h3>
+                            <p class="mth-prose">Cross-tabulation is how anonymity leaks: a respondent
+                            who is the only Financial Institution in Japan filing as an individual is
+                            identifiable without ever being named. So this site exposes exactly
+                            <strong>four</strong> segment dimensions, each deliberately coarse, and
+                            offers no way to combine them. Counts are on the analytical base of 180:</p>
+                            <div class="mth-scroll">
+                            <table class="data-table mth-rowhead">
+                                <caption class="sr-only">The four segment dimensions available on this site and their analytical-base counts</caption>
+                                <thead>
+                                    <tr><th scope="col">Dimension</th><th scope="col">Values (analytical base, n=180)</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><span class="mth-code">org_type_5</span></th>
+                                        <td>company 60 · consultant 25 · ngo 21 · industry_group 17 ·
+                                        <strong>other 57</strong> (the remaining nine organization
+                                        types collapsed together)</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><span class="mth-code">country_4</span></th>
+                                        <td>us 104 · uk 12 · jp 8 · <strong>other 56</strong> (24
+                                        countries collapsed; only three clear the threshold alone)</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><span class="mth-code">redaction</span></th>
+                                        <td>named 105 · redacted 75</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><span class="mth-code">responding_as</span></th>
+                                        <td>organization 159 · individual 21</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            <p class="mth-prose">The source data has 13 organization types, 28
+                            countries and 24 sectors. Those live in the dataset and are documented in
+                            the README; they are not offered as chart filters, because at this sample
+                            size several of their cells contain one person.</p>
+                        </div>
+
+                        <div class="mth-rule scroll-reveal">
+                            <div class="mth-rule-head">The n&lt;5 sentinel</div>
+                            <p>Any segment cell covering <strong>fewer than five respondents</strong>
+                            is emitted as the literal sentinel <span class="mth-code">{"n": "&lt;5"}</span> — the
+                            underlying counts are never written into the exported JSON at all, so they
+                            cannot be recovered from the page source.</p>
+                            <p>Renderers <strong>hatch</strong> those cells. A masked cell is never
+                            printed as a number and never drawn as zero: "too few to show" and
+                            "nobody" are different facts, and conflating them would invent a finding.
+                            Masked cells still appear in the visually-hidden data table beside each
+                            chart, labelled as masked.</p>
+                        </div>
+
+                        <div class="mth-rule scroll-reveal">
+                            <div class="mth-rule-head">Redaction handling</div>
+                            <p><strong>77 of 185 respondents (41.6%) requested redaction</strong>; 75
+                            of the 180 on the analytical base (41.7%). Their name and organization
+                            fields read <span class="mth-code">"Redacted"</span> — never null, and never blank. A
+                            field that is empty but <em>not</em> redacted reads
+                            <span class="mth-code">"Not provided"</span>, so the two cases stay distinguishable at a
+                            glance.</p>
+                            <p><strong>Redacted respondents are never named, anywhere, on any
+                            page.</strong> They are counted in every aggregate; they appear in quotes
+                            only as "Redacted — Company, US"; they are excluded from the
+                            named-organization browser, which is why it covers 105 profiles and not
+                            180; and in bloc membership lists they appear as a count, never as an ID
+                            paired with a name. The derived tables carry no name or organization
+                            column at all — a property the flags test suite asserts on every run.</p>
+                        </div>
+
+                        <div class="insight-box insight-warn scroll-reveal">
+                            <strong>Redaction is not an accusation.</strong> Redacted respondents lean
+                            measurably against the proposed formula, against secondary effects, and
+                            toward coarser granularity — a real and reportable pattern. It is
+                            <em>not</em> evidence of bad faith. There are ordinary reasons to file
+                            without attribution, and a headline built only on attributable responses
+                            skews the other way. Both directions of that skew are shown on the
+                            <a href="integrity.html">integrity page</a>.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ======================================================= -->
+                <!-- 7. LIMITATIONS                                          -->
+                <!-- ======================================================= -->
+                <section id="limitations">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h2>Limitations</h2>
+                        <p>What this record is not. Every item here constrains a reading someone will
+                        otherwise be tempted to make.</p>
+                    </div>
+
+                    <div class="mth-blocks">
+                        <div class="grid-2col scroll-reveal">
+                            <div class="mth-rule">
+                                <div class="mth-rule-head">1. The sample is self-selected</div>
+                                <p>Nobody was sampled. 185 organizations and individuals chose to
+                                respond to a technical consultation on consequential electricity
+                                accounting. That selects for parties with a stake, the expertise to
+                                engage, and the staff time to write — and against everyone affected by
+                                the outcome who has never heard of it. <strong>Percentages describe
+                                these respondents and no wider population.</strong></p>
+                            </div>
+                            <div class="mth-rule">
+                                <div class="mth-rule-head">2. It is US-heavy</div>
+                                <p><strong>104 of 180 (57.8%)</strong> are United States respondents;
+                                the UK is next at 12 and Japan at 8. Any global reading of this record
+                                is substantially a reading of the US market's view. Where a geographic
+                                split is reportable it is shown with its n — and those ns are
+                                frequently single digits.</p>
+                            </div>
+                            <div class="mth-rule">
+                                <div class="mth-rule-head">3. Attrition is steep and monotone</div>
+                                <p>On the analytical base, response counts fall <strong>160 &rarr; 129
+                                &rarr; 106 &rarr; 99 &rarr; 66 &rarr; 34</strong> from Q18 to Q52. The
+                                later questions are answered by a persistent minority who are
+                                <em>not</em> a random subset of the earlier one. Cross-question
+                                comparisons in the back half of the survey compare different rooms of
+                                people, and this site prints both ns whenever it makes one.</p>
+                            </div>
+                            <div class="mth-rule">
+                                <div class="mth-rule-head">4. The evidence base is thin</div>
+                                <p>Q52 — the consultation's own request for supporting research and
+                                documentation — drew <strong>36 answers on the raw base (34
+                                analytical)</strong>, several of them "N/A". Citation mining across the
+                                whole free-text record finds <strong>138 citation-bearing answers from
+                                49 respondents</strong> across 74 linked domains. The record is
+                                <strong>argued far more than it is evidenced</strong>, and a
+                                position's popularity here carries no information about its empirical
+                                support.</p>
+                            </div>
+                            <div class="mth-rule">
+                                <div class="mth-rule-head">5. Some submissions are coordinated</div>
+                                <p><strong>38 shared-text clusters span 26 respondents</strong>,
+                                including a five-member and a four-member response pack. Identical
+                                passages inflate naive counts and propagate identical citations. Every
+                                theme count on this site carries a dedup-adjusted companion, and
+                                quotes drawn from shared text are badged — but coordination is not
+                                misconduct, and a well-organized coalition is entitled to file.</p>
+                            </div>
+                            <div class="mth-rule">
+                                <div class="mth-rule-head">6. Long answers are truncated</div>
+                                <p>The survey tool cut answers at <strong>4,000 characters</strong>.
+                                <strong>18 substantive answers</strong> sit at that cliff and are
+                                flagged <span class="mth-code">likely_truncated</span>. Those are the most detailed
+                                submissions in the record — so the truncation is not random, and where
+                                a quote ends abruptly the tool, not the respondent, may have ended
+                                it.</p>
+                            </div>
+                        </div>
+
+                        <div class="emphasis-callout scroll-reveal">
+                            <div class="emphasis-big">A consultation is not a referendum</div>
+                            <div class="emphasis-desc">Counting responses is not counting votes</div>
+                            <div class="emphasis-sub">A consultation collects arguments so a standard
+                            can be improved. The count of respondents taking a position is a fact
+                            about who showed up, not a mandate — and at n=180, self-selected, it is
+                            not a survey of the field either. Where this site reports "63% said No",
+                            the honest reading is "of the 129 analytical-base respondents who answered
+                            this question, 81 said No", which is what the chart actually prints.</div>
+                        </div>
+
+                        <div class="grid-2col scroll-reveal">
+                            <div class="card card-spacious">
+                                <h3 class="mth-h4">What this site can support</h3>
+                                <p class="mth-prose">That specific positions were argued, by whom, with
+                                what stated reasoning, and in what proportion <em>among these
+                                respondents</em>. That some questions produced a clear majority and
+                                others a genuine split. That certain concerns recur across unrelated
+                                submissions. That the additionality tests fall into a coherent
+                                gradient. Which claims were evidenced and which asserted. And —
+                                because the exclusions, blocs and citation flags are published rather
+                                than applied silently — how much of any given count survives dedup.</p>
+                            </div>
+                            <div class="card card-spacious">
+                                <h3 class="mth-h4">What it cannot</h3>
+                                <p class="mth-prose">That any position represents the field, the
+                                industry, or "stakeholders" in general. That a method rejected here is
+                                technically unsound, or one favored here is sound — popularity among
+                                66 respondents is not evidence. That subgroup differences are real
+                                where the ns are small; most are not tested and many cells are masked.
+                                That redaction implies motive. That the consultation's outcome should
+                                follow the counts. And nothing at all about parties who did not
+                                respond.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ======================================================= -->
+                <!-- 8. REPRODUCTION                                         -->
+                <!-- ======================================================= -->
+                <section id="reproduction">
+                    <div class="section-header">
+                        <div class="section-number">8</div>
+                        <h2>Reproduction</h2>
+                        <p>Every command below, in order, with the tally it actually printed. The
+                        build is deterministic: the same input produces byte-identical output.</p>
+                    </div>
+
+                    <div class="mth-blocks">
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Setup</h3>
+                            <p class="mth-prose">All paths are relative to
+                            <span class="mth-code">electricity-consequential/</span>. Python 3 with the standard
+                            library covers everything except reading the workbook:</p>
+                            <div class="mth-cmd"><code>pip install openpyxl   <span class="mth-cmd-comment"># only build_dataset.py and validate_dataset.py need it</span></code></div>
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">The chain</h3>
+                            <div class="mth-cmd"><code><span class="mth-cmd-comment"># 1 — build: workbook → CSVs + SQLite + manifest.json</span>
+python3 scripts/build_dataset.py
+
+<span class="mth-cmd-comment"># 2 — validate the dataset (structural + frozen figures)</span>
+python3 scripts/validate_dataset.py
+<span class="mth-cmd-out">86/86 checks passed</span>
+
+<span class="mth-cmd-comment"># 3 — derive integrity flags into data/derived/</span>
+python3 scripts/analytics/derive_flags.py
+<span class="mth-cmd-out">verification: every frozen expectation met</span>
+python3 scripts/analytics/test_derive_flags.py
+<span class="mth-cmd-out">76/76 checks passed</span>
+
+<span class="mth-cmd-comment"># 4 — the curation suites (org audit + exclusions, themes + quotes)</span>
+python3 scripts/analytics/test_org_audit.py
+<span class="mth-cmd-out">56 checks, 0 failures</span>
+python3 scripts/analytics/test_themes_quotes.py
+<span class="mth-cmd-out">28/28 checks passed</span>
+
+<span class="mth-cmd-comment"># 5 — export the frontend JSON contract, then re-derive and check it</span>
+python3 scripts/analytics/export_frontend.py
+<span class="mth-cmd-out">wrote 8 files + 105 org profiles to frontend/data</span>
+<span class="mth-cmd-out">analytical base: 180 of 185 respondents (5 excluded), 105 named org profiles</span>
+python3 scripts/analytics/validate_frontend_data.py
+<span class="mth-cmd-out">72 checks passed, 0 failed</span>
+
+<span class="mth-cmd-comment"># 6 — serve (fetch() will not work from file://)</span>
+cd frontend &amp;&amp; python3 -m http.server 8000</code></div>
+                        </div>
+
+                        <div class="chart-panel scroll-reveal">
+                            <h3 class="chart-title">What each step checks, and what it printed</h3>
+                            <div class="mth-scroll">
+                            <table class="data-table mth-rowhead mth-steps">
+                                <caption class="sr-only">Each reproduction command, what it verifies, and the tally it printed on this build</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Command</th>
+                                        <th scope="col">What it checks</th>
+                                        <th scope="col">Observed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><code>build_dataset.py</code></th>
+                                        <td>Reshapes the workbook. Fails loudly on any unlabelled
+                                        question, duplicate shorthand, unknown vocabulary value or
+                                        leftover placeholder.</td>
+                                        <td>5,074 answer cells · 1,277 selections · 56 questions ·
+                                        185 respondents</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><code>validate_dataset.py</code></th>
+                                        <td>Round-trips every non-empty source cell (each appears
+                                        exactly once, value unchanged), conserves the multi-select
+                                        explosion, checks label coverage and anchor/parent integrity,
+                                        then asserts the frozen figures — respondent counts,
+                                        per-question ns, the full 9&times;3 matrix, every scoreboard
+                                        tally.</td>
+                                        <td><strong>86/86 checks passed</strong><br>
+                                        <span class="text-muted">0 value mismatches · matrix Q026_1
+                                        (108, 69, 22, 17) as expected · Q18 n=165 · Q52 n=36</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><code>derive_flags.py</code></th>
+                                        <td>Sweeps all 185 submissions for junk, resubmissions, entity
+                                        families, shared text, blocs and citations; asserts its own
+                                        frozen expectations before writing.</td>
+                                        <td><strong>every frozen expectation met</strong><br>
+                                        <span class="text-muted">4 junk candidates · 1 superseded ·
+                                        1 entity family · 38 text clusters · 26 template respondents ·
+                                        8 blocs · 49 citing respondents · 138 citation answers ·
+                                        74 domains</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><code>test_derive_flags.py</code></th>
+                                        <td>Frozen expectations, the privacy invariants (no name and
+                                        no organization column anywhere in the derived tables), and
+                                        determinism — every derived CSV must be byte-identical on
+                                        rerun.</td>
+                                        <td><strong>76/76 checks passed</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><code>test_org_audit.py</code></th>
+                                        <td>Audit coverage of all 108 named respondents, closed
+                                        vocabulary, no redacted respondent named, evidence strings
+                                        within length — and the exclusion ruling itself: the
+                                        analytical base, each junk submission's answer content, and
+                                        that ID 151 is a strict superset of ID 100.</td>
+                                        <td><strong>56 checks, 0 failures</strong><br>
+                                        <span class="text-muted">"analytical base is 180 (185 raw
+                                        &minus; 5 excluded)"</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><code>test_themes_quotes.py</code></th>
+                                        <td>Closed-vocabulary enforcement, coverage floors raw and
+                                        dedup-adjusted, verbatim-substring fidelity of every quote
+                                        (elision-aware), per-topic quota and length rules,
+                                        redaction-safe attribution, template-badge correctness.</td>
+                                        <td><strong>28/28 checks passed</strong><br>
+                                        <span class="text-muted">1,335 answers coded · 43 theme keys ·
+                                        coverage 94.0% raw / 97.8% dedup · 65 quotes ·
+                                        4 template-badged · 21 redacted</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><code>export_frontend.py</code><br>
+                                        <code>validate_frontend_data.py</code></th>
+                                        <td>Recomputes every aggregate on the analytical base of 180,
+                                        applies the n&lt;5 mask, prunes organization files to named
+                                        analytical-base respondents, and writes the deterministic JSON
+                                        contract. The validator then re-derives every exported number
+                                        independently from the database — cell arithmetic against
+                                        every segment, mask placement, quote verbatimness, coverage
+                                        and size budgets — and exits non-zero on any mismatch.</td>
+                                        <td><strong>72 checks passed, 0 failed</strong><br>
+                                        <span class="text-muted">8 files + 105 org profiles ·
+                                        analytical base 180 of 185 (5 excluded) · 6 coded_themes rows
+                                        filtered for excluded respondents · largest file
+                                        integrity.json at 64.5 KB, largest profile 83.0 KB — both
+                                        inside budget</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+
+                        <div class="insight-glass insight-glass-green scroll-reveal">
+                            <strong>Every tally on this page was observed, not estimated.</strong>
+                            Each command above was run against this build and its output pasted
+                            verbatim — <strong>318 automated checks across the five suites, zero
+                            failures</strong>. The two build stages are also verified to be
+                            deterministic rather than merely assumed: rerunning
+                            <span class="mth-code">build_dataset.py</span> leaves every file under
+                            <span class="mth-code">data/</span> byte-identical, and
+                            <span class="mth-code">test_derive_flags.py</span> asserts the same property for every
+                            derived CSV. Independently of the pipeline's own checks, the figures
+                            quoted throughout this page were re-derived from the database and
+                            compared against the exported JSON — the analytical base and its four
+                            segment vocabularies, the Q19 raw-versus-analytical pair, the
+                            SCED&nbsp;&ndash;&nbsp;locational worked example, the theme coverage
+                            counts, and the cluster, bloc and citation totals all agree exactly.
+                        </div>
+
+                        <div class="card card-spacious scroll-reveal">
+                            <h3 class="mth-h4">Going further</h3>
+                            <p class="mth-prose">The dataset is meant to be queried directly, not just
+                            read through this site. The
+                            <a href="https://github.com/jessicacohen554-cyber/scope-2-consult/tree/main/electricity-consequential#readme">dataset&nbsp;README</a>
+                            carries the pick-a-file table, per-table column documentation, the ten
+                            caveats in their canonical form, and worked SQL and pandas recipes — the
+                            headline stance by organization type, the matrix sorted by net
+                            requiredness, own-base scoreboard netting, the attrition spine, the
+                            redaction split. Three further references sit beside it:
+                            <span class="mth-code">reference/theme_taxonomy.md</span> (all 43 keys with definitions
+                            and inclusion rules), <span class="mth-code">reference/exclusions.csv</span> (the five
+                            rulings and their evidence, verbatim), and
+                            <span class="mth-code">reference/org_audit.csv</span> (the organization classification for
+                            all 108 named respondents, with the basis for each).</p>
+                            <p class="mth-prose">Everything in this hub is derived from one committed
+                            spreadsheet by scripts in this repository. If a figure here is wrong, it is
+                            reproducibly wrong, and the command that produces it is printed above.</p>
+                        </div>
+                    </div>
+                </section>
+
+                </div><!-- /.mth-body -->
+            </div><!-- /.mth-layout -->
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Methodology — provenance, analytical base, constructs, coding, masking, limitations and reproduction for the Electricity-Sector Consequential Methods consultation hub"></footer>
+
+    <!-- Section-rail active state. Pure DOM: this page fetches nothing, so it
+         renders identically with or without the data contract present. -->
+    <script>
+    (function () {
+        'use strict';
+        var links = Array.prototype.slice.call(
+            document.querySelectorAll('.mth-rail a[href^="#"]'));
+        if (!links.length || !('IntersectionObserver' in window)) return;
+
+        var byId = {};
+        var sections = [];
+        links.forEach(function (link) {
+            var section = document.getElementById(link.getAttribute('href').slice(1));
+            if (!section) return;
+            byId[section.id] = link;
+            sections.push(section);
+        });
+        if (!sections.length) return;
+
+        // The active section is the last one whose top has passed the sticky-nav
+        // line — a direct position scan rather than an intersection set, which
+        // would keep the outgoing section lit while two are on screen at once.
+        var LINE = 100;
+        var current = null;
+        var queued = false;
+
+        function sync() {
+            queued = false;
+            var atEnd = window.innerHeight + window.scrollY >=
+                document.body.scrollHeight - 2;
+            var active = null;
+            for (var i = 0; i < sections.length; i++) {
+                if (atEnd || sections[i].getBoundingClientRect().top <= LINE) {
+                    active = sections[i].id;
+                }
+            }
+            if (active === current) return;
+            current = active;
+            links.forEach(function (link) {
+                link.classList.toggle('mth-rail-active',
+                    active !== null && link === byId[active]);
+            });
+        }
+
+        function onScroll() {
+            if (queued) return;
+            queued = true;
+            window.requestAnimationFrame(sync);
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        sync();
+    })();
+    </script>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
