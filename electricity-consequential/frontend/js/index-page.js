@@ -1,431 +1,247 @@
 // ============================================================================
-// index-page.js - the overview page (index.html)
+// index-page.js - Overview & objective assessment (index.html)
 // ============================================================================
-// PLAN §4 assigns index.html to P40. P40 never merged: at P42 the file did not
-// exist in any branch, so `Overview` in the nav and the footer 404'd from all
-// nine other pages. P42 built the page rather than ship a site whose front door
-// is broken. See the P42 report - the manager should review the prose in the
-// assessment section specifically, since editorial judgment there was P40's
-// brief and P40's model.
+// Page module for P40. The essay on index.html is static prose; every figure
+// in it is verified against the exported JSON and linked to the panel that
+// shows it. This module owns only the data-driven furniture around the essay:
 //
-// Like every other page module, this one owns no figures. Each number in the
-// hero row and in the assessment prose is stamped from the exported JSON at
-// render time through `stat()` / `fig()`, so a re-export moves the page and a
-// figure that disappears from the contract shows as a visible gap rather than
-// as a stale hardcoded number. The panels are the shared renderers.
+//   1. hero stats row      analytical base, questions, Q19, redaction, Q52
+//   2. headline strips     Q19 · Q21 · Q24                (ECStance.renderStrips)
+//   3. matrix extremes     regulatory vs first-of-its-kind (ECMatrix.renderMini)
 //
-// Panels:
-//   1. hero stat row        meta.totals + stances + integrity
-//   2. headline strips      Q19 · Q21 · Q24            (ECStance.renderStrips)
-//   3. gradient poles       matrix ends                (ECMatrix.renderMini)
-//   4. the assessment       prose with stamped figures (PLAN §8)
-//   5. takeaway cards       static links to all nine other pages
+// The strips and the matrix rows follow one segment toggle, the same grammar
+// as the Decision Board. Nothing here computes a number the contract does not
+// carry: the Q52 substantive count is the exported q52 rows minus the bare
+// "N/A" filings the integrity page itemizes the same way.
+//
+// Include after the site modules, at the end of <body>.
 // ============================================================================
 
 (function () {
     'use strict';
 
     var MASK_N = 5;
-    var HEADLINE_QIDS = ['Q019', 'Q021', 'Q024'];
-    var FILES = ['meta', 'stances', 'matrix', 'scoreboard', 'respondents',
-                 'integrity'];
+
+    // The headline decision points, in PLAN §4 order.
+    var STANCE_QIDS = ['Q019', 'Q021', 'Q024'];
+
+    // The additionality gradient's two ends (§4: matrix top and bottom rows).
+    var MATRIX_ENDS = ['Q026_1', 'Q026_9'];
+
+    var FILES = ['meta', 'stances', 'matrix', 'respondents', 'integrity'];
 
     var D = {};
 
-    function el(id) { return document.getElementById(id); }
-
+    // --- Small helpers -------------------------------------------------------
     function esc(s) { return ECData.escapeHtml(s); }
 
-    function pct1(part, base) {
-        return base ? Math.round((part / base) * 1000 + 1e-9) / 10 : 0;
+    function el(id) { return document.getElementById(id); }
+
+    function put(id, html) {
+        var node = el(id);
+        if (node) node.innerHTML = html;
+        return node;
     }
 
-    function fmtPct(v) { return (Math.round(v * 10) / 10).toFixed(1) + '%'; }
+    function dimKey() { return ECSegments.get('dim') || 'overall'; }
 
-    // Only the two totals reach four digits; everything else on this page is a
-    // count under 200 and reads better bare.
-    function group(n) {
-        return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    function display(qid) { return ECData.display(D.meta, qid); }
+
+    function question(qid) { return ECData.question(D.meta, qid); }
+
+    function present(qids, source) {
+        return qids.filter(function (qid) { return !!(source || {})[qid]; });
     }
 
-    // --- Figure stamping -----------------------------------------------------
-    // Every `data-fig` in the HTML resolves through this table. A key with no
-    // entry, or an entry that throws because the contract moved, renders as a
-    // marked gap - never as a silent wrong number.
-    function cell(qid) { return (D.stances[qid] || {}).overall || { c: [], n: 0 }; }
-
-    function optIndex(qid, key) {
-        var q = ECData.question(D.meta, qid) || {};
-        var keys = (q.options || []).map(function (o) { return o.key; });
-        return keys.indexOf(key);
+    function usable(cell) {
+        return !!cell && !ECStance.isEmpty(cell) && !ECStance.isMasked(cell, MASK_N);
     }
 
-    function count(qid, key) {
-        var i = optIndex(qid, key);
-        return i < 0 ? null : (cell(qid).c || [])[i] || 0;
+    // Share choosing the option meta.json flags as the question's critical
+    // answer (PLAN gotcha 5 — for Q19 that is "No").
+    function criticalShare(qid) {
+        var q = question(qid);
+        var entry = (D.stances || {})[qid];
+        var cell = entry ? entry.overall : null;
+        var critical = q && q.polarity && q.polarity.critical;
+        if (!q || !critical || !usable(cell)) return null;
+        var idx = -1;
+        (q.options || []).forEach(function (o, i) { if (o.key === critical) idx = i; });
+        if (idx < 0) return null;
+        var n = ECStance.baseOf(cell);
+        var v = (cell.c || [])[idx] || 0;
+        return {
+            n: n, count: v,
+            pct: ECStance.pct1(v, n),
+            label: (q.options[idx] || {}).label || critical
+        };
     }
 
-    function share(qid, key) {
-        var n = cell(qid).n;
-        var c = count(qid, key);
-        return c === null ? null : fmtPct(pct1(c, n));
-    }
-
-    function base(qid) { return cell(qid).n; }
-
-    function seg(dim, key) {
-        var values = ((D.meta.segments || {})[dim] || {}).values || [];
-        for (var i = 0; i < values.length; i++) {
-            if (values[i].key === key) return values[i].n;
-        }
-        return null;
-    }
-
-    function board(key) { return (D.scoreboard || {})[key] || {}; }
-
-    function boardTop(key, end) {
-        var opts = board(key).options || [];
-        return opts.length ? opts[end === 'last' ? opts.length - 1 : 0] : null;
-    }
-
-    function net(qid) {
-        var t = ((D.matrix.tests || {})[qid] || {});
-        return typeof t.net_pct === 'number' ? t.net_pct : null;
-    }
-
-    function signed(v) {
-        var r = Math.round(v * 10) / 10;
-        return (r > 0 ? '+' : r < 0 ? '−' : '') + Math.abs(r).toFixed(1);
-    }
-
-    function matrixQid(testKey) {
-        var tests = ((D.meta.matrix || {}).tests) || [];
-        for (var i = 0; i < tests.length; i++) {
-            if (tests[i].key === testKey) return tests[i].qid;
-        }
-        return null;
-    }
-
-    function feas(testKey) {
-        var per = ((D.matrix.feasibility || {}).per_test || {})[testKey];
-        return per ? per.n : null;
-    }
-
-    function countryCell(qid, side) {
-        var rows = D.respondents.country_effect || [];
-        for (var i = 0; i < rows.length; i++) {
-            if (rows[i].qid === qid) return rows[i][side];
-        }
-        return null;
-    }
-
-    function countryShare(qid, side, key) {
-        var c = countryCell(qid, side);
-        var i = optIndex(qid, key);
-        if (!c || i < 0 || !c.n) return null;
-        return fmtPct(pct1(c.c[i] || 0, c.n));
-    }
-
-    function countryBase(qid, side) {
-        var c = countryCell(qid, side);
-        return c ? c.n : null;
-    }
-
-    function orgRedaction(key, side) {
-        var rows = ((D.respondents.distributions || {})
-            .org_type_x_redaction || {}).rows || [];
-        for (var i = 0; i < rows.length; i++) {
-            if (rows[i].key === key) return rows[i][side];
-        }
-        return null;
-    }
-
-    function q52Rows() {
-        return ((D.integrity.citations || {}).q52) || [];
-    }
-
-    function q52Blank() {
-        return q52Rows().filter(function (row) {
-            return /^\s*n\s*\/?\s*a\s*\.?\s*$/i.test(row.preview || '');
+    // Q52 evidence submissions: exported rows minus the bare "N/A" filings.
+    // Same reading as the integrity page's evidence table.
+    function evidenceCounts() {
+        var rows = (((D.integrity || {}).citations || {}).q52) || [];
+        if (!rows.length) return null;
+        var bare = rows.filter(function (r) {
+            return /^\s*n\/?a[\s.]*$/i.test(String(r.preview || ''));
         }).length;
+        return { total: rows.length, bare: bare, substantive: rows.length - bare };
     }
 
-    function attrition(which) {
-        var rows = D.respondents.attrition || [];
-        var answered = rows.filter(function (r) { return r.n > 0; });
-        if (!answered.length) return null;
-        return which === 'last' ? answered[answered.length - 1]
-                                : answered[0];
+    // --- Hero stats ----------------------------------------------------------
+    function statCard(value, label, note) {
+        return '<div class="stat-card">' +
+            '<div class="stat-value">' + esc(value) + '</div>' +
+            '<div class="stat-label">' + esc(label) + '</div>' +
+            (note ? '<p class="ec-note">' + esc(note) + '</p>' : '') +
+            '</div>';
     }
 
-    var FIGURES = {
-        // --- participation
-        raw: function () { return D.meta.totals.respondents_raw; },
-        analytical: function () { return D.meta.totals.respondents; },
-        excluded: function () { return (D.integrity.excluded || []).length; },
-        junk: function () {
-            return (D.integrity.excluded || []).filter(function (e) {
-                return e.reason === 'junk';
-            }).length;
-        },
-        questions: function () { return D.meta.totals.questions; },
-        answers: function () { return group(D.meta.totals.answers); },
-        free_text: function () { return group(D.meta.totals.free_text_answers); },
-        named: function () { return D.meta.totals.named; },
-        redacted: function () { return D.meta.totals.redacted; },
-        redacted_pct: function () {
-            return fmtPct(pct1(D.meta.totals.redacted, D.meta.totals.respondents));
-        },
-        us: function () { return seg('country_4', 'us'); },
-        us_pct: function () {
-            return fmtPct(pct1(seg('country_4', 'us'), D.meta.totals.respondents));
-        },
-        attrition_top: function () { return (attrition('first') || {}).n; },
-        attrition_top_q: function () { return (attrition('first') || {}).display; },
-        attrition_end: function () { return (attrition('last') || {}).n; },
-        attrition_end_q: function () { return (attrition('last') || {}).display; },
+    function drawHero() {
+        var totals = (D.meta || {}).totals || {};
+        var attrition = ((D.respondents || {}).attrition || []).filter(Boolean);
+        var cards = [];
 
-        // --- the headline
-        q19_no: function () { return count('Q019', 'no'); },
-        q19_yes: function () { return count('Q019', 'yes'); },
-        q19_no_pct: function () { return share('Q019', 'no'); },
-        q19_n: function () { return base('Q019'); },
-        q19_us_no_pct: function () { return countryShare('Q019', 'us', 'no'); },
-        q19_us_n: function () { return countryBase('Q019', 'us'); },
-        q19_nonus_no_pct: function () {
-            return countryShare('Q019', 'non_us', 'no');
-        },
-        q19_nonus_n: function () { return countryBase('Q019', 'non_us'); },
+        if (totals.respondents !== undefined) {
+            var excluded = totals.respondents_raw !== undefined
+                ? totals.respondents_raw - totals.respondents : null;
+            cards.push(statCard(
+                totals.respondents,
+                'Respondents · analytical base',
+                excluded === null ? '' :
+                    totals.respondents_raw + ' filed · ' + excluded +
+                    ' excluded as junk or superseded'));
+        }
 
-        // --- the splits
-        q21_yes: function () { return count('Q021', 'yes'); },
-        q21_no: function () { return count('Q021', 'no'); },
-        q21_n: function () { return base('Q021'); },
-        q24_pct: function () { return share('Q024', 'each_year'); },
-        q24_each: function () { return count('Q024', 'each_year'); },
-        q24_n: function () { return base('Q024'); },
-        q24_us_pct: function () {
-            return countryShare('Q024', 'us', 'each_year');
-        },
-        q24_us_n: function () { return countryBase('Q024', 'us'); },
-        q24_nonus_pct: function () {
-            return countryShare('Q024', 'non_us', 'each_year');
-        },
-        q24_nonus_n: function () { return countryBase('Q024', 'non_us'); },
-        q31_yes: function () { return count('Q031', 'yes'); },
-        q31_unsure: function () { return count('Q031', 'unsure'); },
-        q31_no: function () { return count('Q031', 'no'); },
-        q31_n: function () { return base('Q031'); },
-        q33_yes: function () { return count('Q033', 'yes'); },
-        q33_no: function () { return count('Q033', 'no'); },
-        q33_n: function () { return base('Q033'); },
-        q45_annual: function () { return count('Q045', 'annual'); },
-        q45_hourly: function () { return count('Q045', 'hourly'); },
-        q45_n: function () { return base('Q045'); },
-        q43_n: function () { return base('Q043'); },
+        if (totals.questions !== undefined) {
+            var span = attrition.length
+                ? (attrition[0].display || attrition[0].qid) + ' – ' +
+                  (attrition[attrition.length - 1].display ||
+                   attrition[attrition.length - 1].qid)
+                : '';
+            cards.push(statCard(
+                totals.questions,
+                'Substantive questions',
+                span ? 'running ' + span + ', bases falling throughout' : ''));
+        }
 
-        // --- additionality
-        net_regulatory: function () { return signed(net(matrixQid('regulatory'))); },
-        net_timing: function () { return signed(net(matrixQid('timing'))); },
-        net_first: function () { return signed(net(matrixQid('first_of_kind'))); },
-        feas_n: function () { return (D.matrix.feasibility || {}).n; },
-        feas_none: function () {
-            return (((D.matrix.feasibility || {}).specials || {})
-                .none_feasible || {}).n;
-        },
-        feas_regulatory: function () { return feas('regulatory'); },
-        feas_timing: function () { return feas('timing'); },
-        poslist_feas: function () { return feas('positive_list'); },
-        poslist_feas_pct: function () {
-            return fmtPct(pct1(feas('positive_list'),
-                               (D.matrix.feasibility || {}).n));
-        },
-        poslist_req_pct: function () {
-            var qid = matrixQid('positive_list');
-            var c = ((D.matrix.tests || {})[qid] || {}).overall || {};
-            return fmtPct(pct1((c.c || [])[0] || 0, c.n));
-        },
-        poslist_req_n: function () {
-            var qid = matrixQid('positive_list');
-            return (((D.matrix.tests || {})[qid] || {}).overall || {}).n;
-        },
-        poslist_gap: function () {
-            var qid = matrixQid('positive_list');
-            var c = ((D.matrix.tests || {})[qid] || {}).overall || {};
-            return (pct1(feas('positive_list'), (D.matrix.feasibility || {}).n)
-                - pct1((c.c || [])[0] || 0, c.n)).toFixed(1);
-        },
+        var crit = criticalShare('Q019');
+        if (crit) {
+            cards.push(statCard(
+                ECStance.fmtPct(crit.pct),
+                '“' + crit.label + '” on ' + display('Q019'),
+                crit.count + ' of ' + crit.n + ' who answered the formula question'));
+        }
 
-        // --- scoreboards
-        om_app: function () { return board('om').base_app; },
-        om_not: function () { return board('om').base_not; },
-        om_top: function () { return (boardTop('om') || {}).label; },
-        om_top_net: function () { return signed((boardTop('om') || {}).net_pct); },
-        om_last: function () { return (boardTop('om', 'last') || {}).label; },
-        om_last_net: function () {
-            return signed((boardTop('om', 'last') || {}).net_pct);
-        },
-        bm_app: function () { return board('bm').base_app; },
-        bm_not: function () { return board('bm').base_not; },
-        bm_top: function () { return (boardTop('bm') || {}).label; },
-        bm_top_net: function () { return signed((boardTop('bm') || {}).net_pct); },
-        bm_last: function () { return (boardTop('bm', 'last') || {}).label; },
-        bm_last_net: function () {
-            return signed((boardTop('bm', 'last') || {}).net_pct);
-        },
-        wt_app: function () { return board('weighting').base_app; },
-        wt_not: function () { return board('weighting').base_not; },
-        wt_top: function () { return (boardTop('weighting') || {}).label; },
-        wt_top_net: function () {
-            return signed((boardTop('weighting') || {}).net_pct);
-        },
-        wt_unsure_app: function () {
-            var sp = (board('weighting').specials || []).filter(function (s) {
-                return s.key === 'unsure' && s.side === 'app';
-            });
-            return sp.length ? sp[0].n : null;
-        },
-        wt_unsure_not: function () {
-            var sp = (board('weighting').specials || []).filter(function (s) {
-                return s.key === 'unsure' && s.side === 'not';
-            });
-            return sp.length ? sp[0].n : null;
-        },
+        if (totals.redacted !== undefined && totals.respondents) {
+            cards.push(statCard(
+                ECStance.fmtPct(ECStance.pct1(totals.redacted, totals.respondents)),
+                'Redaction requested',
+                totals.redacted + ' of ' + totals.respondents +
+                    ' withheld their identity'));
+        }
 
-        // --- evidence, coordination, integrity
-        q52_n: function () { return q52Rows().length; },
-        q52_blank: function () { return q52Blank(); },
-        q52_substantive: function () { return q52Rows().length - q52Blank(); },
-        cite_named_pct: function () {
-            var rows = ((D.integrity.citations || {}).by_redaction) || [];
-            for (var i = 0; i < rows.length; i++) {
-                if (rows[i].key === 'named') return fmtPct(rows[i].pct);
-            }
-            return null;
-        },
-        cite_redacted_pct: function () {
-            var rows = ((D.integrity.citations || {}).by_redaction) || [];
-            for (var i = 0; i < rows.length; i++) {
-                if (rows[i].key === 'redacted') return fmtPct(rows[i].pct);
-            }
-            return null;
-        },
-        blocs: function () { return (D.integrity.blocs || []).length; },
-        bloc_people: function () {
-            return D.integrity.text_clusters_n_respondents;
-        },
-        clusters: function () { return (D.integrity.text_clusters || []).length; },
-        big_bloc: function () {
-            var b = (D.integrity.blocs || [])[0] || {};
-            return (b.member_ids_named || []).length + (b.n_redacted || 0);
-        },
-        // The interpretive clause depends on facts that could change on a
-        // re-export - whether every member is redacted, and whether they all
-        // filed from one country - so it is assembled from the data rather than
-        // written into the page and left to go stale. The country itself is
-        // never named: for a pack of redacted filers that would be new
-        // attribute disclosure (P35 F6).
-        big_bloc_sentence: function () {
-            var b = (D.integrity.blocs || [])[0];
-            if (!b) return null;
-            var named = (b.member_ids_named || []).length;
-            var total = named + (b.n_redacted || 0);
-            var parts = [];
-            parts.push(named === 0 ? 'every one of them redacted'
-                                   : b.n_redacted + ' of them redacted');
-            if (b.single_country) {
-                parts.push('and all filing from a single country — which makes ' +
-                    'it coordination inside one jurisdiction rather than across ' +
-                    'an industry');
-            } else if (typeof b.n_countries === 'number') {
-                parts.push('drawn from ' + b.n_countries + ' countries');
-            }
-            return total + ' respondents, ' + parts.join(', ');
-        },
-        q19_dedup_no: function () {
-            var rows = D.integrity.dedup_effect || [];
-            for (var i = 0; i < rows.length; i++) {
-                if (rows[i].qid === 'Q019') return rows[i].deduped.c[1];
-            }
-            return null;
-        },
-        q21_dedup_no: function () {
-            var rows = D.integrity.dedup_effect || [];
-            for (var i = 0; i < rows.length; i++) {
-                if (rows[i].qid === 'Q021') return rows[i].deduped.c[1];
-            }
-            return null;
-        },
-        company_redacted: function () { return orgRedaction('company', 'redacted'); },
-        company_named: function () { return orgRedaction('company', 'named'); },
-        company_total: function () { return orgRedaction('company', 'total'); }
-    };
+        var ev = evidenceCounts();
+        if (ev) {
+            cards.push(statCard(
+                ev.substantive,
+                'Substantive evidence submissions',
+                ev.total + ' answers to ' +
+                    (display('Q052') || 'Q52') + ', ' + ev.bare +
+                    ' of them a bare “N/A”'));
+        }
 
-    function stampFigures(root) {
-        var nodes = (root || document).querySelectorAll('[data-fig]');
-        Array.prototype.forEach.call(nodes, function (node) {
-            var key = node.getAttribute('data-fig');
-            var fn = FIGURES[key];
-            var value = null;
-            if (fn) {
-                try { value = fn(); } catch (err) { value = null; }
-            }
-            if (value === null || value === undefined || value === '') {
-                node.textContent = '—';
-                node.classList.add('ix-fig-missing');
-                node.title = 'This figure is not in the current export.';
-            } else {
-                node.textContent = String(value);
-            }
-        });
+        put('heroStats', cards.join('') ||
+            '<div class="card ec-empty">This export carries no totals block.</div>');
     }
 
-    // --- Panels --------------------------------------------------------------
+    // --- Headline strips -----------------------------------------------------
     function drawStrips() {
-        ECStance.renderStrips('#headlineStrips', {
-            meta: D.meta,
+        ECStance.renderStrips('#stripsHost', {
+            qids: present(STANCE_QIDS, D.stances),
             stances: D.stances,
-            qids: HEADLINE_QIDS,
-            dim: 'overall',
-            maskN: MASK_N,
-            label: 'The three closed questions',
-            showLinks: true,
-            pageBase: ''
-        });
-    }
-
-    function drawMatrix() {
-        ECMatrix.renderMini('#gradientPoles', {
             meta: D.meta,
-            matrix: D.matrix,
+            dim: dimKey(),
             maskN: MASK_N,
-            ends: 2,
-            link: 'topics/additionality.html',
-            pageBase: ''
+            showSegments: true,
+            label: 'Headline decision points'
+        });
+        var missing = STANCE_QIDS.filter(function (qid) {
+            return !(D.stances || {})[qid];
+        });
+        put('stripsCoverage', missing.length
+            ? '<p class="ec-note">Not carried in this export: ' +
+              missing.map(function (qid) {
+                  return '<strong>' + esc(display(qid)) + '</strong>';
+              }).join(' · ') + '.</p>'
+            : '');
+    }
+
+    // --- Matrix extremes -----------------------------------------------------
+    // renderMini draws every test the meta block declares, so the two ends of
+    // the gradient are selected by handing it a filtered copy of meta.matrix.
+    // Nothing in the loaded contract objects is mutated.
+    function drawMatrixEnds() {
+        var mx = (D.meta || {}).matrix || {};
+        var tests = (mx.tests || []).filter(function (t) {
+            return MATRIX_ENDS.indexOf(t.qid) >= 0;
+        });
+        if (!tests.length) {
+            put('matrixEndsHost', '<div class="card ec-empty">The additionality ' +
+                'matrix is not in this export yet.</div>');
+            return;
+        }
+        var endsMeta = {};
+        Object.keys(D.meta).forEach(function (k) { endsMeta[k] = D.meta[k]; });
+        endsMeta.matrix = { levels: mx.levels, tests: tests };
+
+        ECMatrix.renderMini('#matrixEndsHost', {
+            meta: endsMeta,
+            matrix: D.matrix,
+            dim: dimKey(),
+            maskN: MASK_N,
+            link: 'topics/additionality.html'
         });
     }
 
-    function drawStamp() {
-        var stamp = el('exportStamp');
-        if (!stamp) return;
-        stamp.textContent = 'Every figure on this page is stamped from the ' +
-            'exported dataset (' + ECData.basePath() + '), generated ' +
-            (D.meta.generated || 'unknown') + '.' +
-            (D.meta.provisional
-                ? ' This export is marked provisional: curation inputs may still ' +
-                  'be landing.'
-                : '');
+    // --- Wiring --------------------------------------------------------------
+    function redraw() {
+        drawStrips();
+        drawMatrixEnds();
     }
 
     function start() {
         ECData.loadAll(FILES).then(function (loaded) {
             D = loaded;
-            stampFigures();
-            drawStrips();
-            drawMatrix();
-            drawStamp();
+            ECSegments.init(D.meta);
+
+            ECSegments.dimToggle('#dimToggle', {
+                label: 'Segment the headline block by',
+                def: 'overall',
+                includeOverall: true
+            });
+
+            ECSegments.on(function (ev) {
+                var param = ev.detail && ev.detail.param;
+                if (param === 'dim') redraw();
+            });
+
+            drawHero();
+            redraw();
+
+            var stamp = el('exportStamp');
+            if (stamp) {
+                stamp.textContent = 'Every figure on this page — the panels above and ' +
+                    'the essay below — is stated from the exported dataset (' +
+                    ECData.basePath() + '), generated ' +
+                    (D.meta.generated || 'unknown') + '.' +
+                    (D.meta.provisional
+                        ? ' This export is marked provisional: curation inputs may ' +
+                          'still be landing.'
+                        : '');
+            }
         }).catch(function (err) {
-            ECData.errorPanel('#headlineStrips', err, {
+            ECData.errorPanel('#stripsHost', err, {
                 title: 'The overview could not load its data'
             });
             Array.prototype.forEach.call(
@@ -433,15 +249,8 @@
                 function (node) {
                     node.textContent = 'Unavailable — the export could not be read.';
                 });
-            Array.prototype.forEach.call(
-                document.querySelectorAll('[data-fig]'),
-                function (node) {
-                    node.textContent = '—';
-                    node.classList.add('ix-fig-missing');
-                });
             if (window.console && console.error) console.error(err);
         });
-        void esc;
     }
 
     if (document.readyState === 'loading') {

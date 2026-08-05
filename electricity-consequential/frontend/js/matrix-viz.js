@@ -303,15 +303,6 @@
             return null;
         }
 
-        // opts.ends = N keeps the N most-required and N least-required rows and
-        // says how many it dropped. The overview page wants the poles of the
-        // gradient, not the whole ladder; the topic page still gets all nine.
-        var elided = 0;
-        if (opts.ends && data.length > opts.ends * 2) {
-            elided = data.length - opts.ends * 2;
-            data = data.slice(0, opts.ends).concat(data.slice(-opts.ends));
-        }
-
         var swatches = levels.map(function(lv, i) {
             var span = levels.length > 1 ? 1 - (i / (levels.length - 1)) : 1;
             return s.tint(STRINGENCY_POLE, 0.18 + 0.62 * span);
@@ -351,10 +342,6 @@
                 '<span class="ec-base-chip">n=' + n +
                 (thin ? ' · counts only' : '') + '</span></div>';
         }).join('') + '</div>' +
-            (elided ? '<p class="ec-note">The ' + elided + ' tests between these ' +
-                'poles sit in the middle of the gradient and are all ' +
-                'Optional-modal; the full ladder is on the additionality page.' +
-                '</p>' : '') +
             '<ul class="ec-strip-legend">' + levels.map(function(lv, i) {
                 return '<li class="ec-strip-legend-item">' +
                     '<span class="ec-legend-dot" aria-hidden="true" style="background:' +

@@ -43,7 +43,7 @@ reaches by clicking is a link they can share.
 
 | Page | Prompt | What it holds |
 |---|---|---|
-| `index.html` | P42 (see note) | Hero stats, the three closed questions, the additionality gradient at its poles, the objective assessment, cards to every other page. |
+| `index.html` | P40 | Hero stats, the three headline stance questions with a segment toggle, the two ends of the additionality gradient, the eight-section objective assessment, cards to every other page. |
 | `decisions.html` | P30 | The Decision Board: stance strips, the additionality mini-matrix, the methodology roll-up, both granularity ladders, the attrition strip — all cuttable by four segment dimensions. |
 | `topics/formula.html` | P31 | Consultation §5–6, Q18–Q25. The headline formula question and its coded explanations. |
 | `topics/additionality.html` | P31 | Consultation §7, Q26–Q34. The 9 × 3 stringency matrix and the required-vs-feasible cross. |
@@ -59,14 +59,15 @@ Two unlinked development harnesses also live here and are not part of the site:
 `dev-viz.html` (P35's narrow-viewport comparison of three additionality-matrix
 layouts). Neither is in the nav, and neither is held to the page rules.
 
-> **Note on `index.html`.** PLAN §4 assigns the overview page and its assessment
-> to **P40**. P40 never merged — at P42 the file did not exist on any branch, so
-> `Overview` 404'd from every page in the site. P42 built it to the §4 and §8
-> briefs rather than ship a hub with a broken front door. The prose in the
-> assessment section is the part to review first, and it deliberately uses only
-> figures that can be sourced from `data/*.json`; several claims in the §8 brief
-> rest on stance-conditioned theme splits and significance tests that are not in
-> the contract, and those are stated qualitatively rather than with a number.
+> **Note on `index.html`.** It arrives from P40's branch, which had not merged
+> when P42 started — the file existed nowhere, so `Overview` 404'd from every
+> other page. P42 built a stand-in, then discarded it when P40's branch appeared
+> and took P40's page instead: the assessment is P40's brief and P40's editorial
+> lane. What P42 did to it is QA, not authorship. Every numeric claim in the
+> essay was re-checked against `data/*.json`; all of them resolve except the
+> Spearman correlation of 0.90 between requiredness and feasibility, which is a
+> statistic the contract does not carry and which comes from P35's verification
+> memo (PLAN §3.3).
 
 ---
 

@@ -5,7 +5,7 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Overview | Electricity-Sector Consequential Methods Consultation</title>
-    <meta name="description" content="What 180 respondents told the GHG Protocol about consequential electricity-sector methods: the headline stance on the proposed formula, the additionality gradient, the methodology scoreboards, and a third-party assessment of what the record can and cannot support.">
+    <meta name="description" content="What the GHG Protocol electricity-sector consequential methods consultation record actually says: the analytical base, the headline stances, and a balanced third-party assessment with every claim linked to the panel that shows it.">
 
     <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,152 +33,52 @@
     <script src="js/scroll-observer.js"></script>
     <script src="js/shared-footer.js"></script>
 
-    <!-- Site modules. stance-viz.js must load before matrix-viz.js — ECMatrix
-         borrows ECStance's popover, token-color and sr-table machinery.
-         quote-cards.js and org-table.js are omitted: this page renders neither
-         (DESIGN_SYSTEM.md allows a page to skip modules it does not use). -->
+    <!-- Site modules (data contract in
+         electricity-consequential/plans/consequential-dashboard/PLAN.md §5).
+         stance-viz.js must load before matrix-viz.js — ECMatrix borrows
+         ECStance's popover, token-color and sr-table machinery. quote-cards.js
+         and org-table.js are omitted: this page renders neither. -->
     <script src="js/data-loader.js"></script>
     <script src="js/segments.js"></script>
     <script src="js/stance-viz.js"></script>
     <script src="js/matrix-viz.js"></script>
 
-    <!-- Page-specific styles ONLY — the hero stat row, the assessment's
-         long-form column and the takeaway card grid. Nothing here restyles a
-         shared.css or site.css class; the `.ec-` namespace belongs to site.css,
-         so every page-local class is `.ix-`. Tokens only: no hex, no fonts. -->
+    <!-- Page-specific styles ONLY (layouts unique to this page — never restyle
+         shared components; extend with modifier classes in shared.css instead) -->
     <style>
-    /* ================= HERO STAT ROW ================= */
-    .ix-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
-        gap: var(--space-md);
-        margin-bottom: var(--space-xl);
+    /* The hero stat row carries a base note under every label and needs wider
+       tracks than .grid-stats' default. Same override as the Decision Board. */
+    #heroStats {
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     }
-    .ix-stat {
-        padding: var(--space-lg);
-        background: var(--bg-card);
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-xl);
-        box-shadow: var(--shadow-sm);
-    }
-    .ix-stat-value {
-        font-family: var(--font-data);
-        font-size: 1.9rem;
-        font-weight: 700;
-        line-height: 1.1;
-        color: var(--text-primary);
-    }
-    .ix-stat-label {
-        margin-top: var(--space-xs);
-        font-size: 0.82rem;
-        line-height: 1.45;
-        color: var(--text-secondary);
-    }
-    .ix-stat-base {
-        display: block;
-        margin-top: var(--space-xs);
-        font-family: var(--font-data);
-        font-size: 0.68rem;
-        color: var(--text-light);
-    }
-
-    /* A figure the current export does not carry. Visible, never silent. */
-    .ix-fig-missing {
-        color: var(--text-light);
-        border-bottom: 1px dotted var(--border);
-        cursor: help;
-    }
-
-    /* ================= THE ASSESSMENT ================= */
-    .ix-essay {
-        max-width: 74ch;
-    }
-    .ix-essay h3 {
-        margin-top: var(--space-2xl);
-        margin-bottom: var(--space-sm);
-        font-family: var(--font-heading);
-        font-size: 1.16rem;
-        font-weight: 700;
-        color: var(--text-primary);
-    }
-    .ix-essay h3:first-child {
-        margin-top: 0;
-    }
-    .ix-essay p {
-        margin-bottom: var(--space-md);
-        font-size: 0.96rem;
-        line-height: 1.75;
-        color: var(--text-secondary);
-    }
-    .ix-essay .ix-num {
-        font-family: var(--font-data);
-        font-weight: 700;
-        color: var(--text-primary);
-    }
-    .ix-sec-index {
-        font-family: var(--font-data);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        color: var(--text-light);
-        margin-right: var(--space-sm);
-    }
-    /* Where a claim has a panel behind it, the sentence links to that panel. */
-    .ix-essay a {
-        text-decoration: underline;
-        text-underline-offset: 2px;
-    }
-
-    /* ================= TAKEAWAY CARDS ================= */
-    .ix-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
-        gap: var(--space-md);
-    }
-    .ix-card {
-        display: block;
-        padding: var(--space-lg);
-        background: var(--bg-card);
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-xl);
-        box-shadow: var(--shadow-sm);
-        text-decoration: none;
-        transition: box-shadow 0.18s ease, transform 0.18s ease;
-    }
-    .ix-card:hover,
-    .ix-card:focus-visible {
-        box-shadow: var(--shadow-lg);
-        transform: translateY(-2px);
-    }
-    .ix-card-kicker {
-        font-family: var(--font-data);
-        font-size: 0.66rem;
-        font-weight: 700;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
-        color: var(--text-light);
-    }
-    .ix-card-title {
-        margin-top: var(--space-xs);
-        font-family: var(--font-heading);
+    /* Essay prose: measure and rhythm for the long-form sections. Layout only —
+       fonts and colors come from the shared variables. */
+    .idx-essay p {
         font-size: 1.02rem;
-        font-weight: 700;
-        color: var(--text-primary);
-    }
-    .ix-card-body {
-        margin-top: var(--space-xs);
-        font-size: 0.86rem;
-        line-height: 1.6;
+        line-height: 1.8;
         color: var(--text-secondary);
+        margin-bottom: var(--space-md);
     }
-
-    @media (max-width: 768px) {
-        .ix-stat-value { font-size: 1.55rem; }
-        .ix-essay p { font-size: 0.92rem; }
+    .idx-essay p:last-child { margin-bottom: 0; }
+    /* The two headline hosts sit side by side on wide screens and stack on
+       narrow ones; .grid-2col handles the collapse. min-width:0 lets the
+       tracks shrink below the strips' min-content so narrow viewports reflow
+       instead of widening the page. */
+    #headlineGrid { align-items: start; }
+    #headlineGrid > .chart-panel { min-width: 0; }
+    /* Takeaway cards are whole-card links, a layout unique to this page: the
+       anchor must not paint its text as link text. Tokens only. */
+    .idx-cards a.card {
+        display: block;
+        text-decoration: none;
     }
-    @media (prefers-reduced-motion: reduce) {
-        .ix-card,
-        .ix-card:hover { transition: none; transform: none; }
+    .idx-cards a.card h3 {
+        color: var(--navy);
+        margin-bottom: var(--space-sm);
+    }
+    .idx-cards a.card p {
+        color: var(--text-secondary);
+        margin-bottom: 0;
     }
     </style>
 </head>
@@ -189,395 +89,342 @@
     <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
     <header class="header" id="pageHeader">
         <h1>Electricity-Sector Consequential Methods</h1>
-        <div class="subtitle">What 180 respondents told the GHG Protocol public
-            consultation — and what the record can honestly support</div>
+        <div class="subtitle">What the public consultation record actually says — every claim linked to the panel that shows it</div>
         <div class="header-accent"></div>
     </header>
 
     <div class="content-wrap">
 
-        <!-- ============ 1. WHO SHOWED UP ============ -->
+        <!-- ===== HERO STATS ===== -->
         <section class="content-section">
-            <h2 class="section-title">The consultation in five numbers</h2>
-            <p class="section-subtitle">Every figure on this site sits on the
-                <strong>analytical base of 180</strong> — the 185 filings minus four
-                junk submissions and one superseded resubmission. Raw-base figures
-                appear only on the integrity and methodology pages, always labelled.</p>
+            <p class="section-subtitle">In mid-2025 the GHG Protocol's electricity-sector
+            working track put a draft framework for <em>consequential</em> emissions-impact
+            methods out for public comment: a formula for quantifying the grid impact of an
+            intervention, nine candidate additionality tests, three families of marginal
+            emission-rate methodology, and the weighting between them. This site is the
+            consultation record, restructured so it can be read: a documented dataset, ten
+            pages of panels, and the assessment below. Every share on every page carries the
+            base it was divided by.</p>
 
-            <div class="ix-stats">
-                <div class="ix-stat">
-                    <div class="ix-stat-value"><span data-fig="analytical">—</span></div>
-                    <div class="ix-stat-label">respondents in every aggregate
-                        <span class="ix-stat-base">of <span data-fig="raw">—</span> filed ·
-                        <span data-fig="excluded">—</span> excluded</span></div>
-                </div>
-                <div class="ix-stat">
-                    <div class="ix-stat-value"><span data-fig="questions">—</span></div>
-                    <div class="ix-stat-label">substantive questions
-                        <span class="ix-stat-base"><span data-fig="answers">—</span> answers ·
-                        <span data-fig="free_text">—</span> of them free text</span></div>
-                </div>
-                <div class="ix-stat">
-                    <div class="ix-stat-value"><span data-fig="q19_no_pct">—</span></div>
-                    <div class="ix-stat-label">say the proposed formula is
-                        <strong>not</strong> appropriate
-                        <span class="ix-stat-base"><span data-fig="q19_no">—</span> of
-                        <span data-fig="q19_n">—</span> who answered Q19</span></div>
-                </div>
-                <div class="ix-stat">
-                    <div class="ix-stat-value"><span data-fig="redacted_pct">—</span></div>
-                    <div class="ix-stat-label">asked for their identity to be withheld
-                        <span class="ix-stat-base"><span data-fig="redacted">—</span> of
-                        <span data-fig="analytical">—</span> · <span data-fig="named">—</span>
-                        named</span></div>
-                </div>
-                <div class="ix-stat">
-                    <div class="ix-stat-value"><span data-fig="q52_substantive">—</span></div>
-                    <div class="ix-stat-label">substantive evidence submissions
-                        <span class="ix-stat-base"><span data-fig="q52_n">—</span> answered Q52 ·
-                        <span data-fig="q52_blank">—</span> were bare “N/A”</span></div>
-                </div>
+            <div class="grid-stats" id="heroStats">
+                <div class="card ec-loading">Loading the exported dataset…</div>
             </div>
-
-            <p class="ec-note" id="exportStamp">Loading the export stamp…</p>
+            <p class="ec-note" id="exportStamp"></p>
         </section>
 
-        <!-- ============ 2. THE HEADLINE PANELS ============ -->
+        <!-- ===== HEADLINE BLOCK ===== -->
         <section class="content-section">
-            <h2 class="section-title">The three questions the room closed on</h2>
-            <p class="section-subtitle">Each strip carries its own base. Bases fall
-                steeply across this survey — from <span data-fig="attrition_top">—</span>
-                answers on <span data-fig="attrition_top_q">—</span> to
-                <span data-fig="attrition_end">—</span> on
-                <span data-fig="attrition_end_q">—</span> — so no two panels here are
-                divided by the same denominator.</p>
+            <h2 class="section-title">The headline decisions</h2>
+            <p class="section-subtitle">The three stance questions the assessment below keeps
+            returning to, and the two ends of the additionality gradient. The strips use the
+            support ramp only where the dataset declares a polarity; the gradient rows use the
+            sequential stringency ramp, because required-versus-optional is not agreement.
+            Activate any bar for full counts and the segment split.</p>
 
-            <div class="chart-panel scroll-reveal">
-                <h3 class="chart-title">Formula · secondary effects · reporting period</h3>
-                <div id="headlineStrips"><p class="ec-loading">Loading…</p></div>
-                <p class="ec-note">Colour follows each question's declared polarity in
-                    the export, not a house view: red marks the answer that is critical
-                    of the proposal as drafted. Open the
-                    <a href="decisions.html">Decision Board</a> to cut any of these by
-                    organization type, country, redaction or responding-as.</p>
+            <div class="grid-2col" id="headlineGrid">
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Formula · secondary effects · reporting period</h3>
+                    <div class="ec-controls">
+                        <div id="dimToggle"></div>
+                    </div>
+                    <div id="stripsHost">
+                        <p class="ec-loading">Loading stance data…</p>
+                    </div>
+                    <div id="stripsCoverage"></div>
+                    <a class="ec-strip-link" href="decisions.html">Open the full Decision Board &rarr;</a>
+                </div>
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">The additionality gradient, at its two ends</h3>
+                    <div id="matrixEndsHost">
+                        <p class="ec-loading">Loading the additionality matrix…</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="chart-panel scroll-reveal">
-                <h3 class="chart-title">The additionality gradient, at its poles</h3>
-                <div id="gradientPoles"><p class="ec-loading">Loading…</p></div>
-                <p class="ec-note">This is a stringency scale, not a support scale.
-                    “Required” is not approval and “Not required” is not rejection —
-                    they are how demanding a test the respondent wants.</p>
+            <div class="emphasis-callout scroll-reveal">
+                <div class="emphasis-big">62.8%</div>
+                <div class="emphasis-desc">of those who answered called the proposed formula not
+                appropriate. A formula without consent, tests with a coherent stringency gradient,
+                and a field that — asked to pick its methods — largely answered “not yet”.</div>
+                <div class="emphasis-sub">A consultation is not a referendum, and at these bases it
+                is not a survey either. What follows is a third-party reading of a self-selected
+                record — no more, and no less.</div>
             </div>
         </section>
 
-        <!-- ============ 3. THE OBJECTIVE ASSESSMENT ============ -->
-        <section class="content-section">
-            <h2 class="section-title">An objective assessment</h2>
-            <p class="section-subtitle">A third-party reading of the record. No side is
-                declared right; every subgroup claim carries its n; each figure links to
-                the panel that holds it.</p>
+        <!-- ===== THE OBJECTIVE ASSESSMENT ===== -->
 
-            <div class="ix-essay scroll-reveal">
-
-                <h3><span class="ix-sec-index">01</span>What this is, and who showed up</h3>
-                <p>The GHG Protocol asked how the emissions consequences of electricity
-                    decisions should be quantified — the marginal-emissions and
-                    additionality machinery that sits behind a consequential claim.
-                    <span class="ix-num" data-fig="raw">—</span> parties filed;
-                    <span class="ix-num" data-fig="analytical">—</span> carry every
-                    aggregate on this site, after
-                    <span class="ix-num" data-fig="junk">—</span> junk submissions and one
-                    superseded resubmission were excluded and moved to the
-                    <a href="integrity.html">integrity page</a>.</p>
-                <p>The room is self-selected and lopsided:
-                    <span class="ix-num" data-fig="us">—</span> of
-                    <span class="ix-num" data-fig="analytical">—</span> respondents
-                    (<span class="ix-num" data-fig="us_pct">—</span>) are from the United
-                    States, and companies are the largest organization type.
-                    <span class="ix-num" data-fig="redacted_pct">—</span> asked for their
-                    identity to be withheld. Attrition is steep and close to monotone —
-                    <span class="ix-num" data-fig="attrition_top">—</span> answers on
-                    <span data-fig="attrition_top_q">—</span> down to
-                    <span class="ix-num" data-fig="attrition_end">—</span> on the evidence
-                    question — so by the end of the questionnaire roughly four-fifths of
-                    the room has left. A consultation is not a referendum, and at these
-                    bases it is not a survey either. It is a record of who cared enough to
-                    write, and what they argued. See
-                    <a href="respondents.html">who responded</a>.</p>
-
-                <h3><span class="ix-sec-index">02</span>The headline: the proposed formula does not command consent</h3>
-                <p><span class="ix-num" data-fig="q19_no_pct">—</span> of the
-                    <span class="ix-num" data-fig="q19_n">—</span> who answered call the
-                    Scope 2 TWG subgroup formula inappropriate
-                    (<span class="ix-num" data-fig="q19_no">—</span> No against
-                    <span class="ix-num" data-fig="q19_yes">—</span> Yes). That is the
-                    consultation's single clearest signal, and it is a rejection of the
-                    formula <em>as drafted</em>, not of consequential accounting.</p>
-                <p>The No side is not one argument. Read against the coded explanations on
-                    the <a href="topics/formula.html">formula page</a>, its largest
-                    component is incompleteness — the objection that the formula does not
-                    net induced emissions against avoided ones — followed by a distinct
-                    group arguing venue and sequence rather than substance: that this
-                    belongs with the Scope 2 workstream, in that order. A third, smaller
-                    group argues burden, data availability and regional equity. The theme
-                    coding is multi-label and the groups overlap, so they are emphases,
-                    not a partition, and the counts on that page are per-question totals
-                    rather than a breakdown of the No side.</p>
-                <p>The split is geographic before it is anything else. US respondents
-                    reject the formula at
-                    <span class="ix-num" data-fig="q19_us_no_pct">—</span> (n=<span
-                        class="ix-num" data-fig="q19_us_n">—</span>) against
-                    <span class="ix-num" data-fig="q19_nonus_no_pct">—</span> outside the
-                    US (n=<span class="ix-num" data-fig="q19_nonus_n">—</span>). Redacted
-                    respondents also lean further against it, but that lean is directional
-                    colour and not a finding at this base — the two redaction effects that
-                    do clear significance are elsewhere, and the
-                    <a href="integrity.html">integrity page</a> says which.</p>
-
-                <h3><span class="ix-sec-index">03</span>Genuine splits, not consensus</h3>
-                <p>Beyond the headline, most of this consultation is unresolved. Whether
-                    secondary effects belong in quantification splits
-                    <span class="ix-num" data-fig="q21_yes">—</span> to
-                    <span class="ix-num" data-fig="q21_no">—</span> (n=<span
-                        class="ix-num" data-fig="q21_n">—</span>). Maximum temporal
-                    granularity is a dead heat between annual
-                    (<span class="ix-num" data-fig="q45_annual">—</span>) and hourly
-                    (<span class="ix-num" data-fig="q45_hourly">—</span>) at n=<span
-                        class="ix-num" data-fig="q45_n">—</span>; spatial granularity
-                    splits four ways at n=<span class="ix-num" data-fig="q43_n">—</span>.
-                    Whether additionality should vary by region is unresolved three ways:
-                    <span class="ix-num" data-fig="q31_yes">—</span> yes,
-                    <span class="ix-num" data-fig="q31_unsure">—</span> unsure,
-                    <span class="ix-num" data-fig="q31_no">—</span> no (n=<span
-                        class="ix-num" data-fig="q31_n">—</span>).</p>
-                <p>Against that, one call is settled: reporting each year rather than once
-                    for the project lifetime, at
-                    <span class="ix-num" data-fig="q24_pct">—</span> of
-                    <span class="ix-num" data-fig="q24_n">—</span>. It is worth knowing
-                    <em>where</em> it is settled. Among US respondents it is nearly
-                    unanimous — <span class="ix-num" data-fig="q24_us_pct">—</span> of
-                    <span class="ix-num" data-fig="q24_us_n">—</span> — while outside the
-                    US it is <span class="ix-num" data-fig="q24_nonus_pct">—</span> of
-                    <span class="ix-num" data-fig="q24_nonus_n">—</span>. Country is the
-                    sharpest axis in this dataset and it is not a restatement of the
-                    redaction split; the two are independent. Where the data supports
-                    mapping a split onto interest, it is worth doing — and where it does
-                    not, saying so is part of the reading.</p>
-
-                <h3><span class="ix-sec-index">04</span>The additionality gradient is coherent</h3>
-                <p>The nine additionality tests fall into three tiers and the ordering is
-                    stable: regulatory surplus (net
-                    <span class="ix-num" data-fig="net_regulatory">—</span>) and timing
-                    (<span class="ix-num" data-fig="net_timing">—</span>) are wanted as
-                    requirements; a middle group is Optional-modal and sits within a
-                    point and a half of itself, so those tests should be treated as tied
-                    and not ranked against each other; and first-of-its-kind
-                    (<span class="ix-num" data-fig="net_first">—</span>) anchors the
-                    rejected end.</p>
-                <p>What makes the gradient credible is that feasibility tracks it. Asked
-                    separately which tests could actually be run, the same
-                    <span class="ix-num" data-fig="feas_n">—</span> respondents put
-                    regulatory (<span class="ix-num" data-fig="feas_regulatory">—</span>)
-                    and timing (<span class="ix-num" data-fig="feas_timing">—</span>)
-                    first again. The crowd is answering “what works”, not venting. The
-                    interesting gaps are where the two diverge: the positive list is
-                    called feasible by
-                    <span class="ix-num" data-fig="poslist_feas_pct">—</span> of
-                    <span class="ix-num" data-fig="feas_n">—</span> but wanted as a
-                    requirement by only
-                    <span class="ix-num" data-fig="poslist_req_pct">—</span> of
-                    <span class="ix-num" data-fig="poslist_req_n">—</span> — a
-                    <span class="ix-num" data-fig="poslist_gap">—</span>-point gap between
-                    “this could be done” and “this should be mandatory”, the widest in the
-                    set. And <span class="ix-num" data-fig="feas_none">—</span> respondents
-                    answered that no test is feasible at all, which is a position, not a
-                    non-answer. The <a href="topics/additionality.html">additionality
-                    page</a> has the full 9 × 3 matrix and the required-vs-feasible
-                    cross.</p>
-
-                <h3><span class="ix-sec-index">05</span>The methodology scoreboards, read with humility</h3>
-                <p>Each methodology family was asked twice — which approaches are
-                    appropriate, and which are not feasible — and the two questions have
-                    <em>different bases</em>, so every net on this site is the difference
-                    of two own-base percentages and both bases are always shown. For
-                    operating margin (<span class="ix-num" data-fig="om_app">—</span>
-                    appropriate-side, <span class="ix-num" data-fig="om_not">—</span>
-                    not-side), <span data-fig="om_top">—</span> leads at
-                    <span class="ix-num" data-fig="om_top_net">—</span> and
-                    <span data-fig="om_last">—</span> trails at
-                    <span class="ix-num" data-fig="om_last_net">—</span>. For build margin
-                    (<span class="ix-num" data-fig="bm_app">—</span> /
-                    <span class="ix-num" data-fig="bm_not">—</span>),
-                    <span data-fig="bm_top">—</span> leads at
-                    <span class="ix-num" data-fig="bm_top_net">—</span> and
-                    <span data-fig="bm_last">—</span> trails at
-                    <span class="ix-num" data-fig="bm_last_net">—</span>.</p>
-                <p>The winners are real and they survive text-deduplication. The middle
-                    does not deserve the same confidence: options clustered near zero can
-                    cross it once identical template text is counted once, so “narrowly
-                    rejected” is not a safe phrase for anything in the middle of these
-                    boards. And the largest single finding in the weighting family is
-                    hesitancy itself — <span class="ix-num" data-fig="wt_unsure_app">—</span>
-                    respondents answered “Unsure” on the appropriate side and
-                    <span class="ix-num" data-fig="wt_unsure_not">—</span> on the
-                    not-feasible side, against
-                    <span class="ix-num" data-fig="wt_app">—</span> and
-                    <span class="ix-num" data-fig="wt_not">—</span> respectively. Those
-                    are never netted into any score. No method commands a majority of even
-                    this small, self-selected base. See
-                    <a href="topics/emission-rates.html">emission rates</a> and
-                    <a href="topics/weighting.html">weighting</a>.</p>
-
-                <h3><span class="ix-sec-index">06</span>The evidence base is thin, and the record is rhetorical</h3>
-                <p>The consultation asked directly for supporting research.
-                    <span class="ix-num" data-fig="q52_n">—</span> respondents answered,
-                    <span class="ix-num" data-fig="q52_blank">—</span> of them with a bare
-                    “N/A” — <span class="ix-num" data-fig="q52_substantive">—</span>
-                    substantive submissions out of
-                    <span class="ix-num" data-fig="analytical">—</span>. Mining citations
-                    out of the free text raises the count but not the picture: named
-                    respondents cite at
-                    <span class="ix-num" data-fig="cite_named_pct">—</span> against
-                    <span class="ix-num" data-fig="cite_redacted_pct">—</span> for redacted
-                    ones. Most of this record is argued rather than evidenced, and the
-                    distinction between an argued position and an asserted one is the most
-                    useful filter a reader can apply to it. Free text also caps at 4,000
-                    characters, so the longest submissions are truncated in the source
-                    export.</p>
-
-                <h3><span class="ix-sec-index">07</span>Interest, coordination and integrity — symmetric skepticism</h3>
-                <p>Interest runs in both directions here. Modeling consultancies and data
-                    vendors gain from complex, granular methods; reporting companies gain
-                    from simple, coarse ones. Both interests are present in this record
-                    and neither invalidates an argument — it only means no participant's
-                    answer should be read as disinterested.</p>
-                <p>Coordination is measurable.
-                    <span class="ix-num" data-fig="clusters">—</span> blocks of identical
-                    text of 200 characters or more are shared across
-                    <span class="ix-num" data-fig="bloc_people">—</span> respondents,
-                    forming <span class="ix-num" data-fig="blocs">—</span> response packs.
-                    The largest is
-                    <span data-fig="big_bloc_sentence">—</span>. Which country is not
-                    named here or anywhere on this site, and is not recoverable from
-                    anything published on it: naming it would be new disclosure about
-                    people who asked not to be identified.
-                    Deduplication matters to the headlines: counting shared text once
-                    moves Q19's No count to
-                    <span class="ix-num" data-fig="q19_dedup_no">—</span> and Q21's to
-                    <span class="ix-num" data-fig="q21_dedup_no">—</span>.</p>
-                <p>Redaction is not evenly spread, and that is a confound worth stating
-                    plainly. Companies are the only organization type where withholding
-                    identity is the majority — <span class="ix-num" data-fig="company_redacted">—</span>
-                    redacted against <span class="ix-num" data-fig="company_named">—</span>
-                    named, of <span class="ix-num" data-fig="company_total">—</span>. Since
-                    companies are also the largest type in the room, any sentence of the
-                    form “redacted respondents think X” is substantially “companies think
-                    X” and has to be hedged that way.</p>
-
-                <div class="emphasis-callout">
-                    <strong>Redacted is not a verdict.</strong> Withholding a name is an
-                    ordinary and permitted choice in a public consultation. Redacted
-                    respondents are counted in every aggregate on this site and are never
-                    named anywhere. Where their answers differ from named respondents', it
-                    is reported as a measured difference with its n and its significance,
-                    never as a motive.
-                </div>
-
-                <h3><span class="ix-sec-index">08</span>How a third party should read this</h3>
-                <p>The signal is strongest on four things: the formula as proposed does not
-                    have consent; the regulatory and timing tests are the ones this room
-                    wants required; annual reporting is settled, most firmly among US
-                    respondents; and average-emission-rate build margin is clearly
-                    rejected. Those are the claims the record supports.</p>
-                <p>Genuinely open: whether secondary effects belong in scope, both
-                    granularity questions, and most of the methodology middle. On those,
-                    the honest summary is that this consultation did not resolve them, and
-                    a document that claims otherwise is over-reading it.</p>
-                <p>What would settle them is not another consultation. It is published
-                    back-tests of the competing marginal-rate methods, registry pilots that
-                    show the additionality tests being applied at cost, and the kind of
-                    documentation that Q52 asked for and largely did not receive. Read this
-                    hub as evidence of where a well-informed, self-selected and
-                    US-weighted group of practitioners currently stands — which is a
-                    legitimate and useful thing for a standard-setter to know, and a
-                    different thing from a mandate. The
-                    <a href="methodology.html">methodology page</a> documents every
-                    construct, base and caveat behind the numbers above.</p>
+        <section class="content-section content-section-narrow idx-essay">
+            <h2 class="section-title">1 · What this consultation is, and who showed up</h2>
+            <div class="card card-spacious scroll-reveal">
+                <p>The consultation ran under the GHG Protocol's electricity-sector work on
+                <em>consequential</em> methods — quantifying what an intervention changes on the
+                grid, as distinct from the attributional inventory accounting of Scope 2. Its
+                twenty-page document put a Scope 2 technical-working-group subgroup formula, an
+                additionality battery, marginal emission-rate method families and a build/operating
+                weighting question out for comment.</p>
+                <p><strong>185 respondents filed; 180 form the analytical base.</strong> Four junk
+                submissions (gibberish or single-letter answers, <a href="integrity.html#junk">shown
+                verbatim on the integrity page</a>) and <a href="integrity.html#resubmission">one
+                superseded resubmission</a> are excluded from every figure on this site. The room is
+                <a href="respondents.html#country">57.8% US (104 of 180)</a> and
+                <a href="respondents.html#org-type">company-heavy (60 of 180)</a>, with
+                <a href="respondents.html#engagement">159 filing as organizations and 21 as
+                individuals</a>; <a href="integrity.html#redaction">41.7% (75 of 180) asked for
+                their identity to be withheld</a>. Attrition is steep and nearly monotone: the
+                first substantive question drew <a href="decisions.html#attritionHost">160 answers,
+                the last 34</a> — by the consultation's own evidence question, four-fifths of the
+                room had left. Every base on every panel matters for exactly this reason.</p>
+                <p>One caveat governs everything below: a consultation is not a referendum, and a
+                self-selected 180 is not a survey of any population. The record shows who chose to
+                speak and what they argued — it cannot show what the field believes.</p>
             </div>
         </section>
 
-        <!-- ============ 4. TAKEAWAY CARDS ============ -->
-        <section class="content-section">
-            <h2 class="section-title">Where to go next</h2>
-            <p class="section-subtitle">Nine pages sit under this one. Each holds the
-                panels behind the claims above.</p>
+        <section class="content-section content-section-narrow idx-essay">
+            <h2 class="section-title">2 · The headline: the proposed formula does not command consent</h2>
+            <div class="card card-spacious scroll-reveal">
+                <p>Asked directly whether the proposed formula is appropriate,
+                <a href="topics/formula.html#headline">62.8% said No — 81 of the 129 who
+                answered</a>. The more useful reading is <em>why</em>, and the
+                <a href="topics/formula.html#headline">coded themes on the explain question</a>
+                cover 80 of the 81 No respondents. The No side is not three even verdicts; it is
+                one dominant argument with two smaller companions, and the three overlap — they
+                are emphases, not a partition. The dominant argument is <strong>incomplete impact
+                accounting</strong> (50 of 80): the formula counts avoided emissions without
+                netting induced ones, and it is the single most side-separating code in the
+                taxonomy — 62.5% of coded No respondents carry it against 5 of the 39 coded Yes
+                respondents. Second, <strong>wrong venue or wrong sequence</strong> (35 of 80):
+                integrate this with Scope 2 recognition (19), coordinate the workstreams first
+                (18 — a code no Yes respondent carries), keep the inventory/impact boundary clean
+                (10). Third, <strong>burden, data and equity</strong> (18 of 80): complexity and
+                audit burden (14), attribution uncertainty (8), regional equity (6), data
+                availability (2). The Yes side is near-monolithic by comparison: 33 of its 39
+                coded respondents simply call the structure sound.</p>
+                <p>Support concentrates where the method would be used commercially: among
+                self-declared energy suppliers/utilities the split runs 7 Yes to 5 No (n=12), and
+                among data/analytics providers 3 to 2 (n=5) — bases small enough that both are
+                color, not findings. Redacted respondents lean further No than named ones
+                (41 of 60 against 40 of 69), but the lean does not clear significance and is best
+                treated as direction only (§7).</p>
+            </div>
+        </section>
 
-            <div class="ix-cards">
-                <a class="ix-card scroll-reveal" href="decisions.html">
-                    <div class="ix-card-kicker">The centrepiece</div>
-                    <div class="ix-card-title">Decision Board</div>
-                    <p class="ix-card-body">Every closed decision point in one grammar —
-                        stance strips, the additionality mini-matrix, the methodology
-                        roll-up, both granularity ladders and the attrition strip, all
-                        cuttable by four segment dimensions.</p>
+        <section class="content-section content-section-narrow idx-essay">
+            <h2 class="section-title">3 · Genuine splits, not consensus</h2>
+            <div class="card card-spacious scroll-reveal">
+                <p>Away from the formula, the record divides. Whether to quantify
+                <a href="topics/formula.html#secondary-effects">secondary effects splits the room
+                56 to 50 (n=106)</a> — and it splits again by identity, with
+                <a href="respondents.html#redaction-effect">named respondents at 35 Yes / 21 No and
+                redacted ones at 21 / 29</a>, one of only two redaction contrasts in the set that
+                clears significance. <a href="topics/emission-rates.html#granularity">Temporal
+                granularity is a dead heat</a>: Annual 31, Hourly 30, Sub-hourly 14, Monthly 3
+                (n=78) — binned, fine 44 against coarse 34. Spatial granularity splits four ways
+                across the whole coarse-to-fine ladder (Country 21, Nodal 20, Grid region 18,
+                Balancing area 15, Zonal 3; n=77). Against all of that,
+                <a href="topics/formula.html#reporting-period">annual rather than lifetime
+                reporting, at 80.8% (80 of 99)</a>, looks settled — but it is settled mainly among
+                US respondents, 96.4% of whom (53 of 55) chose annual, against 61.4% (27 of 44)
+                everywhere else.</p>
+                <p>That pattern generalizes: <strong>country is the sharpest axis in this dataset,
+                and it is not the redaction axis</strong>. US respondents reject the formula harder
+                than the rest of the room (73.0% No, 54 of 74, against 49.1%, 27 of 55), reject
+                regional differentiation of additionality (24.6% Yes, 14 of 57, against 56.1%,
+                23 of 41) and want finer temporal granularity (69.0%, 29 of 42, against 41.7%,
+                15 of 36). Japan is the mirror image on both headline calls — 6 of its 7
+                respondents called the formula appropriate, and all 6 who answered chose annual —
+                though at n≤8 Japan and the UK are read as sketches, not estimates. Every one of
+                these splits is visible when the
+                <a href="decisions.html?dim=country_4#stripsHost">Decision Board is segmented by
+                country</a>; the significance tests this assessment leans on — here and in §7 —
+                come from the project's verification audit of the underlying dataset, not from any
+                shipped panel — the <a href="methodology.html#limitations">methodology
+                page</a> records the distinction.</p>
+            </div>
+        </section>
+
+        <section class="content-section content-section-narrow idx-essay">
+            <h2 class="section-title">4 · The additionality gradient is coherent</h2>
+            <div class="card card-spacious scroll-reveal">
+                <p>Rating nine candidate additionality tests required, optional or not required
+                could have produced noise. It produced a
+                <a href="topics/additionality.html#matrix">clean three-tier gradient</a>: a
+                required tier (regulatory at net +47.2, 66R/21O/17N on n=104; timing at +25.5,
+                n=102), an optional middle (positive list, financial analysis, contractual/tenor —
+                all modal-Optional, within 1.5 points of each other and not meaningfully ranked),
+                and a rejected tier ending at first-of-its-kind (−46.9, 8R/35O/53N on n=96). The
+                gradient is coherent with the separate
+                <a href="topics/additionality.html#feasibility">feasibility question</a>: the tests
+                the room wants required are the tests it thinks can actually be administered
+                (regulatory 78 and timing 71 picks of n=95), and the verification pass measured the
+                two rankings as near-identical (rank correlation 0.90, top three places the same).
+                This is a crowd answering "what works", not venting.</p>
+                <p>The tensions are real but specific: 10 of 95 respondents said <em>no</em> test
+                is feasible; whether additionality should
+                <a href="topics/additionality.html#regional">vary by region is unresolved three
+                ways (37 yes / 32 unsure / 29 no, n=98)</a>; whether
+                <a href="topics/additionality.html#rigor">rigor should vary by claim type splits
+                42 to 33 (n=75)</a>. And the widest could-versus-must gap is the positive list:
+                61.1% call it feasible while 15.7% would require it, a 45-point spread that marks
+                it as the room's preferred <em>optional</em> instrument.</p>
+            </div>
+        </section>
+
+        <section class="content-section content-section-narrow idx-essay">
+            <h2 class="section-title">5 · The methodology scoreboards, read with humility</h2>
+            <div class="card card-spacious scroll-reveal">
+                <p>Each method family was asked as two multi-selects — which are appropriate,
+                which are not — answered by different rooms of 54 to 66 people, so every figure
+                here is a difference of shares on two bases, printed on the axis. With that
+                humility: each family has clear leaders.
+                <a href="topics/emission-rates.html#operating-margin">Operating margin</a>:
+                SCED-locational (net +52.7) and statistical methods (+48.2), with
+                capacity-factor-based (−28.6) and difference-based (−24.6) rejected.
+                <a href="topics/emission-rates.html#build-margin">Build margin</a>: recent capacity
+                additions (+54.8) far ahead, average emission rate (−43.3) far behind.
+                <a href="topics/weighting.html#scoreboard">Weighting</a>: the GHGP Grid-connected
+                Guidelines (+30.5) lead a thin field. The verification pass found the leaders
+                robust — all three stay first, and strengthen, when circulated template text is
+                collapsed to a single voice.</p>
+                <p>The middle is genuinely unsettled, and one option's verdict depends on the
+                dedup: build-margin capacity-expansion modeling nets −3.4 as filed, and the same
+                verification pass measured it flipping to +5.5 once
+                <a href="integrity.html#blocs">template blocs</a> are collapsed, so no
+                honest sentence calls it accepted or rejected. Equally telling are the
+                non-answers: on <a href="topics/weighting.html#scoreboard">weighting</a>, "unsure"
+                drew 14 picks on the appropriate side and 20 on the not side, "none are
+                appropriate" 9, "all are feasible" 15. No method in any family commands a majority
+                even of this small, self-selected base. The field, asked to pick its tools,
+                largely answered "not yet".</p>
+            </div>
+        </section>
+
+        <section class="content-section content-section-narrow idx-essay">
+            <h2 class="section-title">6 · The evidence base is thin, and the record is rhetorical</h2>
+            <div class="card card-spacious scroll-reveal">
+                <p>The consultation asked for supporting research and documentation.
+                <a href="integrity.html#evidence">34 respondents answered, five with a bare "N/A"
+                — 29 substantive evidence submissions</a> against 180 respondents and 1,329
+                free-text answers. Citation mining across all that text is the better evidence
+                map: <a href="integrity.html#evidence">72 distinct cited domains</a>, with citation
+                rates led by NGOs (8 of 21, 38.1%) and trailed by consultants (5 of 25, 20.0%).
+                Most of the record argues rather than demonstrates.</p>
+                <p>Some of it argues in unison. <a href="integrity.html#blocs">Circulated template
+                text</a> moves headline numbers: deduplication trims the formula question from
+                48 Yes / 81 No to 47 / 71, and costs the secondary-effects No side 9 of its 50.
+                The <a href="voices.html#secQuotes">quote browser</a> badges template passages so
+                an argued position can be told from a propagated one, and a
+                <a href="methodology.html#limitations">4,000-character export cap</a> means the
+                longest answers are read slightly truncated. None of this is misconduct — it is
+                the normal texture of an open consultation, and the reason raw counts are never
+                the whole story.</p>
+            </div>
+        </section>
+
+        <section class="content-section content-section-narrow idx-essay">
+            <h2 class="section-title">7 · Interest, coordination and integrity — symmetric skepticism</h2>
+            <div class="card card-spacious scroll-reveal">
+                <p>Read every position against who benefits from it. Granular, model-heavy methods
+                create work for modeling consultancies and data vendors, several of whom filed;
+                simple, coarse methods flatter reporters with weak interventions to defend, and
+                companies are the largest single block in the room
+                (<a href="respondents.html#org-type">60 of 180</a>). Both interests are real;
+                neither invalidates an argument, and this site declares neither side right.</p>
+                <p>Coordination is visible and bounded: <a href="integrity.html#blocs">eight
+                template blocs</a>, the largest a five-member pack whose members are all redacted
+                and — per the verification audit — all from a single non-US country: a national
+                coordination effort, not an industry one, and deliberately not named here. The
+                second-largest, a four-member bullet-formatted pack, has one named member (SEMI).
+                <a href="integrity.html#families">Engie Impact filed twice</a> through different
+                individuals; both filings count, grouped as a family.</p>
+                <p>Redaction correlates with the conservative position — but only twice
+                significantly in seven stance questions: on
+                <a href="respondents.html#redaction-effect">secondary effects</a>, and most sharply
+                on regional differentiation, where redacted respondents pick "unsure/depends"
+                22 of 41 against 10 of 57 named. On the headline formula question the lean is
+                direction, not finding. And the axis is confounded:
+                <a href="respondents.html#org-type">companies are 41 of the 75 redacted
+                respondents and the only org type where redaction is the majority</a>, so every
+                "redacted respondents think X" is substantially "companies think X". A handful of
+                filers appear in <a href="integrity.html#cross">both this consultation and the
+                Scope 2 consultation</a>; their persistence is context, not extra weight.</p>
+            </div>
+        </section>
+
+        <section class="content-section content-section-narrow idx-essay">
+            <h2 class="section-title">8 · How a third party should read this record</h2>
+            <div class="card card-spacious scroll-reveal">
+                <p>Signal is strongest where volume, consistency and reasoning line up: the
+                formula as proposed lacks consent (and the modal objection — net the induced
+                against the avoided — is a design instruction, not a rejection of consequential
+                accounting); regulatory and timing tests belong in any additionality battery;
+                annual reporting is preferred, emphatically so in the US; and an average emission
+                rate is not an acceptable build margin. Genuinely open, on this record: secondary
+                effects, spatial and temporal granularity, most of the methodology middle, and
+                regional differentiation — where the split runs along national lines the room may
+                not have expected.</p>
+                <p>What would settle the open questions is exactly what the record lacks:
+                published back-tests of the candidate methods, registry pilots, the evidence a
+                29-submission base barely surfaced. Until then, this consultation can legitimately
+                inform three things — where the draft's design consensus already exists, where a
+                standard must offer options rather than mandates, and which claims the eventual
+                framework will be asked to police. It cannot decide the contested middle, and it
+                does not pretend to.</p>
+            </div>
+        </section>
+
+        <!-- ===== TAKEAWAY CARDS ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Where each thread continues</h2>
+            <p class="section-subtitle">Every claim above links into one of these nine pages;
+            each page carries the full panels, the segment toggles and the response bases.</p>
+
+            <div class="grid-3col idx-cards">
+                <a class="card card-accent card-accent-indigo scroll-reveal" href="decisions.html">
+                    <h3>The Decision Board</h3>
+                    <p>Every closed decision point in one grammar: stance strips, the gradient,
+                    the scoreboards, the ladders, the attrition strip.</p>
                 </a>
-                <a class="ix-card scroll-reveal" href="topics/formula.html">
-                    <div class="ix-card-kicker">Topic · doc §5–6</div>
-                    <div class="ix-card-title">Formula &amp; scope</div>
-                    <p class="ix-card-body">The headline question and its coded
-                        explanations, secondary effects with their paired reasons, and the
-                        one settled call on reporting period.</p>
+                <a class="card card-accent card-accent-cyan scroll-reveal" href="topics/formula.html">
+                    <h3>Formula &amp; scope</h3>
+                    <p>The headline No, the reasoning behind it, secondary effects and the
+                    reporting period.</p>
                 </a>
-                <a class="ix-card scroll-reveal" href="topics/additionality.html">
-                    <div class="ix-card-kicker">Topic · doc §7</div>
-                    <div class="ix-card-title">Additionality</div>
-                    <p class="ix-card-body">The full 9 × 3 stringency matrix, the
-                        required-vs-feasible cross, and whether rigour should vary by
-                        region or by claim type.</p>
+                <a class="card card-accent card-accent-cyan scroll-reveal" href="topics/additionality.html">
+                    <h3>Additionality</h3>
+                    <p>The full 9×3 stringency matrix, the required-versus-feasible cross and the
+                    regional question.</p>
                 </a>
-                <a class="ix-card scroll-reveal" href="topics/emission-rates.html">
-                    <div class="ix-card-kicker">Topic · doc §8</div>
-                    <div class="ix-card-title">Marginal emission rates</div>
-                    <p class="ix-card-body">Operating-margin and build-margin scoreboards
-                        with both bases on every axis, plus the spatial and temporal
-                        granularity ladders in full.</p>
+                <a class="card card-accent card-accent-cyan scroll-reveal" href="topics/emission-rates.html">
+                    <h3>Marginal emission rates</h3>
+                    <p>Operating- and build-margin scoreboards and the granularity ladders in
+                    full.</p>
                 </a>
-                <a class="ix-card scroll-reveal" href="topics/weighting.html">
-                    <div class="ix-card-kicker">Topic · doc §9</div>
-                    <div class="ix-card-title">BM/OM weighting</div>
-                    <p class="ix-card-body">The thinnest-based family in the survey, where
-                        “Unsure” outpolls every named approach — and the pointer to what
-                        evidence was offered.</p>
+                <a class="card card-accent card-accent-cyan scroll-reveal" href="topics/weighting.html">
+                    <h3>BM/OM weighting</h3>
+                    <p>The thinnest-based family, its large "unsure" shares, and the evidence
+                    pointer.</p>
                 </a>
-                <a class="ix-card scroll-reveal" href="voices.html">
-                    <div class="ix-card-kicker">The written record</div>
-                    <div class="ix-card-title">Themes &amp; voices</div>
-                    <p class="ix-card-body">The theme taxonomy, a filterable browser over
-                        every curated quote, the template packs shown as documents, and
-                        how much each respondent actually wrote.</p>
+                <a class="card card-accent card-accent-green scroll-reveal" href="voices.html">
+                    <h3>Themes &amp; voices</h3>
+                    <p>The coded theme taxonomy, the filterable quote browser and the template
+                    exhibit.</p>
                 </a>
-                <a class="ix-card scroll-reveal" href="respondents.html">
-                    <div class="ix-card-kicker">The sample</div>
-                    <div class="ix-card-title">Who responded</div>
-                    <p class="ix-card-body">Organization type against redaction, country,
-                        sector, the attrition funnel, and a searchable browser of every
-                        named respondent with their stance fingerprint.</p>
+                <a class="card card-accent card-accent-green scroll-reveal" href="respondents.html">
+                    <h3>Who responded</h3>
+                    <p>Profiles, the attrition funnel, the org browser and the named-versus-redacted
+                    comparison.</p>
                 </a>
-                <a class="ix-card scroll-reveal" href="integrity.html">
-                    <div class="ix-card-kicker">The audit</div>
-                    <div class="ix-card-title">Integrity &amp; evidence</div>
-                    <p class="ix-card-body">The excluded submissions shown verbatim, the
-                        resubmission diff, the response packs, the redaction gradient, the
-                        citation mining, and the cross-consultation overlap.</p>
+                <a class="card card-accent card-accent-red scroll-reveal" href="integrity.html">
+                    <h3>Integrity &amp; evidence</h3>
+                    <p>Junk filings, the resubmission, template blocs, redaction analysis and the
+                    citation record.</p>
                 </a>
-                <a class="ix-card scroll-reveal" href="methodology.html">
-                    <div class="ix-card-kicker">The receipts</div>
-                    <div class="ix-card-title">Methodology</div>
-                    <p class="ix-card-body">Provenance, question identity, the 185 → 180
-                        adjudication, every construct and arithmetic rule, the privacy
-                        mask, the limitations, and the commands to reproduce all of
-                        it.</p>
+                <a class="card card-accent card-accent-indigo scroll-reveal" href="methodology.html">
+                    <h3>Methodology</h3>
+                    <p>How the dataset is built, what the analytical base excludes, and what these
+                    figures can and cannot carry.</p>
                 </a>
             </div>
         </section>
@@ -585,9 +432,9 @@
     </div>
 
     <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
-    <footer id="siteFooter" data-footer-note="Overview — Electricity-Sector Consequential Methods Consultation"></footer>
+    <footer id="siteFooter" data-footer-note="Electricity-Sector Consequential Methods Consultation"></footer>
 
-    <!-- Page module -->
+    <!-- Page module: hero stats + headline block from the §5 contract -->
     <script src="js/index-page.js"></script>
 
     <!-- Cinematic parallax background (must load after body content) -->

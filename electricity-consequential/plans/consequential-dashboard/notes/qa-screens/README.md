@@ -18,7 +18,12 @@ vendored into the repository.
 | `state-voices-filter-*.png` | The voices page with a filter engaged. |
 | `report.json` · `report-fixtures.json` | Per-page HTTP status, console errors, failed requests and horizontal-overflow measurement for every capture. |
 
-Full-page captures are stored at half linear resolution and colour-quantised;
-interaction states at three-quarter. Raw captures came to 87 MB, which is not
-a reasonable thing to put in a git repository — the set here is 16 MB and every
-image is still legible at the detail it was taken to show.
+Storage: phone-width captures are normalised to true CSS pixels (390 wide —
+Chromium returned them at 3× device pixels) and desktop captures to 0.6 linear,
+everything colour-quantised, one pass. Raw captures came to 63 MB, which is not
+a reasonable thing to put in a git repository; the set here is 16 MB and every
+image is still legible at the detail it was taken to show. The panel-level
+crops that the P42 report cites — the matrix at both widths, the cross before
+and after, the country panel — were reviewed at native resolution during the
+session and are represented here by their full-page and interaction-state
+context shots.
