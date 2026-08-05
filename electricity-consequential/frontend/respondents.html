@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Responded | Electricity-Sector Consequential Methods Consultation</title>
+    <meta name="description" content="Who filed to the electricity-sector consequential methods consultation, how far into the survey they got, which of them signed their name, and a searchable browser of every named organization.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in
+         electricity-consequential/plans/consequential-dashboard/PLAN.md §5).
+         quotes/matrix are not used by this page and are omitted; org-table.js
+         and stance-viz.js are, and respondents-page.js needs both. -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/segments.js"></script>
+    <script src="js/stance-viz.js"></script>
+    <script src="js/org-table.js"></script>
+    <script src="js/respondents-page.js"></script>
+
+    <!-- Page-specific styles ONLY (layouts unique to this page — never restyle
+         shared components). Everything here is `.rp-` prefixed, uses design
+         tokens only, and would move into styles/site.css if a second page ever
+         needed it. Flagged for P42: `.rp-chart-rows` is really a
+         `.chart-container` row-count modifier and belongs in shared.css. -->
+    <style>
+    /* Chart panels whose height must follow their row count: the shared
+       .chart-container is a fixed 320px, which squeezes a 13-type bar chart
+       and wastes half a panel on a 2-row one. --rp-rows is published by
+       respondents-page.js from the data. */
+    .rp-chart-rows {
+        height: calc(var(--rp-rows, 8) * 30px + 74px);
+        min-height: 180px;
+    }
+    .rp-chart-rows.chart-container-sm {
+        height: calc(var(--rp-rows, 4) * 32px + 74px);
+        min-height: 150px;
+    }
+
+    /* --- Redaction gradient chips --- */
+    .rp-gradient {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: var(--space-lg);
+    }
+    .rp-gradient-side {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        min-width: 0;
+    }
+    .rp-chips {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+    .rp-chip {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+        padding: 6px 10px;
+        border-radius: var(--radius-md);
+        background: var(--bg-alt);
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+    }
+    .rp-chip-val {
+        font-family: var(--font-data);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--nuclear-text);
+        min-width: 54px;
+    }
+    .rp-chip-n {
+        font-family: var(--font-data);
+        font-size: 0.7rem;
+        color: var(--text-light);
+    }
+
+    /* --- Attrition funnel --- */
+    .rp-funnel {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        margin-top: var(--space-lg);
+    }
+    .rp-funnel-row {
+        display: grid;
+        grid-template-columns: minmax(150px, 260px) minmax(0, 1fr) 118px;
+        align-items: center;
+        gap: var(--space-md);
+    }
+    .rp-funnel-label {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-family: var(--font-heading);
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--text-secondary);
+        min-width: 0;
+    }
+    .rp-funnel-sub {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 400;
+        line-height: 1.45;
+        color: var(--text-muted);
+    }
+    .rp-funnel-track {
+        display: block;
+        height: 20px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-alt);
+        overflow: hidden;
+    }
+    .rp-funnel-bar {
+        display: block;
+        height: 100%;
+        border-radius: var(--radius-sm);
+    }
+    .rp-funnel-n {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1px;
+        font-family: var(--font-data);
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--navy);
+    }
+    .rp-funnel-pct {
+        font-size: 0.66rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        white-space: nowrap;
+    }
+
+    /* --- Named vs redacted shift readout --- */
+    .rp-shifts {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    .rp-shift {
+        display: grid;
+        grid-template-columns: 58px minmax(0, 1fr);
+        gap: var(--space-sm);
+        align-items: baseline;
+        padding-bottom: var(--space-sm);
+        border-bottom: 1px solid var(--border-light);
+    }
+    .rp-shift:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    .rp-shift-q {
+        font-family: var(--font-data);
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--text-light);
+    }
+    .rp-shift-body {
+        font-size: 0.82rem;
+        line-height: 1.55;
+        color: var(--text-secondary);
+    }
+    .rp-shift--flat .rp-shift-body {
+        color: var(--text-muted);
+    }
+    .rp-shift-detail {
+        font-family: var(--font-data);
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        white-space: nowrap;
+    }
+
+    /* --- Fingerprint key --- */
+    .rp-fp-keys {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-xs) var(--space-md);
+        margin-top: var(--space-xs);
+    }
+    .rp-fp-key {
+        font-size: 0.76rem;
+        color: var(--text-secondary);
+    }
+    .rp-fp-key strong {
+        font-family: var(--font-data);
+        color: var(--navy);
+    }
+
+    /* --- Free text inside an expanded org profile --- */
+    .rp-ft {
+        flex-basis: 100%;
+        margin-top: var(--space-xs);
+        border-left: 2px solid var(--border-light);
+        padding-left: var(--space-sm);
+    }
+    .rp-ft-summary {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+        cursor: pointer;
+        list-style: none;
+        font-family: var(--font-heading);
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+    }
+    .rp-ft-summary::-webkit-details-marker {
+        display: none;
+    }
+    .rp-ft-label::before {
+        content: '▸';
+        display: inline-block;
+        margin-right: 5px;
+        transition: transform 0.2s ease;
+        color: var(--accent-blue);
+    }
+    .rp-ft[open] > .rp-ft-summary .rp-ft-label::before {
+        content: '▾';
+    }
+    .rp-ft-summary:hover .rp-ft-label {
+        color: var(--navy);
+    }
+    .rp-ft-body {
+        margin-top: var(--space-xs);
+    }
+    .rp-ft-trunc {
+        margin: var(--space-xs) 0 0;
+        font-size: 0.72rem;
+        line-height: 1.5;
+        color: var(--amber-text);
+    }
+
+    /* --- Small screens --- */
+    @media (max-width: 768px) {
+        .rp-funnel-row {
+            grid-template-columns: minmax(0, 1fr) 96px;
+            grid-template-areas:
+                'label n'
+                'track track';
+            row-gap: var(--space-xs);
+        }
+        .rp-funnel-label { grid-area: label; }
+        .rp-funnel-track { grid-area: track; }
+        .rp-funnel-n     { grid-area: n; }
+        .rp-shift {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 2px;
+        }
+        .rp-shift-detail {
+            display: block;
+            white-space: normal;
+        }
+        /* An expanded profile lives in a cell of a 940px-wide table inside a
+           ~290px scrollport. Pin it to the scrollport's left edge and size it
+           to the visible width, published as --rp-detail-w by the page module,
+           so the prose is readable without sideways scrolling. */
+        .ec-org-browser {
+            position: relative;
+        }
+        .ec-org-detail-row > td {
+            padding: 0;
+        }
+        .ec-org-detail {
+            position: sticky;
+            left: 0;
+            width: var(--rp-detail-w, 100%);
+            max-width: 100vw;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .rp-ft-label::before {
+            transition: none;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Who Responded</h1>
+        <div class="subtitle">Who filed, how far into the survey they got, and which of them signed their name — the shape of the response base that every other number on this site divides by.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== HERO STATS ===== -->
+        <section class="content-section">
+            <!-- .grid-stats, not .hero-stats-row: the latter is the flex row of
+                 translucent chips for the dark banner. -->
+            <div class="grid-stats" id="heroStats">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRespondents">—</div>
+                    <div class="stat-label">Analytical base</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRedacted">—</div>
+                    <div class="stat-label">Withheld their name</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statNamed">—</div>
+                    <div class="stat-label">Named organizations below</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statAnswers">—</div>
+                    <div class="stat-label">Answers recorded</div>
+                </div>
+            </div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>Read this page first.</strong> A consultation is not a
+                poll and, at this size, not a survey either: respondents
+                self-select, a handful of coordinated filings move a count
+                visibly, and the room empties as the questionnaire goes on.
+                Before any stance elsewhere on this site means anything, it
+                matters who filed, how much of the form they finished, and
+                whether they attached a name to it — because none of the three
+                are evenly distributed. <span id="excludedNote"></span>
+            </div>
+        </section>
+
+        <!-- ===== 1 · ORG TYPE × REDACTION ===== -->
+        <section class="content-section" id="org-type">
+            <h2 class="section-title">Organization type, and who signed their name</h2>
+            <p class="section-subtitle">Every respondent picked one self-declared organization type, and this chart shows every type the disclosure threshold allows — the coarse five-value grouping used by the segment toggles elsewhere on the site exists to keep segment cells above that threshold, not because the tail is uninteresting.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Respondents by organization type, named vs redacted</h3>
+                <div class="ec-controls">
+                    <div id="orgTypeMode"></div>
+                </div>
+                <div class="chart-container rp-chart-rows" id="orgTypeHost">
+                    <canvas id="orgTypeChart"></canvas>
+                </div>
+                <div class="legend chart-legend" id="orgTypeLegend"></div>
+                <p class="ec-note" id="orgTypeMask"></p>
+                <div id="orgTypeSr"></div>
+            </div>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <h3 class="chart-title">The redaction gradient</h3>
+                <div id="orgTypeGradient"></div>
+            </div>
+
+            <div class="insight-glass insight-glass-indigo scroll-reveal">
+                <strong>Read the browser below as a subset, not a sample.</strong>
+                <span id="gradientInsight"></span> Whichever way the gradient
+                runs, the named-organization browser further down is not a
+                cross-section of who filed: it is the part of the response base
+                that agreed to be identified, and the panel above is what that
+                part looks like.
+            </div>
+        </section>
+
+        <!-- ===== 2 · COUNTRY + PROFILE ===== -->
+        <section class="content-section" id="country">
+            <h2 class="section-title">Where they filed from, and what they filed as</h2>
+            <p class="section-subtitle">Country is coarsened to four values on this site so segment cells stay above the five-respondent disclosure threshold; the profile questions below it are the respondent's own answers about how they engage with GHG inventories.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Country of the respondent</h3>
+                <div class="chart-container rp-chart-rows" id="countryHost">
+                    <canvas id="countryChart"></canvas>
+                </div>
+                <p class="ec-note" id="countryNote"></p>
+                <div id="countrySr"></div>
+            </div>
+
+            <div class="grid-3col">
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Responding as</h3>
+                    <div class="chart-container-sm rp-chart-rows">
+                        <canvas id="respondingAsChart"></canvas>
+                    </div>
+                    <div id="respondingAsSr"></div>
+                </div>
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Keeps a GHG inventory</h3>
+                    <div class="chart-container-sm rp-chart-rows">
+                        <canvas id="inventoryChart"></canvas>
+                    </div>
+                    <div id="inventorySr"></div>
+                </div>
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="chart-title">Personally involved in preparing one</h3>
+                    <div class="chart-container-sm rp-chart-rows">
+                        <canvas id="involvedChart"></canvas>
+                    </div>
+                    <div id="involvedSr"></div>
+                </div>
+            </div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>Who found the form shapes what the form says.</strong>
+                <span id="profileNote"></span> The consultation ran in English
+                through a single global form, and nobody was sampled into it.
+                Read every country or profile split as a property of <em>this</em>
+                response base, not of the field it is asking about.
+            </div>
+        </section>
+
+        <!-- ===== 3 · SECTOR ===== -->
+        <section class="content-section" id="sector">
+            <h2 class="section-title">Sector</h2>
+            <p class="section-subtitle">Sector is a separate self-declared field from organization type, and both are single-select. Where the exporter groups the smallest sectors into a tail bucket they are grouped rather than dropped; the note under the chart says exactly how much of the base these bars account for.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Respondents by sector</h3>
+                <div class="chart-container rp-chart-rows" id="sectorHost">
+                    <canvas id="sectorChart"></canvas>
+                </div>
+                <p class="ec-note" id="sectorNote"></p>
+                <div id="sectorSr"></div>
+            </div>
+        </section>
+
+        <!-- ===== 4 · ATTRITION FUNNEL ===== -->
+        <section class="content-section" id="attrition">
+            <h2 class="section-title">How far anyone got</h2>
+            <p class="section-subtitle">Responses per substantive question, in survey order. This is the single most important chart for reading the rest of the site: the base under a panel late in the questionnaire is a fraction of the base under an early one, and the two are not the same crowd.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Responses per question, in survey order</h3>
+                <div id="attritionStrip"></div>
+            </div>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">The funnel, in four stops</h3>
+                <div id="attritionFunnel"></div>
+            </div>
+
+            <div class="emphasis-callout scroll-reveal">
+                <div class="emphasis-big" id="attritionBig">—</div>
+                <div class="emphasis-desc" id="attritionDesc">of the analytical base was still answering by the last question of the survey</div>
+                <div class="emphasis-sub">Which is why no figure on this site is ever quoted without its n, and why a "majority" late in the questionnaire is a majority of the people still in it.</div>
+            </div>
+        </section>
+
+        <!-- ===== 5 · ENGAGEMENT ===== -->
+        <section class="content-section" id="engagement">
+            <h2 class="section-title">How much of the form each respondent filled in</h2>
+            <p class="section-subtitle">Substantive answers per respondent, banded. Attrition above is per question; this is per person — and the two together are why a handful of very complete filings carry a lot of the free-text record.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Respondents by number of substantive answers</h3>
+                <div class="chart-container rp-chart-rows" id="engagementHost">
+                    <canvas id="engagementChart"></canvas>
+                </div>
+                <p class="ec-note" id="engagementNote"></p>
+                <div id="engagementSr"></div>
+            </div>
+        </section>
+
+        <!-- ===== 6 · NAMED-ORG BROWSER ===== -->
+        <section class="content-section-wide" id="organizations">
+            <h2 class="section-title">Every named organization</h2>
+            <p class="section-subtitle"><span id="orgIntro"></span> Each row carries the class this project's audit assigned them, how much they answered, whether their text cites anything, whether it is shared with other filings, and their stance fingerprint. Search or filter, then open a profile to read the whole submission in survey order. Respondents who withheld their name are not listed here and are never named anywhere on this site — they appear only inside the aggregate panels above and below.</p>
+
+            <div class="card card-spacious scroll-reveal">
+                <div id="orgTable"></div>
+                <div class="rp-fp-legend" id="fingerprintLegend"></div>
+            </div>
+        </section>
+
+        <!-- ===== 7 · NAMED VS REDACTED ===== -->
+        <section class="content-section" id="redaction-effect">
+            <h2 class="section-title">What redaction does to the headline numbers</h2>
+            <p class="section-subtitle">The same stance questions, answered by the respondents who named their organization and by the respondents who did not. Both bases are printed on every strip; a segment below five respondents is suppressed rather than drawn.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Named and redacted respondents, question by question</h3>
+                <div id="redactionEffect"></div>
+            </div>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <h3 class="chart-title">Which way each question moves</h3>
+                <div id="redactionShifts"></div>
+            </div>
+
+            <div class="insight-glass insight-glass-red scroll-reveal">
+                <strong>An attributable-only reading is a partial reading.</strong>
+                <span id="redactionScale"></span> Quote only the filings you can
+                cite by name, build the story from the organizations willing to
+                be identified, and the panel above is the size of what you are
+                leaving out. That is a caution about method, not about motive:
+                withholding a name is a disclosure choice available to every
+                respondent, this project never names a redacted filer, and
+                nothing in the split tells you anything about any individual.
+            </div>
+        </section>
+
+        <!-- ===== FOOTNOTES ===== -->
+        <section class="content-section-narrow" id="notes">
+            <h2 class="section-title">How to read this page</h2>
+
+            <div class="card card-spacious scroll-reveal">
+                <p><strong>Organization is uncontrolled free text.</strong> The
+                form asked for an organization name and accepted whatever was
+                typed: real names, placeholders, job titles, and in at least one
+                case a paragraph of prose describing the filer. Names in the
+                browser are truncated for display and are otherwise shown exactly
+                as submitted, so some rows read like sentences. Nothing joins on
+                the name — every lookup keys on the respondent id — and a name
+                that looks like a placeholder has not been corrected or guessed
+                at.</p>
+
+                <p><strong>Redacted is not illegitimate.</strong>
+                <span id="redactedFootnote"></span> Those respondents answered
+                the same questions and their answers carry the same weight in
+                every count on this site; they simply cannot be attributed,
+                audited, or quoted by name, and this site never names them. The
+                honest reading is that attributable and withheld responses are
+                two populations with measurably different stances, and the
+                withheld one is large.</p>
+
+                <p><strong>Self-declared fields are self-declared.</strong>
+                Organization type, sector, country and the inventory questions
+                are the respondent's own answers, not verified attributes. The
+                <em>audited class</em> column in the browser is this project's
+                reading of what a named organization actually is, with the basis
+                stated inside each profile; where the two disagree, both are
+                shown. Redacted respondents have no audited class, because there
+                is nothing to check.</p>
+
+                <p><strong>Small segments are suppressed, not zero.</strong>
+                Any segment with fewer than five respondents arrives from the
+                exporter as a suppression sentinel. Panels on this page leave
+                those rows out of the chart and say how many they are leaving
+                out; they are never drawn as zero and never printed.</p>
+
+                <p><strong>Free text was capped at 4,000 characters.</strong>
+                Answers that land exactly on the cap are marked <em>likely
+                truncated</em> where they appear in a profile — the submitted
+                text continued past what was stored.</p>
+
+                <p><strong>This page is the analytical base only.</strong>
+                <span id="exclusionFootnote"></span> Excluded filings appear
+                nowhere on this page — not in a chart, not in the browser, not in
+                a profile. They are documented, with the evidence and the rule
+                that caught them, on the
+                <a href="integrity.html">integrity &amp; evidence page</a>.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Electricity-Sector Consequential Methods Consultation — respondent profile"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+
+    <script>
+    // ------------------------------------------------------------------------
+    // Page wiring. Every number on this page comes from the exported JSON:
+    // nothing is hardcoded here, so the page tells the truth whether it is
+    // reading fixtures (?fixtures=1) or the real P22 export.
+    // ------------------------------------------------------------------------
+    (function() {
+        'use strict';
+
+        var R = window.ECRespondents;
+        var D = {};
+
+        function text(id, value) {
+            var el = document.getElementById(id);
+            if (el) el.textContent = value;
+        }
+
+        function dist(name) {
+            return ((D.respondents || {}).distributions || {})[name] || [];
+        }
+
+        // org_type_x_redaction ships as {rows, total} in the fixtures and may
+        // ship as a bare array; both are accepted.
+        function rowsOf(block) {
+            if (!block) return [];
+            return block.rows || (block.length !== undefined ? block : []);
+        }
+
+        function drawHero() {
+            var t = (D.meta || {}).totals || {};
+            var index = (D.respondents || {}).org_index || [];
+            var base = t.respondents || 0;
+
+            text('statRespondents', R.fmt(base));
+            text('statRedacted', t.redacted === undefined
+                ? '—' : R.pctText(t.redacted, base));
+            text('statNamed', R.fmt(index.length));
+            text('statAnswers', R.fmt(t.answers));
+
+            var redactedCard = document.getElementById('statRedacted');
+            if (redactedCard && t.redacted !== undefined) {
+                redactedCard.title = R.fmt(t.redacted) + ' of ' + R.fmt(base) +
+                    ' respondents withheld their organization name';
+            }
+            var namedCard = document.getElementById('statNamed');
+            if (namedCard && t.named !== undefined && t.named !== index.length) {
+                namedCard.title = R.fmt(index.length) + ' of ' + R.fmt(t.named) +
+                    ' named respondents have a profile in the browser';
+            }
+
+            var raw = t.respondents_raw;
+            var dropped = raw && base ? raw - base : 0;
+            text('excludedNote', dropped > 0
+                ? R.fmt(raw) + ' filings were received and ' + R.fmt(dropped) +
+                  ' were excluded as junk or superseded, so every figure on ' +
+                  'this page is out of ' + R.fmt(base) + '.'
+                : '');
+
+            text('redactedFootnote', t.redacted === undefined ? '' :
+                R.fmt(t.redacted) + ' of the ' + R.fmt(base) +
+                ' respondents in the analytical base (' +
+                R.pctText(t.redacted, base) + ') did not attach an ' +
+                'organization name.');
+
+            text('exclusionFootnote', dropped > 0
+                ? 'The analytical base is ' + R.fmt(base) + ' of the ' +
+                  R.fmt(raw) + ' filings received: ' + R.fmt(dropped) +
+                  ' were excluded as junk submissions or as a superseded ' +
+                  'resubmission.'
+                : 'Every figure here is drawn from the analytical base defined ' +
+                  'by the exporter.');
+        }
+
+        var MIN_GRADIENT = 10;
+
+        function drawOrgType() {
+            var rows = rowsOf(dist('org_type_x_redaction'));
+            R.stackedRedaction('#orgTypeChart', rows, {
+                mode: ECSegments.get('mode', 'share'),
+                legend: '#orgTypeLegend',
+                labelShare: 0.38,
+                srTarget: '#orgTypeSr',
+                noteTarget: '#orgTypeMask',
+                noun: 'organization type',
+                dimLabel: 'Organization type',
+                srCaption: 'Respondents by self-declared organization type, ' +
+                    'named and redacted'
+            });
+            R.gradientNote('#orgTypeGradient', rows, { minTotal: MIN_GRADIENT });
+            text('gradientInsight',
+                R.gradientSummary(rows, { minTotal: MIN_GRADIENT }));
+        }
+
+        function drawCountry() {
+            var rows = dist('country');
+            var pal = R.palette();
+            // Highlight whichever country actually leads, rather than assuming
+            // it is the United States.
+            var top = rows.reduce(function(m, r) {
+                return (!m || (Number(r.n) || 0) > (Number(m.n) || 0)) ? r : m;
+            }, null);
+
+            R.simpleBars('#countryChart', rows, {
+                color: pal.total,
+                highlight: top ? (top.key || top.label) : null,
+                labelShare: 0.34,
+                srTarget: '#countrySr',
+                dimLabel: 'Country',
+                srCaption: 'Respondents by country'
+            });
+
+            var covered = R.sum(rows);
+            var base = ((D.meta || {}).totals || {}).respondents || covered;
+            var bits = [];
+            if (top && covered) {
+                bits.push(top.label + ' alone accounts for ' +
+                    R.pctText(top.n, covered) + ' of the ' + R.fmt(covered) +
+                    ' respondents these bars cover — highlighted above');
+            }
+            if (covered && base && covered !== base) {
+                bits.push('they account for ' + R.fmt(covered) + ' of the ' +
+                    R.fmt(base) + ' in the analytical base');
+            }
+            bits.push('every country split on this site is coarsened to four ' +
+                'values so no segment cell falls below the disclosure threshold');
+            text('countryNote', bits.join('; ') + '.' + ' ' +
+                R.maskNote(R.usableRows(rows).masked, 'country'));
+        }
+
+        function drawProfile() {
+            var pal = R.palette();
+            var respondingAs = dist('responding_as');
+            var inventory = dist('inventory') || {};
+            var hasInv = inventory.has_inventory || [];
+            var involved = inventory.involved || [];
+
+            R.simpleBars('#respondingAsChart', respondingAs, {
+                color: pal.total, labelShare: 0.34,
+                srTarget: '#respondingAsSr', dimLabel: 'Responding as',
+                srCaption: 'Respondents by whether they filed for an ' +
+                    'organization or as an individual'
+            });
+            R.simpleBars('#inventoryChart', hasInv, {
+                color: pal.total, labelShare: 0.34,
+                srTarget: '#inventorySr', dimLabel: 'Keeps a GHG inventory',
+                srCaption: 'Respondents by whether their organization keeps a ' +
+                    'greenhouse-gas inventory'
+            });
+            R.simpleBars('#involvedChart', involved, {
+                color: pal.total, labelShare: 0.34,
+                srTarget: '#involvedSr', dimLabel: 'Involved in preparing one',
+                srCaption: 'Respondents by whether they are personally involved ' +
+                    'in preparing a greenhouse-gas inventory'
+            });
+
+            var bits = [];
+            var org = respondingAs.filter(function(r) {
+                return r.key === 'organization';
+            })[0];
+            var baseA = R.sum(respondingAs);
+            if (org && baseA) {
+                bits.push(R.pctText(org.n, baseA) + ' of respondents filed on ' +
+                    'behalf of an organization rather than as individuals');
+            }
+            var yes = hasInv.filter(function(r) { return r.key === 'yes'; })[0];
+            var baseI = R.sum(hasInv);
+            if (yes && baseI) {
+                bits.push(R.pctText(yes.n, baseI) + ' say their organization ' +
+                    'already keeps a greenhouse-gas inventory');
+            }
+            text('profileNote', bits.length
+                ? bits.join(', and ') + '.'
+                : '');
+        }
+
+        function drawSector() {
+            var rows = dist('sector_top');
+            var split = R.usableRows(rows);
+            R.simpleBars('#sectorChart', rows, {
+                color: R.palette().total,
+                labelShare: 0.4,
+                srTarget: '#sectorSr',
+                dimLabel: 'Sector',
+                srCaption: 'Respondents by self-declared sector'
+            });
+
+            var covered = R.sum(split.rows);
+            var base = ((D.meta || {}).totals || {}).respondents || covered;
+            text('sectorNote', (covered && base && covered !== base
+                ? 'These bars cover ' + R.fmt(covered) + ' of the ' +
+                  R.fmt(base) + ' respondents in the analytical base — the ' +
+                  'export lists the largest sectors, and the remainder is not ' +
+                  'charted here.'
+                : 'These bars cover all ' + R.fmt(covered) +
+                  ' respondents in the analytical base.') + ' ' +
+                R.maskNote(split.masked, 'sector'));
+        }
+
+        function drawAttrition() {
+            var rows = (D.respondents || {}).attrition || [];
+            var base = ((D.meta || {}).totals || {}).respondents || 0;
+
+            ECStance.renderAttrition('#attritionStrip', rows, { meta: D.meta });
+            var funnel = R.renderAttritionFunnel('#attritionFunnel', rows, {
+                meta: D.meta,
+                base: base
+            });
+
+            if (funnel && funnel.last) {
+                var top = funnel.stops[0].n || 0;
+                text('attritionBig', R.pctText(funnel.last.n, top));
+                text('attritionDesc', 'of the analytical base — ' +
+                    R.fmt(funnel.last.n) + ' of ' + R.fmt(top) +
+                    ' respondents — was still answering at ' +
+                    (funnel.last.display || funnel.last.qid) +
+                    ', the last question of the survey');
+            }
+        }
+
+        function drawEngagement() {
+            var rows = dist('engagement_bands');
+            R.simpleBars('#engagementChart', rows, {
+                color: R.palette().total,
+                labelShare: 0.34,
+                srTarget: '#engagementSr',
+                dimLabel: 'Answers given',
+                srCaption: 'Respondents by how many substantive answers they gave'
+            });
+
+            var base = R.sum(rows);
+            var top = rows.length ? rows[rows.length - 1] : null;
+            text('engagementNote', top && base
+                ? 'Only ' + R.fmt(top.n) + ' respondents (' +
+                  R.pctText(top.n, base) + ') reach the ' +
+                  String(top.label).toLowerCase() + ' band. Sorting the browser ' +
+                  'below by answers surfaces the most complete named filings — ' +
+                  'and several of them share text with each other, which the ' +
+                  'template flag marks.'
+                : '');
+        }
+
+        function drawRedactionEffect() {
+            var effect = (D.respondents || {}).redaction_effect || [];
+            R.renderRedactionEffect('#redactionEffect', effect, {
+                meta: D.meta, maskN: 5
+            });
+            var shifts = R.renderShiftNote('#redactionShifts', effect, {
+                meta: D.meta, hedgeAt: 8
+            }) || [];
+
+            var t = (D.meta || {}).totals || {};
+            var base = t.respondents || 0;
+            var redacted = t.redacted;
+            if (redacted === undefined || !base) {
+                text('redactionScale', '');
+                return;
+            }
+            var named = base - redacted;
+            var moved = shifts.filter(function(s) { return s.material; }).length;
+            text('redactionScale',
+                R.fmt(redacted) + ' of the ' + R.fmt(base) + ' respondents (' +
+                R.pctText(redacted, base) + ') withheld a name, against ' +
+                R.fmt(named) + ' who did not' +
+                (shifts.length
+                    ? '; the two groups diverge by at least eight points on ' +
+                      moved + ' of the ' + shifts.length + ' questions above.'
+                    : '.'));
+        }
+
+        function drawOrgBrowser() {
+            var rows = (D.respondents || {}).org_index || [];
+            var namedTotal = ((D.meta || {}).totals || {}).named;
+            text('orgIntro', namedTotal !== undefined && namedTotal !== rows.length
+                ? R.fmt(rows.length) + ' of the ' + R.fmt(namedTotal) +
+                  ' named respondents in the analytical base have a full ' +
+                  'profile here.'
+                : 'All ' + R.fmt(rows.length) + ' respondents in the ' +
+                  'analytical base who gave an organization name are listed ' +
+                  'here.');
+            R.renderOrgBrowser('#orgTable', rows, D.meta, { pageSize: 25 });
+            R.fingerprintLegend('#fingerprintLegend', D.meta);
+        }
+
+        ECData.loadAll(['meta', 'respondents']).then(function(loaded) {
+            D = loaded;
+            ECSegments.init(D.meta);
+
+            ECSegments.toggle('#orgTypeMode', {
+                param: 'mode',
+                label: 'Bars show',
+                options: [
+                    { key: 'share', label: 'Share of type',
+                      title: 'Each bar normalised to 100%' },
+                    { key: 'count', label: 'Respondent count',
+                      title: 'Each bar as counts, so type size stays visible' }
+                ],
+                def: 'share'
+            });
+            ECSegments.on(function(ev) {
+                var param = ev && ev.detail ? ev.detail.param : null;
+                if (param === null || param === 'mode') drawOrgType();
+            });
+
+            drawHero();
+            drawOrgType();
+            drawCountry();
+            drawProfile();
+            drawSector();
+            drawAttrition();
+            drawEngagement();
+            drawOrgBrowser();
+            drawRedactionEffect();
+        }).catch(function(err) {
+            ECData.errorPanel('#orgTypeHost', err, {
+                title: 'Respondent data could not be loaded'
+            });
+            if (window.console && console.error) console.error(err);
+        });
+    })();
+    </script>
+</body>
+</html>
