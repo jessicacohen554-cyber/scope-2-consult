@@ -1271,18 +1271,45 @@ def build_respondents(questions, answers, segments, people, base, flags,
                                       if people[pid]["redacted"]), order),
         })
 
+    # PLAN Sec. 4 wants this distribution at the respondent's *own* declared
+    # granularity - all thirteen types - not the coarse org_type_5 vocabulary,
+    # which exists so that segment cells on stance questions stay above the
+    # disclosure threshold and would otherwise bury nine types inside "Other".
+    # High-cardinality descriptive fields follow the sector_top pattern: rank by
+    # size, publish every value that clears MIN_SEGMENT_N on its own row, and
+    # group the remainder into one labelled tail. That keeps gotcha 15 intact
+    # (nothing under five respondents is ever published, so the named/redacted
+    # split of a one-filer type cannot be read off the page) while still showing
+    # the shape of the response base.
     named_counts = Counter()
     redacted_counts = Counter()
     for pid in base:
         target = redacted_counts if people[pid]["redacted"] else named_counts
-        target[people[pid]["org_type"]] += 1
-    org_rows = [{
-        "key": key,
-        "label": label,
-        "named": named_counts.get(key, 0),
-        "redacted": redacted_counts.get(key, 0),
-        "total": named_counts.get(key, 0) + redacted_counts.get(key, 0),
-    } for key, label in ORG_TYPE_5]
+        target[people[pid]["org_type_full"]] += 1
+
+    def org_row(key, label, keys):
+        named = sum(named_counts.get(k, 0) for k in keys)
+        redacted = sum(redacted_counts.get(k, 0) for k in keys)
+        return {"key": key, "label": label, "named": named,
+                "redacted": redacted, "total": named + redacted}
+
+    org_totals = {slug: named_counts.get(slug, 0) + redacted_counts.get(slug, 0)
+                  for _value, slug, _label, _group in ORG_TYPES}
+    ranked = sorted(((slug, label) for _v, slug, label, _g in ORG_TYPES),
+                    key=lambda kv: (-org_totals[kv[0]], kv[0]))
+    org_rows = [org_row(slug, label, [slug]) for slug, label in ranked
+                if org_totals[slug] >= MIN_SEGMENT_N]
+    org_tail = [slug for slug, _label in ranked
+                if 0 < org_totals[slug] < MIN_SEGMENT_N]
+    if org_tail:
+        # Not "All other types": the survey's own picklist already has an
+        # "Other (please specify below)" option whose short label is "Other",
+        # and two adjacent rows reading "Other" and "All other types" would be
+        # unreadable. Name the rule instead.
+        org_rows.append(org_row("tail",
+                                f"Types under {MIN_SEGMENT_N} respondents "
+                                f"({len(org_tail)})",
+                                org_tail))
 
     sector_counts = Counter(people[pid]["sector"] for pid in base)
     ordered_sectors = sorted(sector_counts.items(),
