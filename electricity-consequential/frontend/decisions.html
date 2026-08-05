@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Decision Board | Electricity-Sector Consequential Methods Consultation</title>
+    <meta name="description" content="Every closed decision point of the electricity-sector consequential methods consultation in one visual grammar: stance strips, the additionality stringency gradient, the methodology scoreboards, the granularity ladders and the response base under each.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in
+         electricity-consequential/plans/consequential-dashboard/PLAN.md §5).
+         stance-viz.js must load before matrix-viz.js — ECMatrix borrows
+         ECStance's popover, token-color and sr-table machinery. quote-cards.js
+         and org-table.js are omitted: this page renders neither. -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/segments.js"></script>
+    <script src="js/stance-viz.js"></script>
+    <script src="js/matrix-viz.js"></script>
+
+    <!-- Page-specific styles ONLY (layouts unique to this page — never restyle
+         shared components; extend with modifier classes in shared.css instead) -->
+    <style>
+    /* The hero stat row is wider than .grid-stats' 120px track: these cards
+       carry a base note under the label and need room for it. */
+    #heroStats {
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+    /* Panel-level coverage and reading notes sit directly under the panel they
+       describe rather than floating between panels. */
+    .board-panel-note {
+        margin-top: var(--space-md);
+    }
+    /* The scoreboard roll-up stacks one panel per methodology family; the shells
+       are written by js/decisions-page.js from meta.scoreboards. */
+    #scoreboardHost > .chart-panel + .chart-panel {
+        margin-top: var(--space-lg);
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>The Decision Board</h1>
+        <div class="subtitle">Every closed decision point of the consultation, in one visual grammar</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== HERO STATS ===== -->
+        <section class="content-section">
+            <p class="section-subtitle">This survey asked for very few closed answers, and they are
+            scattered across five sections of a twenty-page consultation document. The board pulls
+            all of them onto one page: what was asked, who answered it, and how much of the room was
+            still there when the question came up. Every panel is drawn by the same renderers, so a
+            strip means the same thing wherever you meet it — and every share carries the base it was
+            divided by.</p>
+
+            <div class="grid-stats" id="heroStats">
+                <div class="card ec-loading">Loading the exported dataset…</div>
+            </div>
+            <p class="ec-note" id="exportStamp"></p>
+        </section>
+
+        <!-- ===== PANEL 1 — STANCE STRIPS ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Where the room stands</h2>
+            <p class="section-subtitle">The consultation's binary and three-way stance questions, in
+            fixed option order. Questions that carry a polarity in the dataset are painted with the
+            support ramp and the critical answer in red; the rest get a neutral ramp, because a
+            preference is not a verdict. Non-substantive answers stay gray and are never netted.
+            Activate any bar for its full counts, its segment split and a link to the topic page that
+            unpacks it.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <div class="ec-controls">
+                    <div id="dimToggle"></div>
+                    <div id="segRowToggle"></div>
+                </div>
+                <!-- Renderers own their markup: ECStance / ECMatrix write into an
+                     empty host element. Never hand-write a .ec-* component. -->
+                <div id="stripsHost">
+                    <p class="ec-loading">Loading stance data…</p>
+                </div>
+                <div class="board-panel-note" id="stripsReading"></div>
+                <div id="stripsCoverage"></div>
+            </div>
+
+            <div class="emphasis-callout" id="headline" hidden></div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>Read every strip against its own chip.</strong> No two of these questions were
+                answered by the same room — the base falls as the survey goes on, and a respondent who
+                skipped one question still counts on the next. The percentages are shares of the
+                people who answered that question, never of the consultation.
+            </div>
+        </section>
+
+        <!-- ===== PANEL 2 — ADDITIONALITY MINI-MATRIX ===== -->
+        <section class="content-section">
+            <h2 class="section-title">The additionality gradient</h2>
+            <p class="section-subtitle">Each additionality test rated required, optional or not
+            required, sorted by net requiredness. This is an ordered stringency ladder and not a
+            sentiment scale, so it is painted with the sequential ramp the design system reserves for
+            ordered constructs — nothing here is agreement or disagreement.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">Tests by net requiredness <span id="matrixBase"></span></h3>
+                <div id="matrixHost">
+                    <p class="ec-loading">Loading the additionality matrix…</p>
+                </div>
+            </div>
+
+            <div class="insight-glass insight-glass-indigo scroll-reveal" id="matrixReading"></div>
+        </section>
+
+        <!-- ===== PANEL 3 — METHODOLOGY SCOREBOARD ROLL-UP ===== -->
+        <section class="content-section">
+            <h2 class="section-title">The methodology scoreboards</h2>
+            <p class="section-subtitle">Each family of methods was asked twice — which are
+            appropriate, and which are not — as two separate multi-selects answered by two different
+            groups of people. Not-appropriate runs left, appropriate runs right, and each side is a
+            share of <em>its own</em> base, both of which are printed on every axis. The specials sit
+            beside each board and are never folded into the net.</p>
+
+            <div id="scoreboardHost">
+                <div class="chart-panel">
+                    <p class="ec-loading">Loading the methodology scoreboards…</p>
+                </div>
+            </div>
+
+            <div class="insight-glass scroll-reveal" id="boardReading"></div>
+        </section>
+
+        <!-- ===== PANEL 4 — GRANULARITY LADDERS ===== -->
+        <section class="content-section">
+            <h2 class="section-title">The granularity ladders</h2>
+            <p class="section-subtitle">How fine a marginal emission rate should get, in space and in
+            time. Both are ordered ladders running coarse to fine, so they take the neutral ramp; the
+            reading that matters is where the ladder splits, which is why the halves are binned below
+            each strip. The segment toggle above drives these strips too.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <div id="laddersHost">
+                    <p class="ec-loading">Loading the granularity ladders…</p>
+                </div>
+                <div class="board-panel-note" id="ladderBins"></div>
+                <div id="laddersCoverage"></div>
+            </div>
+        </section>
+
+        <!-- ===== PANEL 5 — ATTRITION ===== -->
+        <section class="content-section">
+            <h2 class="section-title">How much evidence sits under each panel</h2>
+            <p class="section-subtitle">Responses per substantive question, in survey order. Attrition
+            here is steep and close to monotone: by the end of the questionnaire most of the room has
+            gone. That is the reason every panel on this site divides by the base of its own question
+            and prints it — a bare percentage taken from one end of this strip and compared with one
+            from the other end is a misreading, not a finding.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <div id="attritionHost">
+                    <p class="ec-loading">Loading the response bases…</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Electricity-Sector Consequential Methods Consultation"></footer>
+
+    <!-- Page module: reads the §5 contract and drives every panel above -->
+    <script src="js/decisions-page.js"></script>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
