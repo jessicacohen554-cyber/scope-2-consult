@@ -225,6 +225,18 @@ Named/redacted splits are from `respondents.json → redaction_effect`.
   n=129).** The consultation's headline. Named 40N/29Y (n=69) vs redacted 41N/19Y
   (n=60) — redacted lean further No, as the provisional digest said. Org-type detail
   must be read off `stances.json → by.org_type_5`, not from the old 13-type list.
+- **Country is the sharpest cut in the set, and it is not the redaction axis.** [P35 F3.]
+  US respondents (104 of 180) reject the formula far harder than the rest of the room
+  (73.0% No, 54/74, against 49.1%, 27/55; p=0.006), want annual reporting almost
+  unanimously (96.4% against 61.4%; p<0.0001), reject regional differentiation
+  (24.6% Yes against 56.1%; p=0.002) and want fine temporal granularity (69.0%
+  against 41.7%; p=0.015). Japan inverts all of it: 6 of 7 Japanese respondents call
+  the formula appropriate, and 6 of 6 pick Annual. Country and redaction are
+  statistically independent (p=0.68) and both effects survive stratification against
+  each other, with one exception — the Q19 redaction lean does not (p=0.25 named-stratum,
+  p=0.50 redacted-stratum). Every country claim carries its n; UK and Japan are ≤8.
+  **There is no shipped `country_effect` panel** — the figures above come from P35's
+  direct db queries. P42 should add the contract field (C4) if the essay leans on it.
 - **Q21 — consider secondary effects: 56 Yes / 50 No (n=106).** A genuine split, and it
   still flips by redaction: named 35Y/21N, redacted 21Y/29N.
 - **Q24 — reporting period: 80 each-year / 19 lifetime (80.8%, n=99).** The one settled
@@ -252,13 +264,13 @@ Analytical base; net requiredness = %R − %N on each test's own n, 1dp.
 
 | Test | n | R | O | N | net requiredness (%R−%N) |
 |---|---|---|---|---|---|
-| Regulatory | 104 | 66 | 21 | 17 | **+47.1** |
+| Regulatory | 104 | 66 | 21 | 17 | **+47.2** |
 | Timing | 102 | 49 | 30 | 23 | **+25.5** |
 | Positive list | 102 | 16 | 56 | 30 | −13.7 |
 | Financial analysis | 104 | 16 | 57 | 31 | −14.4 |
 | Contractual/tenor | 99 | 22 | 40 | 37 | −15.2 |
 | Common practice | 100 | 21 | 32 | 47 | −26.0 |
-| Barrier | 98 | 13 | 45 | 40 | −27.6 |
+| Barrier | 98 | 13 | 45 | 40 | −27.5 |
 | Performance standard | 98 | 12 | 37 | 49 | −37.8 |
 | First-of-its-kind | 96 | 8 | 35 | 53 | **−46.9** |
 
@@ -268,12 +280,22 @@ barrier, performance standard, first-of-its-kind). **The middle three reordered*
 the provisional digest and now sit within 1.5pp of each other (−13.7 / −14.4 / −15.2):
 treat them as tied, and do not rank them against each other in prose.
 
+Net requiredness is computed the way every shipped renderer computes it —
+round(%R) − round(%N), each percentage rounded to 1dp first — which is also the
+convention behind `scoreboard.json`'s `net_pct`. Computing it as round(%R − %N)
+instead changes two of the nine rows (regulatory +47.1, barrier −27.6); those are
+not the numbers on the site and must not be quoted. [P35 F4.]
+
 **Q28 feasibility picks (n=95)** rank almost identically: Regulatory 78, Timing 71,
 Positive list 58, Contractual 47, Financial 44, Performance standard 42, Common
 practice 39, First-of-kind 35, Barrier 30, **"None (no tests are feasible)" 10**.
 Requiredness and feasibility are coherent, not contradictory — the required tier is also
-the feasible tier; the one asymmetry worth showing is first-of-kind (35 call it feasible,
-8 want it required).
+the feasible tier, and the two rankings correlate at Spearman ρ = 0.90 with the top three
+places identical. The asymmetry worth showing is the gap between "this could be done" and
+"this should be mandatory": positive list is the widest (61.1% call it feasible, 15.7% want
+it required, +45.4pp), ahead of performance standard (+32.0pp), financial analysis (+30.9pp)
+and first-of-its-kind (36.8% vs 8.3%, +28.5pp). First-of-its-kind is the largest *ratio*
+(4.4×) but the fourth-largest gap; lead with positive list. [P35 F-2a.]
 
 ### 3.4 Methodology scoreboards (appropriate n / not-appropriate n; bases differ)
 
@@ -334,7 +356,13 @@ them in prose), and the weighting Unsure counts moved (14/20, not 15/21).
   individuals, different answers; both count, grouped as a family (Scope 2's Deloitte
   pattern).
 - **Template blocks: 38 clusters (≥200 normalized chars shared by ≥2 respondents)
-  spanning 25 respondents.** Bloc rule as implemented: connected components over ≥2
+  spanning 26 respondents** — 23 bloc members plus three peripheral single-cluster
+  sharers (45, 110, 173). [Count CORRECTED post-P35 from 25; `is_template_respondent`
+  is also 26.] The detector matches on a lowercase+whitespace-normalized hash only, so
+  punctuation variants of the same passage escape it: IDs 90 and 97 share an
+  827-character Q20 answer differing by a single hyphen, and a punctuation-insensitive
+  hash would report 39 clusters spanning 28 respondents. The 8-bloc count is unaffected.
+  Bloc rule as implemented: connected components over ≥2
   shared clusters (a ≥3 rule destroys the policy-insights bloc).
   **There are 8 blocs, not 2** [count CORRECTED post-Wave-2 — P10 emitted all eight in
   `data/derived/respondent_flags.csv` and P22 carries all eight into
@@ -346,6 +374,14 @@ them in prose), and the weighting Unsure counts moved (14/20, not 15/21).
   texts across Q18–Q44; one named member, ID 89), then `pack_150` {150, 170, 187},
   `pack_69` {69, 84, 85}, `pack_24` {24, 39}, `pack_108` {108, 109}, `pack_131`
   {131, 133}, `pack_151` {151, 183}.
+- **The `policy_insights_pack` is a single-country bloc.** [P35 F6.] Its five members and
+  the peripheral sharer ID 45 are the only six respondents from one non-US country in the
+  analytical base, and all six are redacted. This reframes the bloc: it is a national
+  coordination effort, not an industry one. **Disclosure note:** `country_4` buckets that
+  country inside "other", so it is not individually published anywhere in
+  `frontend/data/`. Naming it on the integrity page would be new attribute disclosure
+  about six redacted respondents — the essay and the bloc card should say "a single
+  non-US country" unless the owner rules otherwise.
 - **Dedup effect on the headlines** (`integrity.json → dedup_effect`, counts in meta
   option order): **Q19 raw [48 Yes, 81 No] → deduped [47, 71]**; **Q21 raw [56 Yes,
   50 No] → deduped [54, 41]**. Q21 is the more template-sensitive of the two — its No
@@ -366,7 +402,11 @@ respondents lean further against the formula (41N/19Y vs named 40N/29Y), against
 secondary effects (21Y/29N vs named 35Y/21N), and toward coarse temporal granularity
 (coarse 17 vs fine 13, against named fine 31 vs coarse 17) — directionally the Scope 2
 pattern (withheld identity correlates with the defensive/conservative position), milder
-in size.
+in size. **How much milder matters: of the seven stance questions only two clear
+significance — Q21 (p=0.035) and Q31 (p=0.0002). The Q19 lean quoted first here is
+p=0.22 and does not survive stratification by country in either stratum; Q33 runs the
+other way. Treat Q31 (and to a lesser extent Q21) as the redaction findings and
+everything else as directional colour that must be labelled as such.** [P35 F3.]
 
 Two additions verified post-Wave-2:
 - **Redaction is strongly org-type-dependent** (`respondents.json →
@@ -429,7 +469,8 @@ weighting option as a paired diverging bar (appropriate → right, not-appropria
 each labeled with its own base; specials listed beside, never netted), → links to topic
 pages; (4) **granularity ladders** — Q43 and Q45 as ordered strips with the binned
 fine-vs-coarse reading annotated; (5) **attrition strip** — n per substantive question in
-survey order (165 → 36), the "how much evidence sits under each panel" context. Click any
+survey order (**160 → 34** on the analytical base), the "how much evidence sits under
+each panel" context. Click any
 strip → popover with full counts + segment split + link to its topic page.
 
 **topics/*.html — 4 deep dives (P31).** One shared config-driven renderer
@@ -493,8 +534,10 @@ polarity definitions; scoreboard netting rule; segment coarsening + privacy mask
 scale/ladder definitions; limitations (self-selection, US-heavy, small n, thin Q52
 evidence, consultation ≠ referendum); full reproduction commands.
 
-**index.html (P40).** Hero stats row (185 respondents · 50 questions · 63% "formula not
-appropriate" · 41.6% redacted · 36 evidence submissions). Headline stance-strip block
+**index.html (P40).** Hero stats row (180 analytical respondents of 185 filed ·
+43 substantive questions · 62.8% "formula not appropriate" · 41.7% redacted ·
+29 substantive evidence submissions). Every hero figure is analytical-base; none of the
+raw-base figures from the provisional digest may appear here. [P35 patch 10.] Headline stance-strip block
 (Q19/Q21/Q24 + matrix top/bottom rows). The **objective assessment** (§8). Takeaway
 cards linking every page. One `.emphasis-callout` maximum.
 
@@ -737,39 +780,81 @@ non-zero on any failure; used by every later prompt.
 ## 8. The objective assessment (P40 content brief)
 
 Long-form article on `index.html`; every claim links to a panel; verify every number
-against the exported JSON. Structure (8 sections):
+against the exported JSON. Structure (8 sections).
+
+**[REBASED post-P35.] This brief was written on the raw base and carried nine 185-base
+figures plus one theme split that does not exist in the shipped taxonomy. It is corrected
+below. Every figure here is analytical-base (180); if a number in this section disagrees
+with `frontend/data/*.json`, the JSON wins and the manager wants to hear about it.**
 
 1. **What this consultation is, and who showed up.** AMI/TWG context in two sentences;
-   185 self-selected respondents, 56% US, company-heavy; 41.6% redaction; steep
-   attrition (165 → 36 — by the evidence question, four-fifths of the room has left);
-   three junk submissions and one resubmission found and excluded (link integrity).
+   **185 filed and 180 analytical**, self-selected, **57.8% US**, company-heavy;
+   **41.7% redaction (75 of 180)**; steep attrition (**160 → 34** — by the evidence
+   question, four-fifths of the room has left); **four junk submissions and one
+   superseded resubmission** found and excluded (link integrity).
    Consultation ≠ referendum, and at this n, ≠ survey.
-2. **The headline: the proposed formula does not command consent.** 63% No (84/133,
-   raw) — but disaggregate the No via Q20 themes: "wrong construct for attribution" vs
-   "right direction, underspecified" vs "too complex to audit" are different verdicts
-   with different remedies. Segment view; named-vs-redacted check; the org types that
-   *support* it (energy suppliers, data/analytics) noted with their n.
-3. **Genuine splits, not consensus.** Secondary effects 57/53 (and the redaction flip);
+2. **The headline: the proposed formula does not command consent.** **62.8% No
+   (81/129)** — but disaggregate the No via Q20 themes, which are coded for 80 of the 81
+   No respondents. The No side is not three even verdicts; it is one dominant argument
+   plus two smaller ones. (a) **Incomplete impact accounting** — `net_impact_completeness`,
+   50 of 80 (62.5%), the single most discriminating code in the set (+49.7pp against the
+   Yes side): the formula does not net induced emissions against avoided ones. (b) **Wrong
+   venue or wrong sequence** — `integrate_with_scope2_recognition` (19) plus
+   `workstream_coordination` (18, and zero on the Yes side) plus
+   `inventory_vs_impact_boundary` (10), together 35 of 80 (43.8%): not "your formula is
+   wrong" but "this belongs with the Scope 2 workstream, in that order". (c) **Burden,
+   data and equity** — `complexity_burden` (14), `attribution_uncertainty` (8),
+   `regional_equity` (6), together 18 of 80 (22.5%). The three groups overlap (35 of 80
+   respondents carry two of them) and cover 75 of 80; they are emphases, not a partition,
+   and must be described as such. For contrast the Yes side is near-monolithic:
+   `formula_structurally_sound` on 33 of 39.
+   **The trio this brief previously promised — "wrong construct for attribution" /
+   "right direction, underspecified" / "too complex to audit" — is not in P21's taxonomy;
+   two of the three concepts have zero codes. Do not write it. [P35 F2.]**
+   Segment view; named-vs-redacted check (but see §3.6 — the Q19 redaction lean is
+   p=0.22 and must not be stated as a finding); the org types that *support* it
+   (energy supplier/utility 7Y/5N n=12, data/analytics 3Y/2N n=5) noted with their n —
+   n=5 is at the privacy floor and always carries its base.
+3. **Genuine splits, not consensus.** Secondary effects **56/50** (and the redaction
+   flip, which is one of only two significant redaction effects — p=0.035);
    temporal granularity a dead heat with a US-vs-Japan geography; spatial split four
-   ways; against that, annual reporting (79%) is the one settled call. Map the splits
-   to interest where the data supports it, and say where it doesn't.
+   ways; against that, annual reporting (**80.8%**) is the one settled call — **though
+   it is settled mainly among US respondents (96.4%) and only 61.4% outside them
+   [P35 F3]**. Map the splits to interest where the data supports it, and say where it
+   doesn't. **Country is the sharpest axis in the dataset (§3.2) and deserves its own
+   paragraph here; it is orthogonal to redaction, not a restatement of it.**
 4. **The additionality gradient is coherent.** The three tiers; requiredness and
-   feasibility rank almost identically (the crowd is answering "what works", not
-   venting); the tension points: 10 respondents say no test is feasible, regional
-   application unresolved (40/32/29), rigor-by-claim-type splits 43/35.
+   feasibility rank almost identically (Spearman ρ = 0.90, top three ranks identical —
+   the crowd is answering "what works", not venting); the tension points: 10 respondents
+   say no test is feasible, regional application unresolved (**37 yes / 32 unsure /
+   29 no**), rigor-by-claim-type splits **42/33**. The feasible-but-not-mandatory gap
+   leads with **positive list** (+45.4pp), not first-of-its-kind — see §3.3.
 5. **The methodology scoreboards, read with humility.** Clear winners and losers per
-   family at n=57–69; the large Unsure/None shares are themselves the finding — this
-   field is younger than Scope 2's; no method commands a majority of even this small,
-   self-selected base.
+   family at **n=54–66**; the winners are robust to template dedup (SCED-locational,
+   recent-capacity-additions and GHGP all stay first and *strengthen*). The large
+   Unsure/None shares are themselves the finding — this field is younger than Scope 2's;
+   no method commands a majority of even this small, self-selected base.
+   **One dedup caveat that must not be missed: BM capacity-expansion modeling flips sign
+   under dedup, −3.4 raw → +5.5 deduped, so "narrowly rejected" is not a safe phrase for
+   it. [P35 Q2.]**
 6. **The evidence base is thin, and the record is rhetorical.** The consultation's own
-   evidence question yielded ~31 substantive submissions; citation mining across free
+   evidence question yielded **29 substantive submissions (34 answers, 5 of them bare
+   "N/A")**; citation mining across free
    text; template packs propagate identical arguments (show the dedup effect on Q19/Q21);
    distinguish argued positions from asserted ones; 4,000-char truncation caveat.
 7. **Interest, coordination, integrity — symmetric skepticism.** Who gains from each
    answer (modeling consultancies and data vendors from complex/granular methods;
    reporting companies from simple/coarse ones; both directions of interest exist and
-   neither invalidates an argument). The blocs, named members only. The redacted
-   plurality leans conservative — attributable-only reads skew the other way. Scope 2
+   neither invalidates an argument). The blocs, named members only — and note that the
+   largest bloc is a **single-country** coordination effort, described that way and not
+   named (§3.5 disclosure note). The redacted
+   plurality leans conservative **on two of seven stance questions — secondary effects
+   (p=0.035) and, most sharply, regional differentiation, where redacted respondents pick
+   "unsure/depends" 22/41 against named 10/57 (p=0.0002). On the headline formula question
+   the lean is real in direction but not in significance (p=0.22), so it must not be
+   stated as a finding. Companies are 41 of the 75 redacted respondents and the only org
+   type where redaction is the majority, so every "redacted respondents think X" sentence
+   is substantially "companies think X" and is hedged as such.** Scope 2
    repeat filers where the cross-consultation panel lands.
 8. **How a third party should read this.** Signal strongest on: formula-as-proposed
    rejected, regulatory+timing tests, annual reporting, average-emission-rate BM
