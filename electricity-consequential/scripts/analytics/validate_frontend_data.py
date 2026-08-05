@@ -64,6 +64,7 @@ EXPORTER_OPTIONS = export_frontend.OPTIONS
 FILE_BUDGET = 300 * 1024
 ORG_BUDGET = 150 * 1024
 MIN_SEGMENT_N = 5
+THIN_CELL_N = 10
 SENTINEL = "<5"
 QUOTE_MAX = 600
 PREVIEW_MAX = 240
@@ -99,11 +100,18 @@ HARD_STANCES = {
 }
 
 # qid -> (n, required, optional, not_required, net requiredness %R-%N in 1dp)
+# The nets are the *pre-rounded* convention - round each share to 1dp, then
+# subtract - which is the one the site displays and PLAN Sec. 3.3 declares
+# binding. This table used to freeze the round-the-difference convention, which
+# moves regulatory to +47.1 and barrier to -27.6; those two numbers appear
+# nowhere on the site and the plan forbids quoting them (P35 F4). Since P42 the
+# exporter owns the field (matrix.json net_pct, contract addition C1) and this
+# table is the third-party check on it.
 HARD_MATRIX = {
-    "Q026_1": (104, 66, 21, 17, 47.1),          # regulatory
+    "Q026_1": (104, 66, 21, 17, 47.2),          # regulatory
     "Q026_2": (102, 49, 30, 23, 25.5),          # timing
     "Q026_3": (104, 16, 57, 31, -14.4),         # financial analysis
-    "Q026_4": (98, 13, 45, 40, -27.6),          # barrier
+    "Q026_4": (98, 13, 45, 40, -27.5),          # barrier
     "Q026_5": (100, 21, 32, 47, -26.0),         # common practice
     "Q026_6": (102, 16, 56, 30, -13.7),         # positive list
     "Q026_7": (98, 12, 37, 49, -37.8),          # performance standard
@@ -166,6 +174,10 @@ HARD_PRERULING_CODED_ROWS = 6
 HARD_BLOCS = {"policy_insights_pack": {43, 47, 60, 79, 82},
               "bullet_pack": {51, 86, 89, 117}}
 HARD_FAMILIES = {"engie_impact": [135, 160]}
+# 38 clusters spanning 26 distinct analytical-base respondents - 23 bloc members
+# plus three peripheral single-cluster sharers (45, 110, 173). PLAN Sec. 3.5
+# said 25 until P35 recounted it (F5); it is a published field now (C2).
+HARD_CLUSTER_RESPONDENTS = 26
 HARD_RESUBMISSION = (100, 151)
 
 
@@ -438,19 +450,34 @@ def check_cells(report: Report, truth: Truth, docs) -> None:
                 continue
             rolled = 0
             for key, cell in cells.items():
-                if sizes[dim][key] < MIN_SEGMENT_N:
-                    continue
                 want = scell(Counter(value for pid, value in keyed.items()
                                      if of[dim][pid] == key), order)
+                # Two independent reasons to mask: the segment value is small
+                # overall, or this particular cell is (contract addition C3).
+                # Either way the roll-up still has to account for the people
+                # behind the sentinel, so it uses the recomputed truth.
+                hidden = (sizes[dim][key] < MIN_SEGMENT_N
+                          or want["n"] < MIN_SEGMENT_N)
+                if hidden:
+                    if cell != {"n": SENTINEL}:
+                        problems.append(f"{where} {dim}/{key} should be masked "
+                                        f"(cell n={want['n']}, segment "
+                                        f"n={sizes[dim][key]}) but is {cell}")
+                    rolled += want["n"]
+                    continue
+                thin = cell.pop("thin", None)
                 if cell != want:
                     problems.append(f"{where} {dim}/{key} {cell} != {want}")
                 if sum(cell.get("c", [])) != cell.get("n"):
                     problems.append(f"{where} {dim}/{key} does not sum to n")
+                if bool(thin) != (want["n"] < THIN_CELL_N):
+                    problems.append(f"{where} {dim}/{key} thin={thin!r} at "
+                                    f"n={want['n']} (threshold {THIN_CELL_N})")
+                if thin is not None:
+                    cell["thin"] = thin
                 rolled += cell["n"]
-            masked = sum(1 for pid in keyed
-                         if sizes[dim][of[dim][pid]] < MIN_SEGMENT_N)
-            if rolled + masked != entry["overall"]["n"]:
-                problems.append(f"{where} {dim} rolls up to {rolled + masked} "
+            if rolled != entry["overall"]["n"]:
+                problems.append(f"{where} {dim} rolls up to {rolled} "
                                 f"!= {entry['overall']['n']}")
 
     problems: list[str] = []
@@ -488,6 +515,36 @@ def check_cells(report: Report, truth: Truth, docs) -> None:
     report.check(not problems,
                  "respondents.redaction_effect matches the db and sums to the "
                  "stance overall", "; ".join(problems[:3]))
+
+    # Contract addition C4, same shape and the same three-way assertion as
+    # redaction_effect above: db == json, and the two sides sum to the base.
+    problems = []
+    country_of = truth.segment_of(meta)["country_4"]
+    for qid in STANCE_QIDS:
+        order, _options = option_keys(meta, qid)
+        keyed = truth.keyed(qid)
+        row = next(r for r in docs["respondents"]["country_effect"]
+                   if r["qid"] == qid)
+        for side, want_ids in (("us", lambda p: country_of[p] == "us"),
+                               ("non_us", lambda p: country_of[p] != "us")):
+            want = scell(Counter(value for pid, value in keyed.items()
+                                 if want_ids(pid)), order)
+            if row[side] != want:
+                problems.append(f"country_effect[{qid}].{side} {row[side]} "
+                                f"!= {want}")
+        if row["us"]["n"] + row["non_us"]["n"] != \
+                docs["stances"][qid]["overall"]["n"]:
+            problems.append(f"country_effect[{qid}] does not sum to overall")
+    if [r["qid"] for r in docs["respondents"]["country_effect"]] != \
+            list(STANCE_QIDS):
+        problems.append("country_effect does not cover the stance questions "
+                        "in order")
+    report.check(not problems,
+                 "respondents.country_effect matches the db and sums to the "
+                 "stance overall (contract C4)",
+                 "; ".join(problems[:3]) if problems else
+                 "Q19 US 54N/74 (73.0%) vs non-US 27/55 (49.1%) · "
+                 "Q24 US 53/55 (96.4%) vs non-US 27/44 (61.4%)")
 
     problems = []
     picks_by_key = truth.picks_by_key("Q028")
@@ -572,7 +629,7 @@ def pick_problems(cell, ids, of, sizes, where) -> list[str]:
 def walk_cells(obj, path=""):
     """Yield (path, cell) for every dict that looks like a contract cell."""
     if isinstance(obj, dict):
-        if "n" in obj and (set(obj) <= {"n", "c", "by"}):
+        if "n" in obj and (set(obj) <= {"n", "c", "by", "thin"}):
             yield path, obj
         for key, value in obj.items():
             yield from walk_cells(value, f"{path}.{key}")
@@ -583,7 +640,7 @@ def walk_cells(obj, path=""):
 
 def check_mask(report: Report, docs) -> None:
     report.section("3. mask placement: the \"<5\" sentinel lands on exactly the "
-                   "under-5 segment values")
+                   "under-5 segment values and under-5 cells")
     meta = docs["meta"]
     sizes = {dim: {value["key"]: value["n"]
                    for value in meta["segments"][dim]["values"]}
@@ -591,7 +648,11 @@ def check_mask(report: Report, docs) -> None:
     due = sorted(f"{dim}/{key}" for dim in SEGMENT_DIMS
                  for key, n in sizes[dim].items() if n < MIN_SEGMENT_N)
 
-    wrong, leaked = [], []
+    # A small segment value must be masked everywhere it appears. A cell inside
+    # a *large* segment value may also be masked - that is contract addition C3
+    # firing on the cell's own n - and section 2 is what proves those land on
+    # exactly the right cells, since only it recomputes from the database.
+    wrong, leaked, cell_level, thin_wrong = [], [], [], []
     for name in ("stances", "matrix", "scoreboard"):
         for path, cell in walk_cells(docs[name], name):
             parts = path.split(".")
@@ -601,20 +662,35 @@ def check_mask(report: Report, docs) -> None:
             if dim not in SEGMENT_DIMS or key not in sizes[dim]:
                 continue
             masked = cell.get("n") == SENTINEL
-            should = sizes[dim][key] < MIN_SEGMENT_N
-            if masked != should:
-                wrong.append(f"{path} masked={masked} segment n="
-                             f"{sizes[dim][key]}")
-            if masked and set(cell) != {"n"}:
-                leaked.append(path)
+            if sizes[dim][key] < MIN_SEGMENT_N and not masked:
+                wrong.append(f"{path} unmasked, segment n={sizes[dim][key]}")
+            if masked:
+                if set(cell) != {"n"}:
+                    leaked.append(path)
+                if sizes[dim][key] >= MIN_SEGMENT_N:
+                    cell_level.append(path)
+            elif "c" in cell:
+                thin = bool(cell.get("thin"))
+                if thin != (cell["n"] < THIN_CELL_N):
+                    thin_wrong.append(f"{path} thin={thin} n={cell['n']}")
     report.check(not wrong,
-                 f"every segment cell obeys the under-{MIN_SEGMENT_N} rule",
+                 f"every under-{MIN_SEGMENT_N} segment value is masked wherever "
+                 "it appears",
                  "; ".join(wrong[:4]) if wrong else
                  (f"masked: {', '.join(due)}" if due else
-                  "no segment value falls under 5 on the analytical base, so "
-                  "no cell is masked"))
+                  "no segment value falls under 5 on the analytical base"))
     report.check(not leaked, "no masked cell carries counts alongside the "
                              "sentinel", "; ".join(leaked[:4]))
+    report.check(True,
+                 f"cell-level under-{MIN_SEGMENT_N} masks (contract C3) - "
+                 "section 2 checks each against the db",
+                 f"{len(cell_level)} cells: "
+                 f"{', '.join(p.split('.', 1)[1] for p in cell_level[:6])}"
+                 if cell_level else "none")
+    report.check(not thin_wrong,
+                 f"the thin-n flag marks exactly the cells with "
+                 f"{MIN_SEGMENT_N} <= n < {THIN_CELL_N}",
+                 "; ".join(thin_wrong[:4]))
     report.check(all(value["n"] >= 0 for dim in SEGMENT_DIMS
                      for value in meta["segments"][dim]["values"]),
                  "meta.segments publishes true segment sizes (base chips)",
@@ -683,17 +759,23 @@ def check_hard_numbers(report: Report, truth: Truth, docs) -> None:
             problems.append(f"{qid} db {db} != frozen")
         if docs["matrix"]["tests"][qid]["overall"] != db:
             problems.append(f"{qid} json != db")
-        # Both sides of a matrix row share one base, so net requiredness is
-        # exactly 100*(R-N)/n - subtract first, then round. (The scoreboards'
-        # net cannot be computed that way: their two sides have different
-        # bases, so there it is the difference of the two displayed 1dp
-        # percentages, per P11's fixture.)
-        db_net = r1(100.0 * (req - notreq) / want_n)
+        # Net requiredness is the difference of the two *displayed* 1dp
+        # percentages, so a reader can reproduce it from the row on screen -
+        # the same rule the scoreboards use, where the two sides have different
+        # bases and no other rule is even available. Rounding the difference
+        # instead moves regulatory and barrier by 0.1pp away from the site.
+        db_net = r1(r1(100.0 * req / want_n) - r1(100.0 * notreq / want_n))
         if db_net != net:
             problems.append(f"{qid} net requiredness {db_net} != {net}")
-    report.check(not problems, "the 9 additionality matrix rows (PLAN Sec. 3.3)",
+        if docs["matrix"]["tests"][qid].get("net_pct") != net:
+            problems.append(
+                f"{qid} matrix.json net_pct "
+                f"{docs['matrix']['tests'][qid].get('net_pct')} != {net}")
+    report.check(not problems, "the 9 additionality matrix rows (PLAN Sec. 3.3), "
+                               "including the exported net_pct (contract C1)",
                  "; ".join(problems[:3]) if problems else
-                 "regulatory +47.1 … first-of-its-kind -46.9")
+                 "regulatory +47.2 … first-of-its-kind -46.9, pre-rounded "
+                 "convention, one authoritative field")
 
     problems = []
     by_key = {key: len(ids) for key, ids in truth.picks_by_key("Q028").items()}
@@ -968,6 +1050,41 @@ def check_exclusion_invariant(report: Report, truth: Truth, docs) -> None:
                  "policy_insights_pack {43,47,60,79,82}",
                  "; ".join(problems[:3]) if problems else
                  ", ".join(f"{key}×{sizes[key]}" for key in sorted(sizes)))
+
+    # Contract addition C5: the country *count* per bloc, never the country.
+    # The largest bloc's country sits inside the country_4 "other" bucket and
+    # all five members are redacted, so publishing the name would be fresh
+    # attribute disclosure (P35 F6). The count carries the finding safely.
+    problems = []
+    country_of = {pid: row["country"] for pid, row in truth.people.items()}
+    for bloc in integrity["blocs"]:
+        members = derived.get(bloc["key"], set())
+        want = len({country_of[pid] for pid in members if pid in country_of})
+        if bloc.get("n_countries") != want:
+            problems.append(f"{bloc['key']} n_countries "
+                            f"{bloc.get('n_countries')} != {want}")
+        if bloc.get("single_country") is not (want == 1):
+            problems.append(f"{bloc['key']} single_country disagrees with "
+                            f"n_countries={want}")
+    single = [b["key"] for b in integrity["blocs"] if b.get("single_country")]
+    report.check(not problems,
+                 "blocs carry a country count, not a country name (contract C5)",
+                 "; ".join(problems[:3]) if problems else
+                 f"single-country blocs: {', '.join(sorted(single))}")
+
+    # Contract addition C2: clusters overlap, so the spanned headcount is not
+    # the sum of the rows and has to be published rather than inferred.
+    spanned = len({pid for row in read_csv(DERIVED_DIR / "text_clusters.csv")
+                   for pid in (int(part) for part
+                               in row["member_ids"].split("|") if part)
+                   if pid in truth.base})
+    report.check(integrity.get("text_clusters_n_respondents") == spanned
+                 == HARD_CLUSTER_RESPONDENTS,
+                 f"text_clusters_n_respondents == {HARD_CLUSTER_RESPONDENTS} "
+                 "distinct respondents (contract C2)",
+                 f"json {integrity.get('text_clusters_n_respondents')} · "
+                 f"data/derived {spanned} · "
+                 f"{len(integrity['text_clusters'])} clusters")
 
     families = {family["name"]: family["ids"] for family in integrity["families"]}
     report.check(families == HARD_FAMILIES,

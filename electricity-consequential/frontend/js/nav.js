@@ -201,13 +201,55 @@
     // --- Navigation Structure (SITE-SPECIFIC — edit here only) ---
     // Electricity-sector consequential methods hub structure
     // (electricity-consequential/plans/consequential-dashboard/PLAN.md §4).
-    // Most targets do not exist yet — Wave 3 builds them; P42 finalizes this
-    // list. Placeholder hrefs are correct behavior at this stage.
+    // FINAL FORM — P11 wrote the placeholder list, P42 settled it. Ten pages,
+    // no mega-menu needed: seven top-level entries with two dropdowns.
     //
     // Pages live at the site root and one level down in topics/, so hrefs are
     // written through NAV_BASE. That keeps every link correct from both depths
     // without touching the nav builders below.
     const NAV_BASE = /\/topics\//.test(window.location.pathname) ? '../' : '';
+
+    const REPO_URL = 'https://github.com/jessicacohen554-cyber/scope-2-consult';
+
+    // The Scope 2 companion hub lives at the repository root, outside this
+    // site. Two deployments are supported and they need different links:
+    //
+    //   served from the repo root      /electricity-consequential/frontend/x.html
+    //       -> ../../frontend/index.html reaches the companion hub directly
+    //   served from this frontend dir  /x.html
+    //       -> nothing above the document root exists; the hop would 404
+    //
+    // The path is the tell, so the choice is made from location.pathname:
+    // synchronous, no probe request, and identical on every page. When the
+    // companion hub is not reachable the entry falls back to the repository on
+    // GitHub, which is always reachable and is where the other hub's source is.
+    // (PLAN §4 / the P42 prompt asks for exactly this degradation.)
+    const SERVED_FROM_REPO_ROOT =
+        /\/electricity-consequential\/frontend\//.test(window.location.pathname);
+
+    function scope2Href(page) {
+        return SERVED_FROM_REPO_ROOT
+            ? NAV_BASE + '../../frontend/' + page
+            : REPO_URL + '/tree/main/frontend#readme';
+    }
+
+    const SCOPE2_HREF = scope2Href('index.html');
+
+    // Pages that link into the companion hub outside the nav — the integrity
+    // page's cross-consultation panel — mark the anchor `data-scope2-link` and
+    // get the same treatment, so the rule lives in one file.
+    function rewriteScope2Links() {
+        var links = document.querySelectorAll('[data-scope2-link]');
+        Array.prototype.forEach.call(links, function(a) {
+            a.setAttribute('href',
+                scope2Href(a.getAttribute('data-scope2-link')));
+            if (!SERVED_FROM_REPO_ROOT) {
+                a.setAttribute('rel', 'noopener');
+                a.setAttribute('title', 'The companion hub is not served ' +
+                    'alongside this one; opening its source on GitHub instead.');
+            }
+        });
+    }
 
     const NAV_ITEMS = [
         { label: 'Overview',       href: NAV_BASE + 'index.html' },
@@ -228,11 +270,8 @@
             label: 'About',
             children: [
                 { label: 'Methodology', href: NAV_BASE + 'methodology.html' },
-                // The Scope 2 companion hub sits at the repository root; the
-                // relative hop resolves when the repo is served from its root
-                // and 404s under a frontend-only dev server. P42's call.
-                { label: 'Scope 2 companion hub', href: NAV_BASE + '../../frontend/index.html' },
-                { label: 'Dataset README', href: 'https://github.com/jessicacohen554-cyber/scope-2-consult/tree/main/electricity-consequential#readme' }
+                { label: 'Scope 2 companion hub', href: SCOPE2_HREF },
+                { label: 'Dataset README', href: REPO_URL + '/tree/main/electricity-consequential#readme' }
             ]
         }
     ];
@@ -435,9 +474,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             injectNav();
             wireInteractions();
+            rewriteScope2Links();
         });
     } else {
         injectNav();
         wireInteractions();
+        rewriteScope2Links();
     }
 })();

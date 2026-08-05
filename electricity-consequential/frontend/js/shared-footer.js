@@ -16,24 +16,36 @@
 (function() {
     'use strict';
 
-    // Canonical footer link set - single source of truth (SITE-SPECIFIC)
-    // Mirrors the nav.js top level, flattened: Overview, the Decision Board,
-    // the three standalone pages, and Methodology. The four topic deep dives
-    // live in the nav dropdown only. FOOTER_BASE keeps links correct from
-    // topics/ subpages, exactly as NAV_BASE does in nav.js.
+    // Canonical footer link set - single source of truth (SITE-SPECIFIC).
+    // FINAL FORM (P42). This mirrors nav.js flattened, and since the nav has
+    // only two dropdowns the flattening is the complete site map: all ten
+    // pages, in nav order. The topic deep dives used to be nav-only, which
+    // left the footer claiming to be an index while hiding four pages from
+    // anyone who scrolled to the bottom instead of up to the menu. The two
+    // off-site About entries (the Scope 2 hub, the dataset README) stay in the
+    // nav only - a footer index is for this site's pages.
+    // FOOTER_BASE keeps links correct from topics/ subpages, exactly as
+    // NAV_BASE does in nav.js.
     var FOOTER_BASE = /\/topics\//.test(window.location.pathname) ? '../' : '';
 
     var FOOTER_LINKS = [
-        { href: FOOTER_BASE + 'index.html',       label: 'Overview' },
-        { href: FOOTER_BASE + 'decisions.html',   label: 'Decision Board' },
-        { href: FOOTER_BASE + 'voices.html',      label: 'Themes & Voices' },
-        { href: FOOTER_BASE + 'respondents.html', label: 'Who Responded' },
-        { href: FOOTER_BASE + 'integrity.html',   label: 'Integrity & Evidence' },
-        { href: FOOTER_BASE + 'methodology.html', label: 'Methodology' }
+        { href: FOOTER_BASE + 'index.html',                  label: 'Overview' },
+        { href: FOOTER_BASE + 'decisions.html',              label: 'Decision Board' },
+        { href: FOOTER_BASE + 'topics/formula.html',         label: 'Formula & Scope' },
+        { href: FOOTER_BASE + 'topics/additionality.html',   label: 'Additionality' },
+        { href: FOOTER_BASE + 'topics/emission-rates.html',  label: 'Emission Rates' },
+        { href: FOOTER_BASE + 'topics/weighting.html',       label: 'Weighting' },
+        { href: FOOTER_BASE + 'voices.html',                 label: 'Themes & Voices' },
+        { href: FOOTER_BASE + 'respondents.html',            label: 'Who Responded' },
+        { href: FOOTER_BASE + 'integrity.html',              label: 'Integrity & Evidence' },
+        { href: FOOTER_BASE + 'methodology.html',            label: 'Methodology' }
     ];
 
+    // 185 filed; 180 carry every aggregate on the site. Naming both keeps the
+    // footer from reading as a raw-base figure (PLAN §3).
     var DEFAULT_NOTE = 'Electricity-Sector Consequential Methods Consultation — ' +
-        '185 responses to the GHG Protocol public consultation, July 2026';
+        '185 responses to the GHG Protocol public consultation, July 2026; ' +
+        '180 after junk and superseded filings are excluded';
 
     function buildFooter() {
         var el = document.getElementById('siteFooter');

@@ -1,0 +1,182 @@
+[
+ {
+  "page": "index",
+  "viewport": "1440",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "index-1440.png"
+ },
+ {
+  "page": "decisions",
+  "viewport": "1440",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "decisions-1440.png"
+ },
+ {
+  "page": "formula",
+  "viewport": "1440",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "formula-1440.png"
+ },
+ {
+  "page": "additionality",
+  "viewport": "1440",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "additionality-1440.png"
+ },
+ {
+  "page": "emission-rates",
+  "viewport": "1440",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "emission-rates-1440.png"
+ },
+ {
+  "page": "weighting",
+  "viewport": "1440",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "weighting-1440.png"
+ },
+ {
+  "page": "voices",
+  "viewport": "1440",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "voices-1440.png"
+ },
+ {
+  "page": "respondents",
+  "viewport": "1440",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "respondents-1440.png"
+ },
+ {
+  "page": "integrity",
+  "viewport": "1440",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "integrity-1440.png"
+ },
+ {
+  "page": "methodology",
+  "viewport": "1440",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "methodology-1440.png"
+ },
+ {
+  "page": "index",
+  "viewport": "390",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "index-390.png"
+ },
+ {
+  "page": "decisions",
+  "viewport": "390",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "decisions-390.png"
+ },
+ {
+  "page": "formula",
+  "viewport": "390",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "formula-390.png"
+ },
+ {
+  "page": "additionality",
+  "viewport": "390",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "additionality-390.png"
+ },
+ {
+  "page": "emission-rates",
+  "viewport": "390",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "emission-rates-390.png"
+ },
+ {
+  "page": "weighting",
+  "viewport": "390",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "weighting-390.png"
+ },
+ {
+  "page": "voices",
+  "viewport": "390",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "voices-390.png"
+ },
+ {
+  "page": "respondents",
+  "viewport": "390",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "respondents-390.png"
+ },
+ {
+  "page": "integrity",
+  "viewport": "390",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "integrity-390.png"
+ },
+ {
+  "page": "methodology",
+  "viewport": "390",
+  "status": 200,
+  "overflow_px": 0,
+  "console_errors": [],
+  "request_failures": [],
+  "shot": "methodology-390.png"
+ }
+]

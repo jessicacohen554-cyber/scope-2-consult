@@ -409,6 +409,130 @@
       "shorthand": "temporal_granularity_max",
       "topic": "emission_rates",
       "type": "ordered_select"
+    },
+    {
+      "asks_for": "method_pick",
+      "display": "Q47",
+      "doc_section": "9",
+      "label": "Which BM/OM weighting approaches are appropriate?",
+      "n_answered": 12,
+      "options": [
+        {
+          "key": "ghgp_grid",
+          "label": "GHGP Grid-connected Guidelines"
+        },
+        {
+          "key": "cdm_tool07",
+          "label": "UNFCCC CDM Tool07"
+        },
+        {
+          "key": "default_5050",
+          "label": "Default 0.50 build weight"
+        },
+        {
+          "key": "unsure",
+          "label": "Unsure",
+          "special": true
+        },
+        {
+          "key": "none_appropriate",
+          "label": "None are appropriate",
+          "special": true
+        }
+      ],
+      "page": "topics/weighting.html",
+      "qid": "Q047",
+      "shorthand": "weighting_appropriate",
+      "topic": "weighting",
+      "type": "multi_select"
+    },
+    {
+      "asks_for": "rationale",
+      "display": "Q48",
+      "doc_section": "9",
+      "label": "Why are the selected weighting approaches appropriate?",
+      "n_answered": 9,
+      "options": [],
+      "page": "topics/weighting.html",
+      "qid": "Q048",
+      "shorthand": "weighting_appropriate_why",
+      "topic": "weighting",
+      "type": "free_text"
+    },
+    {
+      "asks_for": "method_pick",
+      "display": "Q49",
+      "doc_section": "9",
+      "label": "Which BM/OM weighting approaches are not feasible?",
+      "n_answered": 10,
+      "options": [
+        {
+          "key": "ghgp_grid",
+          "label": "GHGP Grid-connected Guidelines"
+        },
+        {
+          "key": "cdm_tool07",
+          "label": "UNFCCC CDM Tool07"
+        },
+        {
+          "key": "default_5050",
+          "label": "Default 0.50 build weight"
+        },
+        {
+          "key": "unsure",
+          "label": "Unsure",
+          "special": true
+        },
+        {
+          "key": "all_feasible",
+          "label": "All are feasible",
+          "special": true
+        }
+      ],
+      "page": "topics/weighting.html",
+      "qid": "Q049",
+      "shorthand": "weighting_not_feasible",
+      "topic": "weighting",
+      "type": "multi_select"
+    },
+    {
+      "asks_for": "rationale",
+      "display": "Q50",
+      "doc_section": "9",
+      "label": "Why are the rejected weighting approaches not feasible?",
+      "n_answered": 8,
+      "options": [],
+      "page": "topics/weighting.html",
+      "qid": "Q050",
+      "shorthand": "weighting_not_feasible_why",
+      "topic": "weighting",
+      "type": "free_text"
+    },
+    {
+      "asks_for": "elaboration",
+      "display": "Q51",
+      "doc_section": "9",
+      "label": "Other weighting approaches worth considering",
+      "n_answered": 6,
+      "options": [],
+      "page": "topics/weighting.html",
+      "qid": "Q051",
+      "shorthand": "weighting_other_approaches",
+      "topic": "weighting",
+      "type": "free_text"
+    },
+    {
+      "asks_for": "evidence",
+      "display": "Q52",
+      "doc_section": "9",
+      "label": "Supporting research or documentation",
+      "n_answered": 5,
+      "options": [],
+      "page": "topics/weighting.html",
+      "qid": "Q052",
+      "shorthand": "supporting_evidence",
+      "topic": "weighting",
+      "type": "free_text"
     }
   ],
   "scoreboards": {
@@ -418,6 +542,13 @@
       "label": "Operating-margin methods",
       "q_app": "Q035",
       "q_not": "Q036"
+    },
+    "weighting": {
+      "base_app": 12,
+      "base_not": 10,
+      "label": "BM/OM weighting approaches",
+      "q_app": "Q047",
+      "q_not": "Q049"
     }
   },
   "segments": {

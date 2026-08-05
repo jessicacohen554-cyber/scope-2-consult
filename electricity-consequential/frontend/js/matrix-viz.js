@@ -55,6 +55,18 @@
         return ((meta && meta.matrix && meta.matrix.levels) || []).slice();
     }
 
+    // meta.matrix.tests[].label reads "Requiredness of the regulatory test" —
+    // right for a question label, far too long for a chart point or a phone-width
+    // row header, where nine of them collide into an unreadable stack (P35 F11).
+    // The prefix and the trailing "test" are the same on every row and carry no
+    // information once the axis title says "net requiredness".
+    function shortLabel(label) {
+        return String(label || '')
+            .replace(/^requiredness of the\s+/i, '')
+            .replace(/\s+test$/i, '')
+            .trim() || String(label || '');
+    }
+
     function netRequiredness(cell, levels) {
         var s = S();
         if (!cell || s.isMasked(cell) || s.isEmpty(cell)) return null;
@@ -63,7 +75,22 @@
         if (!n || c.length < 2) return null;
         var hi = c[0] || 0;
         var lo = c[levels.length ? levels.length - 1 : c.length - 1] || 0;
+        // Pre-rounded: round each share to 1dp, then subtract, so the number
+        // matches what the two cells on the row print. See matrix.json's
+        // exporter-computed net_pct, which this must agree with by construction.
         return s.pct1(hi, n) - s.pct1(lo, n);
+    }
+
+    // Contract addition C1: for the overall view the exporter's net_pct is the
+    // authority and is used verbatim. Segment cells have no exported net, so
+    // they fall back to the same arithmetic the exporter runs. Before C1 three
+    // places computed this independently and the plan disagreed with all of
+    // them on two of the nine rows (P35 F4).
+    function netOf(entry, cell, levels, isOverall) {
+        if (isOverall && entry && typeof entry.net_pct === 'number') {
+            return entry.net_pct;
+        }
+        return netRequiredness(cell, levels);
     }
 
     // Returns [{qid, key, label, n, cell, net, feasibility}] sorted by net desc.
@@ -79,17 +106,19 @@
 
         var out = tests.map(function(t) {
             var entry = byQid[t.qid] || {};
-            var cell = segValue === 'overall'
+            var isOverall = segValue === 'overall';
+            var cell = isOverall
                 ? entry.overall
                 : (((entry.by || {})[dimKey] || {})[segValue] || null);
             return {
                 qid: t.qid,
                 key: t.key,
                 label: t.label,
+                short: shortLabel(t.label),
                 n: t.n,
                 entry: entry,
                 cell: cell,
-                net: netRequiredness(cell, levels),
+                net: netOf(entry, cell, levels, isOverall),
                 feasibility: feas[t.key] || null
             };
         }).filter(function(r) { return opts.keepEmpty || r.cell; });
@@ -153,23 +182,39 @@
         data.forEach(function(r) {
             var cell = r.cell;
             var n = s.baseOf(cell);
+            var thin = s.isThin(cell, maskN);
+            // The net column is the sort key, and below the narrow breakpoint
+            // it is the first thing to fall off the scroll port — with no
+            // affordance, because page-level overflow stays zero (P35 F10).
+            // So the net rides in the row header too, and CSS shows exactly one
+            // of the two copies. This is P35's option B: three data columns fit
+            // 328 px with no scroll, and the sort key stays beside the label it
+            // sorts. Emitting both and choosing in CSS keeps the breakpoint in
+            // one place — the stylesheet — instead of duplicating it in JS.
+            var netTag = '<span class="ec-tag ec-tag-stringency">' +
+                (r.net === null ? '—' : s.fmtSigned(r.net)) + '</span>';
             html += '<div class="ec-mx-row" role="row">' +
                 '<div class="ec-mx-rowhead" role="rowheader">' +
-                '<span class="ec-mx-testname">' + esc(r.label) + '</span>' +
-                '<span class="ec-base-chip">n=' + n + '</span></div>';
+                '<span class="ec-mx-testname">' + esc(r.short) + '</span>' +
+                '<span class="ec-mx-rowmeta">' +
+                '<span class="ec-mx-rowhead-net" aria-hidden="true">net ' +
+                (r.net === null ? '—' : s.fmtSigned(r.net)) + '</span>' +
+                '<span class="ec-base-chip">n=' + n +
+                (thin ? ' · counts only' : '') + '</span>' +
+                '</span></div>';
 
-            var srRow = [r.label];
+            var srRow = [r.short];
             if (!cell || s.isEmpty(cell)) {
                 levels.forEach(function() {
                     html += '<div class="ec-mx-cell ec-mx-cell--empty" ' +
-                        'role="gridcell" aria-label="' + esc(r.label) +
+                        'role="gridcell" aria-label="' + esc(r.short) +
                         ': not answered."><span aria-hidden="true">·</span></div>';
                     srRow.push('no data');
                 });
             } else if (s.isMasked(cell, maskN)) {
                 levels.forEach(function() {
                     html += '<div class="ec-mx-cell ec-mx-cell--masked" ' +
-                        'role="gridcell" aria-label="' + esc(r.label) +
+                        'role="gridcell" aria-label="' + esc(r.short) +
                         ': suppressed, fewer than ' + maskN + ' respondents."></div>';
                     srRow.push('suppressed (n<' + maskN + ')');
                 });
@@ -179,25 +224,33 @@
                     var p = s.pct1(v, n);
                     var sw = s.tint(STRINGENCY_POLE,
                                     ALPHA_MIN + (ALPHA_MAX - ALPHA_MIN) * (p / 100));
-                    html += '<div class="ec-mx-cell ec-mx-cell--data" ' +
+                    // Under THIN_N the count leads and the percentage is not
+                    // printed at all (contract C3) — at n=7 a percentage claims
+                    // a precision the cell does not have.
+                    html += '<div class="ec-mx-cell ec-mx-cell--data' +
+                        (thin ? ' ec-mx-cell--thin' : '') + '" ' +
                         'role="gridcell" tabindex="0" data-ec-pop data-qid="' +
                         esc(r.qid) + '" data-level="' + esc(lv.key) + '" ' +
                         'style="background:' + sw.bg + ';color:' + sw.fg +
-                        '" aria-label="' + esc(r.label + ' — ' + lv.label + ': ' +
-                            s.fmtPct(p) + ', ' + v + ' of ' + n +
-                            ' respondents. Activate for the segment split.') + '">' +
-                        '<span class="ec-mx-val">' + Math.round(p) + '%</span>' +
-                        '<span class="ec-mx-sub">' + v + '</span></div>';
-                    srRow.push(s.fmtPct(p) + ' (' + v + ' of ' + n + ')');
+                        '" aria-label="' + esc(r.short + ' — ' + lv.label + ': ' +
+                            (thin ? s.fmtOf(v, n) + ' respondents'
+                                  : s.fmtPct(p) + ', ' + v + ' of ' + n +
+                                    ' respondents') +
+                            '. Activate for the segment split.') + '">' +
+                        '<span class="ec-mx-val">' +
+                        (thin ? v : Math.round(p) + '%') + '</span>' +
+                        '<span class="ec-mx-sub">' +
+                        (thin ? 'of ' + n : v) + '</span></div>';
+                    srRow.push(thin ? s.fmtOf(v, n)
+                                    : s.fmtPct(p) + ' (' + v + ' of ' + n + ')');
                 });
             }
 
             var net = r.net;
             html += '<div class="ec-mx-cell ec-mx-cell--net" role="gridcell" ' +
-                'aria-label="' + esc(r.label + ' net requiredness ' +
+                'aria-label="' + esc(r.short + ' net requiredness ' +
                     (net === null ? 'unavailable' : s.fmtSigned(net) + ' points')) +
-                '"><span class="ec-tag ec-tag-stringency">' +
-                (net === null ? '—' : s.fmtSigned(net)) + '</span></div>';
+                '">' + netTag + '</div>';
             srRow.push(net === null ? '—' : s.fmtSigned(net));
             srRows.push(srRow);
             html += '</div>';
@@ -208,7 +261,11 @@
             'aria-hidden="true"></span> Sequential ramp: darker means a larger ' +
             'share of that test’s respondents chose that level. This is a ' +
             'stringency scale, not a support scale &mdash; no answer here is ' +
-            'agreement or disagreement.</p>' +
+            'agreement or disagreement. Rows are sorted by net requiredness ' +
+            '(%' + esc(levels[0].label) + ' &minus; %' +
+            esc(levels[levels.length - 1].label) + '), shown in the ' +
+            '<span class="ec-tag ec-tag-stringency">net</span> column and, on ' +
+            'narrow screens, beside each test name.</p>' +
             '<div class="ec-srtable-slot"></div>';
         el.innerHTML = html;
 
@@ -254,6 +311,7 @@
         var html = '<div class="ec-mini">' + data.map(function(r) {
             var cell = r.cell;
             var n = s.baseOf(cell);
+            var thin = s.isThin(cell, maskN);
             var bar;
             if (!cell || s.isEmpty(cell)) {
                 bar = '<span class="ec-mini-bar ec-mini-bar--empty"></span>';
@@ -262,7 +320,7 @@
             } else {
                 bar = '<span class="ec-mini-bar" data-ec-pop data-qid="' +
                     esc(r.qid) + '" data-level="" tabindex="0" role="button" ' +
-                    'aria-label="' + esc(r.label + ': ' + (cell.c || []).map(
+                    'aria-label="' + esc(r.short + ': ' + (cell.c || []).map(
                         function(v, i) {
                             return (levels[i] || {}).label + ' ' + v;
                         }).join(', ') + '; n=' + n +
@@ -271,15 +329,18 @@
                         if (!v) return '';
                         return '<span class="ec-mini-seg" style="width:' +
                             s.pct1(v, n) + '%;background:' + swatches[i].bg +
-                            '" title="' + esc((levels[i] || {}).label + ' — ' + v +
-                            ' (' + s.fmtPct(s.pct1(v, n)) + ')') + '"></span>';
+                            '" title="' + esc((levels[i] || {}).label + ' — ' +
+                            (thin ? s.fmtOf(v, n)
+                                  : v + ' (' + s.fmtPct(s.pct1(v, n)) + ')')) +
+                            '"></span>';
                     }).join('') + '</span>';
             }
             return '<div class="ec-mini-row">' +
-                '<span class="ec-mini-label">' + esc(r.label) + '</span>' + bar +
+                '<span class="ec-mini-label">' + esc(r.short) + '</span>' + bar +
                 '<span class="ec-tag ec-tag-stringency">' +
                 (r.net === null ? '—' : s.fmtSigned(r.net)) + '</span>' +
-                '<span class="ec-base-chip">n=' + n + '</span></div>';
+                '<span class="ec-base-chip">n=' + n +
+                (thin ? ' · counts only' : '') + '</span></div>';
         }).join('') + '</div>' +
             '<ul class="ec-strip-legend">' + levels.map(function(lv, i) {
                 return '<li class="ec-strip-legend-item">' +
@@ -307,7 +368,7 @@
                         }
                         return String((r.cell.c || [])[i] || 0);
                     });
-                    return [r.label].concat(cells).concat([String(n),
+                    return [r.short].concat(cells).concat([String(n),
                         r.net === null ? '—' : s.fmtSigned(r.net)]);
                 })
             });
@@ -335,15 +396,7 @@
         });
 
         if (!window.Chart) {
-            var host = canvas.parentNode;
-            if (host) {
-                host.innerHTML = '<div class="card ec-error" role="alert">' +
-                    '<div class="ec-error-title">Chart library unavailable</div>' +
-                    '<p class="ec-error-hint">Chart.js did not load, so the ' +
-                    'required-vs-feasible cross cannot be drawn. Check the pinned ' +
-                    '<code>chart.umd.min.js</code> tag in the page head.</p></div>';
-            }
-            return null;
+            return s.chartMissing(canvas, 'the required-vs-feasible cross');
         }
         if (window.Chart.getChart) {
             var prev = Chart.getChart(canvas);
@@ -362,20 +415,105 @@
             s.token(STRINGENCY_POLE);
         var withA = window.withAlpha || function(c) { return c; };
         var feasBase = ((matrix.feasibility || {}).n) || 0;
-        var labels = data.map(function(r) { return r.label; });
+        // Short labels, not "Requiredness of the financial analysis test" ×9.
+        var labels = data.map(function(r) { return r.short; });
+        var xs = data.map(function(r) { return r.feasibility.n || 0; });
+        var xMax = Math.max.apply(null, xs.concat([1]));
+
+        // Three of the nine tests sit within 1.5 points of each other on the y
+        // axis (positive list / financial analysis / contractual-tenor, PLAN
+        // §3.3) and their labels drew straight through one another; three more
+        // ran off the right edge of the canvas (P35 F11). Two fixes, both here:
+        // the x axis is padded past the largest pick count so a right-hand label
+        // has somewhere to live, and any label closer than one line-height to
+        // one already drawn is nudged vertically and gets a leader dash.
+        function overlaps(a, b) {
+            return a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
+        }
 
         var pointLabels = {
             id: 'ecPointLabels',
             afterDatasetsDraw: function(chart) {
                 var ctx = chart.ctx;
                 var set = chart.getDatasetMeta(0);
+                var area = chart.chartArea;
+                var narrow = (area.right - area.left) < 420;
+                var fontPx = narrow ? 10 : 11;
+                var lineH = fontPx + 3;
+                var gap = 8;
                 ctx.save();
-                ctx.font = '600 11px ' + (s.token('--font-data') ||
+                ctx.font = '600 ' + fontPx + 'px ' + (s.token('--font-data') ||
                     Chart.defaults.font.family);
                 ctx.fillStyle = s.token('--text-muted') || '';
+                ctx.strokeStyle = s.token('--border') || '';
+                ctx.lineWidth = 1;
                 ctx.textBaseline = 'middle';
-                set.data.forEach(function(pt, i) {
-                    ctx.fillText(labels[i], pt.x + 8, pt.y);
+                ctx.textAlign = 'left';
+
+                // Points are also obstacles: a label that lands on another
+                // test's marker is as unreadable as one on another label.
+                var placed = set.data.map(function(pt) {
+                    return { x0: pt.x - 7, x1: pt.x + 7,
+                             y0: pt.y - 7, y1: pt.y + 7 };
+                });
+
+                // Place the outliers first (largest |net|), so the crowded
+                // optional-middle trio - three tests inside 1.5 points of each
+                // other - does the yielding rather than the rows that carry the
+                // headline. Within the cluster, top-down.
+                var order = set.data.map(function(pt, i) { return i; })
+                    .sort(function(a, b) { return set.data[a].y - set.data[b].y; });
+
+                order.forEach(function(i) {
+                    var pt = set.data[i];
+                    var w = ctx.measureText(labels[i]).width;
+                    var best = null;
+                    // Candidate anchors, cheapest first: beside the point at
+                    // its own height, then beside it stepping away, then
+                    // centred above or below. The first that hits nothing and
+                    // stays on canvas wins.
+                    var anchors = [];
+                    for (var step = 0; step <= 6; step++) {
+                        for (var s2 = 0; s2 < (step ? 2 : 1); s2++) {
+                            var dy = step * lineH * (s2 ? -1 : 1);
+                            anchors.push([pt.x + gap, dy, false]);
+                            anchors.push([pt.x - gap - w, dy, true]);
+                            if (step) {
+                                anchors.push([pt.x - w / 2, dy, false]);
+                            }
+                        }
+                    }
+                    anchors.some(function(a) {
+                        var x = a[0];
+                        var y = pt.y + a[1];
+                        if (x < area.left || x + w > area.right) return false;
+                        if (y - lineH / 2 < area.top ||
+                            y + lineH / 2 > area.bottom) return false;
+                        var box = { x0: x - 2, x1: x + w + 2,
+                                    y0: y - lineH / 2, y1: y + lineH / 2 };
+                        if (placed.some(function(p) {
+                            return overlaps(box, p);
+                        })) return false;
+                        best = { x: x, y: y, box: box, left: a[2] };
+                        return true;
+                    });
+                    if (!best) return;   // sr-table still carries every row
+                    placed.push(best.box);
+                    if (Math.abs(best.y - pt.y) > 1.5) {
+                        var centred = Math.abs(best.x + w / 2 - pt.x) < gap;
+                        ctx.beginPath();
+                        ctx.moveTo(pt.x + (centred ? 0 : best.left ? -4 : 4),
+                                   pt.y + (centred
+                                       ? (best.y > pt.y ? 5 : -5) : 0));
+                        ctx.lineTo(centred ? pt.x
+                                           : best.left ? best.x + w + 2
+                                                       : best.x - 2,
+                                   best.y + (centred
+                                       ? (best.y > pt.y ? -lineH / 2
+                                                        : lineH / 2) : 0));
+                        ctx.stroke();
+                    }
+                    ctx.fillText(labels[i], best.x, best.y);
                 });
                 ctx.restore();
             }
@@ -402,10 +540,17 @@
                 animation: (window.matchMedia &&
                     window.matchMedia('(prefers-reduced-motion: reduce)').matches)
                     ? false : undefined,
-                layout: { padding: { right: 120 } },
+                // The right padding is the label gutter. It used to be a flat
+                // 120 px, which is wider than a 390 px canvas can spare and
+                // still not enough for "performance standard" at 1440 px.
+                layout: { padding: { right: 12 } },
                 scales: {
                     x: {
                         beginAtZero: true,
+                        // Room for the label of the right-most point. A quarter
+                        // of the range clears the longest short label at every
+                        // width the site renders at.
+                        suggestedMax: Math.ceil(xMax * 1.28),
                         title: {
                             display: true,
                             text: 'Called feasible — picks out of ' + feasBase +
@@ -413,6 +558,9 @@
                         }
                     },
                     y: {
+                        // Headroom top and bottom so a nudged label at either
+                        // extreme stays inside the plot area.
+                        grace: '12%',
                         title: {
                             display: true,
                             text: 'Net requiredness (% required − % not required)'
@@ -456,7 +604,7 @@
                         ? '; ' + noneN + ' respondents said no test is feasible' : ''),
                 head: ['Test', 'Feasible picks', 'Net requiredness (pts)', 'Matrix n'],
                 rows: data.map(function(r) {
-                    return [r.label, String(r.feasibility.n || 0),
+                    return [r.short, String(r.feasibility.n || 0),
                             s.fmtSigned(r.net), String(s.baseOf(r.cell))];
                 })
             });

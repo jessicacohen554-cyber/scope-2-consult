@@ -257,4 +257,14 @@ their markup):
 14. **Every percentage carries its n.** Response bases fall from 165 to 36 across this
     survey; a bare percentage is a misreading waiting to happen. Segment cells below
     five respondents arrive as the `{"n":"<5"}` sentinel and must be hatched, never
-    printed and never drawn as zero.
+    printed and never drawn as zero. The rule applies to the **cell**, not only to
+    the segment value it sits in: a cell whose own `n` is under five is masked even
+    when its segment is large. Between five and nine the cell arrives with
+    `"thin": true` and publishes **counts only** — no percentage — because at that
+    base one more answer moves a share by ten points or more. `ECStance.isThin()`
+    is the single test; do not re-derive it from `n`.
+15. **The exporter owns every derived number.** If a figure can be computed two ways,
+    it is computed once, in `export_frontend.py`, and published as a field —
+    `matrix.json`'s `net_pct` and `scoreboard.json`'s `net_pct` exist for that
+    reason. A renderer that recomputes a published field will eventually disagree
+    with it. Read the field.

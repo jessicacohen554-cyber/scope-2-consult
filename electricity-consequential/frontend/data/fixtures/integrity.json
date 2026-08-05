@@ -73,8 +73,10 @@
           "name": "Consortium for Grid Integrity"
         }
       ],
+      "n_countries": 1,
       "n_redacted": 2,
-      "shared_texts": 3
+      "shared_texts": 3,
+      "single_country": true
     }
   ],
   "citations": {
@@ -269,5 +271,6 @@
         "Q032"
       ]
     }
-  ]
+  ],
+  "text_clusters_n_respondents": 3
 }
