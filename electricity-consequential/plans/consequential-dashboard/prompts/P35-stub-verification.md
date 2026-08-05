@@ -15,11 +15,24 @@ and a ninth bloc this way — hunt for surprises, not confirmation.
 
 ## Questions to explore (add your own)
 
-1. **Digest verification.** Recompute every PLAN §3 number on the analytical base
-   (181) from the db and the exported JSON. Produce the §3-replacement table: raw →
-   analytical, flagging every value that moves enough to change a sentence. Check the
-   org-type × Q19 table, the redaction splits (does the Q21 flip survive exclusion?),
-   the matrix nets, the scoreboard tallies, the attrition sequence.
+1. **Digest verification.** [**MANAGER PATCH, post-Wave-3** — this item has changed
+   shape. The analytical base is **180**, not 181. And PLAN §3 has *already been
+   replaced* with analytical-base figures by the manager (commits 90acd53, f2733f7):
+   the raw → analytical table you were asked to produce now exists. Your job is
+   therefore **adversarial re-verification, not first derivation** — assume the current
+   §3 is wrong until you have independently reproduced it, and report every
+   disagreement as a finding.]
+
+   Recompute every PLAN §3 number on the analytical base (180) from the db and the
+   exported JSON, independently of how the manager derived it. Confirm or refute each
+   of: §3.1 participation and the attrition sequence; §3.2's seven stance questions and
+   their named/redacted splits (**does the Q21 flip survive exclusion?**); §3.3's matrix
+   nets and the claim that the optional-middle three are tied within 1.5pp; §3.4's
+   own-base scoreboard nets and the claim that heat-rate/LMP and scenario modeling are
+   near-ties; §3.5's corrected resubmission account (ID 100 has 10 cells, never answered
+   Q19, 8 identical / 2 differing against 151) and the 8-bloc count; §3.6's Company
+   redaction confound. Also derive the org-type × Q19 table, which §3.2 deliberately
+   left to the exported JSON rather than restating.
 2. **The §8 essay brief.** Does any claim in PLAN §8 fail against real data? (The
    Scope 2 P35 caught exactly this.) Specifically test: "redacted lean conservative"
    across ALL stance questions (not just the three cited); "requiredness and
@@ -32,9 +45,11 @@ and a ninth bloc this way — hunt for surprises, not confirmation.
    6 KR respondents?
 4. **Viz reality-check on dev pages only** (a `dev-viz.html` copy is legal, linked
    from nowhere): does the 9×3 matrix read at 390px? Do the paired scoreboards
-   mislead when bases differ by 12 (69 vs 57) — is the own-base annotation loud
-   enough? Is the required-vs-feasible dumbbell legible or does it need a table?
-   Screenshot alternatives side by side.
+   mislead when bases differ — on the analytical base that is OM 66 vs 54, BM 66 vs 55,
+   weighting 64 vs 54 — is the own-base annotation loud enough? Is the
+   required-vs-feasible dumbbell legible or does it need a table? Screenshot
+   alternatives side by side. **All six Wave-3 pages are now built and merged**, so
+   critique what shipped, not what you imagine shipped.
 5. **Small-n masking in practice.** With the 4-dim vocabulary, how many segment cells
    are actually masked per stance question? If org_type_5 × Q33 (n=78) is mostly
    sentinel, flag which panels should drop the toggle rather than render a mask farm.

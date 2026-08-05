@@ -370,11 +370,18 @@ in size.
 
 Two additions verified post-Wave-2:
 - **Redaction is strongly org-type-dependent** (`respondents.json →
-  distributions.org_type_x_redaction`): Company **41 redacted / 19 named** — the only
-  segment where redaction is the majority, and by better than 2:1 — against Consultant
-  4/21, NGO 3/18, Industry group 6/11. Any "redacted respondents think X" claim is
-  substantially a "companies think X" claim and must be hedged as such; this
-  confound belongs on the integrity page and in §8's symmetric-skepticism section.
+  distributions.org_type_x_redaction`, which since P22's Wave-3 rerun publishes the
+  respondent's **self-declared** type at full granularity, tail-grouped below n=5 — not
+  the coarse `org_type_5` toggle vocabulary). Named/redacted by type: Company **19/41**,
+  Consultant 21/4, NGO 18/3, Industry group 11/6, Energy supplier/utility 8/8, Other
+  9/3, Academia/research 7/2, Data/analytics 6/1, Financial institution 3/2, and a
+  tail of 8 respondents across 4 types under the threshold (3/5).
+  **Company is the only type where redaction is the majority**, and it is better than
+  2:1; the next most redacted type, energy supplier/utility, is an even split. Since
+  companies are 60 of 180 respondents and 41 of 75 redacted ones, any "redacted
+  respondents think X" claim is substantially a "companies think X" claim and must be
+  hedged as such. This confound belongs on the integrity page and in §8's
+  symmetric-skepticism section.
 - **Q31 is the sharpest redaction contrast** in the set: redacted respondents pick
   "Unsure/depends" 22/41 (54%) against named 10/57 (18%).
 
@@ -501,10 +508,18 @@ hand-written) so Lane F never blocks on Lane D; loader swaps to fixtures under
 only inside `integrity.json`.
 
 **Segment vocabulary (closed, coarse — gotcha 15):**
-`org_type_5`: company 60 / consultant 27 / ngo 21 / industry_group 17 / other 56 (the
-remaining nine types grouped; exact analytical-base counts from the db).
-`country_4`: us / uk / jp / other. `redaction`: named / redacted.
-`responding_as`: organization / individual.
+`org_type_5`: company **60** / consultant **25** / ngo **21** / industry_group **17** /
+other **57** (the remaining nine types grouped). [Counts corrected post-Wave-2 to the
+analytical base — the planning figures said consultant 27 / other 56.]
+`country_4`: us **104** / uk **12** / jp **8** / other **56**.
+`redaction`: named **105** / redacted **75**.
+`responding_as`: organization **159** / individual **21**.
+
+**These four dimensions are the *only* vocabulary any stance breakdown is cut by.** They
+are toggle keys, not the descriptive truth about the sample: the *descriptive* panels
+(`distributions.org_type_x_redaction`, `sector_top`) publish the respondent's own
+self-declared type at full granularity, tail-grouped at the n<5 threshold. Do not
+confuse the two — see §3.6.
 
 **The cell grammar** (replaces Scope 2's likert CELL):
 `SCELL = {"c": [counts in meta option order], "n": <sum>}` — length 2 for binaries,
