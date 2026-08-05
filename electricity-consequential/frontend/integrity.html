@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrity &amp; Evidence | Electricity-Sector Consequential Methods Consultation</title>
+    <meta name="description" content="Which submissions were excluded and why, which texts arrived more than once, how much of the record is redacted, and how much evidence the consultation actually collected.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules. DESIGN_SYSTEM.md allows a page to omit a site module it
+         does not use: this page draws no matrix, no quote cards and no org
+         browser, so matrix-viz.js, quote-cards.js and org-table.js are not
+         loaded. stance-viz.js is, and must precede integrity-page.js — the
+         dedup and redaction panels are rendered by ECStance. -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/segments.js"></script>
+    <script src="js/stance-viz.js"></script>
+    <script src="js/integrity-page.js"></script>
+
+    <!-- Page-specific styles ONLY: layouts unique to integrity.html, all
+         `.ig-` prefixed so nothing here can collide with the `.ec-` components
+         styles/site.css owns. No shared class is restyled; every colour,
+         font, radius, shadow and spacing value is a token. -->
+    <style>
+    /* ---------- Shared page furniture ---------- */
+    .ig-panel-title {
+        font-family: var(--font-heading);
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin: 0 0 var(--space-xs);
+    }
+    .ig-panel-lede {
+        margin: 0 0 var(--space-lg);
+        max-width: var(--max-prose);
+        font-size: 0.85rem;
+        line-height: 1.65;
+        color: var(--text-secondary);
+    }
+    .ig-subhead {
+        font-family: var(--font-heading);
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--text-muted);
+        margin: var(--space-lg) 0 var(--space-sm);
+    }
+    .ig-prose { max-width: var(--max-prose); }
+    .ig-prose p {
+        font-size: 0.88rem;
+        line-height: 1.75;
+        color: var(--text-secondary);
+    }
+    .ig-num {
+        font-family: var(--font-data);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+    /* Verbatim record text — shown exactly as filed, never paraphrased. */
+    .ig-verbatim {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+        overflow-wrap: anywhere;
+    }
+    .ig-trunc {
+        display: block;
+        margin-top: 4px;
+        font-size: 0.66rem;
+        color: var(--text-light);
+    }
+    .ig-idchip {
+        display: inline-block;
+        font-family: var(--font-data);
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        background: var(--bg-alt);
+        border-radius: var(--radius-sm);
+        padding: 1px 6px;
+    }
+
+    /* Accent rails are drawn with an inset box-shadow rather than a border:
+       styles/cinematic.css (verbatim upstream) sets
+       `border: 1px solid #E5E7EB !important` on .card / .stat-card /
+       .insight-box / .data-table so the cinematic background never shows
+       through a content surface, which puts border-top accents out of reach.
+       box-shadow is not marked !important and composes cleanly; the outer
+       token shadow is restated so layering the inset does not drop it. */
+    .ig-stat-neutral { box-shadow: inset 0 3px 0 0 var(--border),   var(--shadow-lg); }
+    .ig-stat-drop    { box-shadow: inset 0 3px 0 0 var(--red),      var(--shadow-lg); }
+    .ig-stat-keep    { box-shadow: inset 0 3px 0 0 var(--wind),     var(--shadow-lg); }
+    .insight-box.ig-rail-warn { box-shadow: inset 4px 0 0 0 var(--solar), var(--shadow-lg); }
+    .insight-box.ig-rail-info { box-shadow: inset 4px 0 0 0 var(--hydro), var(--shadow-lg); }
+    .insight-box[class*="ig-rail-"] { padding-left: 24px; }
+
+    /* ---------- The analytical-base ledger ---------- */
+    .ig-stat-detail {
+        margin-top: var(--space-xs);
+        font-size: 0.7rem;
+        line-height: 1.5;
+        color: var(--text-light);
+    }
+    .ig-arithmetic {
+        margin: var(--space-lg) 0 0;
+        padding: var(--space-md) var(--space-lg);
+        background: var(--bg-alt);
+        border-radius: var(--radius-md);
+        font-family: var(--font-data);
+        font-size: 0.86rem;
+        line-height: 2;
+        color: var(--text-muted);
+    }
+    .ig-sum { font-size: 1.1rem; font-weight: 700; color: var(--navy); }
+    .ig-sum-op { color: var(--text-light); margin: 0 2px; }
+    .ig-sum-total { color: var(--green-text); }
+
+    /* ---------- Junk / test submissions ---------- */
+    .ig-junk-table { min-width: 720px; }
+    .ig-junk-id { font-family: var(--font-data); font-weight: 700; color: var(--navy); }
+    .ig-junk-who { white-space: nowrap; }
+    .ig-junk-ev { min-width: 340px; }
+    .ig-ev-list { margin: 0; padding-left: 1.05rem; }
+    .ig-ev-list li {
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: var(--text-muted);
+        margin-bottom: 3px;
+    }
+    .ec-tag.ig-tag-redacted {
+        background: var(--bg-alt-warm);
+        color: var(--text-muted);
+        border: 1px dashed var(--border);
+    }
+    .ig-criteria { margin: var(--space-sm) 0 0; padding-left: 1.15rem; }
+    .ig-criteria li {
+        font-size: 0.8rem;
+        line-height: 1.7;
+        color: var(--text-secondary);
+        margin-bottom: var(--space-xs);
+    }
+
+    /* ---------- The resubmission ---------- */
+    .ig-resub-head { margin-bottom: var(--space-lg); }
+    .ig-resub-ids {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-md);
+    }
+    .ig-resub-id {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: var(--space-sm) var(--space-md);
+        border-radius: var(--radius-md);
+        font-family: var(--font-data);
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1;
+        background: var(--bg-alt);
+        color: var(--navy);
+    }
+    .ig-resub-id--dropped { box-shadow: inset 3px 0 0 0 var(--red); }
+    .ig-resub-id--kept    { box-shadow: inset 3px 0 0 0 var(--wind); }
+    .ig-resub-role {
+        font-family: var(--font-heading);
+        font-size: 0.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--text-muted);
+    }
+    .ig-resub-arrow { font-size: 1.3rem; color: var(--text-light); }
+    .ig-resub-who {
+        margin: var(--space-md) 0 0;
+        max-width: var(--max-prose);
+        font-size: 0.85rem;
+        line-height: 1.7;
+        color: var(--text-secondary);
+    }
+    .ig-diff-table { min-width: 760px; }
+    .ig-diff-table td { vertical-align: top; }
+    .ig-diff-q { min-width: 150px; }
+    .ig-diff-qlabel {
+        display: block;
+        margin-top: 4px;
+        font-size: 0.7rem;
+        line-height: 1.45;
+        color: var(--text-light);
+    }
+    .ig-diff-before, .ig-diff-after { min-width: 260px; }
+    .ig-diff-before { background: var(--storage-bg); }
+    .ig-diff-after  { background: var(--wind-bg); }
+
+    /* ---------- Entity families ---------- */
+    .ig-fam-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-lg);
+    }
+    .ig-fam-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-sm);
+    }
+    .ig-fam-name {
+        font-family: var(--font-heading);
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin: 0;
+    }
+    .ig-fam-ids { margin: 0 0 var(--space-xs); font-size: 0.8rem; color: var(--text-muted); }
+    .ig-fam-note { margin: 0; font-size: 0.75rem; color: var(--text-light); }
+
+    /* ---------- Template blocs ---------- */
+    .ig-bloc-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: var(--space-lg);
+    }
+    .ig-bloc-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--space-sm);
+    }
+    .ig-bloc-title {
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin: 0;
+        line-height: 1.3;
+    }
+    .ig-bloc-count { display: flex; align-items: baseline; gap: var(--space-xs); }
+    .ig-bloc-n {
+        font-family: var(--font-data);
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--navy);
+    }
+    .ig-bloc-n-label { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); }
+    .ig-bloc-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: var(--space-sm);
+        margin: var(--space-md) 0;
+    }
+    .ig-bloc-metrics dt {
+        font-family: var(--font-heading);
+        font-size: 0.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-muted);
+    }
+    .ig-bloc-metrics dd {
+        margin: 2px 0 0;
+        font-family: var(--font-data);
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--navy);
+    }
+    .ig-bloc-sub {
+        font-family: var(--font-heading);
+        font-size: 0.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+    }
+    .ig-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .ig-bloc-none {
+        margin: var(--space-xs) 0 0;
+        font-size: 0.75rem;
+        line-height: 1.6;
+        color: var(--text-light);
+    }
+
+    /* ---------- Shared passages ---------- */
+    .ig-cluster-list { list-style: none; margin: 0; padding: 0; }
+    .ig-cluster {
+        padding: var(--space-md) 0;
+        border-bottom: 1px solid var(--border-light);
+    }
+    .ig-cluster:last-child { border-bottom: none; }
+    .ig-cluster-head {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-xs);
+    }
+    .ig-cluster-meta { font-size: 0.72rem; color: var(--text-light); }
+    .ig-cluster-text {
+        margin: 0 0 var(--space-xs);
+        padding-left: var(--space-md);
+        border-left: 2px solid var(--border);
+        font-size: 0.82rem;
+        line-height: 1.65;
+        color: var(--text-secondary);
+    }
+    .ig-cluster-foot {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    .ig-cluster-members { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* ---------- Dedup effect ---------- */
+    .ig-compare {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: var(--space-lg);
+        margin-bottom: var(--space-lg);
+    }
+    .ig-compare-col { display: flex; flex-direction: column; gap: var(--space-sm); }
+    .ig-compare-label {
+        font-family: var(--font-heading);
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--text-muted);
+    }
+    .ig-delta-list { list-style: none; margin: 0 0 var(--space-sm); padding: 0; }
+    .ig-delta {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+        padding: var(--space-xs) 0;
+        border-bottom: 1px solid var(--border-light);
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+    }
+    .ig-delta:last-child { border-bottom: none; }
+    .ig-delta-opt { font-weight: 600; color: var(--navy); }
+    .ig-delta-num { font-family: var(--font-data); color: var(--text-muted); }
+    .ig-delta-arrow { color: var(--text-light); }
+
+    /* ---------- Redaction ---------- */
+    .ig-rate { display: flex; align-items: flex-start; gap: var(--space-lg); flex-wrap: wrap; }
+    .ig-rate-figure {
+        font-family: var(--font-data);
+        font-size: 3.2rem;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--navy);
+    }
+    .ig-rate-body { flex: 1 1 320px; }
+    .ig-rate-lede {
+        margin: 0 0 var(--space-sm);
+        font-size: 0.92rem;
+        line-height: 1.7;
+        color: var(--text-secondary);
+    }
+    .ig-rate-note {
+        margin: 0;
+        font-size: 0.8rem;
+        line-height: 1.7;
+        color: var(--text-muted);
+    }
+    .ig-share { min-width: 170px; }
+    .ig-share-track {
+        display: inline-block;
+        width: 96px;
+        height: 8px;
+        vertical-align: middle;
+        background: var(--bg-alt);
+        border-radius: var(--radius-pill);
+        overflow: hidden;
+    }
+    .ig-share-fill {
+        display: block;
+        height: 100%;
+        background: var(--hydro-t);
+        border-radius: var(--radius-pill);
+    }
+    .ig-share-val {
+        margin-left: var(--space-xs);
+        font-family: var(--font-data);
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+    }
+    .ig-grad-table { min-width: 620px; }
+
+    /* ---------- Evidence base ---------- */
+    .ig-q52-table { min-width: 680px; }
+    .ig-q52-who { min-width: 200px; font-size: 0.78rem; color: var(--navy); font-weight: 600; }
+    .ig-q52-text { min-width: 360px; }
+    .ig-q52-na td { background: var(--bg-alt); }
+    .ig-rate-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-lg);
+    }
+    .ig-cite-table { min-width: 0; }
+    .ig-cite-table .ig-share { min-width: 150px; }
+    .ig-readout { margin-top: var(--space-lg); font-size: 0.86rem; line-height: 1.7; }
+    .ig-domain-table { min-width: 480px; }
+    .ig-domain { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-secondary); }
+
+    /* ---------- Cross-consultation ---------- */
+    .ig-cross-table { min-width: 860px; }
+    /* shared.css upper-cases `.data-table th`, which suits short column labels
+       but mangles proper nouns ("EVER.GREEN", "ABEEolica"). Organization and
+       domain names are row headers, so they opt out — the same exception the
+       repo-root hub makes for its own name and label cells. */
+    .ig-cross-org {
+        min-width: 280px;
+        font-size: 0.82rem;
+        color: var(--navy);
+        text-transform: none;
+        letter-spacing: 0;
+    }
+    .ig-q52-who, .ig-domain { text-transform: none; letter-spacing: 0; }
+    .ig-cross-type, .ig-cross-country { white-space: nowrap; font-size: 0.76rem; color: var(--text-muted); }
+    .ig-cross-scroll { max-height: 620px; overflow-y: auto; }
+    .ig-cross-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-top: var(--space-lg);
+    }
+
+    /* ---------- Limits ---------- */
+    .ig-limits { margin: var(--space-lg) 0 0; padding-left: 1.15rem; }
+    .ig-limits li { margin-bottom: var(--space-md); line-height: 1.75; }
+    .ig-limits strong { color: var(--accent-cyan); }
+
+    @media (max-width: 720px) {
+        .ig-fam-grid, .ig-bloc-grid, .ig-compare, .ig-rate-grid { grid-template-columns: 1fr; }
+        .ig-rate-figure { font-size: 2.4rem; }
+        .ig-bloc-n { font-size: 1.5rem; }
+        .ig-resub-id { font-size: 1.2rem; }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Integrity &amp; Evidence</h1>
+        <div class="subtitle">Which submissions were excluded and why, which texts arrived more than once, how much of the record is withheld, and how much evidence the consultation actually collected — with the limits of every check stated up front.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- Visible failure surface for the data loader, and the provisional
+             notice for an export generated before curation landed. -->
+        <div id="integrityError"></div>
+        <div class="content-section" id="provisionalBanner"></div>
+
+        <!-- ===================================================================
+             THE ANALYTICAL BASE
+             =================================================================== -->
+        <section class="content-section" id="base">
+            <h2 class="section-title">185 submissions, 180 respondents</h2>
+            <p class="section-subtitle">Five of the rows in the raw export are not
+                independent responses to this consultation. They are listed here in
+                full, with the evidence behind each ruling, because a base that has
+                been cleaned silently is a base nobody can check.</p>
+
+            <div class="hero-stats-row grid-stats" id="ledgerStats">
+                <p class="ec-loading">Loading the exclusion ledger…</p>
+            </div>
+
+            <div class="ig-arithmetic" id="ledgerArithmetic"></div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>The raw data is never modified.</strong> The export file is
+                committed exactly as it was downloaded, and every excluded row is still
+                in it, still in <code>respondents.csv</code>, still readable. Exclusion
+                is applied by the analysis layer, disclosed on this page, and reversible
+                by anyone who disagrees with a ruling.
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             1. JUNK / TEST SUBMISSIONS
+             =================================================================== -->
+        <section class="content-section" id="junk">
+            <h2 class="section-title">Junk and test submissions</h2>
+            <p class="section-subtitle" id="junkCount"></p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ig-panel-title">The record, as filed</h3>
+                <p class="ig-panel-lede">Each row below is a submission whose answers
+                    carry no readable content. The evidence column quotes the record
+                    rather than summarizing it, so the ruling can be disagreed with
+                    on the same facts that produced it.</p>
+                <div id="junkPanel"><p class="ec-loading">Loading…</p></div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="card scroll-reveal">
+                    <h3 class="ig-panel-title">How they were found</h3>
+                    <p class="ig-panel-lede">Detection is mechanical and runs over all
+                        185 rows, not over a shortlist. A respondent is flagged when at
+                        least half of their free-text answers are gibberish, where an
+                        answer counts as gibberish if it is under 20 characters and
+                        either has a vowel ratio below 0.30, is a single repeated
+                        character, or is a keyboard run.</p>
+                    <ul class="ig-criteria">
+                        <li>The rule is applied to the whole export, so a redacted
+                            submission is caught on the same terms as a named one.</li>
+                        <li>Every flag was then reviewed one at a time against the full
+                            submission before exclusion, and the reasoning was written
+                            down in <code>reference/exclusions.csv</code>.</li>
+                        <li>A redacted submission is adjudicated on answer content
+                            alone. No attempt is made to infer who filed it.</li>
+                        <li>A short answer is not a junk answer. A one-word reply to a
+                            question about a technical preference is a legitimate
+                            response, and the threshold is set to leave those alone.</li>
+                    </ul>
+                </div>
+
+                <div class="card scroll-reveal">
+                    <h3 class="ig-panel-title">What exclusion means here</h3>
+                    <div class="ig-prose">
+                        <p>An excluded submission is left out of every aggregate,
+                            every quote pool and the organization browser. It is not
+                            deleted, not hidden, and not characterized. These are
+                            data-quality records: a submission that carries no content
+                            cannot inform a percentage, and counting it would understate
+                            the strength of every result it dilutes.</p>
+                        <p>The count matters more than it looks. At an analytical base
+                            of 180, five rows are 2.7% of the file — enough to move a
+                            close split, which is why the ledger is stated at the top of
+                            this page rather than buried in a methodology note.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             2. THE RESUBMISSION
+             =================================================================== -->
+        <section class="content-section" id="resubmission">
+            <h2 class="section-title">One filer, two submissions</h2>
+            <p class="section-subtitle">A consultation platform that accepts a second
+                filing from the same person creates a counting problem: two rows, one
+                respondent. This is how it was resolved.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <div id="resubPanel"><p class="ec-loading">Loading…</p></div>
+                <p class="ec-note">Keep-latest is a rule, not a judgement about which
+                    answer is better. The earlier filing is excluded because counting
+                    both would give one respondent two votes in every split they appear
+                    in — and it is shown here so that choice is visible rather than
+                    assumed.</p>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             3. ENTITY FAMILIES
+             =================================================================== -->
+        <section class="content-section" id="families">
+            <h2 class="section-title">Entity families</h2>
+            <p class="section-subtitle">Two submissions from the same organization are
+                not a duplicate. They are two people, filing separately, who happen to
+                share an employer.</p>
+
+            <div id="familyPanel" class="scroll-reveal"><p class="ec-loading">Loading…</p></div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>Why these still count twice.</strong> A duplicate is the same
+                submission arriving twice; a family is two different submissions from
+                one organization, with different named individuals and different
+                answers. Both are counted, because both are real responses — and both
+                are grouped here, because a reader totalling up positions by
+                organization should be able to see when one organization occupies two
+                rows.
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             4. TEMPLATE BLOCS AND SHARED TEXT
+             =================================================================== -->
+        <section class="content-section" id="blocs">
+            <h2 class="section-title">Submissions that share text</h2>
+            <p class="section-subtitle">Some respondents filed passages that appear,
+                word for word, in other respondents' submissions. Coordinating a
+                consultation response is ordinary and legitimate behaviour. It does,
+                however, change what a headline count of respondents measures.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ig-panel-title">Response packs</h3>
+                <p class="ig-panel-lede">A bloc is a connected group of respondents
+                    linked by at least two shared passages each. Members are named where
+                    they filed under a name and counted where they did not.</p>
+                <div id="blocPanel"><p class="ec-loading">Loading…</p></div>
+            </div>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ig-panel-title">The shared passages themselves</h3>
+                <p class="ig-panel-lede" id="clusterSummary"></p>
+                <div id="clusterPanel"><p class="ec-loading">Loading…</p></div>
+                <p class="ec-note">A passage qualifies when at least 200 characters of
+                    normalized text appear in two or more submissions. Shared text is
+                    reported, not attributed: the record shows that identical wording
+                    arrived more than once, and does not show who wrote it first.</p>
+            </div>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ig-panel-title">What deduplication does to the headline numbers</h3>
+                <p class="ig-panel-lede">The same questions, twice: on the left every
+                    submission counted once, on the right every bloc collapsed to a
+                    single voice. Both numbers are printed because the gap between
+                    them is the finding.</p>
+                <div class="ig-compare">
+                    <div class="ig-compare-col">
+                        <span class="ig-compare-label">As filed — one row, one voice</span>
+                        <div id="dedupRaw"><p class="ec-loading">Loading…</p></div>
+                    </div>
+                    <div class="ig-compare-col">
+                        <span class="ig-compare-label">Deduplicated — one bloc, one voice</span>
+                        <div id="dedupDeduped"></div>
+                    </div>
+                </div>
+                <div id="dedupReadout"></div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             5. REDACTION
+             =================================================================== -->
+        <section class="content-section" id="redaction">
+            <h2 class="section-title">The withheld half of the record</h2>
+            <p class="section-subtitle">Respondents could ask for their identity to be
+                withheld, and a large minority did. That choice is visible in the
+                aggregate, and it correlates with how people answered.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <div id="redactionRate"><p class="ec-loading">Loading…</p></div>
+            </div>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ig-panel-title">Who withholds</h3>
+                <p class="ig-panel-lede">The redaction rate is not flat across
+                    organization types.</p>
+                <div id="redactionGradient"><p class="ec-loading">Loading…</p></div>
+            </div>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ig-panel-title">Named and redacted respondents answered differently</h3>
+                <p class="ig-panel-lede">Each question below is shown for the base as a
+                    whole and then split by whether the respondent filed under a name.
+                    Where a segment falls below five respondents the split is
+                    suppressed rather than printed.</p>
+                <div id="redactionSkew"><p class="ec-loading">Loading…</p></div>
+            </div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>What this does not show.</strong> A redacted respondent is a
+                respondent who used an option the consultation offered. The split above
+                is a pattern in the answers, not a finding about the people: it is
+                equally consistent with employees who cannot publish a corporate
+                position, with filers in jurisdictions where the question is politically
+                live, and with anything else that makes attribution costly. The one
+                reading it does not support is that withheld identity indicates a
+                weaker argument.
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             6. THE EVIDENCE BASE
+             =================================================================== -->
+        <section class="content-section" id="evidence">
+            <h2 class="section-title">The evidence base</h2>
+            <p class="section-subtitle">A consultation on measurement methods can be
+                settled by evidence or by assertion. This is how much evidence the
+                record actually contains.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ig-panel-title">The consultation's own evidence question</h3>
+                <p class="ig-panel-lede" id="q52Summary"></p>
+                <div id="q52Panel"><p class="ec-loading">Loading…</p></div>
+                <p class="ec-note">This is the last question in the survey, and by the
+                    time respondents reached it most of the room had left. A thin answer
+                    here is partly a statement about attrition and partly a statement
+                    about the evidence available to cite.</p>
+            </div>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ig-panel-title">Who cites a source</h3>
+                <p class="ig-panel-lede">Citation mining runs across every free-text
+                    answer, not only the evidence question: a respondent counts as
+                    citing when any of their answers names a document, a standard, a
+                    dataset or a link.</p>
+                <div id="citationPanel"><p class="ec-loading">Loading…</p></div>
+                <div id="citationReadout"></div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="ig-panel-title">What gets cited</h3>
+                    <div id="domainPanel"><p class="ec-loading">Loading…</p></div>
+                </div>
+                <div class="chart-panel scroll-reveal">
+                    <h3 class="ig-panel-title">Citations that travelled in shared text</h3>
+                    <div id="templateCitePanel"><p class="ec-loading">Loading…</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             7. CROSS-CONSULTATION
+             =================================================================== -->
+        <section class="content-section-wide" id="cross">
+            <h2 class="section-title">The same room, twice</h2>
+            <p class="section-subtitle" id="crossSummary"></p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="ig-panel-title">Organizations named in both consultations</h3>
+                <p class="ig-panel-lede">Matched by organization name across the two
+                    consultation databases, read-only, with both records required to be
+                    named. Sorted by how much free text the respondent filed in this
+                    consultation.</p>
+                <div class="ig-cross-scroll">
+                    <div id="crossPanel"><p class="ec-loading">Loading…</p></div>
+                </div>
+                <p class="ec-note" id="crossCaveat"></p>
+                <div class="ig-cross-links">
+                    <a class="btn-pill" href="respondents.html">Respondent browser — this consultation</a>
+                    <a class="btn-pill" href="../../frontend/respondents.html">Respondent browser — Scope 2 hub</a>
+                </div>
+            </div>
+
+            <div class="insight-glass scroll-reveal">
+                <strong>What an overlap this size means.</strong> These two
+                consultations were not answered by two independent samples. A large
+                share of the named respondents here also filed on Scope 2, which makes
+                the two records useful to read together — and makes it a mistake to
+                treat agreement across them as independent confirmation. The same
+                organizations, and largely the same individuals, are speaking twice.
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             8. WHAT THIS PAGE CAN AND CANNOT CLAIM
+             =================================================================== -->
+        <section class="content-section" id="limits">
+            <div class="section-dark scroll-reveal">
+                <h2>What this page can and cannot claim</h2>
+                <ul class="ig-limits">
+                    <li><strong>Redacted is not hiding.</strong> Withholding a name was
+                        an option the consultation offered and roughly two respondents
+                        in five took it. Redacted submissions are counted in every total
+                        on this site, are quoted where quoting is safe, and are never
+                        named. Nothing on this page infers who they are.</li>
+                    <li><strong>Shared text is not invalid text.</strong> Organizing a
+                        common position and filing it through several members is normal,
+                        legal consultation behaviour, and a coordinated argument can be
+                        entirely correct. The only claim made here is arithmetic: when
+                        one argument arrives five times, a count of respondents and a
+                        count of positions are different measurements.</li>
+                    <li><strong>Exclusion is mechanical and disclosed.</strong> The junk
+                        rule is a published threshold applied to all 185 rows, each flag
+                        was reviewed against the full submission, and the reasoning is
+                        in the repository. The excluded rows are printed above so the
+                        rulings can be checked and disputed.</li>
+                    <li><strong>The cross-consultation join sees only half the room.</strong>
+                        It matches organization names, so it can only find respondents
+                        who were named in both consultations. Redacted respondents on
+                        either side are invisible to it, which means the true overlap is
+                        larger than the table and cannot be measured from the record.</li>
+                    <li><strong>Citation counts measure form, not quality.</strong>
+                        Naming a source is not the same as being right, and an argument
+                        made from professional experience without a footnote is not
+                        thereby weaker. The rates above describe how the record is
+                        written, not who should be believed.</li>
+                    <li><strong>185 self-selected respondents are not a sample.</strong>
+                        Nobody was drawn at random; people who cared enough to answer,
+                        answered, and more than half of them are from one country. Every
+                        percentage on this site describes the people who responded, and
+                        a consultation is not a referendum.</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Integrity &amp; evidence — Electricity-Sector Consequential Methods Consultation"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
