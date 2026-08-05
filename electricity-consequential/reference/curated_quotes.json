@@ -1,0 +1,863 @@
+{
+ "additionality": {
+  "against": [
+   {
+    "attribution": "Vidia Equity — Financial institution, Germany",
+    "org_type": "financial",
+    "qid": "Q027",
+    "redacted": false,
+    "respondent_id": 25,
+    "template_cluster": null,
+    "text": "We need to be careful about what kind of additionality is really needed and how high the burden of proof is for a given use case, and whether a proof of additionality is needed or effective at all. […] Evidence for additionality may not be needed at all when the assessment serves internal decision making purposes. […] So, all tests should be optional, depending on the need for evidence and the strength of any “additionality claims” being made.",
+    "themes": [
+     "additionality_optionality",
+     "tiered_rigor_by_claim"
+    ]
+   },
+   {
+    "attribution": "The 0-Mission ApS — Other, Denmark",
+    "org_type": "other",
+    "qid": "Q027",
+    "redacted": false,
+    "respondent_id": 83,
+    "template_cluster": null,
+    "text": "it would lock in existing market structures and effectively prevent the development of more flexible solutions tailored to SMEs […] The timing test is also extremely problematic. It is well known to delay projects, as developers are discouraged from taking early-stage risks if they must rely solely on confirmed demand before initiating project development.",
+    "themes": [
+     "sme_equity",
+     "additionality_test_design"
+    ]
+   },
+   {
+    "attribution": "Independent Advisor to various climate related organizations with 20 years exper — Financial institution, United States",
+    "org_type": "financial",
+    "qid": "Q027",
+    "redacted": false,
+    "respondent_id": 107,
+    "template_cluster": null,
+    "text": "There is no empirical evidence that additionality tests are correlated with greater real-world emissions reductions. […] In practice, nearly all new utility-scale renewable projects require long-term contracts or REC revenue certainty to reach financial close. As a result, the existence of a buyer is itself the causal mechanism enabling build, making ex ante additionality tests redundant and misleading.",
+    "themes": [
+     "additionality_wrong_construct"
+    ]
+   },
+   {
+    "attribution": "Redacted — Company, Japan",
+    "org_type": "company",
+    "qid": "Q027",
+    "redacted": true,
+    "respondent_id": 115,
+    "template_cluster": null,
+    "text": "It is our understanding that the purpose of consequential reporting is objectively describe the impact of actions of the reporting companies. Reducing number of projects to be reported by applying various tests is not in conformity with such purpose. […] The consequential approach is just for reporting purpose, not for value creation.",
+    "themes": [
+     "additionality_wrong_construct"
+    ]
+   }
+  ],
+  "context": [
+   {
+    "attribution": "Redacted — Government, Singapore",
+    "org_type": "government",
+    "qid": "Q027",
+    "redacted": true,
+    "respondent_id": 118,
+    "template_cluster": null,
+    "text": "Simplifies the additionality test by providing an immediate pass-through for specific projects on the list. […] provided that the list of project types is comprehensive and region-specific, taking into account that viable technologies in one region may not be viable in another",
+    "themes": [
+     "regional_test_variants",
+     "additionality_test_design"
+    ]
+   },
+   {
+    "attribution": "ACORE — NGO/civil society, United States",
+    "org_type": "ngo",
+    "qid": "Q027",
+    "redacted": false,
+    "respondent_id": 159,
+    "template_cluster": null,
+    "text": "There is no one-size-fits all approach to additionality that would be appropriate for all interventions. […] project sponsors must begin planning a project long before an offtaker comes in, but often with the understanding that the project would not proceed to construction without offtake. Basing the timing test off of earlier hurdles in the planning process would not reflect real-world conditions and introduce significant barriers to meaningful offtake.",
+    "themes": [
+     "additionality_test_design"
+    ]
+   },
+   {
+    "attribution": "Redacted — Industry group, United States",
+    "org_type": "industry_group",
+    "qid": "Q027",
+    "redacted": true,
+    "respondent_id": 187,
+    "template_cluster": null,
+    "text": "An additionality test needs to ensure credibility, but not be so stringent that it impedes clean energy investment through financial tests that are not feasible or a positive list that excludes impactful projects. With that principle in mind, for the tests we marked as optional, the question is not whether a test type should be required or optional, but how rigorous each test is.",
+    "themes": [
+     "additionality_stringency_chill",
+     "additionality_test_design"
+    ]
+   }
+  ],
+  "for": [
+   {
+    "attribution": "Conversio Pty Ltd — Consultant, Australia",
+    "org_type": "consultant",
+    "qid": "Q027",
+    "redacted": false,
+    "respondent_id": 3,
+    "template_cluster": null,
+    "text": "Every additionality test listed should be required in order to ensure integrity, credibility, and accountability in claims of avoided or reduced emissions. […] Allowing projects to choose among optional tests would defeat that purpose and enable selective self-justification. […] Weakening them by making any optional would invite gaming of the system, allowing entities to construct their own path to eligibility rather than meeting a consistent evidentiary threshold.",
+    "themes": [
+     "additionality_gatekeeping",
+     "gaming_greenwashing_risk"
+    ]
+   },
+   {
+    "attribution": "Founder & CEO, RE24 Limited — Data/analytics provider, United Kingdom",
+    "org_type": "data_analytics",
+    "qid": "Q027",
+    "redacted": false,
+    "respondent_id": 22,
+    "template_cluster": null,
+    "text": "Project economics ultimately determine whether a project is built. […] A corporate buyer should only claim impact if their contract closes a financial gap (e.g., improves IRR/NPV enough for FID).",
+    "themes": [
+     "additionality_gatekeeping",
+     "additionality_test_design"
+    ]
+   },
+   {
+    "attribution": "Redacted — Company, United States",
+    "org_type": "company",
+    "qid": "Q027",
+    "redacted": true,
+    "respondent_id": 24,
+    "template_cluster": "8d0f99fc56835b8ba5a62762512809345b14f626",
+    "text": "For a project to be considered “additional,” the timing test is necessary to require a pre-financing contractual commitment to pay for the bundled new renewable energy generating capacity & EACs produced by the project. If the project is already financed, a buyer cannot claim to have “caused” new renewable energy capacity as the project would have come online without the financial backing brought in by the buyer.",
+    "themes": [
+     "additionality_gatekeeping",
+     "additionality_test_design"
+    ]
+   },
+   {
+    "attribution": "Redacted — Verification/assurance, Egypt",
+    "org_type": "verification",
+    "qid": "Q027",
+    "redacted": true,
+    "respondent_id": 26,
+    "template_cluster": null,
+    "text": "Confirms the project is not mandated by law or regulation. Crediting legally required actions would violate environmental integrity by rewarding business-as-usual outcomes. This test is a foundational safeguard against non-additional claims.",
+    "themes": [
+     "additionality_gatekeeping",
+     "additionality_test_design"
+    ]
+   }
+  ]
+ },
+ "emission_rates": {
+  "against": [
+   {
+    "attribution": "Conversio Pty Ltd — Consultant, Australia",
+    "org_type": "consultant",
+    "qid": "Q037",
+    "redacted": false,
+    "respondent_id": 3,
+    "template_cluster": null,
+    "text": "In short, these methods all serve analytical purposes, but none can produce an auditable or verifiable measure of corporate-level emissions impact. Their appropriate application depends on whether the claim being made is allocational (within an MRV boundary) or consequential (within a system model).",
+    "themes": [
+     "verification_difficulty",
+     "tiered_rigor_by_claim"
+    ]
+   },
+   {
+    "attribution": "Vidia Equity — Financial institution, Germany",
+    "org_type": "financial",
+    "qid": "Q037",
+    "redacted": false,
+    "respondent_id": 25,
+    "template_cluster": null,
+    "text": "UNLESS 1) you are a research institute or think tank with a mandate and ample resources to provide policy advice based on a comprehensive simulation of the entire transnational grid system, OR 2) the impact is based on a specific charge and discharge pattern (battery storage, demand flexibility) these methods are overengineered, exclusive, impractical. […] For most business and investment decisions analysts will simply want to use the annual average grid emission factors that are easily publicy accessible",
+    "themes": [
+     "complexity_burden",
+     "coarse_granularity_feasibility"
+    ]
+   },
+   {
+    "attribution": "Redacted — Company, United States",
+    "org_type": "company",
+    "qid": "Q037",
+    "redacted": true,
+    "respondent_id": 37,
+    "template_cluster": null,
+    "text": "We believe that a single, uniform method should be applied rather than allowing a wide array of methodological options. Claims must be consistent and not dependent on the accounting approach selected. […] The broad set of methodological choices it introduces reinforces our concern that it enables the creation of claims rather than providing an accurate representation of actual electricity consumption.",
+    "themes": [
+     "standardization_guidance",
+     "gaming_greenwashing_risk"
+    ]
+   },
+   {
+    "attribution": "Tierra Climate Inc. — Data/analytics provider, United States",
+    "org_type": "data_analytics",
+    "qid": "Q037",
+    "redacted": false,
+    "respondent_id": 41,
+    "template_cluster": null,
+    "text": "Scenario Modeling: While valuable in research or policy evaluation contexts, scenario modeling introduces too much subjectivity and variability for routine accounting. It relies on complex counterfactuals that require numerous assumptions about what the grid would have done under alternative conditions. The lack of a consistent baseline scenario across entities undermines comparability and transparency.",
+    "themes": [
+     "baseline_counterfactual_problem",
+     "comparability_loss"
+    ]
+   },
+   {
+    "attribution": "Environmental Markets Association — Industry group, United States",
+    "org_type": "industry_group",
+    "qid": "Q037",
+    "redacted": false,
+    "respondent_id": 153,
+    "template_cluster": null,
+    "text": "Each relies on assumptions about the counterfactual electricity system, marginal generation, and future dispatch that are highly uncertain and dynamic. Small changes in assumptions regarding fuel dispatch, transmission constraints, imports/exports, or policy drivers can materially alter results, making consistent and auditable application across regions non-comparable and impractical.",
+    "themes": [
+     "attribution_uncertainty",
+     "comparability_loss"
+    ]
+   }
+  ],
+  "context": [
+   {
+    "attribution": "University of Edinburgh — Academia/research, United Kingdom",
+    "org_type": "academia",
+    "qid": "Q037",
+    "redacted": false,
+    "respondent_id": 46,
+    "template_cluster": null,
+    "text": "There does not appear to be clear scientific evidence/consensus on which methods are most accurate - and different approaches may be more or less accurate depending on the mix of generation technologies on the grid, and the market structure. […] Another approach is to require the use of several methods, and for companies to report on the range of outcomes from using different methods (e.g. upper and lower bound estimates).",
+    "themes": [
+     "attribution_uncertainty",
+     "standardization_guidance"
+    ]
+   },
+   {
+    "attribution": "The 0-Mission ApS — Other, Denmark",
+    "org_type": "other",
+    "qid": "Q037",
+    "redacted": false,
+    "respondent_id": 83,
+    "template_cluster": null,
+    "text": "I havent chosen any - the important thing is that the factor is easy accessible",
+    "themes": [
+     "data_availability"
+    ]
+   },
+   {
+    "attribution": "EDF Group — Company, France",
+    "org_type": "company",
+    "qid": "Q037",
+    "redacted": false,
+    "respondent_id": 130,
+    "template_cluster": null,
+    "text": "System analysis in France shows marginality is frequently multi technology, shaped by hydro optimization, interconnections, outages, and operational constraints—especially in interconnected systems. […] A robust marginal signal would require unit-level bid stacks, full merit-order modeling across zones, physical modeling of interconnections (network constraints), and real-time availability of flexible resources. These datasets are generally not accessible and not feasible to operationalize as a universal corporate standard",
+    "themes": [
+     "jurisdiction_specific_context",
+     "data_availability"
+    ]
+   }
+  ],
+  "for": [
+   {
+    "attribution": "Zettawatts — Other, United States",
+    "org_type": "other",
+    "qid": "Q037",
+    "redacted": false,
+    "respondent_id": 15,
+    "template_cluster": null,
+    "text": "Capacity factor-based: Assumes \"average renewable displaces average generator\"—WRONG. Renewables displace marginal generator (the one at top of merit order). Capacity factor is average, not marginal. Example: If wind generates at night, displaces lowest-cost unit (usually coal); during day, displaces mid-cost unit (usually gas). Uniform capacity-factor approach misses this.",
+    "themes": [
+     "simplified_methods_misleading",
+     "dispatch_based_methods_preferred"
+    ]
+   },
+   {
+    "attribution": "Redacted — Company, United States",
+    "org_type": "company",
+    "qid": "Q037",
+    "redacted": true,
+    "respondent_id": 29,
+    "template_cluster": null,
+    "text": "Methodologies based on security-constrained economic dispatch (SCED) models or sophisticated statistical analysis are the most appropriate because they most accurately reflect the complex reality of which power plants are displaced by new renewable generation on an hourly or sub-hourly basis. […] a simple approach may not capture the fact that solar power primarily displaces gas peaker plants in the afternoon, while wind power might displace baseload coal at night.",
+    "themes": [
+     "dispatch_based_methods_preferred",
+     "hourly_locational_granularity"
+    ]
+   },
+   {
+    "attribution": "Redacted — Academia/research, China",
+    "org_type": "academia",
+    "qid": "Q037",
+    "redacted": true,
+    "respondent_id": 42,
+    "template_cluster": null,
+    "text": "Operating margin impacts are, by definition, short-run and dispatch-driven. Methods grounded in actual system operation are therefore the most credible. […] Capacity-factor-based approaches are not appropriate for operating margin analysis. They rely on average production assumptions and do not reflect marginal dispatch behavior, leading to systematic bias.",
+    "themes": [
+     "dispatch_based_methods_preferred",
+     "simplified_methods_misleading"
+    ]
+   },
+   {
+    "attribution": "WattTime — NGO/civil society, United States",
+    "org_type": "ngo",
+    "qid": "Q037",
+    "redacted": false,
+    "respondent_id": 149,
+    "template_cluster": null,
+    "text": "Statistical operating margin methodologies based on actual empirical data are a very established field that has shown high alignment between dozens of published studies […] Both statistical and locational SCED models have a history of use in scientific research to estimate marginal emissions impacts and represent the highest-quality marginal emissions factors derived from empirical observations.",
+    "themes": [
+     "dispatch_based_methods_preferred",
+     "evidence_pointer"
+    ]
+   }
+  ]
+ },
+ "formula": {
+  "against": [
+   {
+    "attribution": "Conversio Pty Ltd — Consultant, Australia",
+    "org_type": "consultant",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 3,
+    "template_cluster": null,
+    "text": "On the one hand, the GHG Protocol is promoting greater granularity and temporal precision under the MBM, including hourly matching, geographical deliverability, and subregional tracking. On the other hand, this consequential formula simplifies the system to a single multiplication of volume and a representative marginal rate. These positions are conceptually incompatible. You cannot have it both ways.",
+    "themes": [
+     "formula_oversimplified"
+    ]
+   },
+   {
+    "attribution": "Redacted — Company, United States",
+    "org_type": "company",
+    "qid": "Q020",
+    "redacted": true,
+    "respondent_id": 23,
+    "template_cluster": null,
+    "text": "The proposed formula captures only procurement-driven avoided emissions. For a consequential method, that is only half the picture. It ignores the emissions caused by consumption, which often dictate the company’s true system impact. This omission conflicts with the stated intent of the framework, which is to measure total system impacts.",
+    "themes": [
+     "net_impact_completeness"
+    ]
+   },
+   {
+    "attribution": "Redacted — Company, United States",
+    "org_type": "company",
+    "qid": "Q020",
+    "redacted": true,
+    "respondent_id": 37,
+    "template_cluster": null,
+    "text": "We therefore have strong reservations about approaches that resemble an early “third method” for Scope 2 within the GHG Protocol, as they risk facilitating the creation of marketing driven claims and enabling double counting. […] Introducing an additional reporting method, or laying the groundwork for one, would further obscure the reality of actual electricity consumption and weaken the integrity of emissions reporting frameworks.",
+    "themes": [
+     "inventory_vs_impact_boundary",
+     "gaming_greenwashing_risk",
+     "double_counting_risk"
+    ]
+   },
+   {
+    "attribution": "Tierra Climate Inc. — Data/analytics provider, United States",
+    "org_type": "data_analytics",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 41,
+    "template_cluster": null,
+    "text": "The formula only accounts for avoided emissions (via marginal emission rate × procured electricity) and ignores induced emissions, which are equally important in determining net impact. […] a battery that charges at night on a coal-heavy grid and discharges during the day when solar is already plentiful may increase emissions overall. Under the proposed formula, it would be credited for avoided emissions during discharge hours, without induced emissions from charging.",
+    "themes": [
+     "net_impact_completeness"
+    ]
+   },
+   {
+    "attribution": "Redacted — Financial institution, United Kingdom",
+    "org_type": "financial",
+    "qid": "Q020",
+    "redacted": true,
+    "respondent_id": 50,
+    "template_cluster": null,
+    "text": "the term “impact” usually implies some type of reduction or avoided emissions, which the formula does not account for […] For this formula to calculate an emissions impact (the reduced emissions of a new electricity project displacing incumbent marginal sources) there needs to be a subtraction of the project emissions from the baseline calculated with the proposed formula. […] This formula actually calculates the “emissions from electricity procurement”.",
+    "themes": [
+     "net_impact_completeness"
+    ]
+   },
+   {
+    "attribution": "Forum on Environment and Sustainability in the Electricity Sector (FMASE) — Consultant, Brazil",
+    "org_type": "consultant",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 151,
+    "template_cluster": "d668d88eef1a6638983bf359c1cead72f1ac15e9",
+    "text": "The proposed formula is overly simplified and does not capture the complexity of the Brazilian National Interconnected System (SIN). It assumes the availability of hourly marginal emission data, which is not representative in a system with centralized dispatch and high participation of hydroelectric plants (which act as systemic storage). Furthermore, it ignores the role of renewable sources in reducing the system’s average and marginal emissions over time.",
+    "themes": [
+     "formula_oversimplified",
+     "jurisdiction_specific_context",
+     "data_availability"
+    ]
+   }
+  ],
+  "context": [
+   {
+    "attribution": "AFRICA SUB GRID LTD NIGERIA — Company, Nigeria",
+    "org_type": "company",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 16,
+    "template_cluster": null,
+    "text": "Company B buys some certificates from new solar farms in Nigeria, Kenya, and Pakistan → also “zero” in market-based method (if you allow out-of-market purchases from dirty or low-access grids), but a much higher impact score because each megawatt-hour in Nigeria avoids 5–10 times more CO₂ and brings light to villages for the first time.",
+    "themes": [
+     "investment_steering_dirty_grids",
+     "integrate_with_scope2_recognition"
+    ]
+   },
+   {
+    "attribution": "Energy Peace Partners (EPP) — NGO/civil society, United States",
+    "org_type": "ngo",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 18,
+    "template_cluster": null,
+    "text": "imagine two similar companies—Company A and Company B—that have identical geographic distributions of global electricity consumption and both have 100% clean energy procurement targets. […] under existing GHG Protocol Scope 2 guidance, Company A would report a better market-based number and report “zero” given its 100% clean energy volume match. Company B would, however, perform less well under the market-based method than Company A, but would perform better than Company A with the emissions impact-based method.",
+    "themes": [
+     "integrate_with_scope2_recognition",
+     "investment_steering_dirty_grids"
+    ]
+   },
+   {
+    "attribution": "Center for Resource Solutions (CRS) — NGO/civil society, United States",
+    "org_type": "ngo",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 35,
+    "template_cluster": null,
+    "text": "The proposed formula is appropriate for quantifying only certain emissions impacts from certain electricity projects—namely, the short-term operating marginal impacts of zero-emitting projects. It does not quantify long-term impacts (e.g., build margin) or the net impact of emitting projects.",
+    "themes": [
+     "net_impact_completeness",
+     "tiered_rigor_by_claim"
+    ]
+   },
+   {
+    "attribution": "University of Edinburgh — Academia/research, United Kingdom",
+    "org_type": "academia",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 46,
+    "template_cluster": null,
+    "text": "The work within the Scope 2 Consequential Sub-group was not intended to be used for quantifying the total system-wide change in emissions caused by electricity-sector projects (for which full consequential assessment is needed). The formula from the Scope 2 sub-group was intended to be used for reporting changes in the point-of-generation emissions within the electricity sector.",
+    "themes": [
+     "net_impact_completeness"
+    ]
+   }
+  ],
+  "for": [
+   {
+    "attribution": "Taiwan Digital Sustainability International Co., Ltd.台灣數位永續國際有限公司 — Consultant, Taiwan",
+    "org_type": "consultant",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 13,
+    "template_cluster": null,
+    "text": "the formula proposed by the Scope 2 TWG subgroup is appropriate in terms of structure because it clearly distinguishes primary effects (direct consequences of electricity procurement decisions) from secondary effects (indirect or system-level consequences), while also incorporating the reporting period. This design enhances transparency, avoids confusion between different categories of impacts, and ensures consistency across projects and organizations.",
+    "themes": [
+     "formula_structurally_sound"
+    ]
+   },
+   {
+    "attribution": "Founder & CEO, RE24 Limited — Data/analytics provider, United Kingdom",
+    "org_type": "data_analytics",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 22,
+    "template_cluster": null,
+    "text": "It allows hourly granularity, which is essential because marginal emission rates are not fixed. They change continuously with system conditions (fuel mix, load shape, renewables output, outages, etc.). […] the formula is appropriate so long as marginal emission rates are applied at the correct temporal resolution (hourly or finer) rather than fixed annual averages.",
+    "themes": [
+     "formula_structurally_sound",
+     "hourly_locational_granularity"
+    ]
+   },
+   {
+    "attribution": "Redacted — Verification/assurance, Egypt",
+    "org_type": "verification",
+    "qid": "Q020",
+    "redacted": true,
+    "respondent_id": 26,
+    "template_cluster": null,
+    "text": "As an MRV verifier, the structure of the proposed Scope 2 TWG subgroup formula is sound, transparent, and suitable for quantifying consequential emissions impacts from electricity projects. Any remaining concerns relate to parameter selection or data quality, which are methodological issues appropriately addressed outside the formula itself.",
+    "themes": [
+     "formula_structurally_sound"
+    ]
+   },
+   {
+    "attribution": "Redacted — Academia/research, China",
+    "org_type": "academia",
+    "qid": "Q020",
+    "redacted": true,
+    "respondent_id": 42,
+    "template_cluster": null,
+    "text": "At a structural level, the proposed formula is appropriate as an initial framework for quantifying emissions impacts from electricity projects. It clearly separates the activity being assessed from the emissions response of the electricity system and avoids embedding specific methodological assumptions directly into the equation itself.",
+    "themes": [
+     "formula_structurally_sound"
+    ]
+   },
+   {
+    "attribution": "TimberRock Consulting LLC (preparer and practitioner supporting enterprise elect — Data/analytics provider, United States",
+    "org_type": "data_analytics",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 48,
+    "template_cluster": null,
+    "text": "At a structural level, the proposed Scope 2 TWG subgroup formula is an appropriate and necessary starting point for quantifying consequential emissions impacts from electricity projects. The formula correctly shifts the focus from attributional allocation toward causal impact by comparing a project’s effect against a counterfactual baseline, which is essential for assessing whether an action actually reduces emissions in the electricity system.",
+    "themes": [
+     "formula_structurally_sound"
+    ]
+   },
+   {
+    "attribution": "au Energy Holdings Corporation — Energy supplier/utility, Japan",
+    "org_type": "energy_supplier",
+    "qid": "Q020",
+    "redacted": false,
+    "respondent_id": 108,
+    "template_cluster": "59a4608eeb5f57147687ddf95adc41d789040362",
+    "text": "We find the proposed equation appropriate. The approach, which multiplies electricity consumption (MWh) by the marginal emission rate (MER) for each hour and aggregates the results, is appropriate because it accurately reflects the fact that power systems exhibit different emission characteristics across hours.",
+    "themes": [
+     "formula_structurally_sound",
+     "hourly_locational_granularity"
+    ]
+   }
+  ]
+ },
+ "general": {
+  "against": [
+   {
+    "attribution": "Conversio Pty Ltd — Consultant, Australia",
+    "org_type": "consultant",
+    "qid": "Q018",
+    "redacted": false,
+    "respondent_id": 3,
+    "template_cluster": null,
+    "text": "It is not technically feasible to trace how an individual organisation's action (e.g., signing a PPA, installing on-site solar, or reducing consumption) directly causes a specific fossil fuel generator to reduce output, defer investment, or retire capacity. […] attributing a causal emission consequence to one organisation's action would require a fully specified counterfactual market model, something far beyond the scope, capacity, or purpose of corporate GHG accounting.",
+    "themes": [
+     "attribution_uncertainty"
+    ]
+   },
+   {
+    "attribution": "Redacted — Company, United States",
+    "org_type": "company",
+    "qid": "Q018",
+    "redacted": true,
+    "respondent_id": 37,
+    "template_cluster": null,
+    "text": "establishing a baseline for a given year -representing the scenario in which the particular renewable project was not connected to the grid- is an inverse calculation. It requires estimating how the past would have looked absent the project […] the mathematical complexity increases substantially and begins to resemble a game theory problem.",
+    "themes": [
+     "baseline_counterfactual_problem"
+    ]
+   },
+   {
+    "attribution": "Redacted — Academia/research, China",
+    "org_type": "academia",
+    "qid": "Q018",
+    "redacted": true,
+    "respondent_id": 42,
+    "template_cluster": null,
+    "text": "Causal attribution is inherently uncertain, particularly in complex and interconnected power systems where marginal effects depend on dispatch order, market conditions, policy constraints, and counterfactual assumptions. Results can vary widely depending on modeling choices (e.g., marginal vs average factors, short-run vs long-run effects), reducing comparability across organizations and over time. From an assurance perspective, this uncertainty makes it difficult to define what constitutes sufficient, appropriate evidence.",
+    "themes": [
+     "attribution_uncertainty",
+     "verification_difficulty",
+     "comparability_loss"
+    ]
+   },
+   {
+    "attribution": "Steel Dynamics, Inc. — Company, United States",
+    "org_type": "company",
+    "qid": "Q018",
+    "redacted": false,
+    "respondent_id": 55,
+    "template_cluster": null,
+    "text": "We disagree with developing and using new methods in ways that increase complexity without meaningful climate benefit. The added complexity alone with cause the industry to add costs associated with compliance which will distract from the intended result of putting new, clean energy on the grid that is already sitting in a deficit position, especially in the United States.",
+    "themes": [
+     "complexity_burden"
+    ]
+   },
+   {
+    "attribution": "Redacted — Company, Korea - Republic of/South",
+    "org_type": "company",
+    "qid": "Q018",
+    "redacted": true,
+    "respondent_id": 60,
+    "template_cluster": "defb3c15ce5fc92124630a340c073769130f21fc",
+    "text": "While consequential accounting may provide useful insights for policy or system-level analysis, it is not a practical framework for corporate reporting — especially in complex global supply chains such as semiconductors. […] applying consequential accounting could impose additional analytical and administrative burdens without delivering actionable insights for corporate decarbonization.",
+    "themes": [
+     "inventory_vs_impact_boundary",
+     "complexity_burden"
+    ]
+   }
+  ],
+  "context": [
+   {
+    "attribution": "Vidia Equity — Financial institution, Germany",
+    "org_type": "financial",
+    "qid": "Q018",
+    "redacted": false,
+    "respondent_id": 25,
+    "template_cluster": null,
+    "text": "There is a trade-off between pragmatism and accuracy. Depending on the use case, the level of precision and certainty required varies, too. A rough 80/20 internal estimate is often good enough to provide directional guidance for business decision making. […] it is only when actual carbon credits are issued and paid for by customers that additionality represents an important requirement",
+    "themes": [
+     "tiered_rigor_by_claim"
+    ]
+   },
+   {
+    "attribution": "Sustainability Reporting Board of the New Zealand External Reporting Board (XRB) — Other, New Zealand",
+    "org_type": "other",
+    "qid": "Q018",
+    "redacted": false,
+    "respondent_id": 27,
+    "template_cluster": null,
+    "text": "With ~80-85% renewable electricity, attributional methods can overstate the impact of buying renewable electricity. Consequential methods may provide more accurate insights into marginal impacts, for example, reducing fossil fuel generation during dry years or peaks.",
+    "themes": [
+     "jurisdiction_specific_context",
+     "corrects_attributional_blindspots"
+    ]
+   },
+   {
+    "attribution": "Center for Resource Solutions (CRS) — NGO/civil society, United States",
+    "org_type": "ngo",
+    "qid": "Q018",
+    "redacted": false,
+    "respondent_id": 35,
+    "template_cluster": null,
+    "text": "the consultation document does not differentiate between two fundamentally different uses of consequential accounting: (A) measuring system-wide avoided grid emissions (a consequential analysis that does not require additionality), and (B) supporting claims of beyond-business-as-usual (beyond-BAU) emissions reductions (i.e., offsets), which do require additionality tests and stricter criteria. These are not interchangeable.",
+    "themes": [
+     "tiered_rigor_by_claim",
+     "additionality_wrong_construct"
+    ]
+   },
+   {
+    "attribution": "University of Edinburgh — Academia/research, United Kingdom",
+    "org_type": "academia",
+    "qid": "Q018",
+    "redacted": false,
+    "respondent_id": 46,
+    "template_cluster": null,
+    "text": "It will be important to provide guidance to users on how to interpret information on uncertainty, i.e. estimates of uncertainty should be viewed as decision-relevant information rather than a limitation of consequential methods. Information on uncertainty conveys our state of knowledge on the outcomes from actions, and is useful for choosing actions do not have negative possible outcomes, and avoiding actions that could plausibly have the opposite outcome to the one that is intended.",
+    "themes": [
+     "attribution_uncertainty"
+    ]
+   }
+  ],
+  "for": [
+   {
+    "attribution": "Redacted — Company, United States",
+    "org_type": "company",
+    "qid": "Q018",
+    "redacted": true,
+    "respondent_id": 29,
+    "template_cluster": null,
+    "text": "The primary benefit of developing a consequential accounting method is that it directly aligns corporate climate accounting with the ultimate goal of climate action: maximizing real-world, atmospheric emissions reductions. It answers the question, \"What was the change in grid emissions as a consequence of my action?\" This moves beyond attributional accounting to focus on tangible impact, creating a powerful incentive for companies to invest in projects that displace the most fossil fuels.",
+    "themes": [
+     "real_world_impact_signal"
+    ]
+   },
+   {
+    "attribution": "Tierra Climate Inc. — Data/analytics provider, United States",
+    "org_type": "data_analytics",
+    "qid": "Q018",
+    "redacted": false,
+    "respondent_id": 41,
+    "template_cluster": null,
+    "text": "One of their clearest benefits is accurately characterizing the system-level impact of energy storage, which is consistently misrepresented under attributional methods […] This leads to uniformly positive Scope 2 emissions for storage, even when its operations lead to net emissions reductions on the grid. It penalizes grid-beneficial behavior and provides no recognition for storage's ability to displace high-emissions generation.",
+    "themes": [
+     "corrects_attributional_blindspots"
+    ]
+   },
+   {
+    "attribution": "TimberRock Consulting LLC (preparer and practitioner supporting enterprise elect — Data/analytics provider, United States",
+    "org_type": "data_analytics",
+    "qid": "Q018",
+    "redacted": false,
+    "respondent_id": 48,
+    "template_cluster": null,
+    "text": "Consequential accounting represents a critical and necessary evolution of electricity emissions reporting because it directly addresses the question that ultimately matters: whether corporate actions reduce global emissions in the real world. […] these challenges are preferable to the false confidence created by highly granular attributional metrics that do not measure causal impact.",
+    "themes": [
+     "real_world_impact_signal",
+     "corrects_attributional_blindspots"
+    ]
+   },
+   {
+    "attribution": "RENOVA, Inc. — Energy supplier/utility, Japan",
+    "org_type": "energy_supplier",
+    "qid": "Q018",
+    "redacted": false,
+    "respondent_id": 58,
+    "template_cluster": null,
+    "text": "It enables the quantification of the true causal impact of corporate actions on grid-wide GHG emissions, thereby promoting more effective investments in emission reductions. By accounting for grid characteristics (time and location), it can direct investments toward the areas and timeframes where the emission reduction effect is most significant.",
+    "themes": [
+     "real_world_impact_signal",
+     "investment_steering_dirty_grids"
+    ]
+   },
+   {
+    "attribution": "Redacted — Company, United States",
+    "org_type": "company",
+    "qid": "Q018",
+    "redacted": true,
+    "respondent_id": 64,
+    "template_cluster": null,
+    "text": "The biggest potential benefits would be faster decarbonization of dirtier or nascent electricity grids, resulting in likely higher absolute avoided GHG reductions. […] global warming is not determined by market or region; the Arctic is not warming because of emission sources occurring in the Arctic.",
+    "themes": [
+     "investment_steering_dirty_grids"
+    ]
+   }
+  ]
+ },
+ "weighting": {
+  "against": [
+   {
+    "attribution": "Conversio Pty Ltd — Consultant, Australia",
+    "org_type": "consultant",
+    "qid": "Q048",
+    "redacted": false,
+    "respondent_id": 3,
+    "template_cluster": null,
+    "text": "Arbitrary default weights or legacy formulas lack empirical justification and risk producing misleading results. […] Weighting factors should emerge from transparent, validated models rather than from historical precedent or convenience.",
+    "themes": [
+     "model_validation_governance"
+    ]
+   },
+   {
+    "attribution": "Tierra Climate Inc. — Data/analytics provider, United States",
+    "org_type": "data_analytics",
+    "qid": "Q048",
+    "redacted": false,
+    "respondent_id": 41,
+    "template_cluster": null,
+    "text": "We do not support any of the proposed approaches for assigning build and operating margin (BM/OM) weights. They fail to account for the most important determinant of emissions impact: operational flexibility, i.e., a project's ability to influence system emissions in real time through dispatch decisions. […] This creates a perverse incentive: systems may be operated to maximize cycling and long-term \"build displacement,\" even if it means raising actual emissions in the near term.",
+    "themes": [
+     "dynamic_lifecycle_weighting",
+     "perverse_incentives"
+    ]
+   },
+   {
+    "attribution": "Redacted — Consultant, United States",
+    "org_type": "consultant",
+    "qid": "Q052",
+    "redacted": true,
+    "respondent_id": 142,
+    "template_cluster": null,
+    "text": "there are several that document just how wrong ALL North American utilities forecasting has been over the past 5 years […] Our view is that until there is a proven method of LR forecasting impacting marginal emissions, we should default toward use of OM - with caveauts of course for specific situations.",
+    "themes": [
+     "attribution_uncertainty",
+     "dispatch_based_methods_preferred"
+    ]
+   },
+   {
+    "attribution": "Clean Air Task Force — NGO/civil society, United States",
+    "org_type": "ngo",
+    "qid": "Q052",
+    "redacted": false,
+    "respondent_id": 177,
+    "template_cluster": null,
+    "text": "There is a dire lack of supporting evidence for any of the potential approaches listed here. […] an inaccurate weighting, e.g. giving operating margin a 50% weighting in a context where it should be 0%, could allow a completely non-impactful project to receive significant credit. […] would open GHGP to accusations of enabling greenwashing.",
+    "themes": [
+     "model_validation_governance",
+     "gaming_greenwashing_risk"
+    ]
+   }
+  ],
+  "context": [
+   {
+    "attribution": "Vidia Equity — Financial institution, Germany",
+    "org_type": "financial",
+    "qid": "Q048",
+    "redacted": false,
+    "respondent_id": 25,
+    "template_cluster": null,
+    "text": "This is dependent on factors that a project cannot influence and change over time during the course of the project. Policies, rules and incentives change all the time.",
+    "themes": [
+     "dynamic_lifecycle_weighting"
+    ]
+   },
+   {
+    "attribution": "The Federation of Electric Power Companies — Industry group, Japan",
+    "org_type": "industry_group",
+    "qid": "Q051",
+    "redacted": false,
+    "respondent_id": 81,
+    "template_cluster": null,
+    "text": "This approach adopts a dynamic concept for setting emission factors, whereby marginal emission factors and grid-average emission factors are combined over time, rather than applying a fixed weighting throughout the project period. […] Compared with an approach that uniformly applies fixed operating margin / build margin weightings (e.g., 50:50), this method expresses the weighting concept along a time dimension",
+    "themes": [
+     "dynamic_lifecycle_weighting",
+     "jurisdiction_specific_context"
+    ]
+   },
+   {
+    "attribution": "Redacted — Government, Singapore",
+    "org_type": "government",
+    "qid": "Q052",
+    "redacted": true,
+    "respondent_id": 118,
+    "template_cluster": null,
+    "text": "For example, in our market, only the BMER is published, while the OMER is not available.",
+    "themes": [
+     "data_availability",
+     "jurisdiction_specific_context"
+    ]
+   },
+   {
+    "attribution": "Singularity Energy — Data/analytics provider, United States",
+    "org_type": "data_analytics",
+    "qid": "Q052",
+    "redacted": false,
+    "respondent_id": 190,
+    "template_cluster": null,
+    "text": "Metrics such as net qualifying capacity (NQC) and effective load carrying capacity (ELCC) have been used commonly to establish how well a resource contributes to reliability needs during peak hours. Since peak hours tend to drive capacity expansion needs, these factors could be a reasonable approximation of a build margin weight.",
+    "themes": [
+     "dynamic_lifecycle_weighting"
+    ]
+   }
+  ],
+  "for": [
+   {
+    "attribution": "Zettawatts — Other, United States",
+    "org_type": "other",
+    "qid": "Q048",
+    "redacted": false,
+    "respondent_id": 15,
+    "template_cluster": null,
+    "text": "Default 50/50 split is perfect for AREC market. It's simple, globally applicable, defensible, and enables participation. Overall Marginal Emission Rate = (0.5 × Build Margin Emission Rate) + (0.5 × Operating Margin Emission Rate).",
+    "themes": [
+     "default_5050_weight"
+    ]
+   },
+   {
+    "attribution": "Redacted — Verification/assurance, Egypt",
+    "org_type": "verification",
+    "qid": "Q048",
+    "redacted": true,
+    "respondent_id": 26,
+    "template_cluster": null,
+    "text": "CDM Tool 07 is appropriate due to its longstanding use, conservativeness, and methodological clarity. It provides a transparent framework for combining OM and BM emission factors and has been applied and independently verified across many jurisdictions.",
+    "themes": [
+     "align_with_existing_tools"
+    ]
+   },
+   {
+    "attribution": "The NorthBridge Group — Consultant, United States",
+    "org_type": "consultant",
+    "qid": "Q052",
+    "redacted": false,
+    "respondent_id": 96,
+    "template_cluster": null,
+    "text": "GHGP and CDM already provide guidance for combining OM/BM. Their weighting is explicitly part of the combined margin calculation. Having a 50/50 default is common but alternative weights have been suggested when justified by project type. […] Recent implementations use a 50/50 weighting of OM and BM to represent both ST dispatch effects and LT capacity effects.",
+    "themes": [
+     "default_5050_weight",
+     "align_with_existing_tools"
+    ]
+   },
+   {
+    "attribution": "Independent Advisor to various climate related organizations with 20 years exper — Financial institution, United States",
+    "org_type": "financial",
+    "qid": "Q048",
+    "redacted": false,
+    "respondent_id": 107,
+    "template_cluster": null,
+    "text": "I agree with WattTime [1] that the 50/50 weighting offers a feasible and defensible default option. […] the pursuit of additional project-specific accuracy should be weighed against the goals of feasibility and comparability.",
+    "themes": [
+     "default_5050_weight"
+    ]
+   }
+  ]
+ }
+}
