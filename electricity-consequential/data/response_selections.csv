@@ -1,0 +1,1278 @@
+respondent_id,question_id,question_number,selection_index,option_text,is_canonical,is_special
+3,Q028,28,1,Regulatory test,1,0
+3,Q028,28,2,Timing test,1,0
+3,Q028,28,3,Financial analysis test,1,0
+3,Q028,28,4,Barrier test,1,0
+3,Q028,28,5,Common practice test,1,0
+3,Q028,28,6,Positive list,1,0
+3,Q028,28,7,Performance standard,1,0
+3,Q028,28,8,Contractual/tenor test,1,0
+3,Q028,28,9,First-of-its-kind test,1,0
+3,Q035,35,1,SCED – fuel on the margin,1,0
+3,Q035,35,2,SCED – locational,1,0
+3,Q035,35,3,Scenario modeling,1,0
+3,Q035,35,4,Heat-rate/LMP,1,0
+3,Q035,35,5,Statistical,1,0
+3,Q035,35,6,Capacity factor based,1,0
+3,Q035,35,7,Difference-based,1,0
+3,Q038,38,1,Recent capacity additions,1,0
+3,Q038,38,2,Policy scenario,1,0
+3,Q038,38,3,Capacity expansion modeling,1,0
+3,Q038,38,4,Average emission rate,1,0
+3,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+3,Q047,47,2,UNFCCC CDM Tool07,1,0
+3,Q047,47,3,Resource adequacy approaches,1,0
+3,Q049,49,1,Default 0.50 build margin weight for all projects,1,0
+3,Q049,49,2,UNFCCC CDM Tool07,1,0
+11,Q028,28,1,Regulatory test,1,0
+11,Q035,35,1,Scenario modeling,1,0
+11,Q036,36,1,SCED – locational,1,0
+11,Q038,38,1,Recent capacity additions,1,0
+11,Q039,39,1,Recent capacity additions,1,0
+11,Q047,47,1,Unsure,1,1
+11,Q049,49,1,All are feasible,1,1
+12,Q028,28,1,Timing test,1,0
+12,Q035,35,1,SCED – locational,1,0
+12,Q036,36,1,Heat-rate/LMP,1,0
+12,Q038,38,1,Policy scenario,1,0
+12,Q039,39,1,Capacity expansion modeling,1,0
+12,Q047,47,1,UNFCCC CDM Tool07,1,0
+12,Q049,49,1,Unsure,1,1
+13,Q028,28,1,Regulatory test,1,0
+13,Q028,28,2,Financial analysis test,1,0
+13,Q028,28,3,Common practice test,1,0
+13,Q028,28,4,Positive list,1,0
+13,Q028,28,5,Contractual/tenor test,1,0
+13,Q035,35,1,SCED – locational,1,0
+13,Q036,36,1,Capacity factor based,1,0
+13,Q036,36,2,Difference-based,1,0
+13,Q036,36,3,Statistical,1,0
+13,Q038,38,1,Recent capacity additions,1,0
+13,Q038,38,2,Policy scenario,1,0
+13,Q038,38,3,Capacity expansion modeling,1,0
+13,Q039,39,1,Average emission rate,1,0
+13,Q047,47,1,UNFCCC CDM Tool07,1,0
+13,Q049,49,1,Resource adequacy approaches,1,0
+13,Q049,49,2,Intervention lifecycle approaches,1,0
+15,Q028,28,1,Regulatory test,1,0
+15,Q028,28,2,Timing test,1,0
+15,Q028,28,3,Financial analysis test,1,0
+15,Q028,28,4,Contractual/tenor test,1,0
+15,Q035,35,1,SCED – fuel on the margin,1,0
+15,Q035,35,2,SCED – locational,1,0
+15,Q035,35,3,Scenario modeling,1,0
+15,Q035,35,4,Heat-rate/LMP,1,0
+15,Q035,35,5,Statistical,1,0
+15,Q036,36,1,Capacity factor based,1,0
+15,Q036,36,2,Difference-based,1,0
+15,Q038,38,1,Recent capacity additions,1,0
+15,Q038,38,2,Policy scenario,1,0
+15,Q038,38,3,Capacity expansion modeling,1,0
+15,Q038,38,4,Average emission rate,1,0
+15,Q039,39,1,None,1,1
+15,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+15,Q047,47,2,Resource adequacy approaches,1,0
+15,Q047,47,3,Intervention lifecycle approaches,1,0
+20,Q028,28,1,Financial analysis test,1,0
+20,Q028,28,2,Timing test,1,0
+20,Q028,28,3,Performance standard,1,0
+20,Q035,35,1,Statistical,1,0
+20,Q035,35,2,SCED – locational,1,0
+20,Q035,35,3,Scenario modeling,1,0
+20,Q036,36,1,None,1,1
+20,Q038,38,1,Capacity expansion modeling,1,0
+20,Q039,39,1,None,1,1
+20,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+20,Q049,49,1,Unsure,1,1
+22,Q028,28,1,Regulatory test,1,0
+22,Q028,28,2,Timing test,1,0
+22,Q028,28,3,Financial analysis test,1,0
+22,Q028,28,4,Barrier test,1,0
+22,Q028,28,5,Common practice test,1,0
+22,Q028,28,6,Positive list,1,0
+22,Q028,28,7,Contractual/tenor test,1,0
+22,Q028,28,8,Performance standard,1,0
+22,Q035,35,1,SCED – fuel on the margin,1,0
+22,Q035,35,2,SCED – locational,1,0
+22,Q035,35,3,Scenario modeling,1,0
+22,Q035,35,4,Heat-rate/LMP,1,0
+22,Q035,35,5,Statistical,1,0
+22,Q035,35,6,Difference-based,1,0
+22,Q036,36,1,Capacity factor based,1,0
+22,Q038,38,1,Recent capacity additions,1,0
+22,Q038,38,2,Policy scenario,1,0
+22,Q038,38,3,Capacity expansion modeling,1,0
+22,Q039,39,1,Average emission rate,1,0
+22,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+22,Q047,47,2,Resource adequacy approaches,1,0
+22,Q047,47,3,Intervention lifecycle approaches,1,0
+22,Q049,49,1,Default 0.50 build margin weight for all projects,1,0
+22,Q049,49,2,Resource adequacy approaches,1,0
+24,Q028,28,1,Timing test,1,0
+24,Q028,28,2,Barrier test,1,0
+24,Q028,28,3,Common practice test,1,0
+24,Q028,28,4,Positive list,1,0
+24,Q028,28,5,Performance standard,1,0
+24,Q028,28,6,Contractual/tenor test,1,0
+24,Q028,28,7,First-of-its-kind test,1,0
+25,Q028,28,1,Financial analysis test,1,0
+25,Q028,28,2,Timing test,1,0
+25,Q028,28,3,Barrier test,1,0
+25,Q028,28,4,Common practice test,1,0
+25,Q028,28,5,Positive list,1,0
+25,Q028,28,6,First-of-its-kind test,1,0
+25,Q028,28,7,None (no tests are feasible),1,1
+25,Q035,35,1,Scenario modeling,1,0
+25,Q036,36,1,SCED – fuel on the margin,1,0
+25,Q036,36,2,SCED – locational,1,0
+25,Q036,36,3,Heat-rate/LMP,1,0
+25,Q036,36,4,Statistical,1,0
+25,Q036,36,5,Difference-based,1,0
+25,Q036,36,6,Capacity factor based,1,0
+25,Q038,38,1,Policy scenario,1,0
+25,Q038,38,2,Capacity expansion modeling,1,0
+25,Q038,38,3,Average emission rate,1,0
+25,Q039,39,1,Recent capacity additions,1,0
+25,Q047,47,1,Unsure,1,1
+25,Q049,49,1,Default 0.50 build margin weight for all projects,1,0
+26,Q028,28,1,Regulatory test,1,0
+26,Q028,28,2,Timing test,1,0
+26,Q028,28,3,Common practice test,1,0
+26,Q028,28,4,Positive list,1,0
+26,Q028,28,5,Contractual/tenor test,1,0
+26,Q028,28,6,Performance standard,1,0
+26,Q028,28,7,Financial analysis test,1,0
+26,Q028,28,8,Barrier test,1,0
+26,Q035,35,1,SCED – fuel on the margin,1,0
+26,Q035,35,2,SCED – locational,1,0
+26,Q035,35,3,Scenario modeling,1,0
+26,Q035,35,4,Heat-rate/LMP,1,0
+26,Q035,35,5,Statistical,1,0
+26,Q035,35,6,Difference-based,1,0
+26,Q036,36,1,Capacity factor based,1,0
+26,Q038,38,1,Recent capacity additions,1,0
+26,Q038,38,2,Policy scenario,1,0
+26,Q038,38,3,Capacity expansion modeling,1,0
+26,Q039,39,1,Average emission rate,1,0
+26,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+26,Q047,47,2,UNFCCC CDM Tool07,1,0
+26,Q047,47,3,Resource adequacy approaches,1,0
+26,Q047,47,4,Intervention lifecycle approaches,1,0
+26,Q049,49,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+26,Q049,49,2,UNFCCC CDM Tool07,1,0
+26,Q049,49,3,Default 0.50 build margin weight for all projects,1,0
+26,Q049,49,4,Resource adequacy approaches,1,0
+26,Q049,49,5,Intervention lifecycle approaches,1,0
+26,Q049,49,6,All are feasible,1,1
+29,Q028,28,1,Regulatory test,1,0
+29,Q028,28,2,Timing test,1,0
+29,Q028,28,3,Financial analysis test,1,0
+29,Q028,28,4,Barrier test,1,0
+29,Q028,28,5,Common practice test,1,0
+29,Q028,28,6,Positive list,1,0
+29,Q028,28,7,Performance standard,1,0
+29,Q028,28,8,Contractual/tenor test,1,0
+29,Q028,28,9,First-of-its-kind test,1,0
+29,Q035,35,1,SCED – fuel on the margin,1,0
+29,Q035,35,2,SCED – locational,1,0
+29,Q035,35,3,Scenario modeling,1,0
+29,Q035,35,4,Statistical,1,0
+29,Q036,36,1,Capacity factor based,1,0
+29,Q036,36,2,Difference-based,1,0
+29,Q038,38,1,Recent capacity additions,1,0
+29,Q038,38,2,Capacity expansion modeling,1,0
+29,Q039,39,1,Policy scenario,1,0
+29,Q039,39,2,Average emission rate,1,0
+29,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+29,Q047,47,2,UNFCCC CDM Tool07,1,0
+29,Q047,47,3,Resource adequacy approaches,1,0
+29,Q047,47,4,Intervention lifecycle approaches,1,0
+29,Q049,49,1,All are feasible,1,1
+31,Q028,28,1,Regulatory test,1,0
+31,Q035,35,1,Capacity factor based,1,0
+31,Q036,36,1,SCED – locational,1,0
+31,Q038,38,1,Capacity expansion modeling,1,0
+31,Q039,39,1,Recent capacity additions,1,0
+31,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+31,Q049,49,1,UNFCCC CDM Tool07,1,0
+35,Q028,28,1,Regulatory test,1,0
+35,Q028,28,2,Timing test,1,0
+35,Q028,28,3,Positive list,1,0
+35,Q028,28,4,Performance standard,1,0
+35,Q028,28,5,Contractual/tenor test,1,0
+35,Q028,28,6,First-of-its-kind test,1,0
+37,Q028,28,1,None (no tests are feasible),1,1
+37,Q035,35,1,SCED – fuel on the margin,1,0
+37,Q035,35,2,SCED – locational,1,0
+37,Q035,35,3,Scenario modeling,1,0
+37,Q036,36,1,Heat-rate/LMP,1,0
+37,Q036,36,2,Statistical,1,0
+37,Q036,36,3,Capacity factor based,1,0
+37,Q036,36,4,Difference-based,1,0
+37,Q038,38,1,Average emission rate,1,0
+37,Q039,39,1,Recent capacity additions,1,0
+37,Q039,39,2,Policy scenario,1,0
+37,Q039,39,3,Capacity expansion modeling,1,0
+39,Q028,28,1,Timing test,1,0
+39,Q028,28,2,Barrier test,1,0
+39,Q028,28,3,Common practice test,1,0
+39,Q028,28,4,Positive list,1,0
+39,Q028,28,5,First-of-its-kind test,1,0
+39,Q028,28,6,Contractual/tenor test,1,0
+39,Q028,28,7,Performance standard,1,0
+40,Q028,28,1,Regulatory test,1,0
+40,Q028,28,2,Timing test,1,0
+40,Q028,28,3,Barrier test,1,0
+40,Q028,28,4,Performance standard,1,0
+40,Q035,35,1,Statistical,1,0
+40,Q035,35,2,Heat-rate/LMP,1,0
+40,Q035,35,3,Difference-based,1,0
+40,Q035,35,4,SCED – locational,1,0
+40,Q035,35,5,Scenario modeling,1,0
+40,Q036,36,1,SCED – fuel on the margin,1,0
+40,Q036,36,2,Capacity factor based,1,0
+40,Q038,38,1,Average emission rate,1,0
+40,Q038,38,2,Recent capacity additions,1,0
+40,Q038,38,3,Capacity expansion modeling,1,0
+41,Q028,28,1,Regulatory test,1,0
+41,Q028,28,2,Timing test,1,0
+41,Q028,28,3,Financial analysis test,1,0
+41,Q028,28,4,Positive list,1,0
+41,Q028,28,5,Contractual/tenor test,1,0
+41,Q028,28,6,First-of-its-kind test,1,0
+41,Q035,35,1,SCED – fuel on the margin,1,0
+41,Q035,35,2,SCED – locational,1,0
+41,Q035,35,3,Heat-rate/LMP,1,0
+41,Q035,35,4,Statistical,1,0
+41,Q036,36,1,Scenario modeling,1,0
+41,Q036,36,2,Capacity factor based,1,0
+41,Q036,36,3,Difference-based,1,0
+41,Q038,38,1,Recent capacity additions,1,0
+41,Q039,39,1,Policy scenario,1,0
+41,Q039,39,2,Capacity expansion modeling,1,0
+41,Q039,39,3,Average emission rate,1,0
+41,Q047,47,1,None are appropriate,1,1
+41,Q049,49,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+41,Q049,49,2,UNFCCC CDM Tool07,1,0
+41,Q049,49,3,Resource adequacy approaches,1,0
+41,Q049,49,4,Intervention lifecycle approaches,1,0
+42,Q028,28,1,Regulatory test,1,0
+42,Q028,28,2,Timing test,1,0
+42,Q028,28,3,Common practice test,1,0
+42,Q028,28,4,Positive list,1,0
+42,Q028,28,5,Performance standard,1,0
+42,Q028,28,6,Contractual/tenor test,1,0
+42,Q035,35,1,SCED – locational,1,0
+42,Q035,35,2,SCED – fuel on the margin,1,0
+42,Q035,35,3,Statistical,1,0
+42,Q035,35,4,Heat-rate/LMP,1,0
+42,Q035,35,5,Difference-based,1,0
+42,Q035,35,6,Capacity factor based,1,0
+42,Q036,36,1,Capacity factor based,1,0
+42,Q038,38,1,Recent capacity additions,1,0
+42,Q038,38,2,Policy scenario,1,0
+42,Q038,38,3,Capacity expansion modeling,1,0
+42,Q039,39,1,Average emission rate,1,0
+42,Q047,47,1,Intervention lifecycle approaches,1,0
+42,Q047,47,2,Resource adequacy approaches,1,0
+42,Q047,47,3,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+42,Q047,47,4,UNFCCC CDM Tool07,1,0
+42,Q049,49,1,Resource adequacy approaches,1,0
+42,Q049,49,2,Intervention lifecycle approaches,1,0
+46,Q028,28,1,Regulatory test,1,0
+46,Q028,28,2,Timing test,1,0
+46,Q028,28,3,Financial analysis test,1,0
+46,Q028,28,4,Barrier test,1,0
+46,Q028,28,5,Common practice test,1,0
+46,Q028,28,6,Positive list,1,0
+46,Q028,28,7,Performance standard,1,0
+46,Q028,28,8,Contractual/tenor test,1,0
+46,Q028,28,9,First-of-its-kind test,1,0
+46,Q039,39,1,Average emission rate,1,0
+48,Q028,28,1,Regulatory test,1,0
+48,Q028,28,2,Timing test,1,0
+48,Q028,28,3,Financial analysis test,1,0
+48,Q028,28,4,Barrier test,1,0
+48,Q028,28,5,Common practice test,1,0
+48,Q028,28,6,Positive list,1,0
+48,Q028,28,7,Performance standard,1,0
+48,Q028,28,8,Contractual/tenor test,1,0
+48,Q028,28,9,First-of-its-kind test,1,0
+48,Q035,35,1,SCED – fuel on the margin,1,0
+48,Q035,35,2,SCED – locational,1,0
+48,Q035,35,3,Scenario modeling,1,0
+48,Q035,35,4,Heat-rate/LMP,1,0
+48,Q035,35,5,Statistical,1,0
+48,Q035,35,6,Difference-based,1,0
+48,Q036,36,1,Capacity factor based,1,0
+48,Q038,38,1,Recent capacity additions,1,0
+48,Q038,38,2,Policy scenario,1,0
+48,Q038,38,3,Capacity expansion modeling,1,0
+48,Q039,39,1,Average emission rate,1,0
+48,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+48,Q047,47,2,UNFCCC CDM Tool07,1,0
+48,Q047,47,3,Default 0.50 build margin weight for all projects,1,0
+48,Q047,47,4,Resource adequacy approaches,1,0
+48,Q047,47,5,Intervention lifecycle approaches,1,0
+48,Q049,49,1,Resource adequacy approaches,1,0
+48,Q049,49,2,Intervention lifecycle approaches,1,0
+49,Q035,35,1,SCED – fuel on the margin,1,0
+49,Q035,35,2,SCED – locational,1,0
+49,Q035,35,3,Statistical,1,0
+49,Q036,36,1,Scenario modeling,1,0
+49,Q036,36,2,Heat-rate/LMP,1,0
+49,Q036,36,3,Capacity factor based,1,0
+49,Q036,36,4,Difference-based,1,0
+50,Q028,28,1,Regulatory test,1,0
+50,Q028,28,2,Timing test,1,0
+50,Q028,28,3,First-of-its-kind test,1,0
+50,Q035,35,1,SCED – fuel on the margin,1,0
+50,Q035,35,2,SCED – locational,1,0
+50,Q035,35,3,Scenario modeling,1,0
+50,Q035,35,4,Heat-rate/LMP,1,0
+50,Q035,35,5,Statistical,1,0
+50,Q035,35,6,Capacity factor based,1,0
+50,Q035,35,7,Difference-based,1,0
+50,Q036,36,1,None,1,1
+50,Q038,38,1,Recent capacity additions,1,0
+50,Q038,38,2,Policy scenario,1,0
+50,Q038,38,3,Capacity expansion modeling,1,0
+50,Q039,39,1,Average emission rate,1,0
+50,Q047,47,1,Unsure,1,1
+50,Q049,49,1,All are feasible,1,1
+51,Q028,28,1,Regulatory test,1,0
+51,Q028,28,2,Timing test,1,0
+51,Q028,28,3,Positive list,1,0
+51,Q028,28,4,Performance standard,1,0
+51,Q028,28,5,Contractual/tenor test,1,0
+51,Q028,28,6,First-of-its-kind test,1,0
+51,Q035,35,1,Scenario modeling,1,0
+51,Q035,35,2,Capacity factor based,1,0
+51,Q035,35,3,Difference-based,1,0
+51,Q036,36,1,SCED – locational,1,0
+51,Q036,36,2,Heat-rate/LMP,1,0
+51,Q038,38,1,Recent capacity additions,1,0
+51,Q038,38,2,Average emission rate,1,0
+51,Q039,39,1,Policy scenario,1,0
+51,Q039,39,2,Capacity expansion modeling,1,0
+51,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+51,Q047,47,2,UNFCCC CDM Tool07,1,0
+54,Q028,28,1,Regulatory test,1,0
+54,Q028,28,2,Timing test,1,0
+54,Q028,28,3,Financial analysis test,1,0
+54,Q028,28,4,Barrier test,1,0
+54,Q028,28,5,Common practice test,1,0
+54,Q028,28,6,Positive list,1,0
+54,Q028,28,7,Performance standard,1,0
+55,Q035,35,1,None,1,1
+55,Q038,38,1,None,1,1
+55,Q047,47,1,None are appropriate,1,1
+57,Q028,28,1,Regulatory test,1,0
+57,Q028,28,2,Financial analysis test,1,0
+57,Q028,28,3,Timing test,1,0
+57,Q028,28,4,Barrier test,1,0
+57,Q035,35,1,Statistical,1,0
+57,Q038,38,1,Policy scenario,1,0
+58,Q028,28,1,Regulatory test,1,0
+58,Q028,28,2,Timing test,1,0
+58,Q028,28,3,Positive list,1,0
+61,Q028,28,1,Regulatory test,1,0
+61,Q028,28,2,Common practice test,1,0
+61,Q028,28,3,First-of-its-kind test,1,0
+61,Q035,35,1,SCED – fuel on the margin,1,0
+61,Q035,35,2,SCED – locational,1,0
+61,Q035,35,3,Statistical,1,0
+61,Q036,36,1,None,1,1
+61,Q047,47,1,UNFCCC CDM Tool07,1,0
+61,Q047,47,2,Default 0.50 build margin weight for all projects,1,0
+61,Q047,47,3,Intervention lifecycle approaches,1,0
+62,Q028,28,1,Regulatory test,1,0
+62,Q028,28,2,Timing test,1,0
+62,Q028,28,3,Common practice test,1,0
+62,Q028,28,4,Positive list,1,0
+62,Q028,28,5,Contractual/tenor test,1,0
+62,Q035,35,1,SCED – fuel on the margin,1,0
+62,Q035,35,2,SCED – locational,1,0
+62,Q035,35,3,Scenario modeling,1,0
+62,Q035,35,4,Statistical,1,0
+62,Q035,35,5,Difference-based,1,0
+62,Q036,36,1,Heat-rate/LMP,1,0
+62,Q036,36,2,Capacity factor based,1,0
+62,Q038,38,1,Recent capacity additions,1,0
+62,Q038,38,2,Policy scenario,1,0
+62,Q038,38,3,Capacity expansion modeling,1,0
+62,Q039,39,1,Average emission rate,1,0
+62,Q049,49,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+62,Q049,49,2,Resource adequacy approaches,1,0
+62,Q049,49,3,Intervention lifecycle approaches,1,0
+63,Q028,28,1,None (no tests are feasible),1,1
+63,Q035,35,1,Scenario modeling,1,0
+63,Q035,35,2,Statistical,1,0
+63,Q035,35,3,Capacity factor based,1,0
+63,Q036,36,1,SCED – fuel on the margin,1,0
+63,Q036,36,2,SCED – locational,1,0
+63,Q036,36,3,Difference-based,1,0
+63,Q038,38,1,None,1,1
+63,Q039,39,1,Recent capacity additions,1,0
+63,Q039,39,2,Policy scenario,1,0
+63,Q039,39,3,Capacity expansion modeling,1,0
+63,Q039,39,4,Average emission rate,1,0
+63,Q047,47,1,None are appropriate,1,1
+63,Q049,49,1,Unsure,1,1
+65,Q028,28,1,Regulatory test,1,0
+65,Q028,28,2,Timing test,1,0
+65,Q028,28,3,Common practice test,1,0
+65,Q028,28,4,Performance standard,1,0
+65,Q028,28,5,Contractual/tenor test,1,0
+66,Q028,28,1,Regulatory test,1,0
+66,Q028,28,2,Timing test,1,0
+66,Q028,28,3,Common practice test,1,0
+66,Q028,28,4,Positive list,1,0
+66,Q028,28,5,Contractual/tenor test,1,0
+66,Q028,28,6,First-of-its-kind test,1,0
+66,Q047,47,1,UNFCCC CDM Tool07,1,0
+66,Q049,49,1,Unsure,1,1
+67,Q028,28,1,Regulatory test,1,0
+67,Q028,28,2,Timing test,1,0
+67,Q028,28,3,Financial analysis test,1,0
+68,Q035,35,1,SCED – fuel on the margin,1,0
+68,Q038,38,1,Policy scenario,1,0
+68,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+68,Q049,49,1,Unsure,1,1
+70,Q028,28,1,Regulatory test,1,0
+70,Q028,28,2,Timing test,1,0
+70,Q028,28,3,Financial analysis test,1,0
+70,Q028,28,4,Barrier test,1,0
+70,Q028,28,5,Positive list,1,0
+70,Q028,28,6,Contractual/tenor test,1,0
+70,Q035,35,1,SCED – fuel on the margin,1,0
+70,Q035,35,2,SCED – locational,1,0
+70,Q035,35,3,Heat-rate/LMP,1,0
+70,Q035,35,4,Capacity factor based,1,0
+70,Q036,36,1,Scenario modeling,1,0
+70,Q036,36,2,Statistical,1,0
+70,Q036,36,3,Capacity factor based,1,0
+70,Q038,38,1,Policy scenario,1,0
+70,Q038,38,2,Capacity expansion modeling,1,0
+70,Q039,39,1,Recent capacity additions,1,0
+70,Q039,39,2,Average emission rate,1,0
+70,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+70,Q047,47,2,UNFCCC CDM Tool07,1,0
+70,Q049,49,1,Unsure,1,1
+71,Q028,28,1,Regulatory test,1,0
+71,Q028,28,2,Timing test,1,0
+71,Q028,28,3,Barrier test,1,0
+71,Q028,28,4,Common practice test,1,0
+71,Q028,28,5,Positive list,1,0
+71,Q028,28,6,None (no tests are feasible),1,1
+71,Q028,28,7,Financial analysis test,1,0
+71,Q028,28,8,Performance standard,1,0
+71,Q028,28,9,Contractual/tenor test,1,0
+71,Q028,28,10,First-of-its-kind test,1,0
+71,Q035,35,1,Heat-rate/LMP,1,0
+71,Q035,35,2,Capacity factor based,1,0
+71,Q035,35,3,SCED – locational,1,0
+71,Q036,36,1,SCED – fuel on the margin,1,0
+71,Q036,36,2,Scenario modeling,1,0
+71,Q036,36,3,Statistical,1,0
+71,Q036,36,4,Difference-based,1,0
+71,Q038,38,1,Recent capacity additions,1,0
+71,Q038,38,2,Capacity expansion modeling,1,0
+71,Q039,39,1,Policy scenario,1,0
+71,Q039,39,2,Average emission rate,1,0
+71,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+71,Q049,49,1,Unsure,1,1
+72,Q038,38,1,Policy scenario,1,0
+72,Q038,38,2,Capacity expansion modeling,1,0
+72,Q039,39,1,Recent capacity additions,1,0
+72,Q039,39,2,Average emission rate,1,0
+74,Q028,28,1,Regulatory test,1,0
+74,Q028,28,2,Timing test,1,0
+74,Q028,28,3,Financial analysis test,1,0
+74,Q028,28,4,Positive list,1,0
+74,Q028,28,5,Performance standard,1,0
+74,Q028,28,6,Contractual/tenor test,1,0
+74,Q035,35,1,SCED – fuel on the margin,1,0
+74,Q035,35,2,SCED – locational,1,0
+74,Q035,35,3,Heat-rate/LMP,1,0
+74,Q035,35,4,Statistical,1,0
+74,Q036,36,1,Scenario modeling,1,0
+74,Q036,36,2,Capacity factor based,1,0
+74,Q036,36,3,Difference-based,1,0
+74,Q038,38,1,Recent capacity additions,1,0
+74,Q039,39,1,Policy scenario,1,0
+74,Q039,39,2,Capacity expansion modeling,1,0
+74,Q039,39,3,Average emission rate,1,0
+74,Q047,47,1,None are appropriate,1,1
+74,Q049,49,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+74,Q049,49,2,UNFCCC CDM Tool07,1,0
+74,Q049,49,3,Resource adequacy approaches,1,0
+74,Q049,49,4,Intervention lifecycle approaches,1,0
+75,Q028,28,1,Regulatory test,1,0
+75,Q028,28,2,Timing test,1,0
+75,Q028,28,3,Financial analysis test,1,0
+75,Q028,28,4,Positive list,1,0
+75,Q028,28,5,Contractual/tenor test,1,0
+75,Q028,28,6,Performance standard,1,0
+75,Q047,47,1,Unsure,1,1
+75,Q049,49,1,Unsure,1,1
+77,Q028,28,1,Regulatory test,1,0
+77,Q028,28,2,Timing test,1,0
+77,Q028,28,3,Financial analysis test,1,0
+77,Q028,28,4,Positive list,1,0
+77,Q028,28,5,Contractual/tenor test,1,0
+77,Q028,28,6,First-of-its-kind test,1,0
+77,Q035,35,1,SCED – fuel on the margin,1,0
+77,Q035,35,2,SCED – locational,1,0
+77,Q035,35,3,Heat-rate/LMP,1,0
+77,Q035,35,4,Statistical,1,0
+77,Q036,36,1,Scenario modeling,1,0
+77,Q036,36,2,Capacity factor based,1,0
+77,Q036,36,3,Difference-based,1,0
+77,Q038,38,1,Recent capacity additions,1,0
+77,Q039,39,1,Policy scenario,1,0
+77,Q039,39,2,Capacity expansion modeling,1,0
+77,Q039,39,3,Average emission rate,1,0
+78,Q036,36,1,None,1,1
+78,Q038,38,1,None,1,1
+78,Q039,39,1,Recent capacity additions,1,0
+78,Q039,39,2,Policy scenario,1,0
+78,Q039,39,3,Capacity expansion modeling,1,0
+78,Q039,39,4,Average emission rate,1,0
+78,Q047,47,1,None are appropriate,1,1
+78,Q049,49,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+78,Q049,49,2,UNFCCC CDM Tool07,1,0
+78,Q049,49,3,Default 0.50 build margin weight for all projects,1,0
+78,Q049,49,4,Resource adequacy approaches,1,0
+78,Q049,49,5,Intervention lifecycle approaches,1,0
+80,Q028,28,1,Positive list,1,0
+80,Q035,35,1,SCED – fuel on the margin,1,0
+80,Q038,38,1,Policy scenario,1,0
+80,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+81,Q028,28,1,None (no tests are feasible),1,1
+81,Q035,35,1,None,1,1
+81,Q036,36,1,SCED – fuel on the margin,1,0
+81,Q036,36,2,SCED – locational,1,0
+81,Q036,36,3,Scenario modeling,1,0
+81,Q036,36,4,Heat-rate/LMP,1,0
+81,Q036,36,5,Statistical,1,0
+81,Q036,36,6,Capacity factor based,1,0
+81,Q036,36,7,Difference-based,1,0
+81,Q038,38,1,None,1,1
+81,Q039,39,1,Recent capacity additions,1,0
+81,Q039,39,2,Policy scenario,1,0
+81,Q039,39,3,Capacity expansion modeling,1,0
+81,Q039,39,4,Average emission rate,1,0
+81,Q047,47,1,Unsure,1,1
+81,Q049,49,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+81,Q049,49,2,UNFCCC CDM Tool07,1,0
+81,Q049,49,3,Default 0.50 build margin weight for all projects,1,0
+81,Q049,49,4,Resource adequacy approaches,1,0
+81,Q049,49,5,Intervention lifecycle approaches,1,0
+83,Q028,28,1,Regulatory test,1,0
+86,Q028,28,1,Regulatory test,1,0
+86,Q028,28,2,Timing test,1,0
+86,Q028,28,3,Positive list,1,0
+86,Q028,28,4,Performance standard,1,0
+86,Q028,28,5,Contractual/tenor test,1,0
+86,Q028,28,6,First-of-its-kind test,1,0
+86,Q035,35,1,Scenario modeling,1,0
+86,Q035,35,2,Capacity factor based,1,0
+86,Q035,35,3,Difference-based,1,0
+86,Q036,36,1,SCED – locational,1,0
+86,Q036,36,2,Heat-rate/LMP,1,0
+86,Q038,38,1,Recent capacity additions,1,0
+86,Q038,38,2,Average emission rate,1,0
+86,Q039,39,1,Policy scenario,1,0
+86,Q039,39,2,Capacity expansion modeling,1,0
+86,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+86,Q047,47,2,UNFCCC CDM Tool07,1,0
+87,Q028,28,1,Performance standard,1,0
+89,Q028,28,1,Regulatory test,1,0
+89,Q028,28,2,Timing test,1,0
+89,Q028,28,3,Positive list,1,0
+89,Q028,28,4,Performance standard,1,0
+89,Q028,28,5,Contractual/tenor test,1,0
+89,Q028,28,6,First-of-its-kind test,1,0
+89,Q035,35,1,Scenario modeling,1,0
+89,Q035,35,2,Capacity factor based,1,0
+89,Q035,35,3,Difference-based,1,0
+89,Q036,36,1,SCED – locational,1,0
+89,Q036,36,2,Heat-rate/LMP,1,0
+89,Q038,38,1,Recent capacity additions,1,0
+89,Q038,38,2,Average emission rate,1,0
+89,Q039,39,1,Policy scenario,1,0
+89,Q039,39,2,Capacity expansion modeling,1,0
+89,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+89,Q047,47,2,UNFCCC CDM Tool07,1,0
+92,Q035,35,1,None,1,1
+92,Q036,36,1,SCED – fuel on the margin,1,0
+92,Q036,36,2,SCED – locational,1,0
+92,Q036,36,3,Scenario modeling,1,0
+92,Q036,36,4,Heat-rate/LMP,1,0
+92,Q036,36,5,Statistical,1,0
+92,Q036,36,6,Capacity factor based,1,0
+92,Q036,36,7,Difference-based,1,0
+94,Q028,28,1,Regulatory test,1,0
+94,Q028,28,2,Timing test,1,0
+94,Q028,28,3,Financial analysis test,1,0
+94,Q028,28,4,Barrier test,1,0
+94,Q028,28,5,Common practice test,1,0
+94,Q028,28,6,Contractual/tenor test,1,0
+94,Q038,38,1,Recent capacity additions,1,0
+94,Q039,39,1,Policy scenario,1,0
+94,Q039,39,2,Capacity expansion modeling,1,0
+94,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+94,Q049,49,1,Resource adequacy approaches,1,0
+94,Q049,49,2,Intervention lifecycle approaches,1,0
+96,Q028,28,1,Regulatory test,1,0
+96,Q028,28,2,Timing test,1,0
+96,Q028,28,3,Financial analysis test,1,0
+96,Q028,28,4,Common practice test,1,0
+96,Q028,28,5,Positive list,1,0
+96,Q028,28,6,Performance standard,1,0
+96,Q028,28,7,Contractual/tenor test,1,0
+96,Q028,28,8,First-of-its-kind test,1,0
+96,Q035,35,1,SCED – fuel on the margin,1,0
+96,Q035,35,2,SCED – locational,1,0
+96,Q035,35,3,Heat-rate/LMP,1,0
+96,Q035,35,4,Statistical,1,0
+96,Q035,35,5,Capacity factor based,1,0
+96,Q036,36,1,Scenario modeling,1,0
+96,Q036,36,2,Difference-based,1,0
+96,Q038,38,1,Recent capacity additions,1,0
+96,Q039,39,1,Policy scenario,1,0
+96,Q039,39,2,Capacity expansion modeling,1,0
+96,Q039,39,3,Average emission rate,1,0
+96,Q047,47,1,Unsure,1,1
+96,Q049,49,1,Resource adequacy approaches,1,0
+96,Q049,49,2,Intervention lifecycle approaches,1,0
+97,Q028,28,1,None (no tests are feasible),1,1
+97,Q028,28,2,Positive list,1,0
+99,Q035,35,1,SCED – fuel on the margin,1,0
+99,Q035,35,2,SCED – locational,1,0
+99,Q035,35,3,Statistical,1,0
+99,Q036,36,1,Scenario modeling,1,0
+99,Q036,36,2,Heat-rate/LMP,1,0
+99,Q036,36,3,Capacity factor based,1,0
+99,Q036,36,4,Difference-based,1,0
+99,Q038,38,1,Recent capacity additions,1,0
+102,Q035,35,1,SCED – locational,1,0
+102,Q035,35,2,Statistical,1,0
+105,Q028,28,1,Regulatory test,1,0
+105,Q028,28,2,Timing test,1,0
+105,Q028,28,3,Common practice test,1,0
+105,Q028,28,4,First-of-its-kind test,1,0
+107,Q028,28,1,Regulatory test,1,0
+107,Q035,35,1,SCED – fuel on the margin,1,0
+107,Q035,35,2,SCED – locational,1,0
+107,Q035,35,3,Statistical,1,0
+107,Q036,36,1,Heat-rate/LMP,1,0
+107,Q036,36,2,Scenario modeling,1,0
+107,Q036,36,3,Capacity factor based,1,0
+107,Q036,36,4,Difference-based,1,0
+107,Q038,38,1,Recent capacity additions,1,0
+107,Q039,39,1,Policy scenario,1,0
+107,Q039,39,2,Capacity expansion modeling,1,0
+107,Q039,39,3,Average emission rate,1,0
+107,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+107,Q047,47,2,Default 0.50 build margin weight for all projects,1,0
+107,Q049,49,1,All are feasible,1,1
+108,Q028,28,1,Regulatory test,1,0
+108,Q028,28,2,Contractual/tenor test,1,0
+109,Q028,28,1,Regulatory test,1,0
+109,Q028,28,2,Contractual/tenor test,1,0
+112,Q028,28,1,Regulatory test,1,0
+112,Q028,28,2,Timing test,1,0
+112,Q028,28,3,Common practice test,1,0
+112,Q028,28,4,Positive list,1,0
+112,Q028,28,5,Contractual/tenor test,1,0
+112,Q035,35,1,SCED – fuel on the margin,1,0
+112,Q035,35,2,SCED – locational,1,0
+112,Q035,35,3,Scenario modeling,1,0
+112,Q035,35,4,Heat-rate/LMP,1,0
+112,Q035,35,5,Statistical,1,0
+112,Q036,36,1,Difference-based,1,0
+112,Q036,36,2,Capacity factor based,1,0
+112,Q038,38,1,Policy scenario,1,0
+112,Q038,38,2,Recent capacity additions,1,0
+112,Q038,38,3,Capacity expansion modeling,1,0
+112,Q039,39,1,Average emission rate,1,0
+112,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+112,Q047,47,2,Resource adequacy approaches,1,0
+112,Q047,47,3,Intervention lifecycle approaches,1,0
+112,Q049,49,1,Unsure,1,1
+112,Q049,49,2,All are feasible,1,1
+113,Q028,28,1,Regulatory test,1,0
+113,Q035,35,1,SCED – fuel on the margin,1,0
+113,Q035,35,2,SCED – locational,1,0
+113,Q035,35,3,Scenario modeling,1,0
+113,Q035,35,4,Heat-rate/LMP,1,0
+113,Q035,35,5,Statistical,1,0
+113,Q035,35,6,Capacity factor based,1,0
+113,Q035,35,7,Difference-based,1,0
+113,Q036,36,1,None,1,1
+113,Q038,38,1,Recent capacity additions,1,0
+113,Q038,38,2,Policy scenario,1,0
+113,Q038,38,3,Capacity expansion modeling,1,0
+113,Q038,38,4,Average emission rate,1,0
+113,Q039,39,1,None,1,1
+113,Q047,47,1,Unsure,1,1
+113,Q049,49,1,Unsure,1,1
+114,Q028,28,1,Regulatory test,1,0
+114,Q028,28,2,Timing test,1,0
+114,Q028,28,3,Positive list,1,0
+114,Q028,28,4,Contractual/tenor test,1,0
+114,Q035,35,1,SCED – fuel on the margin,1,0
+114,Q035,35,2,SCED – locational,1,0
+114,Q035,35,3,Statistical,1,0
+114,Q036,36,1,Scenario modeling,1,0
+114,Q036,36,2,Capacity factor based,1,0
+114,Q038,38,1,Recent capacity additions,1,0
+114,Q039,39,1,Average emission rate,1,0
+114,Q047,47,1,Default 0.50 build margin weight for all projects,1,0
+114,Q049,49,1,Resource adequacy approaches,1,0
+114,Q049,49,2,Intervention lifecycle approaches,1,0
+115,Q028,28,1,Regulatory test,1,0
+115,Q035,35,1,None,1,1
+115,Q036,36,1,None,1,1
+115,Q038,38,1,Average emission rate,1,0
+115,Q039,39,1,Recent capacity additions,1,0
+115,Q039,39,2,Policy scenario,1,0
+115,Q039,39,3,Capacity expansion modeling,1,0
+115,Q047,47,1,Unsure,1,1
+115,Q049,49,1,UNFCCC CDM Tool07,1,0
+115,Q049,49,2,Default 0.50 build margin weight for all projects,1,0
+116,Q028,28,1,Timing test,1,0
+116,Q028,28,2,Financial analysis test,1,0
+116,Q028,28,3,Barrier test,1,0
+116,Q028,28,4,Positive list,1,0
+116,Q028,28,5,Performance standard,1,0
+116,Q028,28,6,First-of-its-kind test,1,0
+117,Q028,28,1,Regulatory test,1,0
+117,Q028,28,2,Timing test,1,0
+117,Q028,28,3,Positive list,1,0
+117,Q028,28,4,Performance standard,1,0
+117,Q028,28,5,Contractual/tenor test,1,0
+117,Q028,28,6,First-of-its-kind test,1,0
+117,Q035,35,1,Scenario modeling,1,0
+117,Q035,35,2,Capacity factor based,1,0
+117,Q035,35,3,Difference-based,1,0
+117,Q036,36,1,SCED – locational,1,0
+117,Q036,36,2,Heat-rate/LMP,1,0
+117,Q038,38,1,Recent capacity additions,1,0
+117,Q038,38,2,Average emission rate,1,0
+117,Q039,39,1,Policy scenario,1,0
+117,Q039,39,2,Capacity expansion modeling,1,0
+117,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+117,Q047,47,2,UNFCCC CDM Tool07,1,0
+117,Q049,49,1,Unsure,1,1
+118,Q028,28,1,Timing test,1,0
+118,Q028,28,2,Barrier test,1,0
+118,Q028,28,3,Common practice test,1,0
+118,Q028,28,4,Contractual/tenor test,1,0
+118,Q028,28,5,First-of-its-kind test,1,0
+118,Q035,35,1,None,1,1
+118,Q038,38,1,Recent capacity additions,1,0
+118,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+118,Q047,47,2,UNFCCC CDM Tool07,1,0
+118,Q047,47,3,Default 0.50 build margin weight for all projects,1,0
+118,Q047,47,4,Intervention lifecycle approaches,1,0
+118,Q049,49,1,Resource adequacy approaches,1,0
+119,Q028,28,1,Regulatory test,1,0
+119,Q028,28,2,Common practice test,1,0
+119,Q028,28,3,First-of-its-kind test,1,0
+119,Q047,47,1,UNFCCC CDM Tool07,1,0
+119,Q047,47,2,Default 0.50 build margin weight for all projects,1,0
+120,Q028,28,1,Regulatory test,1,0
+120,Q028,28,2,Timing test,1,0
+120,Q028,28,3,Positive list,1,0
+120,Q028,28,4,Performance standard,1,0
+120,Q028,28,5,Contractual/tenor test,1,0
+120,Q028,28,6,First-of-its-kind test,1,0
+120,Q047,47,1,Intervention lifecycle approaches,1,0
+121,Q028,28,1,Regulatory test,1,0
+121,Q028,28,2,Timing test,1,0
+121,Q028,28,3,Financial analysis test,1,0
+121,Q028,28,4,Barrier test,1,0
+121,Q028,28,5,Positive list,1,0
+121,Q028,28,6,Performance standard,1,0
+121,Q028,28,7,Contractual/tenor test,1,0
+121,Q028,28,8,First-of-its-kind test,1,0
+121,Q035,35,1,SCED – fuel on the margin,1,0
+121,Q035,35,2,SCED – locational,1,0
+121,Q035,35,3,Scenario modeling,1,0
+121,Q035,35,4,Heat-rate/LMP,1,0
+121,Q035,35,5,Statistical,1,0
+121,Q035,35,6,Capacity factor based,1,0
+121,Q035,35,7,Difference-based,1,0
+121,Q036,36,1,None,1,1
+121,Q038,38,1,Recent capacity additions,1,0
+121,Q038,38,2,Policy scenario,1,0
+121,Q038,38,3,Capacity expansion modeling,1,0
+121,Q039,39,1,Average emission rate,1,0
+121,Q047,47,1,None are appropriate,1,1
+122,Q028,28,1,Regulatory test,1,0
+122,Q028,28,2,Timing test,1,0
+122,Q028,28,3,Positive list,1,0
+122,Q028,28,4,Performance standard,1,0
+122,Q028,28,5,Contractual/tenor test,1,0
+122,Q028,28,6,First-of-its-kind test,1,0
+123,Q028,28,1,Regulatory test,1,0
+123,Q028,28,2,Timing test,1,0
+123,Q028,28,3,Financial analysis test,1,0
+123,Q028,28,4,Common practice test,1,0
+125,Q028,28,1,Performance standard,1,0
+125,Q047,47,1,Unsure,1,1
+125,Q049,49,1,Unsure,1,1
+128,Q028,28,1,Regulatory test,1,0
+128,Q028,28,2,Financial analysis test,1,0
+128,Q028,28,3,Positive list,1,0
+128,Q028,28,4,Contractual/tenor test,1,0
+131,Q028,28,1,Regulatory test,1,0
+131,Q028,28,2,Timing test,1,0
+131,Q028,28,3,Financial analysis test,1,0
+131,Q028,28,4,Performance standard,1,0
+133,Q028,28,1,Regulatory test,1,0
+133,Q028,28,2,Timing test,1,0
+133,Q028,28,3,Financial analysis test,1,0
+133,Q028,28,4,Performance standard,1,0
+134,Q028,28,1,Regulatory test,1,0
+134,Q028,28,2,Timing test,1,0
+134,Q028,28,3,Barrier test,1,0
+134,Q028,28,4,Common practice test,1,0
+134,Q028,28,5,Positive list,1,0
+134,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+134,Q049,49,1,Unsure,1,1
+135,Q028,28,1,Regulatory test,1,0
+135,Q028,28,2,Timing test,1,0
+135,Q028,28,3,Positive list,1,0
+135,Q028,28,4,Contractual/tenor test,1,0
+136,Q028,28,1,Regulatory test,1,0
+136,Q028,28,2,Timing test,1,0
+136,Q028,28,3,Financial analysis test,1,0
+136,Q028,28,4,Barrier test,1,0
+136,Q028,28,5,Positive list,1,0
+136,Q028,28,6,Performance standard,1,0
+139,Q028,28,1,Regulatory test,1,0
+139,Q028,28,2,Timing test,1,0
+139,Q028,28,3,Financial analysis test,1,0
+139,Q028,28,4,Barrier test,1,0
+139,Q028,28,5,Performance standard,1,0
+139,Q028,28,6,Common practice test,1,0
+139,Q028,28,7,Positive list,1,0
+139,Q028,28,8,Contractual/tenor test,1,0
+140,Q038,38,1,Recent capacity additions,1,0
+140,Q038,38,2,Capacity expansion modeling,1,0
+140,Q038,38,3,Average emission rate,1,0
+140,Q039,39,1,Policy scenario,1,0
+140,Q047,47,1,Unsure,1,1
+140,Q049,49,1,Unsure,1,1
+141,Q028,28,1,Regulatory test,1,0
+142,Q028,28,1,Regulatory test,1,0
+142,Q028,28,2,Timing test,1,0
+142,Q028,28,3,Financial analysis test,1,0
+142,Q028,28,4,Common practice test,1,0
+142,Q028,28,5,Performance standard,1,0
+142,Q035,35,1,SCED – fuel on the margin,1,0
+142,Q035,35,2,SCED – locational,1,0
+142,Q035,35,3,Scenario modeling,1,0
+142,Q035,35,4,Statistical,1,0
+142,Q038,38,1,Recent capacity additions,1,0
+142,Q038,38,2,Capacity expansion modeling,1,0
+142,Q039,39,1,Average emission rate,1,0
+142,Q047,47,1,None are appropriate,1,1
+142,Q049,49,1,All are feasible,1,1
+143,Q028,28,1,Regulatory test,1,0
+143,Q028,28,2,Timing test,1,0
+143,Q028,28,3,Financial analysis test,1,0
+143,Q028,28,4,Barrier test,1,0
+143,Q028,28,5,Common practice test,1,0
+143,Q028,28,6,Positive list,1,0
+143,Q028,28,7,Performance standard,1,0
+143,Q035,35,1,SCED – fuel on the margin,1,0
+143,Q035,35,2,SCED – locational,1,0
+143,Q035,35,3,Scenario modeling,1,0
+143,Q035,35,4,Heat-rate/LMP,1,0
+143,Q035,35,5,Statistical,1,0
+143,Q035,35,6,Capacity factor based,1,0
+143,Q035,35,7,Difference-based,1,0
+143,Q036,36,1,None,1,1
+143,Q038,38,1,Recent capacity additions,1,0
+143,Q038,38,2,Policy scenario,1,0
+143,Q038,38,3,Capacity expansion modeling,1,0
+143,Q038,38,4,Average emission rate,1,0
+143,Q039,39,1,None,1,1
+145,Q028,28,1,Regulatory test,1,0
+145,Q028,28,2,Timing test,1,0
+145,Q028,28,3,Financial analysis test,1,0
+145,Q028,28,4,Positive list,1,0
+145,Q028,28,5,Contractual/tenor test,1,0
+145,Q035,35,1,SCED – fuel on the margin,1,0
+145,Q035,35,2,SCED – locational,1,0
+145,Q035,35,3,Statistical,1,0
+145,Q036,36,1,Scenario modeling,1,0
+145,Q036,36,2,Heat-rate/LMP,1,0
+145,Q036,36,3,Capacity factor based,1,0
+145,Q036,36,4,Difference-based,1,0
+145,Q038,38,1,Recent capacity additions,1,0
+145,Q039,39,1,Policy scenario,1,0
+145,Q039,39,2,Capacity expansion modeling,1,0
+145,Q039,39,3,Average emission rate,1,0
+145,Q049,49,1,All are feasible,1,1
+148,Q028,28,1,Regulatory test,1,0
+148,Q035,35,1,SCED – fuel on the margin,1,0
+148,Q038,38,1,Capacity expansion modeling,1,0
+148,Q047,47,1,Unsure,1,1
+148,Q049,49,1,Unsure,1,1
+149,Q028,28,1,Regulatory test,1,0
+149,Q028,28,2,Timing test,1,0
+149,Q028,28,3,Financial analysis test,1,0
+149,Q028,28,4,Positive list,1,0
+149,Q035,35,1,SCED – locational,1,0
+149,Q035,35,2,Statistical,1,0
+149,Q036,36,1,SCED – fuel on the margin,1,0
+149,Q036,36,2,Scenario modeling,1,0
+149,Q038,38,1,Recent capacity additions,1,0
+149,Q038,38,2,Policy scenario,1,0
+149,Q038,38,3,Capacity expansion modeling,1,0
+149,Q039,39,1,Average emission rate,1,0
+149,Q047,47,1,Default 0.50 build margin weight for all projects,1,0
+149,Q049,49,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+149,Q049,49,2,UNFCCC CDM Tool07,1,0
+149,Q049,49,3,Resource adequacy approaches,1,0
+149,Q049,49,4,Intervention lifecycle approaches,1,0
+150,Q028,28,1,None (no tests are feasible),1,1
+150,Q035,35,1,SCED – fuel on the margin,1,0
+150,Q035,35,2,SCED – locational,1,0
+150,Q035,35,3,Statistical,1,0
+150,Q036,36,1,Scenario modeling,1,0
+150,Q036,36,2,Heat-rate/LMP,1,0
+150,Q036,36,3,Difference-based,1,0
+150,Q036,36,4,Capacity factor based,1,0
+150,Q038,38,1,Recent capacity additions,1,0
+150,Q039,39,1,Policy scenario,1,0
+150,Q039,39,2,Capacity expansion modeling,1,0
+150,Q039,39,3,Average emission rate,1,0
+150,Q047,47,1,Default 0.50 build margin weight for all projects,1,0
+151,Q028,28,1,Timing test,1,0
+151,Q028,28,2,Regulatory test,1,0
+151,Q028,28,3,Common practice test,1,0
+151,Q028,28,4,Positive list,1,0
+151,Q028,28,5,Performance standard,1,0
+151,Q028,28,6,Contractual/tenor test,1,0
+151,Q028,28,7,First-of-its-kind test,1,0
+151,Q028,28,8,None (no tests are feasible),1,1
+152,Q028,28,1,Regulatory test,1,0
+153,Q028,28,1,None (no tests are feasible),1,1
+153,Q035,35,1,None,1,1
+153,Q038,38,1,None,1,1
+153,Q047,47,1,None are appropriate,1,1
+153,Q049,49,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+153,Q049,49,2,UNFCCC CDM Tool07,1,0
+153,Q049,49,3,Default 0.50 build margin weight for all projects,1,0
+153,Q049,49,4,Resource adequacy approaches,1,0
+153,Q049,49,5,Intervention lifecycle approaches,1,0
+157,Q028,28,1,Regulatory test,1,0
+157,Q028,28,2,Timing test,1,0
+157,Q028,28,3,Financial analysis test,1,0
+157,Q028,28,4,Barrier test,1,0
+157,Q028,28,5,Common practice test,1,0
+157,Q028,28,6,Positive list,1,0
+157,Q028,28,7,Performance standard,1,0
+157,Q028,28,8,Contractual/tenor test,1,0
+157,Q028,28,9,First-of-its-kind test,1,0
+158,Q028,28,1,Regulatory test,1,0
+158,Q028,28,2,Timing test,1,0
+158,Q028,28,3,Positive list,1,0
+158,Q028,28,4,Financial analysis test,1,0
+158,Q035,35,1,SCED – fuel on the margin,1,0
+158,Q035,35,2,SCED – locational,1,0
+158,Q035,35,3,Statistical,1,0
+158,Q036,36,1,Scenario modeling,1,0
+158,Q036,36,2,Heat-rate/LMP,1,0
+158,Q036,36,3,Capacity factor based,1,0
+158,Q036,36,4,Difference-based,1,0
+158,Q038,38,1,Recent capacity additions,1,0
+158,Q039,39,1,Policy scenario,1,0
+158,Q039,39,2,Capacity expansion modeling,1,0
+158,Q039,39,3,Average emission rate,1,0
+158,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+158,Q047,47,2,Default 0.50 build margin weight for all projects,1,0
+158,Q049,49,1,All are feasible,1,1
+159,Q028,28,1,Regulatory test,1,0
+159,Q028,28,2,Timing test,1,0
+159,Q028,28,3,Financial analysis test,1,0
+159,Q028,28,4,Positive list,1,0
+160,Q028,28,1,Positive list,1,0
+160,Q028,28,2,Financial analysis test,1,0
+160,Q028,28,3,Regulatory test,1,0
+160,Q028,28,4,Timing test,1,0
+160,Q028,28,5,Common practice test,1,0
+160,Q028,28,6,Barrier test,1,0
+160,Q028,28,7,Performance standard,1,0
+165,Q028,28,1,Regulatory test,1,0
+165,Q028,28,2,Timing test,1,0
+165,Q028,28,3,Financial analysis test,1,0
+165,Q028,28,4,Performance standard,1,0
+170,Q028,28,1,Timing test,1,0
+170,Q028,28,2,Positive list,1,0
+170,Q028,28,3,Regulatory test,1,0
+170,Q028,28,4,Performance standard,1,0
+170,Q028,28,5,Contractual/tenor test,1,0
+170,Q028,28,6,First-of-its-kind test,1,0
+170,Q038,38,1,Recent capacity additions,1,0
+170,Q038,38,2,Average emission rate,1,0
+170,Q039,39,1,Policy scenario,1,0
+170,Q039,39,2,Capacity expansion modeling,1,0
+170,Q047,47,1,Unsure,1,1
+170,Q049,49,1,Unsure,1,1
+172,Q047,47,1,Unsure,1,1
+172,Q049,49,1,Unsure,1,1
+174,Q028,28,1,Regulatory test,1,0
+174,Q028,28,2,Timing test,1,0
+174,Q028,28,3,Financial analysis test,1,0
+174,Q028,28,4,Barrier test,1,0
+174,Q028,28,5,Common practice test,1,0
+174,Q028,28,6,Positive list,1,0
+174,Q028,28,7,Performance standard,1,0
+174,Q028,28,8,Contractual/tenor test,1,0
+174,Q028,28,9,First-of-its-kind test,1,0
+174,Q035,35,1,Heat-rate/LMP,1,0
+174,Q035,35,2,Statistical,1,0
+174,Q035,35,3,Capacity factor based,1,0
+174,Q035,35,4,Difference-based,1,0
+174,Q036,36,1,SCED – fuel on the margin,1,0
+174,Q036,36,2,SCED – locational,1,0
+174,Q036,36,3,Scenario modeling,1,0
+174,Q038,38,1,Recent capacity additions,1,0
+174,Q039,39,1,Policy scenario,1,0
+174,Q039,39,2,Capacity expansion modeling,1,0
+174,Q039,39,3,Average emission rate,1,0
+174,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+174,Q047,47,2,UNFCCC CDM Tool07,1,0
+174,Q049,49,1,Resource adequacy approaches,1,0
+175,Q035,35,1,SCED – locational,1,0
+175,Q035,35,2,Statistical,1,0
+175,Q036,36,1,SCED – fuel on the margin,1,0
+175,Q036,36,2,Scenario modeling,1,0
+175,Q038,38,1,Recent capacity additions,1,0
+175,Q039,39,1,Average emission rate,1,0
+175,Q047,47,1,Default 0.50 build margin weight for all projects,1,0
+175,Q049,49,1,Unsure,1,1
+176,Q028,28,1,Regulatory test,1,0
+176,Q028,28,2,Timing test,1,0
+176,Q028,28,3,Barrier test,1,0
+176,Q028,28,4,Common practice test,1,0
+176,Q028,28,5,Positive list,1,0
+176,Q028,28,6,Contractual/tenor test,1,0
+176,Q028,28,7,First-of-its-kind test,1,0
+176,Q035,35,1,SCED – fuel on the margin,1,0
+176,Q035,35,2,SCED – locational,1,0
+176,Q035,35,3,Heat-rate/LMP,1,0
+176,Q035,35,4,Capacity factor based,1,0
+176,Q035,35,5,Difference-based,1,0
+176,Q036,36,1,Scenario modeling,1,0
+176,Q036,36,2,Statistical,1,0
+176,Q038,38,1,Recent capacity additions,1,0
+176,Q038,38,2,Average emission rate,1,0
+176,Q039,39,1,Policy scenario,1,0
+176,Q039,39,2,Capacity expansion modeling,1,0
+176,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+176,Q047,47,2,UNFCCC CDM Tool07,1,0
+176,Q047,47,3,Default 0.50 build margin weight for all projects,1,0
+176,Q049,49,1,All are feasible,1,1
+177,Q028,28,1,Regulatory test,1,0
+177,Q028,28,2,Timing test,1,0
+177,Q028,28,3,Common practice test,1,0
+177,Q028,28,4,Positive list,1,0
+177,Q028,28,5,Contractual/tenor test,1,0
+177,Q028,28,6,First-of-its-kind test,1,0
+177,Q035,35,1,SCED – fuel on the margin,1,0
+177,Q035,35,2,SCED – locational,1,0
+177,Q035,35,3,Scenario modeling,1,0
+177,Q036,36,1,Heat-rate/LMP,1,0
+177,Q036,36,2,Statistical,1,0
+177,Q036,36,3,Capacity factor based,1,0
+177,Q036,36,4,Difference-based,1,0
+177,Q038,38,1,Recent capacity additions,1,0
+177,Q039,39,1,Policy scenario,1,0
+177,Q039,39,2,Capacity expansion modeling,1,0
+177,Q039,39,3,Average emission rate,1,0
+177,Q047,47,1,None are appropriate,1,1
+177,Q049,49,1,All are feasible,1,1
+178,Q028,28,1,Regulatory test,1,0
+178,Q028,28,2,Timing test,1,0
+178,Q028,28,3,Barrier test,1,0
+178,Q028,28,4,Common practice test,1,0
+178,Q028,28,5,Positive list,1,0
+178,Q028,28,6,First-of-its-kind test,1,0
+179,Q028,28,1,Timing test,1,0
+179,Q028,28,2,Regulatory test,1,0
+179,Q028,28,3,Financial analysis test,1,0
+179,Q028,28,4,Positive list,1,0
+179,Q035,35,1,SCED – fuel on the margin,1,0
+179,Q035,35,2,SCED – locational,1,0
+179,Q035,35,3,Statistical,1,0
+179,Q036,36,1,Scenario modeling,1,0
+179,Q036,36,2,Heat-rate/LMP,1,0
+179,Q036,36,3,Difference-based,1,0
+179,Q036,36,4,Capacity factor based,1,0
+179,Q038,38,1,Recent capacity additions,1,0
+179,Q039,39,1,Policy scenario,1,0
+179,Q039,39,2,Capacity expansion modeling,1,0
+179,Q039,39,3,Average emission rate,1,0
+179,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+179,Q047,47,2,Default 0.50 build margin weight for all projects,1,0
+179,Q049,49,1,All are feasible,1,1
+181,Q028,28,1,None (no tests are feasible),1,1
+181,Q047,47,1,Default 0.50 build margin weight for all projects,1,0
+181,Q049,49,1,Unsure,1,1
+183,Q028,28,1,Financial analysis test,1,0
+183,Q028,28,2,Barrier test,1,0
+184,Q035,35,1,Difference-based,1,0
+184,Q036,36,1,SCED – fuel on the margin,1,0
+184,Q036,36,2,SCED – locational,1,0
+184,Q036,36,3,Scenario modeling,1,0
+184,Q036,36,4,Heat-rate/LMP,1,0
+184,Q036,36,5,Statistical,1,0
+184,Q036,36,6,Capacity factor based,1,0
+187,Q035,35,1,SCED – locational,1,0
+187,Q035,35,2,Statistical,1,0
+187,Q036,36,1,SCED – fuel on the margin,1,0
+187,Q036,36,2,Scenario modeling,1,0
+187,Q036,36,3,Heat-rate/LMP,1,0
+187,Q036,36,4,Capacity factor based,1,0
+187,Q036,36,5,Difference-based,1,0
+187,Q038,38,1,Recent capacity additions,1,0
+187,Q038,38,2,Average emission rate,1,0
+187,Q039,39,1,Policy scenario,1,0
+187,Q039,39,2,Capacity expansion modeling,1,0
+187,Q047,47,1,Default 0.50 build margin weight for all projects,1,0
+188,Q028,28,1,Regulatory test,1,0
+188,Q028,28,2,Timing test,1,0
+188,Q028,28,3,Financial analysis test,1,0
+188,Q028,28,4,Positive list,1,0
+188,Q035,35,1,SCED – fuel on the margin,1,0
+188,Q035,35,2,SCED – locational,1,0
+188,Q035,35,3,Statistical,1,0
+189,Q038,38,1,None,1,1
+189,Q047,47,1,Unsure,1,1
+189,Q049,49,1,All are feasible,1,1
+190,Q028,28,1,Regulatory test,1,0
+190,Q028,28,2,Timing test,1,0
+190,Q028,28,3,Common practice test,1,0
+190,Q028,28,4,Positive list,1,0
+190,Q028,28,5,Contractual/tenor test,1,0
+190,Q028,28,6,First-of-its-kind test,1,0
+190,Q028,28,7,Barrier test,1,0
+190,Q035,35,1,SCED – fuel on the margin,1,0
+190,Q035,35,2,SCED – locational,1,0
+190,Q035,35,3,Statistical,1,0
+190,Q035,35,4,Capacity factor based,1,0
+190,Q035,35,5,Scenario modeling,1,0
+190,Q036,36,1,Heat-rate/LMP,1,0
+190,Q036,36,2,Difference-based,1,0
+190,Q038,38,1,Recent capacity additions,1,0
+190,Q038,38,2,Policy scenario,1,0
+190,Q038,38,3,Capacity expansion modeling,1,0
+190,Q038,38,4,Average emission rate,1,0
+190,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+190,Q047,47,2,Intervention lifecycle approaches,1,0
+190,Q047,47,3,Resource adequacy approaches,1,0
+190,Q049,49,1,Unsure,1,1
+191,Q028,28,1,Regulatory test,1,0
+191,Q028,28,2,Timing test,1,0
+191,Q028,28,3,Common practice test,1,0
+191,Q028,28,4,Contractual/tenor test,1,0
+191,Q028,28,5,Positive list,1,0
+191,Q035,35,1,SCED – locational,1,0
+191,Q035,35,2,Heat-rate/LMP,1,0
+191,Q035,35,3,Statistical,1,0
+191,Q038,38,1,Capacity expansion modeling,1,0
+191,Q038,38,2,Policy scenario,1,0
+191,Q039,39,1,Recent capacity additions,1,0
+191,Q039,39,2,Average emission rate,1,0
+191,Q047,47,1,Intervention lifecycle approaches,1,0
+191,Q049,49,1,Intervention lifecycle approaches,1,0
+193,Q028,28,1,Regulatory test,1,0
+193,Q028,28,2,Timing test,1,0
+193,Q028,28,3,Common practice test,1,0
+193,Q035,35,1,SCED – locational,1,0
+193,Q035,35,2,Heat-rate/LMP,1,0
+193,Q035,35,3,Statistical,1,0
+193,Q038,38,1,Capacity expansion modeling,1,0
+193,Q038,38,2,Policy scenario,1,0
+193,Q039,39,1,Average emission rate,1,0
+194,Q035,35,1,SCED – fuel on the margin,1,0
+194,Q035,35,2,SCED – locational,1,0
+194,Q035,35,3,Statistical,1,0
+194,Q036,36,1,Scenario modeling,1,0
+194,Q036,36,2,Heat-rate/LMP,1,0
+194,Q036,36,3,Capacity factor based,1,0
+194,Q036,36,4,Difference-based,1,0
+194,Q038,38,1,Recent capacity additions,1,0
+194,Q039,39,1,Policy scenario,1,0
+194,Q039,39,2,Capacity expansion modeling,1,0
+194,Q039,39,3,Average emission rate,1,0
+194,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+194,Q047,47,2,Default 0.50 build margin weight for all projects,1,0
+194,Q049,49,1,All are feasible,1,1
+196,Q035,35,1,SCED – fuel on the margin,1,0
+196,Q035,35,2,SCED – locational,1,0
+196,Q035,35,3,Scenario modeling,1,0
+196,Q035,35,4,Heat-rate/LMP,1,0
+196,Q035,35,5,Statistical,1,0
+196,Q035,35,6,Capacity factor based,1,0
+196,Q036,36,1,Difference-based,1,0
+196,Q038,38,1,Recent capacity additions,1,0
+196,Q038,38,2,Policy scenario,1,0
+196,Q038,38,3,Capacity expansion modeling,1,0
+196,Q039,39,1,Average emission rate,1,0
+196,Q047,47,1,Unsure,1,1
+196,Q049,49,1,Unsure,1,1
+197,Q028,28,1,Timing test,1,0
+197,Q028,28,2,Financial analysis test,1,0
+197,Q028,28,3,Regulatory test,1,0
+197,Q028,28,4,Performance standard,1,0
+197,Q035,35,1,Statistical,1,0
+197,Q035,35,2,SCED – locational,1,0
+197,Q035,35,3,SCED – fuel on the margin,1,0
+197,Q036,36,1,Scenario modeling,1,0
+197,Q036,36,2,Heat-rate/LMP,1,0
+197,Q036,36,3,Capacity factor based,1,0
+197,Q036,36,4,Difference-based,1,0
+197,Q038,38,1,Recent capacity additions,1,0
+197,Q039,39,1,Policy scenario,1,0
+197,Q039,39,2,Capacity expansion modeling,1,0
+197,Q039,39,3,Average emission rate,1,0
+197,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+197,Q047,47,2,Default 0.50 build margin weight for all projects,1,0
+197,Q049,49,1,All are feasible,1,1
+198,Q035,35,1,None,1,1
+198,Q036,36,1,None,1,1
+198,Q038,38,1,None,1,1
+198,Q039,39,1,None,1,1
+201,Q028,28,1,Regulatory test,1,0
+201,Q028,28,2,Timing test,1,0
+201,Q028,28,3,Financial analysis test,1,0
+201,Q028,28,4,Barrier test,1,0
+201,Q028,28,5,Common practice test,1,0
+201,Q028,28,6,Positive list,1,0
+201,Q028,28,7,Performance standard,1,0
+201,Q028,28,8,First-of-its-kind test,1,0
+201,Q035,35,1,SCED – fuel on the margin,1,0
+201,Q035,35,2,SCED – locational,1,0
+201,Q035,35,3,Statistical,1,0
+201,Q035,35,4,Capacity factor based,1,0
+201,Q036,36,1,Scenario modeling,1,0
+201,Q036,36,2,Heat-rate/LMP,1,0
+201,Q036,36,3,Difference-based,1,0
+201,Q038,38,1,Recent capacity additions,1,0
+201,Q038,38,2,Policy scenario,1,0
+201,Q038,38,3,Capacity expansion modeling,1,0
+201,Q039,39,1,Average emission rate,1,0
+201,Q047,47,1,GHG Protocol Guidelines for Quantifying GHG Reductions from Grid-connected Electricity Projects,1,0
+201,Q047,47,2,UNFCCC CDM Tool07,1,0
+201,Q047,47,3,Intervention lifecycle approaches,1,0
+201,Q049,49,1,All are feasible,1,1
