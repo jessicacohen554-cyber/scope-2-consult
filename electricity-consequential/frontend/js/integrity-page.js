@@ -502,7 +502,18 @@
                 '<div><dt>Named members</dt><dd class="num">' + named.length +
                 '</dd></div>' +
                 '<div><dt>Redacted members</dt><dd class="num">' + nRed +
-                '</dd></div></dl>' +
+                '</dd></div>' +
+                // integrity.json → blocs[].n_countries (contract addition C5).
+                // A bloc drawn from one country is a different object from one
+                // drawn from six, and the count says so without naming it —
+                // which matters, because the largest bloc's country sits inside
+                // the "other" bucket of the published country split and every
+                // one of its members asked to be redacted (P35 F6).
+                (typeof b.n_countries === 'number'
+                    ? '<div><dt>Countries represented</dt><dd class="num">' +
+                      b.n_countries + '</dd></div>'
+                    : '') +
+                '</dl>' +
                 '<div class="ig-bloc-sub">Named members</div>' +
                 (named.length
                     ? '<div class="ig-chips">' + named.map(function(m) {
@@ -516,6 +527,19 @@
                       (named.length ? 'further ' : '') + plural(nRed, 'member') +
                       ' requested redaction and ' + (nRed === 1 ? 'is' : 'are') +
                       ' counted here without being named.</p>'
+                    : '') +
+                // Contract addition C5 read out. Deliberately silent on *which*
+                // country: bloc membership is not cut by country anywhere in
+                // the export, and for a pack of redacted filers naming it would
+                // be new attribute disclosure about them (P35 F6). Only packs
+                // above two members get the note — two people from one country
+                // is not a pattern.
+                (b.single_country && total > 2
+                    ? '<p class="ig-bloc-none">Every member of this pack filed ' +
+                      'from the same country, which makes it coordination ' +
+                      'inside one jurisdiction rather than across an industry. ' +
+                      'Which country is not published here, and is not ' +
+                      'recoverable from anything else on this site.</p>'
                     : '') +
                 '</div>';
         }).join('') + '</div>';
@@ -545,14 +569,26 @@
                 (c.named_members || []).forEach(function(m) { people[m.id] = 1; });
             });
             var nPeople = Object.keys(people).length;
+            // integrity.json → text_clusters_n_respondents (contract addition
+            // C3's sibling, C2). Passages overlap, so the spanned headcount is
+            // not the sum of the rows and cannot be recovered from them here —
+            // it used to live only in prose, which is how it drifted from 25 to
+            // 26 without anyone noticing (P35 F5). The exporter owns it now.
+            var spanned = integ && integ.text_clusters_n_respondents;
             summary.textContent = cl.length + ' shared ' +
                 plural(cl.length, 'passage') + ' — the widest is carried by ' +
-                maxN + ' ' + plural(maxN, 'respondent') + '. ' + nPeople +
-                ' named ' + plural(nPeople, 'respondent') + ' ' +
-                (nPeople === 1 ? 'appears' : 'appear') + ' in at least one; ' +
-                'redacted members are counted within each passage and cannot be ' +
-                'totalled across them, so the number of people involved is ' +
-                'higher than that.';
+                maxN + ' ' + plural(maxN, 'respondent') + '. ' +
+                (typeof spanned === 'number'
+                    ? 'Across all of them ' + spanned + ' ' +
+                      plural(spanned, 'respondent') + ' ' +
+                      (spanned === 1 ? 'shares' : 'share') + ' text with ' +
+                      'someone else, ' + nPeople + ' of them named; the rest ' +
+                      'asked to be redacted and are counted, never listed.'
+                    : nPeople + ' named ' + plural(nPeople, 'respondent') + ' ' +
+                      (nPeople === 1 ? 'appears' : 'appear') + ' in at least ' +
+                      'one; redacted members are counted within each passage ' +
+                      'and cannot be totalled across them, so the number of ' +
+                      'people involved is higher than that.');
         }
 
         var show = cl.slice(0, 12);

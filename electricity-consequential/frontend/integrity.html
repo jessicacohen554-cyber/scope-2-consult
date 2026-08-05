@@ -763,7 +763,11 @@
                 <p class="ec-note" id="crossCaveat"></p>
                 <div class="ig-cross-links">
                     <a class="btn-pill" href="respondents.html">Respondent browser — this consultation</a>
-                    <a class="btn-pill" href="../../frontend/respondents.html">Respondent browser — Scope 2 hub</a>
+                    <!-- nav.js rewrites this to the repo-root hop when the two
+                         hubs are served together, and to the companion hub's
+                         source on GitHub when they are not. -->
+                    <a class="btn-pill" data-scope2-link="respondents.html"
+                       href="../../frontend/respondents.html">Respondent browser — Scope 2 hub</a>
                 </div>
             </div>
 

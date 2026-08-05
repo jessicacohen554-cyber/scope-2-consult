@@ -107,6 +107,14 @@ import derive_flags  # noqa: E402  (sibling module, path set above)
 
 MIN_SEGMENT_N = 5           # below this a segment value gets no breakdown
 SENTINEL = "<5"             # the masked-count marker
+# Gotcha 15 keyed the mask on the segment *value's* overall size, and the
+# smallest of those is country_4/jp at 8 - so the sentinel never fired, while
+# four published stance cells sat at n<5 printing exact counts (P35 F8/Q5).
+# The threshold below applies to the cell itself: how many respondents in that
+# segment answered *that question*. THIN_CELL_N is the softer band above it -
+# the cell is published, but a percentage off a base this small is noise, so
+# renderers show the raw counts instead (PLAN Sec. 5 contract addition C3).
+THIN_CELL_N = 10            # below this a cell publishes counts, not percentages
 SECTOR_TOP_N = 10
 INDEX_NAME_MAX = 80         # respondents.json org_index[].name
 PROFILE_NAME_MAX = 300      # orgs/{id}.json name (organization is free text)
@@ -798,7 +806,16 @@ def scell(counts: Counter, order: list[str]) -> dict:
 
 def segmented_scell(answers: dict[int, str], order: list[str],
                     segments: dict) -> dict:
-    """{overall: SCELL, by: {dim: {value: SCELL | {"n": "<5"}}}}."""
+    """{overall: SCELL, by: {dim: {value: SCELL | {"n": "<5"}}}}.
+
+    Two disclosure thresholds apply, both to segment cells only - the overall
+    cell is the question's own base and is never masked:
+
+    * cell n < MIN_SEGMENT_N -> the sentinel, same shape the segment-level mask
+      emits, so renderers already handle it.
+    * cell n < THIN_CELL_N -> published with ``"thin": true``; the cell is big
+      enough to show but too small to express as a percentage.
+    """
     entry = {"overall": scell(Counter(answers.values()), order), "by": {}}
     for dim, seg in segments.items():
         cells = {}
@@ -809,7 +826,13 @@ def segmented_scell(answers: dict[int, str], order: list[str],
                 continue
             counts = Counter(option for pid, option in answers.items()
                              if seg["of"][pid] == key)
-            cells[key] = scell(counts, order)
+            cell = scell(counts, order)
+            if cell["n"] < MIN_SEGMENT_N:
+                cells[key] = {"n": SENTINEL}
+                continue
+            if cell["n"] < THIN_CELL_N:
+                cell["thin"] = True
+            cells[key] = cell
         entry["by"][dim] = cells
     return entry
 
@@ -1003,10 +1026,37 @@ def build_stances(answers, segments) -> dict:
             for qid in STANCE_QIDS}
 
 
+def matrix_net_pct(cell: dict):
+    """Net requiredness for one matrix cell: %Required - %Not required, 1dp.
+
+    The convention is *pre-rounded* - each share is rounded to 1dp first and the
+    two rounded shares are subtracted - because that is what a reader can
+    reproduce from the two percentages printed on the row. Rounding the
+    difference instead moves two of the nine rows (regulatory +47.1 rather than
+    +47.2, barrier -27.6 rather than -27.5), which is how the plan, the heatmap
+    and the mini-matrix each ended up with their own answer (P35 F4). This
+    function is the single authority; renderers read the field, never recompute.
+    """
+    n = cell.get("n")
+    if not isinstance(n, int) or n <= 0:
+        return None
+    counts = cell.get("c") or []
+    high = counts[0] if counts else 0
+    low = counts[len(MATRIX_LEVELS) - 1] if len(counts) >= len(MATRIX_LEVELS) \
+        else 0
+    return r1((pct(high, n) or 0.0) - (pct(low, n) or 0.0))
+
+
 def build_matrix(answers, segments) -> dict:
-    tests = {qid: segmented_scell(answers.keyed(qid), option_order(qid),
-                                  segments)
-             for qid, _key in MATRIX_TESTS}
+    tests = {}
+    for qid, _key in MATRIX_TESTS:
+        entry = segmented_scell(answers.keyed(qid), option_order(qid), segments)
+        # Contract addition C1: the exporter owns the net, so no renderer can
+        # diverge from it (PLAN Sec. 5, P35 F4). Sorting the heatmap and the
+        # mini-matrix by this field also makes the two orders identical by
+        # construction rather than by coincidence.
+        entry["net_pct"] = matrix_net_pct(entry["overall"])
+        tests[qid] = entry
 
     picks = answers.picks["Q028"]
     table = {text: (key, special)
@@ -1260,6 +1310,14 @@ def build_respondents(questions, answers, segments, people, base, flags,
                  for qid, question in questions.items()]
 
     redaction_effect = []
+    # Contract addition C4: country is the sharpest axis in the dataset -
+    # significant on four of the six stance measures - and until now no shipped
+    # panel cut by it, so every country figure had to come from a direct db
+    # query (P35 F3). US vs non-US rather than the four country_4 buckets,
+    # because uk and jp are <=8 respondents overall: the pair is the cut that
+    # carries the finding and the only one that stays above the disclosure
+    # threshold on every stance question.
+    country_effect = []
     for qid in STANCE_QIDS:
         keyed = answers.keyed(qid)
         order = option_order(qid)
@@ -1269,6 +1327,13 @@ def build_respondents(questions, answers, segments, people, base, flags,
                                    if not people[pid]["redacted"]), order),
             "redacted": scell(Counter(key for pid, key in keyed.items()
                                       if people[pid]["redacted"]), order),
+        })
+        country_effect.append({
+            "qid": qid,
+            "us": scell(Counter(key for pid, key in keyed.items()
+                                if people[pid]["country"] == "us"), order),
+            "non_us": scell(Counter(key for pid, key in keyed.items()
+                                    if people[pid]["country"] != "us"), order),
         })
 
     # PLAN Sec. 4 wants this distribution at the respondent's *own* declared
@@ -1385,6 +1450,7 @@ def build_respondents(questions, answers, segments, people, base, flags,
                 len(base)),
             "sector_top": sector_top,
         },
+        "country_effect": country_effect,
         "org_index": org_index,
         "redaction_effect": redaction_effect,
     }
@@ -1696,12 +1762,23 @@ def build_integrity(con, questions, answers, segments, people, base,
     for key, ids in sorted(bloc_members.items()):
         shared = sum(1 for cluster in clusters
                      if len(set(cluster["members"]) & set(ids)) >= 2)
+        # Contract addition C5. The count, never the country: country_4 buckets
+        # the largest bloc's country inside "other", so it is not published
+        # anywhere in frontend/data/, and naming it here would be fresh
+        # attribute disclosure about respondents who all asked to be redacted
+        # (P35 F6 disclosure note). A bloc drawn from one country is a
+        # materially different object from one drawn from six, and the count
+        # says so without saying which.
+        countries = {people[pid]["country_value"] for pid in ids
+                     if pid in people}
         blocs.append({
             "key": key,
             "label": BLOC_LABELS.get(key, key.replace("_", " ").capitalize()),
             "member_ids_named": named_members(ids),
+            "n_countries": len(countries),
             "n_redacted": sum(1 for pid in ids if people[pid]["redacted"]),
             "shared_texts": shared,
+            "single_country": len(countries) == 1,
         })
     blocs.sort(key=lambda item: (-(len(item["member_ids_named"])
                                    + item["n_redacted"]), item["key"]))
@@ -1716,6 +1793,12 @@ def build_integrity(con, questions, answers, segments, people, base,
         "families": family_rows,
         "resubmission": resubmission,
         "text_clusters": text_clusters,
+        # Contract addition C2. Clusters overlap - a respondent can share several
+        # - so the spanned headcount is not the sum of n_respondents and cannot
+        # be derived from the rows without deduplicating members. It lived only
+        # in prose until now, which is exactly how it drifted (25 vs 26, P35 F5).
+        "text_clusters_n_respondents": len(
+            {pid for cluster in clusters for pid in cluster["members"]}),
     }
 
 

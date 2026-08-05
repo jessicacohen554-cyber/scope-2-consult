@@ -111,6 +111,22 @@
     border-radius: var(--radius-pill);
     padding: 1px 7px;
 }
+/* Thin-n marker (contract C3): the cell clears the n<5 mask but sits under
+   ten answers, so it publishes counts and no percentage. Deliberately quieter
+   than the hatch used for suppression — this is a caveat, not a redaction. */
+.ec-thin-flag {
+    font-family: var(--font-data);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    white-space: nowrap;
+    color: var(--text-muted);
+    background: var(--bg-alt);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-pill);
+    padding: 0 6px;
+}
 .ec-note {
     font-size: 0.75rem;
     line-height: 1.6;
@@ -406,9 +422,14 @@
     align-items: center;
     text-align: center;
 }
+/* `anywhere` used to break the column headers mid-word at phone widths —
+   "REQUIRE D", "OPTIONA L". Level labels are one or two short words, so
+   normal wrapping is always enough and never lies about the word. */
 .ec-mx-colname {
     line-height: 1.25;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
 }
 .ec-mx-rowhead {
     display: flex;
@@ -424,6 +445,22 @@
 }
 .ec-mx-testname {
     font-weight: 600;
+}
+.ec-mx-rowmeta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    flex-shrink: 0;
+}
+/* The row-header copy of the sort key. Hidden while the dedicated net column
+   is on screen; the narrow-width rule below swaps which copy shows. */
+.ec-mx-rowhead-net {
+    display: none;
+    font-family: var(--font-data);
+    font-size: 0.68rem;
+    font-weight: 700;
+    white-space: nowrap;
+    color: var(--text-secondary);
 }
 .ec-mx-cell {
     display: flex;
@@ -474,6 +511,16 @@
 }
 .ec-mx-colhead--net {
     border-bottom-color: var(--border-light);
+}
+/* Thin cells (5 <= n < 10) lead with the count, so the big number is a
+   headcount and the small one is its base — the reverse of a normal cell.
+   The size swap is the signal that the units changed. */
+.ec-mx-cell--thin .ec-mx-val {
+    font-size: 0.8rem;
+}
+.ec-mx-cell--thin .ec-mx-sub {
+    font-size: 0.6rem;
+    opacity: 0.85;
 }
 
 /* Mini matrix (Decision Board roll-up) */
@@ -1189,11 +1236,24 @@ a.ec-quote-org {
     }
 }
 @media (max-width: 768px) {
+    /* P35 option B. Above this width the matrix is four data columns wide and
+       the net column sits at the end, where the sort order is easiest to scan.
+       Below it, that column is the first thing pushed outside a 328 px scroll
+       port — and because the port scrolls, not the page, nothing signals that
+       the sort key is missing (P35 F10). So the net column is dropped and its
+       value moves into the row header, beside the label it sorts. Three data
+       columns then fit without a scroll port at all: 104 + 3x64 + gaps. */
     .ec-matrix {
         grid-template-columns:
-            minmax(126px, 1.1fr)
-            repeat(var(--ec-cols, 3), minmax(66px, 1fr))
-            minmax(74px, 0.6fr);
+            minmax(104px, 1.1fr)
+            repeat(var(--ec-cols, 3), minmax(64px, 1fr));
+    }
+    .ec-mx-colhead--net,
+    .ec-mx-cell--net {
+        display: none;
+    }
+    .ec-mx-rowhead-net {
+        display: inline;
     }
     .ec-mx-rowhead,
     .ec-mx-corner {
@@ -1205,6 +1265,10 @@ a.ec-quote-org {
         align-items: flex-start;
         gap: 0;
         font-size: 0.72rem;
+    }
+    .ec-mx-rowmeta {
+        flex-wrap: wrap;
+        gap: 2px var(--space-xs);
     }
     .ec-mx-colhead {
         padding: var(--space-xs) 2px;
@@ -1254,6 +1318,13 @@ a.ec-quote-org {
     .ec-mini-bar   { grid-area: bar; }
     .ec-mini-row .ec-tag-net { grid-area: net; }
     .ec-mini-row .ec-base-chip { grid-area: n; }
+    /* shared.css drops .chart-container-lg to 320 px here. The
+       required-vs-feasible cross carries nine labelled points and needs the
+       height back to place them without collisions; shared.css is verbatim,
+       so this class sits beside it instead of editing it. */
+    .ec-chart-tall {
+        min-height: 430px;
+    }
     .ec-controls {
         gap: var(--space-sm) var(--space-md);
     }

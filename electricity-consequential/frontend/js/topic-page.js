@@ -227,8 +227,13 @@
             // ECMatrix.renderCross writes its sr-table into the
             // `.ec-srtable-slot` two levels above the canvas, so the canvas
             // lives in its own container inside the host.
+            // `ec-chart-tall` buys back vertical room at phone widths, where
+            // shared.css shortens .chart-container-lg to 320 px. Nine labelled
+            // points need the height to resolve their collisions (P35 F11);
+            // shared.css is a verbatim shell file, so the override is a
+            // site-specific class beside it rather than an edit to it.
             body: function (p) {
-                return '<div class="chart-container-lg">' +
+                return '<div class="chart-container-lg ec-chart-tall">' +
                     '<canvas id="' + hostId(p) + '-canvas"></canvas></div>' +
                     '<div class="ec-srtable-slot"></div>';
             },

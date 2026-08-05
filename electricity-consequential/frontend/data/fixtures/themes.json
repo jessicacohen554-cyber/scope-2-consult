@@ -41,6 +41,60 @@
           "share_pct": 41.7
         }
       ]
+    },
+    "Q048": {
+      "n_coded": 8,
+      "n_texts": 9,
+      "themes": [
+        {
+          "key": "attribution_uncertainty",
+          "n": 6,
+          "n_dedup": 5,
+          "share_pct": 66.7
+        },
+        {
+          "key": "complexity_burden",
+          "n": 2,
+          "n_dedup": 2,
+          "share_pct": 22.2
+        }
+      ]
+    },
+    "Q050": {
+      "n_coded": 7,
+      "n_texts": 8,
+      "themes": [
+        {
+          "key": "attribution_uncertainty",
+          "n": 5,
+          "n_dedup": 4,
+          "share_pct": 62.5
+        },
+        {
+          "key": "complexity_burden",
+          "n": 2,
+          "n_dedup": 2,
+          "share_pct": 25.0
+        }
+      ]
+    },
+    "Q051": {
+      "n_coded": 5,
+      "n_texts": 6,
+      "themes": [
+        {
+          "key": "attribution_uncertainty",
+          "n": 3,
+          "n_dedup": 2,
+          "share_pct": 50.0
+        },
+        {
+          "key": "complexity_burden",
+          "n": 2,
+          "n_dedup": 2,
+          "share_pct": 33.3
+        }
+      ]
     }
   },
   "taxonomy": [

@@ -285,5 +285,364 @@
         "side": "not"
       }
     ]
+  },
+  "weighting": {
+    "base_app": 12,
+    "base_not": 10,
+    "options": [
+      {
+        "app": {
+          "by": {
+            "country_4": {
+              "jp": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              },
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": 5
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": 4
+              },
+              "consultant": {
+                "n": "<5"
+              },
+              "industry_group": {
+                "n": "<5"
+              },
+              "ngo": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": 5
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "individual": {
+                "n": "<5"
+              },
+              "organization": {
+                "n": 6
+              }
+            }
+          },
+          "n": 7
+        },
+        "key": "ghgp_grid",
+        "label": "GHGP Grid-connected Guidelines",
+        "net_pct": 48.3,
+        "not": {
+          "by": {
+            "country_4": {
+              "jp": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              },
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": 0
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": 0
+              },
+              "consultant": {
+                "n": "<5"
+              },
+              "industry_group": {
+                "n": "<5"
+              },
+              "ngo": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": 0
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "individual": {
+                "n": "<5"
+              },
+              "organization": {
+                "n": 0
+              }
+            }
+          },
+          "n": 1
+        }
+      },
+      {
+        "app": {
+          "by": {
+            "country_4": {
+              "jp": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              },
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": 3
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": 2
+              },
+              "consultant": {
+                "n": "<5"
+              },
+              "industry_group": {
+                "n": "<5"
+              },
+              "ngo": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": 3
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "individual": {
+                "n": "<5"
+              },
+              "organization": {
+                "n": 4
+              }
+            }
+          },
+          "n": 5
+        },
+        "key": "cdm_tool07",
+        "label": "UNFCCC CDM Tool07",
+        "net_pct": 21.7,
+        "not": {
+          "by": {
+            "country_4": {
+              "jp": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              },
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": 0
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": 0
+              },
+              "consultant": {
+                "n": "<5"
+              },
+              "industry_group": {
+                "n": "<5"
+              },
+              "ngo": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": 0
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "individual": {
+                "n": "<5"
+              },
+              "organization": {
+                "n": 1
+              }
+            }
+          },
+          "n": 2
+        }
+      },
+      {
+        "app": {
+          "by": {
+            "country_4": {
+              "jp": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              },
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": 1
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": 0
+              },
+              "consultant": {
+                "n": "<5"
+              },
+              "industry_group": {
+                "n": "<5"
+              },
+              "ngo": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": 1
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "individual": {
+                "n": "<5"
+              },
+              "organization": {
+                "n": 2
+              }
+            }
+          },
+          "n": 3
+        },
+        "key": "default_5050",
+        "label": "Default 0.50 build weight",
+        "net_pct": -15.0,
+        "not": {
+          "by": {
+            "country_4": {
+              "jp": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              },
+              "uk": {
+                "n": "<5"
+              },
+              "us": {
+                "n": 2
+              }
+            },
+            "org_type_5": {
+              "company": {
+                "n": 1
+              },
+              "consultant": {
+                "n": "<5"
+              },
+              "industry_group": {
+                "n": "<5"
+              },
+              "ngo": {
+                "n": "<5"
+              },
+              "other": {
+                "n": "<5"
+              }
+            },
+            "redaction": {
+              "named": {
+                "n": 2
+              },
+              "redacted": {
+                "n": "<5"
+              }
+            },
+            "responding_as": {
+              "individual": {
+                "n": "<5"
+              },
+              "organization": {
+                "n": 3
+              }
+            }
+          },
+          "n": 4
+        }
+      }
+    ],
+    "specials": [
+      {
+        "key": "unsure",
+        "label": "Unsure",
+        "n": 4,
+        "side": "app"
+      },
+      {
+        "key": "unsure",
+        "label": "Unsure",
+        "n": 5,
+        "side": "not"
+      },
+      {
+        "key": "none_appropriate",
+        "label": "None are appropriate",
+        "n": 2,
+        "side": "app"
+      },
+      {
+        "key": "all_feasible",
+        "label": "All are feasible",
+        "n": 3,
+        "side": "not"
+      }
+    ]
   }
 }

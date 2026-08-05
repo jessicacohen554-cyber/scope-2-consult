@@ -175,6 +175,42 @@
         return 'n<' + (maskN || 5);
     }
 
+    // The softer band above the mask (contract addition C3). The exporter flags
+    // these cells; the numeric fallback keeps hand-written fixtures and any
+    // pre-C3 export honest. A percentage off a base this small is noise — one
+    // more respondent moves it 10-20 points — so renderers print the counts and
+    // leave the percentage out.
+    var THIN_N = 10;
+
+    function isThin(cell, maskN) {
+        if (!cell || isMasked(cell, maskN) || isEmpty(cell)) return false;
+        if (cell.thin === true) return true;
+        return typeof cell.n === 'number' && cell.n < THIN_N;
+    }
+
+    // "3 of 7" rather than "42.9%".
+    function fmtOf(part, base) {
+        return part + ' of ' + base;
+    }
+
+    // --- Canvas degradation --------------------------------------------------
+    // Chart.js is pinned from a CDN. If it fails to load for a real reader
+    // there is nothing wrong with the page except that every canvas panel is
+    // blank space with no explanation (P35, Q4). Every canvas call site routes
+    // its miss through here so the failure reads the same everywhere and always
+    // points at the sr-only table, which is plain DOM and always present.
+    function chartMissing(canvas, what) {
+        var el = typeof canvas === 'string'
+            ? document.querySelector(canvas) : canvas;
+        var host = el && el.parentNode;
+        if (host) {
+            host.innerHTML = '<div class="card ec-empty">Chart.js did not load, ' +
+                'so ' + esc(what || 'this chart') + ' cannot be drawn. Every ' +
+                'number it would show is in the data table beneath it.</div>';
+        }
+        return null;
+    }
+
     // --- Option palette ------------------------------------------------------
     // Support colors only where meta declares a polarity AND the question is a
     // clean two-way (plus any number of specials). Everything else is a neutral
@@ -347,7 +383,10 @@
                 return esc(o.label || ('opt' + (i + 1))) + ' ' + x;
             }).join(' · ');
             return '<tr><th scope="row">' + esc(v.label) + '</th><td>' +
-                (parts || '—') + '</td><td class="ec-seg-n">n=' + n + '</td></tr>';
+                (parts || '—') + '</td><td class="ec-seg-n">n=' + n +
+                (isThin(cell, maskN)
+                    ? ' <span class="ec-thin-flag">thin</span>' : '') +
+                '</td></tr>';
         }).join('');
         return '<table class="ec-seg-table"><caption>By ' +
             esc((window.ECSegments && ECSegments.dimLabel(dimKey)) || dimKey) +
@@ -418,7 +457,12 @@
 
             if (dimKey !== 'overall' && opts.showSegments !== false) {
                 var byDim = (entry.by || {})[dimKey] || {};
-                var vals = (window.ECSegments && ECSegments.values(dimKey)) ||
+                // opts.segValues lets a caller draw a dimension that is not one
+                // of the four toggle vocabularies — the paired named/redacted
+                // and US/non-US comparisons on respondents.html synthesize
+                // their own two-value dimension and supply its labels here.
+                var vals = opts.segValues ||
+                    (window.ECSegments && ECSegments.values(dimKey)) ||
                     Object.keys(byDim).map(function(k) { return { key: k, label: k }; });
                 if (vals.length) {
                     html += '<div class="ec-strip-segs">';
@@ -460,9 +504,13 @@
         html += '</div>';
         html += '<p class="ec-note ec-note-legend"><span class="ec-swatch-hatch" ' +
             'aria-hidden="true"></span> hatched = fewer than ' + maskN +
-            ' respondents in that segment; the split is suppressed, not zero. ' +
-            'Gray segments are non-substantive options (&ldquo;Unsure&rdquo;, ' +
-            '&ldquo;None&rdquo;, &ldquo;N/A&rdquo;) and are never netted.</p>';
+            ' respondents answered in that segment; the split is suppressed, ' +
+            'not zero. Bars marked <span class="ec-thin-flag">counts only</span> ' +
+            'have between ' + maskN + ' and ' + (THIN_N - 1) + ' respondents &mdash; ' +
+            'read them as counts, because one more answer would move a ' +
+            'percentage by ten points or more. Gray segments are ' +
+            'non-substantive options (&ldquo;Unsure&rdquo;, &ldquo;None&rdquo;, ' +
+            '&ldquo;N/A&rdquo;) and are never netted.</p>';
         html += '<div class="ec-srtable-slot"></div>';
         el.innerHTML = html;
         el.classList.add('ec-strips-host');
@@ -487,11 +535,13 @@
         if (!cell || isEmpty(cell)) return 'not answered';
         if (isMasked(cell, maskN)) return 'suppressed (' + maskedLabel(cell, maskN) + ')';
         var n = baseOf(cell);
+        var thin = isThin(cell, maskN);
         return (cell.c || []).map(function(v, i) {
             var o = options[i] || {};
-            return (o.label || 'option ' + (i + 1)) + ' ' + v + ' (' +
-                fmtPct(pct1(v, n)) + ')';
-        }).join(', ') + '; n=' + n;
+            return (o.label || 'option ' + (i + 1)) + ' ' +
+                (thin ? fmtOf(v, n) : v + ' (' + fmtPct(pct1(v, n)) + ')');
+        }).join(', ') + '; n=' + n +
+            (thin ? ', too few to express as percentages' : '');
     }
 
     function ariaFor(q, options, cell, segLabel, maskN) {
@@ -520,22 +570,28 @@
                 esc(maskedLabel(cell, maskN)) + ' · suppressed</span></div>';
         }
         var n = baseOf(cell);
+        var thin = isThin(cell, maskN);
+        if (thin) cls += ' ec-bar--thin';
         var segs = (cell.c || []).map(function(v, i) {
             if (!v) return '';
             var p = pct1(v, n);
             var sw = pal[i] || { bg: 'transparent', fg: 'inherit' };
             var opt = options[i] || {};
+            // Widths still have to be proportional — that is what a stacked bar
+            // is — but under THIN_N the *number* on offer is the count, never
+            // the percentage. Contract addition C3.
             return '<span class="ec-bar-seg' +
                 (opt.special ? ' ec-bar-seg--special' : '') +
                 '" style="width:' + p + '%;background:' + sw.bg + ';color:' +
-                sw.fg + '" title="' + esc((opt.label || '') + ' — ' + v +
-                ' (' + fmtPct(p) + ')') + '">' +
+                sw.fg + '" title="' + esc((opt.label || '') + ' — ' +
+                (thin ? fmtOf(v, n) : v + ' (' + fmtPct(p) + ')')) + '">' +
                 (p >= 11 ? '<span class="ec-bar-seg-val">' + v + '</span>' : '') +
                 '</span>';
         }).join('');
         return '<div class="' + cls + '" role="img" aria-label="' +
             esc(o.aria || '') + '"' + (o.anchorAttrs || '') + '>' + segs +
-            '<span class="ec-bar-n" aria-hidden="true">n=' + n + '</span></div>';
+            '<span class="ec-bar-n" aria-hidden="true">n=' + n +
+            (thin ? ' · counts only' : '') + '</span></div>';
     }
 
     function legendHtml(options, pal, cell) {
@@ -953,6 +1009,7 @@
         renderAttrition: renderAttrition,
         renderThemes: renderThemes,
         srTable: srTable,
+        chartMissing: chartMissing,
         // shared with ECMatrix and the page modules
         openPopover: openPopover,
         closePopover: closePopover,
@@ -963,12 +1020,15 @@
         token: token,
         isMasked: isMasked,
         isEmpty: isEmpty,
+        isThin: isThin,
         baseOf: baseOf,
         maskedLabel: maskedLabel,
         pct1: pct1,
         fmtPct: fmtPct,
+        fmtOf: fmtOf,
         fmtSigned: fmtSigned,
         MASK_SENTINEL: MASK_SENTINEL,
+        THIN_N: THIN_N,
         POLES: {
             sequential: SEQ_POLE,
             support: SUPPORT_POLE,

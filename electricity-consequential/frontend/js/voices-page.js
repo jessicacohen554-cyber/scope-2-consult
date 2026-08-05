@@ -1017,7 +1017,11 @@
         });
 
         var canvas = byId('verbosityChart');
-        if (canvas && typeof Chart !== 'undefined') {
+        if (canvas && typeof Chart === 'undefined') {
+            // Without this the canvas stayed on the page as unexplained blank
+            // space when the CDN failed (P35, Q4).
+            ECStance.chartMissing(canvas, 'the verbosity distribution');
+        } else if (canvas) {
             if (verbosityChart) verbosityChart.destroy();
             verbosityChart = new Chart(canvas.getContext('2d'), {
                 type: 'bar',

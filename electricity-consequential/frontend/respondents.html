@@ -530,6 +530,31 @@
             </div>
         </section>
 
+        <!-- ===== 8 · US VS THE REST (contract addition C4) ===== -->
+        <section class="content-section" id="country-effect">
+            <h2 class="section-title">What country does to the same numbers</h2>
+            <p class="section-subtitle">Country is the sharpest cut in this
+                dataset, and it is not a restatement of the redaction split — the
+                two are statistically independent. Because 104 of the 180
+                respondents filed from the United States, most of what looks like
+                a consultation-wide view is a US view with a smaller and
+                differently-minded remainder underneath it. The United Kingdom
+                and Japan are 12 and 8 respondents overall, thin enough that a
+                four-way country cut would publish two columns of suppression, so
+                this panel is US against everyone else. Both bases are printed on
+                every strip.</p>
+
+            <div class="chart-panel scroll-reveal">
+                <h3 class="chart-title">United States and the rest of the world, question by question</h3>
+                <div id="countryEffect"></div>
+            </div>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <h3 class="chart-title">Which way each question moves</h3>
+                <div id="countryShifts"></div>
+            </div>
+        </section>
+
         <!-- ===== FOOTNOTES ===== -->
         <section class="content-section-narrow" id="notes">
             <h2 class="section-title">How to read this page</h2>
@@ -832,6 +857,25 @@
                 : '');
         }
 
+        // Contract addition C4. The same shape and the same treatment as the
+        // redaction panel, on the axis that actually carries this dataset.
+        function drawCountryEffect() {
+            var effect = (D.respondents || {}).country_effect || [];
+            var sides = [{ key: 'us', label: 'United States' },
+                         { key: 'non_us', label: 'rest of the world',
+                           sentence: 'Non-US' }];
+            R.renderCountryEffect('#countryEffect', effect, {
+                meta: D.meta, maskN: 5
+            });
+            R.renderShiftNote('#countryShifts', effect, {
+                meta: D.meta, hedgeAt: 8, sides: sides,
+                caveat: 'Country is where a respondent filed from, not a ' +
+                    'position they hold: it stands in for the grid, the market ' +
+                    'design and the reporting regime they work under, and those ' +
+                    'are the reasons a split like this one appears.'
+            });
+        }
+
         function drawRedactionEffect() {
             var effect = (D.respondents || {}).redaction_effect || [];
             R.renderRedactionEffect('#redactionEffect', effect, {
@@ -903,6 +947,7 @@
             drawEngagement();
             drawOrgBrowser();
             drawRedactionEffect();
+            drawCountryEffect();
         }).catch(function(err) {
             ECData.errorPanel('#orgTypeHost', err, {
                 title: 'Respondent data could not be loaded'

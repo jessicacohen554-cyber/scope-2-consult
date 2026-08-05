@@ -116,14 +116,10 @@
         return null;
     }
 
+    // One shared implementation lives in ECStance so every canvas panel on the
+    // site fails the same way; this is the local alias the call sites below use.
     function chartMissing(canvas, what) {
-        var host = canvas && canvas.parentNode;
-        if (host) {
-            host.innerHTML = '<div class="card ec-empty">Chart.js did not load, ' +
-                'so ' + esc(what || 'this chart') + ' cannot be drawn. The ' +
-                'numbers are in the data table beneath it.</div>';
-        }
-        return null;
+        return ECStance.chartMissing(canvas, what);
     }
 
     // --- masked and malformed rows -------------------------------------------
@@ -847,17 +843,86 @@
         });
     }
 
+    // ========================================================================
+    // US vs non-US stance comparison  (contract addition C4)
+    // ========================================================================
+    // effect : respondents.json `country_effect` — [{qid, us, non_us}]
+    //
+    // Country is the sharpest axis in this dataset — it is significant on four
+    // of the six stance measures where redaction clears on two — and until P42
+    // no shipped panel cut by it, so every country figure on the site had to
+    // come from a direct database query (P35 F3). This is the mirror of the
+    // named-versus-redacted panel above and shares its machinery.
+    //
+    // US against everyone else, rather than the four country_4 buckets: the UK
+    // and Japan are 12 and 8 respondents overall and fall under the cell mask
+    // on most stance questions, so the four-way cut would publish two columns
+    // of hatching. The two-way cut is the one that carries the finding.
+    var COUNTRY_SIDES = [
+        { key: 'us', label: 'United States' },
+        { key: 'non_us', label: 'Rest of the world',
+          sentence: 'Non-US' }
+    ];
+
+    function renderCountryEffect(target, effect, opts) {
+        var el = node(target);
+        if (!el) return null;
+        opts = opts || {};
+        var meta = opts.meta || {};
+        var rows = (effect || []).filter(function(r) { return r && r.qid; });
+        if (!rows.length) {
+            el.innerHTML = '<div class="card ec-empty">This export carries no ' +
+                'country split.</div>';
+            return null;
+        }
+
+        var synthetic = {};
+        rows.forEach(function(r) {
+            synthetic[r.qid] = {
+                overall: combine(r.us, r.non_us),
+                by: { country_split: { us: r.us, non_us: r.non_us } }
+            };
+        });
+
+        return ECStance.renderStrips(el, {
+            qids: rows.map(function(r) { return r.qid; }),
+            stances: synthetic,
+            meta: meta,
+            dim: 'country_split',
+            segValues: COUNTRY_SIDES,
+            maskN: opts.maskN === undefined ? 5 : opts.maskN,
+            showSegments: true,
+            showLinks: opts.showLinks !== false,
+            pageBase: opts.pageBase || '',
+            label: 'United States versus the rest of the world'
+        });
+    }
+
     // The direction of the split, computed rather than asserted: for each
     // question, the option whose share moves most between the two groups.
     // Everything under `hedgeAt` points is reported as indistinguishable,
     // because at these bases it is.
+    //
+    // Side-agnostic since P42: `redaction_effect` and `country_effect` are the
+    // same shape and deserve the same treatment, so the two sides are named by
+    // the caller rather than baked in. Defaults keep the redaction call site
+    // unchanged.
+    var REDACTION_SIDES = [{ key: 'named', label: 'named' },
+                           { key: 'redacted', label: 'redacted' }];
+
+    function sidesOf(opts) {
+        return (opts && opts.sides && opts.sides.length === 2)
+            ? opts.sides : REDACTION_SIDES;
+    }
+
     function redactionShifts(effect, meta, opts) {
         opts = opts || {};
         var hedgeAt = opts.hedgeAt === undefined ? 8 : opts.hedgeAt;
+        var sides = sidesOf(opts);
         var out = [];
         (effect || []).forEach(function(r) {
             if (!r || !r.qid) return;
-            var a = r.named, b = r.redacted;
+            var a = r[sides[0].key], b = r[sides[1].key];
             if (!a || !b || !a.c || !b.c ||
                 typeof a.n === 'string' || typeof b.n === 'string') {
                 out.push({ qid: r.qid, suppressed: true });
@@ -876,8 +941,8 @@
                         index: i,
                         option: (options[i] || {}).label || ('option ' + (i + 1)),
                         special: !!(options[i] || {}).special,
-                        namedPct: pa,
-                        redactedPct: pb,
+                        pctA: pa,
+                        pctB: pb,
                         delta: delta
                     };
                 }
@@ -887,12 +952,12 @@
                 qid: r.qid,
                 display: (window.ECData && ECData.display(meta, r.qid)) || r.qid,
                 label: q.label || q.shorthand || r.qid,
-                nNamed: nA,
-                nRedacted: nB,
+                nA: nA,
+                nB: nB,
                 option: best.option,
                 special: best.special,
-                namedPct: best.namedPct,
-                redactedPct: best.redactedPct,
+                pctA: best.pctA,
+                pctB: best.pctB,
                 delta: best.delta,
                 material: Math.abs(best.delta) >= hedgeAt
             });
@@ -916,22 +981,25 @@
         var material = shifts.filter(function(s) { return s.material; })
             .sort(function(a, b) { return Math.abs(b.delta) - Math.abs(a.delta); });
 
+        var sides = sidesOf(opts);
         var html = '<ul class="rp-shifts">' + shifts.map(function(s) {
             var dir = s.delta > 0 ? 'more' : 'less';
             return '<li class="rp-shift' + (s.material ? '' : ' rp-shift--flat') +
                 '"><span class="rp-shift-q">' + esc(s.display) + '</span>' +
                 '<span class="rp-shift-body">' +
                 (s.material
-                    ? 'Redacted respondents pick <strong>' + esc(s.option) +
+                    ? esc(sides[1].sentence || sides[1].label) +
+                      ' respondents pick <strong>' + esc(s.option) +
                       '</strong> ' + Math.abs(s.delta).toFixed(1) + ' points ' +
                       dir + ' often'
                     : 'No option moves more than ' +
                       Math.abs(s.delta).toFixed(1) + ' points between the two ' +
                       'groups') +
                 ' <span class="rp-shift-detail">(' +
-                s.namedPct.toFixed(1) + '% of ' + fmt(s.nNamed) + ' named vs ' +
-                s.redactedPct.toFixed(1) + '% of ' + fmt(s.nRedacted) +
-                ' redacted)</span>' +
+                s.pctA.toFixed(1) + '% of ' + fmt(s.nA) + ' ' +
+                esc(sides[0].label) + ' vs ' +
+                s.pctB.toFixed(1) + '% of ' + fmt(s.nB) + ' ' +
+                esc(sides[1].label) + ')</span>' +
                 (s.special
                     ? ' <span class="ec-tag ec-tag-special">non-substantive ' +
                       'option — never netted</span>'
@@ -943,7 +1011,8 @@
             (material.length
                 ? material.length + ' of ' + shifts.length + ' questions move ' +
                   'by at least ' + (opts.hedgeAt === undefined ? 8 : opts.hedgeAt) +
-                  ' points between named and redacted respondents; the largest ' +
+                  ' points between ' + esc(sides[0].label) + ' and ' +
+                  esc(sides[1].label) + ' respondents; the largest ' +
                   'is ' + esc(material[0].display) + ' at ' +
                   Math.abs(material[0].delta).toFixed(1) + ' points. '
                 : 'No question here moves by as much as ' +
@@ -953,8 +1022,13 @@
             'two self-selected groups compared after the fact, not a designed ' +
             'comparison: a gap of a few points is noise, a consistent direction ' +
             'across several questions is worth noticing, and neither is ' +
-            'evidence about any individual respondent. Withholding a name is a ' +
-            'disclosure choice, not a verdict.</p>';
+            'evidence about any individual respondent. ' +
+            // The closing caveat is per-axis: "withholding a name is not a
+            // verdict" is the right thing to say about redaction and a
+            // non-sequitur about country.
+            (opts.caveat ||
+             'Withholding a name is a disclosure choice, not a verdict.') +
+            '</p>';
 
         el.innerHTML = html;
         return shifts;
@@ -1133,6 +1207,7 @@
         orgTypeScopeNote: orgTypeScopeNote,
         renderAttritionFunnel: renderAttritionFunnel,
         renderRedactionEffect: renderRedactionEffect,
+        renderCountryEffect: renderCountryEffect,
         redactionShifts: redactionShifts,
         renderShiftNote: renderShiftNote,
         renderOrgBrowser: renderOrgBrowser,
