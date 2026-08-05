@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marginal emission rates | Electricity-Sector Consequential Methods Consultation</title>
+    <meta name="description" content="Which operating-margin and build-margin methodologies consultation respondents called appropriate, and how fine they think spatial and temporal granularity should go (questions 35–46).">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="../styles/shared.css">
+    <link rel="stylesheet" href="../styles/article.css">
+    <link rel="stylesheet" href="../styles/cinematic.css">
+    <link rel="stylesheet" href="../styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="../js/nav.js"></script>
+    <script src="../js/chart-colors.js"></script>
+    <script src="../js/shared-header.js"></script>
+    <script src="../js/scroll-observer.js"></script>
+    <script src="../js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in
+         electricity-consequential/plans/consequential-dashboard/PLAN.md §5).
+         stance-viz.js must load before matrix-viz.js — ECMatrix borrows
+         ECStance's popover, token-color and sr-table machinery. -->
+    <script src="../js/data-loader.js"></script>
+    <script src="../js/segments.js"></script>
+    <script src="../js/stance-viz.js"></script>
+    <script src="../js/matrix-viz.js"></script>
+    <script src="../js/quote-cards.js"></script>
+
+    <!-- Page configuration, read by the shared topic renderer. Every panel here
+         is data: no figure is written into this file, and nothing renders that
+         the export does not carry. -->
+    <script>
+    window.TOPIC_CONFIG = {
+        key: 'emission_rates',
+        root: 'topicPanels',
+        controls: { dim: 'dimToggle' },
+        sections: [
+            {
+                id: 'operating-margin',
+                title: 'Operating margin: which methods are appropriate',
+                subtitle: 'The operating margin is the emissions response of the plant actually on the margin when demand changes. Question 35 asked which methodologies for estimating it are appropriate; question 36 asked, separately, which are not. The two questions were answered by different people, so each bar divides by its own base and the net is a difference of shares, not of respondents.',
+                width: 'wide',
+                panels: [
+                    {
+                        kind: 'scoreboard',
+                        id: 'om-board',
+                        title: 'Operating-margin methodologies',
+                        subtitle: 'Not appropriate to the left, appropriate to the right. Click or focus a row for the segment split behind both sides.',
+                        board: 'om',
+                        decisionQid: 'Q035'
+                    },
+                    {
+                        kind: 'themes',
+                        id: 'q37',
+                        title: 'The detail respondents added',
+                        questions: [{ qid: 'Q037' }]
+                    }
+                ],
+                callout: {
+                    title: 'A method absent from both lists is unknown, not neutral.',
+                    text: 'Nobody was asked to rate every option. A method nobody named is one this consultation says nothing about — and the “unsure” answers listed beside the chart are shown for exactly that reason and are never netted into it.'
+                }
+            },
+            {
+                id: 'build-margin',
+                title: 'Build margin: which methods are appropriate',
+                subtitle: 'The build margin is the emissions profile of what gets built instead — a longer-run, more model-dependent question than the operating margin, and the record here is correspondingly thinner. Question 38 asked which methodologies are appropriate, question 39 which are not.',
+                width: 'wide',
+                panels: [
+                    {
+                        kind: 'scoreboard',
+                        id: 'bm-board',
+                        title: 'Build-margin methodologies',
+                        subtitle: 'Not appropriate to the left, appropriate to the right, each a share of its own base.',
+                        board: 'bm',
+                        decisionQid: 'Q038'
+                    },
+                    {
+                        kind: 'themes',
+                        id: 'q40',
+                        title: 'The detail respondents added',
+                        questions: [{ qid: 'Q040' }]
+                    }
+                ]
+            },
+            {
+                id: 'granularity',
+                title: 'How fine is fine enough?',
+                subtitle: 'Questions 43 and 45 asked for the maximum appropriate spatial and temporal granularity — the ceiling a method should be allowed to claim, not the resolution of any particular dataset. Both are ordered ladders from coarse to fine, so they are drawn with a neutral sequential ramp: no rung on either ladder is the approving answer.',
+                panels: [
+                    {
+                        kind: 'strips',
+                        id: 'q43-q45',
+                        title: 'Spatial and temporal granularity ceilings',
+                        subtitle: 'Two ladders, two bases. Choose a segment dimension above to see whether the split is geographic.',
+                        qids: ['Q043', 'Q045'],
+                        decisionQid: 'Q045',
+                        decisionAnchor: 'laddersHost'
+                    },
+                    {
+                        kind: 'themes',
+                        id: 'q44-q46',
+                        title: 'Why that ceiling',
+                        subtitle: 'The reasoning behind each ladder, coded separately.',
+                        questions: [
+                            { qid: 'Q044', title: 'Q44 — why that spatial ceiling' },
+                            { qid: 'Q046', title: 'Q46 — why that temporal ceiling' }
+                        ]
+                    }
+                ],
+                callout: {
+                    title: 'Granularity is a cost as well as a capability.',
+                    text: 'Finer resolution buys a more defensible marginal signal and costs data, modelling and assurance that not every market can supply. Both halves of that trade show up in the coded reasoning above, and the segment view is where they separate.',
+                    variant: 'insight-glass-cyan'
+                }
+            },
+            {
+                id: 'applicability',
+                title: 'Applicability, and what else to measure',
+                subtitle: 'Two open questions that sit across both margins: how to judge whether a model applies to a given project type at all, and which other rates or metrics the framework should recognise.',
+                panels: [
+                    {
+                        kind: 'themes',
+                        id: 'q41-q42',
+                        title: 'Coded themes across the open questions',
+                        questions: [
+                            { qid: 'Q041', title: 'Q41 — assessing model applicability to project types' },
+                            { qid: 'Q042', title: 'Q42 — other appropriate emission rates or metrics' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'voices',
+                title: 'In their own words',
+                subtitle: 'Curated verbatim extracts on marginal emission rates. Named respondents link to their profile; redacted respondents are never named.',
+                width: 'wide',
+                panels: [
+                    {
+                        kind: 'quotes',
+                        id: 'quotes-emission-rates',
+                        title: 'On the methodologies and their resolution',
+                        source: 'emission_rates',
+                        titles: {
+                            'for': 'The methods are usable',
+                            against: 'The methods are not',
+                            context: 'Context & caveats'
+                        }
+                    }
+                ]
+            },
+            {
+                id: 'bases',
+                title: 'What sits under each panel',
+                subtitle: 'Every question on this page with the number of people who answered it. The two scoreboards pair questions with different bases by design.',
+                panels: [
+                    {
+                        kind: 'bases',
+                        id: 'bases-table',
+                        title: 'Response base by question',
+                        qids: ['Q035', 'Q036', 'Q037', 'Q038', 'Q039', 'Q040',
+                               'Q041', 'Q042', 'Q043', 'Q044', 'Q045', 'Q046']
+                    }
+                ]
+            }
+        ]
+    };
+    </script>
+    <script src="../js/topic-page.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Marginal emission rates</h1>
+        <div class="subtitle">Consultation section 8 · questions 35–46 — operating margin, build margin, and how fine the resolution should go</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <section class="content-section">
+            <div class="insight-glass insight-glass-indigo scroll-reveal">
+                <strong>What this page covers.</strong> If a consequential method is going
+                to say what an intervention changed, it needs a marginal emission rate to
+                measure the change against. This section of the consultation asked which
+                methodologies produce a defensible one — separately for the operating
+                margin and the build margin — and how finely such a rate should be
+                resolved in space and time. Every figure below is read from the exported
+                dataset. Percentages always carry the base they divide by, and segment
+                cells with fewer than five respondents are suppressed rather than printed.
+            </div>
+
+            <div class="ec-controls">
+                <div id="dimToggle"></div>
+            </div>
+            <p class="ec-note">One control, every chart on the page. Choosing a
+            dimension adds a row per segment beneath each strip and puts the segment
+            split into the scoreboard popovers; segments too small to disclose are
+            hatched, not drawn as zero.</p>
+        </section>
+
+        <!-- Panels are built by js/topic-page.js from TOPIC_CONFIG above. A panel
+             the export cannot fill is replaced by an HTML comment naming it. -->
+        <div id="topicPanels">
+            <section class="content-section">
+                <div class="card ec-loading">Loading the exported panels…</div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Electricity-Sector Consequential Methods Consultation"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="../js/cinematic-bg.js"></script>
+</body>
+</html>

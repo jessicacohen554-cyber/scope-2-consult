@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Additionality | Electricity-Sector Consequential Methods Consultation</title>
+    <meta name="description" content="How consultation respondents rated the nine additionality tests, which they consider feasible, and whether rigor should vary by region or claim type (questions 26–34).">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="../styles/shared.css">
+    <link rel="stylesheet" href="../styles/article.css">
+    <link rel="stylesheet" href="../styles/cinematic.css">
+    <link rel="stylesheet" href="../styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer: js/chart-colors.js applies
+         Chart defaults on DOMContentLoaded and no-ops if `Chart` is undefined. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="../js/nav.js"></script>
+    <script src="../js/chart-colors.js"></script>
+    <script src="../js/shared-header.js"></script>
+    <script src="../js/scroll-observer.js"></script>
+    <script src="../js/shared-footer.js"></script>
+
+    <!-- Site modules (data contract in
+         electricity-consequential/plans/consequential-dashboard/PLAN.md §5).
+         stance-viz.js must load before matrix-viz.js — ECMatrix borrows
+         ECStance's popover, token-color and sr-table machinery. -->
+    <script src="../js/data-loader.js"></script>
+    <script src="../js/segments.js"></script>
+    <script src="../js/stance-viz.js"></script>
+    <script src="../js/matrix-viz.js"></script>
+    <script src="../js/quote-cards.js"></script>
+
+    <!-- Page configuration, read by the shared topic renderer. Every panel here
+         is data: no figure is written into this file, and nothing renders that
+         the export does not carry. -->
+    <script>
+    window.TOPIC_CONFIG = {
+        key: 'additionality',
+        root: 'topicPanels',
+        controls: { dim: 'dimToggle', seg: 'segToggle' },
+        sections: [
+            {
+                id: 'matrix',
+                title: 'The nine tests, rated',
+                subtitle: 'Question 26 put nine candidate additionality tests to respondents and asked, for each one, whether it should be required, optional, or not required. Rows are sorted by net requiredness — the share calling a test required minus the share calling it not required — so the ladder reads top to bottom.',
+                width: 'wide',
+                panels: [
+                    {
+                        kind: 'matrix',
+                        id: 'q26-matrix',
+                        title: 'Requiredness of each additionality test',
+                        subtitle: 'Each row divides by its own base: respondents did not all rate all nine tests. Click or focus a cell for its counts and the segment split.',
+                        segValue: true,
+                        decisionQid: 'Q026_1'
+                    }
+                ],
+                callout: {
+                    title: 'Stringency is not sentiment.',
+                    text: 'Required, optional and not-required form an ordered scale of how demanding a framework should be — not a scale of approval. A respondent who calls the first-of-its-kind test “not required” is not opposing additionality; they are saying this particular screen should not gate a claim. That is why this grid uses a single sequential ramp and never the green-and-red support colours used on the stance strips.'
+                }
+            },
+            {
+                id: 'feasibility',
+                title: 'Required against feasible',
+                subtitle: 'Question 28 asked a different thing: not which tests should be required, but which could actually be implemented. Plotting the two together shows whether the room is answering “what works” or venting — and isolates the tests where the two answers pull apart.',
+                panels: [
+                    {
+                        kind: 'cross',
+                        id: 'q26-q28-cross',
+                        title: 'Feasibility picks against net requiredness',
+                        subtitle: 'Horizontal axis: how many respondents called the test feasible to implement. Vertical axis: net requiredness from the matrix above. A test high and to the right is one the room both wants and believes it can run.',
+                        decisionQid: 'Q028'
+                    }
+                ]
+            },
+            {
+                id: 'regional',
+                title: 'Should the tests travel?',
+                subtitle: 'Question 31 asks whether additionality tests should differ between regions; question 32 asks which regions and why. Grid context, regulatory baselines and data availability differ enormously between the markets represented in this consultation, and this is where that shows.',
+                panels: [
+                    {
+                        kind: 'strips',
+                        id: 'q31',
+                        title: 'Where the room stands',
+                        subtitle: 'A three-way question: yes, no, and a middle answer. The middle option is a substantive answer here, not a non-response.',
+                        qids: ['Q031'],
+                        decisionQid: 'Q031'
+                    },
+                    {
+                        kind: 'themes',
+                        id: 'q32',
+                        title: 'Which regions, and on what grounds',
+                        questions: [{ qid: 'Q032' }]
+                    }
+                ]
+            },
+            {
+                id: 'rigor',
+                title: 'Should rigor depend on the claim?',
+                subtitle: 'Question 33 asks whether a test should be applied more strictly for a causal claim than for a claim of association; question 34 asks what each approach would let a reporter say.',
+                panels: [
+                    {
+                        kind: 'strips',
+                        id: 'q33',
+                        title: 'Where the room stands',
+                        qids: ['Q033'],
+                        decisionQid: 'Q033'
+                    },
+                    {
+                        kind: 'themes',
+                        id: 'q34',
+                        title: 'What each level of rigor would support',
+                        questions: [{ qid: 'Q034' }]
+                    }
+                ]
+            },
+            {
+                id: 'design',
+                title: 'Which tests, why, and what is missing',
+                subtitle: 'The three open questions around the matrix: the case respondents made for the tests they picked, the practical detail behind their feasibility answers, and the tests they say the framework leaves out altogether.',
+                panels: [
+                    {
+                        kind: 'themes',
+                        id: 'q27-q29-q30',
+                        title: 'Coded themes across the open additionality questions',
+                        subtitle: 'Three separate questions with three separate bases; the shares are not comparable across panels.',
+                        questions: [
+                            { qid: 'Q027', title: 'Q27 — why the selected tests should be included' },
+                            { qid: 'Q029', title: 'Q29 — context on what is feasible to implement' },
+                            { qid: 'Q030', title: 'Q30 — tests missing from the framework' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'voices',
+                title: 'In their own words',
+                subtitle: 'Curated verbatim extracts on additionality. Named respondents link to their profile; redacted respondents are never named.',
+                width: 'wide',
+                panels: [
+                    {
+                        kind: 'quotes',
+                        id: 'quotes-additionality',
+                        title: 'On the additionality tests',
+                        source: 'additionality',
+                        titles: {
+                            'for': 'For stronger tests',
+                            against: 'Against the tests as drafted',
+                            context: 'Context & caveats'
+                        }
+                    }
+                ]
+            },
+            {
+                id: 'bases',
+                title: 'What sits under each panel',
+                subtitle: 'Every question on this page with the number of people who answered it. The nine matrix rows have nine different bases.',
+                panels: [
+                    {
+                        kind: 'bases',
+                        id: 'bases-table',
+                        title: 'Response base by question',
+                        qids: ['Q026_1', 'Q026_2', 'Q026_3', 'Q026_4', 'Q026_5',
+                               'Q026_6', 'Q026_7', 'Q026_8', 'Q026_9', 'Q027',
+                               'Q028', 'Q029', 'Q030', 'Q031', 'Q032', 'Q033',
+                               'Q034']
+                    }
+                ]
+            }
+        ]
+    };
+    </script>
+    <script src="../js/topic-page.js"></script>
+</head>
+<body>
+
+    <!-- Navigation is injected by js/nav.js -->
+
+    <!-- ===== BANNER (animated overlay injected by shared-header.js) ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Additionality</h1>
+        <div class="subtitle">Consultation section 7 · questions 26–34 — which tests should gate a consequential claim, and which could actually be run</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <section class="content-section">
+            <div class="insight-glass insight-glass-indigo scroll-reveal">
+                <strong>What this page covers.</strong> Additionality is the question of
+                whether an intervention changed anything that would not have happened
+                anyway. The consultation put nine candidate tests to respondents, asked
+                how demanding each should be, then asked separately which of them are
+                implementable at all — and whether the answer should change by region or
+                by the strength of the claim being made. Every figure below is read from
+                the exported dataset. Percentages always carry the base they divide by,
+                and segment cells with fewer than five respondents are suppressed rather
+                than printed.
+            </div>
+
+            <div class="ec-controls">
+                <div id="dimToggle"></div>
+                <div id="segToggle"></div>
+            </div>
+            <p class="ec-note">The first control drives every chart on the page. The
+            second re-draws the matrix for a single segment — the strips show every
+            segment at once, so it applies to the grid only.</p>
+        </section>
+
+        <!-- Panels are built by js/topic-page.js from TOPIC_CONFIG above. A panel
+             the export cannot fill is replaced by an HTML comment naming it. -->
+        <div id="topicPanels">
+            <section class="content-section">
+                <div class="card ec-loading">Loading the exported panels…</div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- ===== FOOTER (injected by shared-footer.js) ===== -->
+    <footer id="siteFooter" data-footer-note="Electricity-Sector Consequential Methods Consultation"></footer>
+
+    <!-- Cinematic parallax background (must load after body content) -->
+    <script src="../js/cinematic-bg.js"></script>
+</body>
+</html>
