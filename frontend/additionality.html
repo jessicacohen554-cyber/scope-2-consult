@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Additionality &amp; Incrementality | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Who raised additionality or incrementality unprompted, who supported it, and how many also backed hourly matching and deliverability.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/additionality-page.js"></script>
+
+    <!-- Page-specific layout ONLY -->
+    <style>
+    .ad-list {
+        margin: var(--space-sm) 0 0;
+        padding-left: 1.15em;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        line-height: 1.65;
+        color: var(--text-secondary);
+    }
+    .ad-list strong { color: var(--navy); }
+    .ad-quote { font-style: italic; color: var(--text-secondary); }
+    .ad-num { font-family: var(--font-data); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+    .ad-table { min-width: 520px; }
+    .ad-funnel-note { margin-top: var(--space-sm); }
+    </style>
+</head>
+<body>
+
+    <!-- ===== BANNER ===== -->
+    <header class="header" id="pageHeader">
+        <h1>Additionality &amp; Incrementality</h1>
+        <div class="subtitle">Nobody was asked about it. A quarter of respondents raised it anyway. Who supports it, and how many also back hourly matching and deliverability?</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== HERO STATS ===== -->
+        <section class="content-section">
+            <div class="grid-stats">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statMention">—</div>
+                    <div class="stat-label">Raised either concept, unprompted</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statSupport">—</div>
+                    <div class="stat-label">Supportive of either concept</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statOppose">—</div>
+                    <div class="stat-label">Opposed (consequential, not inventory)</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statAll3">—</div>
+                    <div class="stat-label">Support all three: hourly + deliverability + additionality or incrementality</div>
+                </div>
+            </div>
+            <p class="s2-note">Every percentage on this page is of all 1,072 respondents unless a panel states another base.</p>
+        </section>
+
+        <!-- ===== WRITE-UP ===== -->
+        <section class="content-section-narrow" id="findings">
+            <h2 class="section-title">What the record shows</h2>
+            <p class="section-subtitle">The consultation has no question on additionality or incrementality. Every mention below was volunteered in free text.</p>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3>Mentioned by a quarter, supported by a fifth, opposed by almost no one</h3>
+                <p>269 respondents (25.1%) used additionality or incrementality language somewhere in their free text. Read in context, 227 of them (21.2%) treat it as something Scope 2 accounting should require, reward or be judged against. Only 13 (1.2%) argue against it, and they make a single argument: additionality is a consequential concept that does not belong in an attributional inventory. Another 15 value it but want it kept out of the inventory, and 14 mention it without taking a position.</p>
+                <p>Support for the concept is close to uncontested. The fight is over what it implies.</p>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3>Same goal, opposite camps</h3>
+                <p>"Additionality" is mostly invoked <em>against</em> the proposed revisions. Of the 199 respondents who support additionality, 107 opposed both hourly matching and deliverability, and only 41 supported both. Their argument: long-term PPAs under annual matching build more new capacity than 24/7 matching, which would divert money into administration and short-term certificates.</p>
+                <p>"Incrementality" belongs to the other camp. Of its 69 supporters, 48 backed both hourly matching and deliverability. Several of them call this the "three pillars": hourly matching, deliverable market boundaries, and an incrementality test (Standard Supply Service or similar) together.</p>
+                <p>So a headline that says "21% want additionality" hides two incompatible positions. Read alone, it can be cited by either side.</p>
+            </div>
+
+            <div class="emphasis-callout scroll-reveal">
+                <div class="emphasis-big" id="calloutAll3">61 &middot; 5.7%</div>
+                <div class="emphasis-desc">respondents support hourly matching, deliverability and additionality or incrementality together</div>
+                <div class="emphasis-sub">7.3% of the 841 who scored both Q71 and Q83 &middot; 37% of the 163 who support both proposals</div>
+            </div>
+
+            <div class="card card-spacious scroll-reveal">
+                <h3>The full "three-pillar" position is a small, coordinated minority</h3>
+                <p>61 respondents (5.7%) score both hourly matching (Q71) and deliverability (Q83) at 4–5 <em>and</em> support additionality or incrementality in their own words. Most of the 163 who back both proposals (102, or 63%) do not voice support for either concept in their free text.</p>
+                <p>This group is NGO-led (19 of 61), against a company-led opposite camp (65 of the 114 concept supporters who oppose both proposals). And 35 of the 61 share a mention sentence verbatim with at least two other respondents. The two biggest are "Incrementality, or the incentive to drive new clean electricity onto the grid…" (10 respondents) and "an incrementality standard (SSS or similar) are critical…" (9). Coordinated filing is legitimate, but it means the number of independent voices is nearer 30–35 than 61.</p>
+            </div>
+
+            <div class="insight-glass insight-glass-red scroll-reveal">
+                <strong>Read these counts as floors.</strong> They only count respondents who used the words. A respondent who asked for asset-age limits or "new-build only" without writing "additional" or "incremental" is not counted, so every support figure here is a lower bound.
+            </div>
+        </section>
+
+        <!-- ===== MENTION VS STANCE ===== -->
+        <section class="content-section" id="stance">
+            <h2 class="section-title">Mentioned vs supported</h2>
+            <p class="section-subtitle">Respondents who used each concept, and the stance they took once their passages were read in context.</p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <h3 class="chart-title">Share of all 1,072 respondents</h3>
+                <div class="chart-container">
+                    <canvas id="chartStance" aria-label="Mentioned, supportive and opposed shares by concept"></canvas>
+                </div>
+                <div class="s2-table-scroll" id="stanceTable"><p class="s2-loading">Loading…</p></div>
+                <p class="s2-note">A respondent can mention both concepts, so the Additionality and Incrementality rows overlap (51 used both). "Either" counts each respondent once.</p>
+            </div>
+        </section>
+
+        <!-- ===== CAMPS ===== -->
+        <section class="content-section" id="camps">
+            <h2 class="section-title">Where supporters stand on hourly matching and deliverability</h2>
+            <p class="section-subtitle">Each supporter of the concept, placed by their own scores on Q71 (hourly matching) and Q83 (deliverability). Support = 4–5, oppose = 1–2.</p>
+
+            <div class="grid-2col">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Supporters of each concept, by camp</h3>
+                    <div class="chart-container">
+                        <canvas id="chartCamps" aria-label="Share of concept supporters who back both, oppose both, split, or skipped"></canvas>
+                    </div>
+                    <p class="s2-note">Split = supports one proposal and not the other, or neutral (3) on either. Skipped = left Q71 or Q83 blank.</p>
+                </div>
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Their Q71 hourly-matching scores</h3>
+                    <div class="chart-container">
+                        <canvas id="chartQ71" aria-label="Q71 score distribution for additionality and incrementality supporters"></canvas>
+                    </div>
+                    <p class="s2-note">1 = does not support, 5 = strongly supports. The two words sit at opposite ends of the scale.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FUNNEL ===== -->
+        <section class="content-section" id="all-three">
+            <h2 class="section-title">How many support all three</h2>
+            <p class="section-subtitle">From every respondent down to those backing hourly matching, deliverability and additionality or incrementality together.</p>
+
+            <div class="grid-2col">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Respondents at each step</h3>
+                    <div class="chart-container">
+                        <canvas id="chartFunnel" aria-label="Funnel from all respondents to all-three supporters"></canvas>
+                    </div>
+                    <p class="s2-note ad-funnel-note" id="funnelNote">—</p>
+                </div>
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Who they are</h3>
+                    <div class="chart-container">
+                        <canvas id="chartOrgs" aria-label="Organisation type of the all-three group versus concept supporters opposing both"></canvas>
+                    </div>
+                    <p class="s2-note">Share of each group by organisation type. The comparison group is concept supporters who oppose both proposals (n=114).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== QUOTES ===== -->
+        <section class="content-section" id="voices">
+            <h2 class="section-title">In their words</h2>
+            <p class="section-subtitle">Verbatim passages behind each stance. "Same wording" counts how many respondents in the group gave this passage almost word for word.</p>
+
+            <div class="grid-2col">
+                <div class="card scroll-reveal">
+                    <h3 class="chart-title">Support all three</h3>
+                    <div class="s2-table-scroll" id="quotesAll3"><p class="s2-loading">Loading…</p></div>
+                </div>
+                <div class="card scroll-reveal">
+                    <h3 class="chart-title">Support the concept, oppose both proposals</h3>
+                    <div class="s2-table-scroll" id="quotesAnti"><p class="s2-loading">Loading…</p></div>
+                </div>
+            </div>
+            <div class="card scroll-reveal">
+                <h3 class="chart-title">Opposed to additionality or incrementality</h3>
+                <div class="s2-table-scroll" id="quotesOppose"><p class="s2-loading">Loading…</p></div>
+            </div>
+            <p class="s2-note">Respondents are shown by organisation type only; 53.5% of the consultation requested redaction.</p>
+        </section>
+
+        <!-- ===== METHOD ===== -->
+        <section class="content-section-narrow" id="method">
+            <h2 class="section-title">How this was measured</h2>
+            <div class="card card-spacious scroll-reveal">
+                <ul class="ad-list">
+                    <li><strong>Finding mentions.</strong> A keyword pass over all 25,118 free-text answers. Additionality: "additionality", "non-additional", or "additional" followed by new clean supply ("additional renewable capacity"). Incrementality: "incrementality", or "incremental" followed by clean supply or emission reductions. Bare "additional" ("additional comments") and "incremental cost" never count.</li>
+                    <li><strong>Coding stance.</strong> Each matched respondent's passages (±500 characters around every match) were read against a fixed codebook (<code>reference/additionality_codebook.md</code>) by AI coders and labelled support, oppose, mixed or neutral for each concept. Opposing hourly matching is not opposing additionality; the codebook says so explicitly.</li>
+                    <li><strong>Checks.</strong> All 13 oppose codes and a random 13 support or mixed codes were checked by hand against the source text. No second-coder agreement score was computed. Coders rated their own confidence: <span id="confNote">—</span>.</li>
+                    <li><strong>Hourly matching and deliverability.</strong> Q71 and Q83, 1–5 support scales. Support = 4 or 5.</li>
+                    <li><strong>Shared wording.</strong> A respondent counts as sharing wording if the sentence containing their mention appears verbatim in at least three respondents' answers.</li>
+                    <li><strong>Reproduce.</strong> <code>scripts/analytics/additionality.py</code> regenerates the mention set and this page's data from <code>data/derived/additionality_stance.csv</code>.</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <footer id="siteFooter" data-footer-note="Additionality &amp; incrementality — unprompted mentions, hand-coded stance, and overlap with hourly matching and deliverability support."></footer>
+
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
