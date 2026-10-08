@@ -214,7 +214,8 @@
                 { label: 'Likert Explorer',     href: NAV_BASE + 'heatmap.html' },
                 { label: 'Who Responded',       href: NAV_BASE + 'respondents.html' },
                 { label: 'Evidence & Research', href: NAV_BASE + 'evidence.html' },
-                { label: 'Integrity & Coalitions', href: NAV_BASE + 'integrity.html' }
+                { label: 'Integrity & Coalitions', href: NAV_BASE + 'integrity.html' },
+                { label: 'Additionality & Incrementality', href: NAV_BASE + 'additionality.html' }
             ]
         },
         {
