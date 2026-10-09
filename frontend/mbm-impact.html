@@ -96,6 +96,7 @@
                 <div class="stat-card scroll-reveal">
                     <div class="stat-value" id="statSupport">—</div>
                     <div class="stat-label">Explicitly support building it into the scope 2 market-based method</div>
+                    <div class="s2-note" id="statSupportSub">—</div>
                 </div>
                 <div class="stat-card scroll-reveal">
                     <div class="stat-value" id="statExplicit">—</div>
@@ -134,7 +135,7 @@
             <p class="section-subtitle">Each step is a subset of the one above, coloured by how respondents scored hourly matching (Q71) and deliverability (Q83).</p>
             <div class="glass-chart-panel flush scroll-reveal">
                 <div class="chart-container"><canvas id="chartFunnel" aria-label="Funnel by hourly and deliverability stance"></canvas></div>
-                <p class="s2-note">Support both = 4–5 on both Q71 and Q83; oppose both = 1–2 on both; mixed = anything else; skipped = left one blank. "More than SSS, implied" = asks for an extra impact mechanism the proposal lacks (e.g. an additionality or asset-age test) without naming SSS.</p>
+                <p class="s2-note">Support both = 4–5 on both Q71 and Q83; oppose both = 1–2 on both; mixed = anything else; skipped = left one blank. "Explicitly support" counts medium- and high-confidence codes only; low-confidence support (mostly "hourly matching would reduce impact" without saying the MBM should deliver it) is excluded.</p>
             </div>
         </section>
 
@@ -234,7 +235,8 @@
                         <li><strong>Who was read:</strong> everyone whose free text uses an umbrella term (the impact-page and additionality-page patterns plus scarcity, new build / newness / vintage / asset age, "drive new / additional", "real emissions reductions", and SSS near incrementality words), plus everyone who answered Q152, the survey's "balance integrity, impact and feasibility" question, read in full.</li>
                         <li><strong>Coding:</strong> each respondent's passages (±400 characters, capped at 9,000) were coded once against <code>reference/mbm_impact_codebook.md</code> on four separate questions: stance on system impact in the MBM; whether more than SSS is needed; whether the proposal goes far enough on impact; and position on consequential accounting. Hourly matching and deliverability are counted as an impact mechanism only when the respondent links them to driving reductions, not to accuracy alone.</li>
                         <li><strong>Hourly and deliverability:</strong> Q71 and Q83, 1–5 support scales; 4–5 counts as support. SSS: Q97.</li>
-                        <li><strong>Checks:</strong> AI coders; hand review of every "replace the MBM" and "oppose" code and a sample of others; results compared with the additionality and impact pages (<span id="xcheckNote">—</span>). No second-coder agreement score.</li>
+                        <li><strong>Explicit vs implied:</strong> support coded with low confidence is reported as implied and kept out of the explicit counts.</li>
+                        <li><strong>Checks:</strong> AI coders; hand review of every "replace the MBM" and "oppose" code and a random 20 of the "different approach" supporters; shared templates given one code (<code>reference/mbm_impact_overrides.csv</code>); results compared with the additionality and impact pages (<span id="xcheckNote">—</span>). No second-coder agreement score.</li>
                         <li><strong>Names:</strong> as entered in the consultation, cleaned where the field held a job title. Redacted and individual filers are counted, never named.</li>
                         <li><strong>Files:</strong> <code>data/derived/mbm_impact_stance.csv</code>, <code>reference/mbm_impact_codebook.md</code>, <code>scripts/analytics/mbm_impact.py</code>.</li>
                     </ul>

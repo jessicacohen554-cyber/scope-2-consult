@@ -93,9 +93,10 @@
         var N = d.totals.respondents, f = d.funnel, s = d.sufficiency.all;
         set('statRef', stat(f.referenced, N));
         set('statSupport', stat(f.support_mbm, N));
+        set('statSupportSub', '+ ' + f.support_implied + ' more where support is implied, not stated');
         set('statExplicit', stat(f.beyond_sss_explicit, N));
-        set('statExplicitSub', pct(f.beyond_sss_explicit, f.support_mbm) + ' of supporters · another ' + f.beyond_sss_implicit +
-            ' ask for more without naming SSS · ' + f.sss_enough + ' treat SSS as enough');
+        set('statExplicitSub', pct(f.beyond_sss_explicit, f.support_mbm) + ' of explicit supporters · ' + f.sss_enough +
+            ' treat SSS as enough · ' + f.beyond_sss_implicit + ' ask for a different impact test without naming SSS');
         set('statShort', stat(s.not_far_enough, N));
         set('statEnough', stat(s.far_enough, N));
         set('statWrong', stat(s.wrong_direction, N));
@@ -107,18 +108,20 @@
         var sc = d.suff_by_camp;
         var items = [
             '<strong>' + f.referenced + ' (' + pct(f.referenced, N) + ') referenced system impact; ' + f.support_mbm + ' (' + pct(f.support_mbm, N) +
-                ') explicitly want it in the market-based method.</strong> ' + c.support.pro_both + ' of those support both hourly matching and deliverability, ' +
-                c.support.anti_both + ' oppose both.',
-            '<strong>' + f.beyond_sss_explicit + ' (' + pct(f.beyond_sss_explicit, N) + ' of all) explicitly say SSS is not enough.</strong> ' +
-                (c.explicit.pro_both) + ' of them support hourly and deliverability. Counting those who ask for an extra impact test without naming SSS, ' +
-                (f.beyond_sss_explicit + f.beyond_sss_implicit) + ' want more than the proposal contains.',
-            '<strong>"Not far enough" vs "far enough": ' + s.not_far_enough + ' vs ' + s.far_enough + '.</strong> ' +
-                'A further ' + s.wrong_direction + ' say the proposal fails on impact and want a different route (' + sc.wrong_direction.anti_both +
-                ' of them oppose hourly and deliverability), and ' + s.too_far + ' say impact is not the MBM\'s job.',
-            '<strong>Replacing attributional MBM with consequential accounting is a minority view: ' + k.displace + ' (' + pct(k.displace, N) + ').</strong> ' +
-                k.inside_option + ' want an impact-based option inside scope 2, ' + k.separate + ' a separate metric outside it, and ' + k.oppose + ' oppose consequential metrics.',
-            '<strong>Total support for impact in any form: ' + a.concept_any + ' (' + pct(a.concept_any, N) + ').</strong> ' + a.support_mbm +
-                ' in the MBM, ' + a.mixed + ' mixed, ' + a.separate_only + ' only as a separate metric, and ' + a.consequential_only + ' who back a consequential metric without taking a position on the MBM.'
+                ') explicitly want the market-based method to deliver it.</strong> Another ' + f.support_implied + ' imply it without saying so. Of the ' +
+                f.support_mbm + ', ' + c.support.anti_both + ' oppose both hourly matching and deliverability and ' + c.support.pro_both + ' support both: the goal is shared across camps, the route is not.',
+            '<strong>Only ' + f.beyond_sss_explicit + ' (' + pct(f.beyond_sss_explicit, N) + ' of all) explicitly say SSS is not enough.</strong> ' +
+                c.explicit.pro_both + ' of them support hourly matching and deliverability; most want an asset-age or newness test on top. ' +
+                f.sss_enough + ' supporters present SSS as the incrementality test and ask for nothing more.',
+            '<strong>"Not far enough" ' + s.not_far_enough + ' vs "far enough" ' + s.far_enough + '.</strong> "Far enough" is almost entirely the pro-hourly camp (' +
+                sc.far_enough.pro_both + ' of ' + s.far_enough + '); so is most of "not far enough" (' + sc.not_far_enough.pro_both + ').',
+            '<strong>The largest group rejects the route, not the goal: ' + s.wrong_direction + ' say the proposal fails on impact.</strong> ' + sc.wrong_direction.anti_both +
+                ' of them oppose hourly and deliverability and want impact through other means (annual matching with additionality, emissionality, investment anywhere). ' +
+                s.too_far + ' say impact is not the MBM\'s job.',
+            '<strong>Replacing the attributional MBM with consequential accounting: ' + k.displace + ' (' + pct(k.displace, N) + ').</strong> ' +
+                k.inside_option + ' want a consequential option inside scope 2 alongside it, ' + k.separate + ' a separate metric outside it, and ' + k.oppose + ' oppose consequential metrics.',
+            '<strong>Total support for impact in any form: ' + a.concept_any + ' (' + pct(a.concept_any, N) + ').</strong> Explicit in the MBM ' + a.support_mbm +
+                ', implied ' + a.support_implied + ', mixed ' + a.mixed + ', separate metric only ' + a.separate_only + ', consequential metric with no MBM position ' + a.consequential_only + '.'
         ];
         set('briefList', items.map(function (t) { return '<li>' + t + '</li>'; }).join(''));
     }
@@ -129,9 +132,8 @@
         campBars('chartFunnel', [
             ['All respondents', c.all],
             ['Referenced system impact', c.referenced],
-            ['Support it in the MBM', c.support],
-            ['More than SSS, explicit', c.explicit],
-            ['More than SSS, explicit or implied', c.beyond]
+            ['Explicitly support it in the MBM', c.support],
+            ['…and explicitly say SSS is not enough', c.explicit]
         ], d.totals.respondents);
     }
 
@@ -175,7 +177,8 @@
     function renderAgg(d) {
         var a = d.aggregate, st = d.stance;
         hbar('chartAgg', ['Support impact (any form)', 'Oppose impact in the MBM'], [
-            { label: 'In the MBM', backgroundColor: S().positive, data: [a.support_mbm, 0] },
+            { label: 'In the MBM, explicit', backgroundColor: S().positive, data: [a.support_mbm, 0] },
+            { label: 'In the MBM, implied', backgroundColor: withAlpha(S().positive, 0.7), data: [a.support_implied, 0] },
             { label: 'Mixed', backgroundColor: S().muted, data: [a.mixed, 0] },
             { label: 'Separate metric only', backgroundColor: withAlpha(S().positive, 0.5), data: [a.separate_only, 0] },
             { label: 'Consequential metric, no MBM position', backgroundColor: withAlpha(S().positive, 0.25), data: [a.consequential_only, 0] },

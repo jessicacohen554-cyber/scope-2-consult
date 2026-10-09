@@ -187,7 +187,11 @@ def cmd_export() -> None:
     def where(field, *vals):
         return {i for i, r in coded.items() if r[field] in vals}
 
-    support = where("system_impact", "support_mbm")
+    # Explicit support = coded support with medium or high confidence; low-confidence
+    # support codes (mostly "hourly matching would reduce impact" without saying the
+    # MBM should deliver it) are reported separately as implied.
+    support = {i for i in where("system_impact", "support_mbm") if coded[i]["confidence"] != "low"}
+    implied = where("system_impact", "support_mbm") - support
     mixed = where("system_impact", "mixed")
     sep_only = where("system_impact", "separate_only")
     oppose = where("system_impact", "oppose")
@@ -195,7 +199,7 @@ def cmd_export() -> None:
     implicit = {i for i in support if coded[i]["beyond_sss"] == "implicit"}
     sss_enough = {i for i in support if coded[i]["beyond_sss"] == "sss_enough"}
     cons_pos = where("consequential", "displace", "inside_option", "separate")
-    concept_any = support | mixed | sep_only | cons_pos
+    concept_any = support | implied | mixed | sep_only | cons_pos
 
     def counts(ids, field, vals):
         c = Counter(coded[i][field] for i in ids)
@@ -232,21 +236,22 @@ def cmd_export() -> None:
                     "reference/mbm_impact_codebook.md. Hourly = Q71, deliverability = Q83, SSS = Q97; support = 4-5.",
         "totals": {"respondents": N, "coded": len(coded), "by_term": len(termed),
                    "q152_only": len(set(coded) - termed)},
-        "funnel": {"referenced": len(termed), "support_mbm": len(support),
+        "funnel": {"referenced": len(termed), "support_mbm": len(support), "support_implied": len(implied),
                    "beyond_sss_explicit": len(explicit), "beyond_sss_implicit": len(implicit),
                    "sss_enough": len(sss_enough)},
-        "stance": counts(coded, "system_impact", STANCE),
+        "stance": {**counts(coded, "system_impact", STANCE), "support_mbm": len(support), "support_implied": len(implied)},
         "beyond_sss": counts(support, "beyond_sss", BEYOND),
         "sufficiency": {"all": counts(coded, "sufficiency", SUFF),
                         "support_mbm": counts(support, "sufficiency", SUFF)},
         "consequential": {"all": counts(coded, "consequential", CONS),
                           "support_mbm": counts(support, "consequential", CONS)},
-        "aggregate": {"concept_any": len(concept_any), "support_mbm": len(support), "mixed": len(mixed),
-                      "separate_only": len(sep_only),
-                      "consequential_only": len(cons_pos - support - mixed - sep_only)},
+        "aggregate": {"concept_any": len(concept_any), "support_mbm": len(support), "support_implied": len(implied),
+                      "mixed": len(mixed), "separate_only": len(sep_only),
+                      "consequential_only": len(cons_pos - support - implied - mixed - sep_only)},
         "mechanisms": {"support_mbm": mech_counts(support), "explicit": mech_counts(explicit)},
-        "camps": {"all": by_camp(resp), "referenced": by_camp(termed), **{g: by_camp(ids) for g, ids in groups.items()},
-                  "implicit": by_camp(implicit), "sss_enough": by_camp(sss_enough)},
+        "camps": {"all": by_camp(resp), "referenced": by_camp(termed), "implied": by_camp(implied),
+                  "support_any": by_camp(support | implied), **{g: by_camp(ids) for g, ids in groups.items()},
+                  "beyond_implicit": by_camp(implicit), "sss_enough": by_camp(sss_enough)},
         "q97": {"all": q97_split(resp), "support": q97_split(support), "explicit": q97_split(explicit),
                 "far_enough": q97_split(groups["far_enough"]), "not_far_enough": q97_split(groups["not_far_enough"])},
         "suff_by_camp": {s: by_camp(where("sufficiency", s)) for s in SUFF if s != "not_addressed"},
@@ -286,9 +291,9 @@ def cmd_export() -> None:
     def nameable(i):
         return not resp[i]["redacted"] and resp[i]["as"] == "Organization" and bool(display_name(i))
 
-    shown = support | mixed | sep_only | oppose | where("consequential", "displace", "inside_option")
+    shown = support | implied | mixed | sep_only | oppose | where("consequential", "displace", "inside_option")
     data["named"] = [{"id": i, "name": display_name(i), "org_type": ORG_LABEL[resp[i]["org"]],
-                      "country": resp[i]["country"], "camp": camp_of[i],
+                      "country": resp[i]["country"], "camp": camp_of[i], "confidence": coded[i]["confidence"],
                       **{k: coded[i][k] for k in ("system_impact", "beyond_sss", "sufficiency", "consequential")}}
                      for i in sorted(shown) if nameable(i)]
     data["unnamed"] = {g: sum(1 for i in ids if not nameable(i)) for g, ids in

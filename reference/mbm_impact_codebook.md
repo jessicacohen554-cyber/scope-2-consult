@@ -44,3 +44,12 @@ Code from the respondent's own voice. Do not infer from organisation type or fro
 `quote` = ≤ 30 words verbatim from the snippets that best justifies `system_impact` and `sufficiency` ("" if neutral and not_addressed).
 
 Be conservative: when unclear use `neutral` / `not_addressed` with low confidence rather than guessing. Judge the respondent's own position, not positions they describe or criticise.
+
+## Provenance
+
+Applied once to 726 respondents: the 666 whose free text uses an umbrella term anywhere (patterns in `scripts/analytics/mbm_impact.py`), plus the other 60 who answered Q152. Passages ±400 characters around each match plus the full Q152 answer, capped at 9,000 characters per respondent, in ten batches, by AI coders. Output: `data/derived/mbm_impact_stance.csv`.
+
+- **Explicit vs implied:** `support_mbm` coded with low confidence (111) is reported as implied support and excluded from the explicit count (271). Most are respondents arguing that hourly matching would reduce impact without saying the MBM should deliver it.
+- **Consistency pass:** seven shared templates that coders split were given one code each (`reference/mbm_impact_overrides.csv`, applied by `merge`). The McKinsey / GHG Management Institute quote block was left per-respondent, because some filers who pasted it also wrote their own position elsewhere.
+- **Hand review:** all 24 `oppose` and 13 `displace` codes; a random 20 of the `support_mbm` + `wrong_direction` codes. Two corrected (1116 → `separate_only`; 1085 consequential → `not_addressed`). No second-coder agreement statistic.
+- **Cross-check:** 200 of the 227 additionality-page supporters are coded `support_mbm` here. 26 impact-page opponents are coded `support_mbm` here: they reject a separate impact metric (the "no impact methodology yet meets integrity, impact and feasibility" template) while wanting the MBM itself to drive incrementality, which the two codebooks are designed to separate.
