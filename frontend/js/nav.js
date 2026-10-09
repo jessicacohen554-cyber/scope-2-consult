@@ -215,7 +215,8 @@
                 { label: 'Who Responded',       href: NAV_BASE + 'respondents.html' },
                 { label: 'Evidence & Research', href: NAV_BASE + 'evidence.html' },
                 { label: 'Integrity & Coalitions', href: NAV_BASE + 'integrity.html' },
-                { label: 'Additionality & Incrementality', href: NAV_BASE + 'additionality.html' }
+                { label: 'Additionality & Incrementality', href: NAV_BASE + 'additionality.html' },
+                { label: 'Emissions Impact', href: NAV_BASE + 'impact.html' }
             ]
         },
         {

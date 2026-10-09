@@ -1,0 +1,591 @@
+respondent_id,unit,families,stance,venue,form,oppose_reason,confidence,quote
+5,u001,impact,neutral,na,na,na,medium,
+16,u002,"additional,consequential,impact",support,separate,avoided,na,high,A supplemental impact metric could transparently report
+17,u003,"additional,causal,consequential,impact",oppose,na,na,method,high,"Impact metrics outside the Scope 2 inventory lack conceptual clarity, standardised methodologies, and assurance pathways."
+19,u004,additional,oppose,na,na,other,low,we do not support shifting the MBM toward additionality or temporal/hourly matching requirements
+27,u005,impact,neutral,na,na,na,high,
+29,u006,impact,neutral,na,na,na,high,
+30,u007,impact,neutral,na,na,na,high,
+35,u008,additional,neutral,na,na,na,low,
+36,u009,additional,neutral,na,na,na,low,it is not essential to demonstrate strict additionality relative to guarantees of origin
+38,u010,impact,neutral,na,na,na,medium,
+40,u011,additional,support,inventory,additionality,na,medium,high quality bundled RECs / EACs with reasonable levels of additionality
+41,u012,impact,support,inventory,marginal,na,high,"a directly-emissions-based framework could be employed to achieve more accurate, greater carbon impact MBM accounting"
+50,u013,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+62,u014,"additional,impact",support,inventory,additionality,na,medium,The primary (and only non-negotiable) goal of the MBM should be to incentivize the procurement of PPAs and other impactful Energy Attribute Certificates
+67,u015,"consequential,impact",support,unspecified,avoided,na,low,I think a brief explanation of Consequential accounting methods should be included in The revised version of the scope 2 standard.
+68,u016,impact,support,inventory,marginal,na,high,Updating the market-based method to better reflect emissions reduced—rather than energy units matched—would realign incentives with the goals of the Protocol.
+72,u017,"additional,impact",neutral,na,na,na,medium,
+74,u018,impact,mixed,separate,general,method,medium,"Impact metrics, by contrast, describe estimated system-level outcomes and should be treated, if developed, as supplemental voluntary indicators."
+75,u019,"additional,impact",neutral,na,na,na,medium,External impact metrics should not negate the importance of the changes proposed to Scope 2 accounting for the GHGP.
+82,u020,impact,neutral,na,na,na,low,The update should prioritize incentives that drive new clean energy generation.
+83,u021,impact,mixed,separate,general,other,medium,Whilst an impact metric is sensible as it would instead focus on the the carbon impact rather then generation of clean energy
+87,u022,impact,neutral,na,na,na,medium,
+88,u023,"additional,causal,consequential,impact",support,both,additionality,na,high,Market-Based Method should be the tool for claiming emissions reductions from procurement decisions that causally support renewable energy.
+90,u024,"consequential,impact",support,separate,avoided,na,high,A separate impact metric would be the right place to report avoided LBM and MBM emissions from behind the meter renewable generation
+91,u025,impact,support,both,marginal,na,high,Please add a new “Emissions Impact Method” inside Scope 2 (or right next to it)
+93,u026,"consequential,impact",support,separate,avoided,na,high,We strongly support developing impact metrics outside Scope 2
+95,u027,"consequential,impact",support,both,marginal,na,high,Introducing a complementary impact metric—such as an Emissions Impact-based Method (EIM)—within Scope 2 would provide a critical accounting pathway
+97,u028,"consequential,impact",support,separate,avoided,na,high,Complementary impact metrics outside Scope 2 for consequential effects.
+98,u029,"additional,impact",mixed,separate,additionality,method,medium,"For an impact metric to be useful, it must meet rigorous criteria"
+100,u030,impact,neutral,na,na,na,high,
+103,u031,"additional,causal,impact",support,inventory,additionality,na,medium,(vPPAs) deliver additionality by supporting new renewable generation that would not otherwise exist
+105,u032,"consequential,impact",support,separate,avoided,na,high,"PATtech supports developing separate, clearly labelled impact metrics"
+108,u033,"causal,consequential,impact",support,inventory,additionality,na,high,centering causation of new renewable energy within the quality criteria for market-based instruments under attributional accounting
+111,u034,"additional,impact",support,inventory,general,na,high,"An impact metric is incredibly important to develop, but it would need to be recognized as a metric with equal footing alongside the market-based method"
+114,u035,"consequential,impact",support,separate,general,na,high,I support impact reporting as I believe it would drive meaningful efforts to reduce emissions
+118,u036,"additional,impact",support,inventory,additionality,na,medium,"Strict deliverability rules, without cross-border flexibility under a legacy clause, could invalidate these contracts, despite their real-world impact."
+121,u037,"additional,causal,consequential,impact",support,inventory,additionality,na,high,centering causation of new renewable energy within the quality criteria for market-based instruments under attributional accounting
+130,u038,"additional,impact",support,inventory,additionality,na,medium,Reporting should reflect real world impact as accurately as possible
+136,u039,causal,neutral,na,na,na,low,do represent a clear relationship of causality and attributable responsibility
+137,u040,"additional,consequential,impact",oppose,na,na,method,medium,"If it cannot be guaranteed that companies will use the more credible Market-based inventory method for their reporting, the impact method should be discouraged."
+143,u041,impact,neutral,na,na,na,high,
+148,u042,impact,neutral,na,na,na,medium,we believe the addition of a separate metric should be optional
+151,u043,"consequential,impact",neutral,na,na,na,low,A complementary Actions and Market Instruments metric for consequential impacts might preserve investment signals
+152,u044,additional,neutral,na,na,na,low,
+157,u045,"additional,causal,consequential,impact",support,inventory,additionality,na,high,"the most appropriate Scope 2 revisions are those that prioritize causation of new renewable energy, rather than hourly or location matching"
+158,u046,"additional,consequential,impact",mixed,separate,additionality,method,medium,The impact metric must meet the following criteria to be useful and trustworthy as an estimate of avoided and induced emissions
+159,u047,impact,neutral,na,na,na,low,
+160,u048,impact,neutral,na,na,na,high,
+165,u049,additional,neutral,na,na,na,low,
+169,u050,impact,neutral,na,na,na,high,
+173,u051,impact,neutral,na,na,na,medium,
+174,u052,"additional,consequential",neutral,na,na,na,medium,
+176,u053,impact,neutral,na,na,na,medium,
+177,u054,"consequential,impact",support,unspecified,avoided,na,low,reduced carbon impacts associated with mandatory hourly matching without a viable consequential metric
+178,u055,"additional,causal,consequential,impact",support,inventory,additionality,na,high,"the most appropriate Scope 2 revisions are those that prioritize causation of new renewable energy, rather than hourly or location matching"
+181,u056,impact,mixed,separate,general,method,medium,"Impact metrics, by contrast, describe estimated system-level outcomes and should be treated, if developed, as supplemental voluntary indicators."
+183,u057,impact,neutral,na,na,na,low,Adopting a clear separation between inventory accounting and impact-based accounting is a positive step.
+186,u058,"consequential,impact",neutral,na,na,na,medium,
+187,u059,"consequential,impact",support,separate,avoided,na,high,A separate impact metric outside the Scope 2 inventory can provide valuable complementary information
+188,u060,"additional,consequential,impact",support,separate,marginal,na,high,"It would allow us to continue our ""emissionality""-focused approach"
+191,u061,impact,neutral,na,na,na,medium,
+194,u062,"consequential,impact",mixed,separate,general,other,medium,"would only add additional reporting burden without addressing the underlying feasibility, cost, and infrastructure challenges"
+196,u063,"additional,consequential",oppose,na,na,method,high,"Reporting methods based on projections and hypothetical scenarios may be suitable for strategy and planning for targets, but can’t be credibly passed of"
+201,u064,consequential,neutral,na,na,na,medium,
+203,u065,"consequential,impact",support,unspecified,avoided,na,medium,"these changes can enhance the credibility of emissions reporting, accelerate the deployment of clean energy, and unlock a deeper understanding of climate impact"
+207,u066,"consequential,impact",support,inventory,avoided,na,medium,This track utilizes consequential accounting
+208,u067,impact,neutral,na,na,na,low,
+211,u068,additional,neutral,na,na,na,low,
+214,u069,"additional,causal,consequential,impact",support,inventory,additionality,na,high,The causal aspect of consequential impact can serve as a qualifying attribute of contractual instruments
+215,u070,impact,support,separate,additionality,na,high,Quintrace supports the development of a separate impact metric to recognize actions that drive additional investment in clean energy
+217,u044,additional,neutral,na,na,na,low,
+219,u071,"additional,impact",neutral,na,na,na,low,
+221,u072,"additional,impact",support,separate,additionality,na,medium,Separate metric outside scope 2 with Dual Reporting lbm/mbm
+222,u073,"additional,consequential,impact",support,inventory,marginal,na,medium,it would be more beneficial for contracts to report emissionality vs accuracy using grid averages
+225,u074,"consequential,impact",support,separate,general,na,high,CRS generally supports calculation of a separate metric outside of scope 2 to quantify the emissions impact of electricity-related actions
+226,u075,"additional,impact",neutral,na,na,na,low,
+227,u076,additional,neutral,na,na,na,low,
+228,u077,"additional,consequential,impact",oppose,na,na,other,high,"I do not support the development of separate impact metrics outside the Scope 2 inventory, as this would risk fragmenting electricity-related emissions reporting"
+229,u078,additional,neutral,na,na,na,low,
+230,u079,consequential,neutral,na,na,na,low,Segregation of attributional and consequential accounting and emphasis of physical connection ensure that scope 2 can continue to provide useful insights
+233,u080,"additional,consequential,impact",support,separate,marginal,na,high,"A Separate ""Impact Metric"" (based on consequential or marginal emissions) to quantify grid-level benefits."
+235,u081,"causal,consequential,impact",support,inventory,additionality,na,high,centering causation of new renewable energy within the quality criteria for market-based instruments under attributional accounting
+236,u082,"consequential,impact",neutral,na,na,na,low,
+237,u083,"additional,consequential,impact",support,unspecified,general,na,low,"the GHG Protocol should not require this above other important forms of sourcing renewable electricity that focus on additionality, emissionality"
+239,u084,"consequential,impact",support,unspecified,marginal,na,low,approximately 7 to 14 times more expensive than marginal emissions matching
+246,u085,"additional,impact",support,separate,additionality,na,medium,"A separate impact metric would allow us to continue with cost-effective, large-scale clean energy investments outside of our immediate deliverable market"
+247,u086,"additional,causal,consequential,impact",support,separate,marginal,na,high,Requiring dual reporting to give stakeholders both allocational and impact-based views of electricity-related emissions.
+248,u087,"additional,impact",support,inventory,additionality,na,high,The GHG Protocol should introduce an incrementality or additionality requirement
+249,u088,"additional,consequential",support,inventory,additionality,na,medium,"Hourly accounting, deliverable market boundaries, and an incrementality standard"
+251,u089,impact,neutral,na,na,na,low,
+252,u090,impact,neutral,na,na,na,low,
+253,u091,"consequential,impact",support,separate,general,na,high,"still recognising actions that reduce system emissions outside a deliverable boundary (impact), provided the impact metric is clearly labeled"
+254,u092,"additional,impact",oppose,na,na,method,high,"Lack of standardized methodology, auditability concerns, and potential for greenwashing make developing separate impact metrics risky."
+255,u093,"additional,consequential,impact",support,both,additionality,na,medium,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization
+257,u094,consequential,support,separate,avoided,na,medium,Establishing a framework to evaluate such efforts would fairly assess corporate initiatives
+262,u095,impact,neutral,na,na,na,low,
+263,u096,"consequential,impact",support,unspecified,marginal,na,low,the use of MER at given time would produce the most accurate emissions impact number.
+265,u097,"consequential,impact",neutral,na,na,na,low,
+266,u098,additional,support,inventory,additionality,na,medium,"does not meaningfully address additionality, which is a critical driver of real-world emissions reductions"
+268,u099,impact,oppose,na,na,other,medium,If dual-reporting is continued then we don't see the need for another impact metric
+269,u100,consequential,support,separate,additionality,na,medium,"This should be recognised as an ‘alternative purpose’, which could be built upon in the consequential accounting consultation."
+272,u101,impact,support,separate,general,na,high,"Investment outside a deliverable boundary can be recognized via a separate impact metric, not through weakening Scope 2 inventory rules."
+275,u102,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+276,u103,"additional,consequential,impact",mixed,inventory,additionality,method,medium,"the accuracy of consequential metrics – and consequentially, their usefulness – has never been proven."
+277,u104,"additional,impact",support,inventory,additionality,na,medium,needs a third pillar that addresses incrementality
+287,u105,impact,neutral,na,na,na,low,
+293,u106,impact,neutral,na,na,na,low,
+305,u107,impact,neutral,na,na,na,low,
+307,u108,impact,neutral,na,na,na,low,
+314,u109,"additional,consequential,impact",support,both,additionality,na,medium,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization
+316,u110,impact,neutral,na,na,na,low,
+318,u111,impact,neutral,na,na,na,low,
+321,u112,impact,neutral,na,na,na,low,
+323,u113,"additional,consequential,impact",support,unspecified,marginal,na,medium,alternative methods like a consequential impact strategy do have emissions avoidance impact
+324,u114,"additional,consequential,impact",support,both,marginal,na,high,Integrate or complement with emissions impact accounting so companies can optimize their EAC procurement for the greatest decarbonization benefit
+325,u115,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+326,u116,"consequential,impact",support,unspecified,general,na,low,mandatory hourly matching without a viable consequential metric
+327,u117,"consequential,impact",support,separate,marginal,na,high,A separate consequential metric would materially improve decision usefulness by capturing system response and marginal effects that attributional inventories cannot.
+328,u118,"consequential,impact",support,inventory,avoided,na,high,"We are in full support of an emissions impact metric, if it includes netting and is included in Scope 2"
+330,u119,additional,neutral,na,na,na,low,
+333,u120,"consequential,impact",support,inventory,marginal,na,high,"a marginal impact method should fully replace the proposed time and location matching approach, given its higher scientific integrity."
+334,u121,impact,oppose,na,na,other,high,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation"
+336,u122,impact,neutral,na,na,na,low,
+337,u123,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+338,u124,impact,neutral,na,na,na,low,
+342,u125,"additional,consequential,impact",mixed,separate,additionality,method,medium,An outside impact metric cannot offer the same true decarbonization
+345,u126,impact,support,separate,avoided,na,high,A complementary impact metric could improve decision-usefulness by recognising real-world emissions impacts of actions
+346,u127,impact,neutral,na,na,na,low,
+347,u128,impact,support,separate,avoided,na,medium,A successful impact metric should capture the emissions reduction benefits of carbon-aware software actions
+348,u129,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+349,u130,"consequential,impact",neutral,na,na,na,low,
+351,u097,"consequential,impact",neutral,na,na,na,low,
+355,u131,impact,neutral,na,na,na,low,
+357,u132,"consequential,impact",support,separate,avoided,na,high,"A separate impact metric outside Scope 2 can provide additional insight into avoided emissions, storage, and demand response"
+358,u133,"consequential,impact",support,separate,avoided,na,medium,having this as a possibility helps for company's that may use it outside of GHGP reporting.
+359,u134,"additional,consequential,impact",support,both,additionality,na,medium,we agree there should be the option and methodology to calculate a consequential metric
+360,u097,"consequential,impact",neutral,na,na,na,low,
+363,u135,impact,neutral,na,na,na,low,
+364,u136,"additional,consequential,impact",support,inventory,additionality,na,high,The scope 2 accounting proposal should be tied to consequential accounting to encourage off takers to invest in projects
+366,u137,impact,neutral,na,na,na,low,
+370,u138,impact,neutral,na,na,na,low,
+372,u139,impact,neutral,na,na,na,low,
+375,u140,impact,oppose,na,na,other,high,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation"
+376,u141,impact,mixed,separate,general,method,medium,"should be treated, if developed, as supplemental voluntary indicators"
+377,u142,causal,neutral,na,na,na,low,
+378,u143,impact,oppose,na,na,other,medium,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation and imposes excessive compliance costs on preparers."
+381,u144,impact,neutral,na,na,na,low,"Climate impact should have priority, but this strongly relates to feasibility."
+384,u145,impact,neutral,na,na,na,high,
+385,u146,"additional,consequential,impact",mixed,separate,avoided,method,medium,"we support exploring this consequential metric as a voluntary, clearly scoped tool"
+386,u147,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+387,u148,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+390,u149,"additional,consequential",mixed,unspecified,general,method,low,"Directly measuring impacts, while laudible, has high complexity and its own barrier to entry."
+392,u150,impact,oppose,na,na,method,medium,"Impact metrics, by contrast, rely on region- and time-dependent modeling assumptions, making them inconsistent across markets and unsuitable for assurance"
+397,u151,"additional,causal,consequential,impact",support,separate,avoided,na,high,"I support the adoption of both improved inventory accounting and new, separate impact metrics as parallel, equally important components"
+399,u152,"additional,causal,impact",support,inventory,additionality,na,high,"allow for optional “impact qualification” within attributional reporting (e.g., whether procurement materially supported project financing)"
+402,u153,"additional,consequential,impact",mixed,separate,avoided,method,medium,"Consequential accounting methods can serve as helpful tools to analyze the system-wide emissions impacts of projects or interventions; however, they can suffer"
+404,u154,"additional,consequential,impact",support,unspecified,additionality,na,medium,"require greater transparency around additionality, grid impacts, and evidence of deliverability rather than making deliverability a pass/fail requirement."
+405,u155,impact,neutral,na,na,na,medium,
+408,u121,impact,oppose,na,na,other,high,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation"
+409,u121,impact,oppose,na,na,other,high,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation"
+410,u156,impact,neutral,na,na,na,high,
+411,u157,consequential,neutral,na,na,na,medium,we believe that the existence of other metrics will not have an impact.
+412,u121,impact,oppose,na,na,other,high,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation"
+414,u158,"additional,consequential,impact",support,both,additionality,na,medium,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+417,u159,impact,neutral,na,na,na,low,
+418,u160,consequential,neutral,na,na,na,low,More granular boundaries may be considered under a consequential assessment framework.
+419,u161,impact,neutral,na,na,na,high,
+420,u162,"consequential,impact",neutral,na,na,na,low,"Impact metrics should be clearly separated from inventory accounting, standardised, and auditable to avoid confusion or greenwashing."
+421,u163,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+422,u164,"consequential,impact",neutral,na,na,na,low,leaving avoided-emissions or consequential approaches to other frameworks
+423,u165,impact,support,unspecified,marginal,na,low,cts across the Global South can yield 2x to nearly 3x greater climate benefit
+425,u166,impact,oppose,na,na,method,medium,The introduction of impact metrics risks shifting the purpose of Scope 2 from contractual disclosure to speculative modeling of system effects
+429,u167,impact,neutral,na,na,na,low,"Impact accounting relies on assumed counterfactuals, which can be a useful tool for policy makers or reporters to demonstrate action in the wider market"
+432,u168,"additional,consequential,impact",support,separate,general,na,low,"A separate impact metric can be useful, but it does not change the feasibility issues with the proposed revisions."
+434,u169,"consequential,impact",neutral,na,na,na,low,No detail about any impact metrics has been provided in the consultation document.
+435,u170,"additional,consequential,impact",mixed,separate,additionality,method,low,An outside impact metric cannot offer the same true decarbonization signals and incentives on every grid in which organizations operate
+439,u171,impact,support,unspecified,marginal,na,medium,"the GHGP should focus on maximizing system benefit, not localized benefit"
+440,u172,"consequential,impact",support,inventory,marginal,na,high,"We are in full support of an emissions impact metric, if it includes netting and is included in Scope 2"
+441,u173,"additional,impact",neutral,na,na,na,low,A separate impact metric outside of Scope 2 (e.g. MIM) could support a different strategy related to voluntary procurement
+442,u174,impact,neutral,na,na,na,high,
+444,u175,"additional,consequential,impact",support,unspecified,additionality,na,low,It will not measure impact but will weaken decarbonization and restrict impactful procurement
+445,u176,consequential,neutral,na,na,na,low,"absent a defensible consequential emissions metric, risks distorting procurement behavior"
+447,u177,impact,neutral,na,na,na,medium,
+449,u178,"additional,consequential,impact",mixed,inventory,additionality,attributional,low,"Additionality should be a matter of government policy and incentive schemes, rather than part of a scientific measurement regime."
+452,u179,additional,support,inventory,additionality,na,medium,"if additionality can be demonstrated, reductions can be recognized as Scope 2 reductions even without physical connection"
+454,u180,"consequential,impact",support,separate,avoided,na,high,we fully support the crucial work of the Action & Market Instrument (AMI) workstream for quantifying and reporting GHG impacts of actions.
+458,u181,impact,support,unspecified,marginal,na,low,ts across the Global South can yield 2x to nearly 3x greater climate benefit vs. renewables projects in countries of the Global North
+459,u182,impact,neutral,na,na,na,low,revisions should be designed to maximize real-world emissions reductions and accelerate renewable energy deployment.
+461,u183,"additional,consequential,impact",support,inventory,additionality,na,high,"without integration into Scope 2, the proposal increases costs and reduces flexibility without incentivizing the new capacity needed for real climate impact."
+462,u184,"additional,consequential,impact",support,separate,marginal,na,high,Support a sector‑agnostic AMI using marginal emission rates and additionality tests with transparent methods and assurance.
+464,u185,"consequential,impact",support,separate,avoided,na,high,Disclosing avoided emissions using the Impact Method is highly significant
+467,u186,impact,neutral,na,na,na,high,
+477,u187,impact,neutral,na,na,na,low,
+478,u188,impact,oppose,na,na,method,medium,impact metrics rely on modeled counterfactuals and assumptions about the behavior of the broader power system
+479,u189,"additional,consequential,impact",support,both,additionality,na,high,A separate impact metric could recognise additionality and avoided emissions without overloading the attributional inventory with hourly requirements.
+480,u190,impact,support,separate,general,na,low,The TAC recognises that a separate impact metric for electricity projects may therefore be helpful
+481,u191,"additional,impact",oppose,na,na,method,medium,The introduction of impact metrics risks shifting the purpose of Scope 2 from contractual disclosure to speculative modeling of system effects
+484,u192,"additional,impact",neutral,na,na,na,low,
+485,u193,impact,neutral,na,na,na,high,Adding a new impact metric would not resolve these challenges.
+486,u194,"additional,impact",neutral,na,na,na,low,
+489,u195,impact,support,unspecified,marginal,na,low,Investing in renewable energy projects across the Global South can yield 2x to nearly 3x greater climate benefit
+492,u196,"additional,consequential,impact",support,unspecified,marginal,na,low,"it does not resolve broader questions around additionality or the real-world impact of procurement decisions, which remain key criticisms of the MBM"
+496,u197,"additional,causal,consequential,impact",support,inventory,additionality,na,high,centering causation of new renewable energy within the quality criteria for market-based instruments under attributional accounting.
+498,u102,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+500,u198,consequential,support,inventory,avoided,na,medium,consider making hourly matching optional alongside the consequential metric for Scope 2 accounting.
+501,u199,impact,support,inventory,general,na,high,"For impact metrics to be effective, they must be required in Scope 2, not outside of it."
+503,u200,"additional,consequential,impact",support,separate,avoided,na,high,market based claims should be accounted for as a mitigation intervention impact in a separate consequential statement.
+504,u201,"additional,impact",support,unspecified,additionality,na,medium,needs a third pillar that addresses incrementality.
+505,u202,"consequential,impact",neutral,na,na,na,low,Any pursuit of an impact method should remain optional.
+507,u203,consequential,neutral,na,na,na,medium,
+508,u204,impact,neutral,na,na,na,high,
+509,u205,impact,mixed,separate,general,method,medium,"They can be useful as supplemental information, but they shouldn’t change or limit the MBM."
+510,u206,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that would equally or fully meet the combined GHGP metrics of integrity, impact, and feasibility."
+514,u207,"consequential,impact",support,inventory,marginal,na,medium,Redefining Scope 2 in a way that excludes such procurement from inventory reporting would disincentivize actions that materially reduce emissions
+515,u208,impact,support,unspecified,marginal,na,low,ts across the Global South can yield 2x to nearly 3x greater climate benefit vs. renewables projects in countries of the Global North
+516,u209,"additional,impact",support,separate,general,na,medium,"Impact metrics are also important and enable credible evidence of voluntary action on ""impact"" programs."
+517,u210,"causal,consequential,impact",support,inventory,additionality,na,high,The causal aspect of consequential impact can serve as a qualifying attribute of contractual instruments without converting scope 2 into a consequential system.
+522,u211,consequential,oppose,na,na,attributional,medium,Introducing or elevating consequential accounting concepts within Scope 2 risks blurring this distinction
+523,u212,"additional,causal,consequential,impact",support,inventory,additionality,na,medium,we urge that reporting require that emissions reductions are entirely additional
+524,u213,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+526,u214,"additional,impact",support,inventory,additionality,na,low,"Granular location matching should be optional (“may” rather than “shall”), where impact can be demonstrated through sourcing from a broader region."
+527,u215,"additional,impact",neutral,na,na,na,low,The purpose of the impact metric is unclear.
+528,u216,impact,neutral,na,na,na,medium,the existence of separate indicators does not change our views regarding the proposed revision.
+529,u217,impact,support,inventory,general,na,high,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+533,u218,"consequential,impact",support,separate,avoided,na,high,"This impact‑based method should be reported alongside, but distinct from, attributional Scope 2 inventories"
+537,u219,impact,neutral,na,na,na,low,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+538,u220,impact,neutral,na,na,na,high,
+539,u221,"additional,consequential,impact",support,both,additionality,na,medium,While we agree there should be the option and methodology to calculate a consequential metric
+540,u222,"additional,impact",support,separate,avoided,na,high,"If an independent indicator quantifying the emission impact of electricity-related actions is established outside of scope 2, we believe the overall evaluation will change somewhat"
+541,u223,additional,neutral,na,na,na,low,"without accounting for companies’ additionality, could hinder the promotion of renewable energy deployment."
+544,u224,"causal,impact",neutral,na,na,na,low,This weakens the causal linkage between actual procurement actions taken by electricity consumers and the resulting emissions claims
+547,u225,"additional,impact",support,separate,general,na,medium,"can provide a useful insight into a company’s broader approach to decarbonization, they should be kept separate from Scope 2."
+550,u226,additional,neutral,na,na,na,medium,
+553,u227,impact,neutral,na,na,na,medium,aligning reported emissions with real-world impacts and reducing the risk of misleading claims
+555,u228,"additional,consequential,impact",support,separate,general,na,high,"This new metric could be a promising development, as it could add a valuable dimension to clean energy claims"
+557,u229,impact,support,separate,avoided,na,high,"An impact metric can recognize climate-relevant actions that are not fully captured by strict inventory criteria, while preserving inventory integrity."
+559,u230,"additional,impact",support,unspecified,additionality,na,high,"emissions impact needs to be explicitly targeted, either through complementary additionality criteria within Scope 2 or through a separate emissions impact metric."
+560,u231,"consequential,impact",neutral,na,na,na,low,"However, without clarity on how this ‘impact’ reporting would be integrated with an annual GHG inventory"
+562,u232,impact,support,separate,avoided,na,high,an impact metric could complement the inventory by capturing investments outside the deliverable boundary and actions such as storage and demand response
+563,u233,"additional,consequential,impact",neutral,na,na,na,medium,avoid mixing attributional value-chain and consequential accounting methods.
+564,u234,impact,support,inventory,general,na,high,we are strongly supportive to inclusion of impact metrics to Scope 2.
+565,u235,additional,neutral,na,na,na,low,
+566,u236,impact,neutral,na,na,na,high,
+567,u186,impact,neutral,na,na,na,high,
+568,u237,"consequential,impact",support,inventory,avoided,na,medium,the GHG inventory should reflect the emissions impact of implementing demand-side response measures.
+570,u186,impact,neutral,na,na,na,high,
+571,u238,impact,neutral,na,na,na,low,without mixing inventory reporting with impact claims.
+576,u239,"consequential,impact",support,inventory,marginal,na,high,"I do support marginal emissions and impact accounting, but as part of MBM compliance, not as a separate measure"
+580,u240,impact,neutral,na,na,na,high,
+581,u241,impact,neutral,na,na,na,medium,Creating a separate metric outside of Scope 2 to quantify the emissions impact of electricity-related actions does not resolve our concerns
+583,u242,impact,neutral,na,na,na,medium,
+586,u243,impact,neutral,na,na,na,medium,"While it may offer supplementary insight, it does not address concerns"
+587,u244,"additional,impact",support,inventory,additionality,na,low,A separate set of impact metrics would significantly complicate reporter calculations.
+588,u245,impact,oppose,na,na,method,high,"it would shift toward speculative modeling of system-wide effects. Such modeling is not consistent across regions, is difficult to compare"
+590,u246,"additional,consequential,impact",mixed,separate,general,method,high,"While such metrics can provide useful supplemental context, they are not a substitute for a market based Scope 2 inventory."
+591,u247,"consequential,impact",neutral,na,na,na,medium,"Not opposed to other impact metrics per se, they just don’t change our view of the proposed revisions to MBM."
+593,u248,"additional,causal,consequential,impact",support,separate,avoided,na,high,The Responding Company strongly advocates for a separate impact metric to be required alongside the inventory.
+594,u163,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+595,u249,impact,neutral,na,na,na,low,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+597,u250,"additional,impact",mixed,separate,general,method,medium,"Impact metrics, by contrast, describe estimated system-level outcomes and should be treated, if developed, as supplemental voluntary indicators."
+598,u251,"additional,impact",support,inventory,general,na,medium,Reporting should reflect real world impact as accurately as possible; it should also be comparable and differentiate between highly effective and less effective instruments
+603,u252,"additional,consequential,impact",support,both,additionality,na,medium,While we agree there should be the option and methodology to calculate a consequential metric
+605,u253,"additional,impact",support,inventory,additionality,na,medium,The primary (and only non-negotiable) goal of the MBM should be to incentivize the procurement of PPAs and other impactful Energy Attribute Certificates (EACs)
+606,u254,"consequential,impact",support,inventory,marginal,na,high,we urge the GHGP to consider including the emissions impacts from both usage and procurement in Scope 2 accounting.
+610,u255,consequential,neutral,na,na,na,medium,Clearer definitions are needed between inventory (attributional) and consequential methods
+612,u256,"consequential,impact",support,inventory,additionality,na,medium,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization
+613,u257,additional,neutral,na,na,na,low,
+616,u258,impact,neutral,na,na,na,medium,"Whether a separate impact metric is developed, it remains important that the MBM adopt the proposed changes."
+620,u259,impact,mixed,separate,general,method,medium,"speculative modeling of system effects, which is not comparable, consistent, or suitable for standard-setting."
+621,u260,impact,neutral,na,na,na,medium,
+624,u261,impact,neutral,na,na,na,medium,strict temporal and spatial matching can actually lead to less impactful carbon reductions
+625,u262,"consequential,impact",support,inventory,marginal,na,high,we believe the GHGP should include a netted consequential metric in Scope 2.
+627,u263,impact,neutral,na,na,na,low,they should not be delegated to corporate disclosure frameworks.
+628,u264,"consequential,impact",support,separate,general,na,medium,The Responding Company feels that a separate impact metric would be beneficial
+629,u265,"consequential,impact",support,separate,marginal,na,high,we generally support the development of a separate metric outside of Scope 2 to quantify the emissions impact of electricity-related actions
+630,u266,"additional,consequential,impact",oppose,na,na,greenwash,medium,Any instruments based on avoided emissions are carbon offsets and should be treated in the same way as other voluntary carbon offsets.
+633,u267,"consequential,impact",support,separate,additionality,na,high,A separate impact metric outside the Scope 2 inventory could help recognize and quantify system-wide emissions impacts of electricity-related actions
+634,u268,"consequential,impact",support,separate,avoided,na,high,we strongly support the development of credible methodologies to estimate the avoided emissions of actions taken outside of company inventories
+635,u269,"additional,impact",neutral,na,na,na,low,The SSS guidance should not introduce any additionality requirements.
+636,u270,"consequential,impact",support,separate,avoided,na,high,This is why we fully support the crucial work of the Action & Market Instrument (AMI) workstream for quantifying and reporting GHG impacts of actions.
+637,u271,impact,neutral,na,na,na,high,
+638,u270,"consequential,impact",support,separate,avoided,na,high,This is why we fully support the crucial work of the Action & Market Instrument (AMI) workstream for quantifying and reporting GHG impacts of actions.
+639,u272,"consequential,impact",support,unspecified,avoided,na,medium,"We also support clear Consequential Emissions standards for tabulating benefits of offsite projects, including VPPAs and beyond."
+641,u273,"consequential,impact",support,inventory,marginal,na,medium,Transition to consequential emissions metrics will be an important advance of the current “attributional” practice.
+642,u274,impact,neutral,na,na,na,low,"Any perceived benefits in terms of improved ""accuracy"" are perceptual and unrelated to real-world impact"
+643,u275,impact,neutral,na,na,na,medium,
+644,u276,"additional,consequential,impact",mixed,separate,general,method,medium,"they cannot provide consistent or comparable signals across different grids and contexts, as they rely on uncertain counterfactual assumptions."
+645,u277,"consequential,impact",neutral,na,na,na,high,
+646,u278,"additional,causal,consequential,impact",support,both,marginal,na,medium,any refinement to attributional accounting must be paired with a meaningful consequential metric that measures the real-world impact
+647,u279,"consequential,impact",neutral,na,na,na,low,
+648,u280,impact,mixed,unspecified,general,method,low,"There may well be a place for impact based metrics, but one challenge is that they almost always rely on a counterfactual"
+650,u281,"consequential,impact",support,unspecified,general,na,low,reduced carbon impacts associated with mandatory hourly matching without a viable consequential metric.
+651,u282,"additional,consequential,impact",support,inventory,marginal,na,high,"The Consequential approach should be part of Scope 2, alongside the optional hourly approach"
+652,u054,"consequential,impact",support,unspecified,avoided,na,low,reduced carbon impacts associated with mandatory hourly matching without a viable consequential metric
+653,u283,impact,neutral,na,na,na,medium,
+655,u284,impact,support,separate,avoided,na,medium,formal guidance for how to treat these resources from an emissions impact perspective would be incredibly useful
+656,u285,"additional,causal,consequential,impact",support,inventory,additionality,na,high,embedding the causation of new renewable capacity directly into the quality criteria for market-based instruments within attributional accounting
+657,u270,"consequential,impact",support,separate,avoided,na,high,This is why we fully support the crucial work of the Action & Market Instrument (AMI) workstream for quantifying and reporting GHG impacts of actions.
+658,u286,"consequential,impact",mixed,separate,general,method,medium,"Impact metrics, by contrast, describe estimated system-level outcomes and should be treated, if developed, as supplemental voluntary indicators."
+662,u287,"consequential,impact",support,inventory,avoided,na,high,we urge the GHGP to consider validating the consequential metric as an option for Scope 2 for these groups.
+663,u288,"consequential,impact",support,separate,avoided,na,medium,An additional metric outside of scope 2 to quantify the emissions impact of electricity-related actions would be helpful regardless
+664,u289,impact,neutral,na,na,na,low,
+665,u290,"additional,impact",neutral,na,na,na,low,
+666,u291,causal,neutral,na,na,na,low,Recognise market-based mechanism's role in financing new renewables
+669,u292,"additional,consequential,impact",support,separate,avoided,na,high,Disclosing avoided emissions using the Impact Method is highly significant as it enables evaluation of company's societal GHG reduction contributions
+671,u293,"additional,causal,consequential",support,inventory,marginal,na,medium,they fail to ensure causal attribution of emission reductions and consistency of attributes
+673,u294,impact,neutral,na,na,na,medium,
+677,u295,"consequential,impact",mixed,separate,avoided,method,high,"Development of appropriate independent consequential emissions accounting methods that incentivize actions with positive emissions outcomes is encouraged, but should be kept distinct"
+680,u296,"causal,impact",neutral,na,na,na,low,
+684,u297,"consequential,impact",support,inventory,avoided,na,high,it is more important to focus on the emissions incurred and avoided by power use and generation.
+686,u298,impact,mixed,separate,general,other,medium,"whether developing a separate impact metric would result in meaningful behavioural change, or whether the additional complexity would outweigh the practical benefits."
+687,u299,"additional,consequential,impact",support,inventory,additionality,na,high,The guidelines should incorporate consequential additionality accounting to encourage off-takers invest in projects that will have the greatest impact in GHG reductions
+688,u300,"consequential,impact",support,inventory,avoided,na,high,it must be recognized as a primary or co-equal metric for Scope 2 reporting and be suitable for target-setting.
+690,u301,"additional,consequential,impact",support,separate,avoided,na,high,"establish a framework that enables separate, side-by-side reporting of the inventory (Scope 2) and impacts outside the inventory (e.g., avoided emissions and additionality)."
+692,u302,"additional,consequential,impact",support,inventory,general,na,high,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+694,u303,impact,neutral,na,na,na,low,
+695,u304,additional,neutral,na,na,na,low,
+696,u305,impact,neutral,na,na,na,low,
+697,u306,additional,neutral,na,na,na,low,
+698,u307,"additional,impact",oppose,na,na,method,medium,"Assessment on impact metric is a complex estimation and therefore will not be a useful addition to planning, procurement, and claims"
+701,u308,"additional,consequential,impact",neutral,na,na,na,low,avoid mixing attributional value-chain and consequential accounting methods.
+705,u309,additional,neutral,na,na,na,low,
+706,u310,"consequential,impact",support,inventory,marginal,na,high,We would recommend including a “marginal emissions impact” approach that allocates emissions on the basis of consequential impact within Scope 2 guidance
+708,u311,additional,support,inventory,additionality,na,medium,consider additionality requirements to avoid a reliance on certificates linked to old clean energy
+710,u312,impact,neutral,na,na,na,low,
+713,u313,consequential,support,separate,avoided,na,medium,"our Avoided Emissions reporting, which adequately quantifies our impact and is completely separate from our Scope 2 reporting."
+715,u314,impact,neutral,na,na,na,low,
+716,u315,impact,mixed,separate,general,method,high,"aren’t comparable or suitable for assurance. They can be useful as supplemental information, but they shouldn’t change or limit the MBM."
+718,u316,impact,neutral,na,na,na,low,
+719,u317,"consequential,impact",neutral,na,na,na,low,
+721,u318,impact,support,separate,general,na,medium,An impact metric allows companies to continue financing high-impact projects while improving inventory integrity.
+722,u319,impact,neutral,na,na,na,low,
+723,u320,impact,neutral,na,na,na,medium,
+725,u321,impact,neutral,na,na,na,low,
+726,u322,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+727,u323,"additional,consequential,impact",support,inventory,general,na,high,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+728,u324,additional,support,inventory,additionality,na,medium,This factually contributes to GHG reduction through decreased operating rates of fossil fuel power plants. There is little justification for invalidating this contribution.
+730,u325,"additional,consequential,impact",support,inventory,avoided,na,high,a parallel consequential or impact-based metric should be available to maintain consistency and preserve incentives for new clean energy deployment.
+731,u326,"additional,consequential",support,separate,avoided,na,high,"Reporting impacts is useful, guides decision making, and incentivizes inventory decarbonization actions that also produce consequential emissions effects."
+732,u163,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+738,u327,"additional,consequential,impact",support,separate,avoided,na,high,Eurelectric sees long-term value in developing a complementary metric outside Scope 2 to capture broader system-level impacts of electricity-related actions
+742,u328,impact,oppose,na,na,diverts,high,By providing an option not to invest in time matched and deliverable energy procurement the purpose of doing the assessment
+744,u329,impact,mixed,separate,general,method,medium,"Impact metrics, by contrast, describe
+estimated system-level outcomes and should be treated, if developed, as supplemental voluntary indicators."
+746,u330,"additional,impact",neutral,na,na,na,low,
+747,u331,"additional,consequential,impact",support,inventory,general,na,high,a comparable consequential metric must exist for those without such access.
+749,u332,"additional,consequential,impact",oppose,na,na,method,high,"An impact metric is overly complicated to estimate and therefore will not be a useful addition to planning, procurement, and claims even if outside scope"
+751,u333,impact,neutral,na,na,na,low,
+754,u334,"consequential,impact",support,separate,avoided,na,high,"develop a separate, robust AMI-aligned impact metric that quantifies avoided emissions, storage and demand-side effects."
+755,u335,impact,neutral,na,na,na,low,
+756,u336,additional,neutral,na,na,na,low,
+757,u337,"additional,causal,consequential,impact",neutral,na,na,na,low,"it requires strict additionality, safeguards against double-counting, and rules that prevent resource shuffling."
+759,u338,additional,neutral,na,na,na,low,
+763,u339,"additional,impact",neutral,na,na,na,medium,A separate impact metric for electricity projects does not change our view of the proposed market-based inventory revisions
+766,u340,impact,oppose,na,na,other,medium,impact metrics outside the scope 2 inventory increases reporting burden without real comparability between reporting companies.
+769,u341,impact,mixed,separate,general,other,low,"Separate impact metrics could be of value, but add complexity"
+776,u342,"consequential,impact",neutral,na,na,na,low,
+777,u343,impact,support,separate,avoided,na,high,A separate impact metric could complement Scope 2 by capturing the system-level climate impact of electricity-related actions that are not fully reflected in attributional accounting.
+778,u344,"additional,impact",neutral,na,na,na,medium,
+779,u345,"consequential,impact",oppose,na,na,diverts,high,"a separate impact metric is not necessary, and could divert investment from time-matched procurement."
+780,u346,"additional,consequential,impact",support,separate,additionality,na,high,project additionality should be incentivized through the AMI calculator rather than the MBM.
+787,u347,additional,support,inventory,additionality,na,low,the MBM captures a company’s procurement choices and additionality.
+789,u348,impact,neutral,na,na,na,low,
+790,u349,"additional,impact",neutral,na,na,na,low,
+792,u350,additional,neutral,na,na,na,low,
+793,u351,impact,neutral,na,na,na,low,"While an impact metric may provide supplementary information, it does not resolve concerns"
+794,u352,impact,neutral,na,na,na,low,
+799,u353,impact,neutral,na,na,na,low,
+800,u354,impact,neutral,na,na,na,low,
+801,u355,"additional,consequential",support,separate,additionality,na,medium,Any additionality-related claims should be treated as separate from Scope 2 inventories and permitted only where supported by transparent financial disclosures
+806,u356,"additional,impact",support,inventory,additionality,na,high,additionality should be used as a criterion whether an EAC can be used in the MBM
+809,u357,consequential,neutral,na,na,na,low,We support attributional inventory approaches for Scope 2 LBM and MBM approaches.
+813,u358,impact,neutral,na,na,na,low,
+814,u359,impact,neutral,na,na,na,low,may prevent companies from investing in regions where renewable projects would have the largest effect on reducing global emissions.
+815,u360,impact,support,inventory,marginal,na,high,"Without alternative compliance pathways, such as a Marginal Impact Method (MIM), a strict MBM is not feasible."
+819,u361,impact,neutral,na,na,na,low,
+821,u362,"additional,consequential,impact",support,inventory,avoided,na,high,we recommend keeping consequential accounting within the Scope 2 standard
+822,u363,"additional,impact",support,inventory,additionality,na,medium,"Granular location matching should be optional (“may” rather than “shall”), where impact can be demonstrated through sourcing from a broader region."
+823,u364,"additional,causal,consequential,impact",support,inventory,additionality,na,high,"without integration into Scope 2, the proposal increases costs and reduces flexibility without incentivizing the new capacity needed for real climate impact."
+824,u365,"additional,impact",support,unspecified,additionality,na,low,"the proposal does not adequately address additionality aspects, such as the age or incremental impact of renewable generation."
+825,u366,impact,neutral,na,na,na,low,
+826,u186,impact,neutral,na,na,na,high,
+827,u367,impact,neutral,na,na,na,low,"This can concentrate procurement where it is easiest to match, not where it has the greatest emissions impact"
+831,u368,impact,support,separate,general,na,medium,"While impact metrics may be useful as complementary information, they should not be used to justify redesigning the Scope 2 framework."
+832,u369,impact,support,separate,general,na,medium,The use of a separate metric to quantify the emissions impact of electricity-related actions beyond Scope 2 could be a useful development
+834,u370,"consequential,impact",neutral,na,na,na,medium,avoid mixing attributional value-chain and consequential accounting methods.
+836,u371,"consequential,impact",support,inventory,avoided,na,high,Excluding the consequential method as an equally viable option to the LBM or MBM prevents organizations from using it to measure impact
+839,u372,"consequential,impact",neutral,na,na,na,low,"Consequential accounting, while important in understanding system-wide impacts, does not affect a reporter’s Scope 2 inventory."
+842,u373,additional,neutral,na,na,na,low,without delivering true additionality or investment signals
+843,u374,"additional,impact",neutral,na,na,na,low,Climate impact is maximized when companies have the flexibility to procure renewable electricity across broader geographies
+844,u375,impact,neutral,na,na,na,low,
+845,u376,"additional,causal,impact",support,inventory,additionality,na,medium,"Explicitly recognise the climate impact of long-term renewable contracts that enable new capacity, even where hourly matching is not technically feasible."
+846,u377,impact,neutral,na,na,na,low,
+847,u202,"consequential,impact",neutral,na,na,na,low,Any pursuit of an impact method should remain optional.
+852,u186,impact,neutral,na,na,na,high,
+854,u378,"additional,impact",neutral,na,na,na,low,
+855,u379,impact,neutral,na,na,na,low,
+856,u380,additional,support,inventory,additionality,na,high,Our suggestion would be to make 24/7 optional if the project is deemed additional
+858,u381,impact,neutral,na,na,na,high,
+859,u382,consequential,support,separate,avoided,na,low,Accurate Scope 2 accounting and clear rules for consequential emissions allow us to better assess the opportunities and risks of investee companies.
+862,u383,"consequential,impact",neutral,na,na,na,medium,
+870,u384,"additional,consequential,impact",support,inventory,avoided,na,high,Consequential accounting is needed to fill this gap and should be recognized in Scope 2 to effectively reflect the actual emissions impact of an organization.
+871,u385,"consequential,impact",support,inventory,marginal,na,high,an impact metric is utterly relevant to a revised GHG report for the electricity sector. There is no reason it has to sit outside
+872,u386,impact,support,separate,general,na,high,STX generally supports the design of a mean to quantify the emissions impact of electricity-related actions outside of scope 2 inventory
+874,u387,"additional,consequential,impact",support,inventory,additionality,na,high,The Scope 2 accounting proposal should be tied to consequential accounting to encourage off takers to invest in projects that will have the greatest impact
+875,u388,"additional,consequential,impact",support,separate,marginal,na,medium,It is highly encouraged that companies are rewarded for their investments with high marginal emission impact.
+877,u389,"additional,consequential,impact",support,inventory,avoided,na,medium,Making hourly matching optional with a consequential option in parallel allows for two feasible options in which comparability can be preserved.
+880,u390,impact,neutral,na,na,na,low,
+881,u391,"additional,impact",support,separate,general,na,low,While creating a separate metric would yield the benefits we identified above
+883,u392,"additional,consequential,impact",support,separate,marginal,na,high,there should be a distinct metric that quantifies the emissions impacts of electricity-related actions or projects
+884,u393,impact,neutral,na,na,na,low,
+885,u394,"additional,consequential,impact",support,separate,avoided,na,high,I support the existence of a separate metric outside of scope 2 to quantify the emissions impact of electricity-related actions.
+886,u395,impact,neutral,na,na,na,low,
+887,u396,"additional,impact",support,inventory,additionality,na,medium,Options that allow for and recognize different kinds of impactful action including long-term forward contracts
+888,u397,"additional,consequential,impact",support,separate,general,na,low,The development and existence of an impact metric outside of Scope 2 would have different uses and advantages
+889,u398,"additional,consequential,impact",mixed,inventory,additionality,method,medium,"strategies based on alternative accounting methodologies, such as short-run marginal emission offsetting, are ineffective at reducing system emissions."
+890,u399,impact,neutral,na,na,na,low,
+893,u400,consequential,neutral,na,na,na,medium,
+894,u401,"consequential,impact",support,separate,avoided,na,high,We recognise that the GHG Protocol is also considering adopting separate impact metrics and we support those efforts
+895,u054,"consequential,impact",support,unspecified,avoided,na,low,reduced carbon impacts associated with mandatory hourly matching without a viable consequential metric
+896,u402,"additional,causal,consequential,impact",support,both,avoided,na,high,"this refinement must be paired with a separate, rigorous 'Impact' metric that measures the consequential outcomes of procurement decisions."
+898,u403,impact,neutral,na,na,na,medium,
+899,u404,impact,support,inventory,general,na,high,we recommend the introduction of an impact criteria that is not separate from attributional accounting.
+904,u405,"additional,impact",support,separate,avoided,na,high,BCSE is supportive of impact-based accounting approaches that recognize actions contributing to system-level emissions reductions.
+907,u406,"causal,consequential,impact",support,separate,avoided,na,high,there is incredible value in the GHG Protocol developing a consequential method (aka impact metric) for electricity projects
+909,u407,impact,neutral,na,na,na,low,
+910,u408,"additional,consequential,impact",support,inventory,marginal,na,high,It should exist within Scope 2 in order to effectively use it to optimize procurement for cost and carbon impact.
+911,u409,"consequential,impact",neutral,na,na,na,low,
+913,u410,impact,neutral,na,na,na,low,
+914,u411,consequential,neutral,na,na,na,low,
+915,u412,"consequential,impact",neutral,na,na,na,low,
+916,u413,"additional,consequential,impact",support,both,marginal,na,medium,All three should be a required part of Scope 2 reporting.
+917,u414,impact,neutral,na,na,na,low,
+919,u415,causal,neutral,na,na,na,medium,
+920,u416,"additional,impact",neutral,na,na,na,low,
+921,u417,"additional,impact",neutral,na,na,na,low,
+922,u418,causal,neutral,na,na,na,medium,
+923,u419,"consequential,impact",neutral,na,na,na,low,
+925,u420,"consequential,impact",support,separate,marginal,na,high,pair any refinements to the market-based method with a required consequential disclosure.
+926,u421,consequential,mixed,unspecified,marginal,method,high,EMA does not condone consequential accounting as a required framework for procurement of market-based instruments to reduce Scope II GHG emissions inventories.
+928,u422,"consequential,impact",neutral,na,na,na,high,
+929,u423,impact,neutral,na,na,na,low,
+930,u424,impact,neutral,na,na,na,low,
+931,u425,additional,neutral,na,na,na,low,
+932,u426,"additional,impact",mixed,inventory,additionality,method,medium,An outside impact metric cannot offer the same decarbonization signals and incentives on every grid in which organizations operate
+934,u427,impact,neutral,na,na,na,medium,"making deliverability mandatory would prevent load aggregation, shrink buyer pools, increase transaction costs, and reduce impact"
+935,u428,"additional,consequential,impact",support,unspecified,avoided,na,medium,the protocol must allow for “Consequential Emissions” accounting to allow organizations that are willing to financially support clean energy technologies
+936,u429,"additional,consequential,impact",mixed,separate,additionality,method,low,An outside impact metric cannot offer the same true decarbonization signals and incentives on every grid in which organizations operate
+937,u430,"additional,impact",mixed,inventory,additionality,method,medium,there is no reasonable way to build the counterfactual necessary to arrive at a definitive value
+938,u431,impact,neutral,na,na,na,low,Concerned that more impactful options will not be pursued
+939,u432,"additional,consequential,impact",support,separate,marginal,na,medium,"Optionality, paired with a complementary consequential framework, would provide two credible, comparable pathways"
+941,u433,"additional,impact",neutral,na,na,na,medium,creates perverse incentive against physical procurement (highest additionality)
+942,u434,impact,neutral,na,na,na,medium,prioritizes technical granularity at the expense of practical feasibility and climate impact
+944,u435,impact,neutral,na,na,na,low,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+945,u436,impact,support,inventory,general,na,medium,These should be optional reporting pathways alongside an equal Impact Accounting pathway
+947,u437,"additional,consequential,impact",support,inventory,avoided,na,medium,Impact or consequential accounting can provide meaningful value by highlighting additionality and helping organizations understand the real-world emissions impact
+950,u438,impact,neutral,na,na,na,medium,This type of impactful renewable electricity is a key action in our work to decarbonize.
+951,u439,impact,neutral,na,na,na,low,without undermining the integrity or intended climate impact of the market-based method
+952,u440,"consequential,impact",support,separate,avoided,na,high,"an alternative approach that includes the measurement of carbon impact, like Consequential Accounting (which maximizes climate investment) is “doing better”"
+953,u441,"additional,consequential,impact",support,inventory,additionality,na,high,The guidelines should incorporate consequential additionality accounting to encourage off-takers investing in projects that will have the greatest impact
+954,u442,"consequential,impact",support,separate,avoided,na,medium,Organisations need certainty that the climate benefits of existing PPAs can still be recognised
+958,u443,"additional,consequential,impact",support,separate,general,na,medium,we agree there should be the option and methodology to calculate a consequential metric
+959,u444,"consequential,impact",support,separate,avoided,na,high,ACORE supports the development of consequential accounting.
+960,u445,"consequential,impact",support,separate,avoided,na,high,"Establishing a framework to evaluate such efforts would fairly assess corporate initiatives, incentivize further reduction efforts"
+962,u446,"additional,impact",neutral,na,na,na,low,"enhanced integrity of Energy Attribute Certificates (EACs) through clear rules on project identification, validity periods, and additionality"
+965,u447,"consequential,impact",support,unspecified,avoided,na,medium,you set a real criteria for calculating the avoided emissions associated with individual EACs
+966,u448,"consequential,impact",support,separate,marginal,na,high,We support the development of a consequential accounting pathway outside the scope 2 inventory
+967,u449,"consequential,impact",neutral,na,na,na,medium,"Because these two types of emissions are distinct and serve different purposes, the existence of impact metrics does not change our view."
+968,u450,"causal,impact",support,inventory,additionality,na,high,impact must be embedded within attributional market-based instruments
+970,u451,impact,support,separate,general,na,medium,Impact metrics should be developed separately under AMI and remain complementary rather than merged with inventories.
+971,u452,impact,neutral,na,na,na,medium,balance scientific integrity with feasibility in order to enable broad adoption and meaningful climate impact
+972,u453,"consequential,impact",support,inventory,marginal,na,high,why not make room for a parallel consequential metric that may be measured within Scope 2 as an alternative to the MBM and LBM?
+973,u454,"consequential,impact",support,separate,marginal,na,high,it is essential that GHGP pair any refinements to the market-based method with a required consequential disclosure
+974,u455,impact,support,separate,avoided,na,high,complementary disclosures or metrics outside the Scope 2 inventory can help communicate impact
+976,u456,impact,support,unspecified,additionality,na,low,Impact metrics should recognise cross‑border EU system benefits and avoid implying that hourly matching is a prerequisite for climate impact.
+977,u457,"additional,consequential,impact",mixed,separate,additionality,method,medium,is not in and of itself a justifiable reason to exclude the development of such a metric.
+978,u458,"additional,impact",support,inventory,general,na,medium,Any impact metrics should be included in the discussion of entities reporting inventories
+979,u459,additional,neutral,na,na,na,low,All these would set up proper incentives for more robust decarbonization.
+980,u460,"consequential,impact",support,inventory,general,na,medium,the scope 2 revisions are missing a market based approach that promotes & recognizes impactful action & long-term contracts
+981,u461,consequential,support,separate,avoided,na,medium,a separate electricity sector / consequential accounting method can be designed with comparable temporal and deliverability requirements
+982,u462,impact,neutral,na,na,na,medium,will drive climate impact by addressing oversupply and creating incentives for the technologies and power system investments
+983,u463,"additional,consequential,impact",oppose,na,na,method,low,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+984,u464,"consequential,impact",support,unspecified,general,na,medium,it's important to provide pathways to incentivize and continue to channel voluntary investment in clean energy
+986,u465,impact,neutral,na,na,na,low,Companies seeking the most impactful clean-energy strategy should instead make power
+987,u466,"additional,consequential,impact",support,separate,avoided,na,high,RNG COALITION is supportive of impact-based accounting approaches that recognize actions contributing to system-level emissions reductions.
+988,u104,"additional,impact",support,inventory,additionality,na,medium,needs a third pillar that addresses incrementality
+989,u467,"additional,consequential,impact",support,inventory,additionality,na,high,Consequential accounting is needed to fill this gap and should be recognized in Scope 2
+990,u468,impact,neutral,na,na,na,medium,curtail investment in locations where lower-carbon energy investments could be most impactful for decarbonization
+992,u469,additional,support,inventory,additionality,na,low,further consideration of layered additionality requirements as procurement expands over time
+994,u470,impact,support,separate,general,na,medium,"Impact metrics are valuable but should remain in Guidance, with a future pathway for integration"
+995,u471,impact,neutral,na,na,na,medium,The existence of a separate impact metric outside of scope 2 does not excuse or circumvent the fact
+996,u472,"additional,consequential,impact",support,inventory,avoided,na,high,"We support the development of impact metrics, if it includes the emissions impact from load alongside the emissions impact from procurement"
+997,u473,"additional,consequential,impact",support,separate,marginal,na,high,"By creating a separate, standardized consequential metric using operating‑margin and build-margin approaches, organizations can disclose real climate impact"
+998,u474,impact,support,unspecified,additionality,na,medium,to address widespread criticism that the current GHGP allows companies to reduce their reported emissions via actions that are mostly or entirely non-impactful
+999,u475,"consequential,impact",support,inventory,general,na,high,We support a consequential method being included in Scope 2
+1000,u476,impact,oppose,na,na,other,medium,To introduce further novel impact metrics that reduce energy accounting symmetry will only add to the challenges facing this sector.
+1001,u477,impact,neutral,na,na,na,medium,A separate impact metric does not change our view because it serves a fundamentally different purpose than the market-based method.
+1002,u478,"additional,consequential",support,inventory,additionality,na,high,"Additionality should be a requirement, and the geographic boundary should be kept at grid interconnection level."
+1003,u479,impact,neutral,na,na,na,medium,this combination helps shift green electricity procurement toward outcomes that better reflect real system conditions
+1004,u480,"consequential,impact",oppose,na,na,method,high,"there is no existing methodology to calculate these metrics across geographies, it is difficult to audit counterfactual statements."
+1005,u481,"consequential,impact",support,separate,avoided,na,high,ACORE supports the development of consequential accounting.
+1007,u482,impact,neutral,na,na,na,low,These requirements could discourage additionally impactful strategies that support procurement from carbon-intense regions of the grid
+1008,u483,impact,neutral,na,na,na,medium,limits incentives for companies with lower on-site electricity use to invest in new impactful renewable energy projects
+1009,u270,"consequential,impact",support,separate,avoided,na,high,This is why we fully support the crucial work of the Action & Market Instrument (AMI) workstream for quantifying and reporting GHG impacts of actions.
+1011,u484,"additional,impact",support,separate,general,na,medium,"an impact metric is important not only to capture emissions outcomes, but also as a safeguard or alternative"
+1012,u485,"consequential,impact",neutral,na,na,na,low,"The proposed revisions should focus on enhancing the attributional nature of scope 2 reporting, regardless of whether there is a separate impact metric"
+1014,u486,impact,support,separate,general,na,medium,"Hourly matching and deliverability are impact concepts that belong in separate impact metrics (being developed under AMI work), not in inventory accounting."
+1016,u487,impact,neutral,na,na,na,medium,It would block impactful procurement of clean energy and significantly slow global decarbonization.
+1017,u488,additional,neutral,na,na,na,low,Maintaining the existing definition supports continued flexibility for organizations to pursue additionality
+1018,u489,impact,neutral,na,na,na,medium,Market-based mechanisms and hourly matching together will have a positive climate impact
+1019,u490,impact,support,unspecified,general,na,high,C2ES supports an impact metric regardless of where the market-based inventory revisions land.
+1022,u491,"additional,consequential,impact",oppose,na,na,method,low,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+1023,u102,"additional,consequential,impact",oppose,na,na,method,medium,"To date, there has not been a proposed impact methodology that satisfactorily meets the combined GHGP metrics of integrity, impact, and feasibility."
+1024,u492,impact,neutral,na,na,na,low,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+1025,u493,"additional,impact",support,inventory,additionality,na,low,GHG Protocol must ensure that the MBM prioritises real-world mitigation over technical precision
+1026,u494,"additional,consequential,impact",support,inventory,marginal,na,high,Excluding the consequential method as an equally viable option to the LBM or MBM prevents organizations from using it to measure impact
+1027,u495,"additional,consequential,impact",support,separate,avoided,na,high,A separate impact-oriented metric can complement attributional Scope 2 inventories by better capturing the system-level emissions effects
+1028,u496,"consequential,impact",neutral,na,na,na,medium,shows the real climate impact of companies' energy procurement
+1030,u497,"additional,consequential",support,inventory,additionality,na,medium,An additionality requirement also incentivizes firms to procure renewable energy that is incremental to the existing generation capacity.
+1031,u498,"consequential,impact",neutral,na,na,na,low,
+1034,u499,"consequential,impact",mixed,separate,avoided,method,medium,Only if methodological issues can be agreed would it be helpful to have this alternative method.
+1035,u500,impact,neutral,na,na,na,low,
+1037,u501,"consequential,impact",support,both,avoided,na,high,"That said, I would support a separate impact metric for electricity projects."
+1039,u502,impact,support,unspecified,general,na,low,shouldn’t this climate action be recognised?
+1040,u503,impact,mixed,separate,general,method,medium,"Impact metrics, by contrast, describe estimated system-level outcomes and should be treated, if developed, as supplemental voluntary indicators."
+1042,u504,"additional,impact",support,inventory,additionality,na,medium,"MBM should be improved through stronger quality criteria (e.g., additionality, robust EACs standards, clear time/geography rules)"
+1044,u505,impact,neutral,na,na,na,low,
+1045,u506,impact,neutral,na,na,na,low,
+1047,u507,impact,neutral,na,na,na,low,
+1049,u508,"consequential,impact",support,separate,avoided,na,medium,NRG supports continued development of consequential accounting as a supplemental tool for assessing system-level impacts
+1050,u509,"additional,consequential,impact",support,inventory,additionality,na,medium,"While strongly support the need to tackle additionality in the MBM, we would support an alternative way of doing so"
+1053,u510,impact,neutral,na,na,na,low,
+1054,u511,"causal,consequential,impact",support,separate,avoided,na,high,ACP encourages continued development of consequential accounting approaches as a complementary pathway for assessing system-level impacts
+1055,u512,"additional,consequential",support,inventory,additionality,na,medium,I do not agree with not having an additionality requirement.
+1056,u513,"additional,consequential",oppose,na,na,attributional,medium,Incrementality considerations would conflate the logic and goal of consequential accounting with market-based accounting.
+1057,u514,"consequential,impact",support,separate,avoided,na,high,"We also support clear Consequential Emissions standards for tabulating benefits of offsite projects, VPPAs and beyond."
+1060,u515,"additional,causal,impact",mixed,separate,general,method,medium,"impact metrics inherently lack the consistency, comparability, and verifiability that a global reporting standard requires."
+1063,u516,additional,neutral,na,na,na,low,
+1070,u517,consequential,oppose,na,na,attributional,low,"there is a risk of conflating attributional accounting with consequential or offset-style approaches, which undermines comparability and transparency."
+1071,u518,impact,support,separate,general,na,medium,while an impact metric could be a useful additional tool
+1072,u519,"causal,consequential,impact",support,separate,avoided,na,medium,"This would be directionally helpful, particularly if the Protocol retains contractual instruments within the market-based method."
+1073,u520,impact,neutral,na,na,na,low,
+1076,u399,impact,neutral,na,na,na,low,
+1079,u521,"consequential,impact",support,separate,marginal,na,high,"A separate impact metric could quantify system-level benefits: avoided curtailment, displaced fossil generation, and grid decarbonization support."
+1080,u522,impact,support,separate,avoided,na,medium,"clear pathways (e.g., AMI impact metrics) for companies that want to go further"
+1083,u523,"additional,impact",support,unspecified,additionality,na,medium,without regard for whether these contractual claims credibly link to real-world emissions impacts.
+1085,u524,"additional,consequential,impact",support,inventory,additionality,na,high,the additional emissions-free electricity generated can reasonably be treated as a fair counterbalance of the firm’s Scope 2 emissions from grid consumption.
+1086,u525,"additional,consequential,impact",support,inventory,marginal,na,high,A consequential standard could sit alongside the market-based and location-based methods and apply to all emissions.
+1088,u526,"additional,impact",neutral,na,na,na,low,
+1089,u527,"consequential,impact",support,separate,general,na,medium,such a metric—where presented as an optional tool—would allow companies the ability to report on emissions impacts in a consistent manner.
+1090,u528,"additional,consequential,impact",support,both,additionality,na,high,"If the GHG Protocol chooses to retain the MBM, then reported emissions should at least reflect the impact of a company’s procurement decisions."
+1093,u529,impact,neutral,na,na,na,low,
+1097,u530,"consequential,impact",support,separate,avoided,na,high,We support the development of consequential accounting.
+1099,u531,additional,support,inventory,additionality,na,low,"tightening EAC quality criteria (project identification, within month validity windows, and minimum additionality where feasible)"
+1100,u532,impact,neutral,na,na,na,low,
+1101,u533,"consequential,impact",support,separate,marginal,na,high,"introducing Impact Accounting (Emissionality) as a supplementary or ""dual-reporting"" metric."
+1103,u534,"consequential,impact",support,inventory,marginal,na,medium,Inventory-based Scope 2 accounting and consequential impact analysis should align
+1104,u535,consequential,neutral,na,na,na,low,
+1105,u536,impact,neutral,na,na,na,low,
+1108,u537,impact,support,unspecified,general,na,low,"Alternative accounting methods that rather emphasize e.g., (i) the enabling role of corporate purchasing of renewables through the provision of long-term contracts"
+1109,u538,"consequential,impact",support,separate,avoided,na,high,it is essential that GHGP pair any refinements to the market-based method with a required consequential disclosure.
+1110,u539,impact,neutral,na,na,na,low,
+1111,u540,"consequential,impact",support,inventory,marginal,na,medium,We suggest that the GHGP opens itself for carbon matching at the nodal level
+1112,u541,"consequential,impact",support,separate,avoided,na,high,pair hourly matching with mandatory consequential metrics from the consequential subgroup and Emissions First Partnership
+1116,u542,"consequential,impact",support,separate,avoided,na,high,we are advocating for consequential metrics to complement attributional inventories and capture real avoided emissions without overhauling Scope 2.
+1118,u543,impact,neutral,na,na,na,low,
+1120,u544,consequential,mixed,unspecified,avoided,other,low,this should be ONLY for very limited organizations and analysis.
+1121,u545,"additional,consequential,impact",support,separate,avoided,na,high,"provided that a distinct (3) ""Impact Statement"" is established to capture the benefits of VPPAs that may not meet strict physical connection rules."
+1123,u546,"additional,impact",oppose,na,na,method,medium,"If introduced in the absence of an agreed methodology for calculating impact metrics, there is a risk of arbitrary calculations"
+1124,u547,impact,support,separate,avoided,na,high,We want to have an impact metric regardless of what is proposed in the market-based inventory revisions.
+1125,u548,impact,support,separate,general,na,medium,Complementary impact-oriented metrics outside of Scope 2 may further suppo
+1126,u549,"additional,causal,consequential,impact",support,both,avoided,na,high,Companies should be allowed to use EACs (Statement 2) to meet targets only if they can quantify the associated system-level emission reductions
+1127,u550,"causal,consequential",support,inventory,marginal,na,high,a proportional reward system based upon the emissionality of the grids the organization is connected to
+1129,u551,impact,neutral,na,na,na,low,
+1130,u552,"additional,consequential,impact",support,separate,avoided,na,high,"those should be handled through a separate, auditable impact reporting framework."
+1134,u553,impact,oppose,na,na,other,high,Introducing a separate impact metric would add confusion and unnecessary complexity to an ecosystem that already struggles with effective data use.
+1136,u554,"additional,consequential,impact",support,both,additionality,na,medium,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+1138,u555,consequential,neutral,na,na,na,low,
+1139,u556,"consequential,impact",support,inventory,avoided,na,high,Excluding the consequential method as an equally viable option to the LBM or MBM prevents organizations from using it to measure impact
+1140,u557,"additional,consequential,impact",support,inventory,avoided,na,high,should have a mechanism to incorporate the annual emissions reductions enabled by their intervention portfolio as part of their GHGP annual inventory.
+1141,u558,"causal,consequential,impact",support,separate,marginal,na,high,"AMI consequential accounting as the primary impact metric—quantifying verified displacement from voluntary procurement, wherever it occurs"
+1142,u559,impact,neutral,na,na,na,low,
+1143,u560,impact,support,unspecified,general,na,low,including the emissions impact of categories of electricity production and consumption activities
+1146,u561,"consequential,impact",neutral,na,na,na,low,
+1147,u562,"consequential,impact",neutral,na,na,na,low,
+1148,u563,"consequential,impact",support,separate,avoided,na,high,integrate an appropriate consequential method alongside the existing Scope 2 attributional framework.
+1157,u564,impact,neutral,na,na,na,low,
+1160,u565,additional,support,inventory,additionality,na,low,"prioritises the integrity, transparency, and additionality of market instruments over strict physical deliverability."
+1165,u566,"causal,impact",support,inventory,additionality,na,high,causation is far more impactful and scalable.
+1168,u567,"additional,impact",support,inventory,additionality,na,medium,needs a third pillar that addresses incrementality.

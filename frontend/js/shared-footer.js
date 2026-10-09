@@ -30,6 +30,7 @@
         { href: FOOTER_BASE + 'evidence.html',    label: 'Evidence & Research' },
         { href: FOOTER_BASE + 'integrity.html',   label: 'Integrity & Coalitions' },
         { href: FOOTER_BASE + 'additionality.html', label: 'Additionality' },
+        { href: FOOTER_BASE + 'impact.html', label: 'Emissions Impact' },
         { href: FOOTER_BASE + 'methodology.html', label: 'Methodology' }
     ];
 

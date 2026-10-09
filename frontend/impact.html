@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emissions Impact | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Who wants scope 2 to recognise the real-world emissions impact of electricity actions, where they want it measured, and who opposes it.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/impact-page.js"></script>
+
+    <!-- Page-specific layout ONLY -->
+    <style>
+    .ad-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: var(--space-md); }
+    .ad-chart-tall { height: 480px; }
+    .ad-chart-title { font-family: var(--font-heading); font-size: 1rem; color: var(--navy); margin: 0 0 var(--space-sm); }
+    .s2-control, .toggle-btn-group { flex-wrap: wrap; min-width: 0; max-width: 100%; }
+    .ad-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--space-md); }
+    .ad-brief { margin: 0; padding-left: 1.15em; display: flex; flex-direction: column; gap: var(--space-sm); line-height: 1.65; }
+    .ad-brief strong { color: var(--navy); }
+    .ad-quotes { display: flex; flex-direction: column; gap: var(--space-md); margin-top: var(--space-md); }
+    .ad-quote-card { border-left: 3px solid var(--hydro); padding: var(--space-xs) 0 var(--space-xs) var(--space-md); }
+    .ad-quote-text { font-style: italic; color: var(--text-secondary); margin: 0 0 var(--space-xs); }
+    .ad-quote-who { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+    .ad-quote-who strong { color: var(--navy); }
+    .ad-num { font-family: var(--font-data); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+    #orgTable { max-height: 70vh; overflow-y: auto; }
+    #orgTable thead th { position: sticky; top: 0; z-index: 1; background: var(--bg-page-white); }
+    .ad-method summary { cursor: pointer; font-family: var(--font-heading); font-weight: 700; color: var(--navy); }
+    .ad-method ul { margin-top: var(--space-sm); display: flex; flex-direction: column; gap: var(--space-xs); line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="pageHeader">
+        <h1>Emissions Impact</h1>
+        <div class="subtitle">Who wants accounting to capture the real-world emissions effect of electricity choices, where they want it, and who says no.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== HEADLINE NUMBERS ===== -->
+        <section class="content-section">
+            <h2 class="section-title">In their own words</h2>
+            <div class="ad-grid-3">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statMention">—</div>
+                    <div class="stat-label">Used impact, causal, consequential or additionality language</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statSupport">—</div>
+                    <div class="stat-label">Support measuring or rewarding real-world impact</div>
+                    <div class="s2-note" id="statSupportSub">—</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statOppose">—</div>
+                    <div class="stat-label">Oppose it, plus <span id="statMixed">—</span> mixed</div>
+                </div>
+            </div>
+            <h2 class="section-title">The survey's question (Q146)</h2>
+            <div class="ad-grid-3">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statQYes">—</div>
+                    <div class="stat-label">Say a separate impact metric outside scope 2 would change their view (yes or somewhat)</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statQNo">—</div>
+                    <div class="stat-label">Say it would not change their view</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statQOpp">—</div>
+                    <div class="stat-label">Do not support impact metrics outside the scope 2 inventory</div>
+                </div>
+            </div>
+            <p class="s2-note">Top row: count and % of all 1,072 respondents; stances are coded only for those who raised the topic. Bottom row: share of the <span id="statQn">517</span> who answered Q146.</p>
+        </section>
+
+        <!-- ===== IN BRIEF ===== -->
+        <section class="content-section-narrow" id="brief">
+            <h2 class="section-title">In brief</h2>
+            <div class="card card-spacious scroll-reveal">
+                <ul class="ad-brief" id="briefList"><li class="s2-loading">Loading…</li></ul>
+            </div>
+        </section>
+
+        <!-- ===== Q146 BY CAMP ===== -->
+        <section class="content-section" id="q146">
+            <h2 class="section-title">Would a separate impact metric change your view?</h2>
+            <p class="section-subtitle">Q146 answers, by how respondents scored hourly matching (Q71) and deliverability (Q83).</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm">
+                    <canvas id="chartQ146" aria-label="Q146 answers by stance on hourly matching and deliverability"></canvas>
+                </div>
+                <p class="s2-note">Share of each group that answered Q146. "Oppose outside scope 2" is the survey's option "I do not support the development of impact metrics outside the scope 2 inventory".</p>
+            </div>
+        </section>
+
+        <!-- ===== WHAT Q146 HIDES ===== -->
+        <section class="content-section" id="hides">
+            <h2 class="section-title">What the closed answer hides</h2>
+            <p class="section-subtitle">Q146 answers of respondents whose free text we coded, by their coded stance on the concept.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm">
+                    <canvas id="chartHides" aria-label="Q146 answer by coded stance"></canvas>
+                </div>
+                <p class="s2-note" id="hidesNote">—</p>
+            </div>
+        </section>
+
+        <!-- ===== REASONS ===== -->
+        <section class="content-section" id="reasons">
+            <h2 class="section-title">Reasons given in the survey</h2>
+            <div class="ad-grid-2">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="ad-chart-title">For: yes or somewhat (Q147)</h3>
+                    <div class="chart-container ad-chart-tall"><canvas id="chartQ147" aria-label="Q147 rationales"></canvas></div>
+                    <p class="s2-note" id="q147Note">—</p>
+                </div>
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="ad-chart-title">Against: oppose outside scope 2 (Q150)</h3>
+                    <div class="chart-container ad-chart-tall"><canvas id="chartQ150" aria-label="Q150 rationales"></canvas></div>
+                    <p class="s2-note" id="q150Note">—</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHERE ===== -->
+        <section class="content-section" id="where">
+            <h2 class="section-title">Supporters: inside scope 2 or beside it?</h2>
+            <p class="section-subtitle">Coded supporters by where they want impact counted, and by their stance on hourly matching and deliverability.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm">
+                    <canvas id="chartWhere" aria-label="Supporters by venue and camp"></canvas>
+                </div>
+                <p class="s2-note">Inside = impact should shape the scope 2 inventory or the claims made with it (includes "both"). Beside = a separate metric or disclosure. Not said = supports the concept without saying where.</p>
+            </div>
+        </section>
+
+        <!-- ===== FORM + OPPOSE REASON ===== -->
+        <section class="content-section" id="form">
+            <div class="ad-grid-2">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="ad-chart-title">Which impact supporters mean</h3>
+                    <div class="chart-container-sm"><canvas id="chartForm" aria-label="Supporters by form of impact"></canvas></div>
+                    <p class="s2-note">Supporters and mixed, coded once by the form they lean on most.</p>
+                </div>
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="ad-chart-title">Why opponents say no</h3>
+                    <div class="chart-container-sm"><canvas id="chartWhy" aria-label="Opponents by main reason"></canvas></div>
+                    <p class="s2-note">Coded opponents, by main reason in their own words.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHO SAID WHAT ===== -->
+        <section class="content-section-narrow" id="voices">
+            <h2 class="section-title">Who said what</h2>
+            <p class="section-subtitle">Verbatim passages, with every named organisation that used them.</p>
+            <div class="card card-spacious scroll-reveal">
+                <div class="toggle-btn-group" id="quoteTabs" role="group" aria-label="Position"></div>
+                <div class="ad-quotes" id="quoteList"><p class="s2-loading">Loading…</p></div>
+            </div>
+        </section>
+
+        <!-- ===== WHO THEY ARE ===== -->
+        <section class="content-section" id="who">
+            <h2 class="section-title">Who they are</h2>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="demoGroupLabel">Group</span>
+                        <div class="toggle-btn-group" id="demoGroup" role="group" aria-labelledby="demoGroupLabel"></div>
+                    </div>
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="demoDimLabel">By</span>
+                        <div class="toggle-btn-group" id="demoDim" role="group" aria-labelledby="demoDimLabel"></div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chartDemo" aria-label="Group members by segment"></canvas>
+                </div>
+                <p class="s2-note">Includes redacted respondents. Segments under five respondents are pooled.</p>
+            </div>
+        </section>
+
+        <!-- ===== ORGANISATIONS ===== -->
+        <section class="content-section" id="organisations">
+            <h2 class="section-title">Organisations</h2>
+            <p class="section-subtitle">Every named organisation coded as supporting, opposing or mixed on the concept.</p>
+            <div class="card scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="orgFilterLabel">Show</span>
+                        <div class="toggle-btn-group" id="orgFilter" role="group" aria-labelledby="orgFilterLabel"></div>
+                    </div>
+                    <div class="s2-field">
+                        <label class="s2-control-label" for="orgSearch">Search</label>
+                        <input class="s2-input" id="orgSearch" type="search" placeholder="Organisation or country">
+                    </div>
+                </div>
+                <p class="s2-note" id="orgCount">—</p>
+                <div class="s2-table-scroll" id="orgTable"><p class="s2-loading">Loading…</p></div>
+                <p class="s2-note" id="orgUnnamed">—</p>
+            </div>
+        </section>
+
+        <!-- ===== METHOD ===== -->
+        <section class="content-section-narrow" id="method">
+            <div class="card scroll-reveal">
+                <details class="ad-method">
+                    <summary>How this was measured</summary>
+                    <ul>
+                        <li><strong>Mentions:</strong> keyword search of all free-text answers for four families: <em>impact</em> ("emissions / climate / carbon / decarbonization / real-world / grid impact", "impact metric / accounting / method / -based"), <em>causal</em> (causal, causality, causation, "would not otherwise"), <em>consequential</em> (consequential, avoided emissions, marginal emissions, emissionality) and <em>additionality</em> (additionality, incrementality). Bare "impact" does not count: the survey's own "integrity, impact and feasibility" wording is echoed in hundreds of answers.</li>
+                        <li><strong>Stance:</strong> each matching respondent's passages (±350 characters, impact-metric answers Q148/Q149/Q151 first, capped at 7,000 characters) were read against a fixed codebook: support, oppose, mixed or neutral on measuring, recognising or rewarding causal emissions impact. Using "climate impact" only as a yardstick for a proposal is neutral. Opposing hourly matching is not treated as opposing impact.</li>
+                        <li><strong>Where and which:</strong> supporters were also coded on venue (inside scope 2, separate metric, both, not said) and form (marginal / emissionality, additionality, avoided emissions, general); opponents on their main reason.</li>
+                        <li><strong>Q146–Q150:</strong> the survey's closed questions on a separate impact metric. Q147 and Q150 reasons are counted only for respondents whose Q146 answer opened that follow-up.</li>
+                        <li><strong>Checks:</strong> coding by AI coders; every oppose code and a random sample of support codes checked by hand; stances compared with the separate additionality coding where respondents overlap (<span id="overlapNote">—</span>). No second-coder agreement score.</li>
+                        <li><strong>Names:</strong> as entered in the consultation, cleaned where the field held a job title or description. Redacted and individual filers are counted, never named.</li>
+                        <li><strong>Files:</strong> <code>data/derived/impact_stance.csv</code>, <code>reference/impact_codebook.md</code>, <code>scripts/analytics/impact.py</code>.</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+    </div>
+
+    <footer id="siteFooter" data-footer-note="Emissions impact — who wants scope 2 accounting to capture the real-world effect of electricity choices, and where."></footer>
+
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
