@@ -10,9 +10,13 @@ unprompted free text. Two steps:
         against reference/additionality_codebook.md.
 
     python3 scripts/analytics/additionality.py export
-        Join the hand-coded stances (data/derived/additionality_stance.csv) to
-        the Q71 (hourly matching) and Q83 (deliverability) scores and write
-        frontend/data/additionality.json (+ its fixture copy).
+        Join the hand-coded stances (data/derived/additionality_stance.csv) and
+        mechanisms (data/derived/additionality_mechanism.csv) to the Q71 (hourly
+        matching) and Q83 (deliverability) scores and respondent profiles, and
+        write frontend/data/additionality.json (+ its fixture copy).
+
+Respondents who never used either concept are not classified: the page reports
+nothing about their view of additionality or incrementality.
 
 Mention patterns
 ----------------
@@ -34,9 +38,15 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from export_frontend import (COUNTRY_TOP_N, MIN_SEGMENT_N, ORG_TYPES,  # noqa: E402
+                             SECTOR_TOP_N, SECTORS, truncate)
+
 ROOT = Path(__file__).resolve().parents[2]
 DB = ROOT / "data" / "scope2_consultation.sqlite"
 CODED = ROOT / "data" / "derived" / "additionality_stance.csv"
+MECH = ROOT / "data" / "derived" / "additionality_mechanism.csv"
+AUDIT = ROOT / "reference" / "org_audit.csv"
 OUT = ROOT / "frontend" / "data" / "additionality.json"
 FIXTURE = ROOT / "frontend" / "data" / "fixtures" / "additionality.json"
 
@@ -52,16 +62,15 @@ PATTERNS = {
 }
 SHARED_MIN = 3  # a mention sentence shared verbatim by this many respondents = shared wording
 
-ORG_SHORT = {
-    "Company": "Company",
-    "Non-profit organization/NGO/civil society": "NGO / civil society",
-    "Consultant supporting organizations with GHG inventories/strategies": "Consultant",
-    "Academia/research": "Academia / research",
-    "Industry group": "Industry group",
-    "Energy supplier/retailer or utility": "Utility / supplier",
-    "Data/analytics or software provider related to GHG inventories": "Data / software",
-    "Financial Institution": "Financial institution",
-    "Government": "Government",
+ORG_LABEL = {value: label for value, _slug, label in ORG_TYPES}
+AUDIT_LABEL = {
+    "academic_institution": "Academic institution", "think_tank": "Think tank",
+    "ngo_civil_society": "NGO / civil society", "trade_association": "Trade association",
+    "business_coalition": "Business coalition", "company": "Company", "consultancy": "Consultancy",
+    "data_vendor": "Data / software vendor", "financial": "Financial institution",
+    "government": "Government / public body", "registry_operator": "Registry operator",
+    "standards_body": "Standards / assurance body", "individual": "Individual",
+    "unverifiable": "Unverifiable",
 }
 
 
@@ -134,8 +143,10 @@ def pct(n, d):
 
 def cmd_export() -> None:
     con = sqlite3.connect(DB)
-    resp = {r[0]: {"org": r[1], "redacted": int(r[2])} for r in
-            con.execute("SELECT respondent_id, organization_type, is_redacted FROM respondents")}
+    resp = {r[0]: {"org": r[1], "redacted": int(r[2]), "name": r[3], "country": r[4],
+                   "sector": r[5], "as": r[6]} for r in
+            con.execute("SELECT respondent_id, organization_type, is_redacted, organization, country, "
+                        "sector, responding_as FROM respondents")}
     N = len(resp)
     rows = free_text(con)
     n_free = len({r[0] for r in rows})
@@ -181,7 +192,7 @@ def cmd_export() -> None:
         return [c.get(k, 0) for k in range(1, 6)]
 
     def orgs(ids):
-        c = Counter(ORG_SHORT.get(resp[i]["org"], "Other") for i in ids)
+        c = Counter(ORG_LABEL[resp[i]["org"]] for i in ids)
         return dict(sorted(c.items(), key=lambda kv: (-kv[1], kv[0])))
 
     anti = sup["E"] & {i for i in both_scored if score["Q071"][i] <= 2 and score["Q083"][i] <= 2}
@@ -194,7 +205,7 @@ def cmd_export() -> None:
             if not q or k in seen:
                 continue
             seen.add(k)
-            out.append({"org": ORG_SHORT.get(resp[i]["org"], "Other"),
+            out.append({"org": ORG_LABEL[resp[i]["org"]],
                         "redacted": resp[i]["redacted"], "quote": q,
                         "n_same": sum(1 for j in ids if re.sub(r"\W+", " ", coded[j]["quote"].lower())[:60] == k)})
         out.sort(key=lambda x: (-x["n_same"], x["org"], x["quote"]))
@@ -223,6 +234,94 @@ def cmd_export() -> None:
         "quotes": {"all_three": quotes(all3, 8), "oppose": quotes({i for i, r in coded.items() if overall(r) == "oppose"}),
                    "anti_both": quotes(anti, 6)},
     }
+    # --- mechanism: SSS as the incrementality test vs a required asset-age test
+    mech = {int(r["respondent_id"]): r for r in csv.DictReader(MECH.open())} if MECH.exists() else {}
+    if mech:
+        assert set(mech) == sup["E"], "mechanism file out of sync with supporters"
+
+    def mech_counts(ids):
+        out = {"sss_supports": 0, "sss_prefers_other": 0, "age_required": 0, "age_considered": 0,
+               "sss_and_age_required": 0, "sss_only": 0, "age_required_only": 0, "neither": 0}
+        for i in ids:
+            m = mech[i]
+            s_ok, a_req = m["sss"] == "supports", m["age"] == "required"
+            out["sss_supports"] += s_ok
+            out["sss_prefers_other"] += m["sss"] == "prefers_other"
+            out["age_required"] += a_req
+            out["age_considered"] += m["age"] == "considered"
+            out["sss_and_age_required"] += s_ok and a_req
+            out["sss_only"] += s_ok and not a_req
+            out["age_required_only"] += a_req and not s_ok
+            out["neither"] += not s_ok and not a_req
+        return out
+
+    if mech:
+        data_mech = {"either": mech_counts(sup["E"]), "all_three": mech_counts(all3),
+                     "anti_both": mech_counts(anti), "n_supporters": len(sup["E"])}
+    else:
+        data_mech = None
+
+    # --- demographics: who voiced support, by segment ------------------------
+    oppose_ids = {i for i, r in coded.items() if overall(r) == "oppose"}
+    groups = {"either": sup["E"], "additionality": sup["A"], "incrementality": sup["I"],
+              "all_three": all3, "oppose": oppose_ids}
+    if mech:
+        groups["sss"] = {i for i in sup["E"] if mech[i]["sss"] == "supports"}
+        groups["age_required"] = {i for i in sup["E"] if mech[i]["age"] == "required"}
+
+    def dim(label_of, top_n=None, other="Other"):
+        totals = Counter(label_of(i) for i in resp)
+        ordered = sorted(totals.items(), key=lambda kv: (-kv[1], kv[0]))
+        keep = {k for k, n in (ordered[:top_n] if top_n else ordered) if n >= MIN_SEGMENT_N}
+        lab = {i: (label_of(i) if label_of(i) in keep else other) for i in resp}
+        rows = []
+        for value in [k for k, _ in ordered if k in keep] + ([other] if other in lab.values() else []):
+            members = {i for i in resp if lab[i] == value}
+            rows.append({"label": value, "n": len(members),
+                         **{g: len(members & ids) for g, ids in groups.items()}})
+        return rows
+
+    sector_label = {v: lab for v, (_slug, lab) in SECTORS.items()}
+    demographics = {
+        "org_type": dim(lambda i: ORG_LABEL[resp[i]["org"]], other="Smaller types"),
+        "country": dim(lambda i: resp[i]["country"], COUNTRY_TOP_N, "Other countries"),
+        "sector": dim(lambda i: sector_label[resp[i]["sector"]], SECTOR_TOP_N, "Other sectors"),
+        "responding_as": dim(lambda i: resp[i]["as"]),
+        "redaction": dim(lambda i: "Redacted" if resp[i]["redacted"] else "Named"),
+    }
+
+    # --- named organisations -------------------------------------------------
+    audit = {int(r["respondent_id"]): r["audited_class"] for r in csv.DictReader(AUDIT.open())}
+
+    def display_name(i):
+        name = resp[i]["name"] or ""
+        if ": " in name and len(name) > 80:
+            name = name.split(": ", 1)[0]
+        return truncate(name, 80)
+
+    named = []
+    for i in sorted(sup["E"] | oppose_ids):
+        if resp[i]["redacted"] or resp[i]["as"] != "Organization":
+            continue
+        r = coded[i]
+        named.append({
+            "id": i, "name": display_name(i), "org_type": ORG_LABEL[resp[i]["org"]],
+            "audited": AUDIT_LABEL.get(audit.get(i, ""), ""), "country": resp[i]["country"],
+            "stance": "oppose" if i in oppose_ids else "support",
+            "concepts": "".join(c for c, f in (("A", "add_stance"), ("I", "inc_stance")) if r[f] == ("oppose" if i in oppose_ids else "support")),
+            "camp": camp(score["Q071"].get(i), score["Q083"].get(i)),
+            "sss": mech[i]["sss"] if i in mech else "", "age": mech[i]["age"] if i in mech else "",
+            "quote": (mech[i]["quote"] if i in mech and mech[i]["quote"] else r["quote"]).strip(),
+        })
+    unnamed = {k: {"redacted": sum(resp[i]["redacted"] for i in ids),
+                   "individual": sum(1 for i in ids if not resp[i]["redacted"] and resp[i]["as"] != "Organization")}
+               for k, ids in (("support", sup["E"]), ("oppose", oppose_ids))}
+
+    data["mechanism"] = data_mech
+    data["demographics"] = demographics
+    data["named"] = named
+    data["unnamed"] = unnamed
+
     for p in (OUT, FIXTURE):
         p.write_text(json.dumps(data, sort_keys=True, ensure_ascii=False, separators=(",", ":")) + "\n")
     print(json.dumps({k: data[k] for k in ("mentions", "supporters", "all_three")}, indent=1))
