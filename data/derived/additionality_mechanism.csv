@@ -3,10 +3,10 @@ respondent_id,sss,age,confidence,quote
 17,none,none,high,
 35,none,none,high,
 40,none,none,high,
-50,supports,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
+50,prefers_other,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
 62,none,none,high,
 72,oppose,required,medium,we do not support the SSS concept because it is not operationally feasible under real-world conditions.
-75,supports,considered,medium,Vintage requirements in which certain resources could be automatically qualified as SSS based on asset age
+75,prefers_other,considered,medium,Vintage requirements in which certain resources could be automatically qualified as SSS based on asset age
 88,none,considered,low,70% of our renewable procurement is from pre-COD projects
 95,none,none,high,
 98,none,none,high,
@@ -15,10 +15,10 @@ respondent_id,sss,age,confidence,quote
 118,none,none,high,
 121,none,none,high,
 130,none,none,high,
-137,supports,considered,medium,An asset age limit should be considered as quality criteria for renewable electricity claimed under scope 2 emissions reporting.
+137,prefers_other,considered,medium,An asset age limit should be considered as quality criteria for renewable electricity claimed under scope 2 emissions reporting.
 152,supports,none,high,incrementality (SSS or other metric)
 157,none,none,high,
-158,supports,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
+158,prefers_other,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
 165,supports,none,high,incrementality (Standard Supply Service or other metric)
 174,supports,considered,medium,incrementality standards such as SSS are essential
 178,none,none,high,
@@ -43,28 +43,28 @@ respondent_id,sss,age,confidence,quote
 254,none,none,medium,
 255,oppose,required,medium,A simpler approach to accelerate decarbonization of grids would be to implement a sourced renewable project age limitation
 266,none,none,high,
-275,supports,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
+275,prefers_other,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
 276,none,none,high,
 277,none,none,high,
 314,oppose,required,medium,A simpler approach to accelerate decarbonization of grids would be to implement a sourced renewable project age limitation
 323,none,none,high,
 324,none,none,high,
 325,supports,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward with transparency and credibility.
-337,supports,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
+337,prefers_other,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
 342,supports,considered,medium,An asset age limit could help reduce inconsistency and improve
 345,none,none,high,
 348,supports,considered,medium,"it would be highly appropriate to implement a vintage requirement, in which certain resources could be automatically qualified as SSS based on asset age"
 359,none,required,medium,A simpler approach to accelerate decarbonization of grids would be to implement a sourced renewable project age limitation
 364,none,none,high,
-386,supports,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
-387,supports,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
+386,prefers_other,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
+387,prefers_other,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
 390,prefers_other,none,high,SSS does not go far enough to act as any proxy for incrementality/additionality
 392,none,none,high,
 399,none,considered,medium,"disclosures that a contract was long-term and material to financing or life extension of a project, or met a reasonable vintage test."
 404,none,considered,low,Buyers could provide disclosures such as: (i) whether a contract supports new-build renewable capacity
 406,none,none,high,
 414,none,required,high,"implement a sourced renewable project age limitation, similar to the existing RE100 Technical Procurement Criteria"
-421,supports,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
+421,prefers_other,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
 435,supports,considered,medium,Standard Supply Service proposal is a way of accurately apportioning clean electricity already on the grid and driving incentives of new clean electricity
 441,none,none,medium,
 444,none,none,medium,
@@ -79,7 +79,7 @@ respondent_id,sss,age,confidence,quote
 486,supports,none,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
 492,none,none,high,
 496,none,none,high,
-498,supports,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
+498,prefers_other,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
 503,none,none,high,
 504,none,none,high,
 510,oppose,considered,low,we do not support the SSS concept presented in this consultation
@@ -100,7 +100,7 @@ respondent_id,sss,age,confidence,quote
 587,none,none,high,
 590,none,none,medium,
 593,prefers_other,required,high,SSS should NOT be considered a proxy for additionality/incrementality following the three pillars research. This research supports the requirement of NEW resources
-594,supports,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
+594,prefers_other,considered,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward
 597,none,considered,low,"additionality or quality criteria should be defined for EACs (e.g., RE100)."
 598,none,none,medium,
 603,none,required,medium,A simpler approach to accelerate decarbonization of grids would be to implement a sourced renewable project age limitation
@@ -129,7 +129,7 @@ respondent_id,sss,age,confidence,quote
 705,none,none,high,
 708,none,none,high,
 710,none,none,high,
-726,supports,considered,low,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward with transparency and credibility
+726,prefers_other,considered,low,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward with transparency and credibility
 727,none,required,medium,A simpler approach to accelerate decarbonization of grids would be to implement a sourced renewable project age limitation
 728,none,none,high,
 730,oppose,none,medium,The SSS mandate creates a 'crowding-out effect' on the voluntary market.
@@ -189,10 +189,10 @@ respondent_id,sss,age,confidence,quote
 962,none,none,high,
 968,none,none,high,
 973,none,considered,low,"Different matching approaches (hourly, locational, new-build, or impact-based) each serve distinct objectives"
-977,supports,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
+977,prefers_other,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
 978,none,none,high,
 979,supports,none,high,incrementality (SSS or other metric)
-983,supports,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
+983,prefers_other,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
 988,none,none,high,
 989,prefers_other,none,high,"the Standard Supply Service (SSS) is not a proxy for additionality, and it reduces potential impact."
 992,supports,considered,medium,limiting asset availability for expanded procurement on the basis of vintage
@@ -202,7 +202,7 @@ respondent_id,sss,age,confidence,quote
 1011,none,none,medium,
 1017,none,none,high,
 1022,supports,considered,medium,an incrementality standard (SSS or similar) are critical
-1023,supports,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
+1023,prefers_other,considered,medium,An asset age limit could be considered as quality criteria for clean electricity claimed under scope 2 emissions reporting.
 1025,none,none,medium,
 1030,none,none,high,
 1035,none,none,medium,

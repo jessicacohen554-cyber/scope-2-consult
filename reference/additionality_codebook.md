@@ -61,3 +61,9 @@ new-build, RE100 and repowering mentions; 57 supporters had no such passage and 
 coded `none`/`none`. Output: `data/derived/additionality_mechanism.csv`. Hand review
 of all `age=required` codes changed two to `considered` (517: optional "impact
 qualification"; 932: required disclosure, not a required test).
+
+Consistency pass (part 2): 18 supporters filed a shared passage saying SSS is "not as
+impactful as other incrementality considerations" and that "it is critical to have an
+alternative incrementality pillar definition to be in force before the SSS can be fully
+implemented". Coders had split these between `supports` and `prefers_other`; all 18 are
+coded `prefers_other` (wants more than SSS).
