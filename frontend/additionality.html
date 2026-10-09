@@ -52,6 +52,9 @@
     .ad-num { font-family: var(--font-data); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
     .ad-table { min-width: 520px; }
     .ad-funnel-note { margin-top: var(--space-sm); }
+    /* 100+ rows: keep the list inside its card */
+    #orgTable { max-height: 70vh; overflow-y: auto; }
+    #orgTable thead th { position: sticky; top: 0; z-index: 1; background: var(--bg-page-white); }
     </style>
 </head>
 <body>
@@ -94,9 +97,8 @@
             <p class="section-subtitle">The consultation has no question on additionality or incrementality. Every mention below was volunteered in free text.</p>
 
             <div class="card card-spacious scroll-reveal">
-                <h3>Mentioned by a quarter, supported by a fifth, opposed by almost no one</h3>
+                <h3>Raised by a quarter, supported by a fifth</h3>
                 <p>269 respondents (25.1%) used additionality or incrementality language somewhere in their free text. Read in context, 227 of them (21.2%) treat it as something Scope 2 accounting should require, reward or be judged against. Only 13 (1.2%) argue against it, and they make a single argument: additionality is a consequential concept that does not belong in an attributional inventory. Another 15 value it but want it kept out of the inventory, and 14 mention it without taking a position.</p>
-                <p>Support for the concept is close to uncontested. The fight is over what it implies.</p>
             </div>
 
             <div class="card card-spacious scroll-reveal">
@@ -109,17 +111,24 @@
             <div class="emphasis-callout scroll-reveal">
                 <div class="emphasis-big" id="calloutAll3">61 &middot; 5.7%</div>
                 <div class="emphasis-desc">respondents support hourly matching, deliverability and additionality or incrementality together</div>
-                <div class="emphasis-sub">7.3% of the 841 who scored both Q71 and Q83 &middot; 37% of the 163 who support both proposals</div>
+                <div class="emphasis-sub">7.3% of the 841 who scored both Q71 and Q83</div>
             </div>
 
             <div class="card card-spacious scroll-reveal">
                 <h3>The full "three-pillar" position is a small, coordinated minority</h3>
-                <p>61 respondents (5.7%) score both hourly matching (Q71) and deliverability (Q83) at 4–5 <em>and</em> support additionality or incrementality in their own words. Most of the 163 who back both proposals (102, or 63%) do not voice support for either concept in their free text.</p>
+                <p>61 respondents (5.7%) score both hourly matching (Q71) and deliverability (Q83) at 4–5 <em>and</em> support additionality or incrementality in their own words.</p>
                 <p>This group is NGO-led (19 of 61), against a company-led opposite camp (65 of the 114 concept supporters who oppose both proposals). And 35 of the 61 share a mention sentence verbatim with at least two other respondents. The two biggest are "Incrementality, or the incentive to drive new clean electricity onto the grid…" (10 respondents) and "an incrementality standard (SSS or similar) are critical…" (9). Coordinated filing is legitimate, but it means the number of independent voices is nearer 30–35 than 61.</p>
             </div>
 
+            <div class="card card-spacious scroll-reveal">
+                <h3>SSS or an asset-age test: the two camps want different tests</h3>
+                <p>42 supporters (3.9% of all respondents) endorse Standard Supply Service as the incrementality test, usually as "SSS or similar". 40 of those 42 are in the group that also backs hourly matching and deliverability, and 14 use the same sentence ("an incrementality standard (SSS or similar) are critical…").</p>
+                <p>15 supporters (1.4%) specifically ask for a <em>required</em> asset age or vintage test, such as a commissioning-date cutoff or the RE100 15-year rule. 12 of the 15 oppose both hourly matching and deliverability and offer the age test as a simpler alternative to them. Seven of them use one sentence: "A simpler approach to accelerate decarbonization of grids would be to implement a sourced renewable project age limitation". Only one respondent asks for both SSS and a required age test.</p>
+                <p>Another 40 suggest an age limit "could be considered" without asking for it to be required; 29 of them are in the all-three group. 11 say SSS is not a real incrementality test and want something stronger.</p>
+            </div>
+
             <div class="insight-glass insight-glass-red scroll-reveal">
-                <strong>Read these counts as floors.</strong> They only count respondents who used the words. A respondent who asked for asset-age limits or "new-build only" without writing "additional" or "incremental" is not counted, so every support figure here is a lower bound.
+                <strong>Scope.</strong> Stances are coded only for the 269 respondents who used additionality or incrementality language. The other 803 are not classified, and no figure on this page describes their view.
             </div>
         </section>
 
@@ -184,6 +193,74 @@
             </div>
         </section>
 
+        <!-- ===== MECHANISM ===== -->
+        <section class="content-section" id="mechanism">
+            <h2 class="section-title">Which test do supporters want?</h2>
+            <p class="section-subtitle">Supporters coded a second time: do they back Standard Supply Service (SSS) as the incrementality test, or specifically want a required asset age or vintage test?</p>
+
+            <div class="grid-2col">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Mechanism named, by group</h3>
+                    <div class="chart-container">
+                        <canvas id="chartMech" aria-label="SSS versus required asset-age test, by group"></canvas>
+                    </div>
+                    <p class="s2-note">Counts of respondents. A respondent can name both. "Age test, considered" = suggested or open to it, not asking for a requirement.</p>
+                </div>
+                <div class="card scroll-reveal">
+                    <h3 class="chart-title">The split</h3>
+                    <div class="s2-table-scroll" id="mechTable"><p class="s2-loading">Loading…</p></div>
+                    <div class="insight-glass insight-glass-indigo" id="mechReadout">—</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DEMOGRAPHICS ===== -->
+        <section class="content-section" id="demographics">
+            <h2 class="section-title">Who the supporters are</h2>
+            <p class="section-subtitle">Each segment's count in the group, and that count as a share of every respondent in the segment.</p>
+
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="demoGroupLabel">Group</span>
+                        <div class="toggle-btn-group" id="demoGroup" role="group" aria-labelledby="demoGroupLabel"></div>
+                    </div>
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="demoDimLabel">Split by</span>
+                        <div class="toggle-btn-group" id="demoDim" role="group" aria-labelledby="demoDimLabel"></div>
+                    </div>
+                </div>
+                <div class="chart-container-lg">
+                    <canvas id="chartDemo" aria-label="Group members by segment"></canvas>
+                </div>
+                <div class="s2-table-scroll" id="demoTable"><p class="s2-loading">Loading…</p></div>
+                <p class="s2-note">Segments with fewer than five respondents are pooled. Organisation type and sector are as respondents declared them. Redacted respondents are included in every split except the named-organisation list below.</p>
+            </div>
+        </section>
+
+        <!-- ===== NAMED ORGS ===== -->
+        <section class="content-section" id="organisations">
+            <h2 class="section-title">Named organisations</h2>
+            <p class="section-subtitle">Every organisation that supported or opposed either concept and did not request redaction.</p>
+
+            <div class="card scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="orgFilterLabel">Show</span>
+                        <div class="toggle-btn-group" id="orgFilter" role="group" aria-labelledby="orgFilterLabel"></div>
+                    </div>
+                    <div class="s2-field">
+                        <label class="s2-control-label" for="orgSearch">Search</label>
+                        <input class="s2-input" id="orgSearch" type="search" placeholder="Organisation or country">
+                    </div>
+                </div>
+                <p class="s2-note" id="orgCount">—</p>
+                <div class="s2-table-scroll" id="orgTable"><p class="s2-loading">Loading…</p></div>
+                <p class="s2-note" id="orgUnnamed">—</p>
+                <p class="s2-note">Organisation names are as entered in the consultation, trimmed to 80 characters. "Audited" is this site's own classification from the <a href="integrity.html">integrity audit</a>. Respondents filing as individuals are counted but not named.</p>
+            </div>
+        </section>
+
         <!-- ===== QUOTES ===== -->
         <section class="content-section" id="voices">
             <h2 class="section-title">In their words</h2>
@@ -214,6 +291,7 @@
                     <li><strong>Finding mentions.</strong> A keyword pass over all 25,118 free-text answers. Additionality: "additionality", "non-additional", or "additional" followed by new clean supply ("additional renewable capacity"). Incrementality: "incrementality", or "incremental" followed by clean supply or emission reductions. Bare "additional" ("additional comments") and "incremental cost" never count.</li>
                     <li><strong>Coding stance.</strong> Each matched respondent's passages (±500 characters around every match) were read against a fixed codebook (<code>reference/additionality_codebook.md</code>) by AI coders and labelled support, oppose, mixed or neutral for each concept. Opposing hourly matching is not opposing additionality; the codebook says so explicitly.</li>
                     <li><strong>Checks.</strong> All 13 oppose codes and a random 13 support or mixed codes were checked by hand against the source text. No second-coder agreement score was computed. Coders rated their own confidence: <span id="confNote">—</span>.</li>
+                    <li><strong>Mechanism.</strong> Each of the 227 supporters was coded a second time from passages around SSS, asset age, vintage, commissioning date, new-build and RE100 mentions: does the respondent endorse SSS as the incrementality test, and do they want an age or vintage test required, merely considered, or not at all? All 15 "required" codes were checked by hand; two were changed to "considered". Output: <code>data/derived/additionality_mechanism.csv</code>.</li>
                     <li><strong>Hourly matching and deliverability.</strong> Q71 and Q83, 1–5 support scales. Support = 4 or 5.</li>
                     <li><strong>Shared wording.</strong> A respondent counts as sharing wording if the sentence containing their mention appears verbatim in at least three respondents' answers.</li>
                     <li><strong>Reproduce.</strong> <code>scripts/analytics/additionality.py</code> regenerates the mention set and this page's data from <code>data/derived/additionality_stance.csv</code>.</li>

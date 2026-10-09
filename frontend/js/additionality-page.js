@@ -176,8 +176,168 @@
         set('quotesAnti', quoteTable(d.quotes.anti_both));
         set('quotesOppose', quoteTable(d.quotes.oppose));
 
+        renderMechanism(d);
+        renderDemographics(d);
+        renderOrgs(d);
+
         var c = d.confidence, tot = c.high + c.medium + c.low;
         set('confNote', pct(c.high, tot) + ' high, ' + pct(c.medium, tot) + ' medium, ' + pct(c.low, tot) + ' low');
+    }
+
+    function toggles(id, options, onPick) {
+        var el = document.getElementById(id);
+        el.innerHTML = '';
+        options.forEach(function (o, i) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.textContent = o.label;
+            if (i === 0) b.classList.add('active');
+            b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+            b.addEventListener('click', function () {
+                Array.prototype.forEach.call(el.children, function (x) {
+                    x.classList.remove('active');
+                    x.setAttribute('aria-pressed', 'false');
+                });
+                b.classList.add('active');
+                b.setAttribute('aria-pressed', 'true');
+                onPick(o.key);
+            });
+            el.appendChild(b);
+        });
+    }
+
+    var CAMP_LABEL = { pro_both: 'Supports both', anti_both: 'Opposes both', split: 'Split / neutral', skipped: 'Skipped' };
+    var SSS_LABEL = { supports: 'SSS as the test', prefers_other: 'Wants stronger than SSS', oppose: 'Opposes SSS', none: '' };
+    var AGE_LABEL = { required: 'Required', considered: 'Considered', oppose: 'Opposes', none: '' };
+
+    function renderMechanism(d) {
+        var m = d.mechanism;
+        if (!m) { set('mechTable', '<p class="s2-empty">Mechanism coding not available.</p>'); return; }
+        var groups = [
+            ['either', 'All supporters (n=' + m.n_supporters + ')'],
+            ['all_three', 'Support all three (n=' + d.all_three.n + ')'],
+            ['anti_both', 'Support concept, oppose both (n=' + Object.values(d.orgs.support_concept_anti_both).reduce(function (a, b) { return a + b; }, 0) + ')']
+        ];
+        var series = [
+            { k: 'sss_supports', label: 'SSS as the incrementality test', color: R().nuclear },
+            { k: 'age_required', label: 'Age / vintage test, required', color: R().solar },
+            { k: 'age_considered', label: 'Age / vintage test, considered', color: withAlpha(R().solar, 0.4) },
+            { k: 'sss_prefers_other', label: 'Wants stronger than SSS', color: withAlpha(R().nuclear, 0.4) }
+        ];
+        hbar('chartMech', groups.map(function (g) { return g[1]; }), series.map(function (s) {
+            return { label: s.label, backgroundColor: s.color, data: groups.map(function (g) { return m[g[0]][s.k]; }) };
+        }), { label: function (c) { return c.dataset.label + ': ' + c.parsed.x; } });
+
+        var e = m.either, a = m.all_three, N = d.totals.respondents;
+        var row = function (label, k) {
+            return '<tr><td>' + label + '</td><td class="ad-num">' + e[k] + '</td><td class="ad-num">' + pct(e[k], N) +
+                '</td><td class="ad-num">' + a[k] + '</td></tr>';
+        };
+        set('mechTable', '<table class="data-table"><thead><tr><th>Position</th><th class="ad-num">Supporters</th>' +
+            '<th class="ad-num">% of 1,072</th><th class="ad-num">Of the all-three group</th></tr></thead><tbody>' +
+            row('SSS as the incrementality test', 'sss_supports') +
+            row('Required asset age / vintage test', 'age_required') +
+            row('Both of the above', 'sss_and_age_required') +
+            row('SSS only (no required age test)', 'sss_only') +
+            row('Required age test only (not SSS)', 'age_required_only') +
+            row('Age test suggested, not required', 'age_considered') +
+            row('Want something stronger than SSS', 'sss_prefers_other') +
+            '</tbody></table>');
+        set('mechReadout', '<strong>' + e.sss_supports + '</strong> supporters (' + pct(e.sss_supports, N) +
+            ') back SSS as the incrementality test; <strong>' + e.age_required + '</strong> (' + pct(e.age_required, N) +
+            ') specifically want a required asset age or vintage test; ' + e.sss_and_age_required + ' want both. A further ' +
+            e.age_considered + ' suggest an age test without asking for it to be required.');
+    }
+
+    function renderDemographics(d) {
+        var groups = [
+            { key: 'either', label: 'Support either' },
+            { key: 'additionality', label: 'Additionality' },
+            { key: 'incrementality', label: 'Incrementality' },
+            { key: 'all_three', label: 'All three' }
+        ];
+        if (d.mechanism) {
+            groups.push({ key: 'sss', label: 'SSS as test' }, { key: 'age_required', label: 'Required age test' });
+        }
+        groups.push({ key: 'oppose', label: 'Oppose' });
+        var dims = [
+            { key: 'org_type', label: 'Organisation type' },
+            { key: 'country', label: 'Country' },
+            { key: 'sector', label: 'Sector' },
+            { key: 'responding_as', label: 'Responding as' },
+            { key: 'redaction', label: 'Named / redacted' }
+        ];
+        var state = { g: 'either', dim: 'org_type' }, chart = null;
+        function draw() {
+            var rows = d.demographics[state.dim].slice().sort(function (x, y) { return y[state.g] - x[state.g] || y.n - x.n; });
+            var total = rows.reduce(function (s, r) { return s + r[state.g]; }, 0);
+            var g = groups.filter(function (x) { return x.key === state.g; })[0];
+            if (chart) chart.destroy();
+            chart = hbar('chartDemo', rows.map(function (r) { return r.label; }), [{
+                label: g.label + ' (n=' + total + ')',
+                data: rows.map(function (r) { return r[state.g]; }),
+                backgroundColor: state.g === 'oppose' ? S().negative : S().positive
+            }], { label: function (c) {
+                var r = rows[c.dataIndex];
+                return r[state.g] + ' of ' + r.n + ' in segment (' + pct(r[state.g], r.n) + ')';
+            } });
+            chart.options.plugins.legend.display = false;
+            chart.update();
+            set('demoTable', '<table class="data-table ad-table"><thead><tr><th>Segment</th><th class="ad-num">Respondents</th>' +
+                '<th class="ad-num">In group</th><th class="ad-num">Share of group</th><th class="ad-num">Share of segment</th></tr></thead><tbody>' +
+                rows.map(function (r) {
+                    return '<tr><td>' + esc(r.label) + '</td><td class="ad-num">' + fmt(r.n) + '</td><td class="ad-num">' + r[state.g] +
+                        '</td><td class="ad-num">' + pct(r[state.g], total) + '</td><td class="ad-num">' + pct(r[state.g], r.n) + '</td></tr>';
+                }).join('') + '</tbody></table>');
+        }
+        toggles('demoGroup', groups, function (k) { state.g = k; draw(); });
+        toggles('demoDim', dims, function (k) { state.dim = k; draw(); });
+        draw();
+    }
+
+    function renderOrgs(d) {
+        var filters = [
+            { key: 'support', label: 'All supporters' },
+            { key: 'all3', label: 'Support all three' },
+            { key: 'sss', label: 'SSS as test' },
+            { key: 'age', label: 'Required age test' },
+            { key: 'oppose', label: 'Oppose' }
+        ];
+        if (!d.mechanism) filters = filters.filter(function (f) { return f.key !== 'sss' && f.key !== 'age'; });
+        var state = { f: 'support', q: '' };
+        function keep(o) {
+            if (state.f === 'oppose') { if (o.stance !== 'oppose') return false; }
+            else if (o.stance !== 'support') return false;
+            if (state.f === 'all3' && o.camp !== 'pro_both') return false;
+            if (state.f === 'sss' && o.sss !== 'supports') return false;
+            if (state.f === 'age' && o.age !== 'required') return false;
+            if (state.q) {
+                var hay = (o.name + ' ' + o.country + ' ' + o.org_type + ' ' + o.audited).toLowerCase();
+                if (hay.indexOf(state.q) === -1) return false;
+            }
+            return true;
+        }
+        function draw() {
+            var list = d.named.filter(keep).sort(function (a, b) { return a.name.localeCompare(b.name); });
+            set('orgCount', list.length + ' named organisation' + (list.length === 1 ? '' : 's') + ' shown.');
+            if (!list.length) { set('orgTable', '<p class="s2-empty">No organisations match.</p>'); return; }
+            set('orgTable', '<table class="data-table ad-table"><thead><tr><th>Organisation</th><th>Type (declared · audited)</th>' +
+                '<th>Country</th><th>Concept</th><th>Hourly + deliverability</th><th>SSS</th><th>Age test</th><th>In their words</th></tr></thead><tbody>' +
+                list.map(function (o) {
+                    return '<tr><td><strong>' + esc(o.name) + '</strong></td><td>' + esc(o.org_type) + (o.audited ? ' · ' + esc(o.audited) : '') +
+                        '</td><td>' + esc(o.country) + '</td><td>' + o.concepts.replace('A', 'Additionality ').replace('I', 'Incrementality').trim().replace(' ', ' + ') +
+                        '</td><td>' + CAMP_LABEL[o.camp] + '</td><td>' + (SSS_LABEL[o.sss] || '—') + '</td><td>' + (AGE_LABEL[o.age] || '—') +
+                        '</td><td class="ad-quote">“' + esc(o.quote) + '”</td></tr>';
+                }).join('') + '</tbody></table>');
+        }
+        toggles('orgFilter', filters, function (k) { state.f = k; draw(); });
+        document.getElementById('orgSearch').addEventListener('input', function (e) {
+            state.q = e.target.value.trim().toLowerCase(); draw();
+        });
+        var u = d.unnamed;
+        set('orgUnnamed', 'Not listed: ' + u.support.redacted + ' redacted and ' + u.support.individual +
+            ' individual supporters; ' + u.oppose.redacted + ' redacted and ' + u.oppose.individual + ' individual opponents.');
+        draw();
     }
 
     document.addEventListener('DOMContentLoaded', function () {
