@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact in the MBM | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Who wants the scope 2 market-based method to drive real emissions reductions, whether the proposal goes far enough, and who wants consequential accounting instead.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/mbm-impact-page.js"></script>
+
+    <!-- Page-specific layout ONLY -->
+    <style>
+    .ad-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: var(--space-md); }
+    .ad-chart-tall { height: 480px; }
+    .ad-chart-title { font-family: var(--font-heading); font-size: 1rem; color: var(--navy); margin: 0 0 var(--space-sm); }
+    .s2-control, .toggle-btn-group { flex-wrap: wrap; min-width: 0; max-width: 100%; }
+    .mi-def { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--space-md); }
+    .mi-def h3 { font-family: var(--font-heading); font-size: 1rem; color: var(--navy); margin: 0 0 var(--space-xs); }
+    .mi-def p { margin: 0; line-height: 1.6; }
+    .ad-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--space-md); }
+    .ad-brief { margin: 0; padding-left: 1.15em; display: flex; flex-direction: column; gap: var(--space-sm); line-height: 1.65; }
+    .ad-brief strong { color: var(--navy); }
+    .ad-quotes { display: flex; flex-direction: column; gap: var(--space-md); margin-top: var(--space-md); }
+    .ad-quote-card { border-left: 3px solid var(--hydro); padding: var(--space-xs) 0 var(--space-xs) var(--space-md); }
+    .ad-quote-text { font-style: italic; color: var(--text-secondary); margin: 0 0 var(--space-xs); }
+    .ad-quote-who { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+    .ad-quote-who strong { color: var(--navy); }
+    .ad-num { font-family: var(--font-data); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+    #orgTable { max-height: 70vh; overflow-y: auto; }
+    #orgTable thead th { position: sticky; top: 0; z-index: 1; background: var(--bg-page-white); }
+    .ad-method summary { cursor: pointer; font-family: var(--font-heading); font-weight: 700; color: var(--navy); }
+    .ad-method ul { margin-top: var(--space-sm); display: flex; flex-direction: column; gap: var(--space-xs); line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="pageHeader">
+        <h1>Impact in the Market-Based Method</h1>
+        <div class="subtitle">Should the scope 2 market-based method drive real emissions reductions, and does the proposal go far enough?</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== TWO MEANINGS ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Two different things called "impact"</h2>
+            <div class="mi-def">
+                <div class="card scroll-reveal">
+                    <h3>1 · System impact in the MBM</h3>
+                    <p>The market-based method itself should push the grid to cleaner supply, not just reallocate existing clean power. People call it additionality, incrementality, causal impact, newness or asset age, or market scarcity. This page is mainly about this.</p>
+                </div>
+                <div class="card scroll-reveal">
+                    <h3>2 · Consequential or marginal accounting</h3>
+                    <p>A different method: estimate avoided emissions against a counterfactual using marginal emission rates. Respondents disagree on whether it should replace the attributional MBM, sit beside it inside scope 2, or live outside it.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HEADLINE ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Out of all 1,072 respondents</h2>
+            <div class="ad-grid-3">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRef">—</div>
+                    <div class="stat-label">Referenced system impact in some form (additionality, incrementality, causal, scarcity, newness, impact…)</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statSupport">—</div>
+                    <div class="stat-label">Explicitly support building it into the scope 2 market-based method</div>
+                    <div class="s2-note" id="statSupportSub">—</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statExplicit">—</div>
+                    <div class="stat-label">…of whom explicitly say SSS is not enough and more is needed</div>
+                    <div class="s2-note" id="statExplicitSub">—</div>
+                </div>
+            </div>
+            <div class="ad-grid-3">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statShort">—</div>
+                    <div class="stat-label">Say the proposal does not go far enough on impact (same direction, needs more)</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statEnough">—</div>
+                    <div class="stat-label">Say the proposal (hourly + deliverability + SSS) does go far enough</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statWrong">—</div>
+                    <div class="stat-label">Say the proposal fails on impact and want a different approach</div>
+                </div>
+            </div>
+            <p class="s2-note">Count and % of all 1,072 respondents. Positions are coded from free text, so respondents who wrote nothing on the subject are counted as not stating a position.</p>
+        </section>
+
+        <!-- ===== IN BRIEF ===== -->
+        <section class="content-section-narrow" id="brief">
+            <h2 class="section-title">In brief</h2>
+            <div class="card card-spacious scroll-reveal">
+                <ul class="ad-brief" id="briefList"><li class="s2-loading">Loading…</li></ul>
+            </div>
+        </section>
+
+        <!-- ===== FUNNEL ===== -->
+        <section class="content-section" id="funnel">
+            <h2 class="section-title">From mention to "more than SSS"</h2>
+            <p class="section-subtitle">Each step is a subset of the one above, coloured by how respondents scored hourly matching (Q71) and deliverability (Q83).</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container"><canvas id="chartFunnel" aria-label="Funnel by hourly and deliverability stance"></canvas></div>
+                <p class="s2-note">Support both = 4–5 on both Q71 and Q83; oppose both = 1–2 on both; mixed = anything else; skipped = left one blank. "Explicitly support" counts medium- and high-confidence codes only; low-confidence support (mostly "hourly matching would reduce impact" without saying the MBM should deliver it) is excluded.</p>
+            </div>
+        </section>
+
+        <!-- ===== FAR ENOUGH ===== -->
+        <section class="content-section" id="sufficiency">
+            <h2 class="section-title">Does the proposal go far enough on impact?</h2>
+            <p class="section-subtitle">Everyone who took a position on whether hourly matching + deliverability + SSS, as proposed, delivers real impact.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm"><canvas id="chartSuff" aria-label="Sufficiency of the proposal on impact by camp"></canvas></div>
+                <p class="s2-note" id="suffNote">Not far enough = right direction, needs more (e.g. an incrementality test). Different approach = the proposal undermines impact; wants e.g. annual matching plus additionality, or emissionality. Too far = impact is not the MBM's job.</p>
+            </div>
+        </section>
+
+        <!-- ===== MECHANISMS ===== -->
+        <section class="content-section" id="mechanisms">
+            <h2 class="section-title">How supporters want the MBM to deliver impact</h2>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm"><canvas id="chartMech" aria-label="Mechanisms named by supporters"></canvas></div>
+                <p class="s2-note">Supporters of system impact in the MBM, by every mechanism they advocate (pick any). The darker bar shows those who explicitly say SSS is not enough.</p>
+            </div>
+        </section>
+
+        <!-- ===== CONSEQUENTIAL ===== -->
+        <section class="content-section" id="consequential">
+            <h2 class="section-title">Consequential or marginal accounting</h2>
+            <p class="section-subtitle">Where respondents want a consequential / marginal-emissions method, if anywhere, by hourly and deliverability stance.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm"><canvas id="chartCons" aria-label="Consequential accounting position by camp"></canvas></div>
+                <p class="s2-note">Replace the MBM = consequential or marginal accounting should displace the attributional MBM or become its basis. Inside scope 2 = an impact-based option or parallel figure alongside it. Outside scope 2 = a separate metric.</p>
+            </div>
+        </section>
+
+        <!-- ===== AGGREGATE ===== -->
+        <section class="content-section" id="aggregate">
+            <h2 class="section-title">Total support for the concept of impact</h2>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm"><canvas id="chartAgg" aria-label="Aggregate support for impact"></canvas></div>
+                <p class="s2-note" id="aggNote">—</p>
+            </div>
+        </section>
+
+        <!-- ===== VOICES ===== -->
+        <section class="content-section-narrow" id="voices">
+            <h2 class="section-title">Who said what</h2>
+            <p class="section-subtitle">Verbatim passages, with every named organisation that used them.</p>
+            <div class="card card-spacious scroll-reveal">
+                <div class="toggle-btn-group" id="quoteTabs" role="group" aria-label="Position"></div>
+                <div class="ad-quotes" id="quoteList"><p class="s2-loading">Loading…</p></div>
+            </div>
+        </section>
+
+        <!-- ===== WHO ===== -->
+        <section class="content-section" id="who">
+            <h2 class="section-title">Who they are</h2>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="demoGroupLabel">Group</span>
+                        <div class="toggle-btn-group" id="demoGroup" role="group" aria-labelledby="demoGroupLabel"></div>
+                    </div>
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="demoDimLabel">By</span>
+                        <div class="toggle-btn-group" id="demoDim" role="group" aria-labelledby="demoDimLabel"></div>
+                    </div>
+                </div>
+                <div class="chart-container"><canvas id="chartDemo" aria-label="Group members by segment"></canvas></div>
+                <p class="s2-note">Includes redacted respondents. Segments under five respondents are pooled.</p>
+            </div>
+        </section>
+
+        <!-- ===== ORGS ===== -->
+        <section class="content-section" id="organisations">
+            <h2 class="section-title">Organisations</h2>
+            <div class="card scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="orgFilterLabel">Show</span>
+                        <div class="toggle-btn-group" id="orgFilter" role="group" aria-labelledby="orgFilterLabel"></div>
+                    </div>
+                    <div class="s2-field">
+                        <label class="s2-control-label" for="orgSearch">Search</label>
+                        <input class="s2-input" id="orgSearch" type="search" placeholder="Organisation or country">
+                    </div>
+                </div>
+                <p class="s2-note" id="orgCount">—</p>
+                <div class="s2-table-scroll" id="orgTable"><p class="s2-loading">Loading…</p></div>
+                <p class="s2-note" id="orgUnnamed">—</p>
+            </div>
+        </section>
+
+        <!-- ===== METHOD ===== -->
+        <section class="content-section-narrow" id="method">
+            <div class="card scroll-reveal">
+                <details class="ad-method">
+                    <summary>How this was measured</summary>
+                    <ul>
+                        <li><strong>Who was read:</strong> everyone whose free text uses an umbrella term (the impact-page and additionality-page patterns plus scarcity, new build / newness / vintage / asset age, "drive new / additional", "real emissions reductions", and SSS near incrementality words), plus everyone who answered Q152, the survey's "balance integrity, impact and feasibility" question, read in full.</li>
+                        <li><strong>Coding:</strong> each respondent's passages (±400 characters, capped at 9,000) were coded once against <code>reference/mbm_impact_codebook.md</code> on four separate questions: stance on system impact in the MBM; whether more than SSS is needed; whether the proposal goes far enough on impact; and position on consequential accounting. Hourly matching and deliverability are counted as an impact mechanism only when the respondent links them to driving reductions, not to accuracy alone.</li>
+                        <li><strong>Hourly and deliverability:</strong> Q71 and Q83, 1–5 support scales; 4–5 counts as support. SSS: Q97.</li>
+                        <li><strong>Explicit vs implied:</strong> support coded with low confidence is reported as implied and kept out of the explicit counts.</li>
+                        <li><strong>Checks:</strong> AI coders; hand review of every "replace the MBM" and "oppose" code and a random 20 of the "different approach" supporters; shared templates given one code (<code>reference/mbm_impact_overrides.csv</code>); results compared with the additionality and impact pages (<span id="xcheckNote">—</span>). No second-coder agreement score.</li>
+                        <li><strong>Names:</strong> as entered in the consultation, cleaned where the field held a job title. Redacted and individual filers are counted, never named.</li>
+                        <li><strong>Files:</strong> <code>data/derived/mbm_impact_stance.csv</code>, <code>reference/mbm_impact_codebook.md</code>, <code>scripts/analytics/mbm_impact.py</code>.</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+    </div>
+
+    <footer id="siteFooter" data-footer-note="Impact in the MBM — should the market-based method drive real emissions reductions, and does the proposal go far enough?"></footer>
+
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>

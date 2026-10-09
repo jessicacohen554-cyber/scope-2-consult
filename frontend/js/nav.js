@@ -217,6 +217,7 @@
                 { label: 'Integrity & Coalitions', href: NAV_BASE + 'integrity.html' },
                 { label: 'Additionality & Incrementality', href: NAV_BASE + 'additionality.html' },
                 { label: 'Emissions Impact', href: NAV_BASE + 'impact.html' },
+                { label: 'Impact in the MBM', href: NAV_BASE + 'mbm-impact.html' },
                 { label: 'Standard Supply: Feasibility', href: NAV_BASE + 'standard-supply.html' }
             ]
         },

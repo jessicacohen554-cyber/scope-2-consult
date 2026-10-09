@@ -31,6 +31,7 @@
         { href: FOOTER_BASE + 'integrity.html',   label: 'Integrity & Coalitions' },
         { href: FOOTER_BASE + 'additionality.html', label: 'Additionality' },
         { href: FOOTER_BASE + 'impact.html', label: 'Emissions Impact' },
+        { href: FOOTER_BASE + 'mbm-impact.html', label: 'Impact in the MBM' },
         { href: FOOTER_BASE + 'standard-supply.html', label: 'Standard Supply' },
         { href: FOOTER_BASE + 'methodology.html', label: 'Methodology' }
     ];

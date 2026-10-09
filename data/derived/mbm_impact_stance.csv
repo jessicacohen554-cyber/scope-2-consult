@@ -1,0 +1,732 @@
+respondent_id,system_impact,beyond_sss,sufficiency,consequential,mechanisms,confidence,quote
+5,neutral,na,not_addressed,not_addressed,,high,
+14,neutral,na,not_addressed,not_addressed,,low,
+16,support_mbm,not_addressed,far_enough,separate,marginal;scarcity,medium,"These revisions send the right signal: procure clean electricity in the hours and locations where fossil is still marginal. That promotes storage, demand flexibility, and new clean capacity build"
+17,oppose,na,too_far,oppose,,medium,"Beyond that, the revisions degrade feasibility and real-world impact by turning a practical, auditable system into a modelling exercise in search of a problem."
+19,oppose,na,too_far,not_addressed,,high,we do not support shifting the MBM toward additionality or temporal/hourly matching requirements.
+27,neutral,na,not_addressed,not_addressed,,high,
+29,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,the overall market maintains enough rigor (85–90 percent hourly-matched load) to drive real decarbonization behavior.
+30,neutral,na,not_addressed,not_addressed,,high,
+35,support_mbm,sss_enough,far_enough,not_addressed,scarcity,low,"Hourly matching, deliverable market boundaries, Incrementality"
+36,oppose,na,not_addressed,not_addressed,,low,"In my view, it is not essential to demonstrate strict additionality relative to guarantees of origin"
+38,neutral,na,not_addressed,not_addressed,,low,
+40,support_mbm,not_addressed,wrong_direction,not_addressed,other,medium,"discouraging renewable energy procurement under the only available/feasible options in many locations, including higher additionality/quality bundled RECs from VPPAs and new project REC strips"
+41,support_mbm,implicit,wrong_direction,displace,marginal,high,"a directly-emissions-based framework could be employed to achieve more accurate, greater carbon impact MBM accounting"
+45,neutral,na,not_addressed,not_addressed,,medium,
+47,neutral,na,not_addressed,not_addressed,,low,
+50,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,high,"Due to these concerns, we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented"
+62,support_mbm,implicit,wrong_direction,oppose,additionality_test;asset_age,high,The only purpose of MBM is to drive additional mitigation and recognize companies that take on that responsibility.
+67,support_mbm,not_addressed,far_enough,not_addressed,scarcity,low,it is a necessary step to ensure that market based methods to reduce scope to emissions will be significantly more impactful.
+68,support_mbm,implicit,wrong_direction,displace,marginal,high,"the market-based method should be explicitly framed around its ability to steer capital toward real, additional emissions reductions in the power sector."
+72,support_mbm,explicit,wrong_direction,not_addressed,asset_age,medium,requiring that at least 50% of procurement comes from renewable facilities with a COD within the past 15 years
+74,separate_only,na,too_far,separate,,medium,"Impact metrics, by contrast, describe estimated system-level outcomes and should be treated, if developed, as supplemental voluntary indicators."
+75,support_mbm,explicit,not_far_enough,not_addressed,asset_age;scarcity;sss,high,An alternative incrementality pillar definition is needed for the SSS to ensure accuracy particulalry with older assets.
+82,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,Focusing too heavily on location matching risks overemphasizing technical “accuracy” instead of real-world impact. The update should prioritize incentives that drive new clean energy generation.
+83,neutral,na,not_addressed,oppose,,low,"adding an additional separate metric creates further administration, complexity and time burden on organisations."
+87,neutral,na,not_addressed,not_addressed,,low,
+88,support_mbm,implicit,not_far_enough,separate,additionality_test;causal,high,Zettawatts supports clarifying the Market-Based Method definition to emphasize that MBM instruments must demonstrate causation with new renewable energy development.
+90,support_mbm,sss_enough,far_enough,separate,scarcity;sss,high,"Clear separation between SSS, residual mix and voluntary instruments means that organizations that wish to show leadership must procure genuinely additional instruments rather than relying on public policy support."
+91,support_mbm,implicit,wrong_direction,inside_option,additionality_test;asset_age;marginal,high,"Let companies claim zero emissions when they fund new, additional clean power in countries that have very dirty grids or very low electricity access (like Nigeria)."
+92,neutral,na,not_addressed,not_addressed,,low,
+93,neutral,na,far_enough,separate,,low,"Avoided-emissions or counterfactual claims belong in separate impact metrics, not Scope 2"
+94,neutral,na,not_addressed,not_addressed,,high,
+95,support_mbm,implicit,wrong_direction,inside_option,asset_age;marginal;other,high,An approach that removes proposed hourly deliverability requirements and instead introduces a new third impact method would maintain accounting integrity through verified EACs
+97,support_mbm,not_addressed,far_enough,separate,scarcity,high,"It encourages demand for clean, deliverable supply at the right times and places, supports storage and flexibility, and keeps a role for high-impact investments outside narrow boundaries."
+98,support_mbm,not_addressed,far_enough,separate,other;scarcity,high,"Incrementality standards create real incentives for organisations to procure new clean energy rather than relying on existing generation, further driving measurable grid decarbonisation."
+100,neutral,na,not_addressed,not_addressed,,medium,
+103,support_mbm,not_addressed,wrong_direction,not_addressed,other,medium,long-term agreements such as virtual power purchase agreements (vPPAs) deliver additionality by supporting new renewable generation that would not otherwise exist.
+105,support_mbm,not_addressed,far_enough,separate,scarcity,low,deprive local grids of price signals where new clean capacity is actually needed.
+108,support_mbm,implicit,wrong_direction,oppose,asset_age;causal,high,The only way to properly mobilize the necessary corporate action to drive grid greening is by centering causation of new renewable energy within the quality criteria for market-based instruments
+111,mixed,not_addressed,wrong_direction,inside_option,other,low,"An impact metric is incredibly important to develop, but it would need to be recognized as a metric with equal footing alongside the market-based method within the Scope 2 inventory."
+113,neutral,na,not_addressed,not_addressed,,high,
+114,support_mbm,implicit,not_far_enough,separate,causal,medium,"I think the proposed changes are a step in the right direction, I think more effort is needed to ensure that market instruments are driving a consequential reduction in emissions."
+118,support_mbm,not_addressed,wrong_direction,not_addressed,asset_age,medium,"Rigid deliverability rules could shift procurement away from impactful long-term PPAs toward unbundled certificates, undermining additionality."
+120,neutral,na,not_addressed,not_addressed,,medium,
+121,support_mbm,implicit,wrong_direction,oppose,asset_age;causal,high,The only way to properly mobilize the necessary corporate action to drive grid greening is by centering causation of new renewable energy within the quality criteria for market-based instruments
+122,neutral,na,not_addressed,not_addressed,,medium,
+124,neutral,na,not_addressed,not_addressed,,high,
+130,support_mbm,implicit,not_far_enough,not_addressed,additionality_test;scarcity,high,"We support the enhancements around temporal correlation and deliverability.
+
+However, we would prefer to see consideration of additionality."
+133,neutral,na,not_addressed,not_addressed,,medium,
+136,neutral,na,not_addressed,not_addressed,,low,
+137,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,high,it is critical to have an alternative incrementality pillar definition before the SSS can be fully implemented
+138,neutral,na,not_addressed,not_addressed,,low,
+140,neutral,na,not_addressed,not_addressed,,high,
+141,support_mbm,not_addressed,far_enough,not_addressed,scarcity,low,Impact --> better align procurement with system needs
+143,neutral,na,not_addressed,not_addressed,,medium,
+144,neutral,na,not_addressed,not_addressed,,medium,
+145,neutral,na,not_addressed,not_addressed,,high,
+148,neutral,na,not_addressed,not_addressed,,medium,
+151,neutral,na,not_addressed,separate,,low,"This distinction separates inventory totals from broader impact claims, which are covered under Actions and Market Instruments."
+152,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,low,"Hourly matching, deliverable market boundaries, incrementality (SSS or other metric)"
+153,neutral,na,not_addressed,not_addressed,,high,
+157,support_mbm,implicit,wrong_direction,not_addressed,asset_age;causal,high,"the most appropriate Scope 2 revisions are those that prioritize causation of new renewable energy, rather than hourly or location matching."
+158,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,high,"Due to these concerns, we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented"
+159,neutral,na,not_addressed,separate,,low,Recommend including a non-technical explanation and diagram distinguishing “physically connected” inventory boundaries from impact metrics
+160,neutral,na,not_addressed,not_addressed,,medium,
+161,neutral,na,not_addressed,not_addressed,,high,
+164,neutral,na,not_addressed,not_addressed,,medium,
+165,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,low,"Hourly matching, deliverable market boundaries, incrementality (Standard Supply Service or other metric)"
+166,neutral,na,not_addressed,not_addressed,,low,
+169,neutral,na,not_addressed,not_addressed,,medium,
+173,support_mbm,not_addressed,not_addressed,separate,other,medium,Climate impact is maximized by better aligning reported emissions with real grid conditions and incentivizing procurement that supports actual decarbonization rather than purely contractual claims.
+174,support_mbm,sss_enough,far_enough,separate,asset_age;scarcity;sss,medium,SSS is a fair way of allocating existing clean capacity on the grid while providing incentives for further deployment.
+176,oppose,na,too_far,not_addressed,,medium,"the primary purpose of the MBM is to reflect procurement decisions and associated claims, rather than to quantify real-time physical electricity flows or system-wide emission impacts."
+177,neutral,na,wrong_direction,separate,,low,reduced carbon impacts associated with mandatory hourly matching without a viable consequential metric
+178,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;causal,high,"the most appropriate Scope 2 revisions are those that prioritize causation of new renewable energy, rather than hourly or location matching"
+181,oppose,na,too_far,separate,,medium,"Grid decarbonisation, system planning, and renewable investment are therefore policy and infrastructure questions — they should not be delegated to corporate disclosure frameworks."
+183,neutral,na,not_addressed,separate,,medium,Adopting a clear separation between inventory accounting and impact-based accounting is a positive step.
+186,support_mbm,not_addressed,far_enough,not_addressed,scarcity,high,Hourly matching and deliverability requirements channel corporate procurement demand to the specific times and locations where the grid most needs clean electricity.
+187,separate_only,na,not_addressed,separate,,high,"Complementary impact metrics outside the Scope 2 inventory can help reflect system-level benefits of actions such as long-term renewable investments, energy storage, and demand response"
+188,support_mbm,implicit,wrong_direction,inside_option,marginal,high,a critical purpose of the MBM that needs greater emphasis is its function as a mechanism to enable and accelerate grid decarbonization through impactful procurement.
+191,support_mbm,not_addressed,wrong_direction,not_addressed,,low,"redefining Scope 2 solely as an inventory overlooks the critical role it plays in enabling voluntary investment, which has been the primary driver of clean energy deployment."
+194,neutral,na,not_addressed,not_addressed,,low,maintaining flexible voluntary procurement pathways is critical to supporting continued investment in renewable electricity and broader decarbonization efforts.
+196,support_mbm,not_addressed,far_enough,oppose,additionality_test,low,"Legacy clauses should only be available for credible contracts which guarantee additionality, specifically long-term, fixed-price PPAs."
+201,support_mbm,not_addressed,far_enough,not_addressed,scarcity,low,"These elements are critical to improving accuracy, driving real decarbonization, and restoring confidence in Scope 2 reporting."
+202,neutral,na,not_addressed,not_addressed,,high,
+203,neutral,na,not_addressed,separate,,low,We stand ready to collaborate with stakeholders to shape a future where emissions accounting drives real-world decarbonization.
+207,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,"Market-Based Impact (""MB Impact"") This track utilizes consequential accounting"
+208,neutral,na,not_addressed,not_addressed,,low,"Broader, practical boundaries are necessary to maintain access to impactful, additional renewable energy procurement options"
+211,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,medium,"Hourly matching, deliverable market boundaries, incrementality"
+214,support_mbm,implicit,wrong_direction,inside_option,asset_age;causal;marginal,high,"For the market-based method (MBM), revisions should improve the accuracy of impact on real emissions, not just optics of usage claims."
+215,support_mbm,not_addressed,far_enough,separate,scarcity,medium,"Greater granularity also supports better decisions that drive real climate impact, by creating clearer price signals for clean generation, storage, and firm capacity"
+217,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,medium,"Hourly matching, deliverable market boundaries, incrementality (SSS or other metric)"
+219,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,medium,"will make the scope 2 more integer, impactful, and feasible."
+220,neutral,na,not_addressed,not_addressed,,medium,Impact cannot be achieved if the complexity drives costs and uncertainty in a way that cost-benefit considerations lead to less ambitious action.
+221,separate_only,na,not_addressed,separate,additionality_test;asset_age,medium,Separate metric outside scope 2 with Dual Reporting lbm/mbm:
+222,support_mbm,implicit,not_far_enough,inside_option,marginal;other,medium,A pathway that uses hourly matching and deliverable market boundaries to improve the impact of voluntary markets needs a third pillar that addresses incrementality.
+225,neutral,na,not_addressed,separate,,medium,CRS generally supports calculation of a separate metric outside of scope 2 to quantify the emissions impact of electricity-related actions
+226,support_mbm,implicit,wrong_direction,not_addressed,other,medium,MBM should continue to recognize credible contractual procurement and drive additional renewable deployment.
+227,support_mbm,not_addressed,wrong_direction,not_addressed,,low,Market-based claims provide the appropriate framework to reflect these investment signals and should therefore take precedence.
+228,support_mbm,not_addressed,far_enough,oppose,scarcity,medium,these same revisions help shift corporate behaviour away from volume-based certificate purchasing towards actions that support decarbonisation of the grids where electricity is actually consumed.
+229,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,mandatory hourly matching does not incentivize additionality or new renewable capacity while significantly increasing complexity and barriers to participation.
+230,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,medium,"all revisions should work together to create a large impact, especially accurate market boundaries, hourly matching, and SSS."
+233,separate_only,na,not_far_enough,separate,marginal,medium,I believe the primary issue—the additionality of RECs—is not solved by hourly matching.
+235,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;causal,high,centering causation of new renewable energy within the quality criteria for market-based instruments under attributional accounting.
+236,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,"This can incentivize new renewable energy production in regions and during time intervals where clean energy is currently scarce, rather than just saturating times of abundance"
+237,support_mbm,implicit,wrong_direction,inside_option,additionality_test;marginal,medium,"the GHG Protocol should not require this above other important forms of sourcing renewable electricity that focus on additionality, emissionality, and supply chain decarbonization efforts."
+239,support_mbm,implicit,wrong_direction,inside_option,marginal,low,narrower market boundaries restrict companies' abilities to invest in areas where renewable energy development could yield the greatest decarbonization impact
+246,support_mbm,implicit,wrong_direction,separate,additionality_test,medium,"Prioritize ""additionality"" (building new assets) over ""granularity"" (hourly accounting) to ensure capital flows into infrastructure rather than administration."
+247,separate_only,na,not_far_enough,separate,marginal,high,Claims about emissions reductions or climate impact must be backed by consequential analysis
+248,support_mbm,implicit,not_far_enough,not_addressed,additionality_test,high,"The GHG Protocol should introduce an incrementality or additionality requirement, and/or clearly differentiate between company actions that are and aren't likely to be impactful."
+249,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,high,"Together, these pillars create a high-integrity system that drives real decarbonisation"
+251,neutral,na,not_addressed,not_addressed,,low,"Under the new deliverability requirements, organizations will shift their priorities from impact to compliance."
+252,neutral,na,not_addressed,not_addressed,,high,
+253,support_mbm,not_addressed,far_enough,separate,scarcity,medium,"Impact improves because procurement signals shift toward the hours and places where clean generation is scarce, not just abundant."
+254,support_mbm,not_addressed,far_enough,oppose,scarcity,medium,encourage investments that change grid emissions rather than merely shifting contractual claims.
+255,support_mbm,implicit,wrong_direction,inside_option,additionality_test;asset_age,medium,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+256,neutral,na,not_addressed,not_addressed,,medium,"A voluntary, incentive-based approach can deliver greater impact than a regulation-driven model."
+257,separate_only,na,not_addressed,separate,,low,"Establishing a framework to evaluate such efforts would fairly assess corporate initiatives, incentivize further reduction efforts, and contribute to achieving carbon neutrality."
+258,neutral,na,not_addressed,not_addressed,,high,
+262,neutral,na,not_addressed,not_addressed,,low,
+263,neutral,na,not_addressed,not_addressed,,low,"In our view, the use of MER at given time would produce the most accurate emissions impact number."
+264,neutral,na,not_addressed,not_addressed,,high,
+265,neutral,na,not_addressed,not_addressed,,low,strict hourly and geographic deliverability for clean energy procurements should be optional – not required – for purposes of Scope 2 emissions accounting.
+266,support_mbm,implicit,wrong_direction,not_addressed,additionality_test,medium,"the current proposal places significant emphasis on temporal and geographic alignment but does not meaningfully address additionality, which is a critical driver of real-world emissions reductions."
+268,neutral,na,not_addressed,oppose,,low,If dual-reporting is continued then we don't see the need for another impact metric
+269,support_mbm,not_addressed,not_addressed,separate,,low,including incentivising investment in new sources of renewable power. This should be recognised as an ‘alternative purpose’
+270,support_mbm,not_addressed,far_enough,not_addressed,scarcity,low,An increase in the robustness of MBM to hourly matching will improve the integrity of reporting and in turn increasing the impact of the standard
+271,neutral,na,not_addressed,not_addressed,,high,
+272,separate_only,na,not_addressed,separate,,high,MBM should remain a secondary disclosure focused on procurement characteristics rather than a general measure of decarbonisation impact.
+273,neutral,na,not_addressed,not_addressed,,high,
+275,support_mbm,explicit,not_far_enough,not_addressed,asset_age;scarcity;sss,high,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+276,support_mbm,implicit,not_far_enough,oppose,additionality_test;scarcity,medium,We also recommend prioritizing additionality in the MBM where possible; clean energy procurement should focus on adding new clean energy to the grid where the buyer is operating.
+277,support_mbm,implicit,not_far_enough,not_addressed,other,medium,A pathway that uses hourly matching and deliverable market boundaries to improve the impact of voluntary markets needs a third pillar that addresses incrementality.
+287,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+293,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,"Unlocking ‘cross-border’ corporate procurement of renewables for maximum decarbonization impact could allow for a faster, cheaper, and more equitable energy transition"
+300,neutral,na,not_addressed,not_addressed,,high,
+305,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,making hourly matching mandatory would be catastrophic for the global climate
+307,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,Changing the definition and purpose of MBM to include temporal correlation and deliverability would be catastrophic
+314,support_mbm,implicit,wrong_direction,inside_option,additionality_test;asset_age,medium,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+316,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,Changing the definition and purpose of MBM to include temporal correlation and deliverability would be catastrophic
+318,neutral,na,not_addressed,not_addressed,,low,additional “impact” should come from voluntary choices made by organizations based on their own context and priorities.
+321,oppose,na,too_far,not_addressed,,low,Procurement claims therefore need to be recognised as distinct from the physical factors that drive grid operation and investment decisions.
+323,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,medium,ensure that the MBM continues to incentivize real investment in clean power rather than only privileging markets with advanced digital infrastructure.
+324,support_mbm,implicit,wrong_direction,inside_option,marginal;other,high,Introducing a complementary impact metric—such as an Emissions Impact-based Method (EIM)—within Scope 2 would provide a critical accounting pathway for highest-ambition corporate strategies
+325,support_mbm,sss_enough,far_enough,not_addressed,asset_age;scarcity;sss,high,The Standard Supply Service proposal is a way of accurately apportioning clean electricity already on the grid and driving incentives of new clean electricity on top of that.
+326,neutral,na,wrong_direction,not_addressed,,low,reduced carbon impacts associated with mandatory hourly matching without a viable consequential metric.
+327,separate_only,na,wrong_direction,separate,marginal,high,"Impact, therefore, must be assessed through consequential (impact-based) accounting that evaluates how procurement, operational, and flexibility decisions affect the electricity system as a whole."
+328,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,"In order to more accurately measure impact, we urge the GHGP to consider including a netted consequential metric (including emissions impacts from both usage and procurement) in Scope 2 accounting."
+330,neutral,na,not_addressed,not_addressed,,medium,
+333,support_mbm,implicit,wrong_direction,displace,marginal,high,"a marginal impact method should fully replace the proposed time and location matching approach, given its higher scientific integrity."
+334,neutral,na,not_addressed,oppose,,medium,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation and imposes excessive compliance costs on preparers."
+335,neutral,na,not_addressed,not_addressed,,medium,
+336,support_mbm,not_addressed,wrong_direction,not_addressed,,low,"ensures that Scope 2 guidance continues to promote wide participation, scalable solutions, and actual emissions reductions."
+337,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,high,"The Standard Supply Service currently serves as the incrementality pillar of this proposal. However, the proposal has some challenges"
+338,neutral,na,wrong_direction,not_addressed,,low,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+342,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,high,"The Standard Supply Service currently serves as the incrementality pillar of
+this proposal. However, the proposal has some challenges"
+343,neutral,na,not_addressed,not_addressed,,medium,
+344,neutral,na,not_addressed,not_addressed,,low,
+345,support_mbm,not_addressed,wrong_direction,separate,other,medium,Maintain pathways that incentivise additional renewable build and high-impact investments without forcing costly compliance fragmentation.
+346,support_mbm,not_addressed,wrong_direction,not_addressed,,low,It enables buyers to support renewable development where it is most efficient and impactful—accelerating decarbonization across the entire sector.
+347,neutral,na,not_addressed,separate,,medium,We support the development of an impact metric that leads to action through more granular and reliable measurement of carbon emissions from software operations.
+348,support_mbm,implicit,not_far_enough,separate,asset_age;scarcity;sss,high,"it would be highly appropriate to implement a vintage requirement, in which certain resources could be automatically qualified as SSS based on asset age"
+349,neutral,na,not_addressed,not_addressed,,low,We reiterate our position that strict hourly and geographic deliverability for clean energy procurements should be optional – not required
+351,neutral,na,not_addressed,not_addressed,,low,We reiterate our position that strict hourly and geographic deliverability for clean energy procurements should be optional – not required
+352,neutral,na,not_addressed,not_addressed,,low,
+355,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,Such requirements risk slowing global decarbonization by limiting procurement flexibility and discouraging impactful investments.
+356,neutral,na,not_addressed,not_addressed,,low,
+357,support_mbm,not_addressed,wrong_direction,separate,,low,Impact depends on preserving a broad set of procurement pathways so companies can continue to invest in renewable energy where it can have the greatest decarbonization effect.
+358,neutral,na,not_addressed,separate,,low,having this as a possibility helps for company's that may use it outside of GHGP reporting.
+359,support_mbm,implicit,wrong_direction,not_addressed,asset_age,high,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+360,neutral,na,not_addressed,not_addressed,,low,We reiterate our position that strict hourly and geographic deliverability for clean energy procurements should be optional – not required
+363,neutral,na,wrong_direction,not_addressed,,low,"Companies seeking the most impactful clean-energy strategy should instead make power
+investments using an integrated, grid-level lens."
+364,support_mbm,implicit,wrong_direction,inside_option,additionality_test;marginal,high,"If temporal correlation and deliverability are required, additionality must also be required."
+366,support_mbm,not_addressed,far_enough,not_addressed,scarcity,low,"Hourly matching is probably the most impactful, while being feasible in big energy consumers"
+367,neutral,na,not_addressed,not_addressed,,medium,
+369,neutral,na,not_addressed,not_addressed,,low,
+370,neutral,na,wrong_direction,not_addressed,,low,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+371,neutral,na,not_addressed,not_addressed,,medium,
+372,neutral,na,not_addressed,not_addressed,,low,
+375,neutral,na,not_addressed,oppose,,medium,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation"
+376,support_mbm,implicit,wrong_direction,separate,,medium,"additional impact should be incentivized and encouraged through voluntary, user-directed actions."
+377,oppose,na,too_far,not_addressed,,medium,without implying physical or causal impacts beyond what is supported by the applicable quality criteria.
+378,neutral,na,not_addressed,oppose,,medium,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation and imposes excessive compliance costs on preparers."
+381,neutral,na,not_addressed,not_addressed,,low,
+384,neutral,na,not_addressed,not_addressed,,medium,
+385,support_mbm,implicit,wrong_direction,not_addressed,,low,"Rather than mandating hourly matching or restricting market boundaries, additional impact should be incentivized and encouraged through voluntary, user-directed actions."
+386,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,high,"The Standard Supply Service currently serves as the incrementality pillar of this proposal. However, the proposal has some challenges"
+387,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,high,"The Standard Supply Service currently serves as the incrementality pillar of this proposal. However, the proposal has some challenges"
+390,support_mbm,explicit,not_far_enough,not_addressed,,medium,It should also be noted that SSS does not go far enough to act as any proxy for incrementality/additionality
+392,support_mbm,not_addressed,wrong_direction,separate,scarcity,medium,the introduction of mandatory hourly matching runs the risk of weakening the overall climate impact of Scope 2 reporting
+393,neutral,na,not_addressed,not_addressed,,low,
+395,neutral,na,not_addressed,not_addressed,,medium,
+397,separate_only,na,not_addressed,separate,,high,"GHGP shouldn’t try to make accounting “hard” or “easy,” nor mandate procurement strategies, incrementality tests, or specific targets."
+399,support_mbm,implicit,not_far_enough,not_addressed,additionality_test;asset_age;causal,high,A pathway that uses hourly matching and deliverable market boundaries to improve the impact of voluntary markets needs a third pillar that addresses incrementality.
+401,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,"We anticipate that these changes will also incentivize further decarbonization, particularly in areas that have not experienced as much progress under the current system."
+402,oppose,na,not_addressed,separate,,medium,Incrementality considerations would conflate the logic and goal of consequential accounting with market-based accounting.
+403,neutral,na,not_addressed,not_addressed,,medium,
+404,support_mbm,implicit,wrong_direction,separate,other,medium,enhanced disclosure and guidance on best practices will better support additionality and grid-aligned outcomes than a universal deliverability mandate.
+405,support_mbm,not_addressed,far_enough,not_addressed,scarcity,low,This enhanced matching between use and generation will help distinguish procurement strategies with real decarbonisation impact
+406,support_mbm,not_addressed,wrong_direction,not_addressed,,low,"mandatory hourly matching risks diminishing, rather than enhancing, meaningful d"
+408,neutral,na,not_addressed,oppose,,medium,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation and imposes excessive compliance costs on preparers."
+409,neutral,na,not_addressed,oppose,,medium,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation and imposes excessive compliance costs on preparers."
+410,neutral,na,not_addressed,not_addressed,,low,Our research found no scientific evidence that introducing deliverability would promote decarbonization.
+411,neutral,na,not_addressed,separate,,low,"This approach is clearly separated from Scope 2 inventories and is designed to evaluate ""impacts,"" such as avoided emissions"
+412,neutral,na,not_addressed,oppose,,medium,"The introduction of impact metrics external to Scope 2 is discouraged, as it exacerbates reporting fragmentation and imposes excessive compliance costs on preparers."
+414,support_mbm,implicit,wrong_direction,not_addressed,asset_age,high,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+416,neutral,na,not_addressed,not_addressed,,low,
+417,neutral,na,wrong_direction,not_addressed,,low,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+418,separate_only,na,not_addressed,separate,,low,More granular boundaries may be considered under a consequential assessment framework.
+419,support_mbm,not_addressed,far_enough,not_addressed,scarcity;sss,low,the following changes have a great impact on scientific integrity and indirectly on climate impact: Hourly matching requirement
+420,separate_only,na,not_addressed,separate,,medium,Keeping inventory accounting separate from impact assessment preserves interoperability with reporting frameworks and avoids forcing consequential logic into scope 2.
+421,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,high,"The Standard Supply Service currently serves as the incrementality pillar of this proposal. However, the proposal has some challenges"
+422,support_mbm,not_addressed,far_enough,separate,scarcity,low,making sure certificates or contracts deliver real environmental benefits instead of being symbolic.
+423,neutral,na,wrong_direction,not_addressed,,low,"Companies seeking the most impactful clean-energy strategy should instead make power
+investments using an integrated, grid-level lens."
+424,neutral,na,not_addressed,not_addressed,,medium,
+425,mixed,not_addressed,wrong_direction,not_addressed,,low,"additional impact should be encouraged through voluntary, user-directed actions."
+429,neutral,na,not_addressed,separate,,low,Given how distinct the two approaches are we do not see a link between impact accounting & our view on inventory accounting
+431,neutral,na,not_addressed,not_addressed,,medium,
+432,mixed,not_addressed,too_far,separate,,medium,"It should not be positioned as a proxy for measuring system‑level impact, additionality, or the effectiveness of specific procurement strategies."
+433,support_mbm,not_addressed,far_enough,not_addressed,scarcity,low,This will attract green energy projects to be constructed to serve land-scarce load centers.
+434,neutral,na,not_addressed,not_addressed,,low,
+435,support_mbm,sss_enough,far_enough,separate,asset_age;scarcity;sss,medium,The Standard Supply Service proposal is a way of accurately apportioning clean electricity already on the grid and driving incentives of new clean electricity on top of that.
+437,neutral,na,not_addressed,not_addressed,,high,
+439,support_mbm,not_addressed,wrong_direction,not_addressed,other,medium,"the GHGP should focus on maximizing system benefit, not localized benefit, and therefore there should be opportunities for corporates to procure more climate impactful solutions"
+440,support_mbm,implicit,wrong_direction,inside_option,marginal,high,we urge the GHGP to consider including a netted consequential metric (including emissions impacts from both usage and procurement) in Scope 2 accounting.
+441,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,would maintain impact in providing access to dirtier parts of those markets for new clean energy projects (rather than greening cleaner grids)
+442,neutral,na,not_addressed,not_addressed,,low,"Doing any of the Scope 2 revisions outside of the ""May"" context will eliminate feasibility and have no meaningful climate impact."
+443,neutral,na,not_addressed,not_addressed,,high,
+444,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;asset_age,medium,It will not make additionality and new RE build out a requirement. It will not measure impact but will weaken decarbonization and restrict impactful procurement
+445,neutral,na,not_addressed,not_addressed,,low,"a shift toward mandatory hourly alignment, absent a defensible consequential emissions metric, risks distorting procurement behavior"
+447,neutral,na,not_addressed,not_addressed,,low,
+449,mixed,explicit,far_enough,separate,asset_age;scarcity;sss,low,we do not agree that additionality is of itself critical in the definition of scope 2 emissions claims.
+450,support_mbm,not_addressed,not_addressed,not_addressed,scarcity,medium,Updating Quality Criteria 4 to require hourly matching is ab effective step to ensure Scope 2 inventories drive real-world emissions reductions
+451,neutral,na,not_addressed,not_addressed,,low,
+452,support_mbm,implicit,wrong_direction,not_addressed,additionality_test,medium,"if additionality can be demonstrated, reductions can be recognized as Scope 2 reductions even without physical connection"
+454,mixed,implicit,wrong_direction,separate,marginal,low,"Impact: Prioritise consequential energy production, supported by premium EACs that provide a clear and efficient pathway to incentivise tangible, measurable actions to avoid emissions across the country."
+458,neutral,na,not_addressed,not_addressed,,low,
+459,support_mbm,not_addressed,not_addressed,not_addressed,,medium,revisions should be designed to maximize real-world emissions reductions and accelerate renewable energy deployment.
+461,support_mbm,implicit,wrong_direction,not_addressed,asset_age;other,high,The Protocol should explicitly distinguish between 'Standard Market Attributes' (sourced from existing generation) and 'New Capacity Attributes'
+462,separate_only,na,too_far,separate,additionality_test;marginal,medium,This reduces pressure to use hourly Scope 2 as a proxy for impact and helps avoid discouraging first‑of‑its‑kind CBET.
+464,separate_only,na,not_addressed,separate,marginal,medium,"The combination of LBM, MBM and impact assessment is most appropriate."
+467,neutral,na,not_addressed,not_addressed,,low,
+468,neutral,na,not_addressed,not_addressed,,low,
+477,support_mbm,not_addressed,far_enough,not_addressed,scarcity,low,Making claims that do not correspond to real emission impacts
+478,oppose,na,too_far,separate,,medium,This conflates corporate procurement with system-level power generation and reverses the principle on which the MBM was built.
+479,support_mbm,implicit,wrong_direction,separate,additionality_test;asset_age,high,"we recommend prioritising integrity and impact through additionality-oriented rules (e.g., project age limits, clear EAC retirement, strong residual mix) while maintaining feasibility."
+480,neutral,na,not_addressed,separate,,low,The TAC recognises that a separate impact metric for electricity projects may therefore be helpful
+481,oppose,na,too_far,separate,,medium,"Grid decarbonisation, system planning, and renewable investment are therefore policy and infrastructure questions — they should not be delegated to corporate disclosure frameworks."
+484,neutral,na,not_addressed,not_addressed,,low,
+485,neutral,na,not_addressed,not_addressed,,low,
+486,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,high,The combination of these pillars within the Scope 2 standard are key to a higher integrity system that drives real decarbonization impacts
+488,neutral,na,not_addressed,not_addressed,,medium,
+489,neutral,na,not_addressed,not_addressed,,low,
+492,support_mbm,not_addressed,wrong_direction,separate,other,medium,preserving pathways for impactful procurement. Broader deliverable market boundaries better support this objective by allowing buyers to invest where their procurement can deliver additional decarbonization benefits.
+496,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;causal,high,We believe causation is far more impactful and scalable compared to temporal and locational matching.
+498,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,medium,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+499,neutral,na,not_addressed,not_addressed,,low,
+500,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,Making hourly matching optional with a consequential option in parallel allows for two feasible options in which comparability can be preserved.
+501,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,"For impact metrics to be effective, they must be required in Scope 2, not outside of it."
+503,support_mbm,implicit,wrong_direction,displace,additionality_test;marginal,medium,market based claims should be accounted for as a mitigation intervention impact in a separate consequential statement.
+504,support_mbm,implicit,not_far_enough,not_addressed,other,medium,A pathway that uses hourly matching and deliverable market boundaries to improve the impact of voluntary markets needs a third pillar that addresses incrementality.
+505,neutral,na,not_addressed,separate,,low,Any pursuit of an impact method should remain optional.
+507,neutral,na,not_addressed,not_addressed,,medium,
+508,neutral,na,not_addressed,not_addressed,,medium,
+509,oppose,na,too_far,separate,,low,Suggesting that 100% renewable claims only count if the whole grid is decarbonized mixes up corporate procurement with system level outcomes
+510,neutral,na,not_addressed,separate,,low,"Impact metrics may provide useful narrative context, but they should remain supplemental and distinct from Scope 2 inventories."
+513,neutral,na,not_addressed,not_addressed,,medium,
+514,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,medium,These procurement strategies were intentionally designed to maximize system-level emissions impact rather than to mirror the geographic location of load.
+515,neutral,na,not_addressed,not_addressed,,low,
+516,support_mbm,sss_enough,far_enough,separate,scarcity;sss,high,The combination of these pillars within the Scope 2 standard are key to a higher integrity system that drives real decarbonization impacts
+517,support_mbm,implicit,wrong_direction,inside_option,asset_age;causal;other,high,"For the market-based method (MBM), revisions should improve the accuracy of impact on real emissions, not just optics of usage claims."
+521,neutral,na,not_addressed,not_addressed,,medium,
+522,oppose,na,not_addressed,oppose,,medium,Introducing or elevating consequential accounting concepts within Scope 2 risks blurring this distinction and embedding assumptions about system-level impacts that are highly context-dependent and difficult to verify.
+523,support_mbm,explicit,not_far_enough,not_addressed,additionality_test;asset_age;scarcity,high,"The standard supply service could serve to ensure that only new or additional renewable energy is counted towards emissions reductions, but the definitions of this programmatic backstop still require improvement."
+524,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity,high,"For greater impact, a stronger incrementality requirement should be developed in place of Standard Supply Service that would drive even greater additionality."
+526,support_mbm,not_addressed,wrong_direction,not_addressed,other,medium,"hourly matching does not solve the main criticism in some markets of the current market-based method, related to the additionality and impact of procurement decisions."
+527,support_mbm,not_addressed,not_addressed,not_addressed,scarcity,low,is a good measure to stimulate local impact and additionality.
+528,neutral,na,not_addressed,not_addressed,,medium,
+529,support_mbm,implicit,wrong_direction,not_addressed,other,medium,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+530,neutral,na,not_addressed,not_addressed,,medium,
+531,neutral,na,not_addressed,not_addressed,,low,
+533,separate_only,na,not_addressed,separate,marginal,medium,"This impact‑based method should be reported alongside, but distinct from, attributional Scope 2 inventories to preserve comparability while recognizing the value of cross‑regional investments."
+537,neutral,na,not_addressed,not_addressed,,low,
+538,neutral,na,not_addressed,not_addressed,,medium,
+539,support_mbm,implicit,wrong_direction,inside_option,additionality_test;asset_age,medium,"The focus should be on demonstrating investment in additional new clean energy within connected grids, not on deliverability."
+540,support_mbm,not_addressed,far_enough,separate,scarcity,high,supporting procurement behaviors more likely to lead to real emission reductions.
+541,neutral,na,not_addressed,not_addressed,,low,
+544,neutral,na,not_addressed,not_addressed,,low,
+547,neutral,na,not_addressed,separate,,low,they should be kept separate from Scope 2.
+549,neutral,na,not_addressed,not_addressed,,high,
+550,neutral,na,not_addressed,not_addressed,,low,
+551,neutral,na,not_addressed,not_addressed,,high,
+553,neutral,na,not_addressed,not_addressed,,low,
+555,separate_only,na,not_addressed,separate,,medium,"the 'additionality' requirement, which should not apply to inventory accounting"
+557,support_mbm,not_addressed,far_enough,separate,scarcity,medium,"hourly and deliverable criteria create better incentives for clean supply where and when needed, while an optional impact metric can recognize complementary actions"
+559,support_mbm,implicit,not_far_enough,separate,additionality_test;scarcity,high,"emissions impact needs to be explicitly targeted, either through complementary additionality criteria within Scope 2 or through a separate emissions impact metric"
+560,neutral,na,not_addressed,not_addressed,,low,
+562,separate_only,na,not_addressed,separate,,medium,consider a separate impact metric to recognise contributions that fall outside inventory boundaries
+563,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,high,The combination of these pillars within the Scope 2 standard are key to a higher integrity system that drives real decarbonization impacts
+564,support_mbm,implicit,wrong_direction,inside_option,other,medium,"we are strongly supportive to inclusion of impact metrics to Scope 2. However, our strong preferene is to keep them pari pasu with the inventory reporting"
+565,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,"Corporate electricity procurement, through power purchase agreements (PPAs), supplier-specific contracts, and the purchase of energy attribute certificates, is a key driver of renewable investment and additionality."
+566,neutral,na,not_addressed,not_addressed,,high,
+567,neutral,na,not_addressed,not_addressed,,low,"Hence, there is a lower incentive to procure EACs and to support building new RE-based plants."
+568,neutral,na,not_addressed,not_addressed,,low,do the proposed changes make contractual instruments more effective and so incentivise or lead to decarbonisation
+569,neutral,na,not_addressed,not_addressed,,medium,
+570,neutral,na,not_addressed,not_addressed,,low,"Hence, there is a lower incentive to procure EACs and to support building new RE-based plants."
+571,neutral,na,not_addressed,separate,,low,without mixing inventory reporting with impact claims
+575,support_mbm,not_addressed,not_addressed,not_addressed,scarcity,low,"Deliverability for MBM: it ensures that the calculation is physically realistic, impact of financing of renewables where the companies operate"
+576,mixed,implicit,wrong_direction,separate,marginal,medium,Re-defining Scope 2 as an inventory misses the critical role that Scope 2 accounting performed driving renewable growth by encouraging voluntary investment.
+577,neutral,na,not_addressed,not_addressed,,low,This approach does not contribute to increasing renewable energy and has low feasibility due to high implementation costs.
+579,neutral,na,not_addressed,not_addressed,,high,
+580,support_mbm,implicit,wrong_direction,not_addressed,other,low,"additional impact should be incentivized and encouraged through voluntary, user-directed actions"
+581,neutral,na,not_addressed,not_addressed,,low,shifting renewable energy investment toward compliance-driven outcomes rather than emissions impact
+583,neutral,na,not_addressed,not_addressed,,low,There is no evidence that tighter matching increases renewable deployment or environmental impact.
+584,neutral,na,not_addressed,not_addressed,,medium,
+586,neutral,na,not_addressed,not_addressed,,low,creating artificial scarcity of “compliance hours” without materially improving emissions integrity
+587,support_mbm,not_addressed,wrong_direction,oppose,other,medium,"suggest a plausible boundary that encourages voluntary development and procurement of green power , and allows inclusion of impactful green power within reporters’ calculations."
+588,oppose,na,not_addressed,oppose,,medium,Introducing impact metrics risks changing the role of Scope 2 reporting.
+589,neutral,na,not_addressed,not_addressed,,low,
+590,oppose,na,not_addressed,not_addressed,,low,rather than attempting to drive action through an accounting framework that exceeds practical limits
+591,neutral,na,not_addressed,separate,,low,GHG inventories are intended to be attributional inventories and not include consequential accounting
+593,mixed,explicit,wrong_direction,separate,asset_age;marginal,medium,SSS should NOT be considered a proxy for additionality/incrementality following the three pillars research.
+594,support_mbm,explicit,not_far_enough,not_addressed,asset_age;scarcity;sss,high,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+595,support_mbm,implicit,wrong_direction,not_addressed,marginal,medium,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+596,oppose,na,not_addressed,not_addressed,,medium,linking it with real emission reduction should not be encouraged.
+597,support_mbm,implicit,wrong_direction,separate,additionality_test,medium,"Rather than focusing on strict hourly matching and deliverability requirements, additionality or quality criteria should be defined for EACs (e.g., RE100)."
+598,support_mbm,implicit,not_far_enough,not_addressed,additionality_test;scarcity,high,We would also like to see deeper consideration of additionality.
+600,neutral,na,not_addressed,not_addressed,,low,Bra Miljöval hope for more focus on developing the EAC markets impact on renewable electricity
+603,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;asset_age,high,A simpler approach to accelerate decarbonization of grids would be to implement a sourced renewable project age limitation
+605,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;asset_age,high,The protocol should accurately reflect whether renewable energy purchases result in additional generation. This means excluding subsidized or legacy EACs that cannot influence new capacity
+606,support_mbm,implicit,wrong_direction,inside_option,marginal,high,we urge the GHGP to consider including the emissions impacts from both usage and procurement in Scope 2 accounting.
+610,neutral,na,not_addressed,not_addressed,,low,
+611,neutral,na,not_addressed,not_addressed,,medium,
+612,support_mbm,implicit,wrong_direction,not_addressed,additionality_test,high,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization
+613,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,is a key driver of renewable investment and additionality. Market-based claims provide the appropriate framework to reflect these investment signals
+616,support_mbm,implicit,not_addressed,not_addressed,asset_age,low,Asset age limit
+620,oppose,na,not_addressed,separate,,low,This conflates corporate procurement with system-level power generation and reverses the principle on which the MBM was built.
+621,neutral,na,not_addressed,not_addressed,,low,organizations will shift their priorities from impact to compliance
+624,support_mbm,not_addressed,wrong_direction,not_addressed,other,medium,"strict temporal and spatial matching can actually lead to less impactful carbon reductions, which runs counter to the stated purpose of the market-based method."
+625,support_mbm,implicit,wrong_direction,inside_option,marginal,high,we believe the GHGP should include a netted consequential metric in Scope 2.
+627,oppose,na,too_far,not_addressed,,medium,"Grid decarbonisation, system planning, and renewable investment are therefore policy and infrastructure questions — they should not be delegated to corporate disclosure frameworks."
+628,mixed,not_addressed,not_addressed,separate,scarcity,low,"a separate impact metric would be beneficial, but ultimately would be answering a different (consequential) question than the attributional market-based inventory"
+629,support_mbm,implicit,wrong_direction,displace,marginal,medium,focusing on consequential impact rather than strict geographic matching may better drive effective emissions reductions.
+630,mixed,implicit,far_enough,oppose,asset_age;scarcity,medium,"While additionality is important, it is subjective and problematic to include in a robust accounting framework."
+632,neutral,na,not_addressed,not_addressed,,high,
+633,separate_only,na,not_addressed,separate,,medium,A separate impact metric outside the Scope 2 inventory could help recognize and quantify system-wide emissions impacts of electricity-related actions
+634,support_mbm,sss_enough,far_enough,separate,scarcity;sss,high,"More granular market-based Scope 2 accounting will incentivize companies to match procured electricity to actual consumption, thereby driving grid decarbonization through their operational footprint."
+635,oppose,na,not_addressed,not_addressed,,low,The SSS guidance should not introduce any additionality requirements.
+636,separate_only,na,wrong_direction,separate,marginal,medium,the pathway to accelerating decarbonisation is understanding consequential impact
+637,support_mbm,not_addressed,far_enough,not_addressed,scarcity,high,This helps direct attention and capital toward times and places where decarbonization is most constrained.
+638,separate_only,na,wrong_direction,separate,marginal,medium,the pathway to accelerating decarbonisation is understanding consequential impact
+639,support_mbm,implicit,wrong_direction,separate,marginal,medium,supporting MBMs beyond mere physical location boundaries will raise all boats by providing recognition for decarbonization impacts.
+641,support_mbm,implicit,wrong_direction,displace,causal;marginal,high,Transition to consequential emissions metrics will be an important advance of the current “attributional” practice.
+642,support_mbm,not_addressed,wrong_direction,not_addressed,causal,low,The available evidence indicates that the proposed rules would likely undermine the real-world impacts of GHGP reporters
+643,neutral,na,not_addressed,not_addressed,,low,misaligning incentives toward compliance metrics rather than maximising additional clean energy generation or emissions impact
+644,support_mbm,sss_enough,far_enough,separate,scarcity;sss,high,"SSS helps ensure that voluntary procurement focuses on bringing new projects online, rather than competing for the same legacy assets."
+645,support_mbm,not_addressed,wrong_direction,not_addressed,,low,ensuring that consumer decisions can drive real clean energy market impact
+646,support_mbm,implicit,wrong_direction,separate,causal;marginal;other,high,it must evolve beyond merely improving attributional accuracy to actively recognize the financial and causal connections that lead to the creation of new clean capacity.
+647,neutral,na,not_addressed,not_addressed,,low,hourly matching is an irrational way to reduce emissions.
+648,support_mbm,sss_enough,far_enough,separate,scarcity;sss,high,"it incentivises investing in areas where decarbonisation is necessary, not just where it is easy and cheap to deploy additional new clean generation."
+649,neutral,na,not_addressed,not_addressed,,medium,
+650,neutral,na,wrong_direction,not_addressed,,low,reduced carbon impacts associated with mandatory hourly matching without a viable consequential metric
+651,support_mbm,implicit,wrong_direction,inside_option,additionality_test;asset_age;marginal,high,Hourly matching as proposed will not drive impact because it is attributional and lacks additionality criteria
+652,neutral,na,wrong_direction,not_addressed,,low,reduced carbon impacts associated with mandatory hourly matching without a viable consequential metric
+653,neutral,na,not_addressed,not_addressed,,low,
+654,neutral,na,not_addressed,not_addressed,,low,it can create price signals for renewable investment at times of the day when certificates are scarce
+655,neutral,na,not_addressed,separate,,medium,"Complementary metrics that would quantify actions like energy storage, demand response, and energy efficiency should be treated independently of the market-based updates"
+656,support_mbm,implicit,wrong_direction,oppose,causal,medium,Meaningful corporate action to green the grid depends on embedding the causation of new renewable capacity directly into the quality criteria for market-based instruments within attributional accounting.
+657,separate_only,na,wrong_direction,separate,marginal,medium,"This distinction separates inventory totals from broader impact claims, which are covered under Actions and Market Instruments."
+658,support_mbm,implicit,wrong_direction,not_addressed,other,low,"Rather than mandating hourly matching or restricting market boundaries, additional impact should be encouraged through voluntary, user-directed actions."
+661,neutral,na,not_addressed,not_addressed,,high,
+662,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,we urge the GHGP to consider validating the consequential metric as an option for Scope 2 for these groups.
+663,neutral,na,not_addressed,separate,,medium,An additional metric outside of scope 2 to quantify the emissions impact of electricity-related actions would be helpful regardless
+664,support_mbm,not_addressed,wrong_direction,not_addressed,,low,overemphasize the concept of physical connected may lead a negative impact on enabling voluntary investment that has been the primary driver of clean energy.
+665,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,"Adding in the temporal aspect, when combined with the deliverability clauses discussed elsewhere in the consultation paper, will encourage"
+666,support_mbm,not_addressed,wrong_direction,not_addressed,other,medium,Impact: Recognise market-based mechanism's role in financing new renewables; avoid rules that unintentionally discourage investment in New Zealand renewable energy build.
+667,support_mbm,sss_enough,not_addressed,not_addressed,sss,low,"To ensure that SSS effectively serves its intended purpose of promoting additional emissions reductions, it is essential to establish clear, internationally consistent criteria"
+669,support_mbm,not_addressed,wrong_direction,separate,marginal,low,failing to contribute to a meaningful increase in renewable energy capacity (Additionality).
+671,support_mbm,not_addressed,wrong_direction,not_addressed,causal,low,end‑user behavioral change and additional investment would not be appropriately reflected in Scope 2 accounting.
+673,support_mbm,not_addressed,wrong_direction,not_addressed,,low,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+674,neutral,na,not_addressed,not_addressed,,high,
+677,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,high,"A strengthened incrementality standard, including stronger SSS rules inclusive of asset age cutoffs, would further improve the integrity and impact of the proposed changes."
+680,support_mbm,not_addressed,wrong_direction,not_addressed,,low,This could make highly additional projects harder to realize and slow renewable deployment.
+684,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,Making hourly matching optional with a consequential option in parallel allows for two feasible options in which comparability can be preserved.
+686,support_mbm,not_addressed,wrong_direction,not_addressed,,low,Complementary mechanisms will be essential to avoid disincentivising renewable investment in regions where grid decarbonisation is still emerging.
+687,support_mbm,implicit,wrong_direction,inside_option,additionality_test;marginal,medium,The guidelines should incorporate consequential additionality accounting to encourage off-takers invest in projects that will have the greatest impact in GHG reductions
+688,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,"Hourly matching and deliverability should be optional, with a consequential framework established as a primary or co-equal reporting metric under the MBM."
+690,separate_only,na,not_addressed,separate,,high,"the purpose of the MBM should be limited to the Scope 2 inventory, and assessments of actual emissions reduction impacts should be addressed separately through complementary metrics."
+692,support_mbm,implicit,wrong_direction,inside_option,asset_age,high,"A simpler approach to accelerate decarbonization of grids would be to implement a sourced renewable project age limitation, similar to the existing RE100 Technical Procurement Criteria."
+694,support_mbm,not_addressed,wrong_direction,not_addressed,,low,Re-defining Scope 2 solely as an inventory misses the critical role that Scope 2 accounting plays in enabling voluntary investment that has been the primary driver of clean energy.
+695,neutral,na,not_addressed,not_addressed,,low,
+696,neutral,na,not_addressed,not_addressed,,medium,
+697,neutral,na,not_addressed,not_addressed,,low,"I would like to see consideration given to the actual conditions of the facilities and regional characteristics, rather than a uniform classification based on age."
+698,oppose,na,too_far,separate,,high,This will undermine the role of Scope 2 emissions metric as an attributional inventory of indirect emissions related to electricity.
+701,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,high,The combination of these pillars within the Scope 2 standard are key to a higher integrity system that drives real decarbonisation impacts via targeted investments in new technologies
+705,support_mbm,not_addressed,wrong_direction,not_addressed,,low,"Broader market boundaries could enable procurement from regions with lower-cost renewable energy generation, thereby supporting additionality"
+706,support_mbm,implicit,wrong_direction,inside_option,marginal,high,"We would recommend including a “marginal emissions impact” approach that allocates emissions on the basis of consequential impact within Scope 2 guidance, as an alternative form of Scope 2 accounting."
+708,support_mbm,implicit,not_far_enough,not_addressed,additionality_test;asset_age,high,consider additionality requirements to avoid a reliance on certificates linked to old clean energy which will limit the potential impact of any changes.
+709,support_mbm,sss_enough,not_addressed,not_addressed,sss,low,"To ensure that SSS effectively serves its intended purpose of promoting additional emissions reductions, it is essential to establish clear, internationally consistent criteria"
+710,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,A revised protocol shall be supportive to accelerate additional generation capacity for renewable electricity and not hamper the development thereof by discouraging developers and consumer companies.
+713,neutral,na,not_addressed,separate,,medium,"Avoided Emissions reporting, which adequately quantifies our impact and is completely separate from our Scope 2 reporting."
+714,neutral,na,not_addressed,not_addressed,,high,
+715,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,Any option that allow for and recognize different kinds of impactful action including long-term forward contracts or unbundled RECs from nonsubsidized renewables
+716,separate_only,na,too_far,separate,,medium,"The MBM supports auditable claims based on real contracts, while impact metrics estimate systemwide effects and should remain optional and separate."
+717,neutral,na,not_addressed,not_addressed,,high,
+718,support_mbm,not_addressed,wrong_direction,not_addressed,,low,weakening the market-based method’s role as a driver of long-term PPAs.
+719,neutral,na,not_addressed,not_addressed,,low,
+721,support_mbm,not_addressed,wrong_direction,separate,,low,"Scope 2 must remain a tool that links corporate demand with real-world investment in clean power, rather than a narrow tracing exercise"
+722,support_mbm,not_addressed,wrong_direction,not_addressed,,low,"Maximizing decarbonization impacts by enabling companies’ cross-border renewable energy purchases can enable a faster, cheaper, and fairer energy transition."
+723,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,instead incentivises procurement strategies that support generation capable of delivering electricity with real low carbon intensity when it is needed
+725,neutral,na,wrong_direction,not_addressed,,low,More accurate data reporting doesn't imply better global climate impact (and sometimes even slow down impact).
+726,support_mbm,explicit,not_far_enough,not_addressed,asset_age;scarcity;sss,high,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+727,support_mbm,implicit,wrong_direction,not_addressed,asset_age,high,"A simpler approach to accelerate decarbonization of grids would be to implement a sourced renewable project age limitation, similar to the existing RE100 Technical Procurement Criteria."
+728,support_mbm,not_addressed,wrong_direction,not_addressed,,low,"Through V-PPAs, the increase in generation sources with additionality has created time periods where renewable energy alone can meet regional demand on an hourly basis."
+729,neutral,na,not_addressed,not_addressed,,medium,
+730,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,"Optionality, paired with a complementary consequential framework, would provide two credible, comparable pathways: one focused on usage accuracy and the other on impact."
+731,support_mbm,sss_enough,far_enough,separate,asset_age;sss,medium,SSS creates a meaningful 'incrementality' proxy that increases the impact associated with MBM emissions reductions while maintaining GHG inventory completeness.
+732,support_mbm,explicit,not_far_enough,separate,asset_age;scarcity;sss,high,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+733,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,"preserve the role of contracts in driving additional renewable capacity and electrification, while maintaining accounting integrity and comparability."
+735,support_mbm,not_addressed,wrong_direction,not_addressed,,low,Defining the boundary too tightly for New Zealand will make it more difficult for consumers to support new renewable generation
+738,separate_only,na,wrong_direction,separate,,medium,"The ‘additionality’ requirement should not apply to inventory accounting, as this introduces complexity and unverifiable assumptions"
+739,neutral,na,not_addressed,not_addressed,,medium,
+742,support_mbm,not_addressed,far_enough,oppose,other,medium,"From a climate impact perspective, the revisions incentivise renewable energy procurement and investment"
+744,support_mbm,implicit,wrong_direction,not_addressed,other,low,"Rather than mandating hourly matching or restricting market boundaries, additional impact should be"
+746,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,it accurately reflects contractual procurement rights and maintains the incentive for adding new renewable capacity globally.
+747,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,"the proposed MBM prioritizes optics over impact, risking sub-optimal procurement strategies and slowing real decarbonization progress."
+749,support_mbm,not_addressed,far_enough,oppose,scarcity,medium,"Today’s scope 2 method does not provide the transparency, integrity, or impact necessary to achieve deeper grid decarbonization."
+751,support_mbm,not_addressed,wrong_direction,not_addressed,,low,Re-defining Scope 2 solely as an inventory misses the critical role that Scope 2 accounting plays in enabling voluntary investment that has been the primary driver of clean energy.
+754,support_mbm,implicit,wrong_direction,separate,marginal,high,"recognising actions that deliver the greatest real-world emissions reductions, not merely the closest temporal or locational match"
+755,support_mbm,not_addressed,wrong_direction,not_addressed,,low,Disagree with hourly matching & deliverability – would slow global decarbonization and restrict impactful procurement.
+756,neutral,na,not_addressed,not_addressed,,medium,
+757,support_mbm,explicit,not_far_enough,separate,asset_age;causal;scarcity;sss,high,we consider that a clear alternative incrementality pillar must be designed and defined in the new methodology before to the SSS is fully implemented.
+759,support_mbm,not_addressed,wrong_direction,not_addressed,,low,"mandatory hourly matching and deliverability could chill long-tenor contracting and shift demand toward short-term/spot certificate purchases, weakening additionality and investor confidence."
+761,support_mbm,not_addressed,wrong_direction,not_addressed,scarcity,medium,The SSS may hinder impact as it limits the available green energy for corporates willing to pay an additional green premium to offtake from publicly funded projects.
+762,support_mbm,not_addressed,wrong_direction,not_addressed,scarcity,medium,The SSS may hinder impact as it limits the available green energy for corporates willing to pay an additional green premium to offtake from publicly funded projects.
+763,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,"Long-term mechanisms should be supported, to ensure companies continue investing in long-term solutions that bring additionality."
+766,neutral,na,not_addressed,oppose,,low,impact metrics outside the scope 2 inventory increases reporting burden without real comparability between reporting companies.
+767,support_mbm,not_addressed,wrong_direction,not_addressed,,low,It is unlikely to deliver cost-effective or meaningful impact and would be challenging to implement at scale
+769,neutral,na,wrong_direction,separate,,low,"higher costs, without any corresponding decarbonization impact."
+770,neutral,na,not_addressed,not_addressed,,low,
+775,neutral,na,not_addressed,not_addressed,,low,
+776,oppose,na,not_addressed,not_addressed,,medium,avoid conflating attributional accounting with consequential or impact-based claims
+777,separate_only,na,not_addressed,separate,,medium,A separate impact metric could complement Scope 2 by capturing the system-level climate impact of electricity-related actions that are not fully reflected in attributional accounting.
+778,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,high,The combination of these pillars within the Scope 2 standard are key to a higher integrity system that drives real decarbonization impacts
+779,support_mbm,not_addressed,far_enough,oppose,scarcity,high,the benefits provided by the proposed changes to the MBM are substantial enough that a separate impact metric is not necessary
+780,separate_only,na,too_far,separate,additionality_test,high,"""additionality"" and the incentivization of new renewable projects are consequential goals better addressed through the Actions and Market Instruments (AMI) framework rather than the MBM."
+787,support_mbm,not_addressed,not_addressed,not_addressed,,low,the MBM captures a company’s procurement choices and additionality
+789,neutral,na,not_addressed,not_addressed,,low,
+790,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;asset_age,low,allowing companies to credibly demonstrate additionality and newness.
+792,neutral,na,not_addressed,not_addressed,,low,
+793,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,"highly granular requirements risk concentrating demand into narrow time blocks, inflating costs, and diverting resources away from investment in new renewable capacity, limiting real-world impact."
+794,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,"A framework that supports choice and recognition enables greater cumulative impact than prescribing a single, uniform model"
+798,neutral,na,not_addressed,not_addressed,,low,
+799,oppose,na,too_far,not_addressed,,medium,"Scientific Integrity, Climate Impact blong more in the SBTi Standard."
+800,support_mbm,implicit,wrong_direction,not_addressed,other,low,"Rather than mandating hourly matching or restricting market boundaries, additional impact should be encouraged through voluntary, user-directed actions."
+801,separate_only,na,too_far,separate,,high,Any additionality-related claims should be treated as separate from Scope 2 inventories
+805,neutral,na,not_addressed,not_addressed,,low,
+806,support_mbm,implicit,wrong_direction,not_addressed,additionality_test,high,strongly recommend that additionality should be used as a criterion whether an EAC can be used in the MBM
+808,support_mbm,not_addressed,far_enough,not_addressed,scarcity,high,Hourly matching and deliverability requirements help accelerate grid decarbonisation by rewarding procurement that aligns with system constraints.
+809,neutral,na,not_addressed,inside_option,,low,When consequential is utilized – within these inventories – it should only be due to an “offset” type of mechanism
+811,neutral,na,not_addressed,not_addressed,,low,
+813,support_mbm,not_addressed,too_far,not_addressed,,low,we understand the need for more “impact”. But the current proposal is not evolution; it is revolution.
+814,support_mbm,not_addressed,far_enough,not_addressed,marginal;scarcity,medium,"incentives shift toward clean supply when and where it displaces higher-emitting generation, unlocking investment in PPAs, storage, and flexible demand"
+815,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,"Without alternative compliance pathways, such as a Marginal Impact Method (MIM), a strict MBM is not feasible."
+816,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,Flexibility and inclusivity deliver greater cumulative impact than prescribing a single model.
+819,neutral,na,not_addressed,not_addressed,,low,
+821,support_mbm,implicit,wrong_direction,inside_option,additionality_test;marginal,medium,we are concerned that hourly matching without an additionality requirement will not actually have the integrity outcomes that are intended
+822,support_mbm,implicit,wrong_direction,not_addressed,other,medium,"hourly matching does not solve the main criticism in some markets of the current market-based method, related to the additionality and impact of procurement decisions."
+823,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;asset_age,high,it is valuable if Scope 2 MBM provides an incentive for companies to make long-term commitments to accelerate clean energy deployment.
+824,support_mbm,implicit,not_far_enough,separate,additionality_test;asset_age,high,"the proposal does not adequately address additionality aspects, such as the age or incremental impact of renewable generation."
+825,neutral,na,not_addressed,not_addressed,,low,
+826,neutral,na,not_addressed,not_addressed,,low,
+827,support_mbm,not_addressed,wrong_direction,not_addressed,other,medium,Hourly matching and deliverability improve claim granularity but don’t favor new clean generation it just reshuffles who claims existing clean hours.
+830,neutral,na,not_addressed,not_addressed,,low,
+831,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,"Additional impact should be encouraged through voluntary, user-directed actions rather than mandatory hourly matching or restrictive boundaries."
+832,neutral,na,not_addressed,separate,,low,The use of a separate metric to quantify the emissions impact of electricity-related actions beyond Scope 2 could be a useful development
+834,support_mbm,sss_enough,far_enough,not_addressed,scarcity,high,The combination of these pillars within the Scope 2 standard are key to a higher integrity system that drives real decarbonization impacts
+835,neutral,na,not_addressed,not_addressed,,low,
+836,support_mbm,implicit,wrong_direction,inside_option,marginal,high,why not make room for a parallel consequential metric that may be measured within Scope 2 as an alternative to the MBM and LBM?
+837,neutral,na,not_addressed,not_addressed,,low,
+838,neutral,na,not_addressed,not_addressed,,low,
+839,neutral,na,not_addressed,separate,,low,"Consequential accounting, while important in understanding system-wide impacts, does not affect a reporter’s Scope 2 inventory."
+842,support_mbm,not_addressed,wrong_direction,not_addressed,,low,ultimately risking the erosion of EAC and PPA markets without delivering true additionality or investment signals
+843,support_mbm,implicit,wrong_direction,not_addressed,additionality_test,low,allowing companies to credibly demonstrate additionality and new procurement.
+844,support_mbm,not_addressed,wrong_direction,not_addressed,,low,This creates incentives to target low-effort matching opportunities rather than driving meaningful system impact.
+845,support_mbm,implicit,wrong_direction,not_addressed,additionality_test,high,"TfL does not consider that the proposed revisions, as currently drafted, demonstrate a clear causal link to driving additional renewable generation."
+846,neutral,na,not_addressed,not_addressed,,low,
+847,neutral,na,wrong_direction,not_addressed,,low,"these requirements may, in certain contexts, hinder global carbon abatement goals by increasing cost while delivering limited incremental emissions reductions."
+849,neutral,na,not_addressed,not_addressed,,low,
+852,neutral,na,not_addressed,not_addressed,,low,
+853,neutral,na,not_addressed,not_addressed,,low,
+854,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,high,Incrementality (SSS or other metric)
+855,neutral,na,not_addressed,not_addressed,,low,
+856,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;asset_age,medium,We also see additionality as a missing criteria in this draft guidance. Our suggestion would be to make 24/7 optional if the project is deemed additional
+857,neutral,na,not_addressed,not_addressed,,low,
+858,neutral,na,not_addressed,not_addressed,,low,
+859,neutral,na,not_addressed,separate,,low,Accurate Scope 2 accounting and clear rules for consequential emissions allow us to better assess the opportunities and risks of investee companies.
+862,support_mbm,sss_enough,far_enough,not_addressed,scarcity,high,The combination of these pillars within the Scope 2 standard are key to a higher integrity system that drives real decarbonization impacts
+865,neutral,na,not_addressed,not_addressed,,low,
+868,neutral,na,not_addressed,not_addressed,,low,
+869,neutral,na,not_addressed,not_addressed,,low,
+870,support_mbm,implicit,not_far_enough,inside_option,additionality_test;scarcity,medium,"a revised framework that prioritizes additionality and demonstrates that procurement decisions result in measurable, incremental emissions reductions beyond what would have occurred otherwise."
+871,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,"It is critical that the Marginal Impact Method, leveraging a consequential accounting method freed from deliverability requirements but embracing the same temporal granularity, be included in Scope 2"
+872,support_mbm,not_addressed,wrong_direction,separate,other,low,This method may encourage minimal system impact instead of meaningful change.
+874,support_mbm,implicit,wrong_direction,inside_option,additionality_test;marginal,high,"If temporal correlation and deliverability are required, additionality must also be required."
+875,support_mbm,implicit,wrong_direction,inside_option,additionality_test;marginal,medium,"We also recommend adopting an impact metric with multiple achievement paths (such as 24/7 matching, emissionality"
+877,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,Making hourly matching optional with a consequential option in parallel allows for two feasible options in which comparability can be preserved.
+879,neutral,na,not_addressed,not_addressed,,low,
+880,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,medium,re-defining Scope 2 solely as an inventory misses the critical role that Scope 2 accounting plays in voluntary renewable energy investment
+881,support_mbm,not_addressed,wrong_direction,separate,other,medium,This would diminish the climate impact of their actions by significantly reducing the additionality of their renewable energy use
+883,separate_only,na,not_addressed,separate,marginal,medium,"This metric should be structured as a separate, project- or impact-based method, evaluated alongside an entity’s attributional Scope 2 emissions inventory."
+884,neutral,na,not_addressed,not_addressed,,low,
+885,separate_only,na,not_addressed,separate,,high,Scope 2 inventories should remain focused on attributional accounting to preserve consistency with other scopes.
+886,support_mbm,not_addressed,wrong_direction,not_addressed,,low,mandatory hourly matching does not necessarily deliver incremental emissions reductions
+887,support_mbm,explicit,not_far_enough,not_addressed,additionality_test,high,"must have a third pillar that addresses incrementality which, if intended, is not addressed by Standard Supply Service (SSS)."
+888,support_mbm,implicit,not_far_enough,separate,additionality_test;asset_age,high,"We have some concern that the proposed updates don't address additionality, which is one of the ""Three Pillars"" of 24/7 carbon-free electricity"
+889,support_mbm,explicit,not_far_enough,oppose,additionality_test;scarcity,high,establish a dedicated incrementality pillar definition
+890,neutral,na,wrong_direction,not_addressed,,low,Disagree with hourly matching & deliverability – would slow global decarbonization and restrict impactful procurement.
+892,support_mbm,not_addressed,far_enough,not_addressed,scarcity,high,Impact: these rules create incentives where the grid actually needs them.
+893,support_mbm,not_addressed,wrong_direction,not_addressed,,low,this would completely undermine a mechanism that has been central to driving investment in new renewable capacity.
+894,separate_only,na,not_addressed,separate,,medium,We recognise that the GHG Protocol is also considering adopting separate impact metrics and we support those efforts
+895,neutral,na,wrong_direction,not_addressed,,low,reduced carbon impacts associated with mandatory hourly matching without a viable consequential metric.
+896,support_mbm,implicit,wrong_direction,displace,additionality_test;causal;marginal,high,the purpose of MBM should be explicitly redefined to measure Impact: quantifying the actual tonnes of CO2e avoided or removed by a company's market interventions.
+897,neutral,na,not_addressed,not_addressed,,high,
+898,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,strengthens confidence that market-based claims reflect genuine decarbonisation impacts
+899,support_mbm,implicit,wrong_direction,inside_option,other,medium,we recommend the introduction of an impact criteria that is not separate from attributional accounting.
+902,neutral,na,not_addressed,not_addressed,,high,
+904,separate_only,na,not_addressed,separate,,medium,The SSS guidance should refrain from including any additional incrementality considerations.
+905,neutral,na,not_addressed,not_addressed,,high,
+906,neutral,na,not_addressed,not_addressed,,medium,
+907,support_mbm,not_addressed,wrong_direction,separate,,medium,"Mandatory hourly matching and physical deliverability requirements may impede procurement, chill investment, and risk slowing grid decarbonization."
+908,oppose,na,too_far,not_addressed,,high,the argument that EACs should be a tool of driving new investments into renewable energy projects is not only unrealistic but also misleading.
+909,neutral,na,not_addressed,not_addressed,,low,
+910,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,We believe Scope 2 should also accommodate a consequential accounting approach
+911,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,The marginal gain in inventory precision offered by hourly matching comes at the expense of meaningful climate impact.
+913,support_mbm,not_addressed,wrong_direction,not_addressed,,low,ensure that voluntary renewable energy procurement continues to deliver real decarbonization impact.
+914,neutral,na,not_addressed,not_addressed,,high,
+915,support_mbm,not_addressed,wrong_direction,not_addressed,,low,we know we can take impactful action by sourcing a larger project in a dirty grid region to address our distributed loads.
+916,separate_only,na,not_addressed,inside_option,marginal,medium,All three should be a required part of Scope 2 reporting.
+917,support_mbm,not_addressed,wrong_direction,not_addressed,,low,restricts investment in grids that would provide the greatest decarbonization impact
+918,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,Narrowing boundaries risks shrinking project financing and undermining impact.
+919,neutral,na,not_addressed,not_addressed,,high,
+920,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,"It may make long ter PPAs less attractive to operators compared to to short‑term unbundled certificates, undermining additionality."
+921,support_mbm,not_addressed,wrong_direction,not_addressed,,low,Hourly matching does not guarantee additionality.
+922,neutral,na,not_addressed,not_addressed,,high,
+923,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,preserves flexibility for organizations to invest in renewable energy and drive emissions reductions at scale.
+925,separate_only,na,wrong_direction,inside_option,marginal,medium,"complement inventory reporting with an impact-based metric, rather than restructuring the market-based method around 24/7 requirements"
+926,oppose,na,too_far,oppose,,medium,"EMA does not support incorporating mandatory links to system-level impacts, such as emissions displacement, into the MBM definition."
+928,neutral,na,not_addressed,not_addressed,,high,
+929,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,Restricting market boundaries risks limiting companies’ ability to invest in renewable energy projects where decarbonization impact is greatest
+930,support_mbm,not_addressed,far_enough,not_addressed,scarcity,high,The proposed change will accelerate new renewable capacity where it matters most—within the grids where electricity is consumed.
+931,neutral,na,not_addressed,not_addressed,,low,
+932,support_mbm,explicit,not_far_enough,not_addressed,asset_age;scarcity,high,a stronger incrementality requirement should be developed in place of or on top of Standard Supply Service that would drive even greater additionality.
+934,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,"making deliverability mandatory would prevent load aggregation, shrink buyer pools, increase transaction costs, and reduce impact."
+935,support_mbm,implicit,not_addressed,inside_option,additionality_test;marginal,medium,the protocol must allow for “Consequential Emissions” accounting
+936,support_mbm,sss_enough,far_enough,separate,scarcity;sss,high,"Hourly accounting, market boundaries reflecting power grid realities, and an incrementality standard (SSS or similar) are critical"
+937,support_mbm,implicit,wrong_direction,not_addressed,additionality_test,high,The lack of an additionality framework within the MBM removes both the biggest incentive to contract new projects while also pushing the activity towards accounting and away from impact.
+938,neutral,na,not_addressed,not_addressed,,low,
+939,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,Directing procurement to regions already rich in renewables rather than where impact is greatest.
+940,neutral,na,not_addressed,not_addressed,,high,
+941,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,Push organizations toward spot EAC purchases instead of long-term offtake (undermining additionality)
+942,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,Corporate voluntary action that stands up new renewable capacity should be credited for that avoidance
+944,support_mbm,not_addressed,wrong_direction,not_addressed,,low,This revision would be catastrophic for the global climate
+945,support_mbm,not_addressed,wrong_direction,inside_option,marginal,medium,These should be optional reporting pathways alongside an equal Impact Accounting pathway
+946,neutral,na,not_addressed,not_addressed,,high,
+947,support_mbm,not_addressed,wrong_direction,inside_option,,medium,an outcome that reduces additionality and slows progress toward broader grid decarbonization.
+950,support_mbm,implicit,wrong_direction,not_addressed,asset_age,high,"Creating additional temporal and deliverability requirements will misalign with this building performance standard, and create disincentives for the development of new renewable electricity generation."
+951,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,preserve the ability to account for contractual instruments that demonstrably support renewable electricity generation and system-level decarbonization
+952,support_mbm,not_addressed,wrong_direction,inside_option,marginal,high,"alongside an equal optional reporting pathway of the Consequential method, once finalized."
+953,support_mbm,implicit,wrong_direction,inside_option,additionality_test;marginal,high,The guidelines should incorporate consequential additionality accounting to encourage off-takers investing in projects that will have the greatest impact in GHG reductions
+954,separate_only,na,not_addressed,separate,,high,Clear separation between attributional inventory reporting (LBM) and consequential or impact based claims addressed under the Actions and Market Instruments framework is necessary
+955,neutral,na,not_addressed,not_addressed,,high,
+958,support_mbm,not_addressed,wrong_direction,separate,,medium,"The focus should be on demonstrating investment in additional new clean energy within connected grids, not on deliverability."
+959,support_mbm,not_addressed,wrong_direction,separate,,high,the market-based method should continue to enable impactful procurement.
+960,neutral,na,wrong_direction,separate,,low,Unilaterally applying this 24/7 matching asset-level framework . . . could slow decarbonization and undermine the approach’s intent.
+962,support_mbm,implicit,wrong_direction,not_addressed,additionality_test,medium,"We also advocate for enhanced integrity of Energy Attribute Certificates (EACs) through clear rules on project identification, validity periods, and additionality."
+965,neutral,na,not_addressed,not_addressed,,low,
+966,support_mbm,not_addressed,wrong_direction,separate,,high,there is strong evidence that it will harm real world emissions reduction and feasibility of renewable energy procurement
+967,support_mbm,not_addressed,far_enough,separate,scarcity,medium,They enhance integrity and climate impact by introducing stricter time- and location-matching
+968,support_mbm,implicit,wrong_direction,not_addressed,asset_age;causal,high,"impact must be embedded within attributional market-based instruments, or companies will continue meeting targets through unbundled EACs from existing assets"
+969,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,would lead to lower renewable capacity deployments of clean energy and higher emissions overall.
+970,separate_only,na,not_addressed,separate,,medium,Impact metrics should be developed separately under AMI and remain complementary rather than merged with inventories.
+971,neutral,na,not_addressed,not_addressed,,low,
+972,support_mbm,implicit,wrong_direction,inside_option,marginal,high,we urge the Protocol to consider including a netted consequential metric (including emissions impacts from both usage and procurement) in Scope 2 accounting.
+973,separate_only,na,wrong_direction,inside_option,marginal,medium,"complement inventory reporting with an impact-based metric, rather than restructuring the market-based method around requirements that neither improve accuracy nor advance decarbonization."
+974,mixed,not_addressed,not_addressed,separate,,low,The framework should therefore avoid forcing impact considerations into inventory rules in ways that distort procurement decisions.
+976,support_mbm,not_addressed,wrong_direction,separate,other,low,Avoid implying that hourly matching is necessary for climate impact; Paris alignment depends on accelerating renewable deployment
+977,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,high,SSS has the potential to serve as a strong incrementality pillar in addition to its fairness considerations (avoiding resource shuffling).
+978,support_mbm,not_addressed,wrong_direction,inside_option,other,medium,Maintaining the current definition preserves the flexibility necessary for organizations to drive additionality
+979,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,medium,"Hourly matching, deliverable market boundaries, incrementality (SSS or other metric). All these would set up proper incentives for more robust decarbonization."
+980,support_mbm,implicit,wrong_direction,oppose,other,medium,We believe that the scope 2 revisions are missing a market based approach that promotes & recognizes impactful action & long-term contracts.
+981,neutral,na,not_addressed,separate,,medium,a separate electricity sector / consequential accounting method can be designed with comparable temporal and deliverability requirements
+982,support_mbm,sss_enough,far_enough,not_addressed,scarcity;sss,high,"market-based revisions that implement hourly matching, reasonable physical deliverability boundaries, and proper allocation of SSS can restore integrity and impact to scope 2 emissions accounting."
+983,support_mbm,explicit,not_far_enough,not_addressed,asset_age;scarcity;sss,high,"The Standard Supply Service currently serves as the incrementality pillar of this proposal. However, the proposal has some challenges"
+984,separate_only,na,not_addressed,separate,,low,we believe that it's important to provide pathways to incentivize and continue to channel voluntary investment in clean energy.
+986,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,"making hourly matching mandatory would be catastrophic for the global climate, would slow clean"
+987,separate_only,na,not_addressed,separate,,medium,The SSS guidance should refrain from including any additional incrementality considerations.
+988,support_mbm,implicit,not_far_enough,not_addressed,other,medium,A pathway that uses hourly matching and deliverable market boundaries to improve the impact of voluntary markets needs a third pillar that addresses incrementality.
+989,support_mbm,implicit,wrong_direction,displace,additionality_test;marginal,high,the GHG Protocol should adopt a required consequential Scope 2 accounting approach with strong additionality requirements
+990,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,curtail investment in locations where lower-carbon energy investments could be most impactful for decarbonization.
+992,support_mbm,explicit,not_far_enough,not_addressed,additionality_test;asset_age;scarcity;sss,high,"further considering a parallel requirement, in addition to SSS exclusion, limiting asset availability for expanded procurement on the basis of vintage"
+993,support_mbm,not_addressed,not_addressed,not_addressed,,low,"We support the intent of promoting the development of new renewable energy and energy storage, especially in regions with less availability"
+994,neutral,na,not_addressed,separate,,low,"Impact metrics are valuable but should remain in Guidance, with a future pathway for integration"
+995,neutral,na,not_addressed,not_addressed,,low,
+996,support_mbm,implicit,wrong_direction,inside_option,additionality_test;asset_age,high,the Protocol should review whether additionality should be added as a requirement
+997,mixed,not_addressed,wrong_direction,separate,other,medium,preserves the PPA market that finances additional capacity today
+998,support_mbm,implicit,far_enough,not_addressed,other;scarcity,medium,The proposed MBM revisions make significant progress toward addressing these scientific integrity and impact shortcomings.
+999,separate_only,na,wrong_direction,inside_option,marginal,medium,We support a consequential method being included in Scope 2 but we do not support that affecting how the MBM is designed.
+1000,neutral,na,not_addressed,oppose,,low,To introduce further novel impact metrics that reduce energy accounting symmetry will only add to the challenges facing this sector.
+1001,mixed,not_addressed,wrong_direction,separate,other,low,"Higher complexity and cost could reduce corporate appetite for PPAs, slowing down investment in new renewable capacity"
+1002,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;marginal,medium,"Additionality should be a requirement, and the geographic boundary should be kept at grid interconnection level."
+1003,support_mbm,not_addressed,not_addressed,not_addressed,scarcity,low,this combination helps shift green electricity procurement toward outcomes that better reflect real system conditions.
+1004,mixed,implicit,not_addressed,oppose,asset_age;scarcity;sss,low,"Impact: without clear analysis demonstrating that this will significantly change emissions trends for reporters, we are not convinced it is necessary."
+1005,support_mbm,not_addressed,wrong_direction,separate,marginal,medium,the market-based method should continue to enable impactful procurement.
+1006,neutral,na,not_addressed,not_addressed,,low,
+1007,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,These requirements could discourage additionally impactful strategies that support procurement from carbon-intense regions of the grid
+1008,neutral,na,wrong_direction,not_addressed,,low,make the financing of additional renewable electricity problematic.
+1009,separate_only,na,wrong_direction,separate,marginal,medium,"consequential claims are reported separately, if they are reported at all."
+1011,support_mbm,sss_enough,not_addressed,separate,sss,low,"ensuring that SSS functions effectively within MBM is critical, as it more directly captures meaningful financial relationships that can influence investment and procurement behavior."
+1012,separate_only,na,not_addressed,separate,,low,"The proposed revisions should focus on enhancing the attributional nature of scope 2 reporting, regardless of whether there is a separate impact metric for electricity projects."
+1014,separate_only,na,too_far,separate,,high,"Scope 2 is an attributional inventory. It should reflect electricity purchased, not grid impact."
+1016,neutral,na,wrong_direction,not_addressed,,low,It would block impactful procurement of clean energy and significantly slow global decarbonization.
+1017,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,Maintaining the existing definition supports continued flexibility for organizations to pursue additionality
+1018,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,An hourly matched carbon-free system has been shown to drive deeper emission reductions than a yearly matched system.
+1019,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,an impact ledger that accompanies and/or is integrated into a company’s inventory
+1022,support_mbm,sss_enough,far_enough,separate,asset_age;scarcity;sss,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward with transparency and credibility.
+1023,support_mbm,explicit,not_far_enough,not_addressed,asset_age;scarcity;sss,high,it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented
+1024,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,"Companies seeking the most impactful clean-energy strategy should instead make power investments using an integrated, grid-level lens."
+1025,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,"Climate Impact: Satisfied by segmenting EAC supply into granular times and locations, creating price signals for storage and clean firm power where they are not yet abundant."
+1026,support_mbm,implicit,wrong_direction,inside_option,additionality_test;marginal,high,Hourly matching as proposed will not drive impact because it is attributional and lacks additionality criteria
+1027,mixed,not_addressed,far_enough,separate,scarcity,low,"real emissions impact depends on additionality and system response, which cannot be fully captured through inventory accounting alone"
+1028,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,"incentivise companies to focus on real decarbonisation, compared to emission reductions on paper only."
+1030,support_mbm,implicit,not_far_enough,not_addressed,additionality_test;scarcity,medium,An additionality requirement also incentivizes firms to procure renewable energy that is incremental to the existing generation capacity.
+1031,neutral,na,not_addressed,not_addressed,,low,
+1034,neutral,na,not_addressed,separate,,low,both attributional and consequential had value as long as they were not combined.
+1035,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,"incentivizing storage, flexibility solutions, and additional renewable capacity beyond what's needed for annual matching."
+1037,support_mbm,implicit,wrong_direction,inside_option,marginal,medium,quantify the avoided emissions associated with all types of contractual instruments
+1039,support_mbm,implicit,not_addressed,not_addressed,asset_age,low,Addressing Criteria 4 vintage / temporal preciseness will increase the integrity and impact.
+1040,support_mbm,implicit,wrong_direction,separate,other,low,"additional impact should be incentivized and encouraged through voluntary, user-directed actions."
+1041,neutral,na,not_addressed,not_addressed,,low,
+1042,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;marginal,high,"MBM should be improved through stronger quality criteria (e.g., additionality, robust EACs standards, clear time/geography rules)"
+1043,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,invest in the energy storage which is needed to genuinely replace fossil fuels
+1044,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,Restricting sourcing to local or zonal markets can limit companies’ ability to procure renewable energy where it can generate the greatest decarbonisation impact.
+1045,neutral,na,not_addressed,not_addressed,,low,
+1047,neutral,na,not_addressed,not_addressed,,low,
+1049,support_mbm,not_addressed,wrong_direction,separate,,low,NRG supports continued development of consequential accounting as a supplemental tool for assessing system-level impacts
+1050,support_mbm,explicit,not_far_enough,not_addressed,asset_age;scarcity;sss,high,an incrementality standard (SSS or even better: an asset age limit)
+1051,neutral,na,not_addressed,not_addressed,,low,
+1053,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,Reduced ability to invest in regions where renewable buildout would have the greatest decarbonization impact.
+1054,support_mbm,not_addressed,wrong_direction,separate,other,medium,the proposed purposes omit two essential functions: incentivizing the addition of low- and zero-carbon generation to electricity systems
+1055,support_mbm,implicit,not_far_enough,not_addressed,additionality_test,medium,I do not agree with not having an additionality requirement.
+1056,oppose,na,not_addressed,not_addressed,,medium,Incrementality considerations would conflate the logic and goal of consequential accounting with market-based accounting.
+1057,support_mbm,not_addressed,wrong_direction,separate,marginal,medium,supporting MBMs beyond mere physical location boundaries will raise all boats by providing recognition for decarbonization impacts.
+1060,mixed,not_addressed,wrong_direction,not_addressed,other,low,"additional impact should be fostered through voluntary, user‑directed actions."
+1063,support_mbm,not_addressed,wrong_direction,not_addressed,other,low,This will discourage new renewable energy projects that provide additionality to the grid
+1070,neutral,na,not_addressed,not_addressed,,low,
+1071,support_mbm,not_addressed,wrong_direction,separate,other,medium,reducing additional build of carbon emissions-free projects.
+1072,separate_only,na,not_addressed,separate,,medium,MBM is not causally related to actual inventory emissions reductions
+1073,neutral,na,not_addressed,not_addressed,,low,"Improved MBM rules reduce the most egregious misallocation (“solar at night”) and greenwashing risks, but on their own cannot drive system-wide decarbonization due to certificate scarcity."
+1076,support_mbm,not_addressed,wrong_direction,not_addressed,,low,Disagree with hourly matching & deliverability – would slow global decarbonization and restrict impactful procurement.
+1079,separate_only,na,not_addressed,separate,marginal,medium,"A separate impact metric could quantify system-level benefits: avoided curtailment, displaced fossil generation, and grid decarbonization support."
+1080,neutral,na,not_addressed,not_addressed,,low,
+1083,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,Requiring the temporal and geographic matching/deliverability with market-based contractual instruments aids in the aspects we have identified above.
+1085,support_mbm,implicit,wrong_direction,not_addressed,additionality_test;marginal,medium,"Prior research on modeling the system impacts of these criteria has shown that although additionality (iii) is essential, strict locational matching (i) and temporal matching (ii) may not be necessary"
+1086,support_mbm,implicit,wrong_direction,displace,marginal,medium,The proposed hourly and location matched metric have questionable scientific integrity and climate impact.
+1087,neutral,na,not_addressed,not_addressed,,high,
+1088,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,Maintaining the current definition preserves the flexibility necessary for organizations to drive additionality
+1089,support_mbm,not_addressed,wrong_direction,separate,,low,"Under the proposal to narrow geographic boundaries for deliverability, this could in many cases restrict the areas where generation projects are sought after, and potentially slow development of zero-carbon generation"
+1090,mixed,implicit,wrong_direction,separate,additionality_test;marginal,medium,"If the GHG Protocol chooses to retain the MBM, then reported emissions should at least reflect the impact of a company’s procurement decisions."
+1092,neutral,na,not_addressed,not_addressed,,high,
+1093,neutral,na,not_addressed,not_addressed,,medium,
+1094,support_mbm,not_addressed,wrong_direction,not_addressed,,low,"Broader market boundaries better reflect real power-market integration, maintain feasibility for buyers, and sustain the financial mechanisms that drive new clean-energy investment."
+1095,neutral,na,not_addressed,not_addressed,,medium,
+1097,support_mbm,not_addressed,wrong_direction,separate,,medium,"Constraining procurement to narrow “deliverable” zones could push buyers toward short-term spot EACs, strand projects, and reduce the additional deployment of clean energy generation"
+1098,support_mbm,not_addressed,far_enough,not_addressed,scarcity,high,"Impact is expected to be high, as it pushes to both create more generation in networks where demand is matched"
+1099,support_mbm,implicit,wrong_direction,not_addressed,additionality_test,low,"tightening EAC quality criteria (project identification, within month validity windows, and minimum additionality where feasible)"
+1100,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,Companies would be forced to procure in already-decarbonized markets to match load without adding new renewable capacity in grids that are falling behind in decarbonization.
+1101,support_mbm,implicit,wrong_direction,inside_option,marginal,high,"improve the current Market-Based Method (annual matching with broad market boundaries) while introducing Impact Accounting (Emissionality) as a supplementary or ""dual-reporting"" metric."
+1102,neutral,na,not_addressed,not_addressed,,high,
+1103,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,"The GHG Protocol should retain annual, nationally aggregated REC matching to preserve accuracy, affordability, and real-world impact."
+1104,neutral,na,not_addressed,not_addressed,,high,
+1105,neutral,na,not_addressed,not_addressed,,low,
+1107,support_mbm,sss_enough,not_addressed,not_addressed,sss,low,Robust and clear implementation of SSS will be crucial to it having sufficient integrity and impact.
+1108,support_mbm,implicit,wrong_direction,not_addressed,causal;marginal,low,the sites for renewables deployment with the greatest GHG emissions reduction potential (even if not physically connected to the value chain)
+1109,mixed,implicit,wrong_direction,inside_option,marginal,medium,an attributional approach for the inventory and a consequential approach alongside it to capture routine impacts of consumption and generation that can be used for target setting
+1110,support_mbm,not_addressed,far_enough,not_addressed,scarcity,medium,there is clear research showing that procuring plausibly deliverable clean energy is impactful compared to other approaches.
+1111,support_mbm,implicit,wrong_direction,displace,marginal,medium,We suggest that the GHGP opens itself for carbon matching at the nodal level
+1112,support_mbm,implicit,not_far_enough,inside_option,marginal;scarcity,high,"To balance these purposes, integrate mandatory impact-based accounting from the consequential subgroup and the Emissions First Partnership."
+1115,neutral,na,not_addressed,not_addressed,,low,
+1116,separate_only,na,wrong_direction,separate,,low,"Overall, we are advocating for consequential metrics to complement attributional inventories and capture real avoided emissions without overhauling Scope 2."
+1117,neutral,na,not_addressed,not_addressed,,low,As currently written we do not believe these revisions meaningfully improve the impact companies have on climate.
+1118,support_mbm,not_addressed,wrong_direction,not_addressed,,low,recognizes the role these contracts play in enabling new clean generation
+1119,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,"Additional MWhs of new clean energy displace fossil generation somewhere on the grid, regardless of whether it perfectly aligns with a particular buyer’s hourly load."
+1120,neutral,na,not_addressed,oppose,,low,this should be ONLY for very limited organizations and analysis.
+1121,mixed,not_addressed,wrong_direction,separate,,medium,This hurts/reduces the demand for new build PPA transactions that can deliver additionality claims
+1123,support_mbm,not_addressed,wrong_direction,not_addressed,,low,This could impede the development of projects with high additionality and act to suppress the overall volume of renewable energy investment.
+1124,support_mbm,not_addressed,wrong_direction,separate,,low,"We want to see market intervention, but we do not agree that all companies must match time and location with their instruments to have an impact on the climate."
+1125,support_mbm,sss_enough,far_enough,separate,scarcity;sss,medium,clearer geographic boundaries and robust treatment of standard supply service—can meaningfully influence procurement decisions.
+1126,support_mbm,implicit,not_far_enough,inside_option,causal;marginal,medium,This requirement is only valid if it is paired with a mandatory 'Impact Statement' (Consequential Accounting) to verify that these matched purchases actually drove new capacity or load shifting
+1127,support_mbm,implicit,not_far_enough,displace,causal;marginal;scarcity,low,a proportional reward system based upon the emissionality of the grids the organization is connected to
+1128,neutral,na,not_addressed,not_addressed,,high,
+1129,support_mbm,not_addressed,wrong_direction,not_addressed,,low,Narrow market boundaries limit investment in regions where renewable energy could deliver the greatest decarbonization impact.
+1130,separate_only,na,too_far,separate,,high,it should not be used as a proxy for system-wide decarbonization impact.
+1131,support_mbm,not_addressed,wrong_direction,not_addressed,,low,"Tight constraints would reduce the pool of usable instruments, weaken voluntary procurement markets, and reduce capital available for new renewable projects."
+1134,support_mbm,not_addressed,wrong_direction,oppose,,medium,the proposed Scope 2 revisions would materially constrain climate impact
+1136,support_mbm,implicit,wrong_direction,not_addressed,asset_age,high,MBM should reflect the emissions impact of clean energy contracts to stimulate grid decarbonization and track towards emissions reduction targets.
+1137,neutral,na,not_addressed,not_addressed,,low,
+1138,support_mbm,not_addressed,wrong_direction,not_addressed,marginal,low,It is often more carbon efficient to target grids with higher carbon emissions.
+1139,support_mbm,implicit,not_far_enough,inside_option,marginal,medium,Excluding the consequential method as an equally viable option to the LBM or MBM prevents organizations from using it to measure impact
+1140,support_mbm,implicit,wrong_direction,inside_option,causal;marginal,high,"It should be possible to create a more flexible inventory accounting platform that can incorporate emissions reductions modeled using an accepted, robust consequential methodology."
+1141,separate_only,na,wrong_direction,displace,causal;marginal,medium,"AMI consequential accounting as the primary impact metric—quantifying verified displacement from voluntary procurement, wherever it occurs"
+1142,neutral,na,not_addressed,not_addressed,,low,
+1143,neutral,na,not_addressed,not_addressed,,medium,
+1146,neutral,na,not_addressed,not_addressed,,medium,
+1147,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,revisions should maintain clear and credible signals that support investment in low-carbon electricity where it delivers the greatest system-wide decarbonization benefits.
+1148,support_mbm,implicit,not_far_enough,inside_option,marginal,medium,esVolta supports hourly matching when paired with a required consequential method.
+1149,neutral,na,not_addressed,not_addressed,,low,
+1151,neutral,na,not_addressed,not_addressed,,high,
+1155,neutral,na,not_addressed,not_addressed,,high,
+1157,support_mbm,not_addressed,wrong_direction,not_addressed,,low,This restriction would limit companies' ability to invest in areas where renewable energy development could offer the greatest decarbonization impact
+1158,support_mbm,not_addressed,wrong_direction,not_addressed,scarcity,medium,a strict annual matching framework would make it possible to sustainably rebalance supply and demand and restore price levels favorable to investment.
+1160,support_mbm,implicit,wrong_direction,not_addressed,additionality_test,medium,"we recommend that the GHG Protocol prioritises the integrity, transparency, and additionality of market instruments over strict physical deliverability."
+1165,support_mbm,implicit,wrong_direction,not_addressed,asset_age;causal,high,We object to the assumption that temporal and locational matching is the gold standard; causation is far more impactful and scalable.
+1166,neutral,na,not_addressed,not_addressed,,high,
+1167,support_mbm,not_addressed,wrong_direction,not_addressed,,low,There is no expert consensus that tighter alignment between the time and location of energy procurement to energy use is the most effective method for incentivizing real-world carbon-reducing decisions.
+1168,support_mbm,implicit,not_far_enough,not_addressed,additionality_test,high,A pathway that uses hourly matching and deliverable market boundaries to improve the impact of voluntary markets needs a third pillar that addresses incrementality.
+1169,support_mbm,not_addressed,wrong_direction,not_addressed,,medium,"provided they continue to recognise the original purpose of market‑based approaches: catalysing investment in decarbonisation, including new renewable generation."
