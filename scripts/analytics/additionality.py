@@ -371,6 +371,18 @@ def cmd_export() -> None:
         data["quotes"]["stronger"] = named_quotes({i for i in sup["E"] if mech[i]["sss"] == "prefers_other"}, more_q)
         data["quotes"]["age_required"] = named_quotes({i for i in sup["E"] if mech[i]["age"] == "required"}, age_q)
 
+    # --- Q97: the survey's own SSS support question (1-5) ---------------------
+    q97 = {r[0]: float(r[1]) for r in con.execute(
+        "SELECT respondent_id, answer_numeric FROM responses WHERE question_id='Q097' AND answer_numeric IS NOT NULL")}
+
+    def q97_split(ids):
+        v = [q97[i] for i in ids if i in q97]
+        return {"answered": len(v), "support": sum(x >= 4 for x in v),
+                "neutral": sum(x == 3 for x in v), "oppose": sum(x <= 2 for x in v)}
+
+    data["q97"] = {"all": q97_split(resp), "either": q97_split(sup["E"]), "all_three": q97_split(all3),
+                   "not_all_three": q97_split(sup["E"] - all3)}
+
     data["mechanism"] = data_mech
     data["demographics"] = demographics
     data["named"] = named
