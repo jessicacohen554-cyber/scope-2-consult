@@ -1,0 +1,487 @@
+respondent_id,text_stance,definition,data,market_fit,comparability,double_count,cost_allocation,burden,interaction,crowd_out,blurs_lbm,not_customer_claim,regional_windfall,too_weak,phase_in,disclose,self_estimate,optional,vintage,registry_first,guidance,drop,confidence,quote
+5,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"I support the proposed updates because they meaningfully enhance the clarity, consistency, and practical applicability of Scope 2 accounting."
+16,support,1,1,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,high,"The proposed SSS framework is directionally correct. It protects the MBM from double counting, clarifies claim order"
+17,support,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,high,its introduction would be beneficial if accompanied by regionally specific interpretive guidance linking the definition of SSS to existing regulatory mechanisms
+29,neutral,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"the interaction with other components of the standard (SSS, residual mix, legacy contracts)"
+31,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Excluding SSS or other contractual instruments makes most of the accessible databases on country emission factors not compliant with this methodology.
+40,conditional,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,medium,"There should be a phase in period, during which the requirement is waived, pending certain alternate interim credible document criteria"
+45,oppose,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,high,We think SSS should not be allocated. Al generated power should be disclosed and converted to a contractual instrument.
+47,support,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,high,"Prior to a registry, if an electricity supplier claims a certain allocation of SSS, they should be taken at face value."
+50,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+62,conditional,1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,medium,It does not make sense in the context of the Danish and European electricity markets.
+65,neutral,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,medium,Please consider providing more example of SSS in each region/market. It is a very complicated and technical concept to understand in the first place.
+72,oppose,1,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,high,we believe it is more appropriate to remove the SSS concept at this time.
+75,support,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,medium,An alternative incrementality pillar definition is needed for the SSS to ensure accuracy particulalry with older assets.
+83,conditional,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,there is risk applied to this as to how suppliers will allocate accurately and fairly.
+88,support,1,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,high,SSS availability fragmentation creates significant comparability challenges
+90,support,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,high,it is better that some reporters do not claim SSS than to make weak or unverifiable allocations.
+92,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,
+93,support,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"If Standard Supply Service concepts apply to electricity monopolies, they should equally apply to heat network monopolies."
+97,support,1,1,0,1,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,high,The treatment of partial subsidies and exemptions needs to be clarified so that SSS allocations remain fair but are also practical to compute and verify.
+120,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,"If there is no established registry in a particular country, it may be acceptable for some reporters to claim their appropriate share."
+124,support,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"Si le SSS n’est pas disponible de manière uniforme selon les régions, cela affaiblit directement la comparabilité des rapports MBM entre entités, pays et périodes."
+127,oppose,0,1,0,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,0,0,high,"if SSS is applied to all facilities, there is concern about a significant increase in the difficulty of calculation, leading us to oppose the application of SSS."
+128,oppose,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,1,high,The introduction of SSS would create an artificial and unfair segmentation of the market.
+129,support,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,high,environmental integrity and avoidance of double counting must take precedence over universal claimability in the short term.
+130,support,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,medium,we would prefer for any errors to be on the conservative side rather than the aggressive side
+133,oppose,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,low,It ill reduce volumes of available EACs and then rise cost of available EACs
+137,conditional,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,it is critical to have an alternative incrementality pillar definition before the SSS can be fully implemented
+138,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,medium,What is really needed for accounting of SSS is a robust and transparent methodology and guidance for how companies can report use of SSS in the absence of specific registries.
+139,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,
+141,conditional,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,high,"However, condition would be clear implementable rules that can be consistent across diverse market structures."
+142,neutral,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,medium,We really struggle to understand the SSS concept and didn’t know how to weigh in because we didn’t want to misinterpret.
+143,conditional,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,high,"Overall the suggestion makes sense, but only in case there is a centralized source that provides the pro rata shares per country"
+144,conditional,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,low,"A progressive ramp-up over several years would would help addressing issues progressively, in an acceptable way."
+145,oppose,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Allowing the reporting organization to claim their fair and proportional share for voluntary purposes would be double-counting the same EAC?
+147,support,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,Clarify whether electricity associated with technical network losses can be treated as part of SSS for regulated monopoly network operators
+148,conditional,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,medium,"If data and tracking are not available, we believe that it should not be used in the emissions inventory calculation."
+151,conditional,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,high,It is the New Zealand stakeholder view that SSS does not apply in the New Zealand context.
+152,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"Hourly matching, deliverable market boundaries, incrementality"
+158,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+159,neutral,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,"We therefore encourage the updated GHG Protocol Scope 2 Guidance to include a clear definition, decision criteria, and practical examples"
+160,conditional,1,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,0,1,1,1,0,high,"The definition of SSS is unclear, particularly regarding partially subsidized electricity, which many RMG factories receive, creating uncertainty about how much can be claimed."
+165,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"Hourly matching, deliverable market boundaries, incrementality"
+166,oppose,0,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,medium,Certificates issued under schemes recognized in each country should therefore be eligible for use.
+169,conditional,1,1,0,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,high,"Before introducing it as a “Shall” requirement, we request that the definition be clarified (including specifying which services in each country fall under SSS)."
+170,conditional,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,"regarding the handling of FIT certificates in Japan, it is necessary to clarify operational rules that fully consider consistency with the domestic systems"
+173,support,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,medium,Markets should self-determine how resources that fall under SSS are allocated to customers
+174,support,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,high,"a robust implementation of SSS is crucial to driving integrity and impact. To this end, a clear registry of assets that would count towards SSS would be required."
+181,oppose,1,1,1,1,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,high,No. SSS should not be allocated in the first place.
+182,support,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,current guidance does not explain whether both landlord and tenants can claim the same set of attributes for the same electricity load when SSS allocation occurs.
+183,conditional,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,high,"SSS should apply ONLY to clean resources that are represented by energy attribute certificates issued, tracked and retired within a recognized tracking system"
+186,support,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,high,This could systematically disadvantage companies in emerging markets and developing regions where SSS registry systems may not yet be established.
+187,support,1,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,0,high,"the framework should remain principles-based, supported by regional examples, transitional provisions, and pragmatic defaults where data or registries are unavailable."
+188,support,1,1,0,1,1,0,1,0,0,0,0,0,0,0,1,1,0,0,0,1,0,high,"its success hinges entirely on its practical, global implementability."
+192,oppose,0,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,high,We strongly oppose the protocol revision that disregards existing systems.
+196,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,This selection guards against integrity risks while minimising any increase in reporting burden.
+205,support,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,Allocation of SSS highlights the difficulties with the idea of hourly matching and geospatial matching
+207,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,
+208,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,"The proposal relies on voluntary supplier allocation and a future centralized SSS registry, neither of which exists today in most regions."
+211,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"Hourly matching, deliverable market boundaries, incrementality"
+214,oppose,1,1,0,1,1,0,1,1,1,1,0,0,1,1,1,0,1,1,1,0,0,high,"Introducing SSS would blur the distinction between the LBM and MBM, add unnecessary complexity, dramatically weaken demand, and create uncertainty about attribution boundaries."
+217,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"Hourly matching, deliverable market boundaries, incrementality"
+219,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,"Hourly matching, deliverable market boundaries, incrementality
+(SSS or other metric) will make the scope 2 more integer, impactful, and feasible."
+220,oppose,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,medium,"General inconsistency of the concept, mixed with elements of location-based approach and containing unclarity about the allocation mechanism of the green electricity at the back end"
+221,support,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,medium,"The SSS shares should be transparent and credible, without reliable data SSS should not be possible to be claimed."
+222,oppose,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,medium,"It risks double-counting, weak incentives, and confusing signals that do not actually drive new clean power."
+225,conditional,1,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,high,SSS must be narrowly and clearly defined to include only generation for which customers have a financial or regulatory claim to the attributes.
+226,conditional,1,1,0,0,1,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,high,"the guidance must be implementable without requiring new registries that do not yet exist in many markets, and definitions must be tight enough to avoid inconsistent classification."
+228,neutral,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,non-uniform SSS availability introduces a location-driven bias into MBM reporting that weakens comparability at both company and portfolio level.
+229,oppose,0,0,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,high,The concept of Standard Supply Service creates more confusion than transparency.
+230,support,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,medium,"Which assets are included in SSS is currently unclear. A global registry, clearly stating which assets are included would be useful."
+233,support,1,1,0,1,1,0,1,0,1,0,0,0,0,1,0,1,0,0,0,0,0,medium,it is not acceptable for reporters to be unable to claim their pro-rata share of Standard Supply Service (SSS) simply because a centralized registry has not yet been established.
+243,oppose,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Suppliers would need to allocate and provide emission factors pursuant to this new guidance. We do not have the ability to control this as reporters.
+244,oppose,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,1,high,The introduction of SSS would create an artificial and unfair segmentation of the market.
+246,support,1,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,high,the lack of a uniform and clear definition of SSS across different regional markets will create challenges to correctly identify and report our pro-rata share
+248,conditional,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,mandatory payments may not be levied evenly on all consumers based on their consumption
+249,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,an incrementality standard (such as Standard Supply Service or a similar mechanism) are essential to ensuring Scope 2 accounting is transparent and credible.
+251,oppose,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,There will be an additional administrative burden of accounting for both SSS and voluntary RECs.
+253,conditional,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,high,"SSS is valuable, but the success condition is simple: publishable, auditable allocation rules and data."
+254,support,0,0,0,1,1,0,1,0,0,0,0,0,0,1,1,1,0,0,1,0,0,high,I cannot accept allowing SSS claims before a credible registry exists.
+255,oppose,1,0,1,1,0,0,1,1,1,0,1,0,0,0,0,1,0,0,0,1,0,high,Applying a concept that is only feasible for certain companies/regions as a standard for overall calculation in the GHG Protocol is inappropriate.
+256,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,high,allocation of standard supply service should be allowed based on national energy statistics or annual reports published by the electricity market operator.
+257,oppose,0,1,1,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,0,0,0,medium,Uniform rules that fail to reflect differences in renewable energy promotion policies and crediting systems could hinder the adoption of renewable energy.
+260,oppose,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Suppliers would need to allocate and provide emission factors pursuant to this new guidance.
+271,neutral,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,this could lead to disadvantages for some reporters who will be unfairly assessed against companies that can claim from the SSS registry
+272,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Residual mix must represent what remains after contractual claims and SSS allocations within the relevant boundary/time interval
+275,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,SSS aims to prevent this “resource shuffling” ensuring companies can only claim their fair share of existing clean electricity.
+276,support,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,high,The integrity of the total RM pool outweighs the immediate ability of every reporter to claim their SSS share.
+277,oppose,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,medium,"If you remove RECs, you remove proof of ownership and create double-counting. That destroys market credibility."
+289,conditional,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,the definition of SSS and the rules (for Japan) should be clarified because they are unclear.
+314,oppose,1,0,1,1,0,0,1,1,1,0,1,0,0,0,0,1,0,0,1,1,0,high,Applying a concept that is only feasible for certain companies/regions as a standard for overall calculation in the GHG Protocol is inappropriate.
+318,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,The emission factor does not consider the availbility of the emission factors of certain energy source in the region where we are unable to receive the latest data.
+321,oppose,1,1,1,1,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,high,No. SSS should not be allocated in the first place.
+323,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"We recommend a practical and flexible approach, with simple backup methods when detailed data are missing."
+325,support,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,high,SSS aims to prevent this “resource shuffling” ensuring companies can only claim their fair share of existing clean electricity.
+327,conditional,1,1,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,high,"The pro-rata constraint is directionally appropriate, provided definitions are clear and implementation is feasible across differing market structures."
+328,conditional,0,1,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"SSS data will be difficult to obtain for reporting organizations, and it seems likely that many will rely on a default annual value."
+330,conditional,1,0,1,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,medium,"classification should only proceed once SSS definitions, allocation methods, and the relationship with the residual mix are clarified."
+332,support,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,it is adequate to verify SSS through the power grid in the absence of a registry.
+334,oppose,1,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,high,Maintain the current standard and oppose the proposed SSS guidance.
+337,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,SSS aims to prevent this “resource shuffling” ensuring companies can only claim their fair share of existing clean electricity.
+342,support,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,"SSS aims to prevent this “resource shuffling” ensuring companies can only
+claim their fair share of existing clean electricity."
+344,support,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,The Chilean power system currently lacks the resources required to enable such traceability.
+345,support,1,1,0,1,0,0,1,0,0,0,0,0,0,1,1,1,0,0,0,1,0,high,"The main concern is practical implementation: in some regions suppliers may not provide sufficiently transparent allocation data, and registries may not yet exist to support consistent SSS tracking."
+346,neutral,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Limiting Standard Supply Service (SSS) or green power product emissions claims to the portion of the clean energy being supplied by a utility that does geographically match
+348,support,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,medium,"it would be highly appropriate to implement a vintage requirement, in which certain resources could be automatically qualified as SSS based on asset age"
+356,oppose,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,unclear how much additional EACs need to purchase after SSS. And the evidence to prove SSS renewable energy portion is unclear.
+357,conditional,1,1,1,1,1,0,1,0,1,0,1,0,0,1,1,1,0,0,0,1,0,high,"Without a precise and operational definition, reporters and assurance providers may struggle to apply the requirements consistently across different electricity systems and regulatory structures."
+358,support,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"The SSS works for us as it follows data that we receive, however note that this may not be the case for other markets outside the US."
+359,conditional,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,Reporting companies should not be penalized for supplier SSS data that is not accessible / credibly allocated.
+364,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"The idea of SSS is logical as renewable energy generation grows, and emissions continue to decline over time."
+365,oppose,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,medium,This new system under new Scope 2 Guidance will reduce peoples’ support for renewable energy by increasing Renewable Energy Levy.
+366,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"If a source cannot be claimed due to lack of a centralized registry, it should still be counted as SSS."
+367,oppose,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"the share of carbon-free electricity within the standard supply is not officially disclosed. As a result, an SSS emission factor cannot be calculated"
+369,oppose,1,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,high,we request that the FIT mechanism should not be treated as an SSS because the growth of Japan's markets for C-PPA and renewable energy would be hindered
+371,oppose,0,1,1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,high,"we believe it is not appropriate to immediately introduce the SSS concept as a common global standard, given that it is currently feasible only in a limited number of regions."
+372,oppose,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,low,This undermines incentives for early and voluntary corporate investment in renewable energy.
+375,oppose,1,1,0,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,high,Maintain the current standard and oppose the proposed SSS guidance.
+377,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"In case no SSS data is available, the imapct of a possible default option should be analysed"
+378,oppose,1,1,0,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,high,Maintain the current standard and oppose the proposed SSS guidance.
+379,neutral,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,SSS guidance not clear
+384,conditional,1,0,1,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,medium,"We request clearer and more operational guidance on the application of Standard Supply Service (SSS), supported by concrete examples across different market contexts."
+385,oppose,1,1,1,1,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,high,"Embedding SSS into Scope 2 therefore introduces conceptual inconsistency, creates cross-jurisdictional confusion, and undermines the methodological integrity of market-based claims"
+386,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,medium,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+387,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,medium,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+390,conditional,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,low,More consideration is needed on who the arbiter will be of which resources are eligible for voluntary market buyers versus which are exclusively SSS.
+395,support,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"Consequently, the German electricity system should fall under the Standard Supply Service."
+396,conditional,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,Overall reasonable approach when rules and definitions are clearly defined
+397,support,1,1,0,1,1,0,0,0,0,0,0,0,0,1,1,0,1,0,1,1,0,high,SSS need not be perfect or universally applicable to be valuable; there are many clear cases where it’s appropriate.
+401,conditional,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,We do not support the definition of Standard Supply Service as currently proposed and believe that this definition reduces the feasibility and comparability of the proposed revisions overall
+402,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,LIHI appreciates and supports the guidance around allocation and claims related to SSS generation.
+404,support,0,1,0,1,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,Standard Supply Service should not be considered a contractual instrument for the purpose of requiring hourly matching.
+406,support,1,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,Coles opposes embedding hourly constraints into SSS within Australia on the basis that it would create significant additional work for retailers and the Australian Government
+407,conditional,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"If the GHG Protocol establishes rules that differ from national ones, it would not work."
+408,oppose,1,1,0,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,high,Maintain the current standard and oppose the proposed SSS guidance.
+409,oppose,1,1,0,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,high,Maintain the current standard and oppose the proposed SSS guidance.
+410,oppose,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,low,"When consumers purchase unbundled NFCs in Japan, the associated environmental value should be attributed to those consumers."
+411,support,1,1,0,1,1,1,0,1,1,0,0,0,0,1,1,0,0,0,1,0,0,medium,"Therefore, environmental attributes from FIP sources—which are sustained by private market funds and voluntary corporate contributions through PPAs—should be excluded from SSS."
+412,oppose,0,1,0,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,high,Maintain the current standard and oppose the proposed SSS guidance.
+414,conditional,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,Reporting companies should not be penalized for supplier SSS data that is not accessible / credibly allocated.
+415,neutral,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"We expect the further guidance to provide a clearer definition of SSS, thereby ensuring consistent assurance by all providers."
+416,oppose,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,medium,"For Hong Kong, given the low likelihood of double counting regarding the low-carbon attributes of nuclear power, we recommend adhering to the original Market-Based Method (MBM)."
+418,oppose,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,high,We do not support introducing SSS into the GHG Protocol Scope 2 framework.
+419,conditional,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,We support the principle of the guidance but also have concerns.
+420,conditional,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,high,"Support, provided the “pro-rata share” can be evidenced via supplier allocation, a credible central database, or recognised registry outputs."
+421,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,medium,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+425,oppose,1,1,1,1,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,high,SSS should not be allocated in the first place. Public budgeting for energy is not designed for customer-level attribution
+429,oppose,1,1,1,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,1,high,"we believe the SSS proposal is a good theoretical idea, but isn’t feasible to implement (Criteria 3) or supportive of ambitious climate goals (Criteria 2A)."
+433,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,No SSS in Singapore.
+435,support,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,medium,It is very important to have strong backstop or alternative to the SSS proposal in the case that implementation challenges persist
+437,neutral,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,In Germany green electricity from EEG funded sources does not generate EACs (due to German law). It contributes a major share to the German electricity mix.
+439,conditional,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,medium,"The largest concern would be the data availability and reliability challenges associated with determining the pro-rata SSS share, particularly in emerging markets."
+440,conditional,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"SSS data will be difficult to obtain for reporting organizations, and it seems likely that many will rely on a default annual value."
+441,conditional,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,medium,"Until a centralized, free, publicly-available database of global SSS data is available, claiming SSS does not seem feasible for most reporting organizations."
+444,conditional,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,Suppliers are not set up currently to provide accurate hourly data on their allocation of SSS resources.
+448,conditional,1,0,1,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,1,1,0,medium,"This conflict will absolutely lead to confusion, even chaos in the market if GHGP does not specify which mechanism belongs to SSS and which does not"
+449,conditional,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,medium,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+450,conditional,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,medium,the definition of SSS resources must exclude generation assets owned by GBEs that operate on a commercial basis in deregulated markets.
+453,oppose,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,medium,"even when public funds are used to support renewable energy generation, it is desirable that 100% of the associated environmental attributes remain tradable on the market."
+454,oppose,1,0,1,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,high,The SSS definition should be clarified to ensure that government-majority owned facilities in New Zealand retain EAC eligibility for voluntary claims.
+457,oppose,1,1,1,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,high,"At this stage, introduction of the revised SSS requirements is premature for the Japanese market."
+459,oppose,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,medium,companies operating in regions with a high concentration of such resources would be able to claim environmental attributes without undertaking any proactive renewable energy procurement efforts.
+461,conditional,0,1,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,high,"the current proposal is flawed because it allows for ""pro-rata"" allocation without explicit proof of attribute ownership (certificate retirement)."
+462,oppose,1,1,1,1,1,0,1,1,1,0,1,0,0,1,1,0,0,0,1,0,1,high,Mandatory pro‑rata SSS allocation adds unnecessary complexity and fails to reflect how real energy markets function.
+463,conditional,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,partial subsidy schemes such as Japan’s FIP scheme (as well as similar schemes such as Contracts for Difference in Europe) should be excluded from the scope of SSS.
+464,oppose,1,0,1,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,high,We believe SSS must not be introduced to GHG protocol.
+467,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Fulfilling this requirement is not possible without corresponding hourly matching data infrastructure
+468,conditional,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"Regarding Japan's Feed-in Premium (FIP), while the premium portion is supported by public programs, a significant portion is borne by the off-taker through the conclusion of corporate PPAs."
+471,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,Suppliers would need to allocate and provide emission factors pursuant to this new guidance. We do not have the ability to control this as reporters.
+474,conditional,1,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,medium,It should be explicitly clarified that Japan’s FIP does not fall under SSS.
+475,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,
+476,conditional,1,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,medium,It should be explicitly clarified that Japan’s FIP does not fall under SSS.
+477,support,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,"I support the proposed guidance on Standard Supply Service (SSS) because it strengthens the fairness, integrity, and consistency of market‑based accounting under Scope 2."
+479,support,1,1,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,medium,"SSS guidance can improve integrity where shared/public resources exist, but requires robust supplier or registry data to be auditable."
+481,oppose,0,1,1,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,high,SSS should not be allocated in the first place. Public budgeting for energy is not designed for customer-level attribution
+485,oppose,1,1,0,1,1,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,1,medium,reporters should be permitted to estimate their pro-rata share of SSS using reasonable assumptions until formal registries or supplier allocations become available.
+486,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward with transparency and credibility.
+488,oppose,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,high,Do not implement SSS rule. Current situation is sufficiently transparent.
+492,support,1,1,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,"we do not support applying Quality Criterion 4, hourly matching, and Quality Criterion 5, deliverability, to SSS-related claims."
+498,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,medium,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+499,support,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,"Support the principle of the SSS guidance and the prevention of double counting, but clarity and consistent implementation will be important."
+503,oppose,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,a pro rata allocation based on consumption will not fairly reflect who paid for
+505,support,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,"Although we are generally supportive, we are concerned that SSS data will not be provided by utilities at the 24/7 documented level such that users could actually claim it."
+507,oppose,1,1,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,high,It is up to public services to decide how to dispose of the environmental attributes they generate.
+509,oppose,1,0,1,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,high,"Overall, tying SSS to Scope 2 accounting mixes separate policy systems, reduces available attributes, and undermines the clarity and integrity of market based reporting."
+510,oppose,1,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,high,whilst we share the overall concern we do not support the SSS concept presented in this consultation
+516,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward with transparency and credibility.
+517,oppose,1,1,0,1,1,0,1,1,1,1,0,0,1,1,1,0,1,1,1,0,0,high,We do not support Standard Supply Service (SSS) because it introduces structural inconsistencies into the market-based method and would materially reduce voluntary clean energy procurement
+521,support,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,medium,Those not contributing to mandatory renewable electricity (through exemptions) do not have the ability to claim mandatory renewable electricity percentages allocated to the grid
+523,support,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,medium,The accounting framework should implement an asset age limit or vintage cutoff to ensure that only additional renewables are counted.
+524,support,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,a stronger incrementality requirement should be developed in place of Standard Supply Service that would drive even greater additionality.
+525,neutral,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,medium,it should be made clear that they do not fall under SSS.
+526,conditional,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,high,we do not support requiring Quality Criteria 4 (hourly matching) and 5 (deliverability) for SSS.
+527,support,1,1,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,medium,is the lower emissions portion not accounted for in the location-based mix already?
+528,conditional,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,medium,"the current definition of SSS lacks clarity, making its introduction premature."
+529,oppose,1,1,1,1,0,0,0,1,1,0,1,0,0,1,0,0,0,0,1,0,0,high,The prohibition of SSS transactions may unnecessarily limit the market flexibility and the rational procurement choices of companies by artificially excluding certain renewable energy procurement options.
+530,conditional,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,medium,Imposing average value constraints without a clear definition of SSS will discourage companies from introducing additional SSS.
+531,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,medium,"South32 supports clear articulation of the availability any claimed SSS resource in reporting, and if this was supported by a credible register or not."
+532,support,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,"We support the inclusion of provisions on Standard Supply Service (SSS); however, we would like to raise the following concerns."
+535,neutral,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,these FIP resources used for corporate PPAsshould be excluded from the Standard Supply Service (SSS).
+538,oppose,1,0,1,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,high,We oppose introducing the proposed SSS (Standard Supply Service) as a core Scope 2 requirement in a uniform manner.
+539,oppose,1,0,1,1,0,0,1,1,1,0,1,0,0,0,0,1,0,0,1,1,0,high,"if SSS is applied to all facilities, there is concern about a significant increase in the difficulty of calculation, leading us to oppose the application of SSS."
+540,support,1,1,0,1,0,0,1,0,0,0,0,0,0,1,1,1,1,0,0,1,0,high,"during the transition period until reliable registries are developed, it is realistic to allow provisional allocation methods."
+541,oppose,1,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,high,we consider the introduction of the new guidance for Standard Supply Service to be premature at the present time.
+542,conditional,1,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,high,the Feed-in Premium (FIP) scheme should be clearly classified as being outside the scope of SSS.
+544,oppose,1,0,1,1,0,0,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0,high,"the criteria and scope of SSS should not be defined uniformly at the global level, but should instead be determined based on each country’s existing institutional frameworks"
+546,conditional,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,Low-premium projects (projects with low subsidy rates) in FIP power supplies are not subject to strictness.
+547,oppose,1,1,1,1,0,1,1,0,1,0,1,0,0,0,0,0,0,0,1,0,0,high,The proposed approach toward SSS is problematic because it introduces a level of financial attribution that cannot be proven or confirmed.
+550,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Electricity vendors around the world can rarely provide “delivered mix” data on an annual basis and are ill-equipped to offer such data on a granular basis
+551,conditional,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"the criteria for determining whether a scheme meets the SSS definition, as well as the associated calculation methods, should be articulated with greater detail and clarity."
+552,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,Suppliers would need to allocate and provide emission factors pursuant to this new guidance. We do not have the ability to control this as reporters.
+557,support,1,0,0,1,0,0,1,0,0,0,0,0,0,1,1,1,0,0,0,1,0,high,"Clear definitions, illustrative examples, and phased implementation are critical to ensure SSS improves integrity without creating unintended regional inequities or administrative burden."
+559,conditional,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,high,Our support is conditional on clear operational definitions (especially for partial subsidies and hybrid funding) and on an auditable allocation via suppliers or a credible registry.
+560,conditional,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,high,The feasibility of the credible third party database needs to be proven before this could be included in the standard.
+562,support,1,1,0,1,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,high,"Without clear definitions and standardised allocation approaches, there is a risk of inconsistent application and assurance challenges."
+563,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward with transparency and credibility.
+564,oppose,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,medium,At this stage. we feel the need to introduce SSS is not sufficiently justified nor verified.
+565,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"It is unclear who will be responsible for providing such data, whether corporates must obtain it themselves or if it will be centrally or by a third party."
+567,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Especially outside of Europe it is hard or impossible to acquire “a residual emission factor
+569,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,
+570,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Especially outside of Europe it is hard or impossible to acquire “a residual emission factor
+571,support,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,There should be clear definitions of type of SSS's enabling reporters to
+573,conditional,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,high,"there are increasing reports that corporate PPAs, which would otherwise have been concluded, are being deferred."
+576,support,1,0,0,1,1,0,0,0,1,0,0,1,1,0,1,0,0,0,1,0,0,medium,"SSS should be designed to encourage, not crowd out, incremental voluntary procurement."
+577,conditional,1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,high,"The definition of SSS is inherently ambiguous, and drawing clear lines on whether specific systems qualify as SSS is difficult."
+584,oppose,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,medium,"For Hong Kong, given the low likelihood of double counting regarding the low-carbon attributes of nuclear power, we recommend adhering to the original Market-Based Method (MBM)."
+587,oppose,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,This would result in increased administrative burden on reporters of accounting for both SSS and voluntary EACs.
+589,oppose,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Improving service from energy suppliers and network operators will lead to increased operating and network costs. This is unacceptable with the already very high levels.
+590,conditional,1,1,0,1,1,0,1,1,0,1,0,0,0,1,1,0,0,0,1,0,0,high,effective implementation would depend on the availability of a centralized and credible data source that provides transparent pro rata allocation factors at country level.
+591,support,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,high,"Thus, we support waiting until this option is available for everyone (i.e., credible registry available)."
+593,support,0,1,0,1,1,0,1,0,0,0,0,1,1,0,0,1,0,1,0,0,0,high,SSS should NOT be considered a proxy for additionality/incrementality following the three pillars research.
+594,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,we think it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented
+596,conditional,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,low,We do not believe SSS should be allocated at all in the absence of a registry.
+597,conditional,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"We understand the suggested SSS approach, but in practice it is highly unlikely to be implemented on an hourly basis."
+598,support,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,medium,Not allowing claims of SSS where a registry doesn’t exist can be a good incentive to this effect.
+602,neutral,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,The rules for electricity disclosure foresee a different order for allocating the energy attributes than the GHG protocol.
+603,conditional,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,Our view is that SSS should be applied as a gap-filling measure after voluntary procurement contracts are accounted for.
+605,neutral,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,It is very unclear what this proposal actually means - we are therefore unable to comment on it.
+606,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,no access to SSS data
+608,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,Suppliers would need to allocate and provide emission factors pursuant to this new guidance. We do not have the ability to control this as reporters.
+612,oppose,0,1,0,1,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,high,encouraging use of SSS may inadvertently discourage grid decarbonization.
+613,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,We support the proposed revision of the guidance for SSS
+616,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,low,Asset age limit
+619,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,I do not believe that the comparability of the meaning of MBM would be affected that much .
+621,oppose,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,There will be an additional administrative burden of accounting for both SSS and voluntary RECs
+625,neutral,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"no access to Standard Supply Service data, no access to residual mix data"
+626,conditional,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,medium,"Without a credible centralized or third-party registry verifying that renewable attributes are allocated to and retired for specific customers, RPS supply should not be treated as SSS"
+628,support,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,"reporting entities can, and should, claim the pro rata portions of generation provided as part of standard electricity supply"
+629,conditional,1,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,high,It is critical that SSS be narrowly and clearly defined to include only generation for which customers have a financial or regulatory claim to the associated attributes.
+630,conditional,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,high,"SSS has to be clearly and easily identifiable, taking into account the wide range of government incentives that exist for energy projects and their supply chains."
+633,conditional,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,high,"we have concerns about feasibility and consistency across regions due to differing utility structures, regulatory regimes, and data availability."
+634,support,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,medium,"We agree with the principle of Standard Supply Service (SSS), which allows for the fair allocation of EACs to customers"
+635,conditional,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,medium,"However, the current definition is unclear. Established hydropower assets operated by public utilities should not be included in this definition."
+636,oppose,1,0,1,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,high,The SSS definition should be clarified to ensure that government-majority owned facilities in New Zealand retain EAC eligibility for voluntary claims.
+638,oppose,1,0,1,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,high,The SSS definition should be clarified to ensure that government-majority owned facilities in New Zealand retain EAC eligibility for voluntary claims.
+644,support,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,"Companies should only be able to claim their proportionate share of what is already on the grid, rather than crowding out other users."
+648,support,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,This standard supply service provides a higher degree of integrity that was not there before
+650,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,This would help remove issues of double counting and increase reliability of market based figures
+653,conditional,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,1,0,0,medium,"we would benefit from the deployment of a globally credible SSS registry (or recognized regional registries) with uniform data schemas, allocation rules, and retirement protocols"
+654,conditional,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,further information is needed to explain how it would work and who it would capture.
+655,support,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,medium,Clarification of claim sequencing is needed to ensure consistent application and preserve incentives for voluntary clean energy procurement.
+656,oppose,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,medium,that customer should have the option to buy all EACs associated to the renewable electricity.
+657,oppose,1,0,1,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,high,The SSS definition should be clarified to ensure that government-majority owned facilities in New Zealand retain EAC eligibility for voluntary claims.
+658,oppose,1,1,1,1,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,high,No. SSS should not be allocated in the first place.
+660,oppose,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,medium,"Japan's FIT-derived RECs should be classified as transactions based on the deliverable market, not as SSS."
+661,support,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,medium,Consumers receive and can claim recognition for all mandatory renewable electricity that is paid for and allocated to the grid
+662,conditional,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,"legacy renewable resources would be disallowed, but no qualifying alternatives exist"
+663,conditional,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,it cannot be assumed that the state obligation is what each SSS customer received.
+665,support,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,high,We support the new guidance for Standards Supply Service (SSS).
+667,conditional,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,This lack of clarity creates a risk that identical subsidy schemes could be classified as SSS in some countries and as non‑SSS in others
+669,oppose,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,high,We believe SSS must not be introduced to GHG protocol.
+671,conditional,1,0,1,1,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,0,0,high,SSS should be a concept determined based on whether a given power source actually functions as a shared resource in practice
+672,conditional,1,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,medium,"there will be no facilities that do not receive actual subsidies, tax benefits, or incentives through national electricity rates."
+674,conditional,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,high,"The current definition of SSS lacks the necessary clarity and precision, making its immediate introduction premature."
+677,support,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+680,conditional,1,0,1,1,0,0,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0,high,defining SSS eligibility internationally based solely on the existence of public support or cost-recovery mechanisms is not realistic.
+684,neutral,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"It would be most accurate to allow those who have access to reliable, granular data (hourly load and generation, SSS, residual mix, etc.) to hourly match"
+685,conditional,1,1,0,1,1,0,1,1,1,0,0,0,0,1,1,0,0,0,1,0,0,high,FIPは「SSS」から除外し、企業の「自発的な調達」（Voluntary Procurement）として認めるべきである。
+686,conditional,0,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,0,0,0,1,0,high,A phased implementation approach would be practical and appropriate.
+688,conditional,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,high,"The details of how SSS will be applied are unclear, particularly on data availability."
+689,conditional,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,medium,Allocation of SSS shouldn’t commence until it is fully accessible.
+690,conditional,1,1,1,1,0,0,1,0,1,0,0,0,0,1,1,0,0,0,1,1,0,high,Treating entire schemes as Standard Supply Service (SSS) solely based on program names (such as FIT or FIP) would weaken incentives for companies to procure and develop decarbonized power sources
+692,conditional,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,high,Reporting companies should not be penalized for supplier SSS data that is not accessible / credibly allocated.
+693,oppose,1,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,high,we do not consider it appropriate to adopt SSS as a newly requirement in the current revision of Scope 2 guidance.
+695,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,SSS prevents double counting and clarifies the gap between active and inactive consumers/companies.
+698,conditional,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,there is no clear explanation nor sufficient examples to illustrate how the concept should be applied in practice
+701,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward with transparency and credibility.
+703,support,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,we believe these resources should be classified as Standard Supply Service (SSS).
+704,conditional,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,high,there are already reports of consumers hesitating to procure renewable energy from FIP projects through PPAs and abandoning PPA contracts.
+706,support,1,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,high,"We are supportive of the SSS concept. However, some of the implementation details remain unclear to us."
+708,support,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,We generally agree with proposal however clarifications still needed as to how it would be consistently calculated and allocated.
+709,conditional,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,This lack of clarity creates a risk that identical subsidy schemes could be classified as SSS in some countries and as non‑SSS in others
+710,support,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"In general, we support fair allocation of SSS resources. However, there could be local regulations that stipulate a different specific allocation."
+713,conditional,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,medium,"declaring any SSS should remain an option but not be mandatory, as the ability to make this claim depends almost entirely on the supplier providing the evidence"
+714,conditional,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,high,revisions related to SSS should not be implemented until SSS-designated resources (or schemes) are clearly identified.
+716,oppose,1,1,1,1,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,high,"SSS shouldn’t be allocated at all because public energy funds, like taxes and surcharges, are pooled and can’t be traced back to individual customers."
+717,conditional,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,The SSS concept may bring disruptive changes to the current regulatory framework.
+721,support,1,1,0,1,0,0,1,0,0,0,0,0,0,1,1,1,0,0,0,1,0,high,"These challenges do not outweigh the value of SSS in principle, but they highlight the importance of providing clear guidance, pragmatic implementation pathways, and sufficient transition time"
+722,conditional,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,medium,It would be more equitable to introduce this only after conditions are in place that allow for uniform application across all countries.
+724,conditional,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,"If the rules and definitions for proportional allocation of SSS are unclear, emissions may be underestimated, overestimated, or counted twice."
+726,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+727,conditional,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,high,Reporting companies should not be penalized for supplier SSS data that is not accessible / credibly allocated.
+730,oppose,0,1,0,1,1,0,1,1,1,1,0,0,0,1,0,0,1,0,1,0,0,high,The proposed SSS guidance blurs the fundamental distinction between the Location-Based Method (LBM) and Market-Based Method (MBM).
+731,support,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,medium,SSS seems like another (more complex) example of a criterion/data requirement being released that cannot currently be applied
+732,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,it is critical to have an alternative incrementality pillar definition to be in force before the SSS can be fully implemented or as a backstop
+735,oppose,1,0,1,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,high,"We strongly recommend removing references to “government-owned” facilities, as this could potentially inaccurately classify New Zealand hydro."
+742,support,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,high,We believe that a credible registry is needed before SSS can be claimed as otherwise claims may lack transparency.
+744,oppose,1,1,1,1,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,high,No. SSS should not be allocated in the first place.
+746,support,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,high,Explicitly allowing companies to claim their pro-rata share of the standard mix first (Option B) is essential to avoid over-procurement
+747,conditional,1,1,0,1,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,Companies should not be penalized for gaps in supplier‑provided SSS data that are inaccessible or not credibly allocated.
+754,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"directionally sensible, but not a priority issue and needs careful implementation"
+757,conditional,0,1,0,1,1,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,medium,a clear alternative incrementality pillar must be designed and defined in the new methodology before to the SSS is fully implemented.
+758,oppose,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,medium,The procurement of non-fossil value should be freely determined by the market.
+761,oppose,1,1,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,high,We do not support the introduction of the SSS requirement
+762,oppose,1,1,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,high,We do not support the introduction of the SSS requirement
+763,oppose,0,1,1,1,0,0,1,0,1,1,1,0,0,0,1,0,0,0,0,1,1,high,Limit SSS application to disclosure or transparency purposes rather than as a mandatory accounting baseline
+764,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,high,"requiring reporting entities to disclose the SSS share, basis/source used for the SSS allocation, and any constraints, where applicable."
+766,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,low,Development of a credible centralized registry
+770,neutral,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,It would be like comparing apples to oranges.
+773,oppose,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,medium,"combining elements of both location-based and market-based methods, while leaving the allocation mechanism of green electricity at the back end unclear. This creates a high risk of double counting"
+775,support,0,1,0,1,0,0,0,0,0,0,0,1,0,0,1,1,0,1,0,1,0,high,"If those are absent, one could use a national average SSS % (from government stats) as a stopgap."
+776,conditional,1,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,"SSS, as currently defined, may introduce more complexity and regional imbalance than integrity benefits."
+777,support,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,definitions and operational rules for SSS still lack sufficient clarity and may be interpreted inconsistently across jurisdictions.
+778,support,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,medium,This could be done through pilots that demonstrate the impact and feasibility of the proposals.
+779,conditional,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,high,"for a SSS to be reliable in each market it would need to be defined by a third party, such as a regulator, governmental body, or system operator."
+780,support,1,1,0,1,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,1,0,high,The Protocol must provide an absolute definition of project eligibility.
+782,conditional,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,medium,"In principle we support the concept of standard supply, provided that any new resources developed by publicly owned companies through competitive tenders remain eligible to sell GOs."
+787,conditional,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,it is unclear how power sources receiving partial subsidies or other forms of policy support should be classified under SSS.
+790,oppose,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,medium,"combining elements of both location-based and market-based methods, while leaving the allocation mechanism of green electricity at the back end unclear. This creates a high risk of double counting"
+791,conditional,1,0,1,0,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,medium,A mandated proportional allocation of EACs from such schemes would terminate the UK market for selling and purchasing of REGOs
+792,oppose,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,medium,"International guidance should not dictate customer allocation methods for SSS resources. Allocation should be left to each country's electricity market, contracts, and systems."
+794,oppose,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,medium,Very unclear how SSS may be defined across EU hence difficult to apply.
+798,oppose,1,0,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,high,"If FIT based renewable energy with public funding is categorized as SSS with a use cap, there will be very little supply of renewable electricity in Japan available at all"
+801,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,high,"Centralized or third-party allocation mechanisms, rather than self-calculation by companies, are essential to ensure credibility and auditability."
+805,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,high,It makes sense for SSS to be allocated via a registry
+806,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,The guidelines would be at odds with local rules for standard supply service not facing the same requirements.
+808,conditional,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,We believe the current SSS guidance is too closely aligned with the structure of the US electricity market and regulated supply models.
+809,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,high,We support equal distribution of regulation-induced low-emission attributes and believe such clear rules benefits the most parties.
+811,support,0,1,0,1,0,0,0,0,0,0,0,1,0,0,1,1,0,1,0,1,0,high,"If those are absent, one could use a national average SSS % (from government stats) as a stopgap."
+813,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,Further clarity required please provide worked example
+819,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,medium,requiring organizations to disclose disaggregated MBM Scope 2 emissions based on the factor applied (e.g. SSS vs RECs vs Residual vs Fossil)
+820,oppose,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,medium,The system is too complex and ambiguous. Guarantees of origin (GOs) should be used instead.
+821,conditional,1,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,high,many of our campuses pay more into non-bypassable RPS programs than they “get” out of them via what would be SSS resources.
+823,conditional,0,1,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,high,"SSS claims should be based on attribute ownership, verified by certificate retirement. Without required certificate retirement, SSS creates a new risk of double counting"
+824,conditional,1,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,"further clarification is needed on how SSS is defined and identified in practice, how pro-rata shares are determined and where responsibility lies for providing this information"
+825,support,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,our concerns related to regional challenges and this issue might increase administrative burden
+826,neutral,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Fulfilling this requirement is not possible without corresponding hourly matching data infrastructure
+828,conditional,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,"In predominantly competitive EU markets, SSS should be defined in a more generic, market-neutral manner to ensure applicability beyond the US context."
+831,conditional,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,medium,It is important that all producers of renewable energy are able to receive an economic incentive from the GO market.
+832,neutral,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,The definition does not make it easy to assess applicability. Mexico CEL should be included under SSS.
+834,neutral,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,medium,An asset age limit could help reduce inconsistency and improve comparability across regions.
+835,conditional,1,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,high,not all assets that were publicly funded or are taxpayer owned should be considered to be SSS.
+836,conditional,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"Allowing defaults for SSS data even further reduces comparability, credibility, and accuracy within the MBM."
+837,oppose,1,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,1,high,We believe the SSS introduces unnecessary additional complexity.
+838,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,Standard Supply Service (SSS) - we agree with this proposal but do not believe this would impact our company directly.
+839,support,0,1,0,1,0,1,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,medium,SSS could discourage some companies from making additional voluntary renewable energy procurements.
+842,oppose,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,high,The SSS approach creates undue complexity without boosting transparency.
+847,support,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,high,we propose reporters be permitted and encouraged to calculate their own share of SSS to the best of their ability
+849,conditional,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,low,The definition of SSS in our region is not implemented. The duplicative reporting risk will increase.
+854,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,There are integrity concerns with accounting that permits one company or set of consumers to claim to consume a disproportionate amount of clean power from existing assets
+858,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,recognizing that residual mix and Standard Supply Service data quality remains uneven across regions.
+859,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,We support clarifying rules for publicly funded/mandated supply. Ensuring fair pro-rata allocation increases integrity and reduces double-counting risk
+862,neutral,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,low,This would end up wiping out a large supply of instruments that could allow Scope 1 emissions reduction.
+864,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,We support the updated definition of residual mix emission factors as representing electricity not claimed through contractual instruments or Standard Supply Service allocations.
+870,support,0,1,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,high,it is acceptable for reporters to temporarily be unable to claim SSS until a credible registry or standardized allocation mechanism exists.
+871,support,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,medium,the phase in period is critical to sending a signal to service providers that new registries will be needed
+872,oppose,1,1,1,1,1,1,0,1,0,1,1,0,0,0,0,0,0,0,0,0,1,high,The appropriate approach in such cases is simply not to allocate SSS at all and rely on dual reporting.
+874,support,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"it is important to avoid the need for organizations to independently calculate their own share, apply this on a pro-rata load basis, and avoid double counting"
+875,support,0,1,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,there is a risk of double counting of renewable supply between the reporting company subject to the SSS and the ultimate procurer of the EAC
+886,neutral,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,More clarity is needed on how SSS would be accounted for in regulated markets
+887,neutral,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,low,"a third pillar that addresses incrementality which, if intended, is not addressed by Standard Supply Service (SSS)."
+888,neutral,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,low,We have some concern that the proposed updates don't address additionality
+889,conditional,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,medium,my concern is about the practical implementation of these standards in real-world contexts so they can effectively serve as the incrementality pillar
+891,conditional,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,The interaction between deliverability requirements and SSS requirements may create even greater complexity in reporting.
+892,support,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,enforce pro-rata SSS to prevent double counting
+893,support,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,"EDP supports clearer global rules for Standard Supply Service, including pro-rata allocation and prevention of double counting."
+894,conditional,1,1,0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0,1,0,high,we recommend that the GHG Protocol develop guidelines that enable reporting entities to develop their own factors based on publicly available information about their local supply.
+901,neutral,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"it has been difficult to obtain copies of EACs and information on the renewable energy procured, in SSS scenarios."
+902,oppose,0,1,1,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,medium,These complexities risk introducing administrative burden and cost without delivering clear improvements over existing approaches
+904,support,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,This guidance will be crucial to help reduce the risk of double counting across reporting entities.
+906,conditional,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,medium,there is insufficient detail provided in Section 5.1.3 of the document published for public consultation to be able to comment specifically
+909,oppose,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,medium,Firstly the definition of SSS is not clear at all
+911,neutral,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"Allowing defaults for SSS data further reduces comparability, credibility, and accuracy within the MBM."
+913,neutral,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,selected the above option as “NO” as this creates room for double-counting.
+915,conditional,0,1,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,It is not efficient or effective for individual companies to have to seek this out or calculate it individually.
+916,support,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,Clear allocation rules help reduce the risk of double counting and support consistent Scope 2 accounting
+925,support,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,high,"Absent either of those, there should not be a default option to claim it."
+926,conditional,1,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,medium,"In practice, defining and implementing Standard Supply Service provisions may not be entirely straightforward."
+928,neutral,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,It is not clear how reporters are meant to report their “pro-rata share” when the definition says they will be a provided SSS EF.
+931,conditional,1,1,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,medium,Standard source of supply contracts need to be very narrowly defined to rigorously prevent double counting of renewable electricity generation.
+932,support,0,1,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,high,a stronger incrementality requirement should be developed in place of or on top of Standard Supply Service that would drive even greater additionality.
+936,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,an incrementality standard (SSS or similar) are critical to ensuring Scope 2 accounting moves forward with transparency and credibility.
+939,conditional,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,medium,Enable voluntary participation so organizations can experiment with hourly or SSS accounting alongside the current MBM framework
+940,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,Green contract with supplier should be enough
+943,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,We support SSS as it promotes accurate carbon accounting by allocating existing generation and allowing EACs to flow alongside the power.
+946,conditional,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,medium,recommend that the registry be created before SSS becomes mandatory.
+951,conditional,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,"However, our support is conditional. The proposed guidance introduces additional complexity and data dependencies that may be challenging to implement consistently across regions."
+952,neutral,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"Similar to the SSS defaults, many companies will need to use this option."
+960,oppose,0,1,1,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,0,0,0,medium,Uniform rules that fail to reflect differences in renewable energy promotion policies and crediting systems could hinder the adoption of renewable energy.
+965,oppose,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,"In theory the SSS approach is sound, in practice it appears to be unimplementable."
+967,support,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,We support the new SSS guidance because it enables accurate measurement of grid decarbonization impacts and prevents double counting or double claiming of environmental attributes.
+970,conditional,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"there is likely to be variability in emissions reporting across entities and regions, preventing comparability of reported emissions."
+971,support,1,0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,0,high,"acceptable on an interim basis, provided transparent assumptions and disclosures are applied until credible registries are established"
+972,support,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,SSS metrics are not often readily available from most utilities and retail suppliers
+973,support,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,high,"allowing defaults for SSS data even further reduces comparability, credibility, and accuracy within the MBM."
+974,support,1,1,1,1,1,0,0,0,1,0,0,0,0,1,1,1,0,0,0,1,0,high,clearer definitions and boundaries are needed to ensure consistent interpretation of what constitutes SSS across different market structures.
+976,conditional,1,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,medium,"Clarify treatment where public levies, capacity mechanisms, or balancing funds coexist with competitive retail supply to avoid grey areas and double claims."
+977,support,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,"it is currently open ended, potentially difficult to implement across markets around the world, and therefore potentially not as impactful as other incrementality considerations."
+978,support,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,"Additional examples, clarifications, and region specific guidance would improve feasibility and enhance confidence in consistent application."
+979,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,incrementality (SSS or other metric). All these would set up proper incentives for more robust decarbonization.
+980,neutral,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,medium,A default value could lead to double counting and discourages additional renewable energy procurement.
+982,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,high,"if you pay for something, then you are entitled to claim it. Conversely, you are not entitled to the clean energy that others pay for."
+983,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,"it is currently open ended, potentially difficult to implement across markets around the world, and not as impactful as other incrementality considerations."
+984,support,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,"While this, no doubt, creates administrative burden for regulated suppliers, we strongly believe that the SSS guidance is reasonable"
+987,support,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,This guidance will be crucial to help reduce the risk of double counting across reporting entities.
+989,oppose,0,1,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,high,"the Standard Supply Service (SSS) is not a proxy for additionality, and it reduces potential impact."
+990,neutral,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,Unclear rules/definition of SSS - additional guidance is needed.
+992,support,0,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,"we strongly encourage development of a rigorous alternative to be used in situations of ambiguity or insufficient data to defend against abuse of gaps in SSS implementation (e.g., asset age)."
+994,support,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,high,Keep SSS in Standard as a “shall” to prevent double counting.
+995,conditional,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,high,Customers should be able to apply the publicly available energy mix or retail emission rates to their purchased electricity to claim their portion of the SSS.
+996,conditional,1,1,1,1,0,0,0,1,1,0,0,0,0,1,0,0,1,0,0,0,0,high,The definition and applicability of SSS in partially and fully deregulated markets is unclear
+997,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,The residual‑mix update and pro‑rata SSS rules further secure claim boundaries
+998,support,1,0,0,1,1,0,0,0,0,0,0,1,1,0,1,0,0,1,1,1,0,high,Reasonable actors could reach different conclusions on whether these and other examples meet the definition of SSS.
+999,support,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,high,should not be a pre-requisite to claim SSS EACs that meet the GHGP’s criteria.
+1000,support,1,0,0,0,1,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,high,CSG strongly supports the SSS safeguards in the proposed guidance.
+1003,conditional,1,0,1,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,high,Treating such generation strictly as Standard Supply Service could therefore create a disincentive for both utilities and companies to continue supporting new renewable capacity
+1004,support,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,medium,"We are generally in support, but need clear guidance and parameters."
+1006,conditional,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,high,"it is unclear what the rules/definitions of Standard Supply Service (SSS) are, resulting in unnecessary confusion"
+1008,conditional,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,"As drafted, the proposed SSS text is not sufficiently clear as to which entities and supply arrangements would be captured."
+1009,oppose,1,0,1,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,medium,We don’t see any sound economic basis for this proposal.
+1011,support,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,medium,"From this perspective, SSS plays an important role and is a relevant concept within MBM."
+1012,conditional,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,it is not clear what constitutes a “traceable and mandatory financial relationship with consumers”.
+1013,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,It puts reasonable guardrails on claims involving existing clean energy generation that might not be additional
+1014,support,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"SSS guidance is necessary to prevent double-counting. However, implementation will be challenging without clear registries and allocation mechanisms"
+1015,conditional,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"The proposed guidance does not provide with enough information on what a Standard Supply Service is, and how it should be allocated."
+1019,neutral,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"organizations without access to hourly load, Standard Supply Service, or residual mix data"
+1022,support,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,medium,Standard Supply Service attempts to fairly allocate resources that are being supported by all ratepayers within a given market region.
+1023,conditional,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,"the proposal has some challenges: it is currently open ended, potentially difficult to implement across markets around the world, and not as impactful as other incrementality considerations."
+1025,conditional,1,1,1,1,1,0,1,1,0,0,0,0,0,0,1,0,0,1,0,0,0,medium,it risks creating unnecessary bureaucratic complexity without a clear path for execution in all global markets.
+1026,conditional,1,1,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"The details of how SSS will be implemented in practice remain vague, raising concerns over the continued risk of double counting, gamesmanship for implementations, etc."
+1035,conditional,1,1,0,1,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,medium,very stringent SSS requirements may create significant administrative burdens for large utilities serving millions of customers.
+1037,oppose,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,high,"Such resales, transfers, or concentrated allocations are at the heart of a ""market-based"" mechanism."
+1039,support,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,medium,I think there’s confusion in the market that both apply.
+1043,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,should not be double counted towards corporate renewables targets.
+1044,conditional,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,the allocation of SSS via utility or 3rd party data-based may not be easily available in many jurisdictions
+1047,oppose,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,high,"SSS could be used to artificially reduce supply of EACs with vague reasons, creating distrust in the market and penalising renewable assets built to last."
+1050,conditional,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,high,"While strongly support the need to tackle additionality in the MBM, we would support an alternative way of doing so: an asset age limit"
+1052,conditional,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,high,"This creates a ""free-rider"" problem and significantly undermines the economic incentive for companies to purchase certificates to support decarbonization."
+1056,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,NHA appreciates and supports the guidance around allocation and claims related to SSS generation.
+1060,oppose,1,1,1,1,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,high,"In our opinion, SSS should not be included in market‑based reporting frameworks."
+1061,conditional,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,medium,the SSS rules would keep such energy suppliers from these means of reaching bankability and thus scale.
+1062,conditional,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"These complexities risk introducing administrative burden without delivering clear improvements over existing approaches, such as allocating unclaimed renewable generation to the residual mix."
+1064,conditional,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,"The proposed guidance does not provide with enough information on what a Standard Supply Service is, and how it should be allocated"
+1068,neutral,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,low,which will create data and reporting challenges for utilities using standard supply service or green tariff programs.
+1073,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,Applying a pro-rata approach to Standard Supply Service (SSS) is essential to ensure fair allocation of shared system resources
+1077,support,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,We there for request that the SSS guidance defer to any accounting approach mandated by regulators for electric utilities.
+1078,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,As a conservative measure assume entire grid as non-renewable
+1080,oppose,0,1,1,1,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,high,We do not support introducing a SSS category as a global accounting construct.
+1086,support,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,high,"The SSS definition begins to address this, but needs to be clarified and strengthened"
+1087,conditional,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,medium,"GHG Protocol has not provided sufficient information on the need, the cost or the benefit of this proposed change for anyone to make an informed decision."
+1090,oppose,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,high,EVA is highly skeptical of the SSS and does not support it in New Zealand’s (NZ) context.
+1093,conditional,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,medium,A strict requirement from the outset could make attribute traceability impossible for many regulated supply customers if legacy generators lack granular metering infrastructure.
+1094,neutral,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,
+1102,conditional,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,medium,so SSS allocation is a may or should requirement not a must.
+1107,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,Integrity concerns with accounting that permits one company or set of consumers to claim to consume a disproportionate amount of clean power from existing assets
+1109,support,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,high,We appreciate this accounting approach which is moving forward without making the perfect the enemy of progress.
+1110,conditional,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,"A standard delivery rate may not necessarily include mandated or financially shared resources, and thus blanket application of a rule to count SSS resources first may not always make sense."
+1112,support,1,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,1,0,1,0,high,Clean Incentive fully supports the proposed guidance for Standard Supply Service (SSS) in the market-based method.
+1115,conditional,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,high,It is considered that it would be more equitable to introduce this after conditions that can be uniformly applied to all countries have been established.
+1118,conditional,1,1,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,high,"The GHG Protocol’s proposed Standard Supply Service (SSS) construct lacks clarity and appears based on a limited set of electricity supply models, making it difficult to apply globally."
+1120,conditional,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,"With adequate support (eg, databases), this would be beneficial"
+1121,oppose,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,medium,"Providing companies with RE claims for simply existing in a green grid (e.g., Norway) dilutes the ""leadership"" signal of voluntary reporting."
+1123,oppose,1,0,1,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,high,"For this reason, the introduction of SSS is not supported."
+1124,neutral,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,we do not current have access to hourly load or SSS data
+1125,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,low,robust treatment of standard supply service—can meaningfully influence procurement decisions.
+1126,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,"Restricting claims to a ""pro-rata share"" prevents double-counting and protects the integrity of the ""Procurement"" metric."
+1130,support,1,1,0,1,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,high,We support the pro rata principle but recommend clarifying SSS classification rules—particularly for partial subsidies or mixed support mechanisms
+1136,conditional,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,medium,Reporting companies should not be penalized for supplier SSS data that is not accessible / credibly allocated.
+1137,neutral,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,medium,"At the moment, it is unclear if the current proposal of breaking down into SSS and residual mix calculations may generate environment benefit or decision-useful data in practical terms."
+1142,support,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,"SSS will not likely be based on hourly accounting in the near term, which could add complexity to hourly matching claims."
+1143,support,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,high,The requirement that a reporting entity cannot claim more than its pro-rata share of SSS prevents the misallocation and misuse of SSS resources in GHG emissions reporting.
+1146,oppose,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,medium,regulated T&D operators should oppose the proposed Standard Supply Service (SSS) because it places asymmetric obligations on neutral network utilities
+1151,oppose,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,1,high,"For this reason, we do not support the introduction of SSS."
+1160,conditional,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,medium,which is not universally accessible at present.
+1162,conditional,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,high,the proposed notion of a “traceable and mandatory financial relationship” within the Standard Supply Service definition is very broad and risks having unintended consequences.

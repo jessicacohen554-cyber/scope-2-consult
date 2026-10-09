@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standard Supply: Feasibility &amp; Opposition | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="Why Standard Supply Service draws opposition and what stands in the way of implementing it: stance by segment, coded feasibility challenges, objections in principle and proposed remedies.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/sss-page.js"></script>
+
+        <!-- Page-specific layout ONLY -->
+    <style>
+    .ss-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: var(--space-md); }
+    .ss-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: var(--space-md); }
+    .ss-brief { margin: 0; padding-left: 1.15em; display: flex; flex-direction: column; gap: var(--space-sm); line-height: 1.65; }
+    .ss-brief strong { color: var(--navy); }
+    .ss-quotes { display: flex; flex-direction: column; gap: var(--space-md); margin-top: var(--space-md); }
+    .ss-quote-card { border-left: 3px solid var(--hydro); padding: var(--space-xs) 0 var(--space-xs) var(--space-md); }
+    .ss-quote-text { font-style: italic; color: var(--text-secondary); margin: 0 0 var(--space-xs); }
+    .ss-quote-who { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+    .ss-quote-who strong { color: var(--navy); }
+    .ss-num { font-family: var(--font-data); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+    .ss-matrix th { font-size: 0.75rem; vertical-align: bottom; }
+    .ss-matrix td.ss-num { text-align: center; }
+    .ss-assess td { vertical-align: top; line-height: 1.55; }
+    .ss-assess td:first-child { white-space: nowrap; }
+    .ss-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+    .ss-tag-draft { background: var(--wind-bg); color: var(--green-text); }
+    .ss-tag-infra { background: var(--solar-bg); color: var(--amber-text); }
+    .ss-tag-policy { background: var(--red-light); color: var(--red-text); }
+    #orgTable { max-height: 70vh; overflow-y: auto; }
+    #orgTable thead th { position: sticky; top: 0; z-index: 1; background: var(--bg-page-white); }
+    .ss-method summary { cursor: pointer; font-family: var(--font-heading); font-weight: 700; color: var(--navy); }
+    .ss-method ul { margin-top: var(--space-sm); display: flex; flex-direction: column; gap: var(--space-xs); line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="pageHeader">
+        <h1>Standard Supply: Feasibility &amp; Opposition</h1>
+        <div class="subtitle">Why the pro-rata Standard Supply Service proposal splits respondents, and what stands between the idea and an implementable rule.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== HEADLINE NUMBERS ===== -->
+        <section class="content-section">
+            <div class="ss-grid">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statQ97">—</div>
+                    <div class="stat-label">Support for the SSS guidance and pro-rata limit (Q97)</div>
+                    <div class="s2-note" id="statQ97sub">—</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statConcern">—</div>
+                    <div class="stat-label">Q97 supporters who still ticked at least one concern (Q100)</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statDef">—</div>
+                    <div class="stat-label">Respondents whose comments say it is unclear what counts as SSS: the top issue in the free text</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statJapan">—</div>
+                    <div class="stat-label">Japan: the largest bloc of opposition, driven by the FIT non-fossil certificate system</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== IN BRIEF ===== -->
+        <section class="content-section-narrow" id="brief">
+            <h2 class="section-title">In brief</h2>
+            <div class="card card-spacious scroll-reveal">
+                <ul class="ss-brief">
+                    <li><strong>Contested, not rejected.</strong> Of 522 who answered Q97, 254 support SSS (48.7%), 110 are neutral and 158 oppose (30.3%). Mean 3.14 of 5.</li>
+                    <li><strong>Two different oppositions.</strong> One is about practicality and comes from all sides: definitions, data, regional fit. The other is about principle and comes almost entirely from opponents. 71.8% of those who ticked a principle objection in Q100 oppose SSS. Of those who ticked only practical concerns, 53.5% <em>support</em> it.</li>
+                    <li><strong>Definition and data top the free text.</strong> Of 470 respondents with substantive SSS comments, 50.0% say the scope is unclear: FIT, CfD, partial subsidies, public ownership. 44.9% say supplier data or registries do not exist. Supporters raise both as often as opponents do.</li>
+                    <li><strong>Opposition is geographic.</strong> Japan (43 of 60 oppose) and Korea (10 of 11) supply 53 of 158 opponents (33.5%) from 13.6% of answerers. Their argument is that SSS would reclassify certificates from publicly supported generation that their national systems already let companies buy and claim.</li>
+                    <li><strong>The proposed implementers are the least supportive.</strong> 55.3% of energy suppliers/utilities and 6 of 9 registry operators oppose. Utilities most often cite unclear scope (33 of 45 commenting) and lost voluntary demand (24).</li>
+                    <li><strong>Not a proxy vote on the package.</strong> 106 of 309 hourly-matching opponents (34.3%) support SSS. SSS draws support across the camps that split on hourly matching.</li>
+                    <li><strong>The registry gap has no consensus fix.</strong> On a default designation where data are missing (Q107): 141 yes, 110 no, 89 unsure. Proposed remedies are scattered: region-specific guidance (85), registry first (73), self-estimated share (66), disclosure (65), phase-in (60), asset-age rule (49).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== TWO OPPOSITIONS ===== -->
+        <section class="content-section" id="concerns">
+            <h2 class="section-title">Concerns are not only opponents&rsquo; concerns</h2>
+            <p class="section-subtitle">Q100: concerns ticked, coloured by the respondent&rsquo;s own Q97 stance. The top three are practical and shared. The bottom two are objections in principle and held almost only by opponents.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm">
+                    <canvas id="chartQ100" aria-label="Q100 concerns by Q97 stance"></canvas>
+                </div>
+                <p class="s2-note">Q100 was offered to everyone, not only opponents. 385 respondents ticked at least one option. Counts are respondents.</p>
+            </div>
+        </section>
+
+        <!-- ===== WHO OPPOSES ===== -->
+        <section class="content-section" id="who">
+            <h2 class="section-title">Who opposes</h2>
+            <p class="section-subtitle">Q97 stance by segment, sorted by share opposed.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="segDimLabel">By</span>
+                        <div class="toggle-btn-group" id="segDim" role="group" aria-labelledby="segDimLabel"></div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chartSeg" aria-label="Q97 stance by segment"></canvas>
+                </div>
+                <p class="s2-note">Segments under five answerers are pooled. Registry operators (n=9) and grid operators (n=3) are small; read them as indicative.</p>
+            </div>
+        </section>
+
+        <!-- ===== PACKAGE ===== -->
+        <section class="content-section" id="package">
+            <h2 class="section-title">Not a package vote</h2>
+            <p class="section-subtitle">Q97 stance by stance on hourly matching (Q71). A third of hourly-matching opponents still back SSS.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm">
+                    <canvas id="chartPackage" aria-label="SSS stance by hourly-matching stance"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FEASIBILITY ===== -->
+        <section class="content-section" id="feasibility">
+            <h2 class="section-title">Feasibility challenges in their own words</h2>
+            <p class="section-subtitle">Practical obstacles raised in the SSS free text (470 respondents), coloured by the stance their text takes.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container">
+                    <canvas id="chartChallenges" aria-label="Feasibility challenges by text stance"></canvas>
+                </div>
+                <p class="s2-note">Conditional = supports the principle only if the problem is solved first. One respondent can raise several challenges.</p>
+            </div>
+        </section>
+
+        <section class="content-section" id="principle">
+            <h2 class="section-title">Objections in principle</h2>
+            <p class="section-subtitle">Arguments against the concept itself. &ldquo;Too weak&rdquo; is the opposite critique: SSS does not go far enough as an incrementality test.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm">
+                    <canvas id="chartPrinciple" aria-label="Objections in principle by text stance"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== REGISTRY GAP ===== -->
+        <section class="content-section" id="registry">
+            <h2 class="section-title">The registry gap</h2>
+            <p class="section-subtitle">SSS claims depend on supplier data or a registry. Few markets have either. So what happens without them?</p>
+            <div class="ss-grid-2">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Q107: designate SSS by default where no data exist?</h3>
+                    <div class="chart-container-sm">
+                        <canvas id="chartQ107" aria-label="Q107 answer by Q97 stance"></canvas>
+                    </div>
+                    <p class="s2-note">Each answer group split by Q97 stance. SSS opponents mostly reject a default (60 of 108 &ldquo;No&rdquo;).</p>
+                </div>
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="chart-title">Q109: criteria for a default, among the 169 who answered</h3>
+                    <div class="chart-container-sm">
+                        <canvas id="chartQ109" aria-label="Q109 designation criteria"></canvas>
+                    </div>
+                    <p class="s2-note">Multi-select. Asked only of those who answered yes to Q107.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MATRIX ===== -->
+        <section class="content-section" id="matrix-section">
+            <h2 class="section-title">Who raises what</h2>
+            <p class="section-subtitle">Share of each segment&rsquo;s commenters raising each issue. The issue profile differs by market: data in the US, scope and fit in Japan, comparability in Korea.</p>
+            <div class="card scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="matrixDimLabel">By</span>
+                        <div class="toggle-btn-group" id="matrixDim" role="group" aria-labelledby="matrixDimLabel"></div>
+                    </div>
+                </div>
+                <div class="s2-table-scroll" id="matrix"><p class="s2-loading">Loading…</p></div>
+                <p class="s2-note">Coded = respondents in the segment with substantive SSS text. Segments with fewer than 8 are hidden. Hover a cell for counts.</p>
+            </div>
+        </section>
+
+        <!-- ===== REMEDIES ===== -->
+        <section class="content-section" id="remedies">
+            <h2 class="section-title">Remedies respondents proposed</h2>
+            <p class="section-subtitle">Fixes named in the free text, coloured by text stance.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm">
+                    <canvas id="chartRemedies" aria-label="Proposed remedies by text stance"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ASSESSMENT ===== -->
+        <section class="content-section" id="assessment">
+            <h2 class="section-title">Assessment: what each challenge needs</h2>
+            <p class="section-subtitle">Our reading of the coded comments. Who can resolve each challenge: the standard&rsquo;s drafters, outside infrastructure, or a policy choice that some stakeholders will lose.</p>
+            <div class="card scroll-reveal">
+                <div class="s2-table-scroll">
+                <table class="data-table ss-assess">
+                    <thead><tr><th>Challenge</th><th>Resolved by</th><th>Assessment</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Unclear scope</strong><br><span class="s2-note">235 respondents</span></td><td><span class="ss-tag ss-tag-draft">Drafting</span></td>
+                            <td>The most-raised issue. Supporters raise it as often as opponents. Commenters ask for an operational test: what is a mandatory financial relationship, how partial subsidies, CfDs, FIPs and publicly owned legacy hydro or nuclear classify, and a worked list by jurisdiction. The Protocol can fix this in the text, but every classification choice it makes moves some market into or out of SSS.</td></tr>
+                        <tr><td><strong>No supplier data or registry</strong><br><span class="s2-note">211</span></td><td><span class="ss-tag ss-tag-infra">Infrastructure</span></td>
+                            <td>Outside the Protocol&rsquo;s control. Suppliers, regulators or registries must publish pro-rata allocations. US respondents describe utilities publishing fleet-average rates, not delivered-supply mixes. Until that changes, a reporter cannot apply SSS consistently. Q107 shows no agreement on a default: a default restores coverage but invites the inconsistency opponents fear.</td></tr>
+                        <tr><td><strong>Uneven across regions</strong><br><span class="s2-note">172</span></td><td><span class="ss-tag ss-tag-infra">Infrastructure</span> + <span class="ss-tag ss-tag-draft">Drafting</span></td>
+                            <td>A consequence of the data gap. Two firms with the same load can report different market-based totals depending on whether their region can allocate SSS. Disclosure rules (data source, SSS line item, fallback used) reduce this but do not remove it.</td></tr>
+                        <tr><td><strong>Does not fit our market</strong><br><span class="s2-note">133</span></td><td><span class="ss-tag ss-tag-policy">Policy choice</span></td>
+                            <td>The hardest conflict. In Japan, FIT non-fossil certificates are sold to companies and the revenue reduces the surcharge on all users. Respondents argue the buyer pays extra, so the claim is not double-counted. Korea, China and Hong Kong raise similar points. Treating these as SSS would remove the basis for existing &ldquo;100% renewable&rdquo; products. Exempting them weakens the principle that pro-rata shares belong to all payers. No wording satisfies both.</td></tr>
+                        <tr><td><strong>Overlap with EACs / residual mix</strong><br><span class="s2-note">96</span></td><td><span class="ss-tag ss-tag-draft">Drafting</span></td>
+                            <td>Raised more by supporters (41) than opponents (22). It is mostly a request to define the order of operations, so that SSS, voluntary EACs and the residual mix do not count the same MWh twice. Solvable alongside the residual-mix definition.</td></tr>
+                        <tr><td><strong>Who pays &ne; who claims</strong><br><span class="s2-note">61</span></td><td><span class="ss-tag ss-tag-draft">Drafting</span> + <span class="ss-tag ss-tag-policy">Policy</span></td>
+                            <td>Levy exemptions for energy-intensive users, tax-funded schemes and customer-class tariffs mean &ldquo;pro rata&rdquo; has no single basis. Choosing one basis (load, bill share or customer class) is a drafting task. Any choice favours some payers over others.</td></tr>
+                        <tr><td><strong>Crowds out voluntary demand</strong><br><span class="s2-note">98</span></td><td><span class="ss-tag ss-tag-policy">Policy choice</span></td>
+                            <td>The core principled objection, concentrated among utilities and in Japan. It is partly empirical: does shrinking the claimable pool raise prices for new projects, or suppress demand? The consultation offers assertion, not evidence, on either side.</td></tr>
+                    </tbody>
+                </table>
+                </div>
+                <p class="s2-note">Counts are respondents in the coded free text who raised each challenge. The &ldquo;Resolved by&rdquo; column is an analytical judgement, not a survey result.</p>
+            </div>
+        </section>
+
+        <!-- ===== WHO SAID WHAT ===== -->
+        <section class="content-section-narrow" id="voices">
+            <h2 class="section-title">Who said what</h2>
+            <p class="section-subtitle">Verbatim, with every named organisation that used the wording.</p>
+            <div class="card card-spacious scroll-reveal">
+                <div class="toggle-btn-group" id="quoteTabs" role="group" aria-label="Theme"></div>
+                <div class="ss-quotes" id="quoteList"><p class="s2-loading">Loading…</p></div>
+            </div>
+        </section>
+
+        <!-- ===== ORGANISATIONS ===== -->
+        <section class="content-section" id="organisations">
+            <h2 class="section-title">Organisations</h2>
+            <p class="section-subtitle">Named organisations with substantive SSS comments, by the stance their text takes.</p>
+            <div class="card scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="orgFilterLabel">Show</span>
+                        <div class="toggle-btn-group" id="orgFilter" role="group" aria-labelledby="orgFilterLabel"></div>
+                    </div>
+                    <div class="s2-field">
+                        <label class="s2-control-label" for="orgSearch">Search</label>
+                        <input class="s2-input" id="orgSearch" type="search" placeholder="Organisation or country">
+                    </div>
+                </div>
+                <p class="s2-note" id="orgCount">—</p>
+                <div class="s2-table-scroll" id="orgTable"><p class="s2-loading">Loading…</p></div>
+                <p class="s2-note">Redacted and individual filers are counted in every chart but never named. Q97 = the organisation&rsquo;s 1–5 score.</p>
+            </div>
+        </section>
+
+        <!-- ===== METHOD ===== -->
+        <section class="content-section-narrow" id="method">
+            <div class="card scroll-reveal">
+                <details class="ss-method">
+                    <summary>How this was measured</summary>
+                    <ul>
+                        <li><strong>Stance:</strong> Q97, 1–5. Support = 4–5, oppose = 1–2.</li>
+                        <li><strong>Corpus:</strong> every substantive answer to the ten SSS free-text questions (Q99, Q101–103, Q105–106, Q108, Q110–112), plus ±400 characters around any mention of SSS or standard supply elsewhere. 484 respondents, 470 with substantive content.</li>
+                        <li><strong>Coding:</strong> AI coders read each respondent&rsquo;s text against a fixed codebook of 8 feasibility challenges, 5 objections in principle and 8 remedies, plus a text stance. Respondents with identical SSS text were harmonised to one code by majority (39 cells changed). Every quote was checked to be verbatim. A random sample was checked by hand. No second-coder agreement score.</li>
+                        <li><strong>Shared wording:</strong> 73 respondents filed SSS answers that open with text shared by at least two others. They are counted once each, as filed.</li>
+                        <li><strong>Limits:</strong> SSS questions were optional, and about half of all respondents skipped them. Coding records what was said, not how strongly. The assessment table is the analyst&rsquo;s judgement.</li>
+                        <li><strong>Files:</strong> <code>data/derived/sss_themes.csv</code>, <code>reference/sss_codebook.md</code>, <code>scripts/analytics/sss.py</code>.</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+    </div>
+
+    <footer id="siteFooter" data-footer-note="Standard Supply Service — feasibility challenges and opposition in the consultation responses."></footer>
+
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
