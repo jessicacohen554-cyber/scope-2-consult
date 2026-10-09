@@ -65,21 +65,33 @@
 
         <!-- ===== HEADLINE NUMBERS ===== -->
         <section class="content-section">
+            <h2 class="section-title">Additionality or incrementality</h2>
             <div class="ad-grid-3">
                 <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statSupport">—</div>
+                    <div class="stat-label">Support additionality or incrementality, whatever their view on hourly matching and deliverability</div>
+                </div>
+                <div class="stat-card scroll-reveal">
                     <div class="stat-value" id="statAll3">—</div>
-                    <div class="stat-label">Support hourly matching + deliverability + additionality or incrementality</div>
+                    <div class="stat-label">…of whom also support hourly matching and deliverability (all three)</div>
+                </div>
+            </div>
+            <h2 class="section-title">Standard Supply Service (SSS)</h2>
+            <div class="ad-grid-3">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statQ97">—</div>
+                    <div class="stat-label">Support the SSS proposal in total (Q97 scored 4–5)</div>
                 </div>
                 <div class="stat-card scroll-reveal">
                     <div class="stat-value" id="statSss">—</div>
-                    <div class="stat-label">Back Standard Supply Service (SSS) as the incrementality test</div>
+                    <div class="stat-label">Name SSS as the incrementality test in their own words</div>
                 </div>
                 <div class="stat-card scroll-reveal">
                     <div class="stat-value" id="statMore">—</div>
-                    <div class="stat-label">Say the test needs to go further than SSS</div>
+                    <div class="stat-label">Say the incrementality test needs to go further than SSS</div>
                 </div>
             </div>
-            <p class="s2-note">Counts and % of all 1,072 respondents. Only respondents who raised additionality or incrementality in their own words are classified.</p>
+            <p class="s2-note">Counts and % of all 1,072 respondents. Additionality and incrementality stances are coded only for respondents who raised them in their own words; Q97 is a survey question answered by 522.</p>
         </section>
 
         <!-- ===== IN BRIEF ===== -->
@@ -87,10 +99,11 @@
             <h2 class="section-title">In brief</h2>
             <div class="card card-spacious scroll-reveal">
                 <ul class="ad-brief">
-                    <li><strong>Nobody was asked.</strong> The survey has no additionality question. 269 respondents raised it anyway: 227 supported it and 13 opposed it.</li>
-                    <li><strong>Same goal, opposite camps.</strong> Most "additionality" supporters <em>oppose</em> hourly matching and deliverability. Most "incrementality" supporters back both.</li>
-                    <li><strong>The full three-pillar position is small.</strong> 61 respondents support hourly matching, deliverability and additionality or incrementality. NGOs are the largest group (19), and 35 of the 61 share wording with at least two other filers.</li>
-                    <li><strong>SSS splits that group.</strong> 25 of the 61 back SSS as the test; 22 say it needs to go further, usually with an asset-age limit.</li>
+                    <li><strong>Raised unprompted by a quarter.</strong> The survey has no additionality question. 269 respondents (25.1%) raised it anyway: 227 (21.2%) supported additionality or incrementality and 13 (1.2%) opposed it.</li>
+                    <li><strong>Supporters split on the proposals.</strong> Of the 227, 114 oppose both hourly matching and deliverability, 61 support both, 24 are mixed and 28 skipped one of the questions. Most "additionality" supporters are in the opposing camp; most "incrementality" supporters back both.</li>
+                    <li><strong>Narrowing to all three: 61 (5.7%).</strong> They support hourly matching, deliverability and additionality or incrementality. NGOs are the largest group (19), and 35 of the 61 share wording with at least two other filers.</li>
+                    <li><strong>SSS in total: 254 support it (23.7%).</strong> That is 48.7% of the 522 who answered Q97; 158 opposed it. Every one of the 47 all-three respondents who answered Q97 supports SSS.</li>
+                    <li><strong>As the incrementality test, SSS splits the all-three group.</strong> In their own words, 27 respondents name SSS as the test (25 of them in the all-three group), while 26 say it needs to go further, usually with an asset-age limit (22 in the all-three group).</li>
                     <li><strong>A required asset-age test comes from the other side.</strong> 15 respondents ask for one; 12 of them oppose hourly matching and deliverability and offer it as a simpler alternative.</li>
                 </ul>
             </div>
@@ -99,7 +112,7 @@
         <!-- ===== CAMPS ===== -->
         <section class="content-section" id="camps">
             <h2 class="section-title">Same goal, opposite camps</h2>
-            <p class="section-subtitle">Supporters of each word, by how they scored hourly matching (Q71) and deliverability (Q83).</p>
+            <p class="section-subtitle">All 227 supporters, and supporters of each word, by how they scored hourly matching (Q71) and deliverability (Q83).</p>
             <div class="glass-chart-panel flush scroll-reveal">
                 <div class="chart-container-sm">
                     <canvas id="chartCamps" aria-label="Supporters of each concept by stance on hourly matching and deliverability"></canvas>
@@ -117,6 +130,18 @@
                     <canvas id="chartTest" aria-label="Respondents by incrementality test named"></canvas>
                 </div>
                 <p class="s2-note">"Further than SSS" = says SSS is not enough on its own and wants a stronger or alternative test, most often an asset-age limit. "Required age test" = asks for an asset age or vintage cutoff as a requirement.</p>
+            </div>
+        </section>
+
+        <!-- ===== SSS SUPPORT ===== -->
+        <section class="content-section" id="sss">
+            <h2 class="section-title">Support for SSS (Q97)</h2>
+            <p class="section-subtitle">The survey's own question: do you support the SSS guidance and the pro-rata limit on SSS claims?</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container-sm">
+                    <canvas id="chartQ97" aria-label="Q97 SSS support by group"></canvas>
+                </div>
+                <p class="s2-note">Share of each group that answered Q97. Support = 4–5, oppose = 1–2.</p>
             </div>
         </section>
 

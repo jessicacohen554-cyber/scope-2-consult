@@ -67,7 +67,9 @@
     // --- Headline ----------------------------------------------------------
     function renderStats(d) {
         var N = d.totals.respondents, m = d.mechanism.either;
+        set('statSupport', stat(d.supporters.either, N));
         set('statAll3', stat(d.all_three.n, N));
+        set('statQ97', stat(d.q97.all.support, N));
         set('statSss', stat(m.sss_supports, N));
         set('statMore', stat(m.sss_prefers_other, N));
     }
@@ -80,8 +82,9 @@
             { k: 'skipped', label: 'Skipped', color: R().gap },
             { k: 'anti_both', label: 'Oppose both', color: S().negative }
         ];
-        var rows = ['additionality', 'incrementality'];
+        var rows = ['either', 'additionality', 'incrementality'];
         hbar('chartCamps', [
+            'All supporters (' + d.supporters.either + ')',
             '"Additionality" supporters (' + d.supporters.additionality + ')',
             '"Incrementality" supporters (' + d.supporters.incrementality + ')'
         ], camps.map(function (c) {
@@ -110,6 +113,33 @@
         ], {
             stacked: true,
             label: function (c) { return c.dataset.label + ': ' + c.parsed.x; }
+        });
+    }
+
+    // --- SSS support (Q97) ---------------------------------------------------
+    function renderQ97(d) {
+        var q = d.q97;
+        var rows = [
+            ['All respondents', q.all],
+            ['All additionality / incrementality supporters', q.either],
+            ['…of whom support all three', q.all_three],
+            ['…of whom do not', q.not_all_three]
+        ];
+        var parts = [
+            { k: 'support', label: 'Support', color: S().positive },
+            { k: 'neutral', label: 'Neutral', color: S().muted },
+            { k: 'oppose', label: 'Oppose', color: S().negative }
+        ];
+        hbar('chartQ97', rows.map(function (r) { return r[0] + ' (n=' + r[1].answered + ')'; }), parts.map(function (p) {
+            return {
+                label: p.label, backgroundColor: p.color,
+                data: rows.map(function (r) { return +(100 * r[1][p.k] / r[1].answered).toFixed(1); }),
+                _n: rows.map(function (r) { return r[1][p.k]; })
+            };
+        }), {
+            stacked: true, max: 100,
+            tick: function (v) { return v + '%'; },
+            label: function (c) { return c.dataset.label + ': ' + c.dataset._n[c.dataIndex] + ' (' + c.parsed.x + '%)'; }
         });
     }
 
@@ -225,6 +255,7 @@
         renderStats(d);
         renderCamps(d);
         renderTest(d);
+        renderQ97(d);
         renderQuotes(d);
         renderDemographics(d);
         renderOrgs(d);
