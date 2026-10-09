@@ -69,7 +69,11 @@
         var N = d.totals.respondents, m = d.mechanism.either;
         set('statSupport', stat(d.supporters.either, N));
         set('statAll3', stat(d.all_three.n, N));
-        set('statQ97', stat(d.q97.all.support, N));
+        var q = d.q97.all, sn = q.support + q.neutral;
+        set('statQ97', stat(sn, q.answered));
+        set('statQ97n', q.answered);
+        set('statQ97sub', pct(sn, N) + ' of all ' + N.toLocaleString('en-US') + ' respondents · ' +
+            q.support + ' supported, ' + q.neutral + ' neutral, ' + q.oppose + ' opposed');
         set('statSss', stat(m.sss_supports, N));
         set('statMore', stat(m.sss_prefers_other, N));
     }
