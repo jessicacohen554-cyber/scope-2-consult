@@ -100,7 +100,7 @@ small, .small { font-size: 0.9rem; color: var(--fg-2); }
 .nav-brand span { color: var(--accent); }
 .nav-links { display: flex; gap: 2px; margin-left: auto; overflow-x: auto; scrollbar-width: none; min-width: 0; }
 .nav-links::-webkit-scrollbar { display: none; }
-.nav-links a { font-size: 0.82rem; color: var(--fg-2); text-decoration: none; padding: 6px 9px; border-radius: 6px; white-space: nowrap; }
+.nav-links a { font-size: 0.76rem; color: var(--fg-2); text-decoration: none; padding: 6px 7px; border-radius: 6px; white-space: nowrap; }
 .nav-links a:hover { background: var(--bg-3); color: var(--fg); }
 .nav-links a[aria-current="page"] { background: var(--accent-soft); color: var(--accent-2); font-weight: 600; }
 .progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); transition: width .1s linear; }
