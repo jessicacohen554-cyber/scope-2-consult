@@ -5,10 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Impact Accounting Basics</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Design system styles (verbatim copies of frontend/styles; see frontend/DESIGN_SYSTEM.md) -->
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/article.css">
+<link rel="stylesheet" href="styles/cinematic.css">
+<link rel="stylesheet" href="guidance.css">
+<!-- GSAP for the cinematic scroll background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Design system modules (nav.js and shared-footer.js carry this site's links) -->
+<script src="js/nav.js"></script>
+<script src="js/shared-header.js"></script>
+<script src="js/scroll-observer.js"></script>
+<script src="js/shared-footer.js"></script>
 <style>
 /* page-specific: statement cards, formula panel, feedback bars, option cards */
 .stmts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 10px; }
@@ -39,37 +53,21 @@ svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3)
 <noscript><style>.matrix-detail > [hidden], [data-mode-show][hidden] { display: grid !important; }</style></noscript>
 </head>
 <body>
-<nav class="nav" aria-label="Site">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
-    <div class="nav-links">
-      <a href="index.html">Start</a>
-      <a href="ccs-removals.html">CCS: removal or reduction?</a>
-      <a href="ccs-eac.html">CCS-backed EACs</a>
-      <a href="scope2-update.html">Oct 2026 update</a>
-      <a href="governance.html">Governance &amp; TWGs</a>
-      <a href="storage-mechanics.html">Storage ledger</a>
-      <a href="storage-revision.html">Storage &amp; incrementality</a>
-      <a href="consequential-basics.html">Impact accounting</a>
-      <a href="consequential-ccus.html">CCUS impact 2×2</a>
-      <a href="sources.html">Sources</a>
-    </div>
-    <div class="progress" aria-hidden="true"></div>
-  </div>
-</nav>
+<header class="header" id="pageHeader">
+  <h1>What would a “GHG impact statement” actually measure?</h1>
+  <div class="subtitle">After this page you can separate an inventory number from an impact number, name the impact-accounting tools GHG Protocol already publishes, and read the electricity consultation’s formula and nine additionality tests with their limits in view.</div>
+  <div class="header-accent"></div>
+</header>
 
+<div class="content-wrap">
 <main class="wrap">
-  <header class="hero">
-    <div class="eyebrow">Module 4 · Consequential accounting</div>
-    <h1>What would a “GHG impact statement” actually measure?</h1>
-    <p class="lede">After this page you can separate an inventory number from an impact number, name the impact-accounting tools GHG Protocol already publishes, and read the electricity consultation’s formula and nine additionality tests with their limits in view.</p>
+  <div class="g-hero"><div class="eyebrow">Module 4 · Consequential accounting</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min (more in expandable notes)</span><span><b>Sources</b> AMI Phase 1 White Paper (RFI, Mar 2026) · AMI TWG minutes and decks (2025–2026) · Project Protocol (2005) · Grid-Connected Electricity Guidelines (2007) · LSR v1.0 Ch.14 and Ch.16 · Consequential electricity consultation (Oct 2025) and feedback summary (Jul 2026)</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
       <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
       <span><i style="background:var(--third)"></i>Third party</span>
-    </div>
-  </header>
+    </div></div>
 
   <nav class="toc" aria-label="On this page">
     <a href="#s1"><span class="k">1</span>Two questions, two statements</a>
@@ -261,7 +259,7 @@ svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3)
 </div></details>
 
     <details><summary>Timeline, 2025 to 2027: how additionality reached Statement 3</summary><div class="stack">
-    <div class="timeline">
+    <div class="g-timeline">
       <div class="tl revision"><div class="when">2025-07 (reported 2025-09-16)</div><div class="what">ISB does not support the Marginal Impact Method going to consultation</div><div class="why">“7/11 members” had significant concerns, including “Some concerns that the additionality test, as described in the MIM proposal, is not sufficiently rigorous to support avoided emission claims”. Work moved to the AMI TWG. <a class="cite revision" href="sources.html#r4-s9a">AMI TWG 8 deck (16 Sep 2025) pp.25–26</a></div></div>
       <div class="tl revision"><div class="when">2025-10-20 to 2026-01-31</div><div class="what">Consequential electricity consultation open</div><div class="why">185 valid responses; summary published July 2026. <a class="cite revision" href="sources.html#r4-s14">Consultation (Oct 2025)</a> <a class="cite revision" href="sources.html#r4-s15">Feedback summary (Jul 2026) p.2</a></div></div>
       <div class="tl revision"><div class="when">2026-03</div><div class="what">AMI White Paper (RFI) sets out four statements</div><div class="why">Phase 2 to coordinate with the Scope 2 TWG on electricity-sector consequential methods “within Statement 3 (GHG impact statement)”. <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.7</a></div></div>
@@ -582,8 +580,11 @@ svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3)
     <a class="prev" href="storage-revision.html"><span class="dir">Previous</span><span class="ttl">Storage &amp; incrementality</span></a>
     <a class="next" href="consequential-ccus.html"><span class="dir">Next</span><span class="ttl">CCUS impact 2×2</span></a>
   </nav>
-  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
 </main>
+</div>
+
+<footer id="siteFooter"></footer>
+<script src="js/cinematic-bg.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

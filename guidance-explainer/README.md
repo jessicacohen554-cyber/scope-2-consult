@@ -5,7 +5,9 @@ storage and impact (consequential) accounting under the GHG Protocol as it stand
 as the Scope 2 revision is taking shape (status as of 19 Oct 2026). Not tied to the
 consultation explorer in `frontend/`.
 
-Published: https://claude.ai/artifact/Sv6kih1EPETLMRHk5TwWQM
+Live on GitHub Pages: https://jessicacohen554-cyber.github.io/scope-2-consult/guidance-explainer/
+
+Also published as a Claude artifact: https://claude.ai/artifact/Sv6kih1EPETLMRHk5TwWQM
 
 ## Layout
 
@@ -20,11 +22,18 @@ guidance-explainer/
 │   ├── R3-storage-hourly.md            # storage under hourly market-based accounting
 │   ├── R4-consequential-ccus.md        # Statement 3 / impact accounting applied to CCUS
 │   ├── QA-REPORT-A.md / QA-REPORT-B.md # verification findings and fixes
-└── site/
-    ├── index.html, sources.html, 8 module pages
-    ├── site.css, site.js          # tokens, components, scrollytell behaviour
-    └── _template.html             # starting point for any new page
+├── index.html, sources.html, 8 module pages   # the site itself (served by GitHub Pages)
+├── styles/                    # shared.css, article.css, cinematic.css — verbatim copies of frontend/styles
+├── js/                        # design-system modules; nav.js and shared-footer.js carry this site's links
+├── assets/cinematic-bg.png    # circuit-board background
+├── guidance.css               # this site's components (citation chips, tiers, callouts, scrolly, matrix)
+├── site.js                    # scrolly steps, toggles, steppers, matrix, wide-figure scroll
+└── template.html              # starting point for any new page
 ```
+
+## Design
+
+The site uses the repo's design system (`frontend/DESIGN_SYSTEM.md`): Plus Jakarta Sans and DM Sans, the navy palette, the animated banner, the cinematic circuit-board background, the injected nav and footer. `styles/*.css`, `js/shared-header.js`, `js/canvas-banners.js`, `js/scroll-observer.js` and `js/cinematic-bg.js` are verbatim copies; only `js/nav.js` (NAV_ITEMS, NAV_BRAND) and `js/shared-footer.js` (FOOTER_LINKS, DEFAULT_NOTE) are site-specific. `guidance.css` adds the learning-page components on top of the shared tokens and never restyles shared classes. Source tiers are hydro blue (in force), solar amber (revision) and slate (third party); inference is indigo, gap is red, signal is green.
 
 ## Method
 
@@ -46,10 +55,10 @@ downloaded PDFs are not committed.
 ## Local preview / republish
 
 ```bash
-cd guidance-explainer/site && python3 -m http.server 8000   # open http://localhost:8000
+cd guidance-explainer && python3 -m http.server 8000   # open http://localhost:8000
 ```
 
-To republish to the same artifact: copy `site/` to a scratch folder, strip
+GitHub Pages serves `main` directly, so a merge to `main` deploys the site. To republish the Claude artifact: copy the HTML, `guidance.css`, `site.js`, `styles/`, `js/` and `assets/` to a scratch folder, strip
 `index.html` to body content (the artifact host wraps the main page), and publish
 `index.html` with the other files as supporting files.
 

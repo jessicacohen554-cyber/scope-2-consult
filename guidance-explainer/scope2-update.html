@@ -5,16 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>October 2026 Scope 2 Update</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Design system styles (verbatim copies of frontend/styles; see frontend/DESIGN_SYSTEM.md) -->
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/article.css">
+<link rel="stylesheet" href="styles/cinematic.css">
+<link rel="stylesheet" href="guidance.css">
+<!-- GSAP for the cinematic scroll background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Design system modules (nav.js and shared-footer.js carry this site's links) -->
+<script src="js/nav.js"></script>
+<script src="js/shared-header.js"></script>
+<script src="js/scroll-observer.js"></script>
+<script src="js/shared-footer.js"></script>
 <style>
 /* page-specific: tracks figure, bar strips, comparison table */
 svg .st-accent { stroke: var(--accent); stroke-width: 1.4; }
 svg .st-line { stroke: var(--line); stroke-width: 1; }
 svg .st-fg3 { stroke: var(--fg-3); stroke-width: 1; }
-svg .st-gap { stroke: var(--gap); stroke-width: 1.2; }
+svg .st-gap { stroke: var(--g-gap); stroke-width: 1.2; }
 svg .t-mono { font-family: var(--font-mono); font-size: 11px; }
 svg .t-b { font-weight: 600; }
 /* phones: keep wide figures legible; the figure scrolls sideways instead of shrinking text below ~9px */
@@ -33,37 +47,21 @@ svg .t-b { font-weight: 600; }
 </style>
 </head>
 <body>
-<nav class="nav" aria-label="Site">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
-    <div class="nav-links">
-      <a href="index.html">Start</a>
-      <a href="ccs-removals.html">CCS: removal or reduction?</a>
-      <a href="ccs-eac.html">CCS-backed EACs</a>
-      <a href="scope2-update.html">Oct 2026 update</a>
-      <a href="governance.html">Governance &amp; TWGs</a>
-      <a href="storage-mechanics.html">Storage ledger</a>
-      <a href="storage-revision.html">Storage &amp; incrementality</a>
-      <a href="consequential-basics.html">Impact accounting</a>
-      <a href="consequential-ccus.html">CCUS impact 2×2</a>
-      <a href="sources.html">Sources</a>
-    </div>
-    <div class="progress" aria-hidden="true"></div>
-  </div>
-</nav>
+<header class="header" id="pageHeader">
+  <h1>Where does the market-based method stand after October 2026?</h1>
+  <div class="subtitle">After this page you can say what the ISB's September 2026 direction for the market-based method contains, which parts are pulse checks rather than decisions, how it departs from the 2025 consultation draft and from ISO's working draft, and what gets decided next.</div>
+  <div class="header-accent"></div>
+</header>
 
+<div class="content-wrap">
 <main class="wrap">
-  <header class="hero">
-    <div class="eyebrow">Module 2 · Scope 2 revision</div>
-    <h1>Where does the market-based method stand after October 2026?</h1>
-    <p class="lede">After this page you can say what the ISB's September 2026 direction for the market-based method contains, which parts are pulse checks rather than decisions, how it departs from the 2025 consultation draft and from ISO's working draft, and what gets decided next.</p>
+  <div class="g-hero"><div class="eyebrow">Module 2 · Scope 2 revision</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> MBM Update (16 Oct 2026) · Scope 2 TWG #23 minutes and deck (6 Oct 2026) · Scope 2 consultation summary (Aug 2026) · AMI RFI summary (Sep 2026)</span><span><b>Status as of</b> 19 Oct 2026</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
       <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
       <span><i style="background:var(--third)"></i>Third party</span>
-    </div>
-  </header>
+    </div></div>
 
   <nav class="toc" aria-label="On this page">
     <a href="#s1"><span class="k">1</span>The update in one screen</a>
@@ -305,7 +303,7 @@ svg .t-b { font-weight: 600; }
       <div class="bar-legend" aria-hidden="true">
         <span><i style="background:var(--signal-soft)"></i>Support (4–5)</span>
         <span><i style="background:var(--bg-3)"></i>Neutral (3)</span>
-        <span><i style="background:var(--gap-soft)"></i>No or low support (1–2)</span>
+        <span><i style="background:var(--g-gap-soft)"></i>No or low support (1–2)</span>
       </div>
       <figure class="fig-frame" data-mode-show="q">
         <div class="fig-scroll"><svg viewBox="0 0 560 214" role="img" aria-label="Stacked bars. Hourly matching, n 909: 22 percent support, 7 neutral, 70 no or low support. Deliverability, n 875: 30, 11, 59. Legacy clause, n 801: 90, 5, 5.">
@@ -475,7 +473,7 @@ svg .t-b { font-weight: 600; }
     </div>
 
     <div class="grid-2">
-      <div class="timeline">
+      <div class="g-timeline">
         <div class="tl revision"><div class="when">2026-10-06</div><div class="what">Scope 2 TWG Meeting #23</div><div class="why">The TWG is briefed on the ISB direction and on ISO WG4's divergence. <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes</a></div></div>
         <div class="tl revision"><div class="when">2026-10-16</div><div class="what">MBM Update published</div><div class="why"><a class="cite revision" href="sources.html#r2-s01">GHGP blog, 16 Oct 2026</a></div></div>
         <div class="tl future"><div class="when">2026-10-20 to 22 (scheduled)</div><div class="what">Scope 2 TWG workshop, Washington DC</div><div class="why">Key issues listed: "deliverability, incrementality, feasibility, and implementation timing". Outcomes are not public as of 19 October. <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.3</a> <a class="cite revision" href="sources.html#r2-s01">GHGP blog, 16 Oct 2026</a></div></div>
@@ -542,8 +540,11 @@ svg .t-b { font-weight: 600; }
     <a class="prev" href="ccs-eac.html"><span class="dir">Previous</span><span class="ttl">CCS-backed EACs</span></a>
     <a class="next" href="governance.html"><span class="dir">Next</span><span class="ttl">Governance &amp; TWGs</span></a>
   </nav>
-  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
 </main>
+</div>
+
+<footer id="siteFooter"></footer>
+<script src="js/cinematic-bg.js"></script>
 <script src="site.js"></script>
 <script>
 /* Initialise toggles from their pressed button so content is visible without JS. */

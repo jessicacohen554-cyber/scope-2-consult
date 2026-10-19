@@ -25,15 +25,15 @@ aids understanding. Tone: neutral, grounded, no hype, no persuasion. Short sente
    Never present a proposal as adopted. Say "proposed", "under consideration",
    "the TWG discussed" as the dossier does.
 5. NUMBERS: only from the dossier's "Numbers you may use" tables, with citation.
-6. DESIGN: use `site/_template.html` as the starting point (copy it); use only classes
-   in `site/site.css` plus a small page-specific `<style>` for layouts unique to the
-   page, using the CSS tokens (never literal hex). No external libraries. No emoji.
+6. DESIGN: use `template.html` as the starting point (copy it); use only classes
+   in `guidance.css` and the design system (`styles/shared.css`, see
+   `frontend/DESIGN_SYSTEM.md`) plus a small page-specific `<style>` for layouts
+   unique to the page, using the CSS variables (never literal hex, never a font-family literal). No external libraries. No emoji.
    No mermaid. Figures are hand-authored inline SVG using the svg classes in site.css
-   (`.node`, `.edge`, `.t`, `.fill-*`, `.soft-*`), `currentColor` for strokes/text,
+   (`.node`, `.edge`, `.t`, `.fill-*`, `.soft-*`) in guidance.css, `currentColor` for strokes/text,
    `viewBox` sized to content, labelled arrows, `role="img"` + `aria-label`, a
    `<figcaption>` stating the claim. Keep SVG text >= 10.5px at drawn scale, nothing
-   overlapping, labels inside the viewBox. Every figure must read on light AND dark
-   (only token colours; no literal fills).
+   overlapping, labels inside the viewBox. The site is light-only, like the design system; use token colours, no literal fills.
 7. MOBILE: the page must work at 400px wide with no horizontal scroll. Scrolly figures
    stack above the steps on phones automatically; keep each figure's viewBox aspect
    roughly 16:10 or squarer so it fits in ~40vh on a phone. Wide tables go inside
@@ -49,7 +49,7 @@ aids understanding. Tone: neutral, grounded, no hype, no persuasion. Short sente
    SOURCED / INFERENCE / GAP → `.pager` prev/next → `.foot`. Reading time 7-12 min.
 10. The nav block in the template lists all pages; keep it verbatim. Set the pager links
     to the pages named in your brief.
-11. Write the final file to `guidance-explainer/site/<name>.html`. Validate: well-formed
+11. Write the final file to `guidance-explainer/<name>.html`. Validate: well-formed
     HTML (every tag closed; run `python3 -c "import html.parser"`-based or `xmllint
     --html --noout` check if available), no `TODO`, no placeholder text from the
     template, no literal hex colours outside the `:root` tokens.

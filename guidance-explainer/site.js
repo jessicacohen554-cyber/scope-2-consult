@@ -1,78 +1,9 @@
-/* Shared behaviour: nav highlight + progress, reveal, scrolly steps, tabs,
-   segmented toggles, steppers, matrix cells. No dependencies. */
+/* Scope 2 Frontier behaviours: wide-figure scroll, scrolly steps, tabs, segmented
+   toggles, steppers, matrix cells. Nav, banner, footer, reveal and the cinematic
+   background come from the design-system modules in js/. No dependencies. */
 (function () {
   document.documentElement.classList.add('js');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // current page in nav
-  var here = location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(function (a) {
-    var href = a.getAttribute('href');
-    if (href === here || (here === '' && href === 'index.html')) a.setAttribute('aria-current', 'page');
-  });
-  var cur = document.querySelector('.nav-links a[aria-current="page"]');
-  if (cur && cur.scrollIntoView) { try { cur.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) {} }
-
-  // reading progress
-  var bar = document.querySelector('.progress');
-  function prog() {
-    if (!bar) return;
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0) + '%';
-  }
-  window.addEventListener('scroll', prog, { passive: true }); prog();
-
-  // reveal
-  var revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !reduce) {
-    var ro = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
-    }, { threshold: 0.08 });
-    revealEls.forEach(function (el) { ro.observe(el); });
-  } else { revealEls.forEach(function (el) { el.classList.add('in'); }); }
-
-  // scrolly: activate step nearest viewport centre; sync figure via data-step
-  document.querySelectorAll('.scrolly').forEach(function (sc) {
-    var steps = Array.prototype.slice.call(sc.querySelectorAll('.step'));
-    var fig = sc.querySelector('.scrolly-figure');
-    if (!steps.length) return;
-    function setStep(i) {
-      steps.forEach(function (s, j) { s.classList.toggle('is-active', i === j); });
-      if (fig) {
-        fig.setAttribute('data-active', String(i));
-        fig.querySelectorAll('[data-step]').forEach(function (el) {
-          var spec = el.getAttribute('data-step'); // "2" or "1-3" or "0,2"
-          var on = false;
-          spec.split(',').forEach(function (p) {
-            p = p.trim();
-            if (p.indexOf('-') > 0) { var r = p.split('-'); if (i >= +r[0] && i <= +r[1]) on = true; }
-            else if (+p === i) on = true;
-          });
-          el.classList.toggle('dim', !on);
-          el.style.opacity = on ? '' : '';
-        });
-        fig.querySelectorAll('[data-show]').forEach(function (el) {
-          var spec = el.getAttribute('data-show'); var on = false;
-          spec.split(',').forEach(function (p) {
-            p = p.trim();
-            if (p.indexOf('-') > 0) { var r = p.split('-'); if (i >= +r[0] && i <= +r[1]) on = true; }
-            else if (+p === i) on = true;
-          });
-          el.style.visibility = on ? 'visible' : 'hidden';
-        });
-        var ev; try { ev = new CustomEvent('scrollystep', { detail: { index: i } }); } catch (e) { ev = document.createEvent('CustomEvent'); ev.initCustomEvent('scrollystep', true, true, { index: i }); }
-        sc.dispatchEvent(ev);
-      }
-    }
-    var active = 0; setStep(0);
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { var i = steps.indexOf(e.target); if (i !== active) { active = i; setStep(i); } } });
-      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-      steps.forEach(function (s) { io.observe(s); });
-    }
-  });
-
 
   // wide figures on narrow screens: let the drawing keep a readable scale and scroll sideways
   function wideFigs() {
