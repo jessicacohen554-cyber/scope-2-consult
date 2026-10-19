@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CCS-Backed EACs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* page-specific: inline tags, QC rows, toggled bar figure, landscape table */
+.tag { display: inline-block; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; vertical-align: middle; font-weight: 600; border: 1px solid var(--line); }
+.tag.inf { background: var(--infer-soft); color: var(--infer); border-color: color-mix(in srgb, var(--infer) 35%, transparent); }
+.tag.gap { background: var(--gap-soft); color: var(--gap); border-color: color-mix(in srgb, var(--gap) 35%, transparent); }
+.tag.src { background: var(--inforce-soft); color: var(--inforce); border-color: color-mix(in srgb, var(--inforce) 35%, transparent); }
+.tag.sig { background: var(--signal-soft); color: var(--signal); border-color: color-mix(in srgb, var(--signal) 35%, transparent); }
+.tag.st { background: var(--bg-3); color: var(--fg); }
+.pos { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; max-width: 70ch; }
+.pos li { padding: 10px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; }
+.pos li .tag { margin-right: 6px; }
+.check .q { font-style: italic; color: var(--fg); }
+.check .note { color: var(--fg-2); font-size: .94rem; }
+.check .note b { font-weight: 650; color: var(--fg); }
+.qc-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: .88rem; color: var(--fg-2); }
+.qc-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.qc-legend i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; background: var(--fg-3); }
+.qc-legend i.open { background: var(--infer); }
+.qc-legend i.fail { background: var(--gap); }
+.tbl td small { display: block; color: var(--fg-3); }
+#s5 .tbl { min-width: 760px; }
+.tbl .prop { display: block; margin-top: 2px; font-family: var(--font-mono); font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; color: var(--third); }
+svg .stroke-capture { stroke: var(--capture); stroke-width: 2; }
+svg .stroke-gap { stroke: var(--gap); }
+svg .stroke-third { stroke: var(--third); }
+svg .soft-fossil { fill: color-mix(in srgb, var(--fossil) 20%, var(--bg-2)); stroke: var(--fossil); stroke-width: 1.2; }
+svg .txt-capture { fill: var(--capture); }
+svg .txt-fossil { fill: var(--fossil); }
+svg .txt-gap { fill: var(--gap); }
+svg .txt-third { fill: var(--third); }
+svg .txt-rev { fill: var(--revision); }
+svg .st-fossil { stop-color: var(--fossil); }
+svg .st-soft { stop-color: var(--accent-soft); }
+#efbar[data-mode="gross"] [data-m="post"], #efbar[data-mode="post"] [data-m="gross"] { display: none; }
+.fig-frame > svg { max-width: 760px; margin-inline: auto; }
+svg .txt-infer { fill: var(--infer); }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
+    <div class="nav-links">
+      <a href="index.html">Start</a>
+      <a href="ccs-removals.html">CCS: removal or reduction?</a>
+      <a href="ccs-eac.html">CCS-backed EACs</a>
+      <a href="scope2-update.html">Oct 2026 update</a>
+      <a href="governance.html">Governance &amp; TWGs</a>
+      <a href="storage-mechanics.html">Storage ledger</a>
+      <a href="storage-revision.html">Storage &amp; incrementality</a>
+      <a href="consequential-basics.html">Impact accounting</a>
+      <a href="consequential-ccus.html">CCUS impact 2×2</a>
+      <a href="sources.html">Sources</a>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Module 1 · Market instruments</div>
+    <h1>Can a CCS plant’s power be sold as a low-carbon attribute?</h1>
+    <p class="lede">The 2015 Scope 2 Guidance does not define it, and on this page’s reading (an inference) nothing in it bars it. This page traces what a certificate can carry, the unresolved emission-rate question, how the eight Quality Criteria apply, where the revision is heading, and which third-party instruments exist today.</p>
+    <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> Scope 2 Guidance 2015 · LSR Guidance v1.0 · Scope 2 consultation draft 2025 · TWG #23 and MBM Update, Oct 2026 · 45V, RED, EnergyTag, registries, NorthBridge</span></div>
+    <div class="tier-legend" aria-label="Source tiers">
+      <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
+      <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
+      <span><i style="background:var(--third)"></i>Third party</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="On this page">
+    <a href="#s1"><span class="k">1</span>What an EAC can represent under the 2015 Guidance</a>
+    <a href="#s2"><span class="k">2</span>The emission factor problem</a>
+    <a href="#s3"><span class="k">3</span>The Quality Criteria, one by one</a>
+    <a href="#s4"><span class="k">4</span>The revision: no technology rules, a proposed age limit</a>
+    <a href="#s5"><span class="k">5</span>Instruments that exist today</a>
+    <a href="#s6"><span class="k">6</span>What to take into a position</a>
+  </nav>
+
+  <section class="section" id="s1">
+    <div class="section-head">
+      <div class="eyebrow">1 · 2015 Guidance</div>
+      <h2>What an EAC can represent</h2>
+      <p>The 2015 Guidance treats certificates as a carrier of information about any generation, not as a renewable-only product.</p>
+    </div>
+
+    <div class="quote">
+      <blockquote>
+        <p>“Historically, most certificates for policies or consumer programs have been generated from renewable energy resources, driven by demand for these resources in particular, but depending on their intended purpose or usage certificates can be generated from any or all generation technology types. For example, all-generation certificate tracking exists in the northeast U.S.”</p>
+        <p>“All energy generation has a GHG emission rate attribute, even if that attribute is 'zero emissions/MWh' at the point of generation.”</p>
+      </blockquote>
+      <div class="who">Scope 2 Guidance (2015), §10.2, p.80 · <a class="cite inforce" href="sources.html#r1-s3">source</a></div>
+    </div>
+
+    <div class="prose">
+      <p>“All energy has a direct emissions factor associated with generation, and the use of that emissions factor does not depend on whether the generation facility is existing or new, or why the generation has occurred.”
+        <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015, p.90</a></p>
+      <p>The market-based method is meant to include fossil instruments too: “the market-based method should also include other contractual instruments representing fossil fuel or mixed-resource emission factors as well.” Table 6.3 lists “In the U.S., contracts for electricity from specified nonrenewable sources like coal in regions other than NEPOOL and PJM”, and a footnote explains that “Only the NEPOOL and PJM regions of the U.S. use all generation certificate tracking.”
+        <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 §7.4.2 p.63; Table 6.3 p.48; p.31</a></p>
+    </div>
+
+    <figure class="fig-frame">
+      <svg viewBox="0 0 480 300" role="img" aria-label="One megawatt-hour splits into the electricity and a certificate. If sold separately the electricity is null power, assigned residual mix emissions. The certificate carries the GHG emission rate, which is required for a claim, plus resource type, location, vintage and facility age.">
+        <defs><marker id="arB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect x="8" y="116" width="118" height="68" rx="8" class="node"/>
+        <text x="67" y="144" text-anchor="middle" class="t-lg">1 MWh</text>
+        <text x="67" y="162" text-anchor="middle" class="t">generated at</text>
+        <text x="67" y="177" text-anchor="middle" class="t">a facility</text>
+        <path d="M126,134 C160,134 160,52 196,52" class="edge" marker-end="url(#arB)"/>
+        <text x="146" y="84" text-anchor="end" class="t">energy</text>
+        <path d="M126,166 C160,166 160,196 196,196" class="edge" marker-end="url(#arB)"/>
+        <text x="152" y="214" text-anchor="middle" class="t">attributes</text>
+        <rect x="200" y="14" width="272" height="74" rx="8" class="node-soft"/>
+        <text x="336" y="38" text-anchor="middle" class="t-lg">Electricity</text>
+        <text x="336" y="57" text-anchor="middle" class="t">if sold unbundled: null power,</text>
+        <text x="336" y="74" text-anchor="middle" class="t">assigned residual mix emissions</text>
+        <rect x="200" y="102" width="272" height="190" rx="8" class="node"/>
+        <text x="336" y="125" text-anchor="middle" class="t-lg">Certificate or contract</text>
+        <rect x="212" y="136" width="248" height="26" rx="5" class="soft-inforce"/>
+        <text x="222" y="153" class="t"><tspan font-weight="600">GHG emission rate</tspan> · required (QC1)</text>
+        <rect x="212" y="166" width="248" height="26" rx="5" class="node-soft"/>
+        <text x="222" y="183" class="t">Resource type / technology · disclose</text>
+        <rect x="212" y="196" width="248" height="26" rx="5" class="node-soft"/>
+        <text x="222" y="213" class="t">Location · disclose; same market (QC5)</text>
+        <rect x="212" y="226" width="248" height="26" rx="5" class="node-soft"/>
+        <text x="222" y="243" class="t">Vintage, when generated · QC4</text>
+        <rect x="212" y="256" width="248" height="26" rx="5" class="node-soft"/>
+        <text x="222" y="273" class="t">Facility age · disclose (Table 8.1)</text>
+      </svg>
+      <figcaption>The emission rate is the one attribute a scope 2 claim cannot do without. Technology, location and facility age are recommended disclosures; vintage and market are Quality Criteria. Nothing in the bundle is specific to renewables or to capture. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 glossary pp.99, 105; Table 7.1 p.60; Table 8.1 p.68; p.64</a></figcaption>
+    </figure>
+
+    <div class="grid-2">
+      <div class="defn"><div class="term">Attribute</div><div class="text">“Descriptive or performance characteristics of a particular generation resource. For scope 2 GHG accounting, the GHG emission rate attribute of the energy generation is required to be included in a contractual instrument in order to make a claim.”</div><div class="who small">Scope 2 Guidance 2015 glossary · <a class="cite inforce" href="sources.html#r1-s3">p.99</a></div></div>
+      <div class="defn"><div class="term">Renewable energy certificate (REC)</div><div class="text">“A type of energy attribute certificate, used in the U.S. and Australia. In the U.S., a REC is defined as representing the property rights to the generation, environmental, social, and other non-power attributes of renewable electricity generation.”</div><div class="who small">Scope 2 Guidance 2015 glossary · <a class="cite inforce" href="sources.html#r1-s3">p.106</a></div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="callout gap"><div class="label">Gap · no eligibility list</div><p>The 2015 Guidance sets no technology eligibility list and no “low-carbon” class. It uses “low-carbon” only descriptively, and calls its criteria neutral: “These Scope 2 Quality Criteria are policy-neutral”. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015, p.8, Box 1.1 p.9</a></p></div>
+      <div class="callout inference"><div class="label">Inference</div><p>Nothing in the 2015 text bars an EAC from a CCS-equipped fossil plant. It would be an instrument with a non-zero emission rate. Because a REC is renewable-only by definition, it would be a generic EAC or a fossil-source contract, not a REC. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015, pp.80, 106</a></p></div>
+    </div>
+  </section>
+
+  <section class="section" id="s2">
+    <div class="section-head">
+      <div class="eyebrow">2 · Emission rate</div>
+      <h2>The emission factor problem</h2>
+      <p>The certificate must carry the plant’s “direct” rate. For a plant that captures part of its CO<sub>2</sub>, no GHG Protocol text says which number that is.</p>
+    </div>
+
+    <div class="prose">
+      <p>Quality Criterion 1: the instrument shall “Convey the direct GHG emission rate attribute associated with the unit of electricity produced.” Table 6.3 adds: “Data forms listed here should convey combustion-only (direct) GHG emission rates, expressed in metric tons per MWh or kWh.” Section 6.11: “To ensure this, instruments shall include the GHG emission rate attribute.”
+        <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 Table 7.1 p.60; Table 6.3 p.48; §6.11 p.54</a></p>
+      <p>The rate is generation-only. Emission factors “do not include T&amp;D losses or upstream life-cycle emissions associated with the technology or fuel used in generation. Instead, these other categories of upstream emissions should be quantified and reported in scope 3, category 3”.
+        <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 §4.2, p.27</a></p>
+      <p>Where the certificate carries no rate: “If the attribute emission rate itself is not specified and the technology is not zero emissions, the reporting organization should seek from the generating entity a specific emission rate from that generation facility. Otherwise, a default factor from IPCC or other government publications may be used and disclosed.”
+        <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 §7.5, p.64</a></p>
+    </div>
+
+    <div id="efbar" data-mode="gross" class="stack">
+      <div class="seg" data-target="#efbar" role="group" aria-label="Which rate travels with the certificate">
+        <button data-value="gross" aria-pressed="true">Gross combustion rate</button>
+        <button data-value="post" aria-pressed="false">Post-capture rate (inference)</button>
+      </div>
+      <figure class="fig-frame">
+        <svg viewBox="0 0 480 224" role="img" aria-label="Two readings of the direct emission rate for a CCS plant, with no values. Gross: all combustion CO2 per MWh. Post-capture: only uncaptured stack CO2 and capture-site fugitive emissions; captured and stored CO2 is not reported. The split between emitted and stored is illustrative.">
+          <defs><linearGradient id="fz" x1="0" x2="1" y1="0" y2="0"><stop offset="0" class="st-fossil"/><stop offset="1" class="st-soft"/></linearGradient></defs>
+          <text x="20" y="28" class="t muted">CO₂ per MWh attributed to the certificate (illustrative, no values)</text>
+          <g data-m="gross">
+            <rect x="20" y="42" width="440" height="44" rx="4" class="fill-fossil"/>
+            <text x="20" y="110" class="t">All combustion CO₂, including tonnes later captured and stored</text>
+            <text x="20" y="128" class="t muted">Table 6.3 says “combustion-only (direct)”; it never mentions capture</text>
+            <rect x="20" y="148" width="440" height="30" rx="4" class="node-soft"/>
+            <text x="30" y="168" class="t"><tspan class="txt-infer" font-weight="600">Inference:</tspan> LSR would not report the stored tonnes at all</text>
+          </g>
+          <g data-m="post">
+            <rect x="20" y="42" width="110" height="44" rx="4" class="fill-fossil"/>
+            <rect x="130" y="42" width="60" height="44" fill="url(#fz)"/>
+            <rect x="190" y="42" width="270" height="44" rx="4" class="soft-accent stroke-capture dash"/>
+            <text x="325" y="61" text-anchor="middle" class="t">captured and stored:</text>
+            <text x="325" y="77" text-anchor="middle" class="t">not reported, if GS rules met</text>
+            <text x="20" y="108" class="t txt-fossil">Rate = emitted CO₂ only: uncaptured stack CO₂</text>
+            <text x="20" y="124" class="t txt-fossil">+ fugitive captured CO₂ at the capture facility</text>
+            <text x="20" y="140" class="t muted">Shaded boundary: no GHGP source gives a capture rate</text>
+            <rect x="20" y="152" width="440" height="30" rx="4" class="node-soft"/>
+            <text x="30" y="172" class="t">Transport, injection, off-site fugitive → buyer scope 3 cat 3</text>
+          </g>
+          <text x="460" y="210" text-anchor="end" class="t txt-gap">÷ MWh: gross or net of capture load? (gap)</text>
+        </svg>
+        <figcaption><span data-mode-show="gross">The gross reading puts every tonne of combustion CO<sub>2</sub> on the certificate. The 2015 text does not exclude it, because it never addresses capture. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015, Table 6.3 p.48</a></span><span data-mode-show="post" hidden>The post-capture reading matches LSR’s buyer rule: no scope 2 emissions for captured and stored CO<sub>2</sub>, fugitive at the facility in scope 2, the rest of the pathway in scope 3 category 3. It is an inference, not a GHG Protocol rule. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance pp.359–360</a></span></figcaption>
+      </figure>
+    </div>
+
+    <div class="callout gap"><div class="label">Gap · gross or post-capture</div><p>The 2015 text does not say whether a CCS plant’s “direct” or “combustion-only” rate means gross combustion CO<sub>2</sub> or CO<sub>2</sub> emitted after capture. A search of the 2015 Guidance for “captur”, “CCS”, “sequest” and “carbon storage” found no carbon-capture text. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015</a></p></div>
+
+    <div class="callout inference"><div class="label">Inference · the post-capture reading</div><p>The Corporate Standard defines emissions as releases, and LSR excludes captured and stored CO<sub>2</sub> from the generator’s scope 1 and the buyer’s scope 2. A “direct” rate consistent with LSR would therefore be the post-capture emitted rate: uncaptured stack CO<sub>2</sub> plus capture-site fugitive emissions, per MWh. It holds only while the LSR geologic-storage requirements are met: monitoring, site data, reversals. If a certificate carries no rate, the §7.5 default “may be used” would presumably mean an unabated fossil factor. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance pp.359–363</a> <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 p.64</a></p></div>
+
+    <div class="prose">
+      <p>The 2015 text has a close analogue for a plant whose CO<sub>2</sub> is treated differently: “Biofuel generation facilities producing certificates should specify the CO<sub>2</sub>, CH4, and N2O emissions produced at the point of generation. The scope 2 reporter reports the CH4 and N2O emissions in scope 2, while the CO<sub>2</sub> from biofuel is reported separately from the scopes.”
+        <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015, p.64</a></p>
+    </div>
+
+    <div class="callout gap"><div class="label">Gap · gross or net MWh</div><p>The 2015 Guidance is silent on whether a CCS certificate is issued per gross MWh or per net MWh after the parasitic load of capture and compression. EnergyTag’s standard answers for its own scheme: “Auxiliary energy needed to produce the output energy shall be deducted from the output when determining the qualifying output for the Issuance of GCs.” The NorthBridge proposal divides by Net MWh. <a class="cite third" href="sources.html#r1-t4">EnergyTag GC Standard v2, p.36</a> <a class="cite third" href="sources.html#r1-t7">NorthBridge CCS EAC Standard, Eq. 1 p.30</a></p></div>
+  </section>
+
+  <section class="section" id="s3">
+    <div class="section-head">
+      <div class="eyebrow">3 · Quality Criteria</div>
+      <h2>The eight Quality Criteria, one by one</h2>
+      <p>Each criterion below is quoted from Table 7.1, then what the 2015 text says around it, then how it would apply to a certificate from a CCS-equipped plant. Every application is an inference: the GHG Protocol has not assessed CCS certificates.</p>
+    </div>
+
+    <div class="qc-legend" aria-label="Status key">
+      <span><i></i>Met if… (conditions a CCS certificate can satisfy)</span>
+      <span><i class="open"></i>Silent (gap)</span>
+      <span><i class="fail"></i>Risk</span>
+    </div>
+
+    <figure class="fig-frame">
+      <div class="checklist">
+        <div class="check open"><div class="mark">1</div><div class="body"><b>Emission rate · silent (gap)</b>
+          <span class="q">“Convey the direct GHG emission rate attribute associated with the unit of electricity produced.”</span>
+          <span class="note"><b>2015:</b> the rate must be on or with the instrument (§6.11); “combustion-only (direct)” (Table 6.3); without a rate, seek a facility-specific one, else an IPCC or government default (p.64).</span>
+          <span class="note"><span class="tag inf">Inference</span> Satisfiable only if the certificate carries a facility-specific, ideally per-period, emitted rate. Gross versus post-capture is not addressed. The rate varies with capture performance, and no rule covers capture-unit outages within the period.</span></div></div>
+        <div class="check fail"><div class="mark">2</div><div class="body"><b>Sole carrier of the claim · risk</b>
+          <span class="q">“Be the only instruments that carry the GHG emission rate attribute claim associated with that quantity of electricity generation.”</span>
+          <span class="note"><b>2015:</b> null power “shall also not reflect the same GHG emission rate, but should be assigned residual mix emissions” (p.64). Table 8.1 asks: “Offsets. Is the facility producing offset credits from the same MWh reflected in the contractual instrument?” (p.68). In most markets a MWh “can either produce energy attribute certificates or an offset credit … but could not produce both” (§8.2, p.72).</span>
+          <span class="note"><span class="tag inf">Inference</span> The main risk: the same captured tonnes credited as CCS carbon credits (NorthBridge cites ACR and VCS VM0049 methodologies) and also reflected in a low certificate rate. 45Q credits are tax credits, not instruments, and the 2015 text is silent on them. NorthBridge says tax credits are “not considered double counting”; that is its view, not the GHG Protocol’s.</span></div></div>
+        <div class="check"><div class="mark">3</div><div class="body"><b>Tracked and retired · met if…</b>
+          <span class="q">“Be tracked and redeemed, retired, or canceled by or on behalf of the reporting entity.”</span>
+          <span class="note"><b>2015:</b> via a tracking system, contract audit, or third-party certification (p.64).</span>
+          <span class="note"><span class="tag inf">Inference</span> Met if a registry issues non-REC certificates for CCS output. PJM-GATS records “Emissions output”; ERCOT allows “any generator, regardless of fuel type”; CleanCounts covers “other eligible technologies” (section 5). <span class="tag gap">Gap</span> No registry was found that issues CCS-specific certificates today.</span></div></div>
+        <div class="check"><div class="mark">4</div><div class="body"><b>Vintage · met if…</b>
+          <span class="q">“Be issued and redeemed as close as possible to the period of energy consumption to which the instrument is applied.”</span>
+          <span class="note"><b>2015:</b> vintage “is different from the age of the facility” (p.64).</span>
+          <span class="note"><span class="tag inf">Inference</span> 2015 sets no facility-age or new-build test, so a retrofit and a new build are treated alike. The revision proposes hourly matching (section 4).</span></div></div>
+        <div class="check"><div class="mark">5</div><div class="body"><b>Same market · met if…</b>
+          <span class="q">“Be sourced from the same market in which the reporting entity's electricity-consuming operations are located and to which the instrument is applied.”</span>
+          <span class="note"><b>2015:</b> the boundary is set by regulators or issuing bodies; the US “has constituted a single market” (p.65).</span>
+          <span class="note"><span class="tag inf">Inference</span> No technology-specific constraint.</span></div></div>
+        <div class="check"><div class="mark">6</div><div class="body"><b>Utility-specific factors · met if…</b>
+          <span class="q">“Be calculated based on delivered electricity, incorporating certificates sourced and retired on behalf of its customers…”</span>
+          <span class="note"><b>2015:</b> a supplier may offer “A differentiated product (e.g., a low-carbon power product or tariff)” (p.65).</span>
+          <span class="note"><span class="tag inf">Inference</span> A utility low-carbon tariff could include CCS output if its rate is calculated on delivered energy.</span></div></div>
+        <div class="check"><div class="mark">7</div><div class="body"><b>Direct purchase · met if…</b>
+          <span class="q">“Ensure all contractual instruments conveying emissions claims be transferred to the reporting entity only…”</span>
+          <span class="note"><b>2015:</b> “In the absence of energy attribute certificates, the contract and claim associated with it should be verified by a third party” (p.65); contracts from “specified nonrenewable sources like coal” are listed (p.48).</span>
+          <span class="note"><span class="tag inf">Inference</span> A PPA with a CCS plant is a recognized instrument type. It needs attribute language, and third-party verification where no certificate exists.</span></div></div>
+        <div class="check fail"><div class="mark">8</div><div class="body"><b>Residual mix · risk</b>
+          <span class="q">“An adjusted, residual mix … shall be made available … or its absence shall be disclosed by the reporting entity.”</span>
+          <span class="note"><b>2015:</b> the residual mix “should be based on combining national or subnational energy and emissions production data with contractual instrument claims” (p.65).</span>
+          <span class="note"><span class="tag inf">Inference</span> If CCS attributes are sold, the residual mix must remove the plant’s MWh and its low emitted rate. Otherwise other consumers count the same low emissions again. NorthBridge makes the same point.</span></div></div>
+      </div>
+      <figcaption>On this page’s reading (inference): five criteria a CCS certificate could meet with ordinary registry and contract design, though no registry was found that issues CCS-specific certificates today; one silent on the central number; two that carry double-counting risk. Criteria text: <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015, Table 7.1 p.60; pp.48, 54, 64–72</a> <a class="cite third" href="sources.html#r1-t7">NorthBridge CCS EAC Standard §3.5</a></figcaption>
+    </figure>
+
+    <div class="callout inference"><div class="label">Inference · double claiming the same tonnes</div><p>A CCS plant can generate two products from one physical fact: carbon credits for stored tonnes, and certificates whose low rate exists because those tonnes were stored. Selling both lets two buyers claim the same tonnes. The 2015 Guidance’s offsets check (Table 8.1) and its rule that a MWh cannot produce both a certificate and an offset credit point toward choosing one. The scope of the revision flags only “interactions between carbon credits sourced from carbon-free generation facilities and EACs from the same resource”, which does not name CCS. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 pp.68, 72</a> <a class="cite revision" href="sources.html#r1-s8">Standard Development Plan, pp.22–23</a></p></div>
+
+    <div class="prose">
+      <p>Disclosure applies whatever the instrument: “For the market-based method, companies shall disclose the category or categories of instruments from which the emission factors were derived, where possible specifying the energy generation technologies.” Table 8.1 recommends disclosing “Energy resource type”, “Facility location” and “Facility age … the year the generation facility that created the certificate/contract was first operational or substantially repowered”.
+        <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 §7.1 p.61; Table 8.1 p.68</a></p>
+    </div>
+    <div class="callout gap"><div class="label">Gap · retrofit and facility age</div><p>“Substantially repowered” is not defined. Whether a CCS retrofit counts, and so resets the facility age a buyer discloses, is not addressed. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015, Table 8.1 p.68</a></p></div>
+  </section>
+
+  <section class="section" id="s4">
+    <div class="section-head">
+      <div class="eyebrow">4 · Revision</div>
+      <h2>The revision: no technology rules, a proposed age limit</h2>
+      <p>The 2025 draft changed how and where certificates match load, not which plants can issue them. The direction since July 2026 adds an age test that a CCS retrofit may or may not pass.</p>
+    </div>
+
+    <div class="prose">
+      <h3>The 2025 consultation draft</h3>
+      <p>The draft’s market-based changes, open for consultation 20 Oct 2025 to 31 Jan 2026, were six. It proposed to “Update the Scope 2 Quality Criteria 4 to require that all contractual instruments used in the market-based method be issued and redeemed for the same hour as the energy consumption to which the instrument is applied, except in certain cases of exemption”; to update Quality Criteria 5 so instruments “otherwise meet criteria deemed to demonstrate deliverability”; plus a Standard Supply Service share, a new residual mix definition, a fossil-based fallback factor, and feasibility measures. No item addresses technology eligibility or how the rate on instruments is derived.
+        <a class="cite revision" href="sources.html#r1-s5">Scope 2 consultation draft §5.1, pp.5, 19–20</a></p>
+      <p>The fallback: “In cases where a residual mix is not available, reporting organizations shall use a fossil-based emission factor that reflects electricity generation within the relevant market boundary.” “Generic location-based average grid emission factors shall not be used.”
+        <a class="cite revision" href="sources.html#r1-s5">Scope 2 consultation draft, p.28</a></p>
+    </div>
+
+    <div class="grid-2">
+      <div class="callout gap"><div class="label">Gap · no CCS anywhere in the revision record</div><p>A full-text search of the draft for “captur”, “CCS”, “sequest”, “low-carbon” and related terms found no CCS hits. The Summary of Feedback has none for “carbon capture”, “CCS” or “sequestration”. Across all 82 Scope 2 PDFs in the governance repository (Sept 2024 to Oct 2026), searches for “carbon capture”, “CCS”, “CCUS”, “sequestration” and “capture and stor” returned zero hits in every file. The draft also does not say how CCS-equipped fossil generation would enter the “fossil-based” fallback factor. <a class="cite revision" href="sources.html#r1-s5">Consultation draft</a> <a class="cite revision" href="sources.html#r1-s6">Summary of Feedback</a> <a class="cite revision" href="sources.html#r1-s12">Governance repository</a></p></div>
+      <div class="callout inference"><div class="label">Inference · CCS under the draft</div><p>A CCS certificate would face the same hourly and deliverability tests as any other, and Quality Criterion 1 would still require the direct emission rate. Hourly certificates would need per-hour rates if capture performance varies; the draft does not discuss this. <a class="cite revision" href="sources.html#r1-s5">Scope 2 consultation draft, pp.20–23</a></p></div>
+    </div>
+
+    <div class="prose">
+      <p>Incrementality was not in the draft. Respondents “noted that the proposed market-based method revisions do not include an incrementality requirement…”.
+        <a class="cite revision" href="sources.html#r1-s6">Summary of Feedback v1.0, p.55</a></p>
+      <h3>Since July 2026: two methods</h3>
+      <p>The October update describes a “Theory of change 1” as “accounting for clean electricity that is matched hourly, delivered on the same grid, and generated by plants built within a set number of years (often called incrementality)”. Method 1 “would incorporate hourly matching, deliverability and incrementality accounting and reporting requirements”; Method 2 “would maintain existing scope 2 requirements from the 2015 Scope 2 Guidance”. The ISB direction: “Companies may report using Method 2 … until a to-be-determined date”, after which, “if a company reports scope 2 market-based method emissions, companies shall report using Method 1 if data that meets the quality criteria is available”. This is a direction of travel to be refined by the TWG, not a decision. Whether companies report market-based emissions at all is still bracketed “[shall/should/may, language still to be determined]”.
+        <a class="cite revision" href="sources.html#r1-s9">Scope 2 MBM Update, Oct 2026, pp.1–2</a></p>
+    </div>
+
+    <figure class="fig-frame">
+      <svg viewBox="0 0 480 412" role="img" aria-label="Draft two-method panel. Method 1 incorporates hourly matching, deliverability and an age limit on eligible resources; Method 2 keeps the 2015 rules with no incrementality requirement. Neither names CCS. Whether a CCS retrofit fits the draft design list is a gap. Below, on a separate third-party track, the US 45V rule treats CCS placed in service within 36 months as incremental.">
+        <text x="12" y="20" class="t txt-rev">Draft direction, Sep–Oct 2026 · under development, not adopted</text>
+        <rect x="150" y="32" width="160" height="28" rx="5" class="soft-revision"/>
+        <text x="230" y="51" text-anchor="middle" class="t-lg">Method 1</text>
+        <rect x="318" y="32" width="150" height="28" rx="5" class="node-soft"/>
+        <text x="393" y="51" text-anchor="middle" class="t-lg">Method 2</text>
+        <line x1="12" y1="66" x2="468" y2="66" class="edge-soft"/>
+        <text x="12" y="92" class="t">Hourly matching</text>
+        <text x="230" y="92" text-anchor="middle" class="t">incorporated</text>
+        <text x="393" y="92" text-anchor="middle" class="t">2015 rules kept</text>
+        <line x1="12" y1="108" x2="468" y2="108" class="edge-soft"/>
+        <text x="12" y="134" class="t">Deliverability</text>
+        <text x="230" y="134" text-anchor="middle" class="t">incorporated</text>
+        <text x="393" y="134" text-anchor="middle" class="t">2015 rules kept</text>
+        <line x1="12" y1="150" x2="468" y2="150" class="edge-soft"/>
+        <text x="12" y="174" class="t">Incrementality /</text>
+        <text x="12" y="190" class="t">vintage</text>
+        <text x="230" y="172" text-anchor="middle" class="t">“Age limit on eligible</text>
+        <text x="230" y="188" text-anchor="middle" class="t">resources for voluntary</text>
+        <text x="230" y="204" text-anchor="middle" class="t">claims (shall)”</text>
+        <text x="393" y="188" text-anchor="middle" class="t">“No requirement”</text>
+        <line x1="12" y1="218" x2="468" y2="218" class="edge-soft"/>
+        <text x="12" y="244" class="t">Technology rules</text>
+        <text x="230" y="244" text-anchor="middle" class="t">none; CCS not named</text>
+        <text x="393" y="244" text-anchor="middle" class="t">none; CCS not named</text>
+        <line x1="12" y1="260" x2="468" y2="260" class="edge-soft"/>
+        <text x="12" y="290" class="t txt-gap">Open question</text>
+        <rect x="150" y="272" width="318" height="48" rx="6" class="soft-gap stroke-gap dash"/>
+        <text x="160" y="291" class="t">Design list: “new build, repowering, clean</text>
+        <text x="160" y="309" class="t">conversion, upgrade, or life extension”. Retrofit? Gap</text>
+        <rect x="12" y="334" width="456" height="70" rx="6" class="soft-third stroke-third dash"/>
+        <text x="24" y="352" class="t txt-third">Separate track · third party · not GHG Protocol</text>
+        <text x="24" y="369" class="t">US 45V final rule (Jan 2025): if CCS equipment was placed in</text>
+        <text x="24" y="384" class="t">service ≤ 36 months before the hydrogen plant, its EACs count</text>
+        <text x="24" y="399" class="t">as incremental; such EACs carry a non-zero emissions rate</text>
+      </svg>
+      <figcaption>Method 1 adds the test a CCS retrofit would have to pass, but the draft does not say whether retrofit capture qualifies. 45V answers that question for hydrogen tax credits only. <a class="cite revision" href="sources.html#r1-s9">MBM Update p.2</a> <a class="cite revision" href="sources.html#r1-s11">TWG #23 deck pp.34, 40</a> <a class="cite third" href="sources.html#r1-t1">45V final rule, 90 FR 2259, 2318</a></figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>The incrementality row, “as presented to the September ISB”, reads “Age limit on eligible resources for voluntary claims (shall)” for Method 1 and “No requirement” for Method 2. The design details “could include: Qualifying operational events within [X] yrs (e.g., new build, repowering, clean conversion, upgrade, or life extension); original off-taker; pro-rata grid-share allocation; qualifying storage”.
+        <a class="cite revision" href="sources.html#r1-s11">TWG #23 deck, pp.34, 40</a></p>
+    </div>
+
+    <div class="grid-2">
+      <div class="callout inference"><div class="label">Inference · retrofit</div><p>“Clean conversion” or “upgrade” could in principle cover a CCS retrofit, comparable to 45V’s CCS retrofit rule. The deck does not say so. <span class="tag gap">Gap</span> <a class="cite revision" href="sources.html#r1-s11">TWG #23 deck, p.40</a></p></div>
+      <div class="callout signal"><div class="label">Signal of direction · 6 Oct 2026</div><p>TWG members “raised concerns about the inclusion of incrementality in Method 1, suggesting … that it is relevant to assessing impact but not necessary for allocating emissions attributes to consumption”. The Secretariat said “the ISB supported its inclusion on integrity and impact grounds, that it is open for development by the TWG”. <a class="cite revision" href="sources.html#r1-s10">TWG #23 minutes, p.6</a></p></div>
+    </div>
+
+    <div class="callout signal"><div class="label">Signal of direction · ISO divergence, 6 Oct 2026</div><p>The ISO working group (WG4) “proposed to use the grid average mix as the fallback”, “reached full consensus to remove the Standard Supply Service criterion”, set “monthly matching as the mandatory minimum … hourly matching optional”, and reported that “deliverability was removed as not practical”. Reconciliation with the ISB direction is pending. <a class="cite revision" href="sources.html#r1-s10">TWG #23 minutes, pp.6–7</a></p></div>
+
+    <div class="timeline">
+      <div class="tl inforce"><div class="when">2015</div><div class="what">Scope 2 Guidance</div><div class="why">Market-based method, eight Quality Criteria, no technology list, no age test.</div></div>
+      <div class="tl revision"><div class="when">20 Oct 2025 – 31 Jan 2026</div><div class="what">Public consultation on the draft</div><div class="why">Hourly matching, deliverability, Standard Supply Service, fossil fallback. No CCS, no technology list, no incrementality. <a class="cite revision" href="sources.html#r1-s5">Consultation draft p.5</a></div></div>
+      <div class="tl revision"><div class="when">29 Jul 2026</div><div class="what">Summary of Feedback and Standard Development Plan</div><div class="why">Nearly 1,100 responses from 56 countries; “multiple reporting approaches are being explored”. The TWG scope includes “additionality, or resource newness” and “technology-specific implications”. <a class="cite revision" href="sources.html#r1-s7">GHGP blog</a> <a class="cite revision" href="sources.html#r1-s8">SDP pp.22–23</a></div></div>
+      <div class="tl revision"><div class="when">Sep – Oct 2026</div><div class="what">ISB direction: Method 1 and Method 2</div><div class="why">Age limit proposed for Method 1; TWG #23 debates it; MBM Update dated 16 Oct 2026. <a class="cite revision" href="sources.html#r1-s9">MBM Update</a></div></div>
+      <div class="tl future"><div class="when">15 Dec 2026</div><div class="what">ISB meeting on TWG outcomes</div><div class="why"><a class="cite revision" href="sources.html#r1-s10">TWG #23 minutes p.4</a></div></div>
+      <div class="tl future"><div class="when">Q2 2027 (planned)</div><div class="what">Consolidated public consultation</div><div class="why"><a class="cite revision" href="sources.html#r1-s9">MBM Update p.3</a></div></div>
+      <div class="tl future"><div class="when">Q4 2028 (planned)</div><div class="what">Joint GHGP-ISO Corporate Standard publication</div><div class="why"><a class="cite revision" href="sources.html#r1-s9">MBM Update p.3</a></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="s5">
+    <div class="section-head">
+      <div class="eyebrow">5 · Third-party instruments</div>
+      <h2>Instruments that exist today</h2>
+      <p>Outside the GHG Protocol, several schemes already accept non-renewable generation. Of the schemes checked here, only one regulation and one unadopted proposal address CCS by name.</p>
+    </div>
+
+    <div class="scroll-x"><table class="tbl">
+      <caption class="sr-only">Third-party instruments and what they say about non-renewable and CCS generation</caption>
+      <thead><tr><th>Instrument</th><th>Status</th><th>Technologies</th><th>Emission rate on the instrument</th><th>CCS-specific content</th></tr></thead>
+      <tbody>
+        <tr><td><b>US 45V EACs</b><small>hydrogen tax credit, not an inventory standard</small> <a class="cite third" href="sources.html#r1-t1">90 FR 2224–2329</a></td><td>Final rule, 10 Jan 2025</td><td>Any; “Renewable energy certificates (RECs) and other similar energy certificates … are forms of EACs”</td><td>Attributes needed by 45VH2-GREET; CCS retrofit EACs “will not have a zero emissions rate”</td><td>Field (G): for capture plants, “the placed in service date of such equipment”; CCS placed in service no more than 36 months before the hydrogen plant counts as incremental; geologic storage per 45Q(f)(2) or utilization per 45Q(f)(5); the amount of CCS must be verified by a third party</td></tr>
+        <tr><td><b>EU Guarantees of Origin</b> <a class="cite third" href="sources.html#r1-t2">RED Art. 19</a> <a class="cite third" href="sources.html#r1-t3">AIB</a></td><td>EU law, consolidated 16 Jul 2024</td><td>Member States “may” issue GOs for non-renewable energy; fossil and nuclear disclosure certificates exist in some countries (Austria, Sweden, Switzerland)</td><td>CO<sub>2</sub> is not among the mandatory minimum fields</td><td>None found</td></tr>
+        <tr><td><b>EnergyTag Granular Certificates</b> <a class="cite third" href="sources.html#r1-t4">GC Standard v2</a></td><td>Voluntary standard, Mar 2024</td><td>“any primary energy source”</td><td>Optional: “a production emissions factor (kgCO2eq/MWh) if available”</td><td>None; auxiliary energy “shall be deducted” from qualifying output</td></tr>
+        <tr><td><b>PJM-GATS</b> <a class="cite third" href="sources.html#r1-t8">About GATS</a></td><td>Operating registry</td><td>All-generation tracking region</td><td>Data include “Emissions output”</td><td>None found</td></tr>
+        <tr><td><b>ERCOT NPRR1264</b> <a class="cite third" href="sources.html#r1-t6">PUCT Report</a></td><td>Approved by the PUCT, 9 Jul 2026</td><td>“EACs can be earned by any generator, regardless of fuel type”</td><td>Fuel source “must be specified”; hourly issuance optional</td><td>Not in the NPRR text. An earlier stakeholder deck (not an ERCOT decision) listed CCS among technologies needing certificates <a class="cite third" href="sources.html#r1-t6b">Stakeholder deck, 2025</a></td></tr>
+        <tr><td><b>CleanCounts</b> (formerly M-RETS) <a class="cite third" href="sources.html#r1-t9">Home page</a></td><td>Operating registry</td><td>“nuclear, renewables, hydro, and other eligible technologies”</td><td>Carries “fuel type, location, time of generation, and enhanced attributes”</td><td>None found</td></tr>
+        <tr><td><b>Green-e</b> <a class="cite third" href="sources.html#r1-t5">Standard v4.6</a></td><td>Voluntary certification</td><td>Renewable only; no fossil-with-capture category</td><td>Non-renewable portion of a product “may not exceed customer's average utility, state or regional power emissions rates”</td><td>None; no CRS statement on CCS found</td></tr>
+        <tr><td><b>NorthBridge CCS EAC</b><span class="prop">Proposal</span> <a class="cite third" href="sources.html#r1-t7">CCS EAC Standard</a></td><td>Proposal, Oct 2025; no registry adoption found</td><td>CCS generation</td><td>One rate in lbs CO<sub>2</sub>e per Net MWh, including generation, capture, transport and storage</td><td>Entire standard. <span class="tag inf">Inference</span> Its single scope 2 rate conflicts with LSR’s scope 2 / scope 3 split (figure below)</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">45V is lifecycle (well-to-gate) accounting through 45VH2-GREET, which differs from the scope 2 “direct” rate. Its rules are shown for comparison only and are not GHG Protocol rules. <a class="cite third" href="sources.html#r1-t1">45V final rule, 90 FR 2259, 2275–2278, 2316–2320</a></p>
+
+    <div class="callout gap"><div class="label">Gap · not checked</div><p>WREGIS, NAR, NEPOOL-GIS and I-REC were not checked. The EU directive on low-carbon gases (2024/1788) was not retrieved. Later statutory changes to 45V (2025 legislation) were not verified against the statute. No registry was confirmed to have issued CCS-specific certificates, or certificates carrying a post-capture emission rate.</p></div>
+
+    <div class="prose">
+      <h3>The NorthBridge proposal in detail</h3>
+      <p>“One EAC is issued for each megawatt-hour of generation. The EAC is minted with an associated emission rate measured in pounds of carbon dioxide equivalent (CO<sub>2</sub>e) per megawatt-hour. When retired, the attribute holder may claim the pounds of CO<sub>2</sub>e listed on the attribute in its market-based Scope 2 inventory.” The rate “includes emissions from electricity generation, CO<sub>2</sub> capture, CO<sub>2</sub> transport, and CO<sub>2</sub> storage”.
+        <a class="cite third" href="sources.html#r1-t7">NorthBridge CCS EAC Standard, pp.5–6</a></p>
+    </div>
+
+    <figure class="fig-frame">
+      <svg viewBox="0 0 480 236" role="img" aria-label="Boundary comparison. The NorthBridge proposal puts generation and capture, transport and storage emissions into one scope 2 rate. The LSR Guidance buyer rule puts capture-facility fugitive emissions in scope 2 and the rest of the pathway in scope 3 category 3.">
+        <rect x="8" y="14" width="148" height="40" rx="6" class="node"/>
+        <text x="82" y="39" text-anchor="middle" class="t">Generation + capture</text>
+        <rect x="166" y="14" width="148" height="40" rx="6" class="node"/>
+        <text x="240" y="39" text-anchor="middle" class="t">CO₂ transport</text>
+        <rect x="324" y="14" width="148" height="40" rx="6" class="node"/>
+        <text x="398" y="39" text-anchor="middle" class="t">CO₂ storage</text>
+        <text x="8" y="80" class="t txt-third">NorthBridge proposal (third party)</text>
+        <rect x="8" y="88" width="464" height="40" rx="6" class="soft-third"/>
+        <text x="240" y="113" text-anchor="middle" class="t-lg">one scope 2 rate ÷ Net MWh</text>
+        <text x="8" y="154" class="t txt-capture">LSR Guidance buyer rule (in force 2027)</text>
+        <rect x="8" y="162" width="148" height="62" rx="6" class="soft-inforce"/>
+        <text x="82" y="186" text-anchor="middle" class="t-lg">scope 2</text>
+        <text x="82" y="204" text-anchor="middle" class="t">fugitive at facility</text>
+        <rect x="166" y="162" width="306" height="62" rx="6" class="soft-inforce"/>
+        <text x="319" y="186" text-anchor="middle" class="t-lg">scope 3, category 3</text>
+        <text x="319" y="204" text-anchor="middle" class="t">other pathway processes, off-site fugitive</text>
+      </svg>
+      <figcaption>The same emissions, two homes. NorthBridge anticipates the clash: if GHG Protocol guidance puts some of these emissions outside scope 2, “the emissions conveyed on a CCS EAC should be allocated between the appropriate scopes”, and “the EAC may bear a Scope 2 emission rate and a Scope 3 emission rate.” <a class="cite third" href="sources.html#r1-t7">NorthBridge p.18, fn.15</a> <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance pp.359–360</a></figcaption>
+    </figure>
+
+    <div class="callout inference"><div class="label">Inference · boundary conflict</div><p>The LSR Guidance already assigns transport, storage and off-site fugitive emissions to the buyer’s scope 3 category 3, not scope 2. A single all-in scope 2 rate, as NorthBridge proposes, would not match LSR once it takes effect on 01 Jan 2027. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance pp.359–360</a></p></div>
+
+    <div class="prose">
+      <p>On double counting the proposal states: “Registering Entities may not pursue carbon credits (or other environmental attributes) for the emissions captured and stored within the project boundary that are included in the calculation methodology and reflected in an EAC.” On tax credits: “Pursuing federal tax credits and/or avoiding state carbon taxes or penalties in addition to generating EACs under this methodology is not considered double counting.” It sets no additionality test: “This standard does not require imposing additionality requirements on projects that apply for EACs.”
+        <a class="cite third" href="sources.html#r1-t7">NorthBridge pp.18–19, 45</a>
+        A trade-press op-ed by the authors describes it as a standard for registries. <a class="cite third" href="sources.html#r1-t10">Utility Dive, 12 Dec 2025</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="s6">
+    <div class="section-head">
+      <div class="eyebrow">6 · Position</div>
+      <h2>What to take into a position</h2>
+      <p>For a developer or generator weighing CCS-backed low-carbon power as a market product.</p>
+    </div>
+    <ul class="pos">
+      <li><span class="tag src">Sourced</span>The 2015 Guidance lets certificates come “from any or all generation technology types” and expects fossil and mixed-resource instruments. There is no eligibility list. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 pp.63, 80</a> <span class="tag inf">Inference</span> A CCS certificate would be a non-REC instrument with a non-zero rate.</li>
+      <li><span class="tag src">Sourced</span>The instrument must convey the “direct” emission rate, “combustion-only (direct)”; the GHG Protocol has never said whether that means gross or post-capture CO<sub>2</sub>. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 pp.48, 60</a></li>
+      <li><span class="tag inf">Inference</span>The defensible rate is the post-capture emitted rate per MWh, valid only while the LSR storage requirements are met. Transport and storage emissions belong in the buyer’s scope 3 category 3, so an all-in scope 2 rate would not match LSR.</li>
+      <li><span class="tag inf">Inference</span>The two integrity risks to design out are criterion 2 (carbon credits for the same tonnes) and criterion 8 (residual mix that still contains the plant’s low rate).</li>
+      <li><span class="tag sig">Signal</span>The revision’s Method 1 would add an “Age limit on eligible resources for voluntary claims (shall)”, with “clean conversion, upgrade” on a draft design list, plus hourly matching and deliverability. None of it is adopted. <a class="cite revision" href="sources.html#r1-s11">TWG #23 deck pp.34, 40</a></li>
+      <li><span class="tag gap">Gap</span>No GHG Protocol position on CCS power certificates; no rule on gross versus net MWh; no answer on whether a retrofit is “substantially repowered” or a “clean conversion”; no mechanism for an unbundled buyer to meet LSR’s monitoring duty.</li>
+    </ul>
+    <div class="callout key"><div class="label">Takeaway</div><p>Today a CCS-backed certificate is permitted by silence, not by design. The 2015 rules would carry it as a non-zero-rate instrument, but the GHG Protocol has defined neither its emission rate nor its fit with the revision’s proposed age test, and a product built now should be able to adapt to either answer.</p></div>
+  </section>
+
+  <nav class="pager" aria-label="Pages">
+    <a class="prev" href="ccs-removals.html"><span class="dir">Previous</span><span class="ttl">CCS: removal or reduction?</span></a>
+    <a class="next" href="scope2-update.html"><span class="dir">Next</span><span class="ttl">Oct 2026 update</span></a>
+  </nav>
+  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
+</main>
+<script src="site.js"></script>
+</body>
+</html>

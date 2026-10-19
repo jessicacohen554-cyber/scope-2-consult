@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CCS Under the Removals Guidance</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* page-specific: comparison strip, role grids in steps, small inline tags, toggled SVG states */
+.strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 14px; }
+.strip .col { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.strip h3 { font-size: 1.05rem; }
+.strip dl { margin: 0; display: grid; gap: 8px; }
+.strip dt { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-3); }
+.strip dd { margin: 0; font-size: .95rem; }
+.ans { display: inline-block; font-family: var(--font-mono); font-weight: 600; font-size: .8rem; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); }
+.ans.no { background: var(--bg-3); color: var(--fg); }
+.ans.yes { background: var(--signal-soft); color: var(--signal); }
+.strip-gap { border: 1.5px dashed var(--gap); border-radius: 8px; padding: 10px 12px; background: var(--gap-soft); font-size: .95rem; }
+.strip-gap b { color: var(--gap); }
+.roles { display: grid; gap: 0; margin-top: 4px; }
+.roles > div { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); gap: 8px; font-size: .93rem; padding-block: 7px; border-top: 1px solid var(--line); }
+.roles > div > b { font-family: var(--font-mono); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-3); padding-top: 4px; font-weight: 600; }
+@media (max-width: 420px) { .roles > div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+.tag { display: inline-block; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; vertical-align: middle; font-weight: 600; border: 1px solid var(--line); }
+.tag.inf { background: var(--infer-soft); color: var(--infer); border-color: color-mix(in srgb, var(--infer) 35%, transparent); }
+.tag.gap { background: var(--gap-soft); color: var(--gap); border-color: color-mix(in srgb, var(--gap) 35%, transparent); }
+.tag.src { background: var(--inforce-soft); color: var(--inforce); border-color: color-mix(in srgb, var(--inforce) 35%, transparent); }
+.pos { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; max-width: 70ch; }
+.pos li { padding: 10px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; }
+.pos li .tag { margin-right: 6px; }
+.check .q { font-style: italic; color: var(--fg); }
+.check .note { color: var(--fg-2); font-size: .93rem; }
+.eq { font-family: var(--font-mono); font-size: .9rem; background: var(--bg-3); padding: 10px 12px; border-radius: 8px; overflow-x: auto; white-space: nowrap; }
+.eqvars { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: .95rem; }
+svg .stroke-capture { stroke: var(--capture); stroke-width: 2; }
+svg .stroke-fossil { stroke: var(--fossil); stroke-width: 2; }
+svg .stroke-storage { stroke: var(--storage); }
+svg .stroke-gap { stroke: var(--gap); }
+svg .soft-storage { fill: color-mix(in srgb, var(--storage) 16%, var(--bg-2)); stroke: var(--storage); stroke-width: 1.2; }
+svg .soft-fossil { fill: color-mix(in srgb, var(--fossil) 20%, var(--bg-2)); stroke: var(--fossil); stroke-width: 1.2; }
+svg .air { fill: color-mix(in srgb, var(--grid) 14%, var(--bg-2)); stroke: var(--line); stroke-width: 1; }
+svg .txt-capture { fill: var(--capture); }
+svg .txt-fossil { fill: var(--fossil); }
+svg .txt-gap { fill: var(--gap); }
+#loss[data-mode="in"] [data-m="out"], #loss[data-mode="out"] [data-m="in"] { display: none; }
+.fig-frame > svg { max-width: 760px; margin-inline: auto; }
+svg .txt-infer { fill: var(--infer); }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
+    <div class="nav-links">
+      <a href="index.html">Start</a>
+      <a href="ccs-removals.html">CCS: removal or reduction?</a>
+      <a href="ccs-eac.html">CCS-backed EACs</a>
+      <a href="scope2-update.html">Oct 2026 update</a>
+      <a href="governance.html">Governance &amp; TWGs</a>
+      <a href="storage-mechanics.html">Storage ledger</a>
+      <a href="storage-revision.html">Storage &amp; incrementality</a>
+      <a href="consequential-basics.html">Impact accounting</a>
+      <a href="consequential-ccus.html">CCUS impact 2×2</a>
+      <a href="sources.html">Sources</a>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Module 1 · Land Sector &amp; Removals Guidance</div>
+    <h1>Is captured CO<sub>2</sub> from a power plant a removal?</h1>
+    <p class="lede">No. The Land Sector and Removals (LSR) rules treat fossil point-source capture as a prevented emission, not a removal. This page shows where that line sits, what a capturing generator, its power buyer and the storage operator each report, and where LSR stops short of scope 2 market instruments.
+      <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance v1.0, Table 14.1, p.350</a></p>
+    <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> LSR Standard v1.1 · LSR Guidance v1.0 · Scope 2 Guidance 2015 · Corporate Standard 2004</span><span><b>Status</b> LSR approved 01 Oct 2025, published 30 Jun 2026, effective 01 Jan 2027</span></div>
+    <div class="tier-legend" aria-label="Source tiers">
+      <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
+      <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
+      <span><i style="background:var(--third)"></i>Third party</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="On this page">
+    <a href="#s1"><span class="k">1</span>Three pathways, one question: fossil CCS, DACCS, BECCS</a>
+    <a href="#s2"><span class="k">2</span><span>Follow the CO<sub>2</sub>: who reports what</span></a>
+    <a href="#s3"><span class="k">3</span>The geologic-storage gate</a>
+    <a href="#s4"><span class="k">4</span>Utilization is not storage</a>
+    <a href="#s5"><span class="k">5</span>What LSR does not say about scope 2</a>
+    <a href="#s6"><span class="k">6</span>What to take into a position</a>
+  </nav>
+
+  <section class="section" id="s1">
+    <div class="section-head">
+      <div class="eyebrow">1 · Definitions</div>
+      <h2>Three pathways, one question</h2>
+      <p>LSR sorts geologically stored CO<sub>2</sub> by where its carbon came from. Only carbon taken out of the atmosphere can be reported as a removal.</p>
+    </div>
+
+    <div class="prose">
+      <p>Chapter 14 of the LSR Guidance opens with two terms that sound alike and are accounted for differently. The same text appears in the LSR Standard.
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance §14.1, p.343</a>
+        <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, p.77</a></p>
+    </div>
+
+    <div class="quote">
+      <blockquote>
+        <p>“Captured CO<sub>2</sub>: CO<sub>2</sub> collected at a source (preventing an emission) and that continues to be stored in a non-atmospheric carbon pool. In this case, companies do not need to account for those emissions in the relevant scope if they meet the geologic storage requirements, but this is not accounted for and reported as a removal.”</p>
+        <p>“Removal: CO<sub>2</sub> removed directly from the atmosphere with technologies (e.g., direct air capture), or via biogenic CO<sub>2</sub> capture (e.g., bioenergy with carbon capture and storage). These can be accounted for and reported as removals with geologic storage.”</p>
+      </blockquote>
+      <div class="who">LSR Guidance v1.0, §14.1, p.343 · <a class="cite inforce" href="sources.html#r1-s1">source</a></div>
+    </div>
+
+    <div class="grid-3">
+      <div class="defn"><div class="term">Removal</div><div class="text">“The transfer of a GHG from the atmosphere to storage within a non-atmospheric pool. Note: Removals can be from biological or technological sinks.”</div><div class="who small">LSR Standard v1.1 glossary · <a class="cite inforce" href="sources.html#r1-s2">p.120</a></div></div>
+      <div class="defn"><div class="term">Technological sink</div><div class="text">“A mechanical or chemical process that removes CO<sub>2</sub> from the atmosphere or captures biogenic CO<sub>2</sub> from a source, and stores such CO<sub>2</sub> or other forms of carbon derived from CO<sub>2</sub> removals in non-atmospheric carbon pools.”</div><div class="who small">LSR Standard v1.1 glossary · <a class="cite inforce" href="sources.html#r1-s2">p.122</a></div></div>
+      <div class="defn"><div class="term">CO<sub>2</sub> capture</div><div class="text">“Collection of CO<sub>2</sub> from a source for storage within a non-atmospheric pool.”</div><div class="who small">LSR Standard v1.1 glossary · <a class="cite inforce" href="sources.html#r1-s2">p.113</a></div></div>
+    </div>
+
+    <div class="prose">
+      <p>Read the sink definition closely. It names capture of <em>biogenic</em> CO<sub>2</sub> from a source. It does not mention fossil CO<sub>2</sub>.
+        <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, p.122</a>
+        Table 14.1 then answers the question directly. Its column “Does this constitute a removal?” marks “Point source fossil carbon capture and storage (CCS)” as “No”. DACCS, enhanced weathering and BECCS are marked “Yes”.
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance Table 14.1, p.350</a></p>
+    </div>
+
+    <figure class="fig-frame">
+      <div class="strip">
+        <div class="col">
+          <h3>Fossil CCS</h3>
+          <svg viewBox="0 0 260 172" role="img" aria-label="Fossil CCS: carbon is extracted from a fossil deposit, burned in a power plant with capture, and the captured CO2 is injected into a storage reservoir. Nothing is taken out of the atmosphere. Uncaptured CO2 goes up the stack.">
+            <defs>
+              <marker id="m1s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+              <marker id="m1c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-capture"/></marker>
+              <marker id="m1f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-fossil"/></marker>
+            </defs>
+            <rect x="0" y="0" width="260" height="28" rx="6" class="air"/>
+            <text x="10" y="18" class="t-sm muted">Atmosphere</text>
+            <rect x="80" y="62" width="104" height="40" rx="6" class="node"/>
+            <text x="132" y="80" text-anchor="middle" class="t">Power plant</text>
+            <text x="132" y="95" text-anchor="middle" class="t-sm muted">+ capture</text>
+            <line x1="166" y1="60" x2="166" y2="32" class="edge stroke-fossil dash" marker-end="url(#m1f)"/>
+            <text x="172" y="50" class="t-sm txt-fossil">uncaptured</text>
+            <rect x="0" y="132" width="118" height="38" rx="6" class="soft-fossil"/>
+            <text x="59" y="155" text-anchor="middle" class="t-sm">Fossil fuel deposit</text>
+            <rect x="142" y="132" width="118" height="38" rx="6" class="soft-storage"/>
+            <text x="201" y="155" text-anchor="middle" class="t-sm">Storage reservoir</text>
+            <path d="M40,130 V82 H76" class="edge" marker-end="url(#m1s)"/>
+            <text x="46" y="120" class="t-sm">extracted</text>
+            <path d="M184,82 H220 V128" class="edge stroke-capture" marker-end="url(#m1c)"/>
+            <text x="214" y="120" text-anchor="end" class="t-sm txt-capture">captured</text>
+          </svg>
+          <dl>
+            <dt>Origin of the carbon</dt><dd>Fossil fuel and industrial sources, captured on site at a point source</dd>
+            <dt>LSR term</dt><dd>Captured CO<sub>2</sub> pathway; “CO<sub>2</sub> capture with geologic storage”</dd>
+            <dt>Table 14.1: a removal?</dt><dd><span class="ans no">No</span></dd>
+            <dt>Inventory effect</dt><dd>Stored CO<sub>2</sub> is not reported as an emission; no removal</dd>
+            <dt>Conditions</dt><dd>Chapters 12 and 14 geologic-storage requirements (section 3)</dd>
+          </dl>
+        </div>
+        <div class="col">
+          <h3>DACCS</h3>
+          <svg viewBox="0 0 260 172" role="img" aria-label="DACCS: CO2 is removed from the atmosphere by a direct air capture unit and stored in a geologic reservoir.">
+            <defs>
+              <marker id="m2c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-capture"/></marker>
+            </defs>
+            <rect x="0" y="0" width="260" height="28" rx="6" class="air"/>
+            <text x="10" y="18" class="t-sm muted">Atmosphere</text>
+            <line x1="132" y1="28" x2="132" y2="58" class="edge stroke-capture" marker-end="url(#m2c)"/>
+            <text x="140" y="48" class="t-sm txt-capture">removed from air</text>
+            <rect x="80" y="62" width="104" height="40" rx="6" class="node"/>
+            <text x="132" y="80" text-anchor="middle" class="t">Direct air</text>
+            <text x="132" y="95" text-anchor="middle" class="t-sm muted">capture unit</text>
+            <line x1="132" y1="102" x2="132" y2="128" class="edge stroke-capture" marker-end="url(#m2c)"/>
+            <text x="140" y="120" class="t-sm txt-capture">stored</text>
+            <rect x="0" y="132" width="260" height="38" rx="6" class="soft-storage"/>
+            <text x="130" y="155" text-anchor="middle" class="t-sm">Storage reservoir</text>
+          </svg>
+          <dl>
+            <dt>Origin of the carbon</dt><dd>CO<sub>2</sub> removed directly from the atmosphere</dd>
+            <dt>LSR term</dt><dd>“Technological CO<sub>2</sub> removals with geologic storage”</dd>
+            <dt>Table 14.1: a removal?</dt><dd><span class="ans yes">Yes</span></dd>
+            <dt>Inventory effect</dt><dd>Reported as removals with geologic storage</dd>
+            <dt>Conditions</dt><dd>Chapters 12 and 14 geologic-storage requirements</dd>
+          </dl>
+        </div>
+        <div class="col">
+          <h3>BECCS</h3>
+          <svg viewBox="0 0 260 172" role="img" aria-label="BECCS: CO2 is taken up by biomass growth, the biomass is used for energy, the biogenic CO2 is captured and stored. Land conditions under Requirement 25 apply.">
+            <defs>
+              <marker id="m3s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+              <marker id="m3c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-capture"/></marker>
+            </defs>
+            <rect x="0" y="0" width="260" height="28" rx="6" class="air"/>
+            <text x="10" y="18" class="t-sm muted">Atmosphere</text>
+            <line x1="54" y1="28" x2="54" y2="58" class="edge stroke-capture" marker-end="url(#m3c)"/>
+            <text x="62" y="48" class="t-sm txt-capture">growth</text>
+            <rect x="12" y="62" width="84" height="40" rx="6" class="node"/>
+            <text x="54" y="80" text-anchor="middle" class="t">Biomass</text>
+            <text x="54" y="95" text-anchor="middle" class="t-sm muted">from land</text>
+            <line x1="96" y1="82" x2="140" y2="82" class="edge" marker-end="url(#m3s)"/>
+            <text x="119" y="76" text-anchor="middle" class="t-sm">fuel</text>
+            <rect x="144" y="62" width="104" height="40" rx="6" class="node"/>
+            <text x="196" y="80" text-anchor="middle" class="t">Bioenergy</text>
+            <text x="196" y="95" text-anchor="middle" class="t-sm muted">+ capture</text>
+            <line x1="196" y1="102" x2="196" y2="128" class="edge stroke-capture" marker-end="url(#m3c)"/>
+            <text x="190" y="120" text-anchor="end" class="t-sm txt-capture">captured</text>
+            <text x="54" y="120" text-anchor="middle" class="t-sm txt-gap">Req. 25 land tests</text>
+            <rect x="0" y="132" width="260" height="38" rx="6" class="soft-storage"/>
+            <text x="130" y="155" text-anchor="middle" class="t-sm">Storage reservoir</text>
+          </svg>
+          <dl>
+            <dt>Origin of the carbon</dt><dd>Biogenic CO<sub>2</sub> produced when biomass is converted into energy</dd>
+            <dt>LSR term</dt><dd>“Captured biogenic CO<sub>2</sub> with geologic storage”</dd>
+            <dt>Table 14.1: a removal?</dt><dd><span class="ans yes">Yes</span>, subject to conditions</dd>
+            <dt>Inventory effect</dt><dd>Removals with geologic storage, if all requirements are met</dd>
+            <dt>Extra conditions</dt><dd>Requirement 25 (agricultural feedstock): count life cycle emissions, land use and leakage on sourcing lands; no significant land use change (less than 5 percent of the sourcing area). Forest feedstock rules pending.</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="strip-gap"><b>Not addressed: biomass co-firing at a fossil capture plant.</b> No LSR text discusses a plant that burns both fossil fuel and biomass and captures the mixed CO<sub>2</sub>. See the gap note below.</div>
+      <figcaption>Different carbon origin, different accounting. Fossil CCS captures CO<sub>2</sub> from fossil fuel and industrial sources at a point source, which LSR records as a prevented emission, not a removal. DACCS and BECCS start from atmospheric CO<sub>2</sub> and can be removals; BECCS only under Requirement 25. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance §14.1, Table 14.1, pp.343–351</a> <a class="cite inforce" href="sources.html#r1-s2">LSR Standard Req. 25, p.80</a></figcaption>
+    </figure>
+
+    <div class="quote">
+      <blockquote><p>“Captured CO<sub>2</sub> pathways with geologic storage where the stored carbon is derived from fossil fuels or other carbon resources that are part of the long-term carbon cycle (e.g., CO<sub>2</sub> capture of process emissions from cement production) are not accounted for as CO<sub>2</sub> removals. Instead, capture of fossil CO<sub>2</sub> from a point source prevents emissions if that CO<sub>2</sub> is captured and stored.”</p></blockquote>
+      <div class="who">LSR Guidance v1.0, p.350 · <a class="cite inforce" href="sources.html#r1-s1">source</a></div>
+    </div>
+
+    <div class="prose">
+      <p>The physical difference is concentration: ambient air at about 420 ppm (0.04 percent) against typically 3 to 20 percent in concentrated sources. The accounting difference is the carbon cycle. Stored CO<sub>2</sub> can be a removal only “if the CO<sub>2</sub> originates from biological or technological sinks that are part of the short-term carbon cycle”.
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.351</a>
+        The 2004 Corporate Standard drew a similar line: sequestered atmospheric carbon “does not include GHGs captured through carbon capture and storage.”
+        <a class="cite inforce" href="sources.html#r1-s4">Corporate Standard 2004, glossary p.101</a></p>
+      <p>Both sides face the same Chapter 12 and Chapter 14 requirements (Table 14.1 note). If the origin of injected CO<sub>2</sub> “is unknown … Requirement 21.GS is not met and removals cannot be reported.”
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.350, p.373</a></p>
+    </div>
+
+    <div class="grid-2">
+      <div class="callout inference"><div class="label">Inference · terminology</div><p>LSR says fossil CCS “prevents emissions”. It keeps “avoided emissions” for impacts outside the inventory, which “must not be included in or deducted from the company's scope 1, 2, or 3 inventory” (p.409). Describe fossil CCS as an inventory non-emission, not an avoided-emissions claim. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.350, p.409</a></p></div>
+      <div class="callout gap"><div class="label">Gap · co-firing</div><p>No LSR text addresses biomass co-firing at a capture plant. <span class="tag inf">Inference</span> Equation 14.2 splits injected CO<sub>2</sub> by fraction, so the fossil share would be a non-emission and only the biogenic share a possible removal, subject to Requirement 25. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.346, p.371</a></p></div>
+    </div>
+  </section>
+
+  <section class="section" id="s2">
+    <div class="section-head">
+      <div class="eyebrow">2 · Reporting roles</div>
+      <h2>Follow the CO<sub>2</sub>: who reports what</h2>
+      <p>The Guidance assigns each stage of the storage pathway to a scope for three parties: the generator that captures, the company buying its power, and the storage operator.</p>
+    </div>
+
+    <div class="prose">
+      <p>Guidance §14.4.1.4 gives parallel lists for the capturing facility owner and for buyers of its electricity, steam, heat or cooling; Table 14.5 adds the storage company. These are Guidance imperatives (“Do not report…”), not Standard shall-statements, and the buyer list is not in Standard v1.1.
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance §14.4.1.4, pp.359–360; Table 14.5, p.363</a>
+        <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1</a></p>
+      <p>Every “not reported” below carries the Table 14.5 condition: “If the requirements for reporting removals or CO<sub>2</sub> capture with geologic storage are met.”
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance Table 14.5 note a, p.363</a></p>
+    </div>
+
+    <div class="scrolly">
+      <div class="scrolly-figure">
+        <figure class="fig-frame">
+          <svg viewBox="0 0 480 410" role="img" aria-label="Flow of CO2 from a fossil power plant: uncaptured CO2 leaves the stack; captured CO2 passes through capture and compression, transport, an injection site and into a geologic reservoir, with a branch where oil and gas are produced by enhanced oil recovery. Labels give the scope in which the generator (G) and the power buyer (B) report each stage. Nothing is drawn as a negative emission.">
+            <defs>
+              <marker id="arS" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+              <marker id="arC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-capture"/></marker>
+              <marker id="arF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-fossil"/></marker>
+            </defs>
+            <rect x="0" y="0" width="480" height="30" rx="6" class="air"/>
+            <text x="10" y="20" class="t-sm muted">Atmosphere</text>
+            <g data-step="0">
+              <rect x="108" y="60" width="16" height="32" class="node"/>
+              <rect x="12" y="92" width="124" height="80" rx="8" class="node"/>
+              <text x="74" y="118" text-anchor="middle" class="t-lg">Power plant</text>
+              <text x="74" y="135" text-anchor="middle" class="t-sm muted">fossil fuel burned</text>
+              <text x="74" y="158" text-anchor="middle" class="t-sm">not captured: counted</text>
+              <line x1="116" y1="58" x2="116" y2="36" class="edge stroke-fossil" marker-end="url(#arF)"/>
+              <text x="130" y="50" class="t-sm txt-fossil">uncaptured CO₂</text>
+            </g>
+            <g data-step="1">
+              <line x1="136" y1="132" x2="174" y2="132" class="edge" marker-end="url(#arS)"/>
+              <text x="156" y="124" text-anchor="middle" class="t-sm">flue gas</text>
+              <rect x="176" y="92" width="124" height="80" rx="8" class="node"/>
+              <text x="238" y="118" text-anchor="middle" class="t-lg">Capture unit</text>
+              <text x="238" y="135" text-anchor="middle" class="t-sm muted">+ compression</text>
+              <text x="238" y="158" text-anchor="middle" class="t-sm txt-capture">stored: not reported</text>
+            </g>
+            <g data-step="2">
+              <line x1="300" y1="132" x2="338" y2="132" class="edge stroke-capture" marker-end="url(#arC)"/>
+              <text x="320" y="124" text-anchor="middle" class="t-sm txt-capture">CO₂</text>
+              <rect x="340" y="92" width="124" height="80" rx="8" class="node"/>
+              <text x="402" y="118" text-anchor="middle" class="t-lg">Transport</text>
+              <text x="402" y="135" text-anchor="middle" class="t-sm muted">pipeline or ship</text>
+              <text x="402" y="158" text-anchor="middle" class="t-sm">G cat 9 · B cat 3</text>
+            </g>
+            <g data-step="3">
+              <line x1="402" y1="172" x2="402" y2="224" class="edge stroke-capture" marker-end="url(#arC)"/>
+              <text x="410" y="203" class="t-sm txt-capture">delivered</text>
+              <rect x="340" y="226" width="124" height="64" rx="8" class="node"/>
+              <text x="402" y="252" text-anchor="middle" class="t-lg">Injection site</text>
+              <text x="402" y="274" text-anchor="middle" class="t-sm">G cat 12 · B cat 3</text>
+              <line x1="402" y1="290" x2="402" y2="334" class="edge stroke-capture" marker-end="url(#arC)"/>
+              <text x="410" y="317" class="t-sm txt-capture">injected</text>
+            </g>
+            <g data-step="4">
+              <rect x="12" y="336" width="452" height="66" rx="8" class="soft-storage"/>
+              <text x="290" y="358" text-anchor="middle" class="t-lg">Geologic reservoir</text>
+              <text x="290" y="376" text-anchor="middle" class="t-sm">Storage operator: no scope 3 emissions for stored CO₂</text>
+              <text x="290" y="393" text-anchor="middle" class="t-sm muted">ongoing monitoring · losses counted the year they occur</text>
+            </g>
+            <g data-step="5">
+              <rect x="12" y="226" width="188" height="64" rx="8" class="node"/>
+              <text x="106" y="248" text-anchor="middle" class="t-lg">EOR branch</text>
+              <text x="106" y="265" text-anchor="middle" class="t-sm muted">oil and gas produced, then used</text>
+              <text x="106" y="282" text-anchor="middle" class="t-sm">G cat 12 · 19.GS downstream</text>
+              <line x1="106" y1="334" x2="106" y2="292" class="edge" marker-end="url(#arS)"/>
+              <text x="114" y="318" class="t-sm">produced</text>
+            </g>
+            <text x="270" y="244" text-anchor="middle" class="t-sm muted">G = generator</text>
+            <text x="270" y="260" text-anchor="middle" class="t-sm muted">B = power buyer</text>
+            <text x="270" y="276" text-anchor="middle" class="t-sm muted">cat = scope 3 category</text>
+          </svg>
+          <figcaption>Captured fossil CO<sub>2</sub> leaves the generator’s scope 1 and the buyer’s scope 2 as a non-emission, never as a negative number. Everything downstream of the capture facility moves into scope 3. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance §14.4.1.4, Table 14.5</a></figcaption>
+        </figure>
+      </div>
+      <div class="scrolly-steps">
+        <div class="step"><div class="step-card"><div class="n">STEP 1 · STACK</div><h3>What is not captured stays in</h3>
+          <p>“Any CO<sub>2</sub> that is not captured, and all GHG emissions due to the capture process itself, must be fully accounted for.” <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.350</a></p>
+          <div class="roles">
+            <div><b>Generator</b><span>Uncaptured stack CO<sub>2</sub> is an emission of its facility, so scope 1. <span class="tag inf">Inference</span> LSR states “must be fully accounted for” but names no scope for it.</span></div>
+            <div><b>Buyer</b><span>LSR’s general scope 2 text: “Scope 2 emissions include all fossil fuel and industrial GHG emissions… released from the generation process.” <a class="cite inforce" href="sources.html#r1-s1">p.47</a> <span class="tag inf">Inference</span> That covers uncaptured stack CO<sub>2</sub>.</span></div>
+            <div><b>Storage op.</b><span>No role at this stage.</span></div>
+          </div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 2 · CAPTURE AND COMPRESSION</div><h3>Captured and stored: not reported</h3>
+          <p>The captured tonnes drop out of the inventory; they are not subtracted. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance pp.359–360</a></p>
+          <div class="roles">
+            <div><b>Generator</b><span>“Do not report scope 1 emissions for the CO<sub>2</sub> that is captured and stored in a geologic reservoir”. Fugitive captured CO<sub>2</sub> released at the facility goes in scope 1. Show the capture “as a reduction in scope 1 emissions compared to previous years”, if the plant emitted before.</span></div>
+            <div><b>Buyer</b><span>“Do not report scope 2 emissions for the CO<sub>2</sub> that is captured and stored in a geologic reservoir”. Fugitive captured CO<sub>2</sub> released at the facility goes in scope 2.</span></div>
+            <div><b>Storage op.</b><span>No role yet.</span></div>
+          </div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 3 · TRANSPORT</div><h3>Captured CO<sub>2</sub> is treated as a product</h3>
+          <p>“companies should treat captured CO<sub>2</sub> as a product.” At a shared hub, emissions should be allocated “based on physical allocation of the volume of CO<sub>2</sub> supplied”. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.360</a></p>
+          <div class="roles">
+            <div><b>Generator</b><span>Transport of captured CO<sub>2</sub> to the reservoir: scope 3, category 9 (Downstream transportation and distribution).</span></div>
+            <div><b>Buyer</b><span>“emissions from other processes in the geologic storage pathway and any fugitive emissions of captured CO<sub>2</sub> not occurring at the capture facility”: scope 3, category 3.</span></div>
+            <div><b>Storage op.</b><span>Not addressed for this stage.</span></div>
+          </div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 4 · INJECTION</div><h3>End-of-life treatment of a sold product</h3>
+          <p>The operator is “the entity that holds a well permit or license approved for CO<sub>2</sub> storage by the relevant authorities of the jurisdiction(s).” <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.360</a></p>
+          <div class="roles">
+            <div><b>Generator</b><span>Emissions from injection into geologic reservoirs: scope 3, category 12 (End-of-life treatment of sold products).</span></div>
+            <div><b>Buyer</b><span>Scope 3, category 3 (other processes in the pathway).</span></div>
+            <div><b>Storage op.</b><span>Holds the permit, which commonly includes “A monitoring plan and post-closure plan” and “Proof of financial security”.</span></div>
+          </div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 5 · RESERVOIR</div><h3>Stored means still stored, and monitored</h3>
+          <p>Only the portion “that remains stored” counts; losses are booked in the year they occur (section 3). <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.371</a></p>
+          <div class="roles">
+            <div><b>Generator</b><span>Fugitive captured CO<sub>2</sub> not occurring at the capture facility: “the relevant scope 3 category”.</span></div>
+            <div><b>Buyer</b><span>Same emissions: scope 3, category 3. The monitoring duty also reaches companies that did not report scope 2 emissions for captured CO<sub>2</sub> (p.365).</span></div>
+            <div><b>Storage op.</b><span>Table 14.5: “No emissions reported in scope 3 for the captured and stored CO<sub>2</sub>”. The authority should review the permit after the first five years and every 10 years thereafter. <a class="cite inforce" href="sources.html#r1-s1">pp.361, 363</a></span></div>
+          </div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 6 · EOR BRANCH</div><h3>Oil and gas from the reservoir count too</h3>
+          <p>Requirement 19.GS: companies “shall account for all downstream GHG emissions associated with the extraction, processing, transportation, distribution, storage, and use (i.e., combustion) of oil, natural gas, or other hydrocarbons produced from the geologic reservoir”. <a class="cite inforce" href="sources.html#r1-s2">LSR Standard 19.GS, pp.78–81</a></p>
+          <div class="roles">
+            <div><b>Generator</b><span>“GHG emissions associated with oil and gas produced through enhanced oil recovery”: scope 3, category 12. <a class="cite inforce" href="sources.html#r1-s1">p.360</a></span></div>
+            <div><b>Buyer</b><span>19.GS says “scope 1, scope 2, and/or scope 3”. <span class="tag inf">Inference</span> Under the buyer list these are “other processes in the geologic storage pathway”, so category 3. LSR names no buyer category for EOR.</span></div>
+            <div><b>Storage op.</b><span>EOR losses reduce the stored amount in Equation 14.2.</span></div>
+          </div></div></div>
+      </div>
+    </div>
+
+    <details>
+      <summary>Full text: the two §14.4.1.4 lists and the Table 14.5 rows</summary>
+      <div class="stack">
+    <div class="grid-2">
+      <div class="quote">
+        <blockquote><p>“Companies that own or control a facility that captures CO<sub>2</sub> that is subsequently stored in a geologic reservoir: • Do not report scope 1 emissions for the CO<sub>2</sub> that is captured and stored in a geologic reservoir; • Report any fugitive emissions of captured CO<sub>2</sub> released at that facility in scope 1; • Report emissions from other processes in the geologic storage pathway and any fugitive emissions of captured CO<sub>2</sub> not occurring at the capture facility in the relevant scope 3 category; • Reflect the captured CO<sub>2</sub> as a reduction in scope 1 emissions compared to previous years, if CO<sub>2</sub> was emitted from the facility in prior years.”</p></blockquote>
+        <div class="who">LSR Guidance v1.0, §14.4.1.4, pp.359–360 · <a class="cite inforce" href="sources.html#r1-s1">source</a></div>
+      </div>
+      <div class="quote">
+        <blockquote><p>“Companies that purchase electricity, steam, heat, or cooling from a facility that captures CO<sub>2</sub> that is then stored in a geologic reservoir: • Do not report scope 2 emissions for the CO<sub>2</sub> that is captured and stored in a geologic reservoir; • Report any fugitive emissions of captured CO<sub>2</sub> released at that facility in scope 2; • Report emissions from other processes in the geologic storage pathway and any fugitive emissions of captured CO<sub>2</sub> not occurring at the capture facility in scope 3, category 3 (fuel- and energy-related activities); • Reflect the captured CO<sub>2</sub> as a reduction in scope 2 emissions compared to previous years, if CO<sub>2</sub> was emitted from the facility in prior years.”</p></blockquote>
+        <div class="who">LSR Guidance v1.0, §14.4.1.4, pp.359–360 · <a class="cite inforce" href="sources.html#r1-s1">source</a></div>
+      </div>
+    </div>
+
+    <div class="scroll-x"><table class="tbl">
+      <caption class="sr-only">Table 14.5 rows for fossil CCS</caption>
+      <thead><tr><th>Table 14.5 row (CCS)</th><th>Reporting</th></tr></thead>
+      <tbody>
+        <tr><td>“A fossil fuel power plant capturing fossil CO<sub>2</sub> and transferring it to a geologic storage company (CCS)”</td><td>“No emissions reported in scope 1 for the captured and stored CO<sub>2</sub>”</td></tr>
+        <tr><td>“A geologic storage company that acquires captured fossil CO<sub>2</sub> from a fossil fuel power plant (CCS)”</td><td>“No emissions reported in scope 3 for the captured and stored CO<sub>2</sub>”</td></tr>
+        <tr><td>“A company purchasing electricity, steam, heating, or cooling from a fossil fuel power plant capturing fossil CO<sub>2</sub> and transferring it to a geologic storage company (CCS)”</td><td>“No emissions reported in scope 2 for the captured and stored CO<sub>2</sub>”</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">Note a to Table 14.5 applies to all three rows. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance Table 14.5, p.363</a></p>
+
+      </div>
+    </details>
+
+    <div class="callout note"><div class="label">Contrast · BECCS power</div><p>A buyer of power from a biomass plant with capture may report scope 3 removals with geologic storage in category 3, if all removal requirements are met. LSR places them in scope 3, not scope 2: “removals with geologic storage associated with purchased bioenergy are accounted for and reported in scope 3, category 3.” <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.47, p.307; Table 14.4, p.359</a></p></div>
+  </section>
+
+  <section class="section" id="s3">
+    <div class="section-head">
+      <div class="eyebrow">3 · Conditions</div>
+      <h2>The geologic-storage gate</h2>
+      <p>“Not reported” is conditional. A company earns it by meeting the Chapter 12 and Chapter 14 requirements, including the four geologic-storage requirements below (20.GS applies to scope 3 claims), and keeps it only while monitoring shows the CO<sub>2</sub> is still underground.</p>
+    </div>
+
+    <div class="prose">
+      <p>A company in a fossil CCS value chain “must satisfy the same requirements to not report fossil emissions of CO<sub>2</sub> that is captured and prevented at a source and ultimately stored in geologic reservoirs.”
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.349</a>
+        Requirement 1 brings it into scope: companies “shall follow the Land Sector and Removals Standard and Guidance if … the company chooses to account for and report CO<sub>2</sub> removals or CO<sub>2</sub> capture with geologic storage in the current year or has done so in previous years.”
+        <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, Req. 1, p.5</a></p>
+    </div>
+
+    <div class="callout inference"><div class="label">Inference · who is in scope</div><p>From 01 Jan 2027, a fossil generator that wants to leave captured CO<sub>2</sub> out of scope 1 is choosing to report “CO<sub>2</sub> capture with geologic storage”. That choice puts it in scope of LSR Chapter 14. <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, p.ii, Req. 1</a></p></div>
+
+    <div class="checklist" aria-label="Geologic storage requirements">
+      <div class="check"><div class="mark">19</div><div class="body"><b>19.GS · Cradle to grave, including EOR</b>
+        <span>Count all life cycle emissions along the storage pathway, cradle to grave. With EOR, also count the extraction, processing, transport, distribution, storage and combustion of the oil and gas produced. Report them in scope 1, 2 and/or 3.</span>
+        <details><summary>Verbatim text</summary><p><span class="q">“If companies account for and report removals with geologic storage or CO<sub>2</sub> capture with geologic storage in their GHG inventory, they shall meet the following requirements: • Life cycle GHG emissions: Companies shall account for all life cycle GHG emissions that occur throughout the geologic storage pathway (i.e., cradle to grave). • This includes GHG emissions, land use, and land carbon leakage (where required) from the product life cycle(s) associated with the stored CO<sub>2</sub> or carbon, and report them in the corresponding reporting category in scope 1, scope 2, and/or scope 3. • Enhanced oil and gas recovery: For geologic storage pathways with enhanced oil and gas recovery, companies shall account for all downstream GHG emissions associated with the extraction, processing, transportation, distribution, storage, and use (i.e., combustion) of oil, natural gas, or other hydrocarbons produced from the geologic reservoir and report such emissions in scope 1, scope 2, and/or scope 3.”</span></p></details>
+        <span class="note">The 19.GS “Operational boundary” bullet (“a single tonne of CO<sub>2</sub> removal with geologic storage shall not be reported by more than one entity under scope 1”) is written for removals, not captured fossil CO<sub>2</sub>. <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, pp.78–81</a></span></div></div>
+      <div class="check"><div class="mark">20</div><div class="body"><b>20.GS · Scope 3 physical traceability</b>
+        <span>A scope 3 reporter needs physical traceability to the capturing entity and to the injection and storage operator.</span>
+        <details><summary>Verbatim text</summary><p><span class="q">“If companies account for and report scope 3 removals with geologic storage or CO<sub>2</sub> capture with geologic storage in their GHG inventory, they shall account for and report net removals with geologic storage (or no emissions associated with CO<sub>2</sub> capture with geologic storage) only if they have physical traceability (following Requirement 8) to the entity (or entities) capturing the CO<sub>2</sub> received at the injection site or geologic storage hub system, and the entity (or entities) operating the CO<sub>2</sub> injection site(s) and geologic storage reservoir(s).”</span></p></details>
+        <span class="note">Applies to scope 3 claims. There is no scope 2 version (section 5). <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, 20.GS</a></span></div></div>
+      <div class="check"><div class="mark">21</div><div class="body"><b>21.GS · Site-specific data, with uncertainty</b>
+        <span>Use data specific to the injection site, the reservoir and the CO<sub>2</sub> inputs, and give quantitative uncertainty estimates.</span>
+        <details><summary>Verbatim text</summary><p><span class="q">“…shall account for and report net removals with geologic storage (or no emissions associated with CO<sub>2</sub> capture with geologic storage) only if net CO<sub>2</sub> removals with geologic storage, CO<sub>2</sub> capture with geologic storage, and life cycle GHG emissions for the CO<sub>2</sub> stored in the geologic reservoir(s) are accounted for using data specific to the CO<sub>2</sub> injection site(s), geologic storage reservoir(s), and CO<sub>2</sub> inputs into the geologic storage reservoir(s). • Uncertainty: Companies shall … only if they provide quantitative uncertainty estimates.”</span></p></details>
+        <span class="note"><a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, 21.GS</a></span></div></div>
+      <div class="check"><div class="mark">23</div><div class="body"><b>23.GS · Permanence: monitoring and losses</b>
+        <span>Document ongoing monitoring in a monitoring plan that can detect losses. Book losses in the year they occur, as fossil fuel and industrial emissions or as reversals (figure below).</span>
+        <details><summary>Verbatim text</summary><p><span class="q">“• Ongoing storage monitoring: Companies shall account for and report net removals with geologic storage (or no emissions associated with CO<sub>2</sub> capture with geologic storage) only if ongoing storage monitoring is documented in a monitoring plan to ensure carbon remains stored in geologic reservoirs and the company can detect losses of stored carbon from relevant geologic carbon pools. • Losses of stored carbon: Companies shall account for net geologic carbon stock losses of previously reported net removals or captured CO<sub>2</sub> with geologic storage in the year the losses occur, as either: • Fossil fuel and industrial emissions, if the carbon pools are part of the GHG inventory boundary in the reporting year; or • Reversals from geologic storage, if the carbon pools are no longer in the GHG inventory boundary in the reporting year. If companies lose the ability to monitor geologic carbon stocks associated with previously reported removals, companies shall assume previously reported removals are emitted and report reversals from geologic storage.”</span></p></details>
+        <span class="note"><a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, 23.GS</a></span></div></div>
+      <div class="check open"><div class="mark">?</div><div class="body"><b>Loss of monitoring for captured fossil CO<sub>2</sub></b>
+        <span><span class="tag gap">Gap</span> The deemed-reversal sentence of 23.GS speaks of “previously reported removals”; the Guidance at p.368 of “previously reported CO<sub>2</sub> removals with geologic storage”. Whether losing monitoring triggers a reversal for captured fossil CO<sub>2</sub> is not stated. <span class="tag inf">Inference</span> The “losses of stored carbon” bullet does cover captured CO<sub>2</sub>. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.368</a></span></div></div>
+    </div>
+
+    <div class="prose">
+      <h3>What a loss becomes</h3>
+      <p>A loss is booked in the year it happens. Its label depends on whether the reservoir is still inside the reporting company’s inventory boundary. The Standard’s reporting list also names “Reversals of CO<sub>2</sub> capture with geologic storage: Net carbon losses from geologic reservoirs associated with previously disclosed captured CO<sub>2</sub> (no longer in the inventory boundary).”
+        <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, p.81</a></p>
+    </div>
+
+    <div id="loss" data-mode="in" class="stack">
+      <div class="seg" data-target="#loss" role="group" aria-label="Where is the reservoir relative to the inventory boundary?">
+        <button data-value="in" aria-pressed="true">Pool still in inventory boundary</button>
+        <button data-value="out" aria-pressed="false">Pool no longer in boundary</button>
+      </div>
+      <figure class="fig-frame">
+        <svg viewBox="0 0 400 160" role="img" aria-label="A loss of previously reported captured CO2 from geologic storage is reported in the year it occurs, as fossil fuel and industrial emissions if the pool is in the inventory boundary, or as a reversal of CO2 capture with geologic storage if it is not.">
+          <defs><marker id="arL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+          <rect x="6" y="24" width="132" height="112" rx="8" class="soft-storage"/>
+          <text x="72" y="62" text-anchor="middle" class="t-lg">Previously</text>
+          <text x="72" y="80" text-anchor="middle" class="t-lg">reported</text>
+          <text x="72" y="98" text-anchor="middle" class="t-lg">captured CO₂</text>
+          <text x="72" y="116" text-anchor="middle" class="t">in storage</text>
+          <line x1="140" y1="80" x2="250" y2="80" class="edge" marker-end="url(#arL)"/>
+          <text x="195" y="70" text-anchor="middle" class="t">loss, booked</text>
+          <text x="195" y="98" text-anchor="middle" class="t">the year it</text>
+          <text x="195" y="114" text-anchor="middle" class="t">occurs</text>
+          <rect x="254" y="24" width="140" height="112" rx="8" class="node"/>
+          <g data-m="in">
+            <text x="324" y="62" text-anchor="middle" class="t-lg">Fossil fuel and</text>
+            <text x="324" y="80" text-anchor="middle" class="t-lg">industrial</text>
+            <text x="324" y="98" text-anchor="middle" class="t-lg">emissions</text>
+            <text x="324" y="118" text-anchor="middle" class="t muted">physical inventory</text>
+          </g>
+          <g data-m="out">
+            <text x="324" y="58" text-anchor="middle" class="t-lg">Reversals of</text>
+            <text x="324" y="76" text-anchor="middle" class="t-lg">CO₂ capture with</text>
+            <text x="324" y="94" text-anchor="middle" class="t-lg">geologic storage</text>
+            <text x="324" y="118" text-anchor="middle" class="t muted">pool left boundary</text>
+          </g>
+        </svg>
+        <figcaption><span data-mode-show="in">In boundary: the loss returns to the inventory as an ordinary fossil emission. Fugitive CO<sub>2</sub> is also shown under “gross CO<sub>2</sub> fluxes”, separately from the physical inventory. <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, p.81</a></span><span data-mode-show="out" hidden>Out of boundary: captured CO<sub>2</sub> can be reversed, not only removals. A reversal is “An emission from a carbon pool that stores carbon associated with a removal or captured CO<sub>2</sub> that was previously reported by the reporting company, and that is no longer within the inventory boundary.” <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1 glossary, p.120</a></span></figcaption>
+      </figure>
+    </div>
+
+    <div class="prose">
+      <h3>Two equations, in words</h3>
+      <p>“Companies that report no CO<sub>2</sub> emissions in scope 1, scope 2, or scope 3 for CO<sub>2</sub> that is captured and stored in geologic reservoirs must estimate any fugitive emissions of captured CO<sub>2</sub> following Equation 14.1 and track any losses of stored carbon using Equation 14.2.”
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance §14.5.3, p.371</a></p>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h4>Equation 14.1 · fugitive emissions of captured CO<sub>2</sub></h4>
+        <div class="eq">E_CAPCO2 = CO2_CAP − CO2_STOR</div>
+        <p>Fugitive emissions of captured CO<sub>2</sub> equal the CO<sub>2</sub> captured minus the CO<sub>2</sub> capture with geologic storage. Whatever is captured but does not end up stored is an emission.</p>
+      </div>
+      <div class="card">
+        <h4>Equation 14.2 · CO<sub>2</sub> capture with geologic storage</h4>
+        <div class="eq">CO2_STOR = [CO2_INJ − CO2_L − CO2_F] × f_IC</div>
+        <p>Take the CO<sub>2</sub> injected, subtract losses from enhanced oil recovery and fugitive CO<sub>2</sub> from the reservoir, then multiply by the fraction of injected CO<sub>2</sub> that came from captured fossil fuel and industrial CO<sub>2</sub>.</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>The result “should only be reported for the portion of captured CO<sub>2</sub> injected into a geologic reservoir that remains stored. If this value is negative for a given year, it should be reported as losses of stored carbon”. The data checklist asks for injected CO<sub>2</sub> in the reporting year, the fraction from captured fossil fuel and industrial CO<sub>2</sub>, EOR losses if applicable, and fugitive CO<sub>2</sub> from the reservoir.
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.371; Table 14.6, p.370</a></p>
+    </div>
+    <details>
+      <summary>Should-level recommendations: monitoring plan, custody transfer, permanence</summary>
+      <div class="prose">
+      <p>Recommendations use “should”. The monitoring plan “should include a site characterization, description of how the operations at the geologic reservoir and monitoring comply with applicable regulations, methods used to detect any fugitive CO<sub>2</sub> emissions, frequency of monitoring, and data quality control procedures”. At each custody transfer, “companies should report the net amount of CO<sub>2</sub> (in tonnes) at each custody transfer, where the net amount is the difference between CO<sub>2</sub> inputs and outputs, corrected by any changes in composition of the CO<sub>2</sub> stream, if applicable.”
+        <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, p.82</a></p>
+      <p>On permanence, the Guidance notes that well-run storage “can result in zero CO<sub>2</sub> losses from geologic storage (e.g., defined as less than 1 percent of the total injected mass lost over 100 to 1000 years).” Where liabilities pass to a state or other jurisdiction and the operator demonstrates that storage is permanent and without risks of losses, “the date and condition of the transfer of liabilities should be clarified, and post-closure monitoring may follow regulatory guidance.”
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.366, p.367</a></p>
+      </div>
+    </details>
+    <div class="callout gap"><div class="label">Gap · capture rate</div><p>LSR gives no default or typical capture rate. The scope 1 effect follows from metered captured and stored quantities, not from a percentage. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance §14.5.3</a></p></div>
+  </section>
+
+  <section class="section" id="s4">
+    <div class="section-head">
+      <div class="eyebrow">4 · CCU and EOR</div>
+      <h2>Utilization is not storage</h2>
+      <p>Only geologic storage earns the non-emission treatment in Chapter 14. CO<sub>2</sub> put into products is a temporary non-emission, and the optional product-storage category excludes fossil carbon.</p>
+    </div>
+
+    <figure class="fig-frame">
+      <svg viewBox="0 0 480 272" role="img" aria-label="Three destinations for captured fossil CO2: dedicated geologic storage, which can be not reported if the geologic storage requirements are met; geologic storage with enhanced oil recovery, which is allowed but requires counting downstream oil and gas emissions; and products and other uses, which are temporary storage and not a geologic storage pathway.">
+        <defs><marker id="arU" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect x="12" y="108" width="120" height="56" rx="8" class="node"/>
+        <text x="72" y="132" text-anchor="middle" class="t-lg">Captured</text>
+        <text x="72" y="150" text-anchor="middle" class="t-lg">fossil CO₂</text>
+        <path d="M132,126 C168,126 162,50 196,50" class="edge" marker-end="url(#arU)"/>
+        <text x="158" y="80" text-anchor="end" class="t">inject</text>
+        <line x1="132" y1="136" x2="196" y2="136" class="edge" marker-end="url(#arU)"/>
+        <text x="165" y="130" text-anchor="middle" class="t">EOR</text>
+        <path d="M132,146 C168,146 162,222 196,222" class="edge dash" marker-end="url(#arU)"/>
+        <text x="158" y="198" text-anchor="end" class="t">use</text>
+        <rect x="200" y="14" width="268" height="72" rx="8" class="soft-storage"/>
+        <text x="334" y="36" text-anchor="middle" class="t-lg">Dedicated geologic storage</text>
+        <text x="334" y="55" text-anchor="middle" class="t">not reported as an emission if the</text>
+        <text x="334" y="71" text-anchor="middle" class="t">geologic-storage requirements are met</text>
+        <rect x="200" y="100" width="268" height="72" rx="8" class="node"/>
+        <text x="334" y="122" text-anchor="middle" class="t-lg">Geologic storage with EOR</text>
+        <text x="334" y="141" text-anchor="middle" class="t">permitted; downstream oil and gas</text>
+        <text x="334" y="157" text-anchor="middle" class="t">emissions counted, cradle to grave (19.GS)</text>
+        <rect x="200" y="186" width="268" height="72" rx="8" class="node-soft"/>
+        <text x="334" y="208" text-anchor="middle" class="t-lg">Products and other uses</text>
+        <text x="334" y="227" text-anchor="middle" class="t">temporary storage, then re-release;</text>
+        <text x="334" y="243" text-anchor="middle" class="t">not a geologic storage pathway</text>
+      </svg>
+      <figcaption>Where captured fossil CO<sub>2</sub> goes decides how it is reported. Only the two geologic routes are captured CO<sub>2</sub> pathways with geologic storage; EOR carries the burden of the hydrocarbons it produces. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.351, Box 14.1 p.353</a> <a class="cite inforce" href="sources.html#r1-s2">LSR Standard 19.GS</a></figcaption>
+    </figure>
+
+    <div class="quote">
+      <blockquote><p>“Captured CO<sub>2</sub> emissions with product storage or use as an input for other production purposes (e.g., greenhouse fertilization) do not represent a captured CO<sub>2</sub> pathway with geologic storage (i.e., does not include permanent storage in geologic reservoirs). Carbon captured and stored in products represents temporary storage, followed by re-release to the atmosphere at the end of the product lifecycle. Reporting product carbon storage is optional in this Standard. Companies that choose to report product carbon storage must satisfy the requirements in Chapter 15.”</p></blockquote>
+      <div class="who">LSR Guidance v1.0, p.351 · <a class="cite inforce" href="sources.html#r1-s1">source</a></div>
+    </div>
+
+    <div class="prose">
+      <p>In Chapter 15, product storage is “reflected in a GHG inventory as a non-emission for that period of time”, and CO<sub>2</sub> of unknown origin should “conservatively” be treated “as fossil CO<sub>2</sub>.”
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance Ch.15, p.384</a></p>
+      <p>The optional product carbon storage category is narrower. Requirement 24: “The net product carbon stock change shall only include biogenic and/or TCDR-based carbon in agricultural or TCDR-based products sold by the reporting company…”. 
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.379</a></p>
+      <p>EOR is allowed, with the cradle-to-grave rule of 19.GS. Box 14.1: “Where the net geologic carbon stock change is positive and greater than the life cycle GHG emissions of the geologic storage with EOR pathway … the EOR can provide climate benefits. Where the net geologic carbon stock change is negative, it leads to net CO<sub>2</sub> emissions from geologic storage.” For the displacement of non-EOR oil and gas production, the Guidance points to the Chapter 16 consequential methods.
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance Box 14.1 p.353; p.357</a></p>
+    </div>
+    <div class="callout inference"><div class="label">Inference · fossil CCU products</div><p>TCDR-based products are products whose carbon is technologically removed CO<sub>2</sub>; if origin cannot be shown, emissions go to “fossil fuel and industrial emissions”. A product made with captured power-plant CO<sub>2</sub> is therefore not a TCDR-based product and cannot enter the optional product carbon storage category. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance §11.4.3, p.290</a> <a class="cite inforce" href="sources.html#r1-s2">LSR Standard Req. 18, p.59</a></p></div>
+  </section>
+
+  <section class="section" id="s5">
+    <div class="section-head">
+      <div class="eyebrow">5 · Limits</div>
+      <h2>What LSR does not say about scope 2</h2>
+      <p>LSR tells a power buyer what to leave out. It says nothing about the instruments a buyer would use to claim power from a specific capture plant.</p>
+    </div>
+
+    <figure class="fig-frame">
+      <div class="checklist" role="list" aria-label="Scope 2 topics: addressed or not addressed by LSR">
+        <div class="check pass" role="listitem"><div class="mark">✓</div><div class="body"><b>Buyer treatment of captured and stored CO<sub>2</sub></b><span>Addressed, in the Guidance only (§14.4.1.4, Table 14.5).</span></div></div>
+        <div class="check pass" role="listitem"><div class="mark">✓</div><div class="body"><b>Monitoring duty that reaches scope 2</b><span>Addressed (p.365, quoted below).</span></div></div>
+        <div class="check open" role="listitem"><div class="mark">?</div><div class="body"><b>Location-based vs market-based method</b><span>Not addressed.</span></div></div>
+        <div class="check open" role="listitem"><div class="mark">?</div><div class="body"><b>EACs, contractual instruments, PPAs, supplier-specific factors</b><span>Not mentioned.</span></div></div>
+        <div class="check open" role="listitem"><div class="mark">?</div><div class="body"><b>Residual mix and the Scope 2 Quality Criteria</b><span>Not mentioned.</span></div></div>
+        <div class="check open" role="listitem"><div class="mark">?</div><div class="body"><b>Physical traceability for a scope 2 claim</b><span>Scope 3 only (20.GS).</span></div></div>
+      </div>
+      <figcaption>LSR’s scope 2 coverage stops at the buyer rule and the monitoring duty. A full-text search of the Guidance for “market-based”, “location-based”, “contractual instrument”, “attribute certificate”, “energy attribute”, “renewable energy certificate”, “guarantee of origin”, “REC”, “EAC” and “residual mix” found no relevant hit. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance v1.0</a></figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>Where LSR discusses purchased electricity in general, it writes in grid-average terms: “determining the grid-average emission factors for fossil versus biogenic CO₂ emissions associated with purchased electricity”.
+        <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.48</a>
+        The 2015 Scope 2 Guidance, for its part, contains no carbon-capture text at all.
+        <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 (full-text search)</a></p>
+    </div>
+
+    <div class="grid-2">
+      <div class="quote">
+        <blockquote><p>“No emissions reporting for CO<sub>2</sub> capture with geologic storage: Ongoing storage monitoring of geologic reservoirs in the value chain of the reporting company, where the company previously did not report scope 1, scope 2, or scope 3 emissions associated with CO<sub>2</sub> capture with geologic storage.”</p></blockquote>
+        <div class="who">LSR Guidance v1.0, p.365 · <a class="cite inforce" href="sources.html#r1-s1">source</a></div>
+      </div>
+      <div class="defn"><div class="term">Book and claim</div><div class="text">“A chain of custody model in which the transfer of specified characteristics is not connected to the physical flow of material or products through the supply chain.”</div><div class="who small">LSR Standard Table 5.2, which marks it “No” for “Demonstrates physical traceability?” · <a class="cite inforce" href="sources.html#r1-s2">p.25</a></div></div>
+    </div>
+
+    <div class="prose">
+      <p>Requirement 8 adds: “Companies cannot demonstrate physical traceability using book-and-claim approaches”.
+        <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, Req. 8, p.24</a></p>
+    </div>
+
+    <div class="callout gap"><div class="label">Gap · four open questions for scope 2</div>
+      <p>(a) Whether “do not report scope 2 emissions for the CO<sub>2</sub> that is captured” applies under the location-based method, the market-based method, or both.</p>
+      <p>(b) How a buyer on a shared grid “purchases electricity from” a CCS facility: direct line, PPA, EAC or supplier-specific factor.</p>
+      <p>(c) Whether unbundled, book-and-claim certificates can carry the treatment. 20.GS requires physical traceability for scope 3 only, and Requirement 8 rules out book-and-claim for traceability.</p>
+      <p>(d) How a buyer meets 21.GS site-specific data and the p.365 monitoring duty, or reports a reversal of CO<sub>2</sub> capture years later. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance v1.0</a> <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1</a></p>
+    </div>
+
+    <div class="callout inference"><div class="label">Inference · the implied scope 2 factor</div><p>Read together, LSR implies that a scope 2 emission factor for CCS power should exclude only captured CO<sub>2</sub> that is stored and meets the geologic-storage requirements. It should include uncaptured stack CO<sub>2</sub> and capture-facility fugitive emissions. Transport, injection, storage and off-site fugitive emissions go to the buyer’s scope 3 category 3, not scope 2. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance pp.47, 359–360</a></p></div>
+
+    <div class="callout signal"><div class="label">Signal of direction · 30 Jun 2026</div><p>The only bridge from LSR to scope 2 found in the research is an endnote: “The GHG Protocol plans to update and align the Corporate Standard, Scope 2 Guidance, Scope 3 Standard, and Land Sector and Removals Standard where any differences exist.” <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, Req. 3 endnote 2, p.17</a> Separately, LSR’s interim traceability requirement “should not be interpreted as a precedent for the AMI process” and “will be revisited in future versions of this Standard to reflect the outcomes of the AMI workstream”. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance Box 5.2, p.77</a></p></div>
+
+    <div class="prose">
+      <p>The market-instrument question, whether a CCS plant’s output can back an energy attribute certificate under the Scope 2 Guidance, is taken up on the next page.</p>
+    </div>
+  </section>
+
+  <section class="section" id="s6">
+    <div class="section-head">
+      <div class="eyebrow">6 · Position</div>
+      <h2>What to take into a position</h2>
+      <p>What is settled, what is reasoned, and what is open, for a generator or a buyer of CCS power.</p>
+    </div>
+    <ul class="pos">
+      <li><span class="tag src">Sourced</span>Fossil point-source CCS is not a removal. Table 14.1 answers “No”. Captured and stored CO<sub>2</sub> is “not accounted for and reported as a removal”; it is simply not reported as an emission. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance §14.1, Table 14.1</a></li>
+      <li><span class="tag src">Sourced</span>The generator leaves captured and stored CO<sub>2</sub> out of scope 1; the buyer leaves it out of scope 2. Capture-facility fugitive emissions stay in scope 1 and scope 2. Downstream stages go to the generator’s scope 3 categories 9 and 12 and the buyer’s scope 3 category 3. This is Guidance text, conditioned on the geologic-storage requirements. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance pp.359–363</a></li>
+      <li><span class="tag src">Sourced</span>The gate is demanding: cradle-to-grave accounting including EOR products, site-specific data with quantitative uncertainty, a documented monitoring plan, and losses booked in the year they occur as fossil emissions or reversals. <a class="cite inforce" href="sources.html#r1-s2">LSR Standard 19.GS–23.GS</a></li>
+      <li><span class="tag inf">Inference</span>From 01 Jan 2027, a generator that excludes captured CO<sub>2</sub> from scope 1 is in scope of LSR Chapter 14. A scope 2 factor consistent with LSR would carry uncaptured and capture-site fugitive CO<sub>2</sub> only.</li>
+      <li><span class="tag gap">Gap</span>LSR says nothing on market-based versus location-based methods, EACs, PPAs, residual mix or the Quality Criteria, and nothing on how an unbundled-certificate buyer would meet the monitoring duty. The GHG Protocol “plans to update and align” the standards. <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, endnote 2, p.17</a></li>
+    </ul>
+    <div class="callout key"><div class="label">Takeaway</div><p>Under LSR, fossil CCS changes what is emitted, not what is removed. The stored tonnes drop out of scope 1 and scope 2 only while the geologic-storage requirements are met and monitoring continues, and LSR leaves open how that treatment would travel through a market instrument.</p></div>
+  </section>
+
+  <nav class="pager" aria-label="Pages">
+    <a class="prev" href="index.html"><span class="dir">Previous</span><span class="ttl">Start here</span></a>
+    <a class="next" href="ccs-eac.html"><span class="dir">Next</span><span class="ttl">CCS-backed EACs</span></a>
+  </nav>
+  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
+</main>
+<script src="site.js"></script>
+</body>
+</html>
