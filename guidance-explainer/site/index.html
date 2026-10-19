@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scope 2 Frontier</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+
+.modules { display: grid; gap: 18px; }
+.module { display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: start; }
+.module .num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; padding-top: 4px; }
+.module .pages { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 12px; margin-top: 8px; }
+.module .pages a { text-decoration: none; color: var(--fg); background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; display: grid; gap: 4px; min-width: 0; }
+.module .pages a:hover { border-color: var(--accent); }
+.module .pages a .q { font-family: var(--font-display); font-weight: 650; }
+.module .pages a .s { font-size: 0.92rem; color: var(--fg-2); }
+.module .pages a .k { font-family: var(--font-mono); font-size: 0.68rem; color: var(--fg-3); letter-spacing: .08em; text-transform: uppercase; }
+@media (max-width: 520px) { .module { grid-template-columns: 1fr; } .module .num { font-size: 1.6rem; } }
+.legend-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 10px; }
+
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
+    <div class="nav-links">
+      <a href="index.html">Start</a>
+      <a href="ccs-removals.html">CCS: removal or reduction?</a>
+      <a href="ccs-eac.html">CCS-backed EACs</a>
+      <a href="scope2-update.html">Oct 2026 update</a>
+      <a href="governance.html">Governance &amp; TWGs</a>
+      <a href="storage-mechanics.html">Storage ledger</a>
+      <a href="storage-revision.html">Storage &amp; incrementality</a>
+      <a href="consequential-basics.html">Impact accounting</a>
+      <a href="consequential-ccus.html">CCUS impact 2×2</a>
+      <a href="sources.html">Sources</a>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">A learning site · compiled 19 October 2026</div>
+    <h1>Scope 2 Frontier</h1>
+    <p class="lede">Carbon capture, storage and impact accounting under the GHG Protocol as it stands today and as the Scope 2 revision is taking shape. Eight pages, each built only from cited GHG Protocol text, governance-repository materials and named third parties, with every inference and gap labelled.</p>
+    <div class="hero-meta"><span><b>Pages</b> 8 modules + sources</span><span><b>Documents behind them</b> 145</span><span><b>Reading</b> about 8-12 minutes per page</span></div>
+    <div class="tier-legend" aria-label="Source tiers">
+      <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
+      <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
+      <span><i style="background:var(--third)"></i>Third party</span>
+    </div>
+  </header>
+
+  <section class="section" id="map">
+    <div class="section-head">
+      <div class="eyebrow">The map</div>
+      <h2>Four questions, one framework</h2>
+      <p>Everything on this site sits somewhere on the Actions and Market Instruments working group's draft multi-statement framework: a physical inventory, a market-based inventory, and a separate impact statement. The pages trace each topic to its statement, and say when no document has yet placed it.</p>
+    </div>
+    <figure class="fig-frame">
+      <svg viewBox="0 0 760 400" role="img" aria-label="Map of the four modules against the draft three-statement framework: Statement 1 physical inventory, Statement 2 market-based inventory, Statement 3 GHG impact statement. CCS reporting sits in Statement 1, CCS-backed EACs and storage mechanics in Statement 2, storage impact and CCUS impact in Statement 3, with governance spanning all three.">
+        <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect x="20" y="20" width="226" height="300" rx="12" class="node-soft"/>
+        <rect x="267" y="20" width="226" height="300" rx="12" class="node-soft"/>
+        <rect x="514" y="20" width="226" height="300" rx="12" class="node-soft"/>
+        <text x="133" y="48" text-anchor="middle" class="t-lg">Statement 1</text>
+        <text x="133" y="66" text-anchor="middle" class="t-sm muted">physical inventory · location-based</text>
+        <text x="380" y="48" text-anchor="middle" class="t-lg">Statement 2</text>
+        <text x="380" y="66" text-anchor="middle" class="t-sm muted">market-based inventory · attributional</text>
+        <text x="627" y="48" text-anchor="middle" class="t-lg">Statement 3</text>
+        <text x="627" y="66" text-anchor="middle" class="t-sm muted">GHG impact statement · consequential</text>
+
+        <rect x="40" y="90" width="186" height="64" rx="8" class="node"/>
+        <circle cx="56" cy="106" r="5" class="fill-capture"/>
+        <text x="68" y="110" class="t">Module 1 · CCS at the plant</text>
+        <text x="48" y="130" class="t-sm muted">captured CO2 left out of scope 1</text>
+        <text x="48" y="144" class="t-sm muted">and of buyers' scope 2 (LSR Guidance)</text>
+
+        <rect x="287" y="90" width="186" height="64" rx="8" class="node"/>
+        <circle cx="303" cy="106" r="5" class="fill-capture"/>
+        <text x="315" y="110" class="t">Module 1 · CCS-backed EACs</text>
+        <text x="295" y="130" class="t-sm muted">2015: any technology can carry</text>
+        <text x="295" y="144" class="t-sm muted">an emission-rate attribute</text>
+
+        <rect x="287" y="170" width="186" height="64" rx="8" class="node"/>
+        <circle cx="303" cy="186" r="5" class="fill-storage"/>
+        <text x="315" y="190" class="t">Module 3 · Storage ledger</text>
+        <text x="295" y="210" class="t-sm muted">no GHG Protocol rule yet;</text>
+        <text x="295" y="224" class="t-sm muted">third-party schemes show mechanics</text>
+
+        <rect x="534" y="90" width="186" height="64" rx="8" class="node"/>
+        <circle cx="550" cy="106" r="5" class="fill-storage"/>
+        <text x="562" y="110" class="t">Module 3 · Storage impact</text>
+        <text x="542" y="130" class="t-sm muted">ISB pointed storage and load</text>
+        <text x="542" y="144" class="t-sm muted">shifting at Statement 3 (Sept 2026)</text>
+
+        <rect x="534" y="170" width="186" height="64" rx="8" class="node"/>
+        <circle cx="550" cy="186" r="5" class="fill-fossil"/>
+        <text x="562" y="190" class="t">Module 4 · CCUS impact</text>
+        <text x="542" y="210" class="t-sm muted">retrofit vs new build;</text>
+        <text x="542" y="224" class="t-sm muted">coal vs gas; CCS vs CCU</text>
+
+        <rect x="40" y="170" width="186" height="64" rx="8" class="node"/>
+        <circle cx="56" cy="186" r="5" class="fill-fossil"/>
+        <text x="68" y="190" class="t">Module 4 · Retrofit, Stmt 1</text>
+        <text x="48" y="210" class="t-sm muted">a retrofit lowers the plant's own</text>
+        <text x="48" y="224" class="t-sm muted">scope 1 before any system effect</text>
+
+        <rect x="20" y="340" width="720" height="44" rx="10" class="soft-revision"/>
+        <text x="380" y="360" text-anchor="middle" class="t">Module 2 · October 2026 update and governance: who decides, by what criteria, on what timeline</text>
+        <text x="380" y="376" text-anchor="middle" class="t-sm muted">spans all three statements · Scope 2 TWG owns the electricity detail; AMI TWG owns the framework</text>
+
+        <line x1="380" y1="320" x2="380" y2="338" class="edge-soft" marker-end="url(#arr)"/>
+        <text x="133" y="300" text-anchor="middle" class="t-sm muted">in force · LSR Guidance v1.0</text>
+        <text x="380" y="300" text-anchor="middle" class="t-sm muted">2015 Guidance now · Method 1 / 2 proposed</text>
+        <text x="627" y="300" text-anchor="middle" class="t-sm muted">method work starts Q2 2027 (direction)</text>
+      </svg>
+      <figcaption>Where each module sits on the draft framework. Statement names and the placement of storage and consequential work are revision-stage direction, not adopted rules; the pages carry the citations.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section" id="modules">
+    <div class="section-head">
+      <div class="eyebrow">Reading path</div>
+      <h2>Eight pages in four modules</h2>
+      <p>Each module opens with what guidance in force says, then what the revision materials signal, then what third parties do. Read in order, or jump to the question you need.</p>
+    </div>
+    <div class="modules">
+      <div class="module">
+        <div class="num">1</div>
+        <div>
+          <h3>Carbon capture at a power plant</h3>
+          <p class="small">What the Land Sector and Removals Standard and Guidance make of point-source capture, and whether CCS power can be a market instrument.</p>
+          <div class="pages">
+            <a href="ccs-removals.html"><span class="k">1a · in force</span><span class="q">Is captured CO2 from a power plant a removal?</span><span class="s">Fossil CCS is a captured-CO2 pathway, not a removal; who reports what along the chain; the geologic-storage gate; utilization.</span></a>
+            <a href="ccs-eac.html"><span class="k">1b · market instruments</span><span class="q">Can a CCS plant's power be sold as a low-carbon attribute?</span><span class="s">What an EAC may represent under the 2015 Guidance, the emission-rate question, the Quality Criteria walkthrough, and today's instruments.</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="module">
+        <div class="num">2</div>
+        <div>
+          <h3>The revision and who decides it</h3>
+          <p class="small">The 16 October 2026 market-based method update, and the working groups and board behind it.</p>
+          <div class="pages">
+            <a href="scope2-update.html"><span class="k">2a · revision</span><span class="q">Where does the market-based method stand after October 2026?</span><span class="s">Method 1 and Method 2, what changed since the 2025 draft, the consultation numbers, how incrementality moved, what is still open.</span></a>
+            <a href="governance.html"><span class="k">2b · governance</span><span class="q">Who actually decides what goes into Scope 2?</span><span class="s">The development procedure, decision criteria and hierarchy, the Scope 2 TWG against the AMI TWG, the multi-statement framework, where leverage sits.</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="module">
+        <div class="num">3</div>
+        <div>
+          <h3>Storage in hourly accounting</h3>
+          <p class="small">The net-load problem, ledger mechanics, and whether legacy or new storage needs incremental clean energy behind it.</p>
+          <div class="pages">
+            <a href="storage-mechanics.html"><span class="k">3a · mechanics</span><span class="q">How does stored electricity get counted hour by hour?</span><span class="s">What 2015 does and does not say, the Quality Criteria as yardstick, EnergyTag, 45V and EU precedents, what the consultation asked and heard.</span></a>
+            <a href="storage-revision.html"><span class="k">3b · revision</span><span class="q">Does legacy storage need new clean energy behind it?</span><span class="s">The undefined "qualifying storage" hook, where incrementality would attach, the pumped-storage-beside-nuclear case, candidate language options.</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="module">
+        <div class="num">4</div>
+        <div>
+          <h3>Impact accounting for CCUS</h3>
+          <p class="small">What a GHG impact statement would measure, and how retrofit, new build, coal, gas, storage and utilization differ.</p>
+          <div class="pages">
+            <a href="consequential-basics.html"><span class="k">4a · basics</span><span class="q">What would a "GHG impact statement" actually measure?</span><span class="s">Attributional against consequential, Statement 3 and additionality, the building blocks already in GHG Protocol materials, the electricity consequential consultation.</span></a>
+            <a href="consequential-ccus.html"><span class="k">4b · application</span><span class="q">Does a CCS retrofit get plant credit or system credit?</span><span class="s">The retrofit / new build against Statement 1 / Statement 3 matrix, coal against gas numbers, CCU against CCS, the nine additionality tests.</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="method">
+    <div class="section-head">
+      <div class="eyebrow">How to read these pages</div>
+      <h2>Three tiers, two labels</h2>
+    </div>
+    <div class="legend-row">
+      <div class="card"><span class="cite inforce">In force</span><p class="small">GHG Protocol standards and guidance a company can be held to today: the Corporate Standard, the 2015 Scope 2 Guidance, the Project Protocol and Grid Guidelines, the Land Sector and Removals Standard v1.1 and Guidance v1.0.</p></div>
+      <div class="card"><span class="cite revision">Revision</span><p class="small">Material from the standards development and governance repository: working-group decks and minutes, board minutes, consultation drafts, requests for information, feedback summaries, and GHG Protocol blog posts. Direction, not rules.</p></div>
+      <div class="card"><span class="cite third">Third party</span><p class="small">Registries, certificate schemes, regulations such as the US 45V rule and EU delegated acts, technical baselines such as NETL, peer-reviewed work, and consultation respondents. Used only where GHG Protocol material is silent.</p></div>
+    </div>
+    <div class="grid-2">
+      <div class="callout inference"><div class="label">Inference</div><p>Reasoning built from quoted text. Each inference names the passages it rests on. Treat it as a position to test, not a finding.</p></div>
+      <div class="callout gap"><div class="label">Gap</div><p>A question no retrieved document answers. Gaps are where advocacy language is still open and where a stakeholder can shape the outcome.</p></div>
+    </div>
+    <div class="callout note"><div class="label">Status of the material</div><p>Compiled on 19 October 2026. The Scope 2 working group's workshop of 20 to 22 October 2026 and the Independent Standards Board's vote scheduled for 15 December 2026 had not happened when these pages were written. Where a page quotes a pulse check or a direction, it is not a decision. Every claim links to the <a href="sources.html">sources page</a>.</p></div>
+  </section>
+
+  <nav class="pager" aria-label="Pages">
+    <a class="prev" href="sources.html"><span class="dir">Reference</span><span class="ttl">Sources</span></a>
+    <a class="next" href="ccs-removals.html"><span class="dir">Start with</span><span class="ttl">Is captured CO2 from a power plant a removal?</span></a>
+  </nav>
+  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
+</main>
+<script src="site.js"></script>
+</body>
+</html>
