@@ -55,6 +55,9 @@ svg .axis { stroke: var(--line); stroke-width: 1; }
 svg .lost { fill: var(--g-gap-soft); stroke: var(--g-gap); stroke-width: 1.2; stroke-dasharray: 4 3; }
 svg .bold { font-weight: 600; }
 .fig-frame.narrow { max-width: 820px; }
+/* phone drawings (.fig-m): larger type than the desktop classes */
+.wrap svg.fig-m .t { font-size: 13px; }
+.wrap svg.fig-m .t-sm, .wrap svg.fig-m .t-tag { font-size: 12px; }
 </style>
 <noscript><style>.matrix-detail > [hidden], [data-mode-show][hidden] { display: grid !important; }</style></noscript>
 </head>
@@ -67,7 +70,7 @@ svg .bold { font-weight: 600; }
 
 <div class="content-wrap">
 <main class="wrap">
-  <div class="g-hero"><div class="eyebrow">Module 4 · Applying it to CCUS</div>
+  <div class="g-hero"><div class="eyebrow">Consequential accounting · applied to CCUS</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min (more in expandable notes)</span><span><b>Sources</b> LSR v1.0 Ch.14 and Ch.16 · Project Protocol (2005) · Grid-Connected Electricity Guidelines (2007) · Consequential electricity consultation and feedback (2025–2026) · AMI TWG materials (2026) · NETL Rev 4a (2022) · IPCC AR5 WGIII Annex III · Grubert &amp; Sawyer (2023)</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
@@ -159,7 +162,7 @@ svg .bold { font-weight: 600; }
     <div class="scrolly">
       <div class="scrolly-figure">
         <figure class="fig-frame">
-          <svg viewBox="0 0 600 430" role="img" aria-label="Bars of stack CO2 rate in pounds per net megawatt hour from NETL greenfield designs: gas combined cycle F-class 755 unabated and 85 with 90 percent capture; supercritical coal 1,718 unabated and 219 with 90 percent capture. Net output for gas falls from 727 to 645 megawatts at fixed fuel; coal holds 650 megawatts by burning about 27 percent more coal. Six further effects are counted but not quantified.">
+          <svg class="fig-d" viewBox="0 0 600 430" role="img" aria-label="Bars of stack CO2 rate in pounds per net megawatt hour from NETL greenfield designs: gas combined cycle F-class 755 unabated and 85 with 90 percent capture; supercritical coal 1,718 unabated and 219 with 90 percent capture. Net output for gas falls from 727 to 645 megawatts at fixed fuel; coal holds 650 megawatts by burning about 27 percent more coal. Six further effects are counted but not quantified.">
             <text x="10" y="18" class="t-lg">Stack CO₂, lb CO₂/MWh-net</text>
             <text x="10" y="34" class="t-sm muted">NETL Rev 4a greenfield designs (new-build data, not retrofit data)</text>
             <line x1="150" y1="44" x2="150" y2="172" class="axis"/>
@@ -218,6 +221,65 @@ svg .bold { font-weight: 600; }
             <g data-step="7"><rect x="207" y="374" width="186" height="44" rx="6" class="node-soft dash"/><text x="217" y="392" class="t-sm bold">Life extension</text><text x="217" y="408" class="t-sm">baseline becomes BM</text></g>
             <g data-step="8"><rect x="404" y="374" width="186" height="44" rx="6" class="node-soft dash"/><text x="414" y="392" class="t-sm bold">EOR branch</text><text x="414" y="408" class="t-sm">produced oil life cycle</text></g>
           </svg>
+<svg class="fig-m" viewBox="0 0 360 296" role="img" aria-label="Bars of stack CO2 rate in pounds per net megawatt hour from NETL greenfield designs: gas combined cycle F-class 755 unabated and 85 with 90 percent capture; supercritical coal 1,718 unabated and 219 with 90 percent capture. Net output for gas falls from 727 to 645 megawatts at fixed fuel; coal holds 650 megawatts by burning about 27 percent more coal. Six further effects are counted but not quantified.">
+            <text x="0" y="14" class="t-lg">Stack CO₂, lb CO₂/MWh-net</text>
+            <text x="0" y="29" class="t-sm muted">NETL Rev 4a greenfield designs (new-build, not retrofit data)</text>
+            <line x1="84" y1="34" x2="84" y2="102" class="axis"/>
+            <!-- scale 0..1718 -> 84..307 : 0.13 px/unit -->
+            <text x="0" y="46" class="t bold">Gas</text>
+            <text x="0" y="62" class="t-sm muted">NGCC F</text>
+            <g data-step="0-2,4-8">
+              <text x="50" y="46" class="t">0%</text>
+              <rect x="84" y="36" width="98" height="12" rx="2" class="bar-unab"/>
+              <text x="188" y="46" class="t">755</text>
+            </g>
+            <g data-step="1-2,4-8">
+              <text x="50" y="62" class="t">90%</text>
+              <rect x="84" y="52" width="11" height="12" rx="2" class="bar-cap"/>
+              <text x="100" y="62" class="t">85</text>
+            </g>
+            <g data-step="1">
+              <text x="122" y="62" class="t-sm">per-MWh cut −88.7% (derived), not −90%</text>
+            </g>
+            <text x="0" y="83" class="t bold">Coal</text>
+            <text x="0" y="99" class="t-sm muted">SC PC</text>
+            <g data-step="3-8">
+              <text x="50" y="83" class="t">0%</text>
+              <rect x="84" y="73" width="223" height="12" rx="2" class="bar-unab"/>
+              <text x="312" y="83" class="t">1,718</text>
+              <text x="50" y="99" class="t">90%</text>
+              <rect x="84" y="89" width="28" height="12" rx="2" class="bar-cap"/>
+              <text x="117" y="99" class="t">219</text>
+            </g>
+            <g data-step="3">
+              <text x="148" y="99" class="t-sm">−87.3% (derived)</text>
+            </g>
+            <line x1="0" y1="106" x2="360" y2="106" class="axis"/>
+            <text x="0" y="123" class="t-lg">Net output at 90% capture, MWe</text>
+            <!-- scale 0..727 -> 112..199 : 0.12 px/unit -->
+            <g data-step="2">
+              <text x="0" y="141" class="t">Gas, fixed fuel</text>
+              <rect x="112" y="129" width="77" height="15" rx="2" class="bar-cap"/>
+              <rect x="189" y="129" width="10" height="15" rx="2" class="lost"/>
+              <text x="117" y="141" class="t-sm" style="fill:var(--bg-2)">645 of 727</text>
+              <text x="205" y="141" class="t-sm">−11.3% (derived)</text>
+              <text x="0" y="157" class="t-sm muted">lost MWh met by other generators at OM (rate hypothetical)</text>
+            </g>
+            <g data-step="3">
+              <text x="0" y="175" class="t">Coal, output held</text>
+              <rect x="112" y="163" width="78" height="15" rx="2" class="bar-cap"/>
+              <text x="117" y="175" class="t-sm" style="fill:var(--bg-2)">650 of 650</text>
+              <text x="196" y="175" class="t-sm">+27.0% coal input (derived)</text>
+            </g>
+            <line x1="0" y1="184" x2="360" y2="184" class="axis"/>
+            <text x="0" y="199" class="t bold">Also counted; no plant-specific numbers in sources</text>
+            <g data-step="2"><rect x="0" y="204" width="176" height="28" rx="6" class="node-soft dash"/><text x="7" y="216" class="t bold">Lost MWh × OM</text><text x="7" y="228" class="t-sm">grid effect, sign: increase</text></g>
+            <g data-step="4"><rect x="184" y="204" width="176" height="28" rx="6" class="node-soft dash"/><text x="191" y="216" class="t bold">Dispatch change</text><text x="191" y="228" class="t-sm">more or fewer run hours</text></g>
+            <g data-step="5"><rect x="0" y="235" width="176" height="28" rx="6" class="node-soft dash"/><text x="7" y="247" class="t bold">Upstream fuel and CH₄</text><text x="7" y="259" class="t-sm">rises with the penalty</text></g>
+            <g data-step="6"><rect x="184" y="235" width="176" height="28" rx="6" class="node-soft dash"/><text x="191" y="247" class="t bold">Transport and storage</text><text x="191" y="259" class="t-sm">fugitives, injection</text></g>
+            <g data-step="7"><rect x="0" y="266" width="176" height="28" rx="6" class="node-soft dash"/><text x="7" y="278" class="t bold">Life extension</text><text x="7" y="290" class="t-sm">baseline becomes BM</text></g>
+            <g data-step="8"><rect x="184" y="266" width="176" height="28" rx="6" class="node-soft dash"/><text x="191" y="278" class="t bold">EOR branch</text><text x="191" y="290" class="t-sm">produced oil life cycle</text></g>
+          </svg>
           <figcaption>A 90% capture design cuts the per-MWh stack rate by less than 90%, and the energy penalty either loses output (gas, fixed fuel) or burns more fuel (coal, output held). Bars are NETL greenfield design values; derived percentages are arithmetic on them. No OM rate is shown because none is sourced.</figcaption>
         </figure>
       </div>
@@ -256,7 +318,7 @@ svg .bold { font-weight: 600; }
     </div>
     <div id="nb" data-mode="fossil" class="stack">
       <figure class="fig-frame narrow">
-        <svg viewBox="0 0 600 330" role="img" aria-label="Baseline build-margin rate compared with residual rates of new gas and coal plants with 90 percent capture. In the fossil-heavy case the illustrative build margin is about 2,000 pounds per megawatt hour and both plants emit less. In the mostly clean case the build margin is near zero and both plants emit more, so the impact turns negative.">
+        <svg class="fig-d" viewBox="0 0 600 330" role="img" aria-label="Baseline build-margin rate compared with residual rates of new gas and coal plants with 90 percent capture. In the fossil-heavy case the illustrative build margin is about 2,000 pounds per megawatt hour and both plants emit less. In the mostly clean case the build margin is near zero and both plants emit more, so the impact turns negative.">
           <text x="10" y="18" class="t-lg">lb CO₂/MWh, per MWh the new plant generates</text>
           <text x="10" y="34" class="t-sm muted">Build-margin values illustrative; residual rates NETL greenfield designs at 90% capture</text>
           <line x1="190" y1="46" x2="190" y2="236" class="axis"/>
@@ -301,6 +363,51 @@ svg .bold { font-weight: 600; }
             <text x="22" y="308" class="t-sm">Impact per MWh = baseline − residual: negative (an increase).</text>
           </g>
         </svg>
+<svg class="fig-m" viewBox="0 0 360 290" role="img" aria-label="Baseline build-margin rate compared with residual rates of new gas and coal plants with 90 percent capture. In the fossil-heavy case the illustrative build margin is about 2,000 pounds per megawatt hour and both plants emit less. In the mostly clean case the build margin is near zero and both plants emit more, so the impact turns negative.">
+          <text x="0" y="14" class="t-lg">lb CO₂/MWh, per MWh the new plant generates</text>
+          <text x="0" y="31" class="t-sm muted">Build-margin values illustrative; residual rates</text>
+          <text x="0" y="45" class="t-sm muted">NETL greenfield designs at 90% capture</text>
+          <!-- scale 0..2000 -> 0..300 : 0.15 px/unit -->
+          <line x1="0" y1="206" x2="300" y2="206" class="axis"/>
+          <text x="0" y="221" class="t-sm muted">0</text>
+          <text x="150" y="221" text-anchor="middle" class="t-sm muted">1,000</text>
+          <text x="300" y="221" text-anchor="middle" class="t-sm muted">2,000</text>
+          <!-- baseline row -->
+          <text x="0" y="68"><tspan class="t bold">Baseline</tspan><tspan class="t-sm" dx="6">build margin, w = 1</tspan></text>
+          <g class="only-fossil">
+            <rect x="0" y="74" width="300" height="18" rx="2" class="bar-bm"/>
+            <text x="306" y="88" class="t">~2,000</text>
+            <text x="0" y="108" class="t-sm">(consultation’s illustrative coal BM)</text>
+          </g>
+          <g class="only-clean">
+            <rect x="0" y="74" width="3" height="18" class="bar-bm"/>
+            <text x="9" y="88" class="t">≈ 0</text>
+            <text x="0" y="108" class="t-sm">(illustrative: mostly zero-carbon additions)</text>
+          </g>
+          <!-- gas row -->
+          <text x="0" y="130"><tspan class="t bold">New gas + CCS</tspan><tspan class="t-sm" dx="6">NGCC F, 90% capture</tspan></text>
+          <rect x="0" y="136" width="113" height="18" rx="2" class="ghost"/>
+          <rect x="0" y="136" width="13" height="18" rx="2" class="bar-cap"/>
+          <text x="18" y="150" class="t">85</text>
+          <text x="119" y="150" class="t-sm muted">unabated design: 755</text>
+          <!-- coal row -->
+          <text x="0" y="174"><tspan class="t bold">New coal + CCS</tspan><tspan class="t-sm" dx="6">SC PC, 90% capture</tspan></text>
+          <rect x="0" y="180" width="258" height="18" rx="2" class="ghost"/>
+          <rect x="0" y="180" width="33" height="18" rx="2" class="bar-cap"/>
+          <text x="38" y="194" class="t">219</text>
+          <text x="264" y="194" class="t-sm muted">1,718</text>
+          <!-- verdict -->
+          <g class="only-fossil">
+            <rect x="0" y="234" width="360" height="54" rx="8" class="soft-signal"/>
+            <text x="9" y="255" class="t bold">Both plants emit less than the margin they displace.</text>
+            <text x="9" y="275" class="t-sm">Impact per MWh = baseline − residual: positive (a reduction).</text>
+          </g>
+          <g class="only-clean">
+            <rect x="0" y="234" width="360" height="54" rx="8" class="soft-gap"/>
+            <text x="9" y="255" class="t bold">Both plants emit more than the margin they displace.</text>
+            <text x="9" y="275" class="t-sm">Impact per MWh = baseline − residual: negative (an increase).</text>
+          </g>
+        </svg>
         <figcaption>Inference: the same new plant can show a reduction or an increase depending on what the build margin would otherwise have been. Dashed outlines are the unabated designs: 90% capture cuts the per-MWh rate by 88.7% (gas) and 87.3% (coal), derived.</figcaption>
       </figure>
       <p class="small" data-mode-show="fossil">Fossil-heavy case: the only GHG Protocol number is the consultation’s illustrative “build margin impact of roughly ~2,000 lb CO2/MWh” for a coal retirement. It is not data. <a class="cite revision" href="sources.html#r4-s14">Consultation p.17</a> Residual rates: <a class="cite third" href="sources.html#r4-t1">NETL Rev 4a ES-3, ES-4</a></p>
@@ -337,7 +444,7 @@ svg .bold { font-weight: 600; }
     <p class="small">Emission columns in lb CO₂/MWh-net. Greenfield designs, 85% capacity factor, 30-year plant life, CO2 sequestered offsite. Derived: efficiency penalties of about 8.5 points (SC PC) and 6 points (NGCC F); in kg/MWh-net (×0.4536) SC PC ≈779 → ≈99 and NGCC F ≈342 → ≈39. <a class="cite third" href="sources.html#r4-t1">NETL Rev 4a Exhibits ES-3, ES-4, pp.8–9; p.3</a></p>
 
     <figure class="fig-frame narrow">
-      <svg viewBox="0 0 600 350" role="img" aria-label="IPCC AR5 values. Lifecycle median gCO2eq per kWh: coal PC 820, coal PC with CCS 220, gas combined cycle 490, gas combined cycle with CCS 170, with min to max ranges. Typical methane: coal PC 47 rising to 68 with CCS; gas combined cycle 91 rising to 110 with CCS.">
+      <svg class="fig-d" viewBox="0 0 600 350" role="img" aria-label="IPCC AR5 values. Lifecycle median gCO2eq per kWh: coal PC 820, coal PC with CCS 220, gas combined cycle 490, gas combined cycle with CCS 170, with min to max ranges. Typical methane: coal PC 47 rising to 68 with CCS; gas combined cycle 91 rising to 110 with CCS.">
         <text x="10" y="18" class="t-lg">Lifecycle, gCO2eq/kWh (median; line = min–max)</text>
         <line x1="160" y1="28" x2="160" y2="146" class="axis"/>
         <!-- scale 0..1000 -> 160..520 : 0.36 px/unit -->
@@ -375,6 +482,45 @@ svg .bold { font-weight: 600; }
         <rect x="160" y="292" width="330" height="16" rx="2" class="bar-cap"/>
         <text x="496" y="305" class="t-sm">110</text>
         <text x="10" y="340" class="t-sm muted">IPCC AR5 WGIII Annex III, Table A.III.2 (2014). CCS listed as pre-commercial. Panels use different scales.</text>
+      </svg>
+<svg class="fig-m" viewBox="0 0 360 380" role="img" aria-label="IPCC AR5 values. Lifecycle median gCO2eq per kWh: coal PC 820, coal PC with CCS 220, gas combined cycle 490, gas combined cycle with CCS 170, with min to max ranges. Typical methane: coal PC 47 rising to 68 with CCS; gas combined cycle 91 rising to 110 with CCS.">
+        <text x="0" y="14" class="t-lg">Lifecycle, gCO2eq/kWh (median; line = min–max)</text>
+        <line x1="0" y1="24" x2="0" y2="160" class="axis"/>
+        <!-- scale 0..1000 -> 0..240 : 0.24 px/unit -->
+        <text x="6" y="36" class="t">Coal PC</text>
+        <rect x="0" y="41" width="196.8" height="14" rx="2" class="bar-unab"/>
+        <line x1="177.6" y1="48" x2="218.4" y2="48" class="edge"/><line x1="177.6" y1="43" x2="177.6" y2="53" class="edge"/><line x1="218.4" y1="43" x2="218.4" y2="53" class="edge"/>
+        <text x="224.4" y="53" class="t">820 (740–910)</text>
+        <text x="6" y="70" class="t">Coal PC + CCS</text>
+        <rect x="0" y="75" width="52.8" height="14" rx="2" class="bar-cap"/>
+        <line x1="45.6" y1="82" x2="60.0" y2="82" class="edge"/><line x1="45.6" y1="77" x2="45.6" y2="87" class="edge"/><line x1="60.0" y1="77" x2="60.0" y2="87" class="edge"/>
+        <text x="66.0" y="87" class="t">220 (190–250)</text>
+        <text x="6" y="104" class="t">Gas CC</text>
+        <rect x="0" y="109" width="117.6" height="14" rx="2" class="bar-unab"/>
+        <line x1="98.4" y1="116" x2="156.0" y2="116" class="edge"/><line x1="98.4" y1="111" x2="98.4" y2="121" class="edge"/><line x1="156.0" y1="111" x2="156.0" y2="121" class="edge"/>
+        <text x="162.0" y="121" class="t">490 (410–650)</text>
+        <text x="6" y="138" class="t">Gas CC + CCS</text>
+        <rect x="0" y="143" width="40.8" height="14" rx="2" class="bar-cap"/>
+        <line x1="22.6" y1="150" x2="81.6" y2="150" class="edge"/><line x1="22.6" y1="145" x2="22.6" y2="155" class="edge"/><line x1="81.6" y1="145" x2="81.6" y2="155" class="edge"/>
+        <text x="87.6" y="155" class="t">170 (94–340)</text>
+        <line x1="0" y1="172" x2="360" y2="172" class="axis"/>
+        <text x="0" y="194" class="t-lg">Methane (typical), gCO2eq/kWh</text>
+        <line x1="0" y1="204" x2="0" y2="340" class="axis"/>
+        <!-- scale 0..120 -> 0..240 : 2 px/unit -->
+        <text x="6" y="216" class="t">Coal PC</text>
+        <rect x="0" y="221" width="94" height="14" rx="2" class="bar-unab"/>
+        <text x="100" y="233" class="t">47</text>
+        <text x="6" y="250" class="t">Coal PC + CCS</text>
+        <rect x="0" y="255" width="136" height="14" rx="2" class="bar-cap"/>
+        <text x="142" y="267" class="t">68</text>
+        <text x="6" y="284" class="t">Gas CC</text>
+        <rect x="0" y="289" width="182" height="14" rx="2" class="bar-unab"/>
+        <text x="188" y="301" class="t">91</text>
+        <text x="6" y="318" class="t">Gas CC + CCS</text>
+        <rect x="0" y="323" width="220" height="14" rx="2" class="bar-cap"/>
+        <text x="226" y="335" class="t">110</text>
+        <text x="0" y="358" class="t-sm muted">IPCC AR5 WGIII Annex III, Table A.III.2 (2014).</text>
+        <text x="0" y="373" class="t-sm muted">CCS listed as pre-commercial. Panels use different scales.</text>
       </svg>
       <figcaption>Capture cuts lifecycle emissions a lot for both fuels, but the methane component rises with CCS in both cases, and it is larger for gas.</figcaption>
     </figure>
@@ -480,7 +626,7 @@ svg .bold { font-weight: 600; }
     </div>
 
     <figure class="fig-frame narrow">
-      <svg viewBox="0 0 560 380" role="img" aria-label="Generator and EAC buyer across three statements. Generator: scope 1 net of stored CO2 in Statement 1; Statement 2 not addressed; within organizational boundary impact in Statement 3. Buyer: scope 2 without the stored CO2 in Statement 1; market-based scope 2 at the residual rate in Statement 2, with rate-setting a gap; own impact only if causal in Statement 3. A bracket links the two Statement 3 cells as a double-claiming risk with no rule yet.">
+      <svg class="fig-d" viewBox="0 0 560 380" role="img" aria-label="Generator and EAC buyer across three statements. Generator: scope 1 net of stored CO2 in Statement 1; Statement 2 not addressed; within organizational boundary impact in Statement 3. Buyer: scope 2 without the stored CO2 in Statement 1; market-based scope 2 at the residual rate in Statement 2, with rate-setting a gap; own impact only if causal in Statement 3. A bracket links the two Statement 3 cells as a double-claiming risk with no rule yet.">
         <rect x="104" y="10" width="130" height="50" rx="8" class="node-soft"/>
         <text x="169" y="31" text-anchor="middle" class="t-lg">Statement 1</text>
         <text x="169" y="49" text-anchor="middle" class="t-sm muted">physical</text>
@@ -532,6 +678,50 @@ svg .bold { font-weight: 600; }
         <text x="307" y="337" text-anchor="middle" class="t">Same physical change, two Statement 3 claims.</text>
         <text x="307" y="356" text-anchor="middle" class="t">Rules to stop both counting it: not written.</text>
       </svg>
+<svg class="fig-m" viewBox="0 0 360 500" role="img" aria-label="Generator and EAC buyer across three statements. Generator: scope 1 net of stored CO2 in Statement 1; Statement 2 not addressed; within organizational boundary impact in Statement 3. Buyer: scope 2 without the stored CO2 in Statement 1; market-based scope 2 at the residual rate in Statement 2, with rate-setting a gap; own impact only if causal in Statement 3. A bracket links the two Statement 3 cells as a double-claiming risk with no rule yet.">
+<text x="8" y="16" class="t-lg">Generator</text>
+<text x="8" y="32" class="t-sm muted">(plant owner)</text>
+<text x="192" y="16" class="t-lg">EAC buyer</text>
+<rect x="0" y="44" width="360" height="24" rx="6" class="node-soft"/>
+<text x="8" y="61"><tspan class="t-lg">Statement 1</tspan><tspan class="t-sm muted" dx="8">physical</tspan></text>
+<rect x="0" y="72" width="176" height="82" rx="8" class="node"/>
+<text x="8" y="92" class="t">Scope 1 net of</text>
+<text x="8" y="108" class="t">captured and</text>
+<text x="8" y="124" class="t">stored CO₂</text>
+<text x="8" y="145" class="t-tag">SOURCE · LSR</text>
+<rect x="184" y="72" width="176" height="82" rx="8" class="node"/>
+<text x="192" y="92" class="t">Scope 2 omits</text>
+<text x="192" y="108" class="t">the stored CO₂</text>
+<text x="192" y="145" class="t-tag">SOURCE · LSR</text>
+<rect x="0" y="164" width="360" height="24" rx="6" class="node-soft"/>
+<text x="8" y="181"><tspan class="t-lg">Statement 2</tspan><tspan class="t-sm muted" dx="8">market-based</tspan></text>
+<rect x="0" y="192" width="176" height="98" rx="8" class="node-soft dash"/>
+<text x="88" y="212" text-anchor="middle" class="t muted">not addressed</text>
+<text x="8" y="281" class="t-tag">GAP</text>
+<rect x="184" y="192" width="176" height="98" rx="8" class="node"/>
+<text x="192" y="212" class="t">Market-based: one</text>
+<text x="192" y="228" class="t">claimant per MWh;</text>
+<text x="192" y="244" class="t">rate is the residual,</text>
+<text x="192" y="260" class="t">not zero</text>
+<text x="192" y="281" class="t-tag">INF · rate: GAP</text>
+<rect x="0" y="300" width="360" height="24" rx="6" class="soft-accent"/>
+<text x="8" y="317"><tspan class="t-lg">Statement 3</tspan><tspan class="t-sm muted" dx="8">impact</tspan></text>
+<rect x="0" y="328" width="176" height="82" rx="8" class="node"/>
+<text x="8" y="348" class="t">Within-org-boundary</text>
+<text x="8" y="364" class="t">impact of its retrofit</text>
+<text x="8" y="380" class="t">or new build</text>
+<text x="8" y="401" class="t-tag">SRC + INF</text>
+<rect x="184" y="328" width="176" height="82" rx="8" class="node dash"/>
+<text x="192" y="348" class="t">Own impact only if</text>
+<text x="192" y="364" class="t">its action caused</text>
+<text x="192" y="380" class="t">the change</text>
+<text x="192" y="401" class="t-tag">INFERENCE</text>
+<path d="M88,412 V422 H272 V412" class="edge" style="stroke:var(--g-gap);stroke-width:2"/>
+<text x="180" y="440" text-anchor="middle" class="t-sm" style="fill:var(--g-gap)">double-claiming risk · GAP</text>
+<rect x="0" y="450" width="360" height="50" rx="8" class="soft-gap"/>
+<text x="180" y="471" text-anchor="middle" class="t">Same physical change, two Statement 3 claims.</text>
+<text x="180" y="489" text-anchor="middle" class="t">Rules to stop both counting it: not written.</text>
+</svg>
       <figcaption>Statement 1 and 2 entries follow written rules; the two Statement 3 entries describe the same physical change, and no published rule says how to split or exclude them. Adapted from AMI White Paper Figure 6; placement of the CCS entries is inference.</figcaption>
     </figure>
 

@@ -31,10 +31,8 @@ svg .st-fg3 { stroke: var(--fg-3); stroke-width: 1; }
 svg .st-gap { stroke: var(--g-gap); stroke-width: 1.2; }
 svg .t-mono { font-family: var(--font-mono); font-size: 11px; }
 svg .t-b { font-weight: 600; }
-/* phones: keep wide figures legible; the figure scrolls sideways instead of shrinking text below ~9px */
 #cons-view { min-width: 0; }
-.fig-scroll { min-width: 0; }
-@media (max-width: 560px) { .fig-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; } .fig-scroll > svg { min-width: 500px; } }
+#cons-view [data-mode-show][hidden] { display: none; } /* .wrap figure sets display:grid, which otherwise overrides [hidden] */
 .cmp th:first-child, .cmp td:first-child { min-width: 9rem; }
 .cmp td { min-width: 13rem; }
 .cmp td .q { font-style: italic; }
@@ -55,7 +53,7 @@ svg .t-b { font-weight: 600; }
 
 <div class="content-wrap">
 <main class="wrap">
-  <div class="g-hero"><div class="eyebrow">Module 2 · Scope 2 revision</div>
+  <div class="g-hero"><div class="eyebrow">Scope 2 revision</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> MBM Update (16 Oct 2026) · Scope 2 TWG #23 minutes and deck (6 Oct 2026) · Scope 2 consultation summary (Aug 2026) · AMI RFI summary (Sep 2026)</span><span><b>Status as of</b> 19 Oct 2026</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
@@ -113,7 +111,7 @@ svg .t-b { font-weight: 600; }
     </div>
 
     <figure class="fig-frame">
-      <div class="fig-scroll"><svg viewBox="0 0 560 366" role="img" aria-label="Two-track chart. Before an undetermined year 203X, Method 2 may be used, Method 1 should be used, and companies shall disclose which one they use. After 203X, Method 1 shall be used if a company reports market-based emissions and qualifying data exist; Method 2 procurement moves to Statement 3 or key indicators. Whether the market-based method is required at all is open.">
+      <svg class="fig-d" viewBox="0 0 560 366" role="img" aria-label="Two-track chart. Before an undetermined year 203X, Method 2 may be used, Method 1 should be used, and companies shall disclose which one they use. After 203X, Method 1 shall be used if a company reports market-based emissions and qualifying data exist; Method 2 procurement moves to Statement 3 or key indicators. Whether the market-based method is required at all is open.">
         <!-- axis -->
         <line x1="140" y1="34" x2="552" y2="34" class="edge-soft"/>
         <line x1="150" y1="28" x2="150" y2="40" class="edge-soft"/><text x="150" y="20" text-anchor="middle" class="t-mono">Oct 2026</text>
@@ -173,7 +171,67 @@ svg .t-b { font-weight: 600; }
         <!-- notes -->
         <text x="12" y="340" class="t-sm muted">† if a company reports MBM emissions and data meeting the quality criteria is available.</text>
         <text x="12" y="356" class="t-sm muted">* Sept 2026 options were framed “Starting in 2030…”. No effective date or 203X value is set. Not to scale.</text>
-      </svg></div>
+      </svg>
+      <svg class="fig-m" viewBox="0 0 360 476" role="img" aria-label="Two-track chart. Before an undetermined year 203X, Method 2 may be used, Method 1 should be used, and companies shall disclose which one they use. After 203X, Method 1 shall be used if a company reports market-based emissions and qualifying data exist; Method 2 procurement moves to Statement 3 or key indicators. Whether the market-based method is required at all is open.">
+        <!-- axis -->
+        <rect x="296" y="2" width="44" height="54" rx="4" class="soft-gap"/>
+        <line x1="6" y1="28" x2="354" y2="28" class="edge-soft"/>
+        <line x1="38" y1="23" x2="38" y2="33" class="edge-soft"/><text x="38" y="17" text-anchor="middle" class="mono" font-size="13">Oct 2026</text><text x="38" y="47" text-anchor="middle" class="muted" font-size="13">update</text>
+        <line x1="110" y1="23" x2="110" y2="33" class="edge-soft"/><text x="110" y="17" text-anchor="middle" class="mono" font-size="13">Q2 2027</text><text x="110" y="47" text-anchor="middle" class="muted" font-size="13">consult.</text>
+        <line x1="182" y1="23" x2="182" y2="33" class="edge-soft"/><text x="182" y="17" text-anchor="middle" class="mono" font-size="13">Q4 2028</text><text x="182" y="47" text-anchor="middle" class="muted" font-size="13">publish</text>
+        <line x1="252" y1="23" x2="252" y2="33" class="edge-soft"/><text x="252" y="17" text-anchor="middle" class="mono" font-size="13">2030*</text>
+        <line x1="318" y1="23" x2="318" y2="33" class="st-gap"/><text x="318" y="17" text-anchor="middle" class="mono" font-size="13" font-weight="700">203X</text><text x="318" y="47" text-anchor="middle" font-size="13">[TBD]</text>
+        <!-- columns and the 203X band -->
+        <text x="6" y="76" font-size="13" font-weight="600" class="muted">Before 203X</text>
+        <text x="204" y="76" font-size="13" font-weight="600" class="muted">After 203X</text>
+        <rect x="188" y="62" width="12" height="18" class="soft-gap"/><line x1="194" y1="62" x2="194" y2="80" class="st-gap dash"/>
+        <rect x="188" y="102" width="12" height="36" class="soft-gap"/><line x1="194" y1="102" x2="194" y2="138" class="st-gap dash"/>
+        <rect x="188" y="166" width="12" height="36" class="soft-gap"/><line x1="194" y1="166" x2="194" y2="202" class="st-gap dash"/>
+        <rect x="188" y="230" width="12" height="36" class="soft-gap"/><line x1="194" y1="230" x2="194" y2="266" class="st-gap dash"/>
+        <rect x="188" y="358" width="12" height="36" class="soft-gap"/><line x1="194" y1="358" x2="194" y2="394" class="st-gap dash"/>
+
+        <!-- row 1: Method 2 -->
+        <text x="6" y="96"><tspan font-size="14" font-weight="600">Method 2</tspan><tspan dx="8" font-size="13" class="muted">2015 Guidance rules</tspan></text>
+        <rect x="6" y="102" width="178" height="36" rx="6" class="node-soft"/>
+        <text x="95" y="125" text-anchor="middle" font-size="13">may report</text>
+        <rect x="204" y="102" width="152" height="36" rx="6" class="node-soft dash"/>
+        <text x="280" y="117" text-anchor="middle" font-size="13">Statement 3 or</text>
+        <text x="280" y="132" text-anchor="middle" font-size="13">key indicators</text>
+
+        <!-- row 2: Method 1 -->
+        <text x="6" y="160"><tspan font-size="14" font-weight="600">Method 1</tspan><tspan dx="8" font-size="13" class="muted">hourly, deliverable, incremental</tspan></text>
+        <rect x="6" y="166" width="178" height="36" rx="6" class="soft-accent st-accent"/>
+        <text x="95" y="189" text-anchor="middle" font-size="13">should report</text>
+        <rect x="204" y="166" width="152" height="36" rx="6" class="soft-accent st-accent"/>
+        <text x="280" y="189" text-anchor="middle" font-size="13" font-weight="600">shall report †</text>
+
+        <!-- row 3: disclosure -->
+        <text x="6" y="224"><tspan font-size="14" font-weight="600">Disclosure</tspan><tspan dx="8" font-size="13" class="muted">which method</tspan></text>
+        <rect x="6" y="230" width="178" height="36" rx="6" class="node"/>
+        <text x="95" y="245" text-anchor="middle" font-size="13">shall disclose</text>
+        <text x="95" y="260" text-anchor="middle" font-size="13">Method 1 or 2</text>
+        <text x="280" y="253" text-anchor="middle" font-size="13" class="muted">not stated</text>
+
+        <!-- row 4: MBM itself -->
+        <text x="6" y="288"><tspan font-size="14" font-weight="600">MBM itself</tspan><tspan dx="8" font-size="13" class="muted">required or not?</tspan></text>
+        <rect x="6" y="294" width="350" height="36" rx="6" class="node-soft dash"/>
+        <text x="181" y="317" text-anchor="middle" font-size="13">[shall/should/may] report MBM: open for the TWG</text>
+
+        <!-- row 5: existing contracts -->
+        <text x="6" y="352" font-size="14" font-weight="600">Existing contracts</text>
+        <rect x="6" y="358" width="178" height="36" rx="6" class="node-soft"/>
+        <text x="95" y="373" text-anchor="middle" font-size="13">may use 2015 MBM</text>
+        <text x="95" y="388" text-anchor="middle" font-size="13">in Statement 2</text>
+        <rect x="204" y="358" width="152" height="36" rx="6" class="node-soft dash"/>
+        <text x="280" y="373" text-anchor="middle" font-size="13">Method 1 rules, or</text>
+        <text x="280" y="388" text-anchor="middle" font-size="13">Stmt 3 / indicators</text>
+
+        <!-- notes -->
+        <text x="6" y="418" font-size="13" class="muted">† If a company reports MBM emissions and data</text>
+        <text x="6" y="434" font-size="13" class="muted">meeting the quality criteria is available.</text>
+        <text x="6" y="454" font-size="13" class="muted">* Sept 2026 options were framed “Starting in 2030…”.</text>
+        <text x="6" y="470" font-size="13" class="muted">No effective date or 203X value is set. Not to scale.</text>
+      </svg>
       <figcaption>The proposed direction runs on two tracks until an undetermined year, 203X, then collapses to Method 1 for anyone who reports market-based emissions. Every row is a pulse-check direction, not an adopted rule. <a class="cite revision" href="sources.html#r2-s01">GHGP blog, MBM Update, 16 Oct 2026</a> <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slides 35, 39</a></figcaption>
     </figure>
 
@@ -306,7 +364,7 @@ svg .t-b { font-weight: 600; }
         <span><i style="background:var(--g-gap-soft)"></i>No or low support (1–2)</span>
       </div>
       <figure class="fig-frame" data-mode-show="q">
-        <div class="fig-scroll"><svg viewBox="0 0 560 214" role="img" aria-label="Stacked bars. Hourly matching, n 909: 22 percent support, 7 neutral, 70 no or low support. Deliverability, n 875: 30, 11, 59. Legacy clause, n 801: 90, 5, 5.">
+        <svg class="fig-d" viewBox="0 0 560 214" role="img" aria-label="Stacked bars. Hourly matching, n 909: 22 percent support, 7 neutral, 70 no or low support. Deliverability, n 875: 30, 11, 59. Legacy clause, n 801: 90, 5, 5.">
           <text x="10" y="22" class="t-lg">Hourly matching, Quality Criterion 4 (Q71)</text><text x="550" y="22" text-anchor="end" class="t-mono t-b">n = 909</text>
           <rect x="10" y="30" width="118.8" height="30" class="soft-signal"/><text x="69.4" y="50" text-anchor="middle" class="t-lg">22%</text>
           <rect x="128.8" y="30" width="37.8" height="30" class="node-soft"/><text x="147.7" y="50" text-anchor="middle" class="t-lg">7%</text>
@@ -321,11 +379,20 @@ svg .t-b { font-weight: 600; }
           <rect x="10" y="174" width="486" height="30" class="soft-signal"/><text x="253" y="194" text-anchor="middle" class="t-lg">90%</text>
           <rect x="496" y="174" width="27" height="30" class="node-soft"/><text x="509.5" y="194" text-anchor="middle" class="t">5%</text>
           <rect x="523" y="174" width="27" height="30" class="soft-gap"/><text x="536.5" y="194" text-anchor="middle" class="t">5%</text>
-        </svg></div>
+        </svg>
+        <svg class="fig-m" viewBox="0 0 360 226" role="img" aria-label="Stacked bars. Hourly matching, n 909: 22 percent support, 7 neutral, 70 no or low support. Deliverability, n 875: 30, 11, 59. Legacy clause, n 801: 90, 5, 5.">
+          <text x="10" y="20" font-size="14" font-weight="600">Hourly matching, Quality Criterion 4 (Q71)</text><text x="350" y="20" text-anchor="end" class="mono" font-size="13" font-weight="600">n = 909</text>
+          <rect x="10" y="28" width="74.8" height="32" class="soft-signal"/><text x="47.4" y="49" text-anchor="middle" font-size="14" font-weight="600">22%</text><rect x="84.8" y="28" width="23.8" height="32" class="node-soft"/><text x="96.7" y="49" text-anchor="middle" font-size="13">7%</text><rect x="108.6" y="28" width="238" height="32" class="soft-gap"/><text x="227.6" y="49" text-anchor="middle" font-size="14" font-weight="600">70%</text>
+          <text x="10" y="90" font-size="14" font-weight="600">Deliverability, Quality Criterion 5 (Q83)</text><text x="350" y="90" text-anchor="end" class="mono" font-size="13" font-weight="600">n = 875</text>
+          <rect x="10" y="98" width="102" height="32" class="soft-signal"/><text x="61" y="119" text-anchor="middle" font-size="14" font-weight="600">30%</text><rect x="112" y="98" width="37.4" height="32" class="node-soft"/><text x="130.7" y="119" text-anchor="middle" font-size="13" font-weight="600">11%</text><rect x="149.4" y="98" width="200.6" height="32" class="soft-gap"/><text x="249.7" y="119" text-anchor="middle" font-size="14" font-weight="600">59%</text>
+          <text x="10" y="160" font-size="14" font-weight="600">Legacy clause (Q171)</text><text x="350" y="160" text-anchor="end" class="mono" font-size="13" font-weight="600">n = 801</text>
+          <rect x="10" y="168" width="306" height="32" class="soft-signal"/><text x="163" y="189" text-anchor="middle" font-size="14" font-weight="600">90%</text><rect x="316" y="168" width="17" height="32" class="node-soft"/><rect x="333" y="168" width="17" height="32" class="soft-gap"/>
+          <text x="350" y="218" text-anchor="end" font-size="13" class="muted">5% neutral · 5% no or low support</text>
+        </svg>
         <figcaption>Hourly matching and deliverability drew majority no or low support. A legacy clause drew 90% support; the September pulse-check proposal reads "No legacy clause provision other than transition timeline." Rows may not sum to 100 because of rounding. <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1, Table 19 p.49, Table 27 p.75, p.117</a></figcaption>
       </figure>
       <figure class="fig-frame" data-mode-show="t">
-        <div class="fig-scroll"><svg viewBox="0 0 560 280" role="img" aria-label="Hourly matching support by respondent type. All, n 909: 22 support, 7 neutral, 70 no or low. Companies, n 429: 12, 7, 82. NGOs, n 71: 49, 6, 45. Energy supplier, retailer or utility, n 81: 26, 12, 62.">
+        <svg class="fig-d" viewBox="0 0 560 280" role="img" aria-label="Hourly matching support by respondent type. All, n 909: 22 support, 7 neutral, 70 no or low. Companies, n 429: 12, 7, 82. NGOs, n 71: 49, 6, 45. Energy supplier, retailer or utility, n 81: 26, 12, 62.">
           <text x="10" y="22" class="t-lg">All respondents</text><text x="550" y="22" text-anchor="end" class="t-mono t-b">n = 909</text>
           <rect x="10" y="30" width="118.8" height="30" class="soft-signal"/><text x="69.4" y="50" text-anchor="middle" class="t-lg">22%</text>
           <rect x="128.8" y="30" width="37.8" height="30" class="node-soft"/><text x="147.7" y="50" text-anchor="middle" class="t-lg">7%</text>
@@ -345,7 +412,17 @@ svg .t-b { font-weight: 600; }
           <rect x="10" y="234" width="140.4" height="30" class="soft-signal"/><text x="80.2" y="254" text-anchor="middle" class="t-lg">26%</text>
           <rect x="150.4" y="234" width="64.8" height="30" class="node-soft"/><text x="182.8" y="254" text-anchor="middle" class="t-lg">12%</text>
           <rect x="215.2" y="234" width="334.8" height="30" class="soft-gap"/><text x="382.6" y="254" text-anchor="middle" class="t-lg">62%</text>
-        </svg></div>
+        </svg>
+        <svg class="fig-m" viewBox="0 0 360 266" role="img" aria-label="Hourly matching support by respondent type. All, n 909: 22 support, 7 neutral, 70 no or low. Companies, n 429: 12, 7, 82. NGOs, n 71: 49, 6, 45. Energy supplier, retailer or utility, n 81: 26, 12, 62.">
+          <text x="10" y="20" font-size="14" font-weight="600">All respondents</text><text x="350" y="20" text-anchor="end" class="mono" font-size="13" font-weight="600">n = 909</text>
+          <rect x="10" y="28" width="74.8" height="32" class="soft-signal"/><text x="47.4" y="49" text-anchor="middle" font-size="14" font-weight="600">22%</text><rect x="84.8" y="28" width="23.8" height="32" class="node-soft"/><text x="96.7" y="49" text-anchor="middle" font-size="13">7%</text><rect x="108.6" y="28" width="238" height="32" class="soft-gap"/><text x="227.6" y="49" text-anchor="middle" font-size="14" font-weight="600">70%</text>
+          <text x="10" y="86" font-size="14" font-weight="600">Companies</text><text x="350" y="86" text-anchor="end" class="mono" font-size="13" font-weight="600">n = 429</text>
+          <rect x="10" y="94" width="40.8" height="32" class="soft-signal"/><text x="30.4" y="115" text-anchor="middle" font-size="14" font-weight="600">12%</text><rect x="50.8" y="94" width="23.8" height="32" class="node-soft"/><text x="62.7" y="115" text-anchor="middle" font-size="13">7%</text><rect x="74.6" y="94" width="278.8" height="32" class="soft-gap"/><text x="214" y="115" text-anchor="middle" font-size="14" font-weight="600">82%</text>
+          <text x="10" y="152" font-size="14" font-weight="600">NGOs</text><text x="350" y="152" text-anchor="end" class="mono" font-size="13" font-weight="600">n = 71</text>
+          <rect x="10" y="160" width="166.6" height="32" class="soft-signal"/><text x="93.3" y="181" text-anchor="middle" font-size="14" font-weight="600">49%</text><rect x="176.6" y="160" width="20.4" height="32" class="node-soft"/><text x="186.8" y="181" text-anchor="middle" font-size="13">6%</text><rect x="197" y="160" width="153" height="32" class="soft-gap"/><text x="273.5" y="181" text-anchor="middle" font-size="14" font-weight="600">45%</text>
+          <text x="10" y="218" font-size="14" font-weight="600">Energy supplier / retailer / utility</text><text x="350" y="218" text-anchor="end" class="mono" font-size="13" font-weight="600">n = 81</text>
+          <rect x="10" y="226" width="88.4" height="32" class="soft-signal"/><text x="54.2" y="247" text-anchor="middle" font-size="14" font-weight="600">26%</text><rect x="98.4" y="226" width="40.8" height="32" class="node-soft"/><text x="118.8" y="247" text-anchor="middle" font-size="14" font-weight="600">12%</text><rect x="139.2" y="226" width="210.8" height="32" class="soft-gap"/><text x="244.6" y="247" text-anchor="middle" font-size="14" font-weight="600">62%</text>
+        </svg>
         <figcaption>Of the three groups broken out here, companies were the most opposed to hourly matching; NGOs were close to evenly split. Rows may not sum to 100 because of rounding. <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1, Table 19 p.49</a></figcaption>
       </figure>
     </div>
@@ -401,7 +478,7 @@ svg .t-b { font-weight: 600; }
     <div class="scrolly">
       <div class="scrolly-figure">
         <figure class="fig-frame">
-          <svg viewBox="0 0 540 420" role="img" aria-label="Vertical timeline of nine events from March 2025 to October 2026 showing incrementality moving from rejected in the Scope 2 market-based method to included in Method 1.">
+          <svg class="fig-d" viewBox="0 0 540 420" role="img" aria-label="Vertical timeline of nine events from March 2025 to October 2026 showing incrementality moving from rejected in the Scope 2 market-based method to included in Method 1.">
             <line x1="118" y1="30" x2="118" y2="392" class="edge-soft"/>
             <g data-step="0"><text x="10" y="44" class="t-mono">19 Mar 2025</text><circle cx="118" cy="40" r="6" class="fill-revision"/><text x="132" y="44" class="t">S2 TWG poll on supply limits: 0 Yes, 31 No</text></g>
             <g data-step="0"><text x="10" y="86" class="t-mono">27 Mar 2025</text><circle cx="118" cy="82" r="6" class="fill-revision"/><text x="132" y="86" class="t">ISB pulse: “without … further restrictions”</text></g>
@@ -417,6 +494,24 @@ svg .t-b { font-weight: 600; }
             <text transform="translate(512 125) rotate(-90)" text-anchor="middle" class="t-sm">Scope 2 MBM: no supply limit</text>
             <path d="M486 322 h8 v66 h-8" class="edge-soft"/>
             <text transform="translate(512 355) rotate(-90)" text-anchor="middle" class="t-sm">Method 1</text>
+          </svg>
+          <svg class="fig-m" viewBox="0 0 360 300" role="img" aria-label="Vertical timeline of nine events from March 2025 to October 2026 showing incrementality moving from rejected in the Scope 2 market-based method to included in Method 1.">
+            <line x1="88" y1="6" x2="88" y2="290" class="edge-soft"/>
+            <g data-step="0"><text x="80" text-anchor="end" y="24" class="mono" font-size="13">19 Mar ’25</text><circle cx="88" cy="20" r="6" class="fill-revision"/><text x="100" y="25" font-size="13">S2 TWG limits poll: 0 Yes, 31 No</text></g>
+            <g data-step="0"><text x="80" text-anchor="end" y="56" class="mono" font-size="13">27 Mar ’25</text><circle cx="88" cy="52" r="6" class="fill-revision"/><text x="100" y="57" font-size="13">ISB pulse: no further restrictions</text></g>
+            <g data-step="1"><text x="80" text-anchor="end" y="88" class="mono" font-size="13">14 Jul ’25</text><circle cx="88" cy="84" r="6" class="fill-revision"/><text x="100" y="89" font-size="13">ISB 4–7: marginal proposal to AMI</text></g>
+            <g data-step="1"><text x="80" text-anchor="end" y="120" class="mono" font-size="13">17 Sep ’25</text><circle cx="88" cy="116" r="6" class="fill-revision"/><text x="100" y="121" font-size="13">ISB Chair: additionality → AMI</text></g>
+            <g data-step="1"><text x="80" text-anchor="end" y="152" class="mono" font-size="13">20 Oct ’25</text><circle cx="88" cy="148" r="6" class="fill-revision"/><text x="100" y="153" font-size="13">Consultation: no rated question</text></g>
+            <g data-step="2"><text x="80" text-anchor="end" y="184" class="mono" font-size="13">Jun–Jul ’26</text><circle cx="88" cy="180" r="6" class="fill-revision"/><text x="100" y="185" font-size="13">AMI TWG: additionality/impact, Stmt 2</text></g>
+            <g data-step="3"><text x="80" text-anchor="end" y="216" class="mono" font-size="13">24 Aug ’26</text><circle cx="88" cy="212" r="6" class="fill-third"/><text x="100" y="217" font-size="13">Additionality complaint answered</text></g>
+            <g data-step="4"><text x="80" text-anchor="end" y="248" class="mono" font-size="13">Sep ’26</text><circle cx="88" cy="244" r="6" class="fill-revision"/><text x="100" y="249" font-size="13" font-weight="600">ISB: Method 1 age limit (shall)</text></g>
+            <g data-step="5"><text x="80" text-anchor="end" y="280" class="mono" font-size="13">6 Oct ’26</text><circle cx="88" cy="276" r="6" class="fill-revision"/><text x="100" y="281" font-size="13">TWG members object; Chair writes</text></g>
+            <!-- brackets -->
+            <path d="M318 8 h6 v152 h-6" class="edge-soft"/>
+            <text transform="translate(336 84) rotate(-90)" text-anchor="middle" font-size="13">Scope 2 MBM:</text>
+            <text transform="translate(353 84) rotate(-90)" text-anchor="middle" font-size="13">no supply limit</text>
+            <path d="M318 232 h6 v56 h-6" class="edge-soft"/>
+            <text transform="translate(345 260) rotate(-90)" text-anchor="middle" font-size="13">Method 1</text>
           </svg>
           <figcaption>Nine dated events. Incrementality was kept out of the Scope 2 consultation draft; the AMI TWG separately agreed additionality/impact for Statement 2; then an age limit entered Method 1 with an ISB pulse check. No source says one step caused the next. The violet dot marks the date of GHG Protocol's response to a third-party complaint.</figcaption>
         </figure>

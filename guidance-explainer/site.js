@@ -5,23 +5,48 @@
   document.documentElement.classList.add('js');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // wide figures on narrow screens: let the drawing keep a readable scale and scroll sideways
-  function wideFigs() {
-    document.querySelectorAll('figure svg[viewBox]').forEach(function (svg) {
-      var vb = (svg.getAttribute('viewBox') || '').split(/[\s,]+/).map(Number);
-      var w = vb[2] || 0, fig = svg.closest('figure'); if (!fig || !w) return;
-      var cw = fig.clientWidth;
-      if (w >= 520 && cw < 440) {
-        var wrap = svg.parentNode;
-        if (!wrap.classList || !wrap.classList.contains('fig-scroll')) {
-          wrap = document.createElement('div'); wrap.className = 'fig-scroll';
-          svg.parentNode.insertBefore(wrap, svg); wrap.appendChild(svg);
-        }
-        svg.style.minWidth = Math.min(w, 600) + 'px';
-      } else { svg.style.minWidth = ''; }
-    });
-  }
-  wideFigs(); window.addEventListener('resize', wideFigs);
+  // scrolly: activate step nearest viewport centre; sync figure via data-step
+  document.querySelectorAll('.scrolly').forEach(function (sc) {
+    var steps = Array.prototype.slice.call(sc.querySelectorAll('.step'));
+    var fig = sc.querySelector('.scrolly-figure');
+    if (!steps.length) return;
+    function setStep(i) {
+      steps.forEach(function (s, j) { s.classList.toggle('is-active', i === j); });
+      if (fig) {
+        fig.setAttribute('data-active', String(i));
+        fig.querySelectorAll('[data-step]').forEach(function (el) {
+          var spec = el.getAttribute('data-step'); // "2" or "1-3" or "0,2"
+          var on = false;
+          spec.split(',').forEach(function (p) {
+            p = p.trim();
+            if (p.indexOf('-') > 0) { var r = p.split('-'); if (i >= +r[0] && i <= +r[1]) on = true; }
+            else if (+p === i) on = true;
+          });
+          el.classList.toggle('dim', !on);
+          el.style.opacity = on ? '' : '';
+        });
+        fig.querySelectorAll('[data-show]').forEach(function (el) {
+          var spec = el.getAttribute('data-show'); var on = false;
+          spec.split(',').forEach(function (p) {
+            p = p.trim();
+            if (p.indexOf('-') > 0) { var r = p.split('-'); if (i >= +r[0] && i <= +r[1]) on = true; }
+            else if (+p === i) on = true;
+          });
+          el.style.visibility = on ? 'visible' : 'hidden';
+        });
+        var ev; try { ev = new CustomEvent('scrollystep', { detail: { index: i } }); } catch (e) { ev = document.createEvent('CustomEvent'); ev.initCustomEvent('scrollystep', true, true, { index: i }); }
+        sc.dispatchEvent(ev);
+      }
+    }
+    var active = 0; setStep(0);
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { var i = steps.indexOf(e.target); if (i !== active) { active = i; setStep(i); } } });
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+      steps.forEach(function (s) { io.observe(s); });
+    }
+  });
+
 
   // tabs
   document.querySelectorAll('.tabs').forEach(function (tabs) {

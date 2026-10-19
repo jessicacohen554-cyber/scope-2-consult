@@ -49,6 +49,9 @@ svg .stroke-infer { stroke: var(--infer); }
 svg .fill-infer { fill: var(--infer); }
 .fig-frame.narrow { max-width: 820px; }
 svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3); }
+/* phone drawings (.fig-m): larger type than the desktop classes */
+.wrap svg.fig-m .t { font-size: 13px; }
+.wrap svg.fig-m .t-sm, .wrap svg.fig-m .t-tag { font-size: 12px; }
 </style>
 <noscript><style>.matrix-detail > [hidden], [data-mode-show][hidden] { display: grid !important; }</style></noscript>
 </head>
@@ -61,7 +64,7 @@ svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3)
 
 <div class="content-wrap">
 <main class="wrap">
-  <div class="g-hero"><div class="eyebrow">Module 4 · Consequential accounting</div>
+  <div class="g-hero"><div class="eyebrow">Consequential accounting</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min (more in expandable notes)</span><span><b>Sources</b> AMI Phase 1 White Paper (RFI, Mar 2026) · AMI TWG minutes and decks (2025–2026) · Project Protocol (2005) · Grid-Connected Electricity Guidelines (2007) · LSR v1.0 Ch.14 and Ch.16 · Consequential electricity consultation (Oct 2025) and feedback summary (Jul 2026)</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
@@ -160,7 +163,7 @@ svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3)
     </div>
 
     <figure class="fig-frame narrow">
-      <svg viewBox="0 0 560 400" role="img" aria-label="Grid of three statements by two parties. Plant owner: Statement 1 holds scope 1 without the captured and stored CO2; Statement 3 holds within organizational boundary impacts. EAC buyer: Statement 1 holds scope 2 location-based; Statement 2 holds scope 2 market-based with the instrument's emission rate; Statement 3 would hold the buyer's own impact claim only if its action caused the change.">
+      <svg class="fig-d" viewBox="0 0 560 400" role="img" aria-label="Grid of three statements by two parties. Plant owner: Statement 1 holds scope 1 without the captured and stored CO2; Statement 3 holds within organizational boundary impacts. EAC buyer: Statement 1 holds scope 2 location-based; Statement 2 holds scope 2 market-based with the instrument's emission rate; Statement 3 would hold the buyer's own impact claim only if its action caused the change.">
         <!-- column heads -->
         <rect x="112" y="10" width="142" height="54" rx="8" class="node-soft"/>
         <text x="183" y="32" text-anchor="middle" class="t-lg">Statement 1</text>
@@ -220,6 +223,51 @@ svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3)
         <text x="335" y="361" text-anchor="middle" class="t">Each statement reported separately.</text>
         <text x="335" y="379" text-anchor="middle" class="t">No netting across statements (AMI WP p.28).</text>
       </svg>
+<svg class="fig-m" viewBox="0 0 360 486" role="img" aria-label="Grid of three statements by two parties. Plant owner: Statement 1 holds scope 1 without the captured and stored CO2; Statement 3 holds within organizational boundary impacts. EAC buyer: Statement 1 holds scope 2 location-based; Statement 2 holds scope 2 market-based with the instrument's emission rate; Statement 3 would hold the buyer's own impact claim only if its action caused the change.">
+<text x="8" y="16" class="t-lg">Plant owner</text>
+<text x="8" y="32" class="t-sm muted">(generator)</text>
+<text x="192" y="16" class="t-lg">EAC buyer</text>
+<rect x="0" y="44" width="360" height="24" rx="6" class="node-soft"/>
+<text x="8" y="61"><tspan class="t-lg">Statement 1</tspan><tspan class="t-sm muted" dx="8">physical · attributional</tspan></text>
+<rect x="0" y="72" width="176" height="98" rx="8" class="node"/>
+<text x="8" y="92" class="t">Scope 1: residual,</text>
+<text x="8" y="108" class="t">process and fugitive CO₂.</text>
+<text x="8" y="124" class="t">Captured and stored</text>
+<text x="8" y="140" class="t">CO₂ not reported.</text>
+<text x="8" y="161" class="t-tag">SOURCE · LSR Ch.14</text>
+<rect x="184" y="72" width="176" height="98" rx="8" class="node"/>
+<text x="192" y="92" class="t">Scope 2</text>
+<text x="192" y="108" class="t">location-based</text>
+<text x="192" y="161" class="t-tag">SOURCE · AMI Fig.6</text>
+<rect x="0" y="180" width="360" height="24" rx="6" class="node-soft"/>
+<text x="8" y="197"><tspan class="t-lg">Statement 2</tspan><tspan class="t-sm muted" dx="8">market-based · attributional</tspan></text>
+<rect x="0" y="208" width="176" height="82" rx="8" class="node-soft dash"/>
+<text x="88" y="228" text-anchor="middle" class="t muted">not addressed</text>
+<text x="88" y="244" text-anchor="middle" class="t muted">in the sources</text>
+<text x="8" y="281" class="t-tag">GAP</text>
+<rect x="184" y="208" width="176" height="82" rx="8" class="node"/>
+<text x="192" y="228" class="t">Scope 2 market-based:</text>
+<text x="192" y="244" class="t">the instrument’s</text>
+<text x="192" y="260" class="t">emission-rate attribute</text>
+<text x="192" y="281" class="t-tag">SOURCE · S2G Tbl 7.1</text>
+<rect x="0" y="300" width="360" height="24" rx="6" class="soft-accent"/>
+<text x="8" y="317"><tspan class="t-lg">Statement 3</tspan><tspan class="t-sm muted" dx="8">impact · consequential</tspan></text>
+<rect x="0" y="328" width="176" height="98" rx="8" class="node"/>
+<text x="8" y="348" class="t">“Within organizational</text>
+<text x="8" y="364" class="t">boundary impacts” of its</text>
+<text x="8" y="380" class="t">own action vs a</text>
+<text x="8" y="396" class="t">baseline</text>
+<text x="8" y="417" class="t-tag">SRC + INF · WP p.22</text>
+<rect x="184" y="328" width="176" height="98" rx="8" class="node dash"/>
+<text x="192" y="348" class="t">Own impact claim only</text>
+<text x="192" y="364" class="t">if its action (e.g. a</text>
+<text x="192" y="380" class="t">long-term contract)</text>
+<text x="192" y="396" class="t">caused the change</text>
+<text x="192" y="417" class="t-tag">INFERENCE</text>
+<rect x="0" y="436" width="360" height="50" rx="8" class="soft-revision"/>
+<text x="180" y="457" text-anchor="middle" class="t">Each statement reported separately.</text>
+<text x="180" y="475" text-anchor="middle" class="t">No netting across statements (AMI WP p.28).</text>
+</svg>
       <figcaption>Where a generator’s and an EAC buyer’s numbers would sit, adapted from AMI White Paper Figure 6. Cells marked SOURCE are stated in the cited documents; the others are inference or a gap. Whether one action may appear in more than one statement is still open (section 2). The CCUS version, with the double-claiming question, is on the next page.</figcaption>
     </figure>
     <p class="small">Cell sources: <a class="cite inforce" href="sources.html#r4-s21">LSR v1.0 Ch.14 p.359</a> <a class="cite revision" href="sources.html#r4-s1">AMI White Paper pp.22, 28, 36</a> <a class="cite inforce" href="sources.html#r4-s22">Scope 2 Guidance (2015) Table 7.1, p.60</a></p>
@@ -341,7 +389,7 @@ svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3)
     <div class="scrolly">
       <div class="scrolly-figure">
         <figure class="fig-frame">
-          <svg viewBox="0 0 600 400" role="img" aria-label="Inference map of the effects of adding carbon capture to a power plant. Primary effects: the at-plant rate cut against the historical rate, and the grid effect of lost or added megawatt hours valued at the operating or build margin. Secondary effects: one-time construction, upstream fuel and methane, downstream transport injection and EOR oil, and market and lifetime effects. Each node is tagged with the GHG Protocol text it rests on.">
+          <svg class="fig-d" viewBox="0 0 600 400" role="img" aria-label="Inference map of the effects of adding carbon capture to a power plant. Primary effects: the at-plant rate cut against the historical rate, and the grid effect of lost or added megawatt hours valued at the operating or build margin. Secondary effects: one-time construction, upstream fuel and methane, downstream transport injection and EOR oil, and market and lifetime effects. Each node is tagged with the GHG Protocol text it rests on.">
             <defs><marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
             <rect x="10" y="6" width="580" height="26" rx="6" class="soft-infer"/>
             <text x="300" y="23" text-anchor="middle" class="t-sm">INFERENCE assembled from Project Protocol, Grid Guidelines and LSR Ch.14; not a GHG Protocol figure</text>
@@ -399,6 +447,51 @@ svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3)
             </g>
             <text x="20" y="372" class="t-tag">PP = Project Protocol (2005) · GG = Grid Guidelines (2007)</text>
             <text x="20" y="390" class="t-tag">LSR = Land Sector and Removals v1.0 · tag = where the block is stated</text>
+          </svg>
+<svg class="fig-m" viewBox="0 0 360 290" role="img" aria-label="Inference map of the effects of adding carbon capture to a power plant. Primary effects: the at-plant rate cut against the historical rate, and the grid effect of lost or added megawatt hours valued at the operating or build margin. Secondary effects: one-time construction, upstream fuel and methane, downstream transport injection and EOR oil, and market and lifetime effects. Each node is tagged with the GHG Protocol text it rests on.">
+            <rect x="0" y="0" width="360" height="20" rx="5" class="soft-infer"/>
+            <text x="180" y="14" text-anchor="middle" class="t-sm">INFERENCE (PP, GG, LSR Ch.14); not a GHG Protocol figure</text>
+            <rect x="60" y="24" width="240" height="24" rx="8" class="node" style="stroke-width:2"/>
+            <text x="180" y="41" text-anchor="middle" class="t-lg">Capture added to a power plant</text>
+            <text x="0" y="62" class="t-sm muted mono">PRIMARY (INTENDED)</text>
+            <g data-step="0">
+              <rect x="0" y="66" width="360" height="33" rx="8" class="node"/>
+              <text x="8" y="80"><tspan class="t" style="font-weight:600">At-plant rate cut</tspan><tspan class="t-sm"> · baseline = historical unabated rate</tspan></text>
+              <text x="8" y="94" class="t-tag">PP Box 8.7 · GG Tbl 2.1 row 1</text>
+            </g>
+            <g data-step="1">
+              <rect x="0" y="103" width="360" height="45" rx="8" class="node"/>
+              <text x="8" y="117" class="t" style="font-weight:600">Grid: lost or added MWh</text>
+              <text x="8" y="130" class="t-sm">other plants fill or are displaced; valued at wBM + (1−w)OM</text>
+              <text x="8" y="143" class="t-tag">GG Eq.1, Tbl 2.1 row 2 · PP Box 8.2</text>
+            </g>
+            <text x="0" y="163" class="t-sm muted mono">SECONDARY (UNINTENDED)</text>
+            <g data-step="2">
+              <rect x="0" y="167" width="176" height="45" rx="8" class="node"/>
+              <text x="7" y="181" class="t" style="font-weight:600">One-time: capture</text>
+              <text x="7" y="194" class="t" style="font-weight:600">units, pipes, wells</text>
+              <text x="7" y="207" class="t-tag">PP §2.4, §5.3.1 · GG §4.3.1</text>
+            </g>
+            <g data-step="3">
+              <rect x="184" y="167" width="176" height="45" rx="8" class="node"/>
+              <text x="191" y="181" class="t" style="font-weight:600">Upstream: extra fuel,</text>
+              <text x="191" y="194" class="t" style="font-weight:600">coal and gas CH₄</text>
+              <text x="191" y="207" class="t-tag">PP §5.3.2 · LSR p.357</text>
+            </g>
+            <g data-step="4">
+              <rect x="0" y="216" width="176" height="45" rx="8" class="node"/>
+              <text x="7" y="230" class="t" style="font-weight:600">Downstream: transport,</text>
+              <text x="7" y="243" class="t" style="font-weight:600">injection, EOR</text>
+              <text x="7" y="256" class="t-tag">LSR Req. 19.GS</text>
+            </g>
+            <g data-step="5">
+              <rect x="184" y="216" width="176" height="45" rx="8" class="node"/>
+              <text x="191" y="230" class="t" style="font-weight:600">Market, dispatch,</text>
+              <text x="191" y="243" class="t" style="font-weight:600">life extension</text>
+              <text x="191" y="256" class="t-tag">PP §5.3.2, Box 8.2 · LSR p.357</text>
+            </g>
+            <text x="0" y="274" class="t-tag">PP = Project Protocol (2005) · GG = Grid Guidelines (2007)</text>
+            <text x="0" y="287" class="t-tag">LSR = Land Sector and Removals v1.0 · tag = where stated</text>
           </svg>
           <figcaption>Adding capture creates two kinds of primary effect, one at the plant and one on the grid, plus four families of secondary effect. The map is inference; each tag names the in-force text that supplies the block.</figcaption>
         </figure>
