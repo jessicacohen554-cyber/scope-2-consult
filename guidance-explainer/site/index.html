@@ -21,6 +21,7 @@
 .module .pages a .s { font-size: 0.92rem; color: var(--fg-2); }
 .module .pages a .k { font-family: var(--font-mono); font-size: 0.68rem; color: var(--fg-3); letter-spacing: .08em; text-transform: uppercase; }
 @media (max-width: 520px) { .module { grid-template-columns: 1fr; } .module .num { font-size: 1.6rem; } }
+@media (max-width: 640px) { .map-fig svg { min-width: 600px; } }
 .legend-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 10px; }
 
 </style>
@@ -64,8 +65,8 @@
       <h2>Four questions, one framework</h2>
       <p>Everything on this site sits somewhere on the Actions and Market Instruments working group's draft multi-statement framework: a physical inventory, a market-based inventory, and a separate impact statement. The pages trace each topic to its statement, and say when no document has yet placed it.</p>
     </div>
-    <figure class="fig-frame">
-      <svg viewBox="0 0 760 400" role="img" aria-label="Map of the four modules against the draft three-statement framework: Statement 1 physical inventory, Statement 2 market-based inventory, Statement 3 GHG impact statement. CCS reporting sits in Statement 1, CCS-backed EACs and storage mechanics in Statement 2, storage impact and CCUS impact in Statement 3, with governance spanning all three.">
+    <figure class="fig-frame map-fig">
+      <div class="scroll-x"><svg viewBox="0 0 760 400" role="img" aria-label="Map of the four modules against the draft three-statement framework: Statement 1 physical inventory, Statement 2 market-based inventory, Statement 3 GHG impact statement. CCS reporting sits in Statement 1, CCS-backed EACs and storage mechanics in Statement 2, storage impact and CCUS impact in Statement 3, with governance spanning all three.">
         <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
         <rect x="20" y="20" width="226" height="300" rx="12" class="node-soft"/>
         <rect x="267" y="20" width="226" height="300" rx="12" class="node-soft"/>
@@ -121,8 +122,8 @@
         <text x="133" y="300" text-anchor="middle" class="t-sm muted">in force · LSR Guidance v1.0</text>
         <text x="380" y="300" text-anchor="middle" class="t-sm muted">2015 Guidance now · Method 1 / 2 proposed</text>
         <text x="627" y="300" text-anchor="middle" class="t-sm muted">method work starts Q2 2027 (direction)</text>
-      </svg>
-      <figcaption>Where each module sits on the draft framework. Statement names and the placement of storage and consequential work are revision-stage direction, not adopted rules; the pages carry the citations.</figcaption>
+      </svg></div>
+      <figcaption>Scroll the figure sideways on a phone. Where each module sits on the draft framework. Statement names and the placement of storage and consequential work are revision-stage direction, not adopted rules; the pages carry the citations.</figcaption>
     </figure>
   </section>
 
