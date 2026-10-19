@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Storage Ledger</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* page-specific styles only (layouts unique to this page). Use tokens from site.css. */
+.tag { display: inline-block; font-family: var(--font-mono); font-size: 0.66rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; vertical-align: middle; }
+.tag.src { background: var(--inforce-soft); color: var(--inforce); }
+.tag.rev { background: var(--revision-soft); color: var(--revision); }
+.tag.inf { background: var(--infer-soft); color: var(--infer); }
+.tag.gap { background: var(--gap-soft); color: var(--gap); }
+.req { display: grid; gap: 10px; align-content: start; }
+.req .hd { display: flex; gap: 10px; align-items: baseline; }
+.req .hd .no { font-family: var(--font-mono); font-size: 0.78rem; color: var(--fg-3); }
+.req .callout { padding: 10px 12px; }
+.req p { font-size: 0.98rem; }
+.verb ol, .verb ul { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; }
+.verb li { font-style: italic; }
+.verb .sub { font-style: normal; font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-3); letter-spacing: .06em; text-transform: uppercase; list-style: none; margin-left: -1.3em; margin-top: 4px; }
+.step-card .callout { padding: 10px 12px; }
+.step-card .callout p { font-size: 0.95rem; }
+.fcap { font-size: 0.95rem; color: var(--fg-2); max-width: 65ch; }
+.fcap b { color: var(--fg); }
+.cmp td:first-child { font-weight: 600; white-space: nowrap; }
+.cmp td { min-width: 12rem; }
+.cmp td:first-child { min-width: 8rem; }
+.fig-narrow { max-width: 640px; width: 100%; }
+.ledger-wrap { display: grid; gap: 16px; align-items: start; }
+@media (min-width: 821px) { .ledger-wrap { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+.figtag { font-family: var(--font-mono); font-size: 0.72rem; color: var(--third); letter-spacing: .06em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
+    <div class="nav-links">
+      <a href="index.html">Start</a>
+      <a href="ccs-removals.html">CCS: removal or reduction?</a>
+      <a href="ccs-eac.html">CCS-backed EACs</a>
+      <a href="scope2-update.html">Oct 2026 update</a>
+      <a href="governance.html">Governance &amp; TWGs</a>
+      <a href="storage-mechanics.html">Storage ledger</a>
+      <a href="storage-revision.html">Storage &amp; incrementality</a>
+      <a href="consequential-basics.html">Impact accounting</a>
+      <a href="consequential-ccus.html">CCUS impact 2×2</a>
+      <a href="sources.html">Sources</a>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Module 3 · Storage</div>
+    <h1>How does stored electricity get counted hour by hour?</h1>
+    <p class="lede">A store is a load when it charges and a source when it discharges, and it loses energy in between. After this page you can say what GHG Protocol guidance does and does not say about that, and how third-party hourly ledgers handle it.</p>
+    <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> 2015 Scope 2 Guidance · 2025 Scope 2 consultation draft · consultation feedback (2026) · EnergyTag GC Standard v2 · US 45V final regulations · EU Regulation 2023/1184</span></div>
+    <div class="tier-legend" aria-label="Source tiers">
+      <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
+      <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
+      <span><i style="background:var(--third)"></i>Third party</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="On this page">
+    <a href="#s1"><span class="k">1</span>The net-load problem in GHG Protocol terms</a>
+    <a href="#s2"><span class="k">2</span>The yardstick: eight Quality Criteria and five principles</a>
+    <a href="#s3"><span class="k">3</span>Ledger mechanics in third-party schemes</a>
+    <a href="#s4"><span class="k">4</span>What the 2025 draft said, and what respondents said</a>
+    <a href="#s5"><span class="k">5</span>What to take into a position</a>
+  </nav>
+
+  <!-- ============ 1 ============ -->
+  <section class="section" id="s1">
+    <div class="section-head">
+      <div class="eyebrow">1 · The net-load problem</div>
+      <h2>A store is load, then source, with losses in between</h2>
+      <p>The in-force guidance has no storage rule. The nearest anchors are its rules on network losses, on on-site generation, and on double counting.</p>
+    </div>
+
+    <div class="prose">
+      <p>Start with what is missing. A full-text search of the 2015 Scope 2 Guidance for storage terms finds one passing mention of storage technologies and nothing on charging, discharging or round-trip losses.
+        <a class="cite inforce" href="sources.html#r3-s1">Scope 2 Guidance 2015, Box 4.1, p.27</a></p>
+    </div>
+    <div class="quote">
+      <blockquote><p>“Improved short-term forecasting of variable resources and storage technologies will also minimize these challenges.”</p></blockquote>
+      <div class="who">Scope 2 Guidance (2015), Box 4.1, p.27 · <a class="cite inforce" href="sources.html#r3-s1">source</a></div>
+    </div>
+    <div class="callout gap"><div class="label">Gap</div><p>The in-force guidance says nothing about how stored electricity, charging consumption, discharge, or storage losses are treated in either the location-based or the market-based method. “Net load” is not defined in any GHG Protocol source the research reviewed.</p></div>
+
+    <div class="prose">
+      <p>The figure walks through one illustrative day for a grid-connected store. Each step names the 2015 text that comes closest, and marks where the reasoning goes beyond it.</p>
+    </div>
+
+    <div class="scrolly">
+      <div class="scrolly-figure">
+        <figure class="fig-frame">
+          <svg viewBox="0 0 400 300" role="img" aria-label="A 24-hour timeline for one store. Bars below the axis show 100 MWh of charging from 10:00 to 14:00. Bars above the axis show 90 MWh of discharge from 18:00 to 21:00. The 10 MWh difference is losses. All numbers are illustrative.">
+            <text x="12" y="18" class="t-lg">One store, one day</text>
+            <text x="388" y="18" text-anchor="end" class="t-sm mono fill-gap">ILLUSTRATIVE NUMBERS</text>
+            <text x="12" y="40" class="t muted">▲ up: injection to grid (discharge)</text>
+            <text x="12" y="56" class="t muted">▼ down: withdrawal from grid (charging = load)</text>
+            <line x1="24" y1="150" x2="392" y2="150" class="edge"/>
+            <line x1="30" y1="146" x2="30" y2="154" class="edge-soft"/><line x1="120" y1="146" x2="120" y2="154" class="edge-soft"/><line x1="210" y1="146" x2="210" y2="154" class="edge-soft"/><line x1="300" y1="146" x2="300" y2="154" class="edge-soft"/><line x1="390" y1="146" x2="390" y2="154" class="edge-soft"/>
+            <text x="30" y="220" text-anchor="middle" class="t mono muted">00</text>
+            <text x="120" y="220" text-anchor="middle" class="t mono muted">06</text>
+            <text x="210" y="220" text-anchor="middle" class="t mono muted">12</text>
+            <text x="300" y="220" text-anchor="middle" class="t mono muted">18</text>
+            <text x="390" y="220" text-anchor="end" class="t mono muted">24 h</text>
+            <g data-step="0,2,3">
+              <rect x="181" y="151" width="13" height="50" class="fill-grid"/>
+              <rect x="196" y="151" width="13" height="50" class="fill-grid"/>
+              <rect x="211" y="151" width="13" height="50" class="fill-grid"/>
+              <rect x="226" y="151" width="13" height="50" class="fill-grid"/>
+              <text x="172" y="172" text-anchor="end" class="t">Charge 10:00–14:00</text>
+              <text x="172" y="188" text-anchor="end" class="t">4 h × 25 = 100 MWh in</text>
+            </g>
+            <g data-step="1,2">
+              <rect x="301" y="90" width="13" height="59" class="fill-storage"/>
+              <rect x="316" y="90" width="13" height="59" class="fill-storage"/>
+              <rect x="331" y="90" width="13" height="59" class="fill-storage"/>
+              <text x="292" y="110" text-anchor="end" class="t">Discharge 18:00–21:00</text>
+              <text x="292" y="126" text-anchor="end" class="t">3 h × 30 = 90 MWh out</text>
+            </g>
+            <g data-show="2,3">
+              <rect x="12" y="236" width="184" height="56" rx="6" class="soft-gap"/>
+              <text x="22" y="258" class="t">Losses = 100 − 90</text>
+              <text x="22" y="276" class="t">= 10 MWh used up</text>
+            </g>
+            <g data-show="3">
+              <rect x="204" y="236" width="184" height="56" rx="6" class="soft-inforce"/>
+              <text x="214" y="258" class="t">2015 gross rule, read across:</text>
+              <text x="214" y="276" class="t">100 gross, not 10 “net”</text>
+            </g>
+          </svg>
+          <figcaption>Illustrative day. A store withdraws more than it injects; the difference is losses. The 2015 gross-purchase rule, if read across to storage, would point at the 100, not the 10. GHG Protocol has not said so.</figcaption>
+        </figure>
+      </div>
+      <div class="scrolly-steps">
+        <div class="step"><div class="step-card"><div class="n">STEP 1</div><h3>Charging is a withdrawal</h3>
+          <p>Scope 2 covers emissions from the generation of electricity “purchased or acquired … consumed by the reporting company”.
+            <a class="cite revision" href="sources.html#r3-s2">Scope 2 consultation draft 2025, p.7 (quoting 2015 §5.3)</a></p>
+          <div class="callout inference"><div class="label">Inference</div><p>When the store charges it draws from the grid. In these terms that is consumption.</p></div>
+        </div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 2</div><h3>Discharge is an injection, not generation</h3>
+          <p>Quality Criterion 1 speaks of “the direct GHG emission rate attribute associated with the unit of electricity produced.”
+            <a class="cite inforce" href="sources.html#r3-s1">Scope 2 Guidance 2015, Table 7.1, p.60</a></p>
+          <div class="callout inference"><div class="label">Inference</div><p>A discharged MWh has no direct emission rate of its own. The only coherent attribute for it is the one inherited from the energy that was charged. Call that “pass-through”.</p></div>
+        </div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 3</div><h3>Losses are energy truly consumed</h3>
+          <p>For networks, the guidance counts losses as consumed energy and gives an example: “7 percent grid loss rate for 100MWh consumption would mean 7MWh lost in T&amp;D”. These losses sit in scope 3, category 3, and may be covered by certificates under the market-based method.
+            <a class="cite inforce" href="sources.html#r3-s1">Scope 2 Guidance 2015, §4.2 p.27; App. B, pp.96–97</a></p>
+          <div class="callout inference"><div class="label">Inference</div><p>By analogy, round-trip losses are energy consumed by whoever operates the store. No source says so, and none says whose scope 2 carries them.</p></div>
+        </div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 4</div><h3>Where the 2015 gross rule bites</h3>
+          <p>For on-site generation the guidance is explicit: “companies shall use the total—or gross—electricity purchases from the grid rather than grid purchases "net" of generation”. Its worked example gives 120 kWh total consumption against 20 kWh “net” grid consumption.
+            <a class="cite inforce" href="sources.html#r3-s1">Scope 2 Guidance 2015, §5.4 and Table 5.1, pp.38–39</a></p>
+          <div class="callout inference"><div class="label">Inference</div><p>Read across to a grid-connected store, scope 2 activity data would be gross charging energy, not charging minus discharging. Whether a discharge counts as “generation sold back to the grid” is not addressed.</p></div>
+        </div></div>
+      </div>
+    </div>
+
+
+    <div class="callout note"><div class="label">A stakeholder reading, not guidance</div><p>One respondent, Tierra Climate, says that under current practice “Only losses are included in Scope 2 activity data for storage”. The research found no GHG Protocol text that states this.
+      <a class="cite revision" href="sources.html#r3-s13">Consultation raw feedback 2026, Tierra Climate, Q5/Q46</a></p></div>
+
+    <div class="grid-2">
+      <div class="stack">
+        <h3>Double-counting anchors</h3>
+        <div class="quote">
+          <blockquote><p>“(In specific cases of multipliers or issuance of multiple instruments from the same MWh, then all instruments shall be retired for a full claim on that MWh.)”</p></blockquote>
+          <div class="who">Scope 2 Guidance (2015), §7.5 Criteria 1, p.63 · <a class="cite inforce" href="sources.html#r3-s1">source</a></div>
+        </div>
+        <div class="quote">
+          <blockquote><p>“The underlying electricity (or megawatt-hour) minus the instrument, sometimes called "null power," shall also not reflect the same GHG emission rate, but should be assigned residual mix emissions for the purpose of delivery and/or use claims in the market-based method.”</p></blockquote>
+          <div class="who">Scope 2 Guidance (2015), §7.5 Criteria 2, p.64 · <a class="cite inforce" href="sources.html#r3-s1">source</a></div>
+        </div>
+        <div class="callout inference"><div class="label">Inference</div><p>These are the in-force anchors for a rule that a charging certificate must be cancelled if a discharge certificate is to carry its attribute. Otherwise two instruments carry a claim on the same MWh, which conflicts with Quality Criterion 2.</p></div>
+      </div>
+      <div class="stack">
+        <h3>Age does not matter in 2015</h3>
+        <div class="quote">
+          <blockquote><p>“All energy has a direct emissions factor associated with generation, and the use of that emissions factor does not depend on whether the generation facility is existing or new, or why the generation has occurred.”</p></blockquote>
+          <div class="who">Scope 2 Guidance (2015), §11.3, p.90 · <a class="cite inforce" href="sources.html#r3-s1">source</a></div>
+        </div>
+        <div class="prose"><p>The 2015 guidance treats the United States as a single certificate market and the EU as a multi-country market. <a class="cite inforce" href="sources.html#r3-s1">Scope 2 Guidance 2015, §7.5, p.65</a></p></div>
+        <div class="callout inference"><div class="label">Inference</div><p>With annual certificates and markets that wide, no time-shifting device is needed. An annual certificate already covers any hour. Storage only becomes material to the market-based method once Quality Criterion 4 is hourly.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section class="section" id="s2">
+    <div class="section-head">
+      <div class="eyebrow">2 · The yardstick</div>
+      <h2>What an hourly storage ledger would have to satisfy</h2>
+      <p>Any storage rule would be tested against the in-force Quality Criteria, the accounting principles, and the criteria proposed in the 2025 draft.</p>
+    </div>
+
+    <div class="grid-2">
+      <details class="verb">
+        <summary>The eight Scope 2 Quality Criteria (verbatim, in force)</summary>
+        <div class="stack">
+          <p class="small">“All contractual instruments used in the market-based method for scope 2 accounting shall:”</p>
+          <ol>
+            <li>“Convey the direct GHG emission rate attribute associated with the unit of electricity produced.”</li>
+            <li>“Be the only instruments that carry the GHG emission rate attribute claim associated with that quantity of electricity generation.”</li>
+            <li>“Be tracked and redeemed, retired, or canceled by or on behalf of the reporting entity.”</li>
+            <li>“Be issued and redeemed as close as possible to the period of energy consumption to which the instrument is applied.”</li>
+            <li>“Be sourced from the same market in which the reporting entity's electricity-consuming operations are located and to which the instrument is applied.”
+              <div class="sub">In addition, utility-specific emission factors shall:</div></li>
+            <li>“Be calculated based on delivered electricity, incorporating certificates sourced and retired on behalf of its customers. Electricity from renewable facilities for which the attributes have been sold off (via contracts or certificates) shall be characterized as having the GHG attributes of the residual mix in the utility or supplier-specific emission factor.”
+              <div class="sub">In addition, companies purchasing electricity directly from generators or consuming on-site generation shall:</div></li>
+            <li>“Ensure all contractual instruments conveying emissions claims be transferred to the reporting entity only. No other instruments that convey this claim to another end user shall be issued for the contracted electricity. The electricity from the facility shall not carry the GHG emission rate claim for use by a utility, for example, for the purpose of delivery and use claims.”
+              <div class="sub">Finally, to use any contractual instrument in the market-based method requires that:</div></li>
+            <li>“An adjusted, residual mix characterizing the GHG intensity of unclaimed or publicly shared electricity shall be made available for consumer scope 2 calculations, or its absence shall be disclosed by the reporting entity.”</li>
+          </ol>
+          <div class="who small"><a class="cite inforce" href="sources.html#r3-s1">Scope 2 Guidance 2015, Table 7.1, p.60</a></div>
+        </div>
+      </details>
+      <details class="verb">
+        <summary>The five accounting principles (verbatim, in force)</summary>
+        <div class="stack">
+          <p class="small">“GHG accounting and reporting shall be based on the following principles:”</p>
+          <ul>
+            <li>“Relevance. Ensure the GHG inventory appropriately reflects the GHG emissions of the company and serves the decision-making needs of users—both internal and external to the company.”</li>
+            <li>“Completeness. Account for and report on all GHG emission sources and activities within the inventory boundary. Disclose and justify any specific exclusion.”</li>
+            <li>“Consistency. Use consistent methodologies to allow for meaningful performance tracking of emissions over time. Transparently document any changes to the data, inventory boundary, methods, or any other relevant factors in the time series.”</li>
+            <li>“Transparency. Address all relevant issues in a factual and coherent manner, based on a clear audit trail. Disclose any relevant assumptions and make appropriate references to the accounting and calculation methodologies and data sources used.”</li>
+            <li>“Accuracy. Ensure that the quantification of GHG emissions is systematically neither over nor under actual emissions, as far as can be judged, and that uncertainties are reduced as far as practicable. Achieve sufficient accuracy to enable users to make decisions with reasonable confidence as to the integrity of the reported information.”</li>
+          </ul>
+          <p class="small">“Companies may encounter tradeoffs between principles when completing an inventory and should strike a balance between these principles based on their individual business goals.”</p>
+          <div class="who small"><a class="cite inforce" href="sources.html#r3-s1">Scope 2 Guidance 2015, Ch. 3, p.21</a></div>
+        </div>
+      </details>
+    </div>
+
+
+    <div class="prose">
+      <p>Below, each requirement pairs its anchor text (<span class="tag src">Source</span>) with what it would imply for storage (<span class="tag inf">Inference</span>). The eight items follow the research dossier's derivation. None of them is GHG Protocol text about storage.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card req">
+        <div class="hd"><span class="no">01</span><h4>Cancel on charge</h4></div>
+        <p><span class="tag src">Source</span> QC2: “Be the only instruments that carry the GHG emission rate attribute claim associated with that quantity of electricity generation.” QC3: tracked and retired. Multiple instruments from one MWh: “all instruments shall be retired for a full claim on that MWh.” <a class="cite inforce" href="sources.html#r3-s1">2015 Table 7.1, p.60; §7.5, p.63</a></p>
+        <div class="callout inference"><div class="label">Inference</div><p>Charging certificates would be cancelled “for charging” in the charge hour. That guards unique claims and is auditable, but it needs registry capability.</p></div>
+      </div>
+      <div class="card req">
+        <div class="hd"><span class="no">02</span><h4>Haircut for losses</h4></div>
+        <p><span class="tag src">Source</span> Accuracy: “systematically neither over nor under actual emissions”. Completeness: “Account for and report on all GHG emission sources and activities”. <a class="cite inforce" href="sources.html#r3-s1">2015 Ch. 3, p.21</a></p>
+        <div class="callout inference"><div class="label">Inference</div><p>Discharge certificates would equal measured output, not input. The loss quantity is consumption. It needs certificates, or a residual-mix or fossil factor under the proposed residual-mix criterion. Whether losses fall on the operator or the end claimant is open. <span class="tag gap">Gap</span></p></div>
+      </div>
+      <div class="card req">
+        <div class="hd"><span class="no">03</span><h4>Two hours, two matches</h4></div>
+        <p><span class="tag src">Source</span> Proposed QC4: instruments “issued and redeemed for the same hour as the energy consumption to which the instrument is applied”. <a class="cite revision" href="sources.html#r3-s2">2025 draft §5.1.1, p.20</a></p>
+        <div class="callout inference"><div class="label">Inference</div><p>Pass-through creates two consumptions: the store's charging in hour t<sub>c</sub> and the end user's in hour t<sub>d</sub>. The charging certificate matches t<sub>c</sub>; the discharge certificate matches t<sub>d</sub>. No certificate crosses hours unbacked.</p></div>
+      </div>
+      <div class="card req">
+        <div class="hd"><span class="no">04</span><h4>Deliverability on both legs</h4></div>
+        <p><span class="tag src">Source</span> Proposed QC5: generation “deemed deliverable to the consuming load”; a facility “shall be considered as located at its first point of interconnection to a transmission network.” <a class="cite revision" href="sources.html#r3-s2">2025 draft §5.1.2, p.23</a></p>
+        <div class="callout inference"><div class="label">Inference</div><p>Two legs: generator to store, then store to load. A store behind the generator's connection meets leg 1 trivially. A standalone store must sit in the same deliverable boundary. The draft does not say which location a discharge instrument carries. <span class="tag gap">Gap</span></p></div>
+      </div>
+      <div class="card req">
+        <div class="hd"><span class="no">05</span><h4>No cherry-picking</h4></div>
+        <p><span class="tag src">Source</span> Completeness: “Disclose and justify any specific exclusion.” Transparency: “a clear audit trail”. <a class="cite inforce" href="sources.html#r3-s1">2015 Ch. 3, p.21</a></p>
+        <div class="callout inference"><div class="label">Inference</div><p>All discharge from a registered store would be recorded. Uncovered discharge would go to an “unknown beneficiary” (the EnergyTag approach) or to the residual mix.</p></div>
+      </div>
+      <div class="card req">
+        <div class="hd"><span class="no">06</span><h4>Published allocation order</h4></div>
+        <p><span class="tag src">Source</span> Transparency and Consistency principles. <a class="cite inforce" href="sources.html#r3-s1">2015 Ch. 3, p.21</a></p>
+        <div class="callout inference"><div class="label">Inference</div><p>Whether charge records are allocated first-in-first-out, by weighted average, or at the operator's choice is a transparency and consistency question. GHG Protocol is silent on it. <span class="tag gap">Gap</span></p></div>
+      </div>
+      <div class="card req">
+        <div class="hd"><span class="no">07</span><h4>Grid-charged storage</h4></div>
+        <p><span class="tag src">Source</span> Proposed residual mix: “not claimed through contractual instruments or allocated via Standard Supply Service”; it “should reflect the highest temporal precision available”. <a class="cite revision" href="sources.html#r3-s2">2025 draft, Criterion 9, p.27</a></p>
+        <div class="callout inference"><div class="label">Inference</div><p>Charging not covered by cancelled clean certificates carries no clean attribute. Either the stored energy inherits the charge-hour residual mix, or no attribute is issued on discharge and the receiving consumer falls to its own residual mix. No residual-mix rule that tracks storage is proposed. <span class="tag gap">Gap</span></p></div>
+      </div>
+      <div class="card req">
+        <div class="hd"><span class="no">08</span><h4>Netting within an hour</h4></div>
+        <p><span class="tag src">Source</span> The draft accepts that sub-hourly dispatch is a trade-off: “hourly matching of certificates as a practical cadence for accurate market-based allocation.” <a class="cite revision" href="sources.html#r3-s2">2025 draft, rationale p.29</a></p>
+        <div class="callout inference"><div class="label">Inference</div><p>One net state per metering interval of 60 minutes or less fits the hourly cadence. The 2015 gross-purchase “shall” suggests charge and discharge are not netted against each other across hours in activity data.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section class="section" id="s3">
+    <div class="section-head">
+      <div class="eyebrow">3 · Ledger mechanics</div>
+      <h2>How third-party schemes run the ledger</h2>
+      <p>The working mechanics exist only outside the GHG Protocol: in the EnergyTag certificate standard and in two hydrogen regulations.</p>
+    </div>
+
+    <div class="prose">
+      <p>EnergyTag explains why older certificate systems did not need storage rules, and why hourly ones do. The Standard makes storage certificates optional for issuers: an issuer “may issue Storage Discharge GCs”, and if it does it must follow the storage section.
+        <a class="cite third" href="sources.html#r3-t1">EnergyTag GC Scheme Standard v2, pp.10, 25</a></p>
+    </div>
+    <div class="quote third">
+      <blockquote><p>“For most historic EACs systems, cancellation for energy Input to storage is not required. The logic was that storage is not end-consumption and, in most cases the "clean-up" of storage losses was voluntarily dealt with by canceling the corresponding number of EACs if specific Attributes were claimed for the stored energy. GCs related to energy fed into and released from storage cannot be managed like this, as the time interval in which the energy is charged and discharged is of essential value. EnergyTag acknowledges that storage tracking is complex and is still in an early stage of development and implementation.”</p></blockquote>
+      <div class="who">EnergyTag GC Scheme Standard v2, §1.6, p.25 · <a class="cite third" href="sources.html#r3-t1">source</a></div>
+    </div>
+
+    <div class="ledger-wrap">
+      <figure class="fig-frame" id="ledger">
+        <div class="figtag">Third-party scheme · GHG Protocol has no rule</div>
+        <svg viewBox="0 0 420 412" role="img" aria-label="Six-frame ledger: a 100 Wh solar certificate is cancelled for charging, a storage charge record is created, 5 Wh is lost, a 95 Wh discharge record is created in a later hour, a 95 Wh storage discharge certificate is issued and matched to consumption in that hour. Third-party scheme; GHG Protocol has no rule.">
+            <defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+            <rect x="4" y="4" width="412" height="222" rx="10" class="node-soft"/>
+            <text x="14" y="22" class="t mono muted">CHARGE HOUR · 15 Jan 2024 17:00–18:00</text>
+            <rect x="4" y="234" width="412" height="174" rx="10" class="node-soft"/>
+            <text x="14" y="252" class="t mono muted">DISCHARGE HOUR · 20:00–21:00</text>
+            <g data-frame="0-5">
+              <rect x="14" y="34" width="130" height="50" rx="8" class="node"/>
+              <text x="79" y="55" text-anchor="middle" class="t">Solar device</text>
+              <text x="79" y="72" text-anchor="middle" class="t">produces 100 Wh</text>
+              <line x1="144" y1="59" x2="164" y2="59" class="edge" marker-end="url(#arr2)"/>
+              <rect x="166" y="34" width="112" height="50" rx="8" class="node soft-inforce"/>
+              <text x="222" y="55" text-anchor="middle" class="t-lg">GC</text>
+              <text x="222" y="72" text-anchor="middle" class="t">100 Wh · solar</text>
+            </g>
+            <g data-frame="1-5">
+              <line x1="170" y1="38" x2="274" y2="80" class="edge" style="stroke:var(--gap);stroke-width:2"/>
+              <text x="290" y="55" class="t fill-gap">cancelled</text>
+              <text x="290" y="72" class="t fill-gap">“for charging”</text>
+              <rect x="14" y="124" width="130" height="60" rx="8" class="node"/>
+              <text x="79" y="145" text-anchor="middle" class="t-lg">SCR</text>
+              <text x="79" y="162" text-anchor="middle" class="t">100 Wh charged</text>
+              <text x="79" y="177" text-anchor="middle" class="t-sm muted">metered input</text>
+              <line x1="144" y1="154" x2="164" y2="154" class="edge" marker-end="url(#arr2)"/>
+            </g>
+            <rect x="166" y="118" width="242" height="72" rx="10" class="node"/>
+            <text x="287" y="138" text-anchor="middle" class="t">Storage System</text>
+            <rect x="182" y="148" width="210" height="14" rx="3" class="node-soft" style="stroke:var(--fg-3)"/>
+            <rect x="182" y="148" width="210" height="14" rx="3" class="fill-storage" data-frame="1"/>
+            <rect x="182" y="148" width="199.5" height="14" rx="3" class="fill-storage" data-frame="2"/>
+            <text x="287" y="180" text-anchor="middle" class="t" data-frame-text="Reservoir: empty|Reservoir: 100 Wh recorded|Reservoir: SCR AL 95 Wh|Reservoir: 95 Wh allocated to SDR|Reservoir: allocated|Reservoir: allocated">Reservoir: SCR AL 95 Wh</text>
+            <g data-frame="2-5">
+              <line x1="396" y1="190" x2="396" y2="216" class="edge" marker-end="url(#arr2)" style="stroke:var(--gap)"/>
+              <text x="388" y="212" text-anchor="end" class="t fill-gap">5 Wh losses</text>
+            </g>
+            <g data-frame="3-5">
+              <line x1="222" y1="190" x2="222" y2="260" class="edge" marker-end="url(#arr2)"/>
+              <rect x="166" y="262" width="112" height="60" rx="8" class="node"/>
+              <text x="222" y="283" text-anchor="middle" class="t-lg">SDR</text>
+              <text x="222" y="300" text-anchor="middle" class="t">95 Wh out</text>
+              <text x="222" y="315" text-anchor="middle" class="t-sm muted">metered output</text>
+            </g>
+            <g data-frame="4-5">
+              <line x1="278" y1="292" x2="294" y2="292" class="edge" marker-end="url(#arr2)"/>
+              <rect x="296" y="262" width="112" height="60" rx="8" class="node soft-third"/>
+              <text x="352" y="283" text-anchor="middle" class="t-lg">SD-GC</text>
+              <text x="352" y="300" text-anchor="middle" class="t">95 Wh</text>
+              <text x="352" y="315" text-anchor="middle" class="t-sm">Storage Tag</text>
+            </g>
+            <g data-frame="5">
+              <line x1="352" y1="322" x2="352" y2="342" class="edge" marker-end="url(#arr2)"/>
+              <rect x="296" y="344" width="112" height="54" rx="8" class="node soft-signal"/>
+              <text x="352" y="366" text-anchor="middle" class="t">Consumption</text>
+              <text x="352" y="383" text-anchor="middle" class="t">same hour</text>
+              <text x="14" y="350" class="t">A claim needs all four out of use:</text>
+              <text x="14" y="366" class="t">GC + SCR (charge hour)</text>
+              <text x="14" y="382" class="t">SDR + SD-GC (discharge hour)</text>
+              <text x="14" y="398" class="t">Location matched on both legs</text>
+            </g>
+          </svg>
+        <figcaption>EnergyTag's schematic example: 100 Wh charged becomes a 95 Wh discharge certificate. This is a third-party scheme. GHG Protocol has no equivalent rule.</figcaption>
+      </figure>
+      <div class="stack">
+      <div class="stepper" data-target="#ledger" data-frames="6"><button class="btn prev">Back</button><button class="btn primary next">Next</button><span class="count"></span></div>
+      <div class="fcap">
+        <p data-frame-caption="0"><b>1 · Production.</b> A solar device produces 100 Wh between 17:00 and 18:00 on 15 Jan 2024 and a GC is issued. The store is treated as “both a Production Device and a Consumption Point”. <a class="cite third" href="sources.html#r3-t1">EnergyTag GC Standard v2, pp.24, 28</a></p>
+        <p data-frame-caption="1" hidden><b>2 · Cancel on charge.</b> “GCs for energy produced in the same time interval as the SCR shall be canceled, indicating that this cancellation is "for charging" energy into a Storage System.” A Storage Charge Record (SCR) records the metered input. Intervals “shall be 60 minutes or less”. <a class="cite third" href="sources.html#r3-t1">EnergyTag GC Standard v2, pp.27, 29</a></p>
+        <p data-frame-caption="2" hidden><b>3 · Losses come off.</b> “SCRs represent a quantity of charged energy that shall be allocated to SDRs except for the share related to energy losses.” The schematic shows “SCR AL (AL = After Losses) … Vol = 95 Wh”. “Parasitic losses shall be included in this overall loss factor”. <a class="cite third" href="sources.html#r3-t1">EnergyTag GC Standard v2, pp.28–30, Annex 2 pp.49–50</a></p>
+        <p data-frame-caption="3" hidden><b>4 · Discharge record.</b> At 20:00–21:00 the store discharges 95 Wh, recorded as a Storage Discharge Record (SDR). SDR volume “shall be based on measurement of energy output from storage.” Each unit of an SCR “may only be allocated once to an SDR.” <a class="cite third" href="sources.html#r3-t1">EnergyTag GC Standard v2, pp.27–30</a></p>
+        <p data-frame-caption="4" hidden><b>5 · Re-issue on discharge.</b> A Storage Discharge GC (SD-GC) for 95 Wh is issued, “always AFTER cancellation of Input GCs”. Attributes “shall be copied to SDRs” and “SD-GCs shall be Issued in equal volume as the corresponding SDRs.” The SD-GC carries a Storage Tag and records “both the location of the original Production Device … and the location of the storage device”. <a class="cite third" href="sources.html#r3-t1">EnergyTag GC Standard v2, pp.28, 30</a></p>
+        <p data-frame-caption="5" hidden><b>6 · Claim.</b> The SD-GC is matched to consumption in hour t<sub>d</sub>. A temporal claim needs the GC (t<sub>c</sub>), SCR (t<sub>c</sub>), SDR (t<sub>d</sub>) and SD-GC (t<sub>d</sub>) all “no longer available for further use”. Geographic matching “shall be done” between production device and store, and between store and end-consumption. <a class="cite third" href="sources.html#r3-t1">EnergyTag GC Standard v2, pp.29–30</a></p>
+      </div>
+      </div>
+    </div>
+
+      <div class="callout gap"><div class="label">Gap in the third-party scheme</div><p>Charging not covered by cancelled GCs creates records that “do not contain information regarding the energy source” (p.25). The Standard does not say whether discharge from those records carries grid-mix or residual-mix attributes. EnergyTag's FAQ says it “is currently developing a robust standard for storage accounting”.
+        <a class="cite third" href="sources.html#r3-t1">EnergyTag GC Standard v2, p.25</a> <a class="cite third" href="sources.html#r3-t3">EnergyTag FAQ</a></p></div>
+    <div class="prose"><p>Uncertified discharge may go to an “unknown beneficiary” so the reservoir matches physical capacity, and the order of allocation must be published, with “ensuring positive environmental impact of the storage system” as the guiding principle. The Standard sets no age requirement for the store or the charged generation. <a class="cite third" href="sources.html#r3-t1">EnergyTag GC Standard v2, pp.28, 52–53</a></p></div>
+
+    <h3>Three precedents side by side</h3>
+    <div class="prose"><p>Two regulations for hydrogen production set storage rules with real legal force. They are design precedents, not GHG Protocol rules. Each cell keeps the source's own wording where it matters.</p></div>
+    <div class="scroll-x">
+      <table class="tbl cmp">
+        <thead><tr><th>Question</th><th>EnergyTag GC Standard v2 <a class="cite third" href="sources.html#r3-t1">T1</a></th><th>US 45V final regulations (Jan 2025) <a class="cite third" href="sources.html#r3-t4">T4</a></th><th>EU Reg. 2023/1184 (RFNBO) <a class="cite third" href="sources.html#r3-t5">T5</a></th></tr></thead>
+        <tbody>
+          <tr><td>When stored energy counts</td><td>SD-GC records “the time interval of release from storage” (p.30). The Matching Standard matches production time to consumption “at least on an hourly basis” (p.14). <a class="cite third" href="sources.html#r3-t2">GC Matching Standard v1, p.14</a></td><td>If “discharged from a storage system in the same hour that the taxpayer's hydrogen production facility uses electricity to produce hydrogen” (FR 2319–2320).</td><td>Storage “charged during the same one-hour period in which the electricity under the renewables power purchase agreement has been produced” (Art. 6). Monthly until 31 Dec 2029; hourly from 1 Jan 2030.</td></tr>
+          <tr><td>Losses</td><td>Charge and discharge records based on measured input and output; SCRs allocated to SDRs “except for the share related to energy losses” (pp.27–30).</td><td>Volume “must account for storage-related efficiency losses” (FR 2320).</td><td>Not covered in the research dossier.</td></tr>
+          <tr><td>Must the store be new?</td><td>No age requirement.</td><td>“Storage systems need not themselves meet the incrementality requirement” (FR 2270).</td><td>Yes: “a new storage asset that is located behind the same network connection point as the electrolyser or the installation generating renewable electricity” (Art. 6).</td></tr>
+          <tr><td>Must the charged energy's generator be new?</td><td>No age requirement.</td><td>Stored EACs “must meet the incrementality requirement based on the attributes of the generator” (FR 2270): COD no more than 36 months before the hydrogen facility was placed in service (FR 2318).</td><td>Yes: generation “came into operation not earlier than 36 months before” the fuel installation (Art. 5(a)).</td></tr>
+          <tr><td>Location</td><td>Geographic matching on both legs; SD-GC records both locations (p.29).</td><td>Store “must be located in the same region as both the hydrogen production facility and the facility generating the stored electricity” (FR 2319–2320).</td><td>Behind the same network connection point (Art. 6).</td></tr>
+          <tr><td>One claim only</td><td>GC, SCR, SDR and SD-GC must all be out of use (p.30).</td><td>Each EAC “is claimed and retired only once” applies to stored electricity (FR 2320).</td><td>Not covered in the research dossier.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid-2">
+      <div class="quote third">
+        <blockquote><p>“Storage systems need not themselves meet the incrementality requirement, but the EACs that represent electricity stored in such storage systems must meet the incrementality requirement based on the attributes of the generator of such electricity.”</p></blockquote>
+        <div class="who">45V final regulations, preamble, 90 FR 2270 · <a class="cite third" href="sources.html#r3-t4">source</a></div>
+      </div>
+      <div class="stack">
+        <div class="callout note"><div class="label">Scope of the 45V precedent</div><p>The final regulations do not let hydrogen producers contract with off-site storage to shift their load profile. The storage pathway depends “on whether and when EAC registries can substantiate the effective tracking of electricity through that storage.”
+          <a class="cite third" href="sources.html#r3-t4">45V final regulations, 90 FR 2270</a></p></div>
+        <div class="callout gap"><div class="label">Gap</div><p>The research did not verify the current statutory status of the 45V credit after 2025 legislation. It is cited here only as a regulatory design precedent. The EU text does not define “new storage asset” further.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section class="section" id="s4">
+    <div class="section-head">
+      <div class="eyebrow">4 · The 2025 draft and the feedback</div>
+      <h2>The draft mentioned storage four ways, and set no rule</h2>
+      <p>Storage appears in one definition, one sentence of rationale, and four answer options. Respondents then said a lot about it.</p>
+    </div>
+
+    <div class="callout gap"><div class="label">Gap</div><p>The October 2025 consultation draft contains no proposal on charging and discharging, storage certificates, loss allocation, or co-located storage. It also contains no incrementality, additionality, commercial-operation-date or asset-age rule. It says “additional topics are expected to be addressed in Phase 2.”
+      <a class="cite revision" href="sources.html#r3-s2">Scope 2 consultation draft 2025, p.4</a></p></div>
+
+    <div class="grid-2">
+      <div class="defn"><div class="term">Consumption-based averages (proposed, location-based method)</div><div class="text">“"Consumption-based averages" characterize the weighted-average GHG emission rate of the electricity generation consumed in a specific geographic area and time period. Consumption-based averages reflect electricity imports, exports, and stored electricity produced in a previous time period, whereas production-based averages do not.”</div><div class="who small">The only storage-specific definitional text in the draft · <a class="cite revision" href="sources.html#r3-s2">Scope 2 consultation draft 2025, §4.1.1, p.10</a></div></div>
+      <div class="quote revision">
+        <blockquote><p>“Further, hourly price signals could create financial incentives for energy technologies (such as energy storage, clean firm power, demand response, etc.) that will be needed at scale to fully decarbonize grids.”</p></blockquote>
+        <div class="who">Market-based method rationale · <a class="cite revision" href="sources.html#r3-s2">Scope 2 consultation draft 2025, p.29</a></div>
+      </div>
+    </div>
+
+    <div class="prose"><p>No question in the consultation asked about storage directly. Storage appears only as an answer option to four questions. The chart shows how many respondents to each question chose it.
+      <a class="cite revision" href="sources.html#r3-s13">Consultation raw data (question_options.csv)</a></p></div>
+
+    <figure class="fig-frame fig-narrow">
+      <svg viewBox="0 0 400 300" role="img" aria-label="Share of respondents choosing the storage option: Q45 34.87 percent (136 of 390); Q72 51.06 percent (193 of 378); Q140 64.13 percent (286 of 446); Q147 65.29 percent (111 of 170).">
+        <text x="12" y="16" class="t-sm muted">Base: respondents who answered that question (raw data).</text>
+        <g>
+          <text x="12" y="44" class="t">Q45 · why support most precise LBM factor</text>
+          <text x="388" y="44" text-anchor="end" class="t-sm mono">136 / 390</text>
+          <text x="12" y="60" class="t-sm muted">“Enables emission changes from storage and demand-flexibility…”</text>
+          <rect x="12" y="68" width="300" height="14" rx="3" class="node-soft" style="stroke:var(--fg-3)"/>
+          <rect x="12" y="68" width="104.6" height="14" rx="3" class="fill-storage"/>
+          <text x="320" y="80" class="t-lg">34.87%</text>
+        </g>
+        <g>
+          <text x="12" y="110" class="t">Q72 · why support hourly matching (QC4)</text>
+          <text x="388" y="110" text-anchor="end" class="t-sm mono">193 / 378</text>
+          <text x="12" y="126" class="t-sm muted">same option wording; 7th of 11 options</text>
+          <rect x="12" y="134" width="300" height="14" rx="3" class="node-soft" style="stroke:var(--fg-3)"/>
+          <rect x="12" y="134" width="153.2" height="14" rx="3" class="fill-storage"/>
+          <text x="320" y="146" class="t-lg">51.06%</text>
+        </g>
+        <g>
+          <text x="12" y="176" class="t">Q140 · drivers of hourly price differences</text>
+          <text x="388" y="176" text-anchor="end" class="t-sm mono">286 / 446</text>
+          <text x="12" y="192" class="t-sm muted">“Shaping/firming or storage products…”; 3rd of 8</text>
+          <rect x="12" y="200" width="300" height="14" rx="3" class="node-soft" style="stroke:var(--fg-3)"/>
+          <rect x="12" y="200" width="192.4" height="14" rx="3" class="fill-storage"/>
+          <text x="320" y="212" class="t-lg">64.13%</text>
+        </g>
+        <g>
+          <text x="12" y="242" class="t">Q147 · why a separate impact metric helps</text>
+          <text x="388" y="242" text-anchor="end" class="t-sm mono">111 / 170</text>
+          <text x="12" y="258" class="t-sm muted">“…actions such as energy storage or demand response”; 1st of 6</text>
+          <rect x="12" y="266" width="300" height="14" rx="3" class="node-soft" style="stroke:var(--fg-3)"/>
+          <rect x="12" y="266" width="195.9" height="14" rx="3" class="fill-storage"/>
+          <text x="320" y="278" class="t-lg">65.29%</text>
+        </g>
+      </svg>
+      <figcaption>Each bar uses its own question's respondents as the base. The bases differ, so the bars are not a ranking of storage across questions. Q147 was asked only of those who answered “yes” or “somewhat” to Q146.</figcaption>
+    </figure>
+
+    <div class="callout note"><div class="label">Two denominators for the same option</div>
+      <p>For Q72, GHG Protocol's summary reports the storage option at <b>76%</b>, with the base “respondents who rated the proposed hourly matching requirement 4 or 5 (Support)”; its section intro covers “427 respondents to these questions”.
+        <a class="cite revision" href="sources.html#r3-s4">Consultation Summary, 25 Aug 2026, Fig. 9, pp.50–51</a>
+        Computed from the raw data, 145 of the 194 Q72 respondents who rated Q71 at 4 or 5 chose it: <b>74.7%</b>. Among all 378 Q72 respondents it is <b>51.06%</b>.
+        <a class="cite revision" href="sources.html#r3-s13">Consultation raw data</a></p>
+      <p>For Q45, the summary gives <b>35%</b> of “406 respondents”; the raw data gives 136 / 390 = <b>34.87%</b>.
+        <a class="cite revision" href="sources.html#r3-s4">Consultation Summary, Fig. 5, p.30</a> Do not mix these bases.</p>
+    </div>
+
+    <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))">
+      <div class="kpi"><div class="v">909</div><div class="l">Q71 respondents rating hourly QC4 <a class="cite revision" href="sources.html#r3-s4">Summary Table 19, p.49</a></div></div>
+      <div class="kpi"><div class="v">22%</div><div class="l">rated it 4–5 (support) <a class="cite revision" href="sources.html#r3-s4">Table 19</a></div></div>
+      <div class="kpi"><div class="v">70%</div><div class="l">rated it 1–2; 7% rated it 3 <a class="cite revision" href="sources.html#r3-s4">Table 19</a></div></div>
+    </div>
+
+    <h3>What respondents said</h3>
+    <div class="grid-2">
+      <div class="quote revision">
+        <blockquote><p>“When batteries charge, they should consume GOs according to their power consumption and energy mix. When discharging the power, batteries should then receive GOs according to the power delivered to the grid.”</p></blockquote>
+        <div class="who">Ørsted A/S · Company, Denmark · Q133 · <a class="cite revision" href="sources.html#r3-s13">raw feedback</a></div>
+      </div>
+      <div class="quote revision">
+        <blockquote><p>“At present, reporting and regulatory requirements for battery &amp; storage systems are not fully established in all markets where we operate, for example, how losses during charge/discharge are to be accounted for, how GO's can be issued for electricity that has passed via a storage system and what meter boundary should be used for co-located BESS+PV/wind.”</p></blockquote>
+        <div class="who">Sonnedix UK Services Ltd · Energy supplier/retailer or utility, UK · Q020 · <a class="cite revision" href="sources.html#r3-s13">raw feedback</a></div>
+      </div>
+      <div class="quote revision">
+        <blockquote><p>“Merchant storage or independently operated storage will have positive emissions in MBM inventories unless it purchases EACs to cover losses, even when it reduces system emissions on a consequential basis. MBM, like LBM, fundamentally assigns emissions based on losses, not consequential changes to the grid.”</p></blockquote>
+        <div class="who">Tierra Climate Inc. · Data/analytics provider, US · Q073 · <a class="cite revision" href="sources.html#r3-s13">raw feedback</a></div>
+      </div>
+      <div class="quote revision">
+        <blockquote><p>“But for other grids and portfolios, storage resources dispatched to "fill the hourly gaps" in a company's renewable portfolio will increase fossil generation when they charge. Under these circumstances, due to the efficiency losses inherent in energy storage systems, storage deployed to reduce a company's reported emissions will have the effect of increasing atmospheric emissions.”</p></blockquote>
+        <div class="who">Redacted · Company, US · Q075 · <a class="cite revision" href="sources.html#r3-s13">raw feedback</a></div>
+      </div>
+      <div class="quote revision">
+        <blockquote><p>“Hourly matching would specifically incentivize companies not to produce clean energy or discharge storage in these hours beyond their load. This would actively increase short-run emissions; cause grid stress; and slow renewables build in the long run.”</p></blockquote>
+        <div class="who">WattTime · NGO, US · Q075 · <a class="cite revision" href="sources.html#r3-s13">raw feedback</a></div>
+      </div>
+    </div>
+
+    <div class="callout note"><div class="label">Template-text caution</div><p>Fourteen respondents (8 companies, 2 consultants, 2 industry groups, 1 academia, 1 data provider) used near-identical wording: hourly matching “can incentivize behavior, such as the timing of charging and discharging of energy storage projects, that align with an individual reporting entities carbon accounting needs at the expense of system-level benefits”. This looks like shared text. Do not count it as fourteen independent views.
+      <a class="cite revision" href="sources.html#r3-s13">Consultation raw data (keyword search)</a></p></div>
+
+    <div class="prose">
+      <p>GHG Protocol's own summaries record the themes, not a position. On the separate consequential consultation, “Some respondents noted that consequential accounting is better suited to recognize certain technologies like battery storage and demand response, which attributional methods can only represent as a net emissions increase.”
+        <a class="cite revision" href="sources.html#r3-s12">Consequential Impacts Summary of Feedback, 29 Jul 2026, p.3</a></p>
+    </div>
+    <div class="callout gap"><div class="label">Gap</div><p>Neither feedback summary reports a GHG Protocol position on storage mechanics.</p></div>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section class="section" id="s5">
+    <div class="section-head">
+      <div class="eyebrow">5 · Position</div>
+      <h2>What to take into a position</h2>
+      <p>Keep three things apart: what the texts say, what follows from them, and what nobody has decided.</p>
+    </div>
+    <div class="callout key"><div class="label">Takeaway</div><p>No GHG Protocol text, in force or in revision, sets a storage ledger. The Quality Criteria point toward cancel on charge, re-issue on discharge net of measured losses, and two hourly matches. Only third-party schemes have written that down.</p></div>
+    <div class="prose">
+      <ul>
+        <li><span class="tag src">Sourced</span> The 2015 guidance has no storage rule. It requires gross grid purchases for on-site generation, counts T&amp;D losses as consumption, and says emission factors do not depend on whether a facility “is existing or new”. <a class="cite inforce" href="sources.html#r3-s1">Scope 2 Guidance 2015, pp.38, 96, 90</a></li>
+        <li><span class="tag src">Sourced</span> EnergyTag cancels certificates on charge, keeps charge and discharge records per interval of 60 minutes or less, and re-issues on discharge net of measured losses, recording both locations. 45V counts stored energy in the discharge hour and tests the generator, not the store. EU 2023/1184 requires a “new storage asset”. <a class="cite third" href="sources.html#r3-t1">EnergyTag v2</a> <a class="cite third" href="sources.html#r3-t4">45V</a> <a class="cite third" href="sources.html#r3-t5">EU 2023/1184</a></li>
+        <li><span class="tag src">Sourced</span> The 2025 draft mentions storage only in a definition, its rationale, and answer options to Q45, Q72, Q140 and Q147. <a class="cite revision" href="sources.html#r3-s2">Scope 2 consultation draft 2025</a></li>
+        <li><span class="tag inf">Inference</span> Quality Criterion 2 and the multiple-instrument rule imply that a charging certificate must be cancelled before a discharge certificate can carry its attribute. Accuracy implies a haircut for measured losses.</li>
+        <li><span class="tag gap">Gap</span> Whose scope carries storage losses; how uncertified discharge and grid charging enter an hourly residual mix; which location a discharge instrument carries; and whether charge and discharge may be netted within one hour behind one meter.</li>
+      </ul>
+    </div>
+    <div class="callout inference"><div class="label">Inference</div><p>A position on storage mechanics can be argued from in-force criteria (QC2, QC3, Accuracy, Completeness) and the proposed QC4 and QC5. It cannot cite a GHG Protocol storage rule, because none exists yet. The next page covers where the revision has assigned the topic.</p></div>
+  </section>
+
+  <nav class="pager" aria-label="Pages">
+    <a class="prev" href="governance.html"><span class="dir">Previous</span><span class="ttl">Governance &amp; TWGs</span></a>
+    <a class="next" href="storage-revision.html"><span class="dir">Next</span><span class="ttl">Storage &amp; incrementality</span></a>
+  </nav>
+  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
+</main>
+<script src="site.js"></script>
+</body>
+</html>
