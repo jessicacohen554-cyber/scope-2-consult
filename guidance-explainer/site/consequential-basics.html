@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Impact Accounting Basics</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* page-specific: statement cards, formula panel, feedback bars, option cards */
+.stmts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 10px; }
+.stmt { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; display: grid; gap: 4px; }
+.stmt .no { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: .1em; color: var(--fg-3); text-transform: uppercase; }
+.stmt b { font-family: var(--font-display); font-weight: 650; }
+.stmt .how { font-size: 0.85rem; color: var(--fg-2); }
+.stmt.hl { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); }
+.formula { font-family: var(--font-mono); font-size: 0.9rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; line-height: 1.7; }
+.formula .lbl { font-family: var(--font-body); font-size: 0.8rem; color: var(--fg-3); display: block; }
+.fb { display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: var(--bg-3); margin-top: 4px; max-width: 26rem; }
+.fb i { display: block; height: 100%; }
+.fb .rq { background: var(--accent); }
+.fb .op { background: color-mix(in srgb, var(--accent) 40%, var(--bg-2)); }
+.fb .nr { background: var(--line); }
+.fbl { font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-3); }
+.fb-key { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.82rem; color: var(--fg-2); }
+.fb-key span { display: inline-flex; align-items: center; gap: 6px; }
+.fb-key i { width: 12px; height: 10px; border-radius: 3px; display: inline-block; }
+.check.proposal { border-style: dashed; }
+.opt .k { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: .08em; color: var(--revision); text-transform: uppercase; }
+svg .soft-infer { fill: var(--infer-soft); }
+svg .stroke-infer { stroke: var(--infer); }
+svg .fill-infer { fill: var(--infer); }
+.fig-frame.narrow { max-width: 820px; }
+svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3); }
+</style>
+<noscript><style>.matrix-detail > [hidden], [data-mode-show][hidden] { display: grid !important; }</style></noscript>
+</head>
+<body>
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
+    <div class="nav-links">
+      <a href="index.html">Start</a>
+      <a href="ccs-removals.html">CCS: removal or reduction?</a>
+      <a href="ccs-eac.html">CCS-backed EACs</a>
+      <a href="scope2-update.html">Oct 2026 update</a>
+      <a href="governance.html">Governance &amp; TWGs</a>
+      <a href="storage-mechanics.html">Storage ledger</a>
+      <a href="storage-revision.html">Storage &amp; incrementality</a>
+      <a href="consequential-basics.html">Impact accounting</a>
+      <a href="consequential-ccus.html">CCUS impact 2×2</a>
+      <a href="sources.html">Sources</a>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Module 4 · Consequential accounting</div>
+    <h1>What would a “GHG impact statement” actually measure?</h1>
+    <p class="lede">After this page you can separate an inventory number from an impact number, name the impact-accounting tools GHG Protocol already publishes, and read the electricity consultation’s formula and nine additionality tests with their limits in view.</p>
+    <div class="hero-meta"><span><b>Reading time</b> ~12 min (more in expandable notes)</span><span><b>Sources</b> AMI Phase 1 White Paper (RFI, Mar 2026) · AMI TWG minutes and decks (2025–2026) · Project Protocol (2005) · Grid-Connected Electricity Guidelines (2007) · LSR v1.0 Ch.14 and Ch.16 · Consequential electricity consultation (Oct 2025) and feedback summary (Jul 2026)</span></div>
+    <div class="tier-legend" aria-label="Source tiers">
+      <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
+      <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
+      <span><i style="background:var(--third)"></i>Third party</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="On this page">
+    <a href="#s1"><span class="k">1</span>Two questions, two statements</a>
+    <a href="#s2"><span class="k">2</span>Additionality will be required in Statement 3</a>
+    <a href="#s3"><span class="k">3</span>Building blocks GHG Protocol already has</a>
+    <a href="#s4"><span class="k">4</span>The electricity consequential consultation</a>
+    <a href="#s5"><span class="k">5</span>What to take into a position</a>
+  </nav>
+
+  <!-- ===================== 1 ===================== -->
+  <section class="section" id="s1">
+    <div class="section-head">
+      <div class="eyebrow">1 · Attributional vs consequential</div>
+      <h2>Two questions, two statements</h2>
+      <p>An inventory asks what sits inside your boundary. An impact statement asks what changed in the world because you acted.</p>
+    </div>
+
+    <div class="prose">
+      <p>The draft multi-statement framework keeps these two questions apart. Statements 1 and 2 are inventories built with attributional accounting. Statement 3 is built with consequential accounting.
+        <a class="cite revision" href="sources.html#r4-s1">AMI White Paper (RFI, Mar 2026) p.5</a></p>
+    </div>
+
+    <div class="grid-2">
+      <div class="defn"><div class="term">Attributional accounting</div><div class="text">“Attributional accounting (also known as inventory accounting): A type of GHG accounting that quantifies total GHG emissions (and removals and other accounting categories, if applicable) within a defined inventory boundary and time period.”</div><div class="who small">AMI White Paper glossary · <a class="cite revision" href="sources.html#r4-s1">AMI White Paper pp.17–18</a></div></div>
+      <div class="defn"><div class="term">Consequential accounting</div><div class="text">“Consequential accounting: A type of GHG accounting that estimates the impacts or changes in GHG emissions (and removals) resulting from specific projects, actions, or interventions relative to a baseline scenario in which the project, action, or intervention did not occur. It quantifies the systemwide or global change in GHGs in the atmosphere caused by an action, project, or intervention.”</div><div class="who small">AMI White Paper glossary · <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.18</a></div></div>
+    </div>
+
+    <div class="prose">
+      <p>The electricity consultation draws the same line and adds the key consequence for boundaries: the impact view ignores whose inventory the change lands in.
+        <a class="cite revision" href="sources.html#r4-s14">Consequential electricity consultation (Oct 2025) p.5</a></p>
+    </div>
+    <div class="quote revision">
+      <blockquote><p>“The project-based accounting approach evaluates system-wide emissions impacts of the project or intervention in question, without regard to the reporting company’s operational or organizational inventory boundary.”</p></blockquote>
+      <div class="who">Public Consultation – Consequential Electricity-Sector Emissions Impacts, p.5 · <a class="cite revision" href="sources.html#r4-s14">source</a></div>
+    </div>
+
+    <h3>Four statements are under consideration</h3>
+    <div class="stmts" role="list">
+      <div class="stmt" role="listitem"><span class="no">Statement 1</span><b>Physical GHG inventory</b><span class="how">Attributional. “existing, no change”. Holds scope 2 location-based.</span></div>
+      <div class="stmt" role="listitem"><span class="no">Statement 2</span><b>Market-based GHG inventory</b><span class="how">Attributional. Holds scope 2 market-based.</span></div>
+      <div class="stmt hl" role="listitem"><span class="no">Statement 3</span><b>GHG impact statement</b><span class="how">Consequential. Impacts of actions against a baseline.</span></div>
+      <div class="stmt" role="listitem"><span class="no">Statement 4</span><b>Non-GHG indicators</b><span class="how">Key performance indicators.</span></div>
+    </div>
+    <p class="small">Numbering and the phrase “existing, no change” from the Explanatory Memo; scope 2 placement from White Paper Figure 6. <a class="cite revision" href="sources.html#r4-s1">AMI White Paper pp.4–5, Fig. 6 p.36</a> <a class="cite revision" href="sources.html#r4-s2">AMI RFI Explanatory Memo p.4</a></p>
+
+    <div class="defn"><div class="term">Statement 3 · GHG impact statement</div><div class="text">“The GHG impact statement provides a dedicated, structured statement for reporting on the impacts of actions taken by the reporting company inside and outside its value chain (e.g., emissions avoided, reduced, or removed). It applies to actions such as projects, interventions, investments, production/sale of products, and purchase/consumption of products. This statement uses consequential accounting methods that aim to quantify the global change in GHGs in the atmosphere resulting from a given action. This involves estimating the GHG impacts of an action relative to a credible baseline scenario in which the action did not occur.”</div><div class="who small">AMI Phase 1 White Paper, RFI version · <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.6</a></div></div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>The name is a draft</h4>
+        <p>White Paper Figure 6 lists alternative names: “GHG impacts/outcomes of actions”, “GHG outcome statement” and “Mitigation intervention statement”. <a class="cite revision" href="sources.html#r4-s1">AMI White Paper Fig. 6, p.36</a></p>
+        <div class="quote revision"><blockquote><p>“Names of statements reflect the current majority view of the AMI TWG. They are draft versions and subject to change.”</p></blockquote><div class="who">Figure 6, note 3 · <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.36</a></div></div>
+        <p class="small">Elsewhere the same approach is labelled “Mitigation approach” in an ISO 14067 WD2 extract, and “Mitigation Intervention statement” in a Gillenwater &amp; Broekhoff 2026 extract shown to the TWG. <a class="cite revision" href="sources.html#r4-s1">AMI White Paper Annex D, p.51</a> <a class="cite revision" href="sources.html#r4-s7b">AMI in-person workshop Day 2 deck, PDF p.70</a></p>
+      </div>
+      <div class="card">
+        <h4>Not a footprint</h4>
+        <div class="quote revision"><blockquote><p>“The GHG impact statement does not provide a comprehensive assessment of a corporate footprint, but instead allows reporters to report the impact of activities that are quantified using consequential methods and therefore not reflected in the physical GHG inventory.”</p></blockquote><div class="who">AMI White Paper p.39 · <a class="cite revision" href="sources.html#r4-s1">source</a></div></div>
+      </div>
+    </div>
+
+    <details><summary>The five draft impact sub-categories, with examples</summary><div class="stack">
+
+    <div class="scroll-x"><table class="tbl">
+      <thead><tr><th>Sub-category</th><th>Draft wording (as excerpted)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Within organizational boundary impacts</b></td><td>“Quantified GHG impacts of actions implemented by the reporting company within its organizational boundary (which are not reported in other statements).”</td></tr>
+        <tr><td><b>Value chain associated impacts</b></td><td>“… within its value chain, outside of its organizational boundary (which are not reported in other statements).”</td></tr>
+        <tr><td><b>Sector associated impacts</b></td><td>“… within its key sector(s), outside of its value chain…”</td></tr>
+        <tr><td><b>Beyond value chain and sector (global) impacts</b></td><td>“… outside of its sector…”</td></tr>
+        <tr><td><b>GHG impacts of sold products</b></td><td>“Quantified change in system-wide GHG emissions resulting from the use of products sold by the reporting company relative to emissions in a counterfactual baseline scenario…”</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">All five from <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.22</a>. The Explanatory Memo places an on-site CHP plant that also supplies a local community in “within organizational boundaries”, noting it “also has implication for Scope 1 reporting in the physical GHG inventory”, and places a wind-farm investment where the company has no operations in “sector associated impacts”. Its caveat: “the simplified assumption is made that all applicable quality criteria (including additionality) that are still to be defined, would be met.” <a class="cite revision" href="sources.html#r4-s2">AMI RFI Explanatory Memo pp.9–10</a></p>
+</div></details>
+
+    <h3>Separate, never netted</h3>
+    <div class="quote revision">
+      <blockquote><p>“A foundational concept for multi-statement GHG reporting design is transparent and disaggregated reporting of unique reporting statements and elements, without netting.” … “Ensure separate reporting of elements that are attributional (e.g., physical inventory emissions) and consequential (e.g., GHG impacts of actions).”</p></blockquote>
+      <div class="who">AMI White Paper p.28 · <a class="cite revision" href="sources.html#r4-s1">source</a></div>
+    </div>
+    <div class="prose">
+      <p>RFI respondents pushed the same way: “Many respondents recommended phased implementation and clear use cases, with a strict prohibition on netting impact results against physical or market-based inventories.” The summary also says “the newly proposed statements are expected to remain optional for the foreseeable future.”
+        <a class="cite revision" href="sources.html#r4-s4">AMI RFI Summary of Responses (Sep 2026) pp.4, 41</a></p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><span class="v">437</span><span class="l">valid AMI RFI responses <a class="cite revision" href="sources.html#r4-s4">RFI Summary p.3</a></span></div>
+      <div class="kpi"><span class="v">84%</span><span class="l">“strong support” or “support” for the multi-statement framework <a class="cite revision" href="sources.html#r4-s4">RFI Summary p.3</a></span></div>
+      <div class="kpi"><span class="v">80%</span><span class="l">293 of 366 say the GHG impact statement should be included <a class="cite revision" href="sources.html#r4-s4">RFI Summary p.23</a></span></div>
+      <div class="kpi"><span class="v">69%</span><span class="l">agree it should reflect positive and negative impacts (n=351) <a class="cite revision" href="sources.html#r4-s4">RFI Summary p.25</a></span></div>
+    </div>
+
+    <figure class="fig-frame narrow">
+      <svg viewBox="0 0 560 400" role="img" aria-label="Grid of three statements by two parties. Plant owner: Statement 1 holds scope 1 without the captured and stored CO2; Statement 3 holds within organizational boundary impacts. EAC buyer: Statement 1 holds scope 2 location-based; Statement 2 holds scope 2 market-based with the instrument's emission rate; Statement 3 would hold the buyer's own impact claim only if its action caused the change.">
+        <!-- column heads -->
+        <rect x="112" y="10" width="142" height="54" rx="8" class="node-soft"/>
+        <text x="183" y="32" text-anchor="middle" class="t-lg">Statement 1</text>
+        <text x="183" y="51" text-anchor="middle" class="t-sm muted">physical · attributional</text>
+        <rect x="264" y="10" width="142" height="54" rx="8" class="node-soft"/>
+        <text x="335" y="32" text-anchor="middle" class="t-lg">Statement 2</text>
+        <text x="335" y="51" text-anchor="middle" class="t-sm muted">market-based · attributional</text>
+        <rect x="416" y="10" width="142" height="54" rx="8" class="soft-accent"/>
+        <text x="487" y="32" text-anchor="middle" class="t-lg">Statement 3</text>
+        <text x="487" y="51" text-anchor="middle" class="t-sm muted">impact · consequential</text>
+        <!-- row heads -->
+        <text x="4" y="118" class="t-lg">Plant</text>
+        <text x="4" y="136" class="t-lg">owner</text>
+        <text x="4" y="154" class="t-sm muted">(generator)</text>
+        <text x="4" y="250" class="t-lg">EAC</text>
+        <text x="4" y="268" class="t-lg">buyer</text>
+        <!-- owner row -->
+        <rect x="112" y="76" width="142" height="116" rx="8" class="node"/>
+        <text x="122" y="98" class="t">Scope 1: residual,</text>
+        <text x="122" y="114" class="t">process and fugitive</text>
+        <text x="122" y="130" class="t">CO₂. Captured and</text>
+        <text x="122" y="146" class="t">stored CO₂ not</text>
+        <text x="122" y="162" class="t">reported.</text>
+        <text x="122" y="182" class="t-tag">SOURCE · LSR Ch.14</text>
+        <rect x="264" y="76" width="142" height="116" rx="8" class="node-soft dash"/>
+        <text x="335" y="130" text-anchor="middle" class="t muted">not addressed</text>
+        <text x="335" y="146" text-anchor="middle" class="t muted">in the sources</text>
+        <text x="274" y="182" class="t-tag">GAP</text>
+        <rect x="416" y="76" width="142" height="116" rx="8" class="node"/>
+        <text x="426" y="98" class="t">“Within</text>
+        <text x="426" y="114" class="t">organizational</text>
+        <text x="426" y="130" class="t">boundary impacts”</text>
+        <text x="426" y="146" class="t">of its own action</text>
+        <text x="426" y="162" class="t">vs a baseline</text>
+        <text x="426" y="182" class="t-tag">SOURCE · AMI WP p.22</text>
+        <!-- buyer row -->
+        <rect x="112" y="206" width="142" height="116" rx="8" class="node"/>
+        <text x="122" y="228" class="t">Scope 2</text>
+        <text x="122" y="244" class="t">location-based</text>
+        <text x="122" y="312" class="t-tag">SOURCE · AMI Fig.6</text>
+        <rect x="264" y="206" width="142" height="116" rx="8" class="node"/>
+        <text x="274" y="228" class="t">Scope 2</text>
+        <text x="274" y="244" class="t">market-based: the</text>
+        <text x="274" y="260" class="t">instrument’s</text>
+        <text x="274" y="276" class="t">emission-rate</text>
+        <text x="274" y="292" class="t">attribute</text>
+        <text x="274" y="312" class="t-tag">SOURCE · S2G Tbl 7.1</text>
+        <rect x="416" y="206" width="142" height="116" rx="8" class="node dash"/>
+        <text x="426" y="228" class="t">Own impact claim</text>
+        <text x="426" y="244" class="t">only if its action</text>
+        <text x="426" y="260" class="t">(e.g. a long-term</text>
+        <text x="426" y="276" class="t">contract) caused</text>
+        <text x="426" y="292" class="t">the change</text>
+        <text x="426" y="312" class="t-tag">INFERENCE</text>
+        <!-- no netting bar -->
+        <rect x="112" y="340" width="446" height="50" rx="8" class="soft-revision"/>
+        <text x="335" y="361" text-anchor="middle" class="t">Each statement reported separately.</text>
+        <text x="335" y="379" text-anchor="middle" class="t">No netting across statements (AMI WP p.28).</text>
+      </svg>
+      <figcaption>Where a generator’s and an EAC buyer’s numbers would sit, adapted from AMI White Paper Figure 6. Cells marked SOURCE are stated in the cited documents; the others are inference or a gap. Whether one action may appear in more than one statement is still open (section 2). The CCUS version, with the double-claiming question, is on the next page.</figcaption>
+    </figure>
+    <p class="small">Cell sources: <a class="cite inforce" href="sources.html#r4-s21">LSR v1.0 Ch.14 p.359</a> <a class="cite revision" href="sources.html#r4-s1">AMI White Paper pp.22, 28, 36</a> <a class="cite inforce" href="sources.html#r4-s22">Scope 2 Guidance (2015) Table 7.1, p.60</a></p>
+  </section>
+
+  <!-- ===================== 2 ===================== -->
+  <section class="section" id="s2">
+    <div class="section-head">
+      <div class="eyebrow">2 · Direction of travel</div>
+      <h2>Additionality will be required in Statement 3</h2>
+      <p>The TWG’s draft text uses “shall”. How to test it is still open, and so is whether one action can appear in two statements.</p>
+    </div>
+
+    <div class="defn"><div class="term">Additionality (one of eight optional definitions listed)</div><div class="text">“A criterion often applied to GHG projects stipulating that project-based GHG reductions should only be quantified if the project activity ‘would not have happened anyway’—i.e., that the project activity (or the same technologies or practices it employs) would not have been implemented in its baseline scenario—and/or that project activity emissions are lower than baseline emissions.”</div><div class="who small">AMI White Paper p.21, option 1, citing the Project Protocol · <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.21</a></div></div>
+    <div class="prose">
+      <p>The electricity consultation frames it more briefly: “the principle that claimed emission reductions or avoided emissions must result from actions that would not have occurred otherwise.”
+        <a class="cite revision" href="sources.html#r4-s14">Consequential electricity consultation p.9</a></p>
+    </div>
+
+    <div class="quote revision">
+      <blockquote><p>“Statement 3: Actions and market instruments shall be additional, i.e. reflect emissions reduction, avoidance, or removal that would not have occurred in the absence of the reporting company’s intervention (Note: specific additionality tests to be determined).”</p></blockquote>
+      <div class="who">Draft text, AMI TWG in-person workshop, Day 3 (2 Jul 2026), PDF p.18 · <a class="cite revision" href="sources.html#r4-s7c">source</a></div>
+    </div>
+    <details><summary>Sub-bullets for credits and other actions; the expected quality criteria</summary><div class="stack">
+<div class="prose">
+      <p>The same slide adds sub-bullets: for credits, a reference to ICVCM; for other actions, “Companies shall demonstrate that emissions reductions or removals from projects meet additionality requirements based on established frameworks or standards. (SBTi)”.
+        <a class="cite revision" href="sources.html#r4-s7c">AMI workshop Day 3 deck, PDF p.18</a></p>
+    </div>
+    <div class="quote revision">
+      <blockquote><p>“The Secretariat responded that additionality must be present in Statement 3 and that a majority of the members participating in the subgroup considered that there should be at least impact requirements for Statement 2.”</p></blockquote>
+      <div class="who">AMI TWG Meeting 2.08 minutes, 9 Sep 2026, p.6 · <a class="cite revision" href="sources.html#r4-s5">source</a></div>
+    </div>
+    <div class="quote revision">
+      <blockquote><p>“This statement is expected to include quality criteria such as additionality, credible baselines, permanence, mitigate leakage, unique issuance and claiming, monitoring, independent validation and verification, GHG program governance, and sustainable development benefits and safeguards. These will be further developed in phase 2.”</p></blockquote>
+      <div class="who">AMI White Paper p.40 · <a class="cite revision" href="sources.html#r4-s1">source</a></div>
+    </div>
+</div></details>
+
+    <details><summary>Timeline, 2025 to 2027: how additionality reached Statement 3</summary><div class="stack">
+    <div class="timeline">
+      <div class="tl revision"><div class="when">2025-07 (reported 2025-09-16)</div><div class="what">ISB does not support the Marginal Impact Method going to consultation</div><div class="why">“7/11 members” had significant concerns, including “Some concerns that the additionality test, as described in the MIM proposal, is not sufficiently rigorous to support avoided emission claims”. Work moved to the AMI TWG. <a class="cite revision" href="sources.html#r4-s9a">AMI TWG 8 deck (16 Sep 2025) pp.25–26</a></div></div>
+      <div class="tl revision"><div class="when">2025-10-20 to 2026-01-31</div><div class="what">Consequential electricity consultation open</div><div class="why">185 valid responses; summary published July 2026. <a class="cite revision" href="sources.html#r4-s14">Consultation (Oct 2025)</a> <a class="cite revision" href="sources.html#r4-s15">Feedback summary (Jul 2026) p.2</a></div></div>
+      <div class="tl revision"><div class="when">2026-03</div><div class="what">AMI White Paper (RFI) sets out four statements</div><div class="why">Phase 2 to coordinate with the Scope 2 TWG on electricity-sector consequential methods “within Statement 3 (GHG impact statement)”. <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.7</a></div></div>
+      <div class="tl revision"><div class="when">2026-06-30 to 07-02</div><div class="what">In-person TWG: draft “shall be additional” text for Statement 3</div><div class="why">Also: four baseline types agreed; annual ex-post time boundary proposed. <a class="cite revision" href="sources.html#r4-s7b">AMI workshop Day 2 deck, PDF p.5</a> <a class="cite revision" href="sources.html#r4-s7c">AMI workshop Day 3 deck, PDF p.18</a></div></div>
+      <div class="tl revision"><div class="when">2026-09-09</div><div class="what">Secretariat: “additionality must be present in Statement 3”</div><div class="why">Claims language still debated: “reduced emissions rather than avoided emissions”. <a class="cite revision" href="sources.html#r4-s5">AMI TWG 2.08 minutes p.6</a></div></div>
+      <div class="tl future"><div class="when">Q2 2027 (planned)</div><div class="what">Draft consolidated Corporate Standard with AMI requirements for public consultation</div><div class="why">The Explanatory Memo said Q3 2027. <a class="cite revision" href="sources.html#r4-s4">RFI Summary p.40</a> <a class="cite revision" href="sources.html#r4-s2">Explanatory Memo p.4</a></div></div>
+    </div>
+    </div></details>
+
+    <h3>Can one action appear in more than one statement?</h3>
+    <div class="prose">
+      <p>“Decisions have also not been made on whether statements are mutually exclusive or not.” The 9 September 2026 deck set out three options.
+        <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.35</a> <a class="cite revision" href="sources.html#r4-s6">AMI TWG 2.08 deck, PDF p.27</a></p>
+    </div>
+    <div class="grid-3">
+      <div class="card opt"><span class="k">Option 1 · may, if different</span><p class="small">“Companies may account and report changes in GHG emissions [and removals, if applicable] resulting from a single activity through Statement 2 and Statement 3 as long as the quantified impacts of the activity are different and there is no double counting of impacts across the two statements.”</p></div>
+      <div class="card opt"><span class="k">Option 2 · shall not</span><p class="small">“Companies shall not account and report changes in GHG emissions [and removals, if applicable] from a single action in both Statement 2 and Statement 3. …”</p></div>
+      <div class="card opt"><span class="k">Option 3 · S2 triggers S3</span><p class="small">“Companies may account and report [emissions/removals or changes in emissions/removals] resulting from a single activity through Statement 2 or Statement 3. However, if the organization reports changes in GHG emissions [and removals, if applicable] in Statement 2 then, it shall also quantify and report in Statement 3.”</p></div>
+    </div>
+    <p class="small">Option text verbatim from <a class="cite revision" href="sources.html#r4-s6">AMI TWG 2.08 deck (9 Sep 2026), PDF p.27</a></p>
+    <div class="quote revision">
+      <blockquote><p>“Statement #1, statement #2, and statement #3 provide different perspectives of the same organization and therefore should not be seen as additive. Thus, the results from each statement shall be kept separate and shall not be added or subtracted from each other.”</p></blockquote>
+      <div class="who">Proposed ISO text, same slide · <a class="cite revision" href="sources.html#r4-s6">AMI TWG 2.08 deck, PDF p.27</a></div>
+    </div>
+    <div class="prose">
+      <p>The minutes record that, for ISO WG4, “the working group concluded that the statements are not mutually exclusive”. The July workshop had posed the question for Statement 1 vs Statement 3: “Should that be required, optional, or prohibited?” Its boiler example answered one case: “Is it ok to report both? - yes”.
+        <a class="cite revision" href="sources.html#r4-s5">AMI TWG 2.08 minutes p.4</a> <a class="cite revision" href="sources.html#r4-s7c">AMI workshop Day 3 deck, PDF pp.10, 14</a></p>
+    </div>
+    <div class="callout gap"><div class="label">Gap</div><p>No decision on mutual exclusivity has been published. For a company whose own action cuts its scope 1, it is not settled whether that cut may also be quantified in Statement 3, or how a Statement 2 claim and a Statement 3 claim on the same activity would be kept from double counting. <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.35</a></p></div>
+  </section>
+
+  <!-- ===================== 3 ===================== -->
+  <section class="section" id="s3">
+    <div class="section-head">
+      <div class="eyebrow">3 · Existing GHG Protocol tools</div>
+      <h2>Building blocks GHG Protocol already has</h2>
+      <p>Statement 3 is new. The methods are not. Baselines, primary and secondary effects, and grid margins have been in force since 2005 and 2007.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="defn"><div class="term">Baseline scenario (Project Protocol)</div><div class="text">“The baseline scenario is a reference case for the project activity. It is a hypothetical description of what would have most likely occurred in the absence of any considerations about climate change mitigation.”</div><div class="who small">Three generic possibilities: “implementation of the same technologies or practices used in the project activity”; “implementation of a baseline candidate”; or “the continuation of current activities, technologies, or practices…” · <a class="cite inforce" href="sources.html#r4-s17">Project Protocol (2005) §2.8, p.12</a></div></div>
+      <div class="defn"><div class="term">Primary and secondary effects (Project Protocol)</div><div class="text">“A primary effect is the intended change caused by a project activity in GHG emissions, removals, or storage associated with a GHG source or sink. … A secondary effect is an unintended change caused by a project activity … Secondary effects are typically small relative to a project activity’s primary effect. In some cases, however, they may undermine or negate the primary effect.”</div><div class="who small">Secondary effects include “One-time effects” (construction, installation, decommissioning) and “Upstream and downstream effects” (recurring, from inputs and products). · <a class="cite inforce" href="sources.html#r4-s17">Project Protocol §2.4, pp.11–12</a></div></div>
+    </div>
+    <div class="defn"><div class="term">Operating margin and build margin (Grid Guidelines)</div><div class="text">“Generation displaced from existing power plants is referred to as the ‘operating margin’ (OM). Generation from potential new capacity, whose construction is avoided due to the project activity, is referred to as the ‘build margin’ (BM).”</div><div class="who small">The baseline rate combines them: “ER_baseline = wBM + (1-w)OM” (Eq.1, p.13). · <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines (2007) §2.3, p.11</a></div></div>
+    <div class="formula" role="group" aria-label="Grid Guidelines formulas">
+      <span class="lbl">Grid Guidelines §12.2.2 (as quoted in the consultation, p.7)</span>
+      Primary Effect_t = Baseline Emissions_p,t – Project Activity Emissions_p,t<br>
+      Secondary Effect_s,t = Baseline Emissions_s,t – Project Activity Emissions_s,t<br>
+      GHG Reduction_t = Primary Effect_t + Σ_s (Secondary Effect_s,t)
+    </div>
+    <p class="small"><a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines §12.2.2, p.71</a> <a class="cite revision" href="sources.html#r4-s14">Consequential electricity consultation p.7</a> The project term is a rate times the project’s generation, so a project with non-zero emissions carries them here.</p>
+
+    <h3>At the plant, or on the grid? Grid Guidelines Table 2.1</h3>
+    <div class="prose">
+      <p>The 2007 Guidelines work through one retrofit: “Retrofit an existing grid-connected coal-fired power plant to improve its generation efficiency and capacity”. They split it into two project activities with different homes.
+        <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines Table 2.1, p.12</a></p>
+    </div>
+    <div class="scroll-x"><table class="tbl">
+      <thead><tr><th>Project activity</th><th>Primary effect</th><th>Grid-connected?</th><th>Addressed by Guidelines?</th></tr></thead>
+      <tbody>
+        <tr><td>“1. Generate current levels of electricity output more fuel-efficiently”</td><td>“Reduce combustion GHG emissions from ‘off-grid’ electricity generation*”</td><td>“No*”</td><td>“No. Account for GHG reductions using Project Protocol general procedures.”</td></tr>
+        <tr><td>“2. Generate more grid electricity, due to greater capacity and utilization”</td><td>“Reduce combustion GHG emissions from grid-connected power plants”</td><td>“Yes”</td><td>“Yes”</td></tr>
+      </tbody>
+    </table></div>
+    <div class="quote">
+      <blockquote><p>“* Although the electricity from this project activity is still delivered to the grid, the GHG reductions the project activity causes occur at the coal-fired power plant itself (because of its enhanced fuel efficiency) and not at other grid-connected power plants. The project activity is therefore not considered a ‘grid-connected’ project activity for the purposes of these guidelines.”</p></blockquote>
+      <div class="who">Grid Guidelines Table 2.1 footnote, p.12 · <a class="cite inforce" href="sources.html#r4-s18">source</a></div>
+    </div>
+    <div class="quote">
+      <blockquote><p>“Project Activities That Reduce the GHG Emission Rate of an Existing Process (Retrofit Projects). For these project activities, baseline emissions from the continuation of current activities may be estimated as the historical GHG emission rate for the process or equipment that is being retrofitted.”</p></blockquote>
+      <div class="who">Project Protocol Box 8.7, p.58 · <a class="cite inforce" href="sources.html#r4-s17">source</a></div>
+    </div>
+
+    <h3>Mapping the effects of one action</h3>
+    <div class="prose">
+      <p>The next figure applies these blocks to one action that the next page studies: adding carbon capture to a power plant. No GHG Protocol document draws this map; the dossier assembles it from the pieces above.</p>
+    </div>
+
+    <div class="scrolly">
+      <div class="scrolly-figure">
+        <figure class="fig-frame">
+          <svg viewBox="0 0 600 400" role="img" aria-label="Inference map of the effects of adding carbon capture to a power plant. Primary effects: the at-plant rate cut against the historical rate, and the grid effect of lost or added megawatt hours valued at the operating or build margin. Secondary effects: one-time construction, upstream fuel and methane, downstream transport injection and EOR oil, and market and lifetime effects. Each node is tagged with the GHG Protocol text it rests on.">
+            <defs><marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+            <rect x="10" y="6" width="580" height="26" rx="6" class="soft-infer"/>
+            <text x="300" y="23" text-anchor="middle" class="t-sm">INFERENCE assembled from Project Protocol, Grid Guidelines and LSR Ch.14; not a GHG Protocol figure</text>
+            <rect x="190" y="46" width="220" height="44" rx="10" class="node" style="stroke-width:2"/>
+            <text x="300" y="73" text-anchor="middle" class="t-lg">Capture added to a power plant</text>
+            <text x="20" y="124" class="t-sm muted mono">PRIMARY (INTENDED)</text>
+            <text x="320" y="124" class="t-sm muted mono">SECONDARY (UNINTENDED)</text>
+            <!-- spines -->
+            <path d="M190,68 H8 V262" class="edge-soft"/>
+            <path d="M410,68 H592 V346" class="edge-soft"/>
+            <!-- P -->
+            <g data-step="0">
+              <path d="M8,166 H18" class="edge" marker-end="url(#arrA)"/>
+              <rect x="20" y="134" width="270" height="64" rx="8" class="node"/>
+              <text x="32" y="155" class="t" style="font-weight:600">At-plant rate cut</text>
+              <text x="32" y="171" class="t">baseline = historical unabated rate</text>
+              <text x="32" y="189" class="t-tag">PP Box 8.7 · GG Tbl 2.1 row 1</text>
+            </g>
+            <!-- G -->
+            <g data-step="1">
+              <path d="M8,262 H18" class="edge" marker-end="url(#arrA)"/>
+              <rect x="20" y="214" width="270" height="78" rx="8" class="node"/>
+              <text x="32" y="235" class="t" style="font-weight:600">Grid: lost or added MWh</text>
+              <text x="32" y="251" class="t">other plants fill or are displaced;</text>
+              <text x="32" y="267" class="t">valued at wBM + (1−w)OM</text>
+              <text x="32" y="284" class="t-tag">GG Eq.1, Tbl 2.1 row 2 · PP Box 8.2</text>
+            </g>
+            <!-- O -->
+            <g data-step="2">
+              <path d="M592,158 H582" class="edge" marker-end="url(#arrA)"/>
+              <rect x="320" y="134" width="260" height="48" rx="8" class="node"/>
+              <text x="332" y="154" class="t" style="font-weight:600">One-time: capture units, pipes, wells</text>
+              <text x="332" y="173" class="t-tag">PP §2.4, §5.3.1 · GG §4.3.1</text>
+            </g>
+            <!-- U -->
+            <g data-step="3">
+              <path d="M592,214 H582" class="edge" marker-end="url(#arrA)"/>
+              <rect x="320" y="190" width="260" height="48" rx="8" class="node"/>
+              <text x="332" y="210" class="t" style="font-weight:600">Upstream: extra fuel, coal and gas CH₄</text>
+              <text x="332" y="229" class="t-tag">PP §5.3.2 · LSR p.357</text>
+            </g>
+            <!-- D -->
+            <g data-step="4">
+              <path d="M592,270 H582" class="edge" marker-end="url(#arrA)"/>
+              <rect x="320" y="246" width="260" height="48" rx="8" class="node"/>
+              <text x="332" y="266" class="t" style="font-weight:600">Downstream: transport, injection, EOR</text>
+              <text x="332" y="285" class="t-tag">LSR Req. 19.GS</text>
+            </g>
+            <!-- M -->
+            <g data-step="5">
+              <path d="M592,326 H582" class="edge" marker-end="url(#arrA)"/>
+              <rect x="320" y="302" width="260" height="48" rx="8" class="node"/>
+              <text x="332" y="322" class="t" style="font-weight:600">Market, dispatch, life extension</text>
+              <text x="332" y="341" class="t-tag">PP §5.3.2, Box 8.2 · LSR p.357</text>
+            </g>
+            <text x="20" y="372" class="t-tag">PP = Project Protocol (2005) · GG = Grid Guidelines (2007)</text>
+            <text x="20" y="390" class="t-tag">LSR = Land Sector and Removals v1.0 · tag = where the block is stated</text>
+          </svg>
+          <figcaption>Adding capture creates two kinds of primary effect, one at the plant and one on the grid, plus four families of secondary effect. The map is inference; each tag names the in-force text that supplies the block.</figcaption>
+        </figure>
+      </div>
+      <div class="scrolly-steps">
+        <div class="step"><div class="step-card"><div class="n">STEP 1 · PRIMARY, AT THE PLANT</div><h3>The rate cut is a plant-level effect</h3><p>For a retrofit that lowers an existing process’s emission rate, the Project Protocol baseline is “the historical GHG emission rate for the process or equipment that is being retrofitted”. <a class="cite inforce" href="sources.html#r4-s17">Project Protocol Box 8.7, p.58</a> The Grid Guidelines treat a reduction “at the coal-fired power plant itself” as not grid-connected. <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines Table 2.1, p.12</a></p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 2 · PRIMARY, ON THE GRID</div><h3>Changed output moves other plants</h3><p>Box 8.2 gives retrofits a second primary effect: “displacing GHG emissions from other sources, for any amount of production greater than historical levels, due to increased utilization.” <a class="cite inforce" href="sources.html#r4-s17">Project Protocol Box 8.2, p.52</a> Those MWh are valued at a weighted mix of operating and build margin. <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines Eq.1, p.13</a></p><div class="callout inference"><div class="label">Inference</div><p>Capture usually lowers net output, so by symmetry the lost MWh are an emissions increase met by other generators.</p></div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 3 · SECONDARY, ONE-TIME</div><h3>Construction and decommissioning</h3><p>“One-time effects—Changes in GHG emissions associated with the construction, installation, and establishment or the decommissioning and termination of the project activity.” <a class="cite inforce" href="sources.html#r4-s17">Project Protocol §2.4, p.11</a> For capture, that means capture units, pipelines and storage wells.</p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 4 · SECONDARY, UPSTREAM</div><h3>Fuel and methane</h3><p>Upstream examples include “changes in the release of methane (CH4) during coal mining” and “CH4 leaks from gas transport and storage”. <a class="cite inforce" href="sources.html#r4-s17">Project Protocol §5.3.2, p.32</a> For grid projects the Guidelines say fuel-chain changes “can often be ignored”, but should be included “if their magnitude is more than a few percent of the expected primary effect”. <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines §4.3–4.5, pp.27–29</a></p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 5 · SECONDARY, DOWNSTREAM</div><h3>Transport, injection, EOR</h3><p>“Companies shall account for all life cycle GHG emissions that occur throughout the geologic storage pathway (i.e., cradle to grave).” With enhanced oil and gas recovery this extends to the produced hydrocarbons’ use. <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 Req. 19.GS, p.344</a></p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 6 · MARKET AND LIFETIME</div><h3>Market responses and life extension</h3><p>“Market responses occur when alternative providers or users of an input or product react to a change in market supply or demand caused by the project activity.” <a class="cite inforce" href="sources.html#r4-s17">Project Protocol §5.3.2, p.32</a> Chapter 16 methods “can be applied to quantify the impacts of EOR production, which would include the displacement of non-EOR oil and gas production.” <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.357</a></p><div class="callout inference"><div class="label">Inference</div><p>If capture keeps a plant running that would otherwise retire, those extra years compare against the replacement mix, not the unabated plant (Box 8.2 end-of-life barrier).</p></div></div></div>
+      </div>
+    </div>
+
+    <h3>Where the results go: outside the inventory</h3>
+    <div class="grid-2">
+      <div class="quote">
+        <blockquote><p>“To evaluate the impacts of specific actions, companies should use project or intervention accounting methods, which estimate the systemwide GHG impacts of an action relative to a counterfactual baseline scenario in which the action did not occur”</p></blockquote>
+        <div class="who">LSR v1.0 Ch.16, p.398 · <a class="cite inforce" href="sources.html#r4-s20">source</a></div>
+      </div>
+      <div class="quote">
+        <blockquote><p>“Any estimates of avoided emissions must not be included in or deducted from the company’s scope 1, 2, or 3 inventory.”</p></blockquote>
+        <div class="who">LSR v1.0 Ch.16, p.409 · <a class="cite inforce" href="sources.html#r4-s20">source</a></div>
+      </div>
+    </div>
+    <details><summary>More in-force context: LSR Ch.16 disclosure, Scope 2 Guidance, Policy and Action Standard, Corporate Standard Ch.8</summary><div class="stack">
+<div class="prose">
+      <p>Chapter 16 also sets disclosure duties for anyone who reports impacts separately: they “shall disclose the data sources, methods, and assumptions used to quantify the impact(s) of the evaluated action(s), the assessment boundary, the assessment time period, whether it is an ex ante and/or ex post assessment, and whether the results have been third-party verified.” It leaves the location to the AMI workstream, which “will define where to report the impacts of actions in a GHG report”.
+        <a class="cite inforce" href="sources.html#r4-s20">LSR Ch.16 pp.397, 411 (endnote 1)</a></p>
+      <p>The 2015 Scope 2 Guidance already keeps avoided emissions outside the scopes.
+        <a class="cite inforce" href="sources.html#r4-s22">Scope 2 Guidance (2015) §4.2, p.28</a></p>
+    </div>
+    <div class="quote">
+      <blockquote><p>“This guidance does not support an ‘avoided emissions’ approach for scope 2 accounting due to several important distinctions between corporate accounting and project-level accounting. However, companies can report avoided grid emissions from energy generation projects separately from the scopes using a project-level accounting methodology.”</p></blockquote>
+      <div class="who">Scope 2 Guidance (2015) §4.2, p.28 · <a class="cite inforce" href="sources.html#r4-s22">source</a></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h4>Policy and Action Standard</h4>
+        <p class="small">Its glossary separates “Intended effects: Effects that are intentional based on the original objectives of the policy or action.” from unintended ones, which “may include a variety of effects, such as rebound effects, lack of compliance or enforcement …”. Its baseline is “A reference case that represents the events or conditions most likely to occur in the absence of the policy or action (or package of policies or actions) being assessed.” <a class="cite inforce" href="sources.html#r4-s19">Policy and Action Standard (2014) glossary pp.175–180</a></p>
+        <p class="small">Terminology note: its Table 6.3 lists “Carbon capture and storage” as a sink category (“Removal and storage of CO2”). LSR v1.0 Ch.14 (2026) says captured fossil CO2 “is not accounted for and reported as a removal”. <a class="cite inforce" href="sources.html#r4-s19">P&amp;A Table 6.3, p.54</a> <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.343</a></p>
+      </div>
+      <div class="card">
+        <h4>Corporate Standard Ch.8 precedent</h4>
+        <p class="small">“When companies implement internal projects that reduce GHGs from their operations, the resulting reductions are usually captured in their inventory’s boundaries. These reductions need not be reported separately unless they are sold, traded externally, or otherwise used as an offset or credit.” Its CHP exception: reductions “at the plants where this electricity would have otherwise been produced will not be captured in the inventory of the company installing the on-site plant.” <a class="cite revision" href="sources.html#r4-s1">AMI White Paper Annex C, pp.48–49</a></p>
+        <div class="callout inference"><div class="label">Inference</div><p>Changes at your own plant show in your inventory. Changes at other plants on the grid do not, and belong in separate reporting.</p></div>
+      </div>
+    </div>
+</div></details>
+    <div class="callout signal"><div class="label">Signal of direction · 30 Jun–2 Jul 2026</div><p>The TWG listed four candidate baseline types, two from the Project Protocol and two from the Policy and Action Standard: “Project-specific procedure (Project Protocol)”, “Performance or industry benchmark baseline (Project Protocol)”, “Scenario method (Policy and Action)”, “Comparison group method (Policy and Action)”. The Day 2 deck records “Four baseline types proposed agreed”. <a class="cite revision" href="sources.html#r4-s7a">AMI workshop Day 1 deck, PDF p.50</a> <a class="cite revision" href="sources.html#r4-s7b">AMI workshop Day 2 deck, PDF p.5</a></p></div>
+  </section>
+
+  <!-- ===================== 4 ===================== -->
+  <section class="section" id="s4">
+    <div class="section-head">
+      <div class="eyebrow">4 · Consultation, Oct 2025 – Jan 2026</div>
+      <h2>The electricity consequential consultation</h2>
+      <p>The Scope 2 TWG subgroup proposed a simple formula and nine additionality tests. Most respondents said the formula was not appropriate.</p>
+    </div>
+
+    <div class="formula" role="group" aria-label="Subgroup formula">
+      <span class="lbl">Subgroup formula (§6.1)</span>
+      Emissions Impact<sub>t</sub> = Σ<sub>i∈P_y</sub> (MWh<sub>i</sub> × MER<sub>i</sub>)<br>
+      <span class="lbl">Hourly form</span>
+      Emissions Impact = Σ<sub>t=1</sub><sup>8760</sup> (MWh<sub>t</sub><sup>procured</sup> × MER<sub>t</sub>)
+    </div>
+    <div class="prose">
+      <p>“P_y = set of all procurement transactions in the reporting year; MWh_i = megawatt hours procured in transaction i; MER_i = marginal emission rate applicable to the grid region, time, and conditions of transaction i”.
+        <a class="cite revision" href="sources.html#r4-s14">Consequential electricity consultation §6.1, pp.7–8</a></p>
+      <ul>
+        <li><b>One year at a time.</b> The approach “recommends limiting the analysis to the reporting year period only and suggests reporting these impacts each year.” <a class="cite revision" href="sources.html#r4-s14">Consultation p.8</a></li>
+        <li><b>No secondary effects.</b> It “does not consider secondary effects of electricity projects and focuses quantification entirely on the primary effects related to changes on the grid within a given reporting year.” <a class="cite revision" href="sources.html#r4-s14">Consultation p.9</a></li>
+        <li><b>Clean procured power.</b> The draft notes “For renewable energy generation the project scenario Primary Effect emissions are usually zero”. <a class="cite revision" href="sources.html#r4-s14">Consultation p.7</a></li>
+      </ul>
+    </div>
+    <div class="callout inference"><div class="label">Inference</div><p>The formula has no project-emissions term. It treats procured generation as zero-emitting, so it cannot carry a plant’s residual emissions, a lost-output penalty or fuel-chain effects. The Guidelines form (baseline minus project, plus secondary effects) can. The TWG’s own July 2026 boundary proposal, “Include all significant GHG effects of the action in the GHG assessment boundary”, also points away from omitting secondary effects. <a class="cite revision" href="sources.html#r4-s7b">AMI workshop Day 2 deck, PDF p.66</a></p></div>
+
+    <div class="kpis">
+      <div class="kpi"><span class="v">63%</span><span class="l">said “No”, the formula is not appropriate (84 of 133) <a class="cite revision" href="sources.html#r4-s15">Feedback summary p.5</a></span></div>
+      <div class="kpi"><span class="v">52% / 48%</span><span class="l">Yes / No to including secondary effects (n=110) <a class="cite revision" href="sources.html#r4-s15">Feedback summary p.5</a></span></div>
+      <div class="kpi"><span class="v">79%</span><span class="l">report each year, not once for lifetime (n=103) <a class="cite revision" href="sources.html#r4-s15">Feedback summary p.6</a></span></div>
+      <div class="kpi"><span class="v">185</span><span class="l">valid responses to the consultation <a class="cite revision" href="sources.html#r4-s15">Feedback summary p.2</a></span></div>
+    </div>
+
+    <h3>The nine additionality tests</h3>
+    <div class="prose">
+      <p>The survey question framed them as “a framework designed to assess additionality for renewable energy projects”. Short names and key sentences below are verbatim; the bars show how respondents classed each test.
+        <a class="cite revision" href="sources.html#r4-s14">Consultation §7.1, pp.10–11</a> <a class="cite revision" href="sources.html#r4-s15">Feedback summary Tables 1–9, p.7</a> <a class="cite revision" href="sources.html#r4-s16">Feedback dataset (Q26)</a></p>
+    </div>
+    <div class="fb-key" aria-hidden="true"><span><i style="background:var(--accent)"></i>Required</span><span><i style="background:color-mix(in srgb, var(--accent) 40%, var(--bg-2))"></i>Optional</span><span><i style="background:var(--line)"></i>Not required</span></div>
+    <div class="checklist">
+      <div class="check"><div class="mark">1</div><div class="body"><b>Regulatory test</b><span>“checks whether a project is mandated by law or regulation.”</span><div class="fb" role="img" aria-label="Required 64%, optional 20%, not required 16%"><i class="rq" style="width:64%"></i><i class="op" style="width:20%"></i><i class="nr" style="width:16%"></i></div><span class="fbl">Required 64% · Optional 20% · Not required 16% · n=108</span></div></div>
+      <div class="check"><div class="mark">2</div><div class="body"><b>Timing test</b><span>“whether the incentive (such as credits, PPAs, or certificates) influenced the decision to build or operate the project. If the project was already planned or under construction before the incentive was available, then it fails this test.”</span><div class="fb" role="img" aria-label="Required 49%, optional 29%, not required 22%"><i class="rq" style="width:49%"></i><i class="op" style="width:29%"></i><i class="nr" style="width:22%"></i></div><span class="fbl">Required 49% · Optional 29% · Not required 22% · n=106</span></div></div>
+      <div class="check"><div class="mark">3</div><div class="body"><b>Financial analysis test</b><span>“If the project would not have been pursued without the additional revenue stream, it passes the test.”</span><div class="fb" role="img" aria-label="Required 17%, optional 54%, not required 29%"><i class="rq" style="width:17%"></i><i class="op" style="width:54%"></i><i class="nr" style="width:29%"></i></div><span class="fbl">Required 17% · Optional 54% · Not required 29% · n=107</span></div></div>
+      <div class="check"><div class="mark">4</div><div class="body"><b>Barrier test</b><span>“significant barriers, such as technological, institutional, or market, would have prevented the project from moving forward.”</span><div class="fb" role="img" aria-label="Required 15%, optional 46%, not required 40%"><i class="rq" style="width:15%"></i><i class="op" style="width:46%"></i><i class="nr" style="width:39%"></i></div><span class="fbl">Required 15% · Optional 46% · Not required 40% · n=101</span></div></div>
+      <div class="check"><div class="mark">5</div><div class="body"><b>Common practice test</b><span>“If similar projects are already widely implemented without incentives, then the project is considered ‘business as usual’ and not additional.”</span><div class="fb" role="img" aria-label="Required 22%, optional 32%, not required 46%"><i class="rq" style="width:22%"></i><i class="op" style="width:32%"></i><i class="nr" style="width:46%"></i></div><span class="fbl">Required 22% · Optional 32% · Not required 46% · n=103</span></div></div>
+      <div class="check"><div class="mark">6</div><div class="body"><b>Positive list</b><span>“a predefined set of project types or circumstances that are automatically considered additional. For example, early-stage technologies, off-grid renewables, or projects in high carbon intensity regions”</span><div class="fb" role="img" aria-label="Required 17%, optional 54%, not required 29%"><i class="rq" style="width:17%"></i><i class="op" style="width:54%"></i><i class="nr" style="width:29%"></i></div><span class="fbl">Required 17% · Optional 54% · Not required 29% · n=105</span></div></div>
+      <div class="check"><div class="mark">7</div><div class="body"><b>Performance standard test</b><span>“sets a quantitative benchmark (e.g., a baseline emissions rate, energy efficiency level, or renewable penetration level) and considers any project that outperforms it as additional.”</span><div class="fb" role="img" aria-label="Required 14%, optional 38%, not required 49%"><i class="rq" style="width:14%"></i><i class="op" style="width:38%"></i><i class="nr" style="width:48%"></i></div><span class="fbl">Required 14% · Optional 38% · Not required 49% · n=101</span></div></div>
+      <div class="check"><div class="mark">8</div><div class="body"><b>Contractual/tenor test</b><span>“uses the nature of project contracts, particularly their duration, as an indicator of additionality.”</span><div class="fb" role="img" aria-label="Required 24%, optional 40%, not required 36%"><i class="rq" style="width:24%"></i><i class="op" style="width:40%"></i><i class="nr" style="width:36%"></i></div><span class="fbl">Required 24% · Optional 40% · Not required 36% · n=102</span></div></div>
+      <div class="check"><div class="mark">9</div><div class="body"><b>First-of-its-kind test</b><span>“grants additionality to projects that introduce a new technology, scale, or application not yet present in a market or region.”</span><div class="fb" role="img" aria-label="Required 10%, optional 36%, not required 54%"><i class="rq" style="width:10%"></i><i class="op" style="width:36%"></i><i class="nr" style="width:54%"></i></div><span class="fbl">Required 10% · Optional 36% · Not required 54% · n=99</span></div></div>
+      <div class="check proposal"><div class="mark">+</div><div class="body"><b>Incrementality test (respondent proposal, not in the draft)</b><span>“Incrementality instead assesses whether a discrete, identifiable action changed system behavior relative to a prior state (e.g., new builds, uprates, life extensions, repowering, or operational dispatch changes).” · The NorthBridge Group, consultant, respondent 96, Q30 <a class="cite revision" href="sources.html#r4-s16">Feedback dataset, respondent 96, Q30</a> <a class="cite revision" href="sources.html#r4-s15">Feedback summary p.10</a></span><span class="fbl">Not surveyed; no percentages exist.</span></div></div>
+    </div>
+    <div class="prose">
+      <p>The summary’s reading: “Overall, the survey showed that regulatory and timing tests are the most favored to be included as mandatory.” Respondents also flagged “planned” and “under construction” as undefined in the timing test.
+        <a class="cite revision" href="sources.html#r4-s15">Feedback summary p.8</a></p>
+    </div>
+
+    <h3>Margins and weighting</h3>
+    <details><summary>Margin definitions, OM/BM methods and the weighting options with respondent support</summary><div class="stack">
+<div class="grid-2">
+      <div class="quote revision">
+        <blockquote><p>“Operating margin emission rates consider the emission rates of the marginal generator(s) only … best suited to estimate impacts from discrete, temporary, and small changes in demand and generation.”</p><p>“Build margin emission rates … consider the emission rates of the mix of generating resources that are likely to be built to meet increased energy demand or retired to meet reductions in demand … useful in estimating impacts from permanent and large changes in demand and generation, as well as policy changes.”</p></blockquote>
+        <div class="who">Consultation §8, p.13 · <a class="cite revision" href="sources.html#r4-s14">source</a></div>
+      </div>
+      <div class="card">
+        <h4>Methods named in the draft</h4>
+        <p class="small"><b>Operating margin:</b> SCED sensitivity (fuel-on-the-margin; locational), scenario modelling, heat-rate/LMP, statistical, capacity-factor based, difference-based.</p>
+        <p class="small"><b>Build margin:</b> recent capacity additions, policy scenario, capacity expansion modelling, average emission factor.</p>
+        <p class="small"><a class="cite revision" href="sources.html#r4-s14">Consultation §8.1–8.2, pp.13–15</a></p>
+      </div>
+    </div>
+    <div class="scroll-x"><table class="tbl">
+      <thead><tr><th>Weighting approach</th><th>Build-margin weight w</th><th class="num">Picked as appropriate (Q47, n=67)</th></tr></thead>
+      <tbody>
+        <tr><td>Grid Guidelines: “the lesser of 1, or (Capacity Value / (Rated Capacity x Capacity Factor))”</td><td>Defaults: firm, on-peak/baseload/intermittent 1; firm, exclusively off-peak 0.5; not firm, on-peak/baseload/intermittent 0.5; not firm, exclusively off-peak 0</td><td class="num">45%</td></tr>
+        <tr><td>UNFCCC CDM Tool07</td><td>Wind and solar 0.25; all other projects 0.5 for the first crediting period, 0.75 for the second and third</td><td class="num">28%</td></tr>
+        <tr><td>Subgroup idea: default</td><td>“Default 0.50 build margin weight for all projects”</td><td class="num">24%</td></tr>
+        <tr><td>Subgroup idea: intervention lifecycle</td><td>“operating margin rates alone may be used for the first 5 years of a project, after which build margin rates should be used.”</td><td class="num">19%</td></tr>
+        <tr><td>Subgroup idea: resource adequacy</td><td>Based on resource adequacy approaches</td><td class="num">13%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">Multi-select, so shares sum above 100%. <a class="cite revision" href="sources.html#r4-s14">Consultation §9.1, pp.17–18</a> <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines Fig. 5.1, p.31</a> <a class="cite revision" href="sources.html#r4-s15">Feedback summary p.18</a> <a class="cite revision" href="sources.html#r4-s16">Feedback dataset (Q47)</a></p>
+</div></details>
+    <div class="quote revision">
+      <blockquote><p>“decreased output from a nearby combined-cycle gas generator (operating margin impact of roughly ~800 lb CO₂/MWh) … may result in retirement of a coal generator (build margin impact of roughly ~2,000 lb CO2/MWh)”</p></blockquote>
+      <div class="who">Consultation p.17, the draft’s own illustrative rates (not data) · <a class="cite revision" href="sources.html#r4-s14">source</a></div>
+    </div>
+
+    <h3>What respondents said</h3>
+    <div class="grid-2">
+      <div class="quote revision"><blockquote><p>“The proposed Scope 2 TWG subgroup formula does not address the emissions impact from actions that produce incremental emissions, such as building a new natural gas-fired power plant to serve load. Instead, the proposed formula assumes all electricity projects are clean electricity projects.”</p></blockquote><div class="who">Constellation Energy (energy supplier/utility), Q20 · <a class="cite revision" href="sources.html#r4-s16">Consequential feedback dataset, resp. 181</a></div></div>
+      <div class="quote revision"><blockquote><p>“Additionality is discussed only for renewable projects, not fossil ones. A consequential accounting framework should apply across the electricity sector.”</p></blockquote><div class="who">Center for Resource Solutions (non-profit), Q18 · <a class="cite revision" href="sources.html#r4-s16">Consequential feedback dataset, resp. 35</a></div></div>
+      <div class="quote revision"><blockquote><p>“the framework is ambiguous about whose action is being measured. It alternates between the action of the generator (building or operating a project) and the action of the purchaser or investor (buying clean electricity or financing a project). These actions involve different baselines and requirements.”</p></blockquote><div class="who">Center for Resource Solutions (non-profit), Q18 · <a class="cite revision" href="sources.html#r4-s16">Consequential feedback dataset, resp. 35</a></div></div>
+      <div class="quote revision"><blockquote><p>“some actions, like installing carbon capture on a fossil plant or accelerating the retirement of a fossil plant … may also require special treatment. Carbon capture or early plant retirement can result in direct abatement of fossil emissions associated with a specific plant and/or affect how the plant is operated that may not be fully reflected in the OM or BM impact assessment.”</p></blockquote><div class="who">The NorthBridge Group (consultant), Q22 · <a class="cite revision" href="sources.html#r4-s16">Consequential feedback dataset, resp. 96</a></div></div>
+      
+    </div>
+    <details><summary>Two more respondent views: weighting and repowering</summary><div class="stack">
+<div class="quote revision"><blockquote><p>“an inaccurate weighting, e.g. giving operating margin a 50% weighting in a context where it should be 0%, could allow a completely non-impactful project to receive significant credit.”</p></blockquote><div class="who">Clean Air Task Force (non-profit), Q52 · <a class="cite revision" href="sources.html#r4-s16">Consequential feedback dataset, resp. 177</a></div></div>
+      <div class="quote revision"><blockquote><p>“When implementing the timing test, it is fundamental to ensure that reporters can claim credit for actions that enable repowers, uprates, and delayed decommissionings, in addition to new-build generation.”</p></blockquote><div class="who">ACORE (non-profit), Q27 · <a class="cite revision" href="sources.html#r4-s16">Consequential feedback dataset, resp. 159</a></div></div>
+</div></details>
+    <div class="prose">
+      <p>The summary names the most frequent risk: “Most frequently mentioned was the risk of double counting: without clear separation, consequential results could be confused with verified inventory reductions.”
+        <a class="cite revision" href="sources.html#r4-s15">Feedback summary p.4</a></p>
+    </div>
+    <div class="callout gap"><div class="label">Gap</div><p>The consultation never mentions retrofits, uprates, repowering, CCS or capture; existing resources enter only through the margin definitions. The time basis is also unsettled: the TWG proposes annual ex-post, most respondents favour annual, while the Guidelines default to 10 years. No source says how lifetime effects would be shown on an annual basis. <a class="cite revision" href="sources.html#r4-s14">Consultation pp.13–15</a> <a class="cite revision" href="sources.html#r4-s7b">AMI workshop Day 2, PDF p.67</a> <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines p.71</a></p></div>
+  </section>
+
+  <!-- ===================== 5 ===================== -->
+  <section class="section" id="s5">
+    <div class="section-head">
+      <div class="eyebrow">5 · Closing</div>
+      <h2>What to take into a position</h2>
+      <p>What is decided, what is reasoning, and what is still open.</p>
+    </div>
+    <div class="callout key"><div class="label">Takeaway</div><p>Statement 3 would measure the change in the atmosphere caused by an action against a baseline, reported apart from the inventories and never netted against them. The tools for it already exist in the Project Protocol and Grid Guidelines; the electricity consultation’s simpler formula drops the parts that matter for any plant that still emits.</p></div>
+    <div class="prose">
+      <ul>
+        <li><b>SOURCED.</b> Four statements are under consideration; Statement 3 is the consequential “GHG impact statement”, and its name is a draft. Reporting is disaggregated “without netting”. <a class="cite revision" href="sources.html#r4-s1">AMI White Paper pp.4–6, 28, 36</a></li>
+        <li><b>SOURCED (revision, not adopted).</b> Draft text says Statement 3 actions “shall be additional”, with tests “to be determined”; the Secretariat said on 9 Sep 2026 that additionality “must be present in Statement 3”. <a class="cite revision" href="sources.html#r4-s7c">AMI workshop Day 3, PDF p.18</a> <a class="cite revision" href="sources.html#r4-s5">AMI TWG 2.08 minutes p.6</a></li>
+        <li><b>SOURCED.</b> 63% of 133 respondents said the subgroup formula was not appropriate; the regulatory test was the most often “required” (64%), first-of-its-kind the most often “not required” (54%). <a class="cite revision" href="sources.html#r4-s15">Feedback summary pp.5, 7</a></li>
+        <li><b>INFERENCE.</b> For actions on emitting plants, the Grid Guidelines structure (baseline minus project emissions, plus secondary effects) is the GHG Protocol method that fits; the subgroup formula would need a project-emissions term restored.</li>
+        <li><b>GAP.</b> Whether the same change can sit in Statement 1 and Statement 3, or in Statements 2 and 3, is undecided; three options are on the table. <a class="cite revision" href="sources.html#r4-s6">AMI TWG 2.08 deck, PDF p.27</a></li>
+        <li><b>GAP.</b> Which additionality tests will apply to Statement 3, and how a retrofit or life extension would be tested, has not been addressed.</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="pager" aria-label="Pages">
+    <a class="prev" href="storage-revision.html"><span class="dir">Previous</span><span class="ttl">Storage &amp; incrementality</span></a>
+    <a class="next" href="consequential-ccus.html"><span class="dir">Next</span><span class="ttl">CCUS impact 2×2</span></a>
+  </nav>
+  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
+</main>
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CCUS Impact Matrix</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* page-specific: source/inference badges, comparison strip, test table, mode-switched SVG */
+.badge { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; border: 1px solid currentColor; justify-self: start; font-weight: 600; }
+.badge.src { color: var(--inforce); background: var(--inforce-soft); }
+.badge.inf { color: var(--infer); background: var(--infer-soft); }
+.badge.gap { color: var(--gap); background: var(--gap-soft); }
+.matrix .cell .badge { margin-top: 4px; }
+.mfoot { font-size: 0.85rem; color: var(--fg-2); margin-top: 10px; }
+.strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.strip .card { gap: 8px; }
+.strip .row { display: grid; gap: 2px; padding-top: 8px; border-top: 1px solid var(--line); }
+.strip .row .k { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-3); }
+.strip .row p { font-size: 0.92rem; }
+.tests { min-width: 760px; }
+.tests td.all { background: var(--bg-3); }
+.tests th:nth-child(n+2):nth-child(-n+5) { width: 14%; }
+.tests .pct { font-family: var(--font-mono); font-size: 0.78rem; white-space: nowrap; }
+.tests tr.extra td { border-top: 2px solid var(--line); }
+.tests tr.proposal td { border-bottom: 1px dashed var(--fg-3); border-top: 1px dashed var(--fg-3); }
+.cases { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.88rem; color: var(--fg-2); }
+.cases b { font-family: var(--font-mono); font-size: 0.78rem; color: var(--fg); }
+#nb[data-mode="clean"] .only-fossil, #nb:not([data-mode="clean"]) .only-clean { display: none; }
+svg .soft-infer { fill: var(--infer-soft); }
+svg .t-tag { font-size: 10.5px; font-family: var(--font-mono); fill: var(--fg-3); }
+svg .bar-unab { fill: var(--fossil); }
+svg .bar-cap { fill: var(--capture); }
+svg .bar-bm { fill: var(--grid); }
+svg .ghost { fill: none; stroke: var(--fg-3); stroke-width: 1.2; stroke-dasharray: 4 3; }
+svg .axis { stroke: var(--line); stroke-width: 1; }
+svg .lost { fill: var(--gap-soft); stroke: var(--gap); stroke-width: 1.2; stroke-dasharray: 4 3; }
+svg .bold { font-weight: 600; }
+.fig-frame.narrow { max-width: 820px; }
+</style>
+<noscript><style>.matrix-detail > [hidden], [data-mode-show][hidden] { display: grid !important; }</style></noscript>
+</head>
+<body>
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
+    <div class="nav-links">
+      <a href="index.html">Start</a>
+      <a href="ccs-removals.html">CCS: removal or reduction?</a>
+      <a href="ccs-eac.html">CCS-backed EACs</a>
+      <a href="scope2-update.html">Oct 2026 update</a>
+      <a href="governance.html">Governance &amp; TWGs</a>
+      <a href="storage-mechanics.html">Storage ledger</a>
+      <a href="storage-revision.html">Storage &amp; incrementality</a>
+      <a href="consequential-basics.html">Impact accounting</a>
+      <a href="consequential-ccus.html">CCUS impact 2×2</a>
+      <a href="sources.html">Sources</a>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Module 4 · Applying it to CCUS</div>
+    <h1>Does a CCS retrofit get plant credit or system credit?</h1>
+    <p class="lede">No GHG Protocol document answers this directly. This page assembles the answer from in-force building blocks, case by case: retrofit vs new build, coal vs gas, storage vs utilization. Most of it is labelled inference, because that is what it is.</p>
+    <div class="hero-meta"><span><b>Reading time</b> ~12 min (more in expandable notes)</span><span><b>Sources</b> LSR v1.0 Ch.14 and Ch.16 · Project Protocol (2005) · Grid-Connected Electricity Guidelines (2007) · Consequential electricity consultation and feedback (2025–2026) · AMI TWG materials (2026) · NETL Rev 4a (2022) · IPCC AR5 WGIII Annex III · Grubert &amp; Sawyer (2023)</span></div>
+    <div class="tier-legend" aria-label="Source tiers">
+      <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
+      <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
+      <span><i style="background:var(--third)"></i>Third party</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="On this page">
+    <a href="#s1"><span class="k">1</span>The 2×2: retrofit or new build, inventory or impact</a>
+    <a href="#s2"><span class="k">2</span>Retrofit walk-through, gas then coal</a>
+    <a href="#s3"><span class="k">3</span>New build: a system-change credit whose sign can flip</a>
+    <a href="#s4"><span class="k">4</span>Coal vs gas in the numbers</a>
+    <a href="#s5"><span class="k">5</span>CCU vs CCS</a>
+    <a href="#s6"><span class="k">6</span>The nine tests against four cases</a>
+    <a href="#s7"><span class="k">7</span>Statement 2 vs Statement 3: who claims what</a>
+    <a href="#s8"><span class="k">8</span>What to take into a position</a>
+  </nav>
+
+
+  <!-- ===================== 1 ===================== -->
+  <section class="section" id="s1">
+    <div class="section-head">
+      <div class="eyebrow">1 · The matrix</div>
+      <h2>The 2×2: retrofit or new build, inventory or impact</h2>
+      <p>Inventory treatment is written down. Impact treatment is reasoned from older project-accounting rules. Select a cell for the supporting text.</p>
+    </div>
+
+    <div class="callout gap"><div class="label">Gap · central</div><p>No GHG Protocol document addresses carbon capture on power plants inside consequential or impact accounting. That covers the AMI materials, the electricity consequential consultation, the Project Protocol, the Grid Guidelines, the Policy and Action Standard and LSR Ch.16. The consultation document does not mention CCS, capture, retrofits or existing fossil plants. The closest building blocks are LSR Ch.14, the Grid Guidelines’ retrofit row in Table 2.1, and Project Protocol Boxes 8.2 and 8.7. <a class="cite revision" href="sources.html#r4-s14">Consequential electricity consultation (Oct 2025)</a> <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14</a> <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines Table 2.1</a> <a class="cite inforce" href="sources.html#r4-s17">Project Protocol Boxes 8.2, 8.7</a></p></div>
+
+    <div>
+      <div class="matrix">
+        <div class="hd"></div><div class="hd col">Attributional · Statement 1</div><div class="hd col">Consequential · Statement 3</div>
+        <div class="hd">Retrofit</div>
+        <button class="cell" data-detail="r1" aria-pressed="true"><b>Scope 1 falls by the CO₂ captured and stored</b><small>Process, fugitive and transport emissions still counted</small><span class="badge src">Source</span></button>
+        <button class="cell" data-detail="r3" aria-pressed="false"><b>At-plant effect vs historical rate, plus grid effects</b><small>The end-of-life test decides the baseline</small><span class="badge inf">Inference</span></button>
+        <div class="hd">New build</div>
+        <button class="cell" data-detail="n1" aria-pressed="false"><b>A new scope 1 source: the residual</b><small>No year-over-year reduction; the source is new</small><span class="badge src">Source / Inference</span></button>
+        <button class="cell" data-detail="n3" aria-pressed="false"><b>System change only</b><small>Generation × (BM/OM rate − residual rate); w = 1 if firm</small><span class="badge inf">Inference</span></button>
+      </div>
+      <div class="matrix-detail">
+        <div class="card" data-detail-for="r1">
+          <h4>Retrofit × Statement 1 <span class="badge src">Source</span></h4>
+          <div class="quote"><blockquote><p>“Do not report scope 1 emissions for the CO2 that is captured and stored in a geologic reservoir; • Report any fugitive emissions of captured CO2 released at that facility in scope 1; • Report emissions from other processes in the geologic storage pathway and any fugitive emissions of captured CO2 not occurring at the capture facility in the relevant scope 3 category; • Reflect the captured CO2 as a reduction in scope 1 emissions compared to previous years, if CO2 was emitted from the facility in prior years.”</p></blockquote><div class="who">LSR v1.0 Ch.14, owner or controller of the capture facility, p.359 · <a class="cite inforce" href="sources.html#r4-s21">source</a></div></div>
+          <div class="quote"><blockquote><p>“The impact of CO2 capture is reflected in a GHG inventory by not reporting emissions that have instead been prevented. … Any CO2 that is not captured, and all GHG emissions due to the capture process itself, must be fully accounted for.”</p></blockquote><div class="who">LSR Ch.14 p.350 · <a class="cite inforce" href="sources.html#r4-s21">source</a></div></div>
+          <p class="small">It is a prevented emission, not a removal: captured fossil CO2 “is not accounted for and reported as a removal.” <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.343</a> Under the Corporate Standard Ch.8 precedent, such internal reductions “need not be reported separately unless they are sold, traded externally, or otherwise used as an offset or credit.” <a class="cite revision" href="sources.html#r4-s1">AMI White Paper Annex C, p.48</a></p>
+        </div>
+        <div class="card" data-detail-for="r3" hidden>
+          <h4>Retrofit × Statement 3 <span class="badge inf">Inference</span></h4>
+          <div class="quote"><blockquote><p>“For these project activities, baseline emissions from the continuation of current activities may be estimated as the historical GHG emission rate for the process or equipment that is being retrofitted.”</p></blockquote><div class="who">Project Protocol Box 8.7, p.58 · <a class="cite inforce" href="sources.html#r4-s17">source</a></div></div>
+          <div class="quote"><blockquote><p>“If a piece of equipment would have to be replaced in the near future, then in practical terms this would constitute an absolute barrier to the continuation of current activities, and the continuation of current activities should not be considered as a baseline scenario alternative.”</p></blockquote><div class="who">Project Protocol Box 8.2, p.52 · <a class="cite inforce" href="sources.html#r4-s17">source</a></div></div>
+          <p class="small">The Grid Guidelines class a reduction that occurs “at the coal-fired power plant itself” as not grid-connected and send it to “Project Protocol general procedures”. <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines Table 2.1, p.12</a></p>
+          <div class="callout inference"><div class="label">Inference</div><p>At-plant effect ≈ (historical unabated rate − abated rate) × the plant’s generation. Lost or added output is a separate grid effect at OM/BM. If the plant was near the end of its life, the baseline becomes the replacement generation, and the whole impact becomes a system change. That end-of-life test is the hinge.</p></div>
+          <div class="quote revision"><blockquote><p>“Special treatment may therefore be needed to separately recognize: 1) the direct cessation of emissions from the unit (using observed and verifiable data), and 2) the consequential effects associated with replacement generation and capacity decisions.”</p></blockquote><div class="who">The NorthBridge Group (consultant), Q22 · <a class="cite revision" href="sources.html#r4-s16">Feedback dataset, respondent 96</a></div></div>
+        </div>
+        <div class="card" data-detail-for="n1" hidden>
+          <h4>New build × Statement 1 <span class="badge src">Source</span> <span class="badge inf">Inference</span></h4>
+          <p class="small">The same LSR rules apply: captured and geologically stored CO2 is not reported in scope 1; residual stack CO2, capture-process emissions and fugitives at the facility are. “Any CO2 that is not captured, and all GHG emissions due to the capture process itself, must be fully accounted for.” <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 pp.350, 359</a></p>
+          <div class="callout inference"><div class="label">Inference</div><p>The “reduction … compared to previous years” rule only bites “if CO2 was emitted from the facility in prior years”. A new plant has no prior years, so its owner’s scope 1 total rises by the residual, process and fugitive emissions.</p></div>
+        </div>
+        <div class="card" data-detail-for="n3" hidden>
+          <h4>New build × Statement 3 <span class="badge inf">Inference</span></h4>
+          <p class="small">The Grid Guidelines treat a new fossil plant as a grid-connected generation project: “Install and operate grid-connected natural gas combined-cycle power plant | Generate low-emission electricity from high-efficiency natural gas plant | Reduce combustion GHG emissions from (higher emitting) grid-connected power plants”. The baseline rate is “ER_baseline = wBM + (1-w)OM”. <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines Table 2.1, Eq.1, pp.12–13</a></p>
+          <div class="quote"><blockquote><p>“Generally, project activities that can provide firm power at all times will fully displace the BM (i.e., w = 1).”</p></blockquote><div class="who">Grid Guidelines §5.3, p.32 · <a class="cite inforce" href="sources.html#r4-s18">source</a></div></div>
+          <p class="small">The consultation’s default table gives “Project provides firm power, and on-peak, baseload, or intermittent generation: 1”. <a class="cite revision" href="sources.html#r4-s14">Consultation p.17</a></p>
+          <div class="callout inference"><div class="label">Inference</div><p>Impact ≈ generation × (ER_baseline − residual rate), plus or minus secondary effects. A firm CCS plant would typically get w = 1, so the build margin drives the sign.</p></div>
+          <div class="quote revision"><blockquote><p>“The proposed Scope 2 TWG subgroup formula does not address the emissions impact from actions that produce incremental emissions, such as building a new natural gas-fired power plant to serve load.”</p></blockquote><div class="who">Constellation Energy (energy supplier/utility), Q20 · <a class="cite revision" href="sources.html#r4-s16">Feedback dataset, respondent 181</a></div></div>
+        </div>
+      </div>
+      <p class="mfoot">Footnote: whether the same change may appear in Statement 1 and Statement 3 is unresolved. Each statement is reported separately, “without netting”. <a class="cite revision" href="sources.html#r4-s1">AMI White Paper pp.28, 35</a> <a class="cite revision" href="sources.html#r4-s4">RFI Summary p.4</a></p>
+    </div>
+
+    <div class="prose">
+      <p>So the short answer to the page title, as inference: a retrofit gets <b>both</b> kinds of credit, split into separate effects. The rate cut is a plant-level effect against the plant’s own history. Any change in output, dispatch or lifetime is a system effect valued at the grid margin. A new build gets <b>only</b> a system-change credit.</p>
+      <p>For the plant owner, the draft framework points to Statement 3’s “within organizational boundary impacts”. The Explanatory Memo’s CHP example sits there and “also has implication for Scope 1 reporting in the physical GHG inventory”.
+        <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.22</a> <a class="cite revision" href="sources.html#r4-s2">Explanatory Memo p.10</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== 2 ===================== -->
+  <section class="section" id="s2">
+    <div class="section-head">
+      <div class="eyebrow">2 · Retrofit</div>
+      <h2>Retrofit walk-through, gas then coal</h2>
+      <p>Nine steps from the baseline to the EOR branch. The bars use NETL design data for new plants, because no retrofit data was retrieved.</p>
+    </div>
+
+    <div class="callout gap"><div class="label">Gap · data</div><p>NETL Rev 4a covers greenfield plants only: “All plant configurations were evaluated based on installation at a greenfield site.” No source here gives retrofit capture penalties. The figures below are stand-ins for the shape of the effects, not retrofit performance. <a class="cite third" href="sources.html#r4-t1">NETL Rev 4a (2022) p.3</a></p></div>
+
+    <div class="scrolly">
+      <div class="scrolly-figure">
+        <figure class="fig-frame">
+          <svg viewBox="0 0 600 430" role="img" aria-label="Bars of stack CO2 rate in pounds per net megawatt hour from NETL greenfield designs: gas combined cycle F-class 755 unabated and 85 with 90 percent capture; supercritical coal 1,718 unabated and 219 with 90 percent capture. Net output for gas falls from 727 to 645 megawatts at fixed fuel; coal holds 650 megawatts by burning about 27 percent more coal. Six further effects are counted but not quantified.">
+            <text x="10" y="18" class="t-lg">Stack CO₂, lb CO₂/MWh-net</text>
+            <text x="10" y="34" class="t-sm muted">NETL Rev 4a greenfield designs (new-build data, not retrofit data)</text>
+            <line x1="150" y1="44" x2="150" y2="172" class="axis"/>
+            <!-- gas -->
+            <text x="10" y="58" class="t bold">Gas · NGCC F</text>
+            <g data-step="0-2,4-8">
+              <text x="10" y="76" class="t-sm">unabated (0%)</text>
+              <rect x="150" y="64" width="176" height="16" rx="2" class="bar-unab"/>
+              <text x="332" y="77" class="t">755</text>
+            </g>
+            <g data-step="1-2,4-8">
+              <text x="10" y="98" class="t-sm">90% capture</text>
+              <rect x="150" y="86" width="20" height="16" rx="2" class="bar-cap"/>
+              <text x="176" y="99" class="t">85</text>
+            </g>
+            <g data-step="1">
+              <text x="204" y="99" class="t-sm">per-MWh cut −88.7% (derived), not −90%</text>
+            </g>
+            <!-- coal -->
+            <text x="10" y="124" class="t bold">Coal · SC PC</text>
+            <g data-step="3-8">
+              <text x="10" y="142" class="t-sm">unabated (0%)</text>
+              <rect x="150" y="130" width="401" height="16" rx="2" class="bar-unab"/>
+              <text x="543" y="143" class="t" text-anchor="end" style="fill:var(--bg-2)">1,718</text>
+              <text x="10" y="164" class="t-sm">90% capture</text>
+              <rect x="150" y="152" width="51" height="16" rx="2" class="bar-cap"/>
+              <text x="207" y="165" class="t">219</text>
+            </g>
+            <g data-step="3">
+              <text x="240" y="165" class="t-sm">−87.3% (derived)</text>
+            </g>
+            <!-- output panel -->
+            <line x1="10" y1="186" x2="590" y2="186" class="axis"/>
+            <text x="10" y="206" class="t-lg">Net output at 90% capture, MWe</text>
+            <g data-step="2">
+              <text x="10" y="228" class="t-sm">Gas, fixed fuel</text>
+              <rect x="150" y="216" width="242" height="16" rx="2" class="bar-cap"/>
+              <rect x="392" y="216" width="31" height="16" rx="2" class="lost"/>
+              <text x="160" y="228" class="t-sm" style="fill:var(--bg-2)">645 of 727</text>
+              <text x="430" y="228" class="t-sm">−11.3% (derived)</text>
+              <text x="150" y="248" class="t-sm muted">lost MWh met by other generators at OM (rate hypothetical)</text>
+            </g>
+            <g data-step="3">
+              <text x="10" y="272" class="t-sm">Coal, output held</text>
+              <rect x="150" y="260" width="244" height="16" rx="2" class="bar-cap"/>
+              <text x="160" y="272" class="t-sm" style="fill:var(--bg-2)">650 of 650</text>
+              <text x="402" y="272" class="t-sm">+27.0% coal input (derived)</text>
+            </g>
+            <!-- add-ons -->
+            <line x1="10" y1="290" x2="590" y2="290" class="axis"/>
+            <text x="10" y="310" class="t-lg">Also counted; no plant-specific numbers in sources</text>
+            <g data-step="2"><rect x="10" y="320" width="186" height="44" rx="6" class="node-soft dash"/><text x="20" y="338" class="t-sm bold">Lost MWh × OM</text><text x="20" y="354" class="t-sm">grid effect, sign: increase</text></g>
+            <g data-step="4"><rect x="207" y="320" width="186" height="44" rx="6" class="node-soft dash"/><text x="217" y="338" class="t-sm bold">Dispatch change</text><text x="217" y="354" class="t-sm">more or fewer run hours</text></g>
+            <g data-step="5"><rect x="404" y="320" width="186" height="44" rx="6" class="node-soft dash"/><text x="414" y="338" class="t-sm bold">Upstream fuel and CH₄</text><text x="414" y="354" class="t-sm">rises with the penalty</text></g>
+            <g data-step="6"><rect x="10" y="374" width="186" height="44" rx="6" class="node-soft dash"/><text x="20" y="392" class="t-sm bold">Transport and storage</text><text x="20" y="408" class="t-sm">fugitives, injection</text></g>
+            <g data-step="7"><rect x="207" y="374" width="186" height="44" rx="6" class="node-soft dash"/><text x="217" y="392" class="t-sm bold">Life extension</text><text x="217" y="408" class="t-sm">baseline becomes BM</text></g>
+            <g data-step="8"><rect x="404" y="374" width="186" height="44" rx="6" class="node-soft dash"/><text x="414" y="392" class="t-sm bold">EOR branch</text><text x="414" y="408" class="t-sm">produced oil life cycle</text></g>
+          </svg>
+          <figcaption>A 90% capture design cuts the per-MWh stack rate by less than 90%, and the energy penalty either loses output (gas, fixed fuel) or burns more fuel (coal, output held). Bars are NETL greenfield design values; derived percentages are arithmetic on them. No OM rate is shown because none is sourced.</figcaption>
+        </figure>
+      </div>
+      <div class="scrolly-steps">
+        <div class="step"><div class="step-card"><div class="n">STEP 1 · BASELINE</div><h3>The plant’s own history, unless it was about to close</h3><p>For a retrofit that lowers an existing rate, baseline emissions “may be estimated as the historical GHG emission rate for the process or equipment that is being retrofitted.” <a class="cite inforce" href="sources.html#r4-s17">Project Protocol Box 8.7, p.58</a> The exception is equipment reaching “the end of its useful lifetime”; then continued operation “should not be considered as a baseline scenario alternative.” <a class="cite inforce" href="sources.html#r4-s17">Project Protocol Box 8.2, p.52</a></p><p class="small">The brown bar stands in for the historical unabated rate.</p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 2 · AT-PLANT PRIMARY EFFECT</div><h3>Gas: 755 to 85 lb/MWh-net</h3><p>In NETL’s F-class design, 90% capture takes the stack rate from 755 to 85 lb CO₂/MWh-net. <a class="cite third" href="sources.html#r4-t1">NETL Rev 4a Exhibit ES-4, p.9</a> Per MWh that is −88.7% (derived), because the capture plant uses energy.</p><div class="callout inference"><div class="label">Inference</div><p>This is the at-plant effect: (historical rate − abated rate) × generation. In Statement 1 the same physics shows as the scope 1 drop. <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.359</a></p></div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 3 · ENERGY PENALTY</div><h3>Gas loses output; someone else generates it</h3><p>NETL’s NGCC design holds fuel constant, so net output falls from 727 to 645 MW (−11.3%, derived); net efficiency falls from 53.6% to 47.6%. <a class="cite third" href="sources.html#r4-t1">NETL Exhibit ES-4</a></p><div class="callout inference"><div class="label">Inference</div><p>By symmetry with Box 8.2’s second primary effect and Table 2.1 row 2, the lost MWh are a grid effect at the operating margin (build margin if persistent), and they increase emissions. Any OM rate used here would be hypothetical; the consultation’s only figure is an illustrative “roughly ~800 lb CO₂/MWh” for a gas generator. <a class="cite revision" href="sources.html#r4-s14">Consultation p.17</a></p></div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 4 · COAL</div><h3>Coal: bigger tonnes, bigger penalty</h3><p>NETL’s supercritical PC goes from 1,718 to 219 lb CO₂/MWh-net at 90% capture (−87.3%, derived). Its design holds 650 MW net by raising thermal input about 27% (derived); auxiliary power rises from 36 to 113 MWe and net efficiency falls from 40.2% to 31.7%. <a class="cite third" href="sources.html#r4-t1">NETL Exhibit ES-3, p.8</a></p><div class="callout inference"><div class="label">Inference</div><p>Holding output means no lost MWh, but the extra coal is an upstream secondary effect: one of the cases where the Guidelines’ presumption that projects “reduce or cause no increase in fuel extraction” does not obviously hold.</p></div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 5 · DISPATCH</div><h3>Will the plant run more, or less?</h3><p>If capture revenue changes how often the plant runs, the extra or missing MWh displace, or are displaced by, marginal generation: again an OM/BM effect (inference). Grubert &amp; Sawyer model “six scenarios for lifespan extension and capacity factor changes”, and argue that the US 45Q credit “incentivizes emitters to maximize production and sequestration of carbon oxides, not abatement.” <a class="cite third" href="sources.html#r4-t4">Grubert &amp; Sawyer 2023, abstract</a></p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 6 · UPSTREAM FUEL</div><h3>Methane per kWh rises with capture</h3><p>IPCC AR5’s typical methane values rise from 47 to 68 gCO2eq/kWh for coal PC with CCS, and from 91 to 110 for gas combined cycle with CCS. <a class="cite third" href="sources.html#r4-t2">IPCC AR5 WGIII Annex III, Table A.III.2, p.1335</a> The Project Protocol lists coal-mine methane and gas leaks as upstream effects. <a class="cite inforce" href="sources.html#r4-s17">Project Protocol §5.3.2</a></p><div class="callout inference"><div class="label">Inference</div><p>The Grid Guidelines say fuel-chain effects “can often be ignored”; for capture with an energy penalty that presumption is weak.</p></div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 7 · TRANSPORT AND STORAGE</div><h3>Cradle to grave</h3><p>Fugitive captured CO2 at the facility stays in scope 1; other storage-pathway emissions go to scope 3. “Companies shall account for all life cycle GHG emissions that occur throughout the geologic storage pathway (i.e., cradle to grave).” Transport falls in scope 3 category 9; injection in category 12. <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 pp.344, 359–360</a></p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 8 · LIFETIME AND LOCK-IN</div><h3>If capture keeps a plant open</h3><p>Grubert &amp; Sawyer’s scenarios change emissions “by −24% ($0.4 trillion) to +82% ($3.6 trillion) versus business-as-usual for affected generators.” <a class="cite third" href="sources.html#r4-t4">Grubert &amp; Sawyer 2023, abstract</a> A reply to a DOE commentary keeps the dispute open: “We share a belief that many of these loopholes can be closed, and disagree that they have already been closed.” <a class="cite third" href="sources.html#r4-t5">Grubert &amp; Sawyer reply, abstract</a></p><div class="callout inference"><div class="label">Inference</div><p>For years the plant would not otherwise have run, the baseline is the replacement mix (Box 8.2 end-of-life barrier). With a clean build margin, those years can be a net increase.</p></div></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 9 · EOR BRANCH</div><h3>When the CO₂ goes to oil recovery</h3><p>Companies “shall account for all downstream GHG emissions associated with the extraction, processing, transportation, distribution, storage, and use (i.e., combustion) of oil, natural gas, or other hydrocarbons produced from the geologic reservoir”. <a class="cite inforce" href="sources.html#r4-s21">LSR Req. 19.GS, p.344</a> Chapter 16 methods “can be applied to quantify the impacts of EOR production, which would include the displacement of non-EOR oil and gas production.” <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.357</a></p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3 ===================== -->
+  <section class="section" id="s3">
+    <div class="section-head">
+      <div class="eyebrow">3 · New build</div>
+      <h2>New build: a system-change credit whose sign can flip</h2>
+      <p>A new plant has no history to beat. Its impact is the margin it displaces minus what it still emits.</p>
+    </div>
+
+    <div class="prose">
+      <p>A new CCS plant is a grid-connected generation project, like the new-NGCC row in Grid Guidelines Table 2.1. Baseline emissions are the margin rate times the project’s generation; project emissions are the plant’s residual rate times the same generation, which is not zero. The consultation notes “For renewable energy generation the project scenario Primary Effect emissions are usually zero”.
+        <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines Table 2.1, §12.2.2</a> <a class="cite revision" href="sources.html#r4-s14">Consultation p.7</a></p>
+    </div>
+
+    <div class="seg" data-target="#nb" role="group" aria-label="Build margin case">
+      <button data-value="fossil" aria-pressed="true">Fossil-heavy build margin</button>
+      <button data-value="clean" aria-pressed="false">Mostly clean build margin</button>
+    </div>
+    <div id="nb" data-mode="fossil" class="stack">
+      <figure class="fig-frame narrow">
+        <svg viewBox="0 0 600 330" role="img" aria-label="Baseline build-margin rate compared with residual rates of new gas and coal plants with 90 percent capture. In the fossil-heavy case the illustrative build margin is about 2,000 pounds per megawatt hour and both plants emit less. In the mostly clean case the build margin is near zero and both plants emit more, so the impact turns negative.">
+          <text x="10" y="18" class="t-lg">lb CO₂/MWh, per MWh the new plant generates</text>
+          <text x="10" y="34" class="t-sm muted">Build-margin values illustrative; residual rates NETL greenfield designs at 90% capture</text>
+          <line x1="190" y1="46" x2="190" y2="236" class="axis"/>
+          <line x1="190" y1="236" x2="550" y2="236" class="axis"/>
+          <text x="190" y="252" text-anchor="middle" class="t-sm muted">0</text>
+          <text x="370" y="252" text-anchor="middle" class="t-sm muted">1,000</text>
+          <text x="550" y="252" text-anchor="middle" class="t-sm muted">2,000</text>
+          <!-- baseline row -->
+          <text x="10" y="70" class="t bold">Baseline</text>
+          <text x="10" y="86" class="t-sm">build margin, w = 1</text>
+          <g class="only-fossil">
+            <rect x="190" y="70" width="360" height="20" rx="2" class="bar-bm"/>
+            <text x="196" y="64" class="t-sm">~2,000 (consultation’s illustrative coal BM)</text>
+          </g>
+          <g class="only-clean">
+            <rect x="190" y="70" width="3" height="20" class="bar-bm"/>
+            <text x="200" y="85" class="t-sm">≈ 0 (illustrative: mostly zero-carbon additions)</text>
+          </g>
+          <!-- gas row -->
+          <text x="10" y="128" class="t bold">New gas + CCS</text>
+          <text x="10" y="144" class="t-sm">NGCC F, 90% capture</text>
+          <rect x="190" y="122" width="136" height="20" rx="2" class="ghost"/>
+          <rect x="190" y="122" width="15" height="20" rx="2" class="bar-cap"/>
+          <text x="211" y="137" class="t">85</text>
+          <text x="332" y="137" class="t-sm muted">unabated design: 755</text>
+          <!-- coal row -->
+          <text x="10" y="186" class="t bold">New coal + CCS</text>
+          <text x="10" y="202" class="t-sm">SC PC, 90% capture</text>
+          <rect x="190" y="180" width="309" height="20" rx="2" class="ghost"/>
+          <rect x="190" y="180" width="39" height="20" rx="2" class="bar-cap"/>
+          <text x="235" y="195" class="t">219</text>
+          <text x="505" y="195" class="t-sm muted">1,718</text>
+          <!-- verdict -->
+          <g class="only-fossil">
+            <rect x="10" y="268" width="580" height="52" rx="8" class="soft-signal"/>
+            <text x="22" y="290" class="t bold">Both plants emit less than the margin they displace.</text>
+            <text x="22" y="308" class="t-sm">Impact per MWh = baseline − residual: positive (a reduction).</text>
+          </g>
+          <g class="only-clean">
+            <rect x="10" y="268" width="580" height="52" rx="8" class="soft-gap"/>
+            <text x="22" y="290" class="t bold">Both plants emit more than the margin they displace.</text>
+            <text x="22" y="308" class="t-sm">Impact per MWh = baseline − residual: negative (an increase).</text>
+          </g>
+        </svg>
+        <figcaption>The same new plant can show a reduction or an increase depending on what the build margin would otherwise have been. Dashed outlines are the unabated designs: 90% capture cuts the per-MWh rate by 88.7% (gas) and 87.3% (coal), derived.</figcaption>
+      </figure>
+      <p class="small" data-mode-show="fossil">Fossil-heavy case: the only GHG Protocol number is the consultation’s illustrative “build margin impact of roughly ~2,000 lb CO2/MWh” for a coal retirement. It is not data. <a class="cite revision" href="sources.html#r4-s14">Consultation p.17</a> Residual rates: <a class="cite third" href="sources.html#r4-t1">NETL Rev 4a ES-3, ES-4</a></p>
+      <p class="small" data-mode-show="clean" hidden>Mostly clean case: the near-zero bar is illustrative, not a sourced margin; that the impact can turn negative is inference. Residual rates: <a class="cite third" href="sources.html#r4-t1">NETL Rev 4a ES-3, ES-4</a></p>
+    </div>
+
+    <div class="callout inference"><div class="label">Inference</div><p>Because a firm CCS plant would typically take w = 1, the build margin, not the operating margin, decides the sign. An alternative project-specific baseline is “implementation of a baseline candidate”: an unabated plant of the same type. Then the effect is roughly (unabated rate − abated rate) × generation, and the additionality question moves to whether capture would have been built anyway. <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines §5.3, p.32</a> <a class="cite inforce" href="sources.html#r4-s17">Project Protocol §2.8, p.12</a></p></div>
+    <details><summary>One-time effects, and a respondent on lifetime impact</summary><div class="stack">
+<div class="prose">
+      <p>One-time effects net out partly: “if a project activity displaces construction of another power plant – in other words, if it affects the build margin – then similar GHG emissions would also occur in the baseline scenario”. What remains is the extra construction for capture equipment, pipelines and storage wells.
+        <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines §4.3.1, p.27</a></p>
+    </div>
+    <div class="quote revision"><blockquote><p>“People often underestimate the full cumulative negative GHG emissions lifetime impact of setting up a new gas-fired powerplant that is likely to operate for the next 20-30 years.”</p></blockquote><div class="who">Vidia Equity (financial institution), Q18 · <a class="cite revision" href="sources.html#r4-s16">Feedback dataset, respondent 25</a></div></div>
+</div></details>
+  </section>
+
+  <!-- ===================== 4 ===================== -->
+  <section class="section" id="s4">
+    <div class="section-head">
+      <div class="eyebrow">4 · Coal vs gas</div>
+      <h2>Coal vs gas in the numbers</h2>
+      <p>Coal capture moves more CO₂ per MWh and costs more efficiency. Gas carries more upstream methane per kWh.</p>
+    </div>
+
+    <div class="scroll-x"><table class="tbl">
+      <thead><tr><th>NETL Rev 4a case</th><th class="num">0% capture</th><th class="num">90%</th><th class="num">95%</th><th class="num">Net HHV efficiency, 0→90%</th><th class="num">Net output, 0→90%</th></tr></thead>
+      <tbody>
+        <tr><td>Supercritical PC (coal)</td><td class="num">1,718</td><td class="num">219</td><td class="num">111</td><td class="num">40.2 → 31.7%</td><td class="num">650 → 650 MWe</td></tr>
+        <tr><td>Subcritical PC (coal)</td><td class="num">1,790</td><td class="num">230</td><td class="num">117</td><td class="num">—</td><td class="num">650 → 650 MWe</td></tr>
+        <tr><td>NGCC F-class (gas)</td><td class="num">755</td><td class="num">85</td><td class="num">43</td><td class="num">53.6 → 47.6%</td><td class="num">727 → 645 MWe</td></tr>
+        <tr><td>NGCC H-class (gas)</td><td class="num">735</td><td class="num">83</td><td class="num">42</td><td class="num">55.1 → 49.0%</td><td class="num">992 → 883 MWe</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">Emission columns in lb CO₂/MWh-net. Greenfield designs, 85% capacity factor, 30-year plant life, CO2 sequestered offsite. Derived: efficiency penalties of about 8.5 points (SC PC) and 6 points (NGCC F); in kg/MWh-net (×0.4536) SC PC ≈779 → ≈99 and NGCC F ≈342 → ≈39. <a class="cite third" href="sources.html#r4-t1">NETL Rev 4a Exhibits ES-3, ES-4, pp.8–9; p.3</a></p>
+
+    <figure class="fig-frame narrow">
+      <svg viewBox="0 0 600 350" role="img" aria-label="IPCC AR5 values. Lifecycle median gCO2eq per kWh: coal PC 820, coal PC with CCS 220, gas combined cycle 490, gas combined cycle with CCS 170, with min to max ranges. Typical methane: coal PC 47 rising to 68 with CCS; gas combined cycle 91 rising to 110 with CCS.">
+        <text x="10" y="18" class="t-lg">Lifecycle, gCO2eq/kWh (median; line = min–max)</text>
+        <line x1="160" y1="28" x2="160" y2="146" class="axis"/>
+        <!-- scale 0..1000 -> 160..520 : 0.36 px/unit -->
+        <text x="10" y="46" class="t-sm">Coal PC</text>
+        <rect x="160" y="34" width="295" height="16" rx="2" class="bar-unab"/>
+        <line x1="426" y1="42" x2="488" y2="42" class="edge"/><line x1="426" y1="37" x2="426" y2="47" class="edge"/><line x1="488" y1="37" x2="488" y2="47" class="edge"/>
+        <text x="494" y="47" class="t-sm">820 (740–910)</text>
+        <text x="10" y="72" class="t-sm">Coal PC + CCS</text>
+        <rect x="160" y="60" width="79" height="16" rx="2" class="bar-cap"/>
+        <line x1="228" y1="68" x2="250" y2="68" class="edge"/><line x1="228" y1="63" x2="228" y2="73" class="edge"/><line x1="250" y1="63" x2="250" y2="73" class="edge"/>
+        <text x="256" y="73" class="t-sm">220 (190–250)</text>
+        <text x="10" y="104" class="t-sm">Gas CC</text>
+        <rect x="160" y="92" width="176" height="16" rx="2" class="bar-unab"/>
+        <line x1="308" y1="100" x2="394" y2="100" class="edge"/><line x1="308" y1="95" x2="308" y2="105" class="edge"/><line x1="394" y1="95" x2="394" y2="105" class="edge"/>
+        <text x="400" y="105" class="t-sm">490 (410–650)</text>
+        <text x="10" y="130" class="t-sm">Gas CC + CCS</text>
+        <rect x="160" y="118" width="61" height="16" rx="2" class="bar-cap"/>
+        <line x1="194" y1="126" x2="282" y2="126" class="edge"/><line x1="194" y1="121" x2="194" y2="131" class="edge"/><line x1="282" y1="121" x2="282" y2="131" class="edge"/>
+        <text x="288" y="131" class="t-sm">170 (94–340)</text>
+                <!-- methane -->
+        <line x1="10" y1="168" x2="590" y2="168" class="axis"/>
+        <text x="10" y="192" class="t-lg">Methane (typical), gCO2eq/kWh</text>
+        <line x1="160" y1="202" x2="160" y2="318" class="axis"/>
+        <!-- scale 0..120 -> 160..520 : 3 px/unit -->
+        <text x="10" y="220" class="t-sm">Coal PC</text>
+        <rect x="160" y="208" width="141" height="16" rx="2" class="bar-unab"/>
+        <text x="307" y="221" class="t-sm">47</text>
+        <text x="10" y="246" class="t-sm">Coal PC + CCS</text>
+        <rect x="160" y="234" width="204" height="16" rx="2" class="bar-cap"/>
+        <text x="370" y="247" class="t-sm">68</text>
+        <text x="10" y="278" class="t-sm">Gas CC</text>
+        <rect x="160" y="266" width="273" height="16" rx="2" class="bar-unab"/>
+        <text x="439" y="279" class="t-sm">91</text>
+        <text x="10" y="304" class="t-sm">Gas CC + CCS</text>
+        <rect x="160" y="292" width="330" height="16" rx="2" class="bar-cap"/>
+        <text x="496" y="305" class="t-sm">110</text>
+        <text x="10" y="340" class="t-sm muted">IPCC AR5 WGIII Annex III, Table A.III.2 (2014). CCS listed as pre-commercial. Panels use different scales.</text>
+      </svg>
+      <figcaption>Capture cuts lifecycle emissions a lot for both fuels, but the methane component rises with CCS in both cases, and it is larger for gas.</figcaption>
+    </figure>
+    <p class="small"><a class="cite third" href="sources.html#r4-t2">IPCC AR5 WGIII Annex III, Table A.III.2, p.1335</a></p>
+
+    <div class="grid-2">
+      <div class="callout inference"><div class="label">Inference</div><p>Coal capture removes more CO₂ per MWh (1,718 → 219 vs 755 → 85 lb/MWh-net), so its at-plant primary effect per MWh is larger. Coal also has the larger efficiency penalty and the higher residual. Gas has the higher upstream methane per kWh with CCS (110 vs 68). Lock-in from life extension applies to both.</p></div>
+      <div class="callout gap"><div class="label">Gap</div><p>No source here quantifies lock-in risk for coal and gas separately. Grubert &amp; Sawyer’s range covers US coal and gas retrofits together, and only the abstract was retrieved. <a class="cite third" href="sources.html#r4-t4">Grubert &amp; Sawyer 2023</a></p></div>
+    </div>
+    <details><summary>Context: existing-asset emissions and a TWG member view on gas dispatch</summary><div class="stack">
+<div class="quote third"><blockquote><p>“If these assets were to continue to operate unconstrained throughout their technical lives, they would emit more than 600 billion tonnes of CO2 by 2070 … over the next decade, more than a half of CCUS deployment must be dedicated to addressing emissions from these existing assets, requiring retrofits in both the power and industry sectors.”</p></blockquote><div class="who">IEAGHG secondary summary of IEA (2020), p.2; original IEA wording not retrieved · <a class="cite third" href="sources.html#r4-t3">source</a></div></div>
+    <div class="prose">
+      <p>On which margin a gas plant sits in, one AMI TWG member view, not a finding: “Some members suggested that gas is typically dispatched after coal and nuclear so marginal emission factors would be lower in many places.”
+        <a class="cite revision" href="sources.html#r4-s11a">AMI TWG Meeting 6 minutes (23 Apr 2025) p.4</a></p>
+    </div>
+</div></details>
+  </section>
+
+  <!-- ===================== 5 ===================== -->
+  <section class="section" id="s5">
+    <div class="section-head">
+      <div class="eyebrow">5 · Storage vs use</div>
+      <h2>CCU vs CCS</h2>
+      <p>Only geologic storage takes CO₂ out of scope 1. Utilization leaves it in the inventory and changes what the impact baseline must be.</p>
+    </div>
+
+    <div class="strip">
+      <div class="card">
+        <h4>Geologic storage (CCS)</h4>
+        <div class="row"><span class="k">Statement 1</span><p>“CO2 capture with geologic storage that meets the geologic storage requirements is not reported as emissions in the relevant scope.” <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.347</a></p></div>
+        <div class="row"><span class="k">Life cycle</span><p>Cradle to grave across the storage pathway (Req. 19.GS). <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.344</a></p></div>
+        <div class="row"><span class="k">Permanence</span><p>Monitoring, with reversals reported as “Net carbon losses from geologic reservoirs associated with previously disclosed captured CO2”. <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.347</a></p></div>
+        <div class="row"><span class="k">Statement 3 baseline <span class="badge inf">Inference</span></span><p>Historical rate (retrofit) or margin (new build), as above.</p></div>
+      </div>
+      <div class="card">
+        <h4>Geologic storage with EOR</h4>
+        <div class="row"><span class="k">Statement 1</span><p>Storage, but produced oil and gas emissions are counted in scope 1, 2 and/or 3. <a class="cite inforce" href="sources.html#r4-s21">LSR Req. 19.GS, p.344</a></p></div>
+        <div class="row"><span class="k">Life cycle</span><p>“the full life cycle of the produced oil or natural gas must be considered to determine the net CO2 flux”. <a class="cite inforce" href="sources.html#r4-s21">LSR Box 14.1, pp.352–353</a></p></div>
+        <div class="row"><span class="k">Permanence</span><p>“Where the net geologic carbon stock change is negative, it leads to net CO2 emissions from geologic storage.” <a class="cite inforce" href="sources.html#r4-s21">LSR Box 14.1</a></p></div>
+        <div class="row"><span class="k">Statement 3 baseline</span><p>Ch.16 methods, including “the displacement of non-EOR oil and gas production”. <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.357</a></p></div>
+      </div>
+      <div class="card">
+        <h4>Utilization (CCU)</h4>
+        <div class="row"><span class="k">Statement 1</span><p>Not a captured-CO2 pathway: “Carbon captured and stored in products represents temporary storage, followed by re-release to the atmosphere at the end of the product lifecycle.” <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.351</a></p></div>
+        <div class="row"><span class="k">Life cycle</span><p>“Fossil CO2 capture that doesn’t meet the geologic storage requirement is reported as ‘fossil fuel and industrial emissions’ in the relevant scope.” Product storage reporting is optional (Ch.15). <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 pp.347, 351</a></p></div>
+        <div class="row"><span class="k">Permanence <span class="badge inf">Inference</span></span><p>Enters through re-release, not storage monitoring. The AMI permanence principle “applies to removals only”. <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.32</a></p></div>
+        <div class="row"><span class="k">Statement 3 baseline <span class="badge inf">Inference</span></span><p>The product system the market would otherwise have used; the impact is a life-cycle difference, not the captured tonnage.</p></div>
+      </div>
+    </div>
+
+    <div class="callout inference"><div class="label">Inference</div><p>A plant that captures CO₂ for fuels, chemicals, beverages or greenhouses still reports that CO₂ in scope 1 under LSR. In Statement 3, the Project Protocol’s equivalence rule applies: “if the project activity were not implemented, it should be assumed that the market would have provided a quantity and quality of products or services equivalent to what the project activity would have produced.” The baseline is then the displaced product or CO₂ source, and the impact is the life-cycle difference including re-release. <a class="cite inforce" href="sources.html#r4-s17">Project Protocol §2.13, pp.14–15; §5.3.2</a></p></div>
+    <div class="callout signal"><div class="label">Signal of direction · 9 Sep 2026</div><p>ISO WG4 consensus is to remove permanence as a principle, with Statement 3 referencing ISO 14064-2. <a class="cite revision" href="sources.html#r4-s5">AMI TWG 2.08 minutes pp.3–4</a></p></div>
+    <div class="callout gap"><div class="label">Gap</div><p>No GHG Protocol source quantifies CCU re-release timing, utilization baselines or EOR displacement rates, and no third-party number on CCU permanence was retrieved. LSR Ch.14’s pointer to Ch.16 for EOR is the only place the sources link CCS to consequential accounting.</p></div>
+  </section>
+
+  <!-- ===================== 6 ===================== -->
+  <section class="section" id="s6">
+    <div class="section-head">
+      <div class="eyebrow">6 · Additionality tests</div>
+      <h2>The nine tests against four cases</h2>
+      <p>The tests were written “to assess additionality for renewable energy projects”. Applied to capture, each one turns on facts the sources do not give.</p>
+    </div>
+
+    <div class="cases"><span><b>(i)</b> Retrofit, gas</span><span><b>(ii)</b> Retrofit, coal</span><span><b>(iii)</b> New gas + CCS</span><span><b>(iv)</b> New coal + CCS</span></div>
+    <div class="scroll-x"><table class="tbl tests">
+      <thead><tr><th>Test (draft wording)</th><th>(i)</th><th>(ii)</th><th>(iii)</th><th>(iv)</th><th>Req / Opt / Not (n)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Regulatory</b> · “mandated by law or regulation”</td><td colspan="4" class="all">All four: depends on jurisdiction. Fails where a CO₂ performance standard requires capture; otherwise passes.</td><td class="pct">64 / 20 / 16 (108)</td></tr>
+        <tr><td><b>Timing</b> · “already planned or under construction before the incentive was available”</td><td colspan="4" class="all">All four: depends on which “incentive” counts. The draft lists “credits, PPAs, or certificates”; public tax credits are not named. Respondents flagged “planned” and “under construction” as undefined.</td><td class="pct">49 / 29 / 22 (106)</td></tr>
+        <tr><td><b>Financial analysis</b> · “would not have been pursued without the additional revenue stream”</td><td colspan="4" class="all">All four: depends on economics no GHG Protocol source gives. Grubert &amp; Sawyer say 45Q can make CCS “profitable for coal- and natural gas-based electricity generator owners”; if so, a buyer’s added revenue may not be decisive.</td><td class="pct">17 / 54 / 29 (107)</td></tr>
+        <tr><td><b>Barrier</b> · “technological, institutional, or market”</td><td colspan="4" class="all">All four: depends on deployment. Plausible pass while power CCS is rare; a secondary IEA summary counts “a little over 20 operating CCUS facilities, the vast majority are associated with natural gas processing”.</td><td class="pct">15 / 46 / 40 (101)</td></tr>
+        <tr><td><b>Common practice</b> · “widely implemented without incentives”</td><td colspan="4" class="all">All four: depends on how common power CCS is in the region; likely pass where it is rare.</td><td class="pct">22 / 32 / 46 (103)</td></tr>
+        <tr><td><b>Positive list</b> · “early-stage technologies…”</td><td colspan="4" class="all">All four: depends on what the list contains. The draft contains no list.</td><td class="pct">17 / 54 / 29 (105)</td></tr>
+        <tr><td><b>Performance standard</b> · “outperforms” a benchmark</td><td colspan="4" class="all">All four: depends on the benchmark. Passes against an unabated fleet average; fails against a zero-carbon benchmark.</td><td class="pct">14 / 38 / 49 (101)</td></tr>
+        <tr><td><b>Contractual/tenor</b> · contract “duration”</td><td colspan="4" class="all">All four: depends on whether a long-term offtake or contract enabled the retrofit or build.</td><td class="pct">24 / 40 / 36 (102)</td></tr>
+        <tr><td><b>First-of-its-kind</b> · “not yet present in a market or region”</td><td colspan="4" class="all">All four: depends on region. “Once the technology becomes established … subsequent projects no longer qualify”.</td><td class="pct">10 / 36 / 54 (99)</td></tr>
+        <tr class="extra"><td><b>Not among the nine</b> · would the plant have kept running unabated, or retired?</td><td>Decisive: Box 8.2 end-of-life barrier sets the baseline</td><td>Decisive, as (i)</td><td>Not applicable; the question becomes whether capture would have been built anyway</td><td>As (iii)</td><td class="pct">not surveyed</td></tr>
+        <tr class="proposal"><td><b>Incrementality</b> (respondent proposal, not in the draft)</td><td colspan="4">Would treat a retrofit, life extension or uprate as a “material change relative to a prior state”, without proving causation.</td><td class="pct">not surveyed</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">Test wording: <a class="cite revision" href="sources.html#r4-s14">Consultation §7.1, pp.10–11</a>. Percentages: share of those answering Q26 who chose Required / Optional / Not required. <a class="cite revision" href="sources.html#r4-s15">Feedback summary Tables 1–9, pp.7–8</a> <a class="cite revision" href="sources.html#r4-s16">Feedback dataset (Q26)</a>. Case-cell reasoning is inference; quoted material: <a class="cite third" href="sources.html#r4-t4">Grubert &amp; Sawyer 2023</a> <a class="cite third" href="sources.html#r4-t3">IEAGHG 2020-IP15 p.2</a> <a class="cite inforce" href="sources.html#r4-s17">Project Protocol Box 8.2</a>. Incrementality: <a class="cite revision" href="sources.html#r4-s15">Feedback summary p.10</a></p>
+
+    <div class="grid-2">
+      <div class="callout gap"><div class="label">Gap</div><p>None of the nine tests mentions retrofits, and none asks the question that decides a retrofit’s baseline: would the plant have retired? The consultation document never mentions CCS or capture at all. <a class="cite revision" href="sources.html#r4-s14">Consultation (full text)</a></p></div>
+      <div class="quote revision"><blockquote><p>“Regulatory Test (Required): Should be required only for greenfield projects … However, this test should not disqualify behavioral interventions applied to already existing assets, even if they received regulatory support.”</p></blockquote><div class="who">Tierra Climate Inc. (data/analytics provider), Q27 · <a class="cite revision" href="sources.html#r4-s16">Consequential feedback dataset, resp. 41</a></div></div>
+    </div>
+    <details><summary>Another respondent on existing assets</summary><div class="stack">
+<div class="quote revision"><blockquote><p>“Age-based eligibility rules can reduce market efficiency … It is discriminatory to cast older facilities that produce equivalent avoided emissions benefits as ineligible for consequential accounting because of additionality preferences.”</p></blockquote><div class="who">Environmental Markets Association (industry group), Q29 · <a class="cite revision" href="sources.html#r4-s16">Consequential feedback dataset, resp. 153</a></div></div>
+</div></details>
+  </section>
+
+  <!-- ===================== 7 ===================== -->
+  <section class="section" id="s7">
+    <div class="section-head">
+      <div class="eyebrow">7 · Interplay</div>
+      <h2>Statement 2 vs Statement 3: who claims what</h2>
+      <p>If the plant sells attributes, the buyer’s inventory claim and the plant’s impact claim are different things. The rules that would stop two impact claims on one change are not written.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="quote"><blockquote><p>“All contractual instruments used in the market-based method for scope 2 accounting shall: 1. Convey the direct GHG emission rate attribute associated with the unit of electricity produced. 2. Be the only instruments that carry the GHG emission rate attribute claim associated with that quantity of electricity generation. …”</p></blockquote><div class="who">Scope 2 Guidance (2015) Table 7.1, p.60 · <a class="cite inforce" href="sources.html#r4-s22">source</a></div></div>
+      <div class="quote"><blockquote><p>“Do not report scope 2 emissions for the CO2 that is captured and stored in a geologic reservoir; • Report any fugitive emissions of captured CO2 released at that facility in scope 2”</p></blockquote><div class="who">LSR Ch.14, purchasers of electricity from a capture facility, p.359 · <a class="cite inforce" href="sources.html#r4-s21">source</a></div></div>
+    </div>
+
+    <figure class="fig-frame narrow">
+      <svg viewBox="0 0 560 380" role="img" aria-label="Generator and EAC buyer across three statements. Generator: scope 1 net of stored CO2 in Statement 1; Statement 2 not addressed; within organizational boundary impact in Statement 3. Buyer: scope 2 without the stored CO2 in Statement 1; market-based scope 2 at the residual rate in Statement 2, with rate-setting a gap; own impact only if causal in Statement 3. A bracket links the two Statement 3 cells as a double-claiming risk with no rule yet.">
+        <rect x="104" y="10" width="130" height="50" rx="8" class="node-soft"/>
+        <text x="169" y="31" text-anchor="middle" class="t-lg">Statement 1</text>
+        <text x="169" y="49" text-anchor="middle" class="t-sm muted">physical</text>
+        <rect x="242" y="10" width="130" height="50" rx="8" class="node-soft"/>
+        <text x="307" y="31" text-anchor="middle" class="t-lg">Statement 2</text>
+        <text x="307" y="49" text-anchor="middle" class="t-sm muted">market-based</text>
+        <rect x="380" y="10" width="130" height="50" rx="8" class="soft-accent"/>
+        <text x="445" y="31" text-anchor="middle" class="t-lg">Statement 3</text>
+        <text x="445" y="49" text-anchor="middle" class="t-sm muted">impact</text>
+        <text x="4" y="112" class="t-lg">Generator</text>
+        <text x="4" y="130" class="t-sm muted">(plant owner)</text>
+        <text x="4" y="232" class="t-lg">EAC buyer</text>
+        <!-- generator row -->
+        <rect x="104" y="72" width="130" height="104" rx="8" class="node"/>
+        <text x="113" y="92" class="t">Scope 1 net of</text>
+        <text x="113" y="108" class="t">captured and</text>
+        <text x="113" y="124" class="t">stored CO₂</text>
+        <text x="113" y="166" class="t-tag">SOURCE · LSR</text>
+        <rect x="242" y="72" width="130" height="104" rx="8" class="node-soft dash"/>
+        <text x="307" y="118" text-anchor="middle" class="t muted">not addressed</text>
+        <text x="251" y="166" class="t-tag">GAP</text>
+        <rect x="380" y="72" width="130" height="104" rx="8" class="node"/>
+        <text x="389" y="92" class="t">Within-org-</text>
+        <text x="389" y="108" class="t">boundary impact</text>
+        <text x="389" y="124" class="t">of its retrofit</text>
+        <text x="389" y="140" class="t">or new build</text>
+        <text x="389" y="166" class="t-tag">SRC + INF</text>
+        <!-- buyer row -->
+        <rect x="104" y="192" width="130" height="104" rx="8" class="node"/>
+        <text x="113" y="212" class="t">Scope 2 omits</text>
+        <text x="113" y="228" class="t">the stored CO₂</text>
+        <text x="113" y="286" class="t-tag">SOURCE · LSR</text>
+        <rect x="242" y="192" width="130" height="104" rx="8" class="node"/>
+        <text x="251" y="212" class="t">Market-based:</text>
+        <text x="251" y="228" class="t">one claimant per</text>
+        <text x="251" y="244" class="t">MWh; rate is the</text>
+        <text x="251" y="260" class="t">residual, not zero</text>
+        <text x="251" y="286" class="t-tag">INF · rate: GAP</text>
+        <rect x="380" y="192" width="130" height="104" rx="8" class="node dash"/>
+        <text x="389" y="212" class="t">Own impact only</text>
+        <text x="389" y="228" class="t">if its action</text>
+        <text x="389" y="244" class="t">caused the</text>
+        <text x="389" y="260" class="t">change</text>
+        <text x="389" y="286" class="t-tag">INFERENCE</text>
+        <!-- bracket -->
+        <path d="M516,96 H530 V272 H516" class="edge" style="stroke:var(--gap);stroke-width:2"/>
+        <text transform="translate(548 184) rotate(90)" text-anchor="middle" class="t-sm" style="fill:var(--gap)">double-claiming risk · GAP</text>
+        <rect x="104" y="314" width="406" height="56" rx="8" class="soft-gap"/>
+        <text x="307" y="337" text-anchor="middle" class="t">Same physical change, two Statement 3 claims.</text>
+        <text x="307" y="356" text-anchor="middle" class="t">Rules to stop both counting it: not written.</text>
+      </svg>
+      <figcaption>Statement 1 and 2 entries follow written rules; the two Statement 3 entries describe the same physical change, and no published rule says how to split or exclude them. Adapted from AMI White Paper Figure 6; placement of the CCS entries is inference.</figcaption>
+    </figure>
+
+    <div class="scroll-x"><table class="tbl">
+      <thead><tr><th>Party</th><th>Statement 1 / 2 (inventories)</th><th>Statement 3 (impact)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Plant owner</b></td><td>Scope 1 net of captured and stored CO₂. <span class="badge src">Source</span> <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 p.359</a></td><td>“Within organizational boundary impacts” of its own decision, against a baseline and subject to additionality. <span class="badge inf">Inference on placement</span> <a class="cite revision" href="sources.html#r4-s1">AMI White Paper p.22</a> <a class="cite revision" href="sources.html#r4-s7c">AMI workshop Day 3, PDF p.18</a></td></tr>
+        <tr><td><b>EAC buyer</b></td><td>Market-based scope 2 carries the instrument’s emission-rate attribute; only one claimant per MWh. With capture the rate would be the plant’s residual, not zero. <span class="badge inf">Inference</span> <span class="badge gap">Gap: how the rate is set</span> <a class="cite inforce" href="sources.html#r4-s22">Scope 2 Guidance Table 7.1</a></td><td>Only if the buyer’s action, such as a long-term contract, caused the retrofit or build, tested through timing and contractual tests; the feedback summary tiers “association” vs “causal” claims. <span class="badge inf">Inference</span> <a class="cite revision" href="sources.html#r4-s14">Consultation p.10</a> <a class="cite revision" href="sources.html#r4-s15">Feedback summary p.11</a></td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="grid-2">
+      <div class="quote revision"><blockquote><p>“multiple parties (utilities, buyers, aggregators, storage owners) could end up claiming credit for the same avoided emissions without clear attribution rules”</p></blockquote><div class="who">Consequential feedback summary p.4 · <a class="cite revision" href="sources.html#r4-s15">source</a></div></div>
+      <div class="quote revision"><blockquote><p>“Should double claiming be avoided between an organization purchasing a physical product and an organization purchasing a commodity certificate from the same product if they are unbundled? Should there be co-claiming and if so how should co-claiming be reported?”</p></blockquote><div class="who">AMI White Paper Annex A, Q32 (Statement 3), p.44 · <a class="cite revision" href="sources.html#r4-s1">source</a></div></div>
+    </div>
+    <div class="prose">
+      <p>RFI respondents “want clear rules defining who can report a benefit when multiple parties are involved in the same intervention”.
+        <a class="cite revision" href="sources.html#r4-s4">RFI Summary p.36</a> Caps matter too: if the plant sits under a power-sector cap, or its tonnes were also credited, “the company should not make public claims about avoided emissions. The avoided grid emissions will either be zero, in the case of a cap as regulated entities may emit up to the level of the cap, or already represented in claims by the offset purchaser.”
+        <a class="cite inforce" href="sources.html#r4-s22">Scope 2 Guidance §6.9, p.52</a></p>
+    </div>
+    <div class="callout signal"><div class="label">Signal of direction · Jul–Sep 2026</div><p>“Option 3 was agreed: Additionality required for Statement 2.” The Secretariat described the direction of travel as “what is reported in Statement 2 should have a demonstrated impact going beyond business as usual.” But the White Paper says “No changes will be made in the AMI TWG regarding the requirements for scope 2 location-based and market-based reporting.” <a class="cite revision" href="sources.html#r4-s7c">AMI workshop Day 3, PDF p.19</a> <a class="cite revision" href="sources.html#r4-s5">AMI TWG 2.08 minutes p.6</a> <a class="cite revision" href="sources.html#r4-s1">AMI White Paper fn 3, p.5</a></p></div>
+    <details><summary>How CCS attributes could enter Statement 2: the additionality complaint and “clean firm” respondents</summary><div class="stack">
+<div class="callout inference"><div class="label">Inference</div><p>Whether Statement 2’s additionality would apply to scope 2 EACs is unresolved; scope 2 market-based rules stay with the Scope 2 TWG. A complaint to the ISB objects that the proposed Scope 2 market-based method “excludes the principle of additionality”. <a class="cite revision" href="sources.html#r4-s13">Sinha, Das, WattTime et al. complaint, 24 Aug 2026, p.2</a></p></div>
+    <div class="prose">
+      <p>Scope 2 consultation respondents already describe CCS plants as one of the resources hourly matching would pull in. This is the channel by which a CCS plant’s attributes would enter Statement 2, separate from any impact claim (inference).</p>
+    </div>
+    <div class="grid-2">
+      <div class="quote revision"><blockquote><p>“Hourly matched PPAs may require a shift from variable renewable to low carbon firm dispatchable power generation: nuclear, CCGT+CCS, advanced geothermal.”</p></blockquote><div class="who">ExxonMobil (company), Scope 2 consultation Q141 · <a class="cite revision" href="sources.html#r4-s24">Scope 2 feedback dataset, resp. 943</a></div></div>
+      <div class="quote revision"><blockquote><p>“Current MBM risks cherry‑picking and obscuring the role of other generation sources in energy transition including nuclear, fossil fuelled with carbon capture, energy storage and hydrogen-to-power.”</p></blockquote><div class="who">SmartestEnergy Ltd. (energy supplier), Scope 2 consultation Q020 · <a class="cite revision" href="sources.html#r4-s24">Scope 2 feedback dataset, resp. 510</a></div></div>
+    </div>
+</div></details>
+  </section>
+
+  <!-- ===================== 8 ===================== -->
+  <section class="section" id="s8">
+    <div class="section-head">
+      <div class="eyebrow">8 · Closing</div>
+      <h2>What to take into a position</h2>
+      <p>What the text says, what follows from it, and what nobody has written yet.</p>
+    </div>
+    <div class="callout key"><div class="label">Takeaway</div><p>In inventory terms a capture retrofit cuts the owner’s scope 1; in impact terms it earns an at-plant effect against its own history only if it was not about to retire, net of lost output, fuel-chain and lifetime effects. A new build earns only a system-change credit, and a clean build margin can turn it negative.</p></div>
+    <div class="prose">
+      <ul>
+        <li><b>SOURCED.</b> Captured and geologically stored fossil CO₂ is not reported in scope 1 and is not a removal; capture-process, fugitive and storage-pathway emissions stay in. Utilization is “temporary storage, followed by re-release”. <a class="cite inforce" href="sources.html#r4-s21">LSR Ch.14 pp.343, 350–351, 359</a></li>
+        <li><b>SOURCED.</b> In-force project rules give retrofits a historical-rate baseline unless the equipment is at end of life, and treat at-plant reductions as not grid-connected. <a class="cite inforce" href="sources.html#r4-s17">Project Protocol Boxes 8.2, 8.7</a> <a class="cite inforce" href="sources.html#r4-s18">Grid Guidelines Table 2.1</a></li>
+        <li><b>SOURCED (third party).</b> At 90% capture NETL’s designs cut the per-MWh rate by 87.3% (coal) and 88.7% (gas), derived; AR5 methane per kWh rises with CCS for both fuels. <a class="cite third" href="sources.html#r4-t1">NETL Rev 4a</a> <a class="cite third" href="sources.html#r4-t2">IPCC AR5 Annex III</a></li>
+        <li><b>INFERENCE.</b> Retrofit: plant credit plus system effects; new build: system credit only, with the sign set by the build margin. The subgroup’s MWh × MER formula cannot carry a residual rate.</li>
+        <li><b>GAP.</b> No GHG Protocol text covers CCS in impact accounting; none of the nine tests addresses retrofits or retirement; how a CCS plant’s EAC rate is set, and how generator and buyer Statement 3 claims are kept apart, are unwritten.</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="pager" aria-label="Pages">
+    <a class="prev" href="consequential-basics.html"><span class="dir">Previous</span><span class="ttl">Impact accounting</span></a>
+    <a class="next" href="sources.html"><span class="dir">Next</span><span class="ttl">Sources</span></a>
+  </nav>
+  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
+</main>
+<script src="site.js"></script>
+</body>
+</html>
