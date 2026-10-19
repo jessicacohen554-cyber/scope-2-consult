@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>October 2026 Scope 2 Update</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* page-specific: tracks figure, bar strips, comparison table */
+svg .st-accent { stroke: var(--accent); stroke-width: 1.4; }
+svg .st-line { stroke: var(--line); stroke-width: 1; }
+svg .st-fg3 { stroke: var(--fg-3); stroke-width: 1; }
+svg .st-gap { stroke: var(--gap); stroke-width: 1.2; }
+svg .t-mono { font-family: var(--font-mono); font-size: 11px; }
+svg .t-b { font-weight: 600; }
+.cmp th:first-child, .cmp td:first-child { min-width: 9rem; }
+.cmp td { min-width: 13rem; }
+.cmp td .q { font-style: italic; }
+.cmp td .cite { margin-top: 4px; }
+.kpi .b { font-size: 0.78rem; color: var(--fg-3); font-family: var(--font-mono); }
+.bar-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.85rem; color: var(--fg-2); }
+.bar-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.bar-legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; border: 1px solid var(--line); }
+.mini-tbl td, .mini-tbl th { white-space: nowrap; }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
+    <div class="nav-links">
+      <a href="index.html">Start</a>
+      <a href="ccs-removals.html">CCS: removal or reduction?</a>
+      <a href="ccs-eac.html">CCS-backed EACs</a>
+      <a href="scope2-update.html">Oct 2026 update</a>
+      <a href="governance.html">Governance &amp; TWGs</a>
+      <a href="storage-mechanics.html">Storage ledger</a>
+      <a href="storage-revision.html">Storage &amp; incrementality</a>
+      <a href="consequential-basics.html">Impact accounting</a>
+      <a href="consequential-ccus.html">CCUS impact 2×2</a>
+      <a href="sources.html">Sources</a>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Module 2 · Scope 2 revision</div>
+    <h1>Where does the market-based method stand after October 2026?</h1>
+    <p class="lede">After this page you can say what the ISB's September 2026 direction for the market-based method contains, which parts are pulse checks rather than decisions, how it departs from the 2025 consultation draft and from ISO's working draft, and what gets decided next.</p>
+    <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> MBM Update (16 Oct 2026) · Scope 2 TWG #23 minutes and deck (6 Oct 2026) · Scope 2 consultation summary (Aug 2026) · AMI RFI summary (Sep 2026)</span><span><b>Status as of</b> 19 Oct 2026</span></div>
+    <div class="tier-legend" aria-label="Source tiers">
+      <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
+      <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
+      <span><i style="background:var(--third)"></i>Third party</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="On this page">
+    <a href="#s1"><span class="k">1</span>The update in one screen</a>
+    <a href="#s2"><span class="k">2</span>What changed since the 2025 consultation draft</a>
+    <a href="#s3"><span class="k">3</span>The consultation numbers behind it</a>
+    <a href="#s4"><span class="k">4</span>How incrementality moved in</a>
+    <a href="#s5"><span class="k">5</span>What is still open, and when it gets decided</a>
+    <a href="#s6"><span class="k">6</span>What to take into a position</a>
+  </nav>
+
+  <!-- ============ 1 ============ -->
+  <section class="section" id="s1">
+    <div class="section-head">
+      <div class="eyebrow">1 · The update in one screen</div>
+      <h2>Two market-based methods, one destination</h2>
+      <p>The ISB has pointed the revision at a stricter "Method 1" and kept the 2015 rules alive as "Method 2" until a year not yet chosen.</p>
+    </div>
+
+    <div class="prose">
+      <p>On 16 October 2026 GHG Protocol published "Scope 2 Market-based Method Update: From 2025-2026 Public Consultation to Current Status". It reports what the Independent Standards Board (ISB) has asked for since the public consultation closed, and what it has left to the Scope 2 Technical Working Group (TWG).
+        <a class="cite revision" href="sources.html#r2-s01">GHGP blog, MBM Update, 16 Oct 2026</a></p>
+      <p>The Secretariat proposed "a role for two market-based methods that correspond with the two theories of change that emerged from the public consultation feedback". The working names are Method 1 and Method 2, and the names themselves are still open.
+        <a class="cite revision" href="sources.html#r2-s02">MBM Update PDF, p.2</a>
+        <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 40</a></p>
+    </div>
+
+    <div class="grid-2">
+      <div class="defn"><div class="term">Method 1</div><div class="text">“This approach would incorporate hourly matching, deliverability and incrementality accounting and reporting requirements.”</div><div class="who small">MBM Update, 16 Oct 2026 · <a class="cite revision" href="sources.html#r2-s02">MBM Update PDF, p.2</a></div></div>
+      <div class="defn"><div class="term">Method 2</div><div class="text">“This approach would maintain existing scope 2 requirements from the 2015 Scope 2 Guidance, allowing organizations to continue their current procurement strategies and addressing stakeholder concerns regarding feasibility and market participation.”</div><div class="who small">MBM Update, 16 Oct 2026 · <a class="cite revision" href="sources.html#r2-s02">MBM Update PDF, p.2</a></div></div>
+    </div>
+
+    <div class="prose">
+      <p>The Secretariat gave the ISB three options for its September 2026 meeting: two methods with different metrics, two tCO2e methods "in perpetuity", or two tCO2e methods "with a phased transition from method 2 to method 1 over time".
+        <a class="cite revision" href="sources.html#r2-s01">GHGP blog, MBM Update, 16 Oct 2026</a>
+        The deck records the in-perpetuity option as the "Least preferred option by ISB members" (individual members' views), and the resulting hybrid as "deemed to further improve alignment with the decision-making criteria".
+        <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slides 36, 38</a></p>
+      <p>The ISB then proposed this direction of travel, "to be further refined by the Scope 2 TWG":</p>
+    </div>
+
+    <div class="quote revision">
+      <blockquote>
+        <p>“Companies [shall/should/may, language still to be determined] report under the market-based method if data that meets the quality criteria is available. If a company does report scope 2 market-based method emissions:</p>
+        <p>- Companies may report using Method 2 (current market-based method under 2015 Scope 2 Guidance) until a to-be-determined date,</p>
+        <p>- Companies should report using Method 1 until a to-be-determined date,</p>
+        <p>- Prior to that date, companies shall disclose whether they are applying market-based Method 1 or Method 2, and</p>
+        <p>- After that date, if a company reports scope 2 market-based method emissions, companies shall report using Method 1 if data that meets the quality criteria is available.”</p>
+      </blockquote>
+      <div class="who">MBM Update, "Updated Direction of Travel" · <a class="cite revision" href="sources.html#r2-s01">GHGP blog, 16 Oct 2026</a></div>
+    </div>
+
+    <figure class="fig-frame">
+      <svg viewBox="0 0 560 366" role="img" aria-label="Two-track chart. Before an undetermined year 203X, Method 2 may be used, Method 1 should be used, and companies shall disclose which one they use. After 203X, Method 1 shall be used if a company reports market-based emissions and qualifying data exist; Method 2 procurement moves to Statement 3 or key indicators. Whether the market-based method is required at all is open.">
+        <!-- axis -->
+        <line x1="140" y1="34" x2="552" y2="34" class="edge-soft"/>
+        <line x1="150" y1="28" x2="150" y2="40" class="edge-soft"/><text x="150" y="20" text-anchor="middle" class="t-mono">Oct 2026</text>
+        <line x1="212" y1="28" x2="212" y2="40" class="edge-soft"/><text x="212" y="20" text-anchor="middle" class="t-mono">Q2 2027</text>
+        <line x1="274" y1="28" x2="274" y2="40" class="edge-soft"/><text x="274" y="20" text-anchor="middle" class="t-mono">Q4 2028</text>
+        <line x1="338" y1="28" x2="338" y2="40" class="edge-soft"/><text x="338" y="20" text-anchor="middle" class="t-mono">2030*</text>
+        <text x="150" y="50" text-anchor="middle" class="t-sm muted">update</text>
+        <text x="212" y="50" text-anchor="middle" class="t-sm muted">consult.</text>
+        <text x="274" y="50" text-anchor="middle" class="t-sm muted">publish</text>
+        <!-- 203X band -->
+        <rect x="402" y="10" width="26" height="306" class="soft-gap"/>
+        <line x1="415" y1="56" x2="415" y2="316" class="st-gap dash"/>
+        <text x="415" y="22" text-anchor="middle" class="t-mono t-b">203X</text>
+        <text x="415" y="50" text-anchor="middle" class="t-sm">[TBD]</text>
+        <text x="492" y="20" text-anchor="middle" class="t-sm muted">after 203X</text>
+
+        <!-- row 1: Method 2 -->
+        <text x="12" y="76" class="t-lg">Method 2</text>
+        <text x="12" y="92" class="t-sm muted">2015 Guidance rules</text>
+        <rect x="150" y="60" width="248" height="38" rx="6" class="node-soft"/>
+        <text x="274" y="84" text-anchor="middle" class="t">may report</text>
+        <rect x="434" y="60" width="116" height="38" rx="6" class="node-soft dash"/>
+        <text x="492" y="76" text-anchor="middle" class="t-sm">Statement 3 or</text>
+        <text x="492" y="90" text-anchor="middle" class="t-sm">key indicators</text>
+
+        <!-- row 2: Method 1 -->
+        <text x="12" y="128" class="t-lg">Method 1</text>
+        <text x="12" y="143" class="t-sm muted">hourly, deliverable,</text>
+        <text x="12" y="156" class="t-sm muted">incremental</text>
+        <rect x="150" y="114" width="248" height="38" rx="6" class="soft-accent st-accent"/>
+        <text x="274" y="138" text-anchor="middle" class="t">should report</text>
+        <rect x="434" y="114" width="116" height="38" rx="6" class="soft-accent st-accent"/>
+        <text x="492" y="138" text-anchor="middle" class="t t-b">shall report †</text>
+
+        <!-- row 3: disclosure -->
+        <text x="12" y="184" class="t-lg">Disclosure</text>
+        <text x="12" y="199" class="t-sm muted">which method</text>
+        <rect x="150" y="168" width="248" height="38" rx="6" class="node"/>
+        <text x="274" y="192" text-anchor="middle" class="t">shall disclose Method 1 or 2</text>
+        <text x="492" y="192" text-anchor="middle" class="t muted">not stated</text>
+
+        <!-- row 4: MBM itself -->
+        <text x="12" y="238" class="t-lg">MBM itself</text>
+        <text x="12" y="253" class="t-sm muted">required or not?</text>
+        <rect x="150" y="222" width="400" height="38" rx="6" class="node-soft dash"/>
+        <text x="350" y="246" text-anchor="middle" class="t">[shall/should/may] report MBM: open for the TWG</text>
+
+        <!-- row 5: existing contracts -->
+        <text x="12" y="292" class="t-lg">Existing</text>
+        <text x="12" y="307" class="t-sm muted">contracts</text>
+        <rect x="150" y="276" width="248" height="38" rx="6" class="node-soft"/>
+        <text x="274" y="300" text-anchor="middle" class="t">may use 2015 MBM in Statement 2</text>
+        <rect x="434" y="276" width="116" height="38" rx="6" class="node-soft dash"/>
+        <text x="492" y="292" text-anchor="middle" class="t-sm">Method 1 rules, or</text>
+        <text x="492" y="306" text-anchor="middle" class="t-sm">Stmt 3 / indicators</text>
+
+        <!-- notes -->
+        <text x="12" y="340" class="t-sm muted">† if a company reports MBM emissions and data meeting the quality criteria is available.</text>
+        <text x="12" y="356" class="t-sm muted">* Sept 2026 options were framed “Starting in 2030…”. No effective date or 203X value is set. Not to scale.</text>
+      </svg>
+      <figcaption>The proposed direction runs on two tracks until an undetermined year, 203X, then collapses to Method 1 for anyone who reports market-based emissions. Every row is a pulse-check direction, not an adopted rule. Sources: MBM Update (16 Oct 2026); S2 TWG #23 deck, slides 35 and 39.</figcaption>
+    </figure>
+
+    <details>
+      <summary>Fuller deck version: adds "203X", "Statement 2" and the LBM "shall" (slide 39)</summary>
+      <div class="quote revision">
+        <blockquote><p>“1. Companies shall report scope 2 location-based method (LBM). 2. Companies [shall/should/may] report scope 2 market-based method (MBM) in Statement 2 if data is available that meets the quality [criteria]. A. Companies may report using the 2015 Scope 2 Guidance MBM until 203X. B. Companies should report using the new MBM until 203X. C. Prior to 203X, companies shall disclose whether they are applying the 2015 Scope 2 Guidance or new MBM. D. After 203X, if a company reports scope 2 market-based method emissions, companies shall report using the new MBM if data that meets the quality criteria is available. 3. Electricity procurement activities not reported in statement 2 may be reported in statement 3 (GHG impact of actions, using consequential methods subject to development and approval) or key indicators (e.g., % CFE matched). 4. All existing contracts may be reported in statement 2 using the 2015 Scope 2 Guidance MBM until 203X. After 203X, contractual instruments may be reported in statement 2 if they meet the new scope 2 MBM statement 2 requirements or may be reported in statement 3 (GHG impacts of actions, using consequential methods) and/or through key indicators. No legacy clause provision other than transition timeline.”</p></blockquote>
+        <div class="who">The source text is cut off after "quality"; the bracketed word is the dossier's. · <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 39</a></div>
+      </div>
+    </details>
+
+    <div class="callout signal"><div class="label">Signal of direction · September 2026 ISB</div>
+      <p>The ISB "agreed that Method 1 is what Scope 2 should transition to, with the pathway being the open question, and recorded a pulse check in which 10 of 10 ISB members indicated support. The Secretariat emphasized that a pulse check gives direction and is not a decision."
+        <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, 6 Oct 2026, p.5</a></p>
+    </div>
+
+    <div class="prose">
+      <p>Two things stay open by design. First, whether reporting the market-based method is required at all: the Secretariat told the TWG that "whether the market-based method is required at all is itself an open question for the TWG". Second, when the method applies. A company reporting market-based emissions "would be required to use the new MBM, maintaining continuity with the 2015 Scope 2 Guidance under which the market-based method is not required in markets where qualifying data is unavailable."
+        <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, pp.5–6</a></p>
+      <p>The ISB's stated rationale, as relayed by the Secretariat, rests on credibility: "Lack of a physical connection in the 2015 Scope 2 Guidance (e.g., Method 2) is a critical and visible credibility issue for the GHG Protocol."
+        <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 37</a></p>
+    </div>
+
+    <div class="callout gap"><div class="label">Gap</div>
+      <p>No source sets the value of 203X, the age limit "[X] yrs" for incrementality, or the deliverability boundaries. Option C in the September materials used a "Transition/Legacy period (until [~2033-2035])", and ISB members' comments on Option A "Anticipate significant data improvements by 2030". Neither is a decision.
+        <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slides 35, 38, 40</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section class="section" id="s2">
+    <div class="section-head">
+      <div class="eyebrow">2 · From draft to direction</div>
+      <h2>What changed between the 2025 consultation draft and September 2026</h2>
+      <p>The September direction adds a third pillar, places size thresholds outside Method 1, proposes no legacy clause beyond the transition timeline, and leaves standard supply service open. ISO's working draft goes the other way on most of these points.</p>
+    </div>
+
+    <div class="prose">
+      <p>The October 2025 consultation proposed two tests for every certificate in the market-based method: hourly matching and deliverability. The ISB-approved proposal would require that organizations only report energy attribute certificates if they are "matched to hourly electricity consumption (hourly matching), and" "connected to deliverable grid regions where the organization consumes electricity (deliverability)."
+        <a class="cite revision" href="sources.html#r2-s01">GHGP blog, MBM Update, 16 Oct 2026</a>
+        The table sets that draft against Method 1 as presented for the September 2026 ISB meeting, and against ISO Working Group 4's second working draft (WD2) of ISO 14064-1 as presented in the same TWG deck.</p>
+    </div>
+
+    <div class="scroll-x">
+      <table class="tbl cmp">
+        <thead><tr><th>Topic</th><th>2025 consultation draft (Oct 2025)</th><th>Method 1, Sept 2026 ISB direction</th><th>ISO WG4, WD2 (2026)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Time matching</b></td>
+            <td><span class="q">“All contractual instruments used in the market-based method for scope 2 accounting shall be issued and redeemed for the same hour as the energy consumption…”</span> with listed exemptions. <a class="cite revision" href="sources.html#r2-s53">S2 consultation draft, p.20</a></td>
+            <td><span class="q">“Hourly (shall)”</span> <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 34</a></td>
+            <td><span class="q">“Monthly: mandatory (shall)… Annual : mandatory (shall). • Hourly: optional (non consensus about should/may).”</span> Hourly vote: 10 "should", 15 "may". Annual matching subject to an anti-banking provision. <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slides 63–64</a></td>
+          </tr>
+          <tr>
+            <td><b>Size thresholds</b></td>
+            <td>Hourly matching for large organizations; <span class="q">“Organizations under a threshold would be exempt and able to continue annual matching.”</span> <a class="cite revision" href="sources.html#r2-s51">S2 consultation exec summary, p.4</a></td>
+            <td><span class="q">“thresholds sit outside the Method 1 framework the ISB supported”</span> <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.5</a></td>
+            <td>Not stated in the dossier.</td>
+          </tr>
+          <tr>
+            <td><b>Deliverability</b></td>
+            <td><span class="q">“All contractual instruments used in the market-based method shall be sourced from generation that is deemed deliverable to the consuming load.”</span> <a class="cite revision" href="sources.html#r2-s53">S2 consultation draft, p.23</a></td>
+            <td><span class="q">“Deliverability (shall) / Market boundaries aligned with grid”</span>; boundary details open. <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slides 34, 40</a></td>
+            <td><span class="q">“'Deliverability' concept removed.”</span> Replaced by a <span class="q">“principle-based framework for determining market boundaries”</span>. <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 67</a></td>
+          </tr>
+          <tr>
+            <td><b>Incrementality</b></td>
+            <td>Not one of the proposal's pillars (hourly matching and deliverability). Not asked as a rated question; raised in free text (Q152). <a class="cite revision" href="sources.html#r2-s01">GHGP blog, 16 Oct 2026</a> <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1, p.114</a></td>
+            <td><span class="q">“Age limit on eligible resources for voluntary claims (shall)”</span>; design open (<span class="q">“Qualifying operational events within [X] yrs”</span>). <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slides 34, 40</a></td>
+            <td><span class="q">“WD2 does not set additionality criteria for Statement 2 and … the question is left open for the TWG”</span> <a class="cite revision" href="sources.html#r2-s31">AMI TWG #20 minutes, p.4</a></td>
+          </tr>
+          <tr>
+            <td><b>Legacy contracts</b></td>
+            <td>The ISB voted 10–1–0 in July 2025 for <span class="q">“The development of a legacy clause”</span>. <a class="cite revision" href="sources.html#r2-s17">ISB #12 summary, 14 Jul 2025, pp.2–3</a></td>
+            <td><span class="q">“No legacy clause provision other than transition timeline.”</span> Existing contracts <span class="q">“may be reported in statement 2 using the 2015 Scope 2 Guidance MBM until 203X.”</span> <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 39</a></td>
+            <td><span class="q">“Contractual instruments procured under pre-publication agreements meeting applicable quality criteria shall remain eligible for a transition period not exceeding 10 years”</span> <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 67</a></td>
+          </tr>
+          <tr>
+            <td><b>Standard supply service (SSS)</b></td>
+            <td>Proposed Criterion 6; <span class="q">“A reporting entity may claim, up to its pro rata share, the electricity and associated attributes from SSS resources in the market-based method.”</span> <a class="cite revision" href="sources.html#r2-s53">S2 consultation draft, pp.26–27</a></td>
+            <td>Open: <span class="q">“Standard Supply Service (may/should/shall)”</span> <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 40</a></td>
+            <td><span class="q">“Working Group 4 reached full consensus to remove the Standard Supply Service criterion”</span> <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, pp.6–7</a></td>
+          </tr>
+          <tr>
+            <td><b>The 2015 method</b></td>
+            <td>Q20 asked about <span class="q">“the proposal to clarify the MBM definition to retain its existing basis, quantifying scope 2 from contractually purchased electricity via contractual instruments, while specifying temporal correlation and deliverability when matching instruments to consumption”</span>. <a class="cite revision" href="sources.html#r2-s53">S2 consultation draft, Q20, p.8</a></td>
+            <td>Kept as Method 2: "may" until 203X. After 203X, instruments that do not meet the new requirements "may be reported in statement 3" or "through key indicators". <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 39</a></td>
+            <td>Dual reporting: <span class="q">“There was no consensus for Scope 2 dual reporting, so 2 options are provided in the text.”</span> <a class="cite revision" href="sources.html#r2-s32">AMI TWG #20 deck, slide 24</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>The TWG raised the ISO gap directly. Members "raised concerns that the ISO direction differs materially from the ISB direction"; the Secretariat replied that "ISO feedback comes to the TWG to consider before recommendations go to the ISB."
+        <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.7</a>
+        ISO's own text records why it went its own way: "Mandatory hourly matching was rejected on feasibility and global applicability grounds", and "deliverability was removed as not practical."
+        <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, pp.6–7</a></p>
+    </div>
+
+    <div class="callout inference"><div class="label">Inference</div>
+      <p>The ISO divergence is the largest external risk to the ISB direction. The joint standard needs ISO approval, which requires "a two-thirds majority of permanent members of ISO/TC 207/SC 7" in favour and "no more than one-quarter of the total number of votes cast" negative. The research dossier draws this inference; no GHG Protocol source states it.
+        <a class="cite revision" href="sources.html#r2-s38">Consolidated SDP, 29 Jul 2026, p.16</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section class="section" id="s3">
+    <div class="section-head">
+      <div class="eyebrow">3 · The numbers</div>
+      <h2>The consultation numbers, set against the direction</h2>
+      <p>Most respondents rated hourly matching and deliverability low. Nine in ten supported a legacy clause. Additionality was never put to a rated question.</p>
+    </div>
+
+    <div class="prose">
+      <p>The Scope 2 public consultation ran from 20 October 2025 to 31 January 2026 and drew "nearly 1100" responses from 56 countries. Companies, industry groups and consultants were 62% of respondents; energy suppliers, retailers and utilities were 8.5%.
+        <a class="cite revision" href="sources.html#r2-s51">S2 consultation exec summary, p.2</a>
+        Each question below was rated on a scale of 1 to 5. The summary groups 4–5 as support, 3 as neutral and 1–2 as no or low support.
+        <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1, Tables 19, 27</a></p>
+    </div>
+
+    <div class="seg" data-target="#cons-view" role="group" aria-label="Consultation view">
+      <button data-value="q" aria-pressed="true">By question</button>
+      <button data-value="t" aria-pressed="false">Hourly matching by respondent type</button>
+    </div>
+    <div id="cons-view" data-mode="q">
+      <div class="bar-legend" aria-hidden="true">
+        <span><i style="background:var(--signal-soft)"></i>Support (4–5)</span>
+        <span><i style="background:var(--bg-3)"></i>Neutral (3)</span>
+        <span><i style="background:var(--gap-soft)"></i>No or low support (1–2)</span>
+      </div>
+      <figure class="fig-frame" data-mode-show="q">
+        <svg viewBox="0 0 560 214" role="img" aria-label="Stacked bars. Hourly matching, n 909: 22 percent support, 7 neutral, 70 no or low support. Deliverability, n 875: 30, 11, 59. Legacy clause, n 801: 90, 5, 5.">
+          <text x="10" y="22" class="t-lg">Hourly matching, Quality Criterion 4 (Q71)</text><text x="550" y="22" text-anchor="end" class="t-mono t-b">n = 909</text>
+          <rect x="10" y="30" width="118.8" height="30" class="soft-signal"/><text x="69.4" y="50" text-anchor="middle" class="t-lg">22%</text>
+          <rect x="128.8" y="30" width="37.8" height="30" class="node-soft"/><text x="147.7" y="50" text-anchor="middle" class="t-lg">7%</text>
+          <rect x="166.6" y="30" width="378" height="30" class="soft-gap"/><text x="355.6" y="50" text-anchor="middle" class="t-lg">70%</text>
+
+          <text x="10" y="94" class="t-lg">Deliverability, Quality Criterion 5 (Q83)</text><text x="550" y="94" text-anchor="end" class="t-mono t-b">n = 875</text>
+          <rect x="10" y="102" width="162" height="30" class="soft-signal"/><text x="91" y="122" text-anchor="middle" class="t-lg">30%</text>
+          <rect x="172" y="102" width="59.4" height="30" class="node-soft"/><text x="201.7" y="122" text-anchor="middle" class="t-lg">11%</text>
+          <rect x="231.4" y="102" width="318.6" height="30" class="soft-gap"/><text x="390.7" y="122" text-anchor="middle" class="t-lg">59%</text>
+
+          <text x="10" y="166" class="t-lg">Legacy clause (Q171)</text><text x="550" y="166" text-anchor="end" class="t-mono t-b">n = 801</text>
+          <rect x="10" y="174" width="486" height="30" class="soft-signal"/><text x="253" y="194" text-anchor="middle" class="t-lg">90%</text>
+          <rect x="496" y="174" width="27" height="30" class="node-soft"/><text x="509.5" y="194" text-anchor="middle" class="t">5%</text>
+          <rect x="523" y="174" width="27" height="30" class="soft-gap"/><text x="536.5" y="194" text-anchor="middle" class="t">5%</text>
+        </svg>
+        <figcaption>Hourly matching and deliverability drew majority no or low support. A legacy clause drew 90% support; the September pulse-check proposal reads "No legacy clause provision other than transition timeline." Rows may not sum to 100 because of rounding. Source: S2 consultation summary v1.1, Table 19 p.49, Table 27 p.75, p.117.</figcaption>
+      </figure>
+      <figure class="fig-frame" data-mode-show="t">
+        <svg viewBox="0 0 560 280" role="img" aria-label="Hourly matching support by respondent type. All, n 909: 22 support, 7 neutral, 70 no or low. Companies, n 429: 12, 7, 82. NGOs, n 71: 49, 6, 45. Energy supplier, retailer or utility, n 81: 26, 12, 62.">
+          <text x="10" y="22" class="t-lg">All respondents</text><text x="550" y="22" text-anchor="end" class="t-mono t-b">n = 909</text>
+          <rect x="10" y="30" width="118.8" height="30" class="soft-signal"/><text x="69.4" y="50" text-anchor="middle" class="t-lg">22%</text>
+          <rect x="128.8" y="30" width="37.8" height="30" class="node-soft"/><text x="147.7" y="50" text-anchor="middle" class="t-lg">7%</text>
+          <rect x="166.6" y="30" width="378" height="30" class="soft-gap"/><text x="355.6" y="50" text-anchor="middle" class="t-lg">70%</text>
+
+          <text x="10" y="90" class="t-lg">Companies</text><text x="550" y="90" text-anchor="end" class="t-mono t-b">n = 429</text>
+          <rect x="10" y="98" width="64.8" height="30" class="soft-signal"/><text x="42.4" y="118" text-anchor="middle" class="t-lg">12%</text>
+          <rect x="74.8" y="98" width="37.8" height="30" class="node-soft"/><text x="93.7" y="118" text-anchor="middle" class="t-lg">7%</text>
+          <rect x="112.6" y="98" width="442.8" height="30" class="soft-gap"/><text x="334" y="118" text-anchor="middle" class="t-lg">82%</text>
+
+          <text x="10" y="158" class="t-lg">NGOs</text><text x="550" y="158" text-anchor="end" class="t-mono t-b">n = 71</text>
+          <rect x="10" y="166" width="264.6" height="30" class="soft-signal"/><text x="142.3" y="186" text-anchor="middle" class="t-lg">49%</text>
+          <rect x="274.6" y="166" width="32.4" height="30" class="node-soft"/><text x="290.8" y="186" text-anchor="middle" class="t-lg">6%</text>
+          <rect x="307" y="166" width="243" height="30" class="soft-gap"/><text x="428.5" y="186" text-anchor="middle" class="t-lg">45%</text>
+
+          <text x="10" y="226" class="t-lg">Energy supplier / retailer / utility</text><text x="550" y="226" text-anchor="end" class="t-mono t-b">n = 81</text>
+          <rect x="10" y="234" width="140.4" height="30" class="soft-signal"/><text x="80.2" y="254" text-anchor="middle" class="t-lg">26%</text>
+          <rect x="150.4" y="234" width="64.8" height="30" class="node-soft"/><text x="182.8" y="254" text-anchor="middle" class="t-lg">12%</text>
+          <rect x="215.2" y="234" width="334.8" height="30" class="soft-gap"/><text x="382.6" y="254" text-anchor="middle" class="t-lg">62%</text>
+        </svg>
+        <figcaption>Of the three groups broken out here, companies were the most opposed to hourly matching; NGOs were close to evenly split. Rows may not sum to 100 because of rounding. Source: S2 consultation summary v1.1, Table 19 p.49.</figcaption>
+      </figure>
+    </div>
+
+    <details>
+      <summary>Exact question wording (Q71 and Q83)</summary>
+      <div class="stack">
+        <div class="quote revision"><blockquote><p>Q71: “On a scale of 1-5 do you support an update to Quality Criteria 4 to require that all contractual instruments used in the market-based method be issued and redeemed for the same hour as the energy consumption to which the instrument is applied, except in certain cases of exemption.”</p></blockquote><div class="who"><a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1, Table 19 p.49</a> <a class="cite revision" href="sources.html#r2-s69">Consultation question list (repo copy)</a></div></div>
+        <div class="quote revision"><blockquote><p>Q83: “…require that all contractual instruments used in the market-based method be sourced from the same deliverable market boundary in which the reporting entity's electricity-consuming operations are located and to which the instrument is applied, or otherwise meet criteria deemed to demonstrate deliverability to the reporting entity's electricity-consuming operations?”</p></blockquote><div class="who">Opening clause abridged in the dossier · <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1, Table 27 p.75</a> <a class="cite revision" href="sources.html#r2-s69">Consultation question list (repo copy)</a></div></div>
+      </div>
+    </details>
+
+    <div class="callout note"><div class="label">Not asked</div>
+      <p>Additionality and incrementality were not put to a rated question. Respondents raised them in free text (Q152).
+        <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1, p.114</a>
+        A later complaint states that "the term 'additionality' does not appear anywhere in the survey".
+        <a class="cite third" href="sources.html#r2-s45">WattTime et al. complaint, p.3</a></p>
+    </div>
+
+    <div class="prose">
+      <p>The Secretariat's position on how the numbers count is on record. Responding to TWG members on 6 October 2026, it said "the consultation is not a voting exercise and that feedback is assessed against the decision-making criteria".
+        <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.6</a></p>
+      <h3>The AMI request for information</h3>
+      <p>The ISB points non-qualifying procurement to the Actions and Market Instruments (AMI) multi-statement framework. Its request for information (RFI) ran from 31 March to 15 June 2026 and drew 437 valid responses out of 487.
+        <a class="cite revision" href="sources.html#r2-s29">AMI RFI Summary, Sep 2026, p.3</a>
+</p>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="v">84%</div><div class="l">support a multi-statement structure (Q16)</div><div class="b">155 + 210 of 437</div></div>
+      <div class="kpi"><div class="v">87%</div><div class="l">Market-based inventory statement "should be included" (Q22)</div><div class="b">326 of 374</div></div>
+      <div class="kpi"><div class="v">80%</div><div class="l">GHG impact statement should be included (Q24)</div><div class="b">293 of 366</div></div>
+      <div class="kpi"><div class="v">33 / 44 / 25</div><div class="l">Non-GHG indicators: include / neutral / not (Q30), as printed</div><div class="b">110 / 147 / 74 of 331</div></div>
+    </div>
+    <p class="small">Sources: <a class="cite revision" href="sources.html#r2-s29">AMI RFI Summary, pp.12, 19–20, 23, 30</a></p>
+
+    <div class="callout gap"><div class="label">Discrepancy in the source</div>
+      <p>For Statement 4 the summary text prints 33% / 44% / 25%, but its own counts give 74 of 331 = 22.4% for "should not be included". The AMI TWG deck of 9 September 2026 shows 33% / 44% / 22%, and the 23 September blog repeats 25%. The counts are the safer figure.
+        <a class="cite revision" href="sources.html#r2-s29">AMI RFI Summary, p.30</a>
+        <a class="cite revision" href="sources.html#r2-s32">AMI TWG #20 deck, slide 18</a>
+        <a class="cite revision" href="sources.html#r2-s30">GHGP blog, 23 Sep 2026</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section class="section" id="s4">
+    <div class="section-head">
+      <div class="eyebrow">4 · Incrementality</div>
+      <h2>How a "no further restrictions" position became an age limit</h2>
+      <p>Between March 2025 and September 2026, incrementality went from rejected by the TWG, to parked with the AMI TWG, to part of Method 1.</p>
+    </div>
+
+    <div class="scrolly">
+      <div class="scrolly-figure">
+        <figure class="fig-frame">
+          <svg viewBox="0 0 540 420" role="img" aria-label="Vertical timeline of nine events from March 2025 to October 2026 showing incrementality moving from rejected in the Scope 2 market-based method to included in Method 1.">
+            <line x1="118" y1="30" x2="118" y2="392" class="edge-soft"/>
+            <g data-step="0"><text x="10" y="44" class="t-mono">19 Mar 2025</text><circle cx="118" cy="40" r="6" class="fill-revision"/><text x="132" y="44" class="t">S2 TWG poll on supply limits: 0 Yes, 31 No</text></g>
+            <g data-step="0"><text x="10" y="86" class="t-mono">27 Mar 2025</text><circle cx="118" cy="82" r="6" class="fill-revision"/><text x="132" y="86" class="t">ISB pulse: “without … further restrictions”</text></g>
+            <g data-step="1"><text x="10" y="128" class="t-mono">14 Jul 2025</text><circle cx="118" cy="124" r="6" class="fill-revision"/><text x="132" y="128" class="t">ISB 4–7: marginal-emissions proposal to AMI</text></g>
+            <g data-step="1"><text x="10" y="170" class="t-mono">17 Sep 2025</text><circle cx="118" cy="166" r="6" class="fill-revision"/><text x="132" y="170" class="t">ISB Chair: additionality is AMI's remit</text></g>
+            <g data-step="1"><text x="10" y="212" class="t-mono">20 Oct 2025</text><circle cx="118" cy="208" r="6" class="fill-revision"/><text x="132" y="212" class="t">Consultation opens; no rated question on it</text></g>
+            <g data-step="2"><text x="10" y="254" class="t-mono">Jun–Jul 2026</text><circle cx="118" cy="250" r="6" class="fill-revision"/><text x="132" y="254" class="t">AMI TWG: additionality/impact for Stmt 2</text></g>
+            <g data-step="3"><text x="10" y="296" class="t-mono">24 Aug 2026</text><circle cx="118" cy="292" r="6" class="fill-third"/><text x="132" y="296" class="t">ISB Chair answers additionality complaint</text></g>
+            <g data-step="4"><text x="10" y="338" class="t-mono">Sep 2026</text><circle cx="118" cy="334" r="6" class="fill-revision"/><text x="132" y="338" class="t t-b">ISB: Method 1 adds an age limit (shall)</text></g>
+            <g data-step="5"><text x="10" y="380" class="t-mono">6 Oct 2026</text><circle cx="118" cy="376" r="6" class="fill-revision"/><text x="132" y="380" class="t">S2 TWG members object; ISB Chair writes</text></g>
+            <!-- brackets -->
+            <path d="M486 30 h8 v190 h-8" class="edge-soft"/>
+            <text transform="translate(512 125) rotate(-90)" text-anchor="middle" class="t-sm">Scope 2 MBM: no supply limit</text>
+            <path d="M486 322 h8 v66 h-8" class="edge-soft"/>
+            <text transform="translate(512 355) rotate(-90)" text-anchor="middle" class="t-sm">Method 1</text>
+          </svg>
+          <figcaption>Nine dated events. Incrementality was kept out of the Scope 2 consultation draft, developed in the AMI workstream, then written into Method 1 by an ISB pulse check. The violet dot marks the date of GHG Protocol's response to a third-party complaint.</figcaption>
+        </figure>
+      </div>
+      <div class="scrolly-steps">
+        <div class="step"><div class="step-card"><div class="n">STEP 1 · MARCH 2025</div><h3>The TWG and the ISB both said no</h3>
+          <p>The TWG was asked: "Should voluntary procurement be required to meet additional criteria that restricts eligible supply of CFE? Yes: 0 / Mixed: 3 / No: 31 / Needs more information: 3". Only 3 chose incrementality criteria; 25 chose none of the listed restrictions.
+            <a class="cite revision" href="sources.html#r2-s57">S2 TWG #10 minutes, 19 Mar 2025, p.4</a></p>
+          <p>Eight days later an ISB pulse check showed broad support for "Defining voluntary procurement eligibility based on time matching, deliverability, and fair allocation of SSS, without introducing further restrictions under the Scope 2 MBM."
+            <a class="cite revision" href="sources.html#r2-s20">ISB #8 summary, 27 Mar 2025, p.4</a></p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 2 · JULY–OCTOBER 2025</div><h3>Parked with the AMI TWG</h3>
+          <p>In a formal vote (Yes 4, No 7), the ISB declined to send the consequential subgroup's marginal-emissions proposal to consultation and "directed this work to continue within the Actions and Market Instruments TWG". It also "encouraged the Scope 2 workstream to include questions about electric sector avoided emissions, additionality and related topics in the Public Consultation."
+            <a class="cite revision" href="sources.html#r2-s17">ISB #12 summary, 14 Jul 2025, pp.2–3</a></p>
+          <p>In September the ISB Chair told the Scope 2 TWG "that these questions fall within the remit of the Actions and Market Instruments (AMI) TWG".
+            <a class="cite revision" href="sources.html#r2-s58">S2 TWG #19 minutes, 17 Sep 2025, p.3</a>
+            The consultation proposal rested on two pillars, hourly matching and deliverability, and did not ask a rated question on additionality.
+            <a class="cite revision" href="sources.html#r2-s01">GHGP blog, MBM Update, 16 Oct 2026</a>
+            <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1, p.114</a></p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 3 · JUNE–SEPTEMBER 2026</div><h3>The AMI TWG puts impact into Statement 2</h3>
+          <p>At its Amsterdam meeting the AMI TWG discussed three options for Statement 2. "Option 3 was agreed: Additionality/impact required for Statement 2." Details "for how to operationalize it" were left "TBD".
+            <a class="cite revision" href="sources.html#r2-s33">AMI TWG #19 deck, 15 Jul 2026, slide 20</a></p>
+          <p>By September a majority of the subgroup "considered that there should be at least impact requirements for Statement 2… what is reported in Statement 2 should have a demonstrated impact going beyond business as usual."
+            <a class="cite revision" href="sources.html#r2-s31">AMI TWG #20 minutes, 9 Sep 2026, p.6</a></p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 4 · 24 AUGUST 2026</div><h3>A scientific-accuracy complaint</h3>
+          <p>Authors from WattTime, DTU, Edinburgh and Sweco argued that the proposal "introduces requirements for deliverable and time-matched energy but excludes the principle of additionality", relying on studies of all three pillars. They "take no position on whether the GHG Protocol should adopt the Three Pillars".
+            <a class="cite third" href="sources.html#r2-s45">WattTime et al. complaint, p.2</a></p>
+          <p>The ISB Chair replied that the letter "was classified as a complaint" and that "the topics you raised will be given due consideration by the Scope 2 Technical Working Group and subject to further rigorous review by the Independent Standards Board."
+            <a class="cite revision" href="sources.html#r2-s45">ISB Chair response, 24 Aug 2026, p.1</a></p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 5 · SEPTEMBER 2026</div><h3>Method 1 gets an age limit</h3>
+          <p>Method 1 as presented for the September ISB meeting includes "Age limit on eligible resources for voluntary claims (shall)".
+            <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 34</a>
+            The Secretariat said "the ISB supported its inclusion on integrity and impact grounds, that it is open for development by the TWG".
+            <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.6</a></p>
+          <p>The number of years is still "[X]".</p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 6 · 6 OCTOBER 2026</div><h3>The TWG pushes back</h3>
+          <p>Members said incrementality "is relevant to assessing impact but not necessary for allocating emissions attributes to consumption, and that it should sit outside the inventory". They also "raised concerns that the direction departs from the TWG's earlier work and from the balance of consultation feedback".
+            <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.6</a></p>
+          <p>Afterwards "the ISB Chair wrote to the TWG to ask that they answer the questions provided by the ISB". "Proposals for a different direction will be captured after the workshop for the ISB to consider alongside TWG recommendations."
+            <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 42</a></p></div></div>
+      </div>
+    </div>
+
+    <div class="callout inference"><div class="label">Inference</div>
+      <p>The ISB's September move matches both the AMI TWG's July agreement and the complaint's argument. No source says that either one caused it. The research dossier flags both links as inference only.</p>
+    </div>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section class="section" id="s5">
+    <div class="section-head">
+      <div class="eyebrow">5 · What is open</div>
+      <h2>What is still open, and when it gets decided</h2>
+      <p>A TWG workshop this week, an ISB meeting on 15 December, then one consolidated GHG Protocol and ISO consultation in Q2 2027.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="timeline">
+        <div class="tl revision"><div class="when">2026-10-06</div><div class="what">Scope 2 TWG Meeting #23</div><div class="why">The TWG is briefed on the ISB direction and on ISO WG4's divergence. <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes</a></div></div>
+        <div class="tl revision"><div class="when">2026-10-16</div><div class="what">MBM Update published</div><div class="why"><a class="cite revision" href="sources.html#r2-s01">GHGP blog, 16 Oct 2026</a></div></div>
+        <div class="tl future"><div class="when">2026-10-20 to 22 (scheduled)</div><div class="what">Scope 2 TWG workshop, Washington DC</div><div class="why">Key issues listed: "deliverability, incrementality, feasibility, and implementation timing". Outcomes are not public as of 19 October. <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.3</a> <a class="cite revision" href="sources.html#r2-s01">GHGP blog, 16 Oct 2026</a></div></div>
+        <div class="tl future"><div class="when">2026-12-05 / 12-15 (scheduled)</div><div class="what">Materials to the ISB; ISB meeting on TWG outcomes</div><div class="why">The ISB "meeting on TWG outcomes has moved from November to December 15, 2026, with materials due to the ISB by December 5, 2026". <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.4</a></div></div>
+        <div class="tl future"><div class="when">Jan / Q1 2027 (planned)</div><div class="what">Consolidation drafting; ISB and Observing Entities review</div><div class="why">Drafting in January 2027 "is a consolidation exercise". <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.4</a> <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 10</a></div></div>
+        <div class="tl future"><div class="when">Q2 2027 (planned)</div><div class="what">Consolidated public consultation, with ISO committee-draft review</div><div class="why">Covers scope 1, scope 2, scope 3 and AMI. The "ISB determines whether any Scope 2 topics require a second round of public consultation at that time." <a class="cite revision" href="sources.html#r2-s38">Consolidated SDP, p.16</a> <a class="cite revision" href="sources.html#r2-s01">GHGP blog, 16 Oct 2026</a></div></div>
+        <div class="tl future"><div class="when">2028 Q2–Q3 (planned)</div><div class="what">ISB approval and SC ratification; ISO DIS vote and adoption</div><div class="why"><a class="cite revision" href="sources.html#r2-s38">Consolidated SDP, Fig. 2, p.14</a></div></div>
+        <div class="tl future"><div class="when">Q4 2028 (estimated)</div><div class="what">Joint GHG Protocol–ISO Corporate Standard published</div><div class="why">Replaces earlier plans for "final publication… planned for the end of 2027". <a class="cite revision" href="sources.html#r2-s38">Consolidated SDP, p.14</a> <a class="cite revision" href="sources.html#r2-s55">GHGP blog, 1 Aug 2025</a></div></div>
+      </div>
+      <div class="stack">
+        <h3>Questions the ISB sent to the TWG</h3>
+        <div class="checklist">
+          <div class="check open"><div class="mark">?</div><div class="body"><b>Names and reporting strength</b><span>"Names or ways to refer to each MBM"; "Reporting requirements for MBM (shall/should/may…)".</span></div></div>
+          <div class="check open"><div class="mark">?</div><div class="body"><b>Method 1 details</b><span>"Deliverability boundary details"; "Incrementality design details".</span></div></div>
+          <div class="check open"><div class="mark">?</div><div class="body"><b>After 203X</b><span>An "Appropriate alternative metric" for 2015-method reporting outside the market-based inventory "(e.g., % CFE matched)".</span></div></div>
+          <div class="check open"><div class="mark">?</div><div class="body"><b>Dates and evidence</b><span>"What is the earliest feasible date the TWG thinks new data and technology would be available to support the new MBM method?"; whether both methods should co-exist for a period.</span></div></div>
+          <div class="check open"><div class="mark">?</div><div class="body"><b>Standard supply service</b><span>"Standard Supply Service (may/should/shall)".</span></div></div>
+        </div>
+        <p class="small"><a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 40</a></p>
+      </div>
+    </div>
+
+    <div class="callout gap"><div class="label">Gap · not yet public as of 19 Oct 2026</div>
+      <p>The September 2026 ISB minutes and the September 2026 Steering Committee minutes are not in the repository; the latest published are ISB #23 (14 July) and SC Q2 (22 June). The TWG memos on the two methods, the August 2026 TWG survey results and the ISO WG4 report sit on the "TWG SharePoint". The result of the July 2026 location-based e-vote pulse check is not published. No pilot test of the Scope 2 changes is scheduled; the plan says the need for one "will be determined based on needs identified during the standard development process."
+        <a class="cite revision" href="sources.html#r2-s68">GHGP governance repository, accessed 19 Oct 2026</a>
+        <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 72</a>
+        <a class="cite revision" href="sources.html#r2-s07">ISB #23 summary, pp.3–4</a>
+        <a class="cite revision" href="sources.html#r2-s38">Consolidated SDP, p.13</a></p>
+    </div>
+
+    <div class="grid-2">
+      <div class="quote revision"><blockquote><p>“In the July 2026 ISB meeting, ISB members indicated majority support for the idea of developing two market-based methods with differentiated requirements and claims.”</p></blockquote><div class="who">MBM Update · <a class="cite revision" href="sources.html#r2-s02">MBM Update PDF, p.2</a></div></div>
+      <div class="quote revision"><blockquote><p>“…a pulse-check poll indicated supermajority support for the idea of developing two differentiated market-based metrics, with differentiated requirements and claims, in principle, for further development by the Scope 2 TWG.”</p></blockquote><div class="who">ISB #23 minutes · <a class="cite revision" href="sources.html#r2-s07">ISB #23 summary, 14 Jul 2026, p.3</a></div></div>
+    </div>
+    <div class="callout gap"><div class="label">Discrepancy</div>
+      <p>The October update says "majority"; the ISB's own minutes say "supermajority". Neither gives a count, so the size of the July 2026 support cannot be stated.</p>
+    </div>
+  </section>
+
+  <!-- ============ 6 ============ -->
+  <section class="section" id="s6">
+    <div class="section-head">
+      <div class="eyebrow">6 · Position</div>
+      <h2>What to take into a position</h2>
+    </div>
+
+    <div class="callout key"><div class="label">Takeaway</div>
+      <p>As of 19 October 2026 the ISB has named an hourly, deliverable, incremental Method 1 as the destination. Everything that would bind a reporter is still open: the year 203X, the age limit, the boundaries, and whether the market-based method is required at all. The next scheduled ISB decision point is 15 December 2026.</p>
+    </div>
+
+    <div class="prose">
+      <ul>
+        <li><b>Sourced.</b> The direction is a 10-of-10 pulse check, and "a pulse check gives direction and is not a decision". Before 203X, Method 2 "may", Method 1 "should" and disclosure "shall". <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.5</a> <a class="cite revision" href="sources.html#r2-s01">GHGP blog, 16 Oct 2026</a></li>
+        <li><b>Sourced.</b> The direction departs from the consultation balance (70% no or low support for hourly matching; 90% support for a legacy clause), and the Secretariat says "the consultation is not a voting exercise". <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1</a> <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.6</a></li>
+        <li><b>Sourced.</b> ISO WG4's draft keeps monthly matching as the minimum, makes hourly optional, and removes deliverability and SSS. Reconciliation runs through the TWG and then the ISB. <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, pp.6–7</a></li>
+        <li><b>Inference.</b> Statement 3 electricity methods start only in Q2 2027, so the route the ISB names for non-Method-1 procurement will probably not be fully specified in the Q2 2027 draft. <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.5</a></li>
+        <li><b>Gap.</b> The value of 203X, the "[X] yrs" age limit, the deliverability boundaries and the September ISB minutes are not public.</li>
+        <li><b>Inference.</b> Because these are open, the ISB's own questions to the TWG (earliest feasible date, regions with data gaps, evidence on market investment, SSS strength) are where new evidence meets an undecided point. <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 40</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="pager" aria-label="Pages">
+    <a class="prev" href="ccs-eac.html"><span class="dir">Previous</span><span class="ttl">CCS-backed EACs</span></a>
+    <a class="next" href="governance.html"><span class="dir">Next</span><span class="ttl">Governance &amp; TWGs</span></a>
+  </nav>
+  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
+</main>
+<script src="site.js"></script>
+<script>
+/* Initialise toggles from their pressed button so content is visible without JS. */
+(function () {
+  document.querySelectorAll('.seg').forEach(function (seg) {
+    var b = seg.querySelector('button[aria-pressed="true"]'); if (b) b.click();
+  });
+})();
+</script>
+</body>
+</html>
