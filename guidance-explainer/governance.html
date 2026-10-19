@@ -40,9 +40,6 @@ svg .t-b { font-weight: 600; }
 .chan td:first-child { min-width: 9rem; }
 .matrix.m3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 560px) { .matrix.m3 { grid-template-columns: 1fr; } }
-/* phones: keep the wide statement map legible; it scrolls sideways instead of shrinking text below ~9px */
-.fig-scroll { min-width: 0; }
-@media (max-width: 560px) { .fig-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; } .fig-scroll > svg { min-width: 500px; } }
 @media (max-width: 520px) { .ladder .defn { grid-template-columns: 1fr; } .ladder .defn .rank { grid-row: auto; justify-self: start; padding: 4px 10px; font-size: 1.1rem; } .ladder .defn > :not(.rank) { grid-column: 1; } }
 </style>
 </head>
@@ -55,7 +52,7 @@ svg .t-b { font-weight: 600; }
 
 <div class="content-wrap">
 <main class="wrap">
-  <div class="g-hero"><div class="eyebrow">Module 2 · How the standard gets made</div>
+  <div class="g-hero"><div class="eyebrow">How the standard gets made</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> Standard Development and Revision Procedure v1.2 · Governance Overview v1.1 (Annex A) · ISB, SC and TWG Terms of Reference · Consolidated SDP (Jul 2026) · AMI White Paper v3</span><span><b>Status as of</b> 19 Oct 2026</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
@@ -90,7 +87,7 @@ svg .t-b { font-weight: 600; }
     <div class="scrolly">
       <div class="scrolly-figure">
         <figure class="fig-frame">
-          <svg viewBox="0 0 560 476" role="img" aria-label="Flow of nine steps in three rows: preparation, TWG work, ISB direction; public consultation, recalibration, optional pilot test; ISB approval, Steering Committee ratification, publication. An ISO enquiry vote runs alongside ratification. Side channels: complaints, observing entities and a GHG Protocol and ISO coordination group.">
+          <svg class="fig-d" viewBox="0 0 560 476" role="img" aria-label="Flow of nine steps in three rows: preparation, TWG work, ISB direction; public consultation, recalibration, optional pilot test; ISB approval, Steering Committee ratification, publication. An ISO enquiry vote runs alongside ratification. Side channels: complaints, observing entities and a GHG Protocol and ISO coordination group.">
             <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
             <!-- row 1 -->
             <g data-step="0"><rect x="10" y="16" width="140" height="62" rx="8" class="node"/><text x="80" y="38" text-anchor="middle" class="t-lg">1 · Preparation</text><text x="80" y="55" text-anchor="middle" class="t">SC decides need</text><text x="80" y="70" text-anchor="middle" class="t">ISB approves SDP</text></g>
@@ -121,6 +118,20 @@ svg .t-b { font-weight: 600; }
               <rect x="10" y="420" width="176" height="52" rx="8" class="soft-revision"/><text x="98" y="438" text-anchor="middle" class="t t-b">Complaints</text><text x="98" y="453" text-anchor="middle" class="t-sm">ISB subcommittee</text><text x="98" y="466" text-anchor="middle" class="t-sm">or Secretariat</text>
               <rect x="192" y="420" width="176" height="52" rx="8" class="soft-revision"/><text x="280" y="438" text-anchor="middle" class="t t-b">Observing Entities</text><text x="280" y="453" text-anchor="middle" class="t-sm">CDP, EFRAG, GRI, ISO,</text><text x="280" y="466" text-anchor="middle" class="t-sm">ISSB, SBTi: no vote</text>
               <rect x="374" y="420" width="176" height="52" rx="8" class="soft-revision"/><text x="462" y="438" text-anchor="middle" class="t t-b">Coordination group</text><text x="462" y="453" text-anchor="middle" class="t-sm">GHGP Secretariat and</text><text x="462" y="466" text-anchor="middle" class="t-sm">ISO counterparts</text></g>
+          </svg>
+          <svg class="fig-m" viewBox="0 0 360 300" role="img" aria-label="Flow of nine steps in three rows: preparation, TWG work, ISB direction; public consultation, recalibration, optional pilot test; ISB approval, Steering Committee ratification, publication. An ISO enquiry vote runs alongside ratification. Side channels: complaints, observing entities and a GHG Protocol and ISO coordination group.">
+            <defs><marker id="arr-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+            <!-- row 1 -->
+            <g data-step="0"><rect x="3" y="2" width="110" height="54" rx="8" class="node"/><text x="58" y="20" text-anchor="middle" font-size="13" font-weight="600">1 · Preparation</text><text x="58" y="36" text-anchor="middle" font-size="12">SC decides need</text><text x="58" y="50" text-anchor="middle" font-size="12">ISB approves SDP</text></g>
+            <g data-step="1"><line x1="113" y1="29" x2="124" y2="29" class="edge" marker-end="url(#arr-m)"/><rect x="125" y="2" width="110" height="54" rx="8" class="node"/><text x="180" y="20" text-anchor="middle" font-size="13" font-weight="600">2 · TWG work</text><text x="180" y="36" text-anchor="middle" font-size="12">proposals, drafting</text><text x="180" y="50" text-anchor="middle" font-size="12">votes indicative</text></g>
+            <g data-step="2"><line x1="235" y1="29" x2="246" y2="29" class="edge" marker-end="url(#arr-m)"/><rect x="247" y="2" width="110" height="54" rx="8" class="soft-accent st-accent"/><text x="302" y="20" text-anchor="middle" font-size="13" font-weight="600">3 · ISB direction</text><text x="302" y="36" text-anchor="middle" font-size="12">pulse ≠ decision</text><text x="302" y="50" text-anchor="middle" font-size="12">votes: ⅔ of all</text></g>
+            <!-- row 2 -->
+            <g data-step="3"><line x1="302" y1="56" x2="302" y2="69" class="edge" marker-end="url(#arr-m)"/><rect x="247" y="70" width="110" height="54" rx="8" class="node"/><text x="302" y="88" text-anchor="middle" font-size="13" font-weight="600">4 · Consultation</text><text x="302" y="104" text-anchor="middle" font-size="12">at least 60 days</text><text x="302" y="118" text-anchor="middle" font-size="12">Q2 2027 + ISO CD</text></g>
+            <g data-step="4"><line x1="247" y1="97" x2="236" y2="97" class="edge" marker-end="url(#arr-m)"/><rect x="125" y="70" width="110" height="54" rx="8" class="node"/><text x="180" y="88" text-anchor="middle" font-size="13" font-weight="600">5 · Recalibration</text><text x="180" y="104" text-anchor="middle" font-size="12">Secretariat with</text><text x="180" y="118" text-anchor="middle" font-size="12">TWGs and ISB</text><line x1="125" y1="97" x2="114" y2="97" class="edge dash" marker-end="url(#arr-m)"/><rect x="3" y="70" width="110" height="54" rx="8" class="node-soft dash"/><text x="58" y="88" text-anchor="middle" font-size="13" font-weight="600">6 · Pilot test</text><text x="58" y="104" text-anchor="middle" font-size="12">if ISB approves</text><text x="58" y="118" text-anchor="middle" font-size="12">none scheduled</text></g>
+            <!-- row 3 -->
+            <g data-step="5"><line x1="58" y1="124" x2="58" y2="137" class="edge dash" marker-end="url(#arr-m)"/><line x1="160" y1="124" x2="110" y2="137" class="edge" marker-end="url(#arr-m)"/><rect x="3" y="138" width="110" height="54" rx="8" class="soft-accent st-accent"/><text x="58" y="156" text-anchor="middle" font-size="13" font-weight="600">7 · ISB approval</text><text x="58" y="172" text-anchor="middle" font-size="12">final draft</text><text x="58" y="186" text-anchor="middle" font-size="12">⅔ if no consensus</text><line x1="113" y1="165" x2="124" y2="165" class="edge" marker-end="url(#arr-m)"/><rect x="125" y="138" width="110" height="54" rx="8" class="node"/><text x="180" y="156" text-anchor="middle" font-size="13" font-weight="600">8 · SC ratifies</text><text x="180" y="172" text-anchor="middle" font-size="12">on procedure</text><text x="180" y="186" text-anchor="middle" font-size="12">remand needs ⅔</text><line x1="235" y1="165" x2="246" y2="165" class="edge" marker-end="url(#arr-m)"/><rect x="247" y="138" width="110" height="54" rx="8" class="node"/><text x="302" y="156" text-anchor="middle" font-size="13" font-weight="600">9 · Publication</text><text x="302" y="172" text-anchor="middle" font-size="12">by the Co-Hosts</text><text x="302" y="186" text-anchor="middle" font-size="12">Q4 2028 (est.)</text><path d="M58 192 V217 H71" class="edge dash" marker-end="url(#arr-m)"/><rect x="72" y="200" width="216" height="34" rx="8" class="node-soft"/><text x="180" y="214" text-anchor="middle" font-size="13" font-weight="600">ISO enquiry vote</text><text x="180" y="229" text-anchor="middle" font-size="12">⅔ of permanent members in favour</text><path d="M288 217 H302 V193" class="edge dash" marker-end="url(#arr-m)"/></g>
+            <!-- side channels -->
+            <g data-step="6"><text x="3" y="250" font-size="12" class="muted">Side channels, any stage</text><rect x="3" y="256" width="106" height="42" rx="8" class="soft-revision"/><text x="56" y="273" text-anchor="middle" font-size="13" font-weight="600">Complaints</text><text x="56" y="290" text-anchor="middle" font-size="12">ISB subcommittee</text><rect x="113" y="256" width="122" height="42" rx="8" class="soft-revision"/><text x="174" y="273" text-anchor="middle" font-size="13" font-weight="600">Observing Entities</text><text x="174" y="290" text-anchor="middle" font-size="12">no voting rights</text><rect x="239" y="256" width="118" height="42" rx="8" class="soft-revision"/><text x="298" y="273" text-anchor="middle" font-size="13" font-weight="600">Coord. group</text><text x="298" y="290" text-anchor="middle" font-size="12">GHGP + ISO</text></g>
           </svg>
           <figcaption>Content decisions rest with the ISB: formal votes at step 3 (pulse checks there give direction only) and final approval at step 7. The TWGs feed in; the Steering Committee ratifies on whether the procedure was followed. <a class="cite revision" href="sources.html#r2-s39">SDRP v1.2</a> <a class="cite revision" href="sources.html#r2-s41">ISB ToR v1.1</a> <a class="cite revision" href="sources.html#r2-s42">SC ToR v1</a> <a class="cite revision" href="sources.html#r2-s43">TWG ToR v1</a> <a class="cite revision" href="sources.html#r2-s38">Consolidated SDP</a></figcaption>
         </figure>
@@ -276,7 +287,7 @@ svg .t-b { font-weight: 600; }
     </div>
 
     <figure class="fig-frame">
-      <div class="fig-scroll"><svg viewBox="0 0 560 384" role="img" aria-label="Four statement columns under an AMI TWG band. Statement 1 physical inventory holds Scope 2 location-based. Statement 2 market-based inventory holds Scope 2 market-based, Method 2 until 203X and Method 1 after. Statement 3 GHG impact statement holds an electricity consequential method to be developed from Q2 2027. Statement 4 key indicators holds electricity indicators such as percent CFE matched, and is paused. A Scope 2 TWG band sits under statements 1 and 2.">
+      <svg class="fig-d" viewBox="0 0 560 384" role="img" aria-label="Four statement columns under an AMI TWG band. Statement 1 physical inventory holds Scope 2 location-based. Statement 2 market-based inventory holds Scope 2 market-based, Method 2 until 203X and Method 1 after. Statement 3 GHG impact statement holds an electricity consequential method to be developed from Q2 2027. Statement 4 key indicators holds electricity indicators such as percent CFE matched, and is paused. A Scope 2 TWG band sits under statements 1 and 2.">
         <defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
         <rect x="10" y="8" width="540" height="34" rx="8" class="soft-accent st-accent"/>
         <text x="280" y="30" text-anchor="middle" class="t t-b">AMI TWG: the framework and the purpose of each statement</text>
@@ -301,7 +312,37 @@ svg .t-b { font-weight: 600; }
         <text x="10" y="344" class="t-sm muted">Names are draft. Results are kept separate: no netting between statements.</text>
         <text x="10" y="360" class="t-sm muted">Which statements are required is undecided. 14 Jul 2025: ISB vote 4–7 kept the</text>
         <text x="10" y="376" class="t-sm muted">consequential (MIM) proposal out of consultation and directed the work to the AMI TWG.</text>
-      </svg></div>
+      </svg>
+      <svg class="fig-m" viewBox="0 0 360 508" role="img" aria-label="Four statement columns under an AMI TWG band. Statement 1 physical inventory holds Scope 2 location-based. Statement 2 market-based inventory holds Scope 2 market-based, Method 2 until 203X and Method 1 after. Statement 3 GHG impact statement holds an electricity consequential method to be developed from Q2 2027. Statement 4 key indicators holds electricity indicators such as percent CFE matched, and is paused. A Scope 2 TWG band sits under statements 1 and 2.">
+        <defs><marker id="arr2-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect x="3" y="2" width="321" height="36" rx="8" class="soft-accent st-accent"/><text x="163.5" y="19" text-anchor="middle" font-size="13" font-weight="600">AMI TWG: the framework and</text><text x="163.5" y="34" text-anchor="middle" font-size="13" font-weight="600">the purpose of each statement</text>
+        <!-- Scope 2 TWG group: statements 1 and 2 -->
+        <rect x="1" y="42" width="327" height="172" rx="10" class="node-soft"/>
+        <rect x="5" y="46" width="112" height="52" rx="8" class="node"/><text x="61" y="64" text-anchor="middle" font-size="13" font-weight="600">1 · Physical</text><text x="61" y="79" text-anchor="middle" font-size="13" font-weight="600">GHG inventory</text><text x="61" y="93" text-anchor="middle" font-size="13" class="muted">attributional</text>
+        <rect x="122" y="46" width="202" height="52" rx="8" class="soft-revision"/><text x="223" y="64" text-anchor="middle" font-size="13" font-weight="600">Scope 2 location-based</text><text x="223" y="79" text-anchor="middle" font-size="13">“shall report”</text><text x="223" y="93" text-anchor="middle" font-size="13">(Sept 2026 pulse)</text>
+        <rect x="5" y="102" width="112" height="68" rx="8" class="node"/><text x="61" y="120" text-anchor="middle" font-size="13" font-weight="600">2 · Market-based</text><text x="61" y="135" text-anchor="middle" font-size="13" font-weight="600">GHG inventory</text><text x="61" y="149" text-anchor="middle" font-size="13" class="muted">attributional</text>
+        <rect x="122" y="102" width="202" height="68" rx="8" class="soft-revision"/><text x="223" y="120" text-anchor="middle" font-size="13" font-weight="600">Scope 2 market-based</text><text x="223" y="136" text-anchor="middle" font-size="13">Method 2: until 203X</text><text x="223" y="151" text-anchor="middle" font-size="13">Method 1: should,</text><text x="223" y="166" text-anchor="middle" font-size="13">then shall after 203X</text>
+        <rect x="5" y="174" width="319" height="36" rx="8" class="node"/><text x="164.5" y="189" text-anchor="middle" font-size="13" font-weight="600">Scope 2 TWG</text><text x="164.5" y="204" text-anchor="middle" font-size="13">electricity details and Scope 2 Quality Criteria</text>
+        <!-- routing -->
+        <path d="M324 136 H340 V366 H327" class="edge dash" marker-end="url(#arr2-m)"/>
+        <line x1="340" y1="280" x2="327" y2="280" class="edge dash" marker-end="url(#arr2-m)"/>
+        <text x="164" y="232" text-anchor="middle" font-size="13">Procurement not reported in Statement 2</text>
+        <text x="164" y="247" text-anchor="middle" font-size="13">may go to Statement 3 or key indicators</text>
+        <!-- statement 3 -->
+        <rect x="5" y="254" width="112" height="52" rx="8" class="node"/><text x="61" y="272" text-anchor="middle" font-size="13" font-weight="600">3 · GHG impact</text><text x="61" y="287" text-anchor="middle" font-size="13" font-weight="600">statement</text><text x="61" y="301" text-anchor="middle" font-size="13" class="muted">consequential</text>
+        <rect x="122" y="254" width="202" height="52" rx="8" class="node-soft dash"/><text x="223" y="272" text-anchor="middle" font-size="13" font-weight="600">Electricity consequential</text><text x="223" y="287" text-anchor="middle" font-size="13">method not yet developed;</text><text x="223" y="301" text-anchor="middle" font-size="13">work to start Q2 2027</text>
+        <rect x="5" y="310" width="319" height="22" rx="8" class="node"/><text x="164.5" y="326" text-anchor="middle" font-size="13">joint S2 + AMI subgroup or external partners</text>
+        <!-- statement 4 -->
+        <rect x="5" y="340" width="112" height="52" rx="8" class="node dash"/><text x="61" y="358" text-anchor="middle" font-size="13" font-weight="600">4 · Key</text><text x="61" y="373" text-anchor="middle" font-size="13" font-weight="600">indicators</text><text x="61" y="387" text-anchor="middle" font-size="13" class="muted">not in CO2e</text>
+        <rect x="122" y="340" width="202" height="52" rx="8" class="node-soft dash"/><text x="223" y="358" text-anchor="middle" font-size="13" font-weight="600">Electricity indicators</text><text x="223" y="373" text-anchor="middle" font-size="13">e.g. % CFE matched</text><text x="223" y="387" text-anchor="middle" font-size="13">Statement 4 paused</text>
+        <rect x="5" y="396" width="319" height="22" rx="8" class="node"/><text x="164.5" y="412" text-anchor="middle" font-size="13">AMI: "light" version likely in the draft</text>
+        <!-- notes -->
+        <text x="3" y="440" font-size="13" class="muted">Names are draft. Results are kept separate:</text>
+        <text x="3" y="456" font-size="13" class="muted">no netting between statements. Which statements</text>
+        <text x="3" y="472" font-size="13" class="muted">are required is undecided. 14 Jul 2025: ISB vote 4–7</text>
+        <text x="3" y="488" font-size="13" class="muted">kept the consequential (MIM) proposal out of</text>
+        <text x="3" y="504" font-size="13" class="muted">consultation and directed the work to the AMI TWG.</text>
+      </svg>
       <figcaption>The Scope 2 methods occupy two of the four statements. Under the September 2026 pulse direction, non-qualifying procurement may be reported in statements whose electricity content does not yet exist. <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slides 27–28, 30, 39</a> <a class="cite revision" href="sources.html#r2-s27">AMI White Paper v3, Figure ES-1</a> <a class="cite revision" href="sources.html#r2-s07">ISB #23 summary, p.2</a> <a class="cite revision" href="sources.html#r2-s32">AMI TWG #20 deck, slide 19</a> <a class="cite revision" href="sources.html#r2-s17">ISB #12 summary</a></figcaption>
     </figure>
 

@@ -29,6 +29,7 @@
 }
 
 /* ---------- base adjustments inside the learning pages ---------- */
+.wrap [hidden] { display: none !important; }
 .wrap { max-width: var(--max-content); margin: 0 auto; padding: 0 var(--pad-page) var(--space-2xl); min-width: 0; }
 .wrap h1, .wrap h2, .wrap h3, .wrap h4 { text-wrap: balance; margin: 0; }
 .wrap h2 { font-size: 1.6rem; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
