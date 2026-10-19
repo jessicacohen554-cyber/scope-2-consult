@@ -216,6 +216,9 @@ svg .dim { opacity: .3; }
 svg [data-step] { transition: opacity .35s ease; }
 @media (prefers-reduced-motion: reduce) { svg [data-step] { transition: none; } }
 
+.fig-scroll { -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.fig-scroll svg { display: block; }
+
 /* ---------- scrollytelling ---------- */
 .scrolly { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: start; }
 .scrolly-figure { position: sticky; top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 16px); min-width: 0; }

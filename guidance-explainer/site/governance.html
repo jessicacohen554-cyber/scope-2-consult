@@ -26,6 +26,9 @@ svg .t-b { font-weight: 600; }
 .chan td:first-child { min-width: 9rem; }
 .matrix.m3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 560px) { .matrix.m3 { grid-template-columns: 1fr; } }
+/* phones: keep the wide statement map legible; it scrolls sideways instead of shrinking text below ~9px */
+.fig-scroll { min-width: 0; }
+@media (max-width: 560px) { .fig-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; } .fig-scroll > svg { min-width: 500px; } }
 @media (max-width: 520px) { .ladder .defn { grid-template-columns: 1fr; } .ladder .defn .rank { grid-row: auto; justify-self: start; padding: 4px 10px; font-size: 1.1rem; } .ladder .defn > :not(.rank) { grid-column: 1; } }
 </style>
 </head>
@@ -121,7 +124,7 @@ svg .t-b { font-weight: 600; }
               <rect x="192" y="420" width="176" height="52" rx="8" class="soft-revision"/><text x="280" y="438" text-anchor="middle" class="t t-b">Observing Entities</text><text x="280" y="453" text-anchor="middle" class="t-sm">CDP, EFRAG, GRI, ISO,</text><text x="280" y="466" text-anchor="middle" class="t-sm">ISSB, SBTi: no vote</text>
               <rect x="374" y="420" width="176" height="52" rx="8" class="soft-revision"/><text x="462" y="438" text-anchor="middle" class="t t-b">Coordination group</text><text x="462" y="453" text-anchor="middle" class="t-sm">GHGP Secretariat and</text><text x="462" y="466" text-anchor="middle" class="t-sm">ISO counterparts</text></g>
           </svg>
-          <figcaption>Content is decided at steps 3 and 7 by the ISB. The TWGs feed in; the Steering Committee ratifies on whether the procedure was followed. Sources: SDRP v1.2; ISB, SC and TWG Terms of Reference; Consolidated SDP (Jul 2026).</figcaption>
+          <figcaption>Content decisions rest with the ISB: formal votes at step 3 (pulse checks there give direction only) and final approval at step 7. The TWGs feed in; the Steering Committee ratifies on whether the procedure was followed. <a class="cite revision" href="sources.html#r2-s39">SDRP v1.2</a> <a class="cite revision" href="sources.html#r2-s41">ISB ToR v1.1</a> <a class="cite revision" href="sources.html#r2-s42">SC ToR v1</a> <a class="cite revision" href="sources.html#r2-s43">TWG ToR v1</a> <a class="cite revision" href="sources.html#r2-s38">Consolidated SDP</a></figcaption>
         </figure>
       </div>
       <div class="scrolly-steps">
@@ -143,7 +146,7 @@ svg .t-b { font-weight: 600; }
         <div class="step"><div class="step-card"><div class="n">STEP 4 · PUBLIC CONSULTATION</div><h3>At least 60 days, and comments wait for it</h3>
           <p>A consultation "consisting of at least one round of sixty (60) days for submission of comments by stakeholders" is required for drafts and major revisions. Outside it, general comments "shall be paused".
             <a class="cite revision" href="sources.html#r2-s39">SDRP v1.2 §4.4.1, §4.3.4, p.6</a></p>
-          <p>The next round is a consolidated GHG Protocol and ISO consultation in Q2 2027, when the draft also enters ISO's committee draft (CD) stage.
+          <p>The next round is a consolidated GHG Protocol public consultation in Q2 2027, when the draft also enters ISO's committee draft (CD) stage.
             <a class="cite revision" href="sources.html#r2-s38">Consolidated SDP, p.16</a></p></div></div>
         <div class="step"><div class="step-card"><div class="n">STEP 5 · RECALIBRATION AND PILOT</div><h3>Revise, then submit or test</h3>
           <p>"Based on the comments received during the public consultation period and as necessary, the Secretariat shall, together with the TWGs and ISB, review and revise the draft standard." It then submits the standard for approval or proposes "any further consultation or pilot testing".
@@ -222,7 +225,7 @@ svg .t-b { font-weight: 600; }
     </div>
 
     <div class="callout inference"><div class="label">Inference</div>
-      <p>The September 2026 rationale, that Method 2 is "a critical and visible credibility issue" that "would give the GHG Protocol the appearance of approving false claims", reads as integrity (criterion 1) taking precedence over feasibility (criterion 3), as the hierarchy directs. The sources do not say this explicitly.
+      <p>The September 2026 rationale, that the lack of a physical connection in Method 2 is "a critical and visible credibility issue" that "would give the GHG Protocol the appearance of approving false claims", reads as integrity (criterion 1) taking precedence over feasibility (criterion 3), as the hierarchy directs. The sources do not say this explicitly.
         <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 37</a></p>
     </div>
   </section>
@@ -264,7 +267,7 @@ svg .t-b { font-weight: 600; }
     <div class="section-head">
       <div class="eyebrow">4 · Two working groups</div>
       <h2>The AMI TWG sets the frame; the Scope 2 TWG fills in electricity</h2>
-      <p>Scope 2's two methods only make sense inside the Actions and Market Instruments (AMI) multi-statement framework, which another working group owns.</p>
+      <p>Scope 2's two methods sit inside the Actions and Market Instruments (AMI) multi-statement framework, which another working group owns.</p>
     </div>
 
     <div class="prose">
@@ -275,7 +278,7 @@ svg .t-b { font-weight: 600; }
     </div>
 
     <figure class="fig-frame">
-      <svg viewBox="0 0 560 384" role="img" aria-label="Four statement columns under an AMI TWG band. Statement 1 physical inventory holds Scope 2 location-based. Statement 2 market-based inventory holds Scope 2 market-based, Method 2 until 203X and Method 1 after. Statement 3 GHG impact statement holds an electricity consequential method to be developed from Q2 2027. Statement 4 key indicators holds electricity indicators such as percent CFE matched, and is paused. A Scope 2 TWG band sits under statements 1 and 2.">
+      <div class="fig-scroll"><svg viewBox="0 0 560 384" role="img" aria-label="Four statement columns under an AMI TWG band. Statement 1 physical inventory holds Scope 2 location-based. Statement 2 market-based inventory holds Scope 2 market-based, Method 2 until 203X and Method 1 after. Statement 3 GHG impact statement holds an electricity consequential method to be developed from Q2 2027. Statement 4 key indicators holds electricity indicators such as percent CFE matched, and is paused. A Scope 2 TWG band sits under statements 1 and 2.">
         <defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
         <rect x="10" y="8" width="540" height="34" rx="8" class="soft-accent st-accent"/>
         <text x="280" y="30" text-anchor="middle" class="t t-b">AMI TWG: the framework and the purpose of each statement</text>
@@ -300,8 +303,8 @@ svg .t-b { font-weight: 600; }
         <text x="10" y="344" class="t-sm muted">Names are draft. Results are kept separate: no netting between statements.</text>
         <text x="10" y="360" class="t-sm muted">Which statements are required is undecided. 14 Jul 2025: ISB vote 4–7 kept the</text>
         <text x="10" y="376" class="t-sm muted">consequential (MIM) proposal out of consultation and directed the work to the AMI TWG.</text>
-      </svg>
-      <figcaption>The Scope 2 methods occupy two of the four statements. Non-qualifying procurement is routed to statements whose electricity content does not yet exist. Sources: S2 TWG #23 deck, slides 27–28, 30, 39; AMI White Paper v3, Figure ES-1; ISB #23 summary, p.2; AMI TWG #20 deck, slide 19; ISB #12 summary.</figcaption>
+      </svg></div>
+      <figcaption>The Scope 2 methods occupy two of the four statements. Under the September 2026 pulse direction, non-qualifying procurement may be reported in statements whose electricity content does not yet exist. <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slides 27–28, 30, 39</a> <a class="cite revision" href="sources.html#r2-s27">AMI White Paper v3, Figure ES-1</a> <a class="cite revision" href="sources.html#r2-s07">ISB #23 summary, p.2</a> <a class="cite revision" href="sources.html#r2-s32">AMI TWG #20 deck, slide 19</a> <a class="cite revision" href="sources.html#r2-s17">ISB #12 summary</a></figcaption>
     </figure>
 
     <h3>Read each statement in the sources' own words</h3>
@@ -386,7 +389,7 @@ svg .t-b { font-weight: 600; }
       <button class="cell" data-detail="all" aria-pressed="false"><b>Everyone</b><small>dates and evidence</small></button>
     </div>
     <div class="matrix-detail">
-      <div class="card" data-detail-for="dev"><p>Incrementality design options: "Qualifying operational events within [X] yrs (e.g., new build, repowering, clean conversion, upgrade, or life extension); original off-taker; pro-rata grid-share allocation; qualifying storage". <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 40</a> Existing contracts "may be reported in statement 2 using the 2015 Scope 2 Guidance MBM until 203X". <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 39</a> The Statement 3 electricity method starts Q2 2027. <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 30</a></p></div>
+      <div class="card" data-detail-for="dev"><p>Incrementality design options: "Qualifying operational events within [X] yrs (e.g., new build, repowering, clean conversion, upgrade, or life extension); original off-taker; pro-rata grid-share allocation; qualifying storage". <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 40</a> Existing contracts "may be reported in statement 2 using the 2015 Scope 2 Guidance MBM until 203X". <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 39</a> ISB members supported starting the Statement 3 electricity method in Q2 2027 (a pulse check; resourcing rests with the Steering Committee and CEO). <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 30</a> <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.5</a></p></div>
       <div class="card" data-detail-for="ret"><p>SSS is open as "(may/should/shall)". <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 40</a> The 2025 draft's SSS examples included "Competitive or regulated suppliers complying with government-mandated clean energy procurement programs through the procurement of certificates on behalf of the load they serve". <a class="cite revision" href="sources.html#r2-s53">S2 consultation draft, p.26</a> ISO WG4 reached "full consensus to remove the SSS criterion". <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 61</a></p></div>
       <div class="card" data-detail-for="all"><p>The ISB asked the TWG: "What is the earliest feasible date the TWG thinks new data and technology would be available to support the new MBM method? What are the specific regions with data gaps currently and what is the expected availability of data for those regions? What empirical evidence exists about impacts to market investment with consideration of AMI multi-statement approach?" <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 40</a></p></div>
     </div>

@@ -17,6 +17,10 @@ svg .st-fg3 { stroke: var(--fg-3); stroke-width: 1; }
 svg .st-gap { stroke: var(--gap); stroke-width: 1.2; }
 svg .t-mono { font-family: var(--font-mono); font-size: 11px; }
 svg .t-b { font-weight: 600; }
+/* phones: keep wide figures legible; the figure scrolls sideways instead of shrinking text below ~9px */
+#cons-view { min-width: 0; }
+.fig-scroll { min-width: 0; }
+@media (max-width: 560px) { .fig-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; } .fig-scroll > svg { min-width: 500px; } }
 .cmp th:first-child, .cmp td:first-child { min-width: 9rem; }
 .cmp td { min-width: 13rem; }
 .cmp td .q { font-style: italic; }
@@ -75,7 +79,7 @@ svg .t-b { font-weight: 600; }
     <div class="section-head">
       <div class="eyebrow">1 · The update in one screen</div>
       <h2>Two market-based methods, one destination</h2>
-      <p>The ISB has pointed the revision at a stricter "Method 1" and kept the 2015 rules alive as "Method 2" until a year not yet chosen.</p>
+      <p>The ISB has pointed the revision at a stricter "Method 1" and would keep the 2015 rules alive as "Method 2" until a year not yet chosen.</p>
     </div>
 
     <div class="prose">
@@ -111,7 +115,7 @@ svg .t-b { font-weight: 600; }
     </div>
 
     <figure class="fig-frame">
-      <svg viewBox="0 0 560 366" role="img" aria-label="Two-track chart. Before an undetermined year 203X, Method 2 may be used, Method 1 should be used, and companies shall disclose which one they use. After 203X, Method 1 shall be used if a company reports market-based emissions and qualifying data exist; Method 2 procurement moves to Statement 3 or key indicators. Whether the market-based method is required at all is open.">
+      <div class="fig-scroll"><svg viewBox="0 0 560 366" role="img" aria-label="Two-track chart. Before an undetermined year 203X, Method 2 may be used, Method 1 should be used, and companies shall disclose which one they use. After 203X, Method 1 shall be used if a company reports market-based emissions and qualifying data exist; Method 2 procurement moves to Statement 3 or key indicators. Whether the market-based method is required at all is open.">
         <!-- axis -->
         <line x1="140" y1="34" x2="552" y2="34" class="edge-soft"/>
         <line x1="150" y1="28" x2="150" y2="40" class="edge-soft"/><text x="150" y="20" text-anchor="middle" class="t-mono">Oct 2026</text>
@@ -171,8 +175,8 @@ svg .t-b { font-weight: 600; }
         <!-- notes -->
         <text x="12" y="340" class="t-sm muted">† if a company reports MBM emissions and data meeting the quality criteria is available.</text>
         <text x="12" y="356" class="t-sm muted">* Sept 2026 options were framed “Starting in 2030…”. No effective date or 203X value is set. Not to scale.</text>
-      </svg>
-      <figcaption>The proposed direction runs on two tracks until an undetermined year, 203X, then collapses to Method 1 for anyone who reports market-based emissions. Every row is a pulse-check direction, not an adopted rule. Sources: MBM Update (16 Oct 2026); S2 TWG #23 deck, slides 35 and 39.</figcaption>
+      </svg></div>
+      <figcaption>The proposed direction runs on two tracks until an undetermined year, 203X, then collapses to Method 1 for anyone who reports market-based emissions. Every row is a pulse-check direction, not an adopted rule. <a class="cite revision" href="sources.html#r2-s01">GHGP blog, MBM Update, 16 Oct 2026</a> <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slides 35, 39</a></figcaption>
     </figure>
 
     <details>
@@ -206,7 +210,7 @@ svg .t-b { font-weight: 600; }
     <div class="section-head">
       <div class="eyebrow">2 · From draft to direction</div>
       <h2>What changed between the 2025 consultation draft and September 2026</h2>
-      <p>The September direction adds a third pillar, places size thresholds outside Method 1, proposes no legacy clause beyond the transition timeline, and leaves standard supply service open. ISO's working draft goes the other way on most of these points.</p>
+      <p>The September direction adds a third pillar, places size thresholds outside Method 1, proposes no legacy clause beyond the transition timeline, and leaves standard supply service open. ISO's working draft differs on time matching, deliverability, legacy contracts and standard supply service.</p>
     </div>
 
     <div class="prose">
@@ -229,7 +233,7 @@ svg .t-b { font-weight: 600; }
             <td><b>Size thresholds</b></td>
             <td>Hourly matching for large organizations; <span class="q">“Organizations under a threshold would be exempt and able to continue annual matching.”</span> <a class="cite revision" href="sources.html#r2-s51">S2 consultation exec summary, p.4</a></td>
             <td><span class="q">“thresholds sit outside the Method 1 framework the ISB supported”</span> <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.5</a></td>
-            <td>Not stated in the dossier.</td>
+            <td>Not stated in the sources reviewed.</td>
           </tr>
           <tr>
             <td><b>Deliverability</b></td>
@@ -268,7 +272,7 @@ svg .t-b { font-weight: 600; }
     <div class="prose">
       <p>The TWG raised the ISO gap directly. Members "raised concerns that the ISO direction differs materially from the ISB direction"; the Secretariat replied that "ISO feedback comes to the TWG to consider before recommendations go to the ISB."
         <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.7</a>
-        ISO's own text records why it went its own way: "Mandatory hourly matching was rejected on feasibility and global applicability grounds", and "deliverability was removed as not practical."
+        The minutes record ISO WG4's reasons: "Mandatory hourly matching was rejected on feasibility and global applicability grounds", and "deliverability was removed as not practical."
         <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, pp.6–7</a></p>
     </div>
 
@@ -304,7 +308,7 @@ svg .t-b { font-weight: 600; }
         <span><i style="background:var(--gap-soft)"></i>No or low support (1–2)</span>
       </div>
       <figure class="fig-frame" data-mode-show="q">
-        <svg viewBox="0 0 560 214" role="img" aria-label="Stacked bars. Hourly matching, n 909: 22 percent support, 7 neutral, 70 no or low support. Deliverability, n 875: 30, 11, 59. Legacy clause, n 801: 90, 5, 5.">
+        <div class="fig-scroll"><svg viewBox="0 0 560 214" role="img" aria-label="Stacked bars. Hourly matching, n 909: 22 percent support, 7 neutral, 70 no or low support. Deliverability, n 875: 30, 11, 59. Legacy clause, n 801: 90, 5, 5.">
           <text x="10" y="22" class="t-lg">Hourly matching, Quality Criterion 4 (Q71)</text><text x="550" y="22" text-anchor="end" class="t-mono t-b">n = 909</text>
           <rect x="10" y="30" width="118.8" height="30" class="soft-signal"/><text x="69.4" y="50" text-anchor="middle" class="t-lg">22%</text>
           <rect x="128.8" y="30" width="37.8" height="30" class="node-soft"/><text x="147.7" y="50" text-anchor="middle" class="t-lg">7%</text>
@@ -319,11 +323,11 @@ svg .t-b { font-weight: 600; }
           <rect x="10" y="174" width="486" height="30" class="soft-signal"/><text x="253" y="194" text-anchor="middle" class="t-lg">90%</text>
           <rect x="496" y="174" width="27" height="30" class="node-soft"/><text x="509.5" y="194" text-anchor="middle" class="t">5%</text>
           <rect x="523" y="174" width="27" height="30" class="soft-gap"/><text x="536.5" y="194" text-anchor="middle" class="t">5%</text>
-        </svg>
-        <figcaption>Hourly matching and deliverability drew majority no or low support. A legacy clause drew 90% support; the September pulse-check proposal reads "No legacy clause provision other than transition timeline." Rows may not sum to 100 because of rounding. Source: S2 consultation summary v1.1, Table 19 p.49, Table 27 p.75, p.117.</figcaption>
+        </svg></div>
+        <figcaption>Hourly matching and deliverability drew majority no or low support. A legacy clause drew 90% support; the September pulse-check proposal reads "No legacy clause provision other than transition timeline." Rows may not sum to 100 because of rounding. <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1, Table 19 p.49, Table 27 p.75, p.117</a></figcaption>
       </figure>
       <figure class="fig-frame" data-mode-show="t">
-        <svg viewBox="0 0 560 280" role="img" aria-label="Hourly matching support by respondent type. All, n 909: 22 support, 7 neutral, 70 no or low. Companies, n 429: 12, 7, 82. NGOs, n 71: 49, 6, 45. Energy supplier, retailer or utility, n 81: 26, 12, 62.">
+        <div class="fig-scroll"><svg viewBox="0 0 560 280" role="img" aria-label="Hourly matching support by respondent type. All, n 909: 22 support, 7 neutral, 70 no or low. Companies, n 429: 12, 7, 82. NGOs, n 71: 49, 6, 45. Energy supplier, retailer or utility, n 81: 26, 12, 62.">
           <text x="10" y="22" class="t-lg">All respondents</text><text x="550" y="22" text-anchor="end" class="t-mono t-b">n = 909</text>
           <rect x="10" y="30" width="118.8" height="30" class="soft-signal"/><text x="69.4" y="50" text-anchor="middle" class="t-lg">22%</text>
           <rect x="128.8" y="30" width="37.8" height="30" class="node-soft"/><text x="147.7" y="50" text-anchor="middle" class="t-lg">7%</text>
@@ -343,8 +347,8 @@ svg .t-b { font-weight: 600; }
           <rect x="10" y="234" width="140.4" height="30" class="soft-signal"/><text x="80.2" y="254" text-anchor="middle" class="t-lg">26%</text>
           <rect x="150.4" y="234" width="64.8" height="30" class="node-soft"/><text x="182.8" y="254" text-anchor="middle" class="t-lg">12%</text>
           <rect x="215.2" y="234" width="334.8" height="30" class="soft-gap"/><text x="382.6" y="254" text-anchor="middle" class="t-lg">62%</text>
-        </svg>
-        <figcaption>Of the three groups broken out here, companies were the most opposed to hourly matching; NGOs were close to evenly split. Rows may not sum to 100 because of rounding. Source: S2 consultation summary v1.1, Table 19 p.49.</figcaption>
+        </svg></div>
+        <figcaption>Of the three groups broken out here, companies were the most opposed to hourly matching; NGOs were close to evenly split. Rows may not sum to 100 because of rounding. <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1, Table 19 p.49</a></figcaption>
       </figure>
     </div>
 
@@ -392,7 +396,7 @@ svg .t-b { font-weight: 600; }
   <section class="section" id="s4">
     <div class="section-head">
       <div class="eyebrow">4 · Incrementality</div>
-      <h2>How a "no further restrictions" position became an age limit</h2>
+      <h2>How a no-further-restrictions position became an age limit</h2>
       <p>Between March 2025 and September 2026, incrementality went from rejected by the TWG, to parked with the AMI TWG, to part of Method 1.</p>
     </div>
 
@@ -416,7 +420,7 @@ svg .t-b { font-weight: 600; }
             <path d="M486 322 h8 v66 h-8" class="edge-soft"/>
             <text transform="translate(512 355) rotate(-90)" text-anchor="middle" class="t-sm">Method 1</text>
           </svg>
-          <figcaption>Nine dated events. Incrementality was kept out of the Scope 2 consultation draft, developed in the AMI workstream, then written into Method 1 by an ISB pulse check. The violet dot marks the date of GHG Protocol's response to a third-party complaint.</figcaption>
+          <figcaption>Nine dated events. Incrementality was kept out of the Scope 2 consultation draft; the AMI TWG separately agreed additionality/impact for Statement 2; then an age limit entered Method 1 with an ISB pulse check. No source says one step caused the next. The violet dot marks the date of GHG Protocol's response to a third-party complaint.</figcaption>
         </figure>
       </div>
       <div class="scrolly-steps">
@@ -438,8 +442,8 @@ svg .t-b { font-weight: 600; }
             <a class="cite revision" href="sources.html#r2-s33">AMI TWG #19 deck, 15 Jul 2026, slide 20</a></p>
           <p>By September a majority of the subgroup "considered that there should be at least impact requirements for Statement 2… what is reported in Statement 2 should have a demonstrated impact going beyond business as usual."
             <a class="cite revision" href="sources.html#r2-s31">AMI TWG #20 minutes, 9 Sep 2026, p.6</a></p></div></div>
-        <div class="step"><div class="step-card"><div class="n">STEP 4 · 24 AUGUST 2026</div><h3>A scientific-accuracy complaint</h3>
-          <p>Authors from WattTime, DTU, Edinburgh and Sweco argued that the proposal "introduces requirements for deliverable and time-matched energy but excludes the principle of additionality", relying on studies of all three pillars. They "take no position on whether the GHG Protocol should adopt the Three Pillars".
+        <div class="step"><div class="step-card"><div class="n">STEP 4 · RESPONSE DATED 24 AUGUST 2026</div><h3>A scientific-accuracy complaint</h3>
+          <p>Authors from WattTime, DTU, Edinburgh and Sweco argued that the proposal "introduces requirements for deliverable and time-matched energy but excludes the principle of additionality", and that it was justified by studies of all three pillars. The complaint itself is undated. They "take no position on whether the GHG Protocol should adopt the Three Pillars".
             <a class="cite third" href="sources.html#r2-s45">WattTime et al. complaint, p.2</a></p>
           <p>The ISB Chair replied that the letter "was classified as a complaint" and that "the topics you raised will be given due consideration by the Scope 2 Technical Working Group and subject to further rigorous review by the Independent Standards Board."
             <a class="cite revision" href="sources.html#r2-s45">ISB Chair response, 24 Aug 2026, p.1</a></p></div></div>
@@ -467,7 +471,7 @@ svg .t-b { font-weight: 600; }
     <div class="section-head">
       <div class="eyebrow">5 · What is open</div>
       <h2>What is still open, and when it gets decided</h2>
-      <p>A TWG workshop this week, an ISB meeting on 15 December, then one consolidated GHG Protocol and ISO consultation in Q2 2027.</p>
+      <p>A TWG workshop this week, an ISB meeting on 15 December, then one consolidated GHG Protocol public consultation, alongside ISO committee-draft review, in Q2 2027.</p>
     </div>
 
     <div class="grid-2">
@@ -495,7 +499,7 @@ svg .t-b { font-weight: 600; }
     </div>
 
     <div class="callout gap"><div class="label">Gap · not yet public as of 19 Oct 2026</div>
-      <p>The September 2026 ISB minutes and the September 2026 Steering Committee minutes are not in the repository; the latest published are ISB #23 (14 July) and SC Q2 (22 June). The TWG memos on the two methods, the August 2026 TWG survey results and the ISO WG4 report sit on the "TWG SharePoint". The result of the July 2026 location-based e-vote pulse check is not published. No pilot test of the Scope 2 changes is scheduled; the plan says the need for one "will be determined based on needs identified during the standard development process."
+      <p>The September 2026 ISB minutes and the September 2026 Steering Committee minutes are not in the repository; the latest published are ISB #23 (14 July) and SC Q2 (22 June). The TWG memos on the market-based and location-based methods, the August 2026 TWG survey results and the ISO WG4 report sit on the "TWG SharePoint". The result of the July 2026 location-based e-vote pulse check is not published. No pilot test of the Scope 2 changes is scheduled; the plan says the need for one "will be determined based on needs identified during the standard development process."
         <a class="cite revision" href="sources.html#r2-s68">GHGP governance repository, accessed 19 Oct 2026</a>
         <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 72</a>
         <a class="cite revision" href="sources.html#r2-s07">ISB #23 summary, pp.3–4</a>
@@ -525,9 +529,9 @@ svg .t-b { font-weight: 600; }
     <div class="prose">
       <ul>
         <li><b>Sourced.</b> The direction is a 10-of-10 pulse check, and "a pulse check gives direction and is not a decision". Before 203X, Method 2 "may", Method 1 "should" and disclosure "shall". <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.5</a> <a class="cite revision" href="sources.html#r2-s01">GHGP blog, 16 Oct 2026</a></li>
-        <li><b>Sourced.</b> The direction departs from the consultation balance (70% no or low support for hourly matching; 90% support for a legacy clause), and the Secretariat says "the consultation is not a voting exercise". <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1</a> <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.6</a></li>
+        <li><b>Sourced.</b> TWG members said the direction "departs from the TWG's earlier work and from the balance of consultation feedback" (70% no or low support for hourly matching; 90% support for a legacy clause), and the Secretariat says "the consultation is not a voting exercise". <a class="cite revision" href="sources.html#r2-s52">S2 consultation summary v1.1</a> <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.6</a></li>
         <li><b>Sourced.</b> ISO WG4's draft keeps monthly matching as the minimum, makes hourly optional, and removes deliverability and SSS. Reconciliation runs through the TWG and then the ISB. <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, pp.6–7</a></li>
-        <li><b>Inference.</b> Statement 3 electricity methods start only in Q2 2027, so the route the ISB names for non-Method-1 procurement will probably not be fully specified in the Q2 2027 draft. <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.5</a></li>
+        <li><b>Inference.</b> Statement 3 electricity methods are slated to start only in Q2 2027 (an ISB pulse check; resourcing rests with the Steering Committee and CEO), so the route the ISB names for non-Method-1 procurement will probably not be fully specified in the Q2 2027 draft. <a class="cite revision" href="sources.html#r2-s03">S2 TWG #23 minutes, p.5</a></li>
         <li><b>Gap.</b> The value of 203X, the "[X] yrs" age limit, the deliverability boundaries and the September ISB minutes are not public.</li>
         <li><b>Inference.</b> Because these are open, the ISB's own questions to the TWG (earliest feasible date, regions with data gaps, evidence on market investment, SSS strength) are where new evidence meets an undecided point. <a class="cite revision" href="sources.html#r2-s04">S2 TWG #23 deck, slide 40</a></li>
       </ul>

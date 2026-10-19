@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
+<noscript><style>[data-mode-show][hidden] { display: block !important; }</style></noscript>
 <style>
 /* page-specific styles only (layouts unique to this page). Use tokens from site.css. */
 .tag { display: inline-block; font-family: var(--font-mono); font-size: 0.66rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; vertical-align: middle; }
@@ -79,7 +80,7 @@
     <div class="section-head">
       <div class="eyebrow">1 · Status, October 2026</div>
       <h2>Two market-based methods, one with an age limit</h2>
-      <p>The ISB has set a direction. It is not a decision, and storage has been sent elsewhere.</p>
+      <p>The ISB has set a direction. It is not a decision. Most storage questions are routed elsewhere: accounting guidance to a later informative Guidance, impacts toward Statement 3.</p>
     </div>
 
     <div class="grid-2">
@@ -165,7 +166,7 @@
     </div>
 
     <div class="grid-2">
-      <div class="callout signal"><div class="label">Signal of direction · storage goes to Statement 3</div><p>“Members supported a consequential metric for electricity procurement, reported outside the inventory. • It could capture actions the inventory misses, such as procurement in higher-emitting grids, storage and load shifting.” <a class="cite revision" href="sources.html#r3-s8">TWG #23 deck, slide 28</a> The ISB unanimously supported developing an electricity-sector consequential methodology for Statement 3, and starting that work in Q2 2027. <a class="cite revision" href="sources.html#r3-s7">TWG #23 minutes, p.5</a></p></div>
+      <div class="callout signal"><div class="label">Signal of direction · storage toward Statement 3</div><p>TWG member feedback, as summarised in the deck: “Members supported a consequential metric for electricity procurement, reported outside the inventory. • It could capture actions the inventory misses, such as procurement in higher-emitting grids, storage and load shifting.” <a class="cite revision" href="sources.html#r3-s8">TWG #23 deck, slide 28</a> The ISB unanimously supported developing an electricity-sector consequential methodology for Statement 3, and starting that work in Q2 2027. <a class="cite revision" href="sources.html#r3-s7">TWG #23 minutes, p.5</a></p></div>
       <div class="callout signal"><div class="label">Signal of direction · storage guidance scheduled separately</div><p>Under “Guidance to be published separately from the standard” (informative Scope 2 Guidance (Version 2.0), timeline TBD): “Create additional requirements or guidance and calculation examples for GHG accounting for energy storage systems (e.g., battery storage and pumped hydro), electric vehicle (EV) charging and grid integration, and other topics, including how to account for the differences between energy input and output from energy storage systems and round-trip efficiency losses” <a class="cite revision" href="sources.html#r3-s9">Consolidated SDP, 29 Jul 2026, p.24, item 11.b</a></p></div>
     </div>
 
@@ -237,7 +238,7 @@
 
     <div class="callout gap"><div class="label">Gap</div><p>“Qualifying storage” is undefined. No source states whether a storage asset can itself be a “qualifying operational event”, whether the stored energy must come from qualifying generation, or both. The value of [X] years is not set. Whether “life extension” covers nuclear licence extension or pumped-hydro refurbishment is not said. The TWG #23 minutes also record an open question on “how older resources under time-matched and deliverable contracts would be allocated”, referred to the TWG. <a class="cite revision" href="sources.html#r3-s7">TWG #23 minutes, p.5</a></p></div>
 
-    <div class="prose"><p>The deck also lists “generator age” among commonly named key indicators. <a class="cite revision" href="sources.html#r3-s8">TWG #23 deck, slide 31</a></p></div>
+    <div class="prose"><p>The deck also lists “generator age” among commonly named indicators. <a class="cite revision" href="sources.html#r3-s8">TWG #23 deck, slide 31</a></p></div>
   </section>
 
   <!-- ============ 3 ============ -->
@@ -258,7 +259,7 @@
     </div>
     <div id="attach" data-mode="i1" class="grid-2">
       <figure class="fig-frame">
-        <svg viewBox="0 0 420 230" role="img" aria-label="Generator, store and load in a row. The highlighted badges show which asset must be new under the selected option.">
+        <svg viewBox="0 0 420 230" role="img" aria-label="Generator, store and load in a row. The highlighted badges show which asset the selected option tests for age or a qualifying event.">
           <defs><marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
           <text x="210" y="16" text-anchor="middle" class="t-sm mono fill-gap">OPTIONS, NOT GHG PROTOCOL RULES</text>
           <rect x="8" y="40" width="120" height="52" rx="8" class="node"/>
@@ -312,7 +313,7 @@
             <text x="210" y="206" text-anchor="middle" class="t">Logic of 2015 §11.3 (“existing or new”)</text>
           </g>
         </svg>
-        <figcaption>Green marks the asset that must be new under the selected option. Every option also needs cancellation on charge, a loss haircut and deliverability on both legs.</figcaption>
+        <figcaption>Highlighted badges mark the asset the selected option tests (age limit or qualifying event). Every option also needs cancellation on charge, a loss haircut and deliverability on both legs.</figcaption>
       </figure>
       <div class="stack">
         <div data-mode-show="i1">
@@ -402,7 +403,7 @@
         <div class="q">QUESTION (iii)</div>
         <h3>Should storage count for its time-shifting benefit, whatever its age?</h3>
         <p>The inventory is attributional: “Within corporate inventories scope 2 uses attributional methods to assign emissions”. <a class="cite revision" href="sources.html#r3-s2">2025 draft, p.4</a> Storage and load shifting are pointed at the consequential Statement 3. <a class="cite revision" href="sources.html#r3-s8">TWG #23 deck, slide 28</a></p>
-        <div class="callout inference"><div class="label">Inference</div><p>A store that charges with clean certificates in surplus hours and discharges in scarce hours does move clean attributes into scarce hours. Pass-through records that attributionally, with no consequential estimate. That supports counting backed discharge under hourly QC4, but it does not settle whether the age limit tests the store or the generator. Under I-1 the store's age is moot; the energy's age still matters. “Regardless of age” fits I-4 only if the age limit on charged energy is also dropped. Whether time-shifting lowers system emissions is a consequential question for Statement 3.</p></div>
+        <div class="callout inference"><div class="label">Inference</div><p>A store that charges with clean certificates in surplus hours and discharges in scarce hours does move clean attributes into scarce hours. Pass-through records that attributionally, with no consequential estimate. That supports counting backed discharge under hourly QC4, but it does not settle whether the age limit tests the store or the generator. Under I-1 the store's age is moot; the energy's age still matters. “Regardless of asset age” fits I-4 only if the age limit on charged energy is also dropped. Whether time-shifting lowers system emissions is a consequential question for Statement 3.</p></div>
         <div class="callout gap"><div class="label">Gap</div><p>The Statement 3 electricity methodology has not been written; work starts Q2 2027.</p></div>
       </div>
     </div>
@@ -499,13 +500,13 @@
     <div class="prose">
       <ul>
         <li><span class="tag src">Sourced</span> The ISB direction (Sept 2026) is two market-based methods; Method 1 has hourly matching, deliverability and an “Age limit on eligible resources for voluntary claims (shall)”. A pulse check “gives direction and is not a decision”. <a class="cite revision" href="sources.html#r3-s8">TWG #23 deck, slide 34</a> <a class="cite revision" href="sources.html#r3-s7">TWG #23 minutes, p.5</a></li>
-        <li><span class="tag src">Sourced</span> TWG members objected that incrementality “should sit outside the inventory”; storage and load shifting are pointed at Statement 3, with work starting Q2 2027; storage accounting guidance is assigned to the informative Scope 2 Guidance v2.0, timeline TBD. <a class="cite revision" href="sources.html#r3-s7">TWG #23 minutes, pp.5–6</a> <a class="cite revision" href="sources.html#r3-s9">Consolidated SDP, p.24</a></li>
+        <li><span class="tag src">Sourced</span> TWG members raised concerns that incrementality “should sit outside the inventory”; storage and load shifting are pointed at Statement 3, with work starting Q2 2027; storage accounting guidance is assigned to the informative Scope 2 Guidance v2.0, timeline TBD. <a class="cite revision" href="sources.html#r3-s7">TWG #23 minutes, pp.5–6</a> <a class="cite revision" href="sources.html#r3-s9">Consolidated SDP, p.24</a></li>
         <li><span class="tag src">Sourced</span> 45V: “Storage systems need not themselves meet the incrementality requirement”, but stored EACs must, based on the generator. EU 2023/1184: a “new storage asset” behind the same connection point, plus new generation. <a class="cite third" href="sources.html#r3-t4">45V, 90 FR 2270</a> <a class="cite third" href="sources.html#r3-t5">EU 2023/1184</a></li>
-        <li><span class="tag inf">Inference</span> Under pass-through, an age test most naturally attaches to the generator whose energy was stored (I-1). On the only precedent that addresses storage and incrementality together, a 50-year-old pumped store could still qualify if it charges from qualifying generation.</li>
+        <li><span class="tag inf">Inference</span> Under pass-through, an age test most naturally attaches to the generator whose energy was stored (I-1). On the 45V precedent, a 50-year-old pumped store could still qualify if it charges from qualifying generation; under the EU model it would not.</li>
         <li><span class="tag gap">Gap</span> The definition of “qualifying storage”, the value of [X] years, the list of qualifying events, whether “life extension” covers pumped-hydro refurbishment or nuclear licence extension, and how SSS interacts with storage.</li>
       </ul>
     </div>
-    <div class="callout signal"><div class="label">Signal of direction · 16 Oct 2026</div><p>The TWG workshop issues for the market-based method are “deliverability, incrementality, feasibility, and implementation timing”. Storage is not named. A position on storage would need to be brought to the incrementality design discussion. <a class="cite revision" href="sources.html#r3-s6">Scope 2 MBM Update, p.3</a></p></div>
+    <div class="callout signal"><div class="label">Signal of direction · 16 Oct 2026</div><p>The TWG workshop issues for the market-based method are “deliverability, incrementality, feasibility, and implementation timing”. Storage is not named. <span class="tag inf">Inference</span> A position on storage would most naturally enter through the incrementality design discussion. <a class="cite revision" href="sources.html#r3-s6">Scope 2 MBM Update, p.3</a></p></div>
   </section>
 
   <nav class="pager" aria-label="Pages">

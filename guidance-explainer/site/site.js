@@ -73,6 +73,19 @@
     }
   });
 
+
+  // wide figures on narrow screens: let the drawing keep a readable scale and scroll sideways
+  function wideFigs() {
+    document.querySelectorAll('figure svg[viewBox]').forEach(function (svg) {
+      var vb = (svg.getAttribute('viewBox') || '').split(/[\s,]+/).map(Number);
+      var w = vb[2] || 0, fig = svg.closest('figure'); if (!fig || !w) return;
+      var cw = fig.clientWidth;
+      if (w >= 520 && cw < 440) { svg.style.minWidth = Math.min(w, 600) + 'px'; fig.style.overflowX = 'auto'; fig.classList.add('fig-scroll'); }
+      else { svg.style.minWidth = ''; fig.style.overflowX = ''; fig.classList.remove('fig-scroll'); }
+    });
+  }
+  wideFigs(); window.addEventListener('resize', wideFigs);
+
   // tabs
   document.querySelectorAll('.tabs').forEach(function (tabs) {
     var btns = tabs.querySelectorAll('button[role="tab"]');
