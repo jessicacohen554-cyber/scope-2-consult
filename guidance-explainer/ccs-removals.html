@@ -76,7 +76,7 @@ svg .txt-infer { fill: var(--infer); }
 
 <div class="content-wrap">
 <main class="wrap">
-  <div class="g-hero"><div class="eyebrow">Module 1 · Land Sector &amp; Removals Guidance</div>
+  <div class="g-hero"><div class="eyebrow">Land Sector &amp; Removals Guidance</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> LSR Standard v1.1 · LSR Guidance v1.0 · Scope 2 Guidance 2015 · Corporate Standard 2004</span><span><b>Status</b> LSR approved 01 Oct 2025, published 30 Jun 2026, effective 01 Jan 2027</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
@@ -263,7 +263,7 @@ svg .txt-infer { fill: var(--infer); }
     <div class="scrolly">
       <div class="scrolly-figure">
         <figure class="fig-frame">
-          <svg viewBox="0 0 480 410" role="img" aria-label="Flow of CO2 from a fossil power plant: uncaptured CO2 leaves the stack; captured CO2 passes through capture and compression, transport, an injection site and into a geologic reservoir, with a branch where oil and gas are produced by enhanced oil recovery. Labels give the scope in which the generator (G) and the power buyer (B) report each stage. Nothing is drawn as a negative emission.">
+          <svg class="fig-d" viewBox="0 0 480 410" role="img" aria-label="Flow of CO2 from a fossil power plant: uncaptured CO2 leaves the stack; captured CO2 passes through capture and compression, transport, an injection site and into a geologic reservoir, with a branch where oil and gas are produced by enhanced oil recovery. Labels give the scope in which the generator (G) and the power buyer (B) report each stage. Nothing is drawn as a negative emission.">
             <defs>
               <marker id="arS" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
               <marker id="arC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-capture"/></marker>
@@ -322,6 +322,66 @@ svg .txt-infer { fill: var(--infer); }
             <text x="270" y="244" text-anchor="middle" class="t-sm muted">G = generator</text>
             <text x="270" y="260" text-anchor="middle" class="t-sm muted">B = power buyer</text>
             <text x="270" y="276" text-anchor="middle" class="t-sm muted">cat = scope 3 category</text>
+          </svg>
+          <svg class="fig-m" viewBox="0 0 360 300" role="img" aria-label="Flow of CO2 from a fossil power plant: uncaptured CO2 leaves the stack; captured CO2 passes through capture and compression, transport, an injection site and into a geologic reservoir, with a branch where oil and gas are produced by enhanced oil recovery. Labels give the scope in which the generator (G) and the power buyer (B) report each stage. Nothing is drawn as a negative emission.">
+            <defs>
+              <marker id="arS-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+              <marker id="arC-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-capture"/></marker>
+              <marker id="arF-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="fill-fossil"/></marker>
+            </defs>
+            <rect x="0" y="0" width="360" height="20" rx="5" class="air"/>
+            <text x="8" y="14" font-size="12" class="muted">Atmosphere</text>
+            <g data-step="0">
+              <rect x="118" y="26" width="12" height="10" class="node"/>
+              <rect x="4" y="36" width="150" height="54" rx="7" class="node"/>
+              <text x="79" y="54" text-anchor="middle" class="t-lg">Power plant</text>
+              <text x="79" y="70" text-anchor="middle" font-size="12" class="muted">fossil fuel burned</text>
+              <text x="79" y="85" text-anchor="middle" font-size="12">not captured: counted</text>
+              <line x1="124" y1="25" x2="124" y2="5" class="edge stroke-fossil" marker-end="url(#arF-m)"/>
+              <text x="134" y="15" font-size="12" class="txt-fossil">uncaptured CO₂</text>
+            </g>
+            <g data-step="1">
+              <line x1="154" y1="66" x2="212" y2="66" class="edge" marker-end="url(#arS-m)"/>
+              <text x="183" y="59" text-anchor="middle" font-size="12">flue gas</text>
+              <rect x="214" y="36" width="142" height="54" rx="7" class="node"/>
+              <text x="285" y="54" text-anchor="middle" class="t-lg">Capture unit</text>
+              <text x="285" y="70" text-anchor="middle" font-size="12" class="muted">+ compression</text>
+              <text x="285" y="85" text-anchor="middle" font-size="12" class="txt-capture">stored: not reported</text>
+            </g>
+            <g data-step="2">
+              <line x1="285" y1="90" x2="285" y2="107" class="edge stroke-capture" marker-end="url(#arC-m)"/>
+              <text x="293" y="103" font-size="12" class="txt-capture">CO₂</text>
+              <rect x="214" y="108" width="142" height="52" rx="7" class="node"/>
+              <text x="285" y="126" text-anchor="middle" class="t-lg">Transport</text>
+              <text x="285" y="142" text-anchor="middle" font-size="12" class="muted">pipeline or ship</text>
+              <text x="285" y="156" text-anchor="middle" font-size="12">G cat 9 · B cat 3</text>
+            </g>
+            <g data-step="3">
+              <line x1="285" y1="160" x2="285" y2="177" class="edge stroke-capture" marker-end="url(#arC-m)"/>
+              <text x="293" y="173" font-size="12" class="txt-capture">delivered</text>
+              <rect x="214" y="178" width="142" height="52" rx="7" class="node"/>
+              <text x="285" y="199" text-anchor="middle" class="t-lg">Injection site</text>
+              <text x="285" y="219" text-anchor="middle" font-size="12">G cat 12 · B cat 3</text>
+              <line x1="285" y1="230" x2="285" y2="245" class="edge stroke-capture" marker-end="url(#arC-m)"/>
+              <text x="293" y="242" font-size="12" class="txt-capture">injected</text>
+            </g>
+            <g data-step="4">
+              <rect x="4" y="246" width="352" height="52" rx="7" class="soft-storage"/>
+              <text x="180" y="263" text-anchor="middle" class="t-lg">Geologic reservoir</text>
+              <text x="180" y="279" text-anchor="middle" font-size="12">Storage operator: no scope 3 emissions for stored CO₂</text>
+              <text x="180" y="293" text-anchor="middle" font-size="12" class="muted">ongoing monitoring · losses counted the year they occur</text>
+            </g>
+            <g data-step="5">
+              <rect x="4" y="178" width="196" height="52" rx="7" class="node"/>
+              <text x="102" y="195" text-anchor="middle" class="t-lg">EOR branch</text>
+              <text x="102" y="211" text-anchor="middle" font-size="12" class="muted">oil and gas produced, then used</text>
+              <text x="102" y="225" text-anchor="middle" font-size="12">G cat 12 · 19.GS downstream</text>
+              <line x1="102" y1="246" x2="102" y2="231" class="edge" marker-end="url(#arS-m)"/>
+              <text x="110" y="242" font-size="12">produced</text>
+            </g>
+            <text x="102" y="125" text-anchor="middle" font-size="12" class="muted">G = generator</text>
+            <text x="102" y="140" text-anchor="middle" font-size="12" class="muted">B = power buyer</text>
+            <text x="102" y="155" text-anchor="middle" font-size="12" class="muted">cat = scope 3 category</text>
           </svg>
           <figcaption>Captured fossil CO<sub>2</sub> leaves the generator’s scope 1 and the buyer’s scope 2 as a non-emission, never as a negative number. Everything downstream of the capture facility moves into scope 3. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance §14.4.1.4, Table 14.5</a></figcaption>
         </figure>
@@ -452,7 +512,7 @@ svg .txt-infer { fill: var(--infer); }
         <button data-value="out" aria-pressed="false">Pool no longer in boundary</button>
       </div>
       <figure class="fig-frame">
-        <svg viewBox="0 0 400 160" role="img" aria-label="A loss of previously reported captured CO2 from geologic storage is reported in the year it occurs, as fossil fuel and industrial emissions if the pool is in the inventory boundary, or as a reversal of CO2 capture with geologic storage if it is not.">
+        <svg class="fig-d" viewBox="0 0 400 160" role="img" aria-label="A loss of previously reported captured CO2 from geologic storage is reported in the year it occurs, as fossil fuel and industrial emissions if the pool is in the inventory boundary, or as a reversal of CO2 capture with geologic storage if it is not.">
           <defs><marker id="arL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
           <rect x="6" y="24" width="132" height="112" rx="8" class="soft-storage"/>
           <text x="72" y="62" text-anchor="middle" class="t-lg">Previously</text>
@@ -475,6 +535,26 @@ svg .txt-infer { fill: var(--infer); }
             <text x="324" y="76" text-anchor="middle" class="t-lg">CO₂ capture with</text>
             <text x="324" y="94" text-anchor="middle" class="t-lg">geologic storage</text>
             <text x="324" y="118" text-anchor="middle" class="t muted">pool left boundary</text>
+          </g>
+        </svg>
+        <svg class="fig-m" viewBox="0 0 360 204" role="img" aria-label="A loss of previously reported captured CO2 from geologic storage is reported in the year it occurs, as fossil fuel and industrial emissions if the pool is in the inventory boundary, or as a reversal of CO2 capture with geologic storage if it is not.">
+          <defs><marker id="arL-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+          <rect x="4" y="4" width="352" height="60" rx="8" class="soft-storage"/>
+          <text x="180" y="28" text-anchor="middle" class="t-lg">Previously reported captured CO₂</text>
+          <text x="180" y="50" text-anchor="middle" font-size="13">in storage</text>
+          <line x1="90" y1="64" x2="90" y2="118" class="edge" marker-end="url(#arL-m)"/>
+          <text x="106" y="87" font-size="13">loss, booked the year</text>
+          <text x="106" y="104" font-size="13">it occurs</text>
+          <rect x="4" y="120" width="352" height="80" rx="8" class="node"/>
+          <g data-m="in">
+            <text x="180" y="144" text-anchor="middle" class="t-lg">Fossil fuel and industrial</text>
+            <text x="180" y="162" text-anchor="middle" class="t-lg">emissions</text>
+            <text x="180" y="186" text-anchor="middle" font-size="13" class="muted">physical inventory</text>
+          </g>
+          <g data-m="out">
+            <text x="180" y="144" text-anchor="middle" class="t-lg">Reversals of CO₂ capture</text>
+            <text x="180" y="162" text-anchor="middle" class="t-lg">with geologic storage</text>
+            <text x="180" y="186" text-anchor="middle" font-size="13" class="muted">pool left boundary</text>
           </g>
         </svg>
         <figcaption><span data-mode-show="in">In boundary: the loss returns to the inventory as an ordinary fossil emission. Fugitive CO<sub>2</sub> is also shown under “gross CO<sub>2</sub> fluxes”, separately from the physical inventory. <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1, p.81</a></span><span data-mode-show="out" hidden>Out of boundary: captured CO<sub>2</sub> can be reversed, not only removals. A reversal is “An emission from a carbon pool that stores carbon associated with a removal or captured CO<sub>2</sub> that was previously reported by the reporting company, and that is no longer within the inventory boundary.” <a class="cite inforce" href="sources.html#r1-s2">LSR Standard v1.1 glossary, p.120</a></span></figcaption>
@@ -522,7 +602,7 @@ svg .txt-infer { fill: var(--infer); }
     </div>
 
     <figure class="fig-frame">
-      <svg viewBox="0 0 480 272" role="img" aria-label="Three destinations for captured fossil CO2: dedicated geologic storage, which can be not reported if the geologic storage requirements are met; geologic storage with enhanced oil recovery, which is allowed but requires counting downstream oil and gas emissions; and products and other uses, which are temporary storage and not a geologic storage pathway.">
+      <svg class="fig-d" viewBox="0 0 480 272" role="img" aria-label="Three destinations for captured fossil CO2: dedicated geologic storage, which can be not reported if the geologic storage requirements are met; geologic storage with enhanced oil recovery, which is allowed but requires counting downstream oil and gas emissions; and products and other uses, which are temporary storage and not a geologic storage pathway.">
         <defs><marker id="arU" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
         <rect x="12" y="108" width="120" height="56" rx="8" class="node"/>
         <text x="72" y="132" text-anchor="middle" class="t-lg">Captured</text>
@@ -545,6 +625,29 @@ svg .txt-infer { fill: var(--infer); }
         <text x="334" y="208" text-anchor="middle" class="t-lg">Products and other uses</text>
         <text x="334" y="227" text-anchor="middle" class="t">temporary storage, then re-release;</text>
         <text x="334" y="243" text-anchor="middle" class="t">not a geologic storage pathway</text>
+      </svg>
+      <svg class="fig-m" viewBox="0 0 360 308" role="img" aria-label="Three destinations for captured fossil CO2: dedicated geologic storage, which can be not reported if the geologic storage requirements are met; geologic storage with enhanced oil recovery, which is allowed but requires counting downstream oil and gas emissions; and products and other uses, which are temporary storage and not a geologic storage pathway.">
+        <defs><marker id="arU-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect x="4" y="4" width="190" height="42" rx="8" class="node"/>
+        <text x="99" y="30" text-anchor="middle" class="t-lg">Captured fossil CO₂</text>
+        <path d="M24,46 V101 H78" class="edge" marker-end="url(#arU-m)"/>
+        <text x="32" y="95" font-size="13">inject</text>
+        <path d="M24,101 V185 H78" class="edge" marker-end="url(#arU-m)"/>
+        <text x="32" y="179" font-size="13">EOR</text>
+        <path d="M24,185 V269 H78" class="edge dash" marker-end="url(#arU-m)"/>
+        <text x="32" y="263" font-size="13">use</text>
+        <rect x="80" y="66" width="276" height="70" rx="8" class="soft-storage"/>
+        <text x="218" y="88" text-anchor="middle" class="t-lg">Dedicated geologic storage</text>
+        <text x="218" y="107" text-anchor="middle" font-size="12">not reported as an emission if the</text>
+        <text x="218" y="123" text-anchor="middle" font-size="12">geologic-storage requirements are met</text>
+        <rect x="80" y="150" width="276" height="70" rx="8" class="node"/>
+        <text x="218" y="172" text-anchor="middle" class="t-lg">Geologic storage with EOR</text>
+        <text x="218" y="191" text-anchor="middle" font-size="12">permitted; downstream oil and gas</text>
+        <text x="218" y="207" text-anchor="middle" font-size="12">emissions counted, cradle to grave (19.GS)</text>
+        <rect x="80" y="234" width="276" height="70" rx="8" class="node-soft"/>
+        <text x="218" y="256" text-anchor="middle" class="t-lg">Products and other uses</text>
+        <text x="218" y="275" text-anchor="middle" font-size="12">temporary storage, then re-release;</text>
+        <text x="218" y="291" text-anchor="middle" font-size="12">not a geologic storage pathway</text>
       </svg>
       <figcaption>Where captured fossil CO<sub>2</sub> goes decides how it is reported. Only the two geologic routes are captured CO<sub>2</sub> pathways with geologic storage; EOR carries the burden of the hydrocarbons it produces. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance p.351, Box 14.1 p.353</a> <a class="cite inforce" href="sources.html#r1-s2">LSR Standard 19.GS</a></figcaption>
     </figure>

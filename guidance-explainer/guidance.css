@@ -126,7 +126,7 @@ small, .small { font-size: 0.86rem; color: var(--text-secondary); }
   .scrolly-figure .fig-frame { max-height: 46vh; overflow: hidden; display: grid; place-items: center; }
   .scrolly-figure .fig-frame svg { max-height: calc(46vh - 20px); width: auto; max-width: 100%; margin: 0 auto; }
 }
-.wrap svg text { font-family: var(--font-body); fill: currentColor; }
+.wrap svg :where(text) { font-family: var(--font-body); fill: currentColor; }
 .wrap svg .mono { font-family: var(--font-data); }
 .wrap svg .muted { fill: var(--text-muted); }
 .wrap svg .node { fill: var(--bg-card); stroke: var(--text-secondary); stroke-width: 1.2; }

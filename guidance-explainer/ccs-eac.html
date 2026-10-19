@@ -70,7 +70,7 @@ svg .txt-infer { fill: var(--infer); }
 
 <div class="content-wrap">
 <main class="wrap">
-  <div class="g-hero"><div class="eyebrow">Module 1 · Market instruments</div>
+  <div class="g-hero"><div class="eyebrow">CCS as a market instrument</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> Scope 2 Guidance 2015 · LSR Guidance v1.0 · Scope 2 consultation draft 2025 · TWG #23 and MBM Update, Oct 2026 · 45V, RED, EnergyTag, registries, NorthBridge</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
@@ -110,7 +110,7 @@ svg .txt-infer { fill: var(--infer); }
     </div>
 
     <figure class="fig-frame">
-      <svg viewBox="0 0 480 300" role="img" aria-label="One megawatt-hour splits into the electricity and a certificate. If sold separately the electricity is null power, assigned residual mix emissions. The certificate carries the GHG emission rate, which is required for a claim, plus resource type, location, vintage and facility age.">
+      <svg class="fig-d" viewBox="0 0 480 300" role="img" aria-label="One megawatt-hour splits into the electricity and a certificate. If sold separately the electricity is null power, assigned residual mix emissions. The certificate carries the GHG emission rate, which is required for a claim, plus resource type, location, vintage and facility age.">
         <defs><marker id="arB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
         <rect x="8" y="116" width="118" height="68" rx="8" class="node"/>
         <text x="67" y="144" text-anchor="middle" class="t-lg">1 MWh</text>
@@ -136,6 +136,32 @@ svg .txt-infer { fill: var(--infer); }
         <text x="222" y="243" class="t">Vintage, when generated · QC4</text>
         <rect x="212" y="256" width="248" height="26" rx="5" class="node-soft"/>
         <text x="222" y="273" class="t">Facility age · disclose (Table 8.1)</text>
+      </svg>
+      <svg class="fig-m" viewBox="0 0 360 364" role="img" aria-label="One megawatt-hour splits into the electricity and a certificate. If sold separately the electricity is null power, assigned residual mix emissions. The certificate carries the GHG emission rate, which is required for a claim, plus resource type, location, vintage and facility age.">
+        <defs><marker id="arB-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+        <rect x="90" y="4" width="180" height="52" rx="8" class="node"/>
+        <text x="180" y="25" text-anchor="middle" class="t-lg">1 MWh</text>
+        <text x="180" y="44" text-anchor="middle" font-size="13">generated at a facility</text>
+        <path d="M90,30 H30 V78" class="edge" marker-end="url(#arB-m)"/>
+        <text x="60" y="22" text-anchor="middle" font-size="13">energy</text>
+        <path d="M270,30 H340 V160" class="edge" marker-end="url(#arB-m)"/>
+        <text x="305" y="22" text-anchor="middle" font-size="13">attributes</text>
+        <rect x="4" y="80" width="318" height="64" rx="8" class="node-soft"/>
+        <text x="163" y="100" text-anchor="middle" class="t-lg">Electricity</text>
+        <text x="163" y="119" text-anchor="middle" font-size="13">if sold unbundled: null power,</text>
+        <text x="163" y="135" text-anchor="middle" font-size="13">assigned residual mix emissions</text>
+        <rect x="4" y="162" width="352" height="198" rx="8" class="node"/>
+        <text x="180" y="184" text-anchor="middle" class="t-lg">Certificate or contract</text>
+        <rect x="14" y="194" width="332" height="28" rx="5" class="soft-inforce"/>
+        <text x="24" y="213" font-size="13"><tspan font-weight="600">GHG emission rate</tspan> · required (QC1)</text>
+        <rect x="14" y="226" width="332" height="28" rx="5" class="node-soft"/>
+        <text x="24" y="245" font-size="13">Resource type / technology · disclose</text>
+        <rect x="14" y="258" width="332" height="28" rx="5" class="node-soft"/>
+        <text x="24" y="277" font-size="13">Location · disclose; same market (QC5)</text>
+        <rect x="14" y="290" width="332" height="28" rx="5" class="node-soft"/>
+        <text x="24" y="309" font-size="13">Vintage, when generated · QC4</text>
+        <rect x="14" y="322" width="332" height="28" rx="5" class="node-soft"/>
+        <text x="24" y="341" font-size="13">Facility age · disclose (Table 8.1)</text>
       </svg>
       <figcaption>The emission rate is the one attribute a scope 2 claim cannot do without. Technology, location and facility age are recommended disclosures; vintage and market are Quality Criteria. Nothing in the bundle is specific to renewables or to capture. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015 glossary pp.99, 105; Table 7.1 p.60; Table 8.1 p.68; p.64</a></figcaption>
     </figure>
@@ -173,7 +199,7 @@ svg .txt-infer { fill: var(--infer); }
         <button data-value="post" aria-pressed="false">Post-capture rate (inference)</button>
       </div>
       <figure class="fig-frame">
-        <svg viewBox="0 0 480 224" role="img" aria-label="Two readings of the direct emission rate for a CCS plant, with no values. Gross: all combustion CO2 per MWh. Post-capture: only uncaptured stack CO2 and capture-site fugitive emissions; captured and stored CO2 is not reported. The split between emitted and stored is illustrative.">
+        <svg class="fig-d" viewBox="0 0 480 224" role="img" aria-label="Two readings of the direct emission rate for a CCS plant, with no values. Gross: all combustion CO2 per MWh. Post-capture: only uncaptured stack CO2 and capture-site fugitive emissions; captured and stored CO2 is not reported. The split between emitted and stored is illustrative.">
           <defs><linearGradient id="fz" x1="0" x2="1" y1="0" y2="0"><stop offset="0" class="st-fossil"/><stop offset="1" class="st-soft"/></linearGradient></defs>
           <text x="20" y="28" class="t muted">CO₂ per MWh attributed to the certificate (illustrative, no values)</text>
           <g data-m="gross">
@@ -196,6 +222,37 @@ svg .txt-infer { fill: var(--infer); }
             <text x="30" y="172" class="t">Transport, injection, off-site fugitive → buyer scope 3 cat 3</text>
           </g>
           <text x="460" y="210" text-anchor="end" class="t txt-gap">÷ MWh: gross or net of capture load? (gap)</text>
+        </svg>
+        <svg class="fig-m" viewBox="0 0 360 272" role="img" aria-label="Two readings of the direct emission rate for a CCS plant, with no values. Gross: all combustion CO2 per MWh. Post-capture: only uncaptured stack CO2 and capture-site fugitive emissions; captured and stored CO2 is not reported. The split between emitted and stored is illustrative.">
+          <defs><linearGradient id="fz-m" x1="0" x2="1" y1="0" y2="0"><stop offset="0" class="st-fossil"/><stop offset="1" class="st-soft"/></linearGradient></defs>
+          <text x="8" y="16" font-size="13" class="muted">CO₂ per MWh attributed to the certificate</text>
+          <text x="8" y="33" font-size="13" class="muted">(illustrative, no values)</text>
+          <g data-m="gross">
+            <rect x="8" y="44" width="344" height="44" rx="4" class="fill-fossil"/>
+            <text x="8" y="110" font-size="13">All combustion CO₂, including tonnes</text>
+            <text x="8" y="127" font-size="13">later captured and stored</text>
+            <text x="8" y="150" font-size="13" class="muted">Table 6.3 says “combustion-only (direct)”;</text>
+            <text x="8" y="167" font-size="13" class="muted">it never mentions capture</text>
+            <rect x="8" y="184" width="344" height="46" rx="4" class="node-soft"/>
+            <text x="18" y="203" font-size="13"><tspan class="txt-infer" font-weight="600">Inference:</tspan> LSR would not report</text>
+            <text x="18" y="221" font-size="13">the stored tonnes at all</text>
+          </g>
+          <g data-m="post">
+            <rect x="8" y="44" width="82" height="44" rx="4" class="fill-fossil"/>
+            <rect x="90" y="44" width="46" height="44" fill="url(#fz-m)"/>
+            <rect x="136" y="44" width="216" height="44" rx="4" class="soft-accent stroke-capture dash"/>
+            <text x="244" y="62" text-anchor="middle" font-size="13">captured and stored:</text>
+            <text x="244" y="79" text-anchor="middle" font-size="13">not reported, if GS rules met</text>
+            <text x="8" y="108" font-size="13" class="txt-fossil">Rate = emitted CO₂ only:</text>
+            <text x="8" y="124" font-size="13" class="txt-fossil">uncaptured stack CO₂</text>
+            <text x="8" y="140" font-size="13" class="txt-fossil">+ fugitive captured CO₂ at the capture facility</text>
+            <text x="8" y="160" font-size="13" class="muted">Shaded boundary: no GHGP source</text>
+            <text x="8" y="176" font-size="13" class="muted">gives a capture rate</text>
+            <rect x="8" y="188" width="344" height="46" rx="4" class="node-soft"/>
+            <text x="18" y="207" font-size="13">Transport, injection, off-site fugitive</text>
+            <text x="18" y="225" font-size="13">→ buyer scope 3 cat 3</text>
+          </g>
+          <text x="352" y="260" text-anchor="end" font-size="13" class="txt-gap">÷ MWh: gross or net of capture load? (gap)</text>
         </svg>
         <figcaption><span data-mode-show="gross">The gross reading puts every tonne of combustion CO<sub>2</sub> on the certificate. The 2015 text does not exclude it, because it never addresses capture. <a class="cite inforce" href="sources.html#r1-s3">Scope 2 Guidance 2015, Table 6.3 p.48</a></span><span data-mode-show="post" hidden>The post-capture reading matches LSR’s buyer rule: no scope 2 emissions for captured and stored CO<sub>2</sub>, fugitive at the facility in scope 2, the rest of the pathway in scope 3 category 3. It is an inference, not a GHG Protocol rule. <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance pp.359–360</a></span></figcaption>
       </figure>
@@ -302,7 +359,7 @@ svg .txt-infer { fill: var(--infer); }
     </div>
 
     <figure class="fig-frame">
-      <svg viewBox="0 0 480 412" role="img" aria-label="Draft two-method panel. Method 1 incorporates hourly matching, deliverability and an age limit on eligible resources; Method 2 keeps the 2015 rules with no incrementality requirement. Neither names CCS. Whether a CCS retrofit fits the draft design list is a gap. Below, on a separate third-party track, the US 45V rule treats CCS placed in service within 36 months as incremental.">
+      <svg class="fig-d" viewBox="0 0 480 412" role="img" aria-label="Draft two-method panel. Method 1 incorporates hourly matching, deliverability and an age limit on eligible resources; Method 2 keeps the 2015 rules with no incrementality requirement. Neither names CCS. Whether a CCS retrofit fits the draft design list is a gap. Below, on a separate third-party track, the US 45V rule treats CCS placed in service within 36 months as incremental.">
         <text x="12" y="20" class="t txt-rev">Draft direction, Sep–Oct 2026 · under development, not adopted</text>
         <rect x="150" y="32" width="160" height="28" rx="5" class="soft-revision"/>
         <text x="230" y="51" text-anchor="middle" class="t-lg">Method 1</text>
@@ -337,6 +394,43 @@ svg .txt-infer { fill: var(--infer); }
         <text x="24" y="369" class="t">US 45V final rule (Jan 2025): if CCS equipment was placed in</text>
         <text x="24" y="384" class="t">service ≤ 36 months before the hydrogen plant, its EACs count</text>
         <text x="24" y="399" class="t">as incremental; such EACs carry a non-zero emissions rate</text>
+      </svg>
+      <svg class="fig-m" viewBox="0 0 360 492" role="img" aria-label="Draft two-method panel. Method 1 incorporates hourly matching, deliverability and an age limit on eligible resources; Method 2 keeps the 2015 rules with no incrementality requirement. Neither names CCS. Whether a CCS retrofit fits the draft design list is a gap. Below, on a separate third-party track, the US 45V rule treats CCS placed in service within 36 months as incremental.">
+        <text x="8" y="16" font-size="13" class="txt-rev">Draft direction, Sep–Oct 2026</text>
+        <text x="8" y="32" font-size="13" class="txt-rev">under development, not adopted</text>
+        <rect x="4" y="42" width="174" height="28" rx="5" class="soft-revision"/>
+        <text x="91" y="61" text-anchor="middle" class="t-lg">Method 1</text>
+        <rect x="182" y="42" width="174" height="28" rx="5" class="node-soft"/>
+        <text x="269" y="61" text-anchor="middle" class="t-lg">Method 2</text>
+        <text x="8" y="91" font-size="13" font-weight="600">Hourly matching</text>
+        <text x="91" y="109" text-anchor="middle" font-size="13">incorporated</text>
+        <text x="269" y="109" text-anchor="middle" font-size="13">2015 rules kept</text>
+        <line x1="4" y1="120" x2="356" y2="120" class="edge-soft"/>
+        <text x="8" y="137" font-size="13" font-weight="600">Deliverability</text>
+        <text x="91" y="155" text-anchor="middle" font-size="13">incorporated</text>
+        <text x="269" y="155" text-anchor="middle" font-size="13">2015 rules kept</text>
+        <line x1="4" y1="166" x2="356" y2="166" class="edge-soft"/>
+        <text x="8" y="183" font-size="13" font-weight="600">Incrementality / vintage</text>
+        <text x="91" y="201" text-anchor="middle" font-size="13">“Age limit on eligible</text>
+        <text x="91" y="217" text-anchor="middle" font-size="13">resources for voluntary</text>
+        <text x="91" y="233" text-anchor="middle" font-size="13">claims (shall)”</text>
+        <text x="269" y="217" text-anchor="middle" font-size="13">“No requirement”</text>
+        <line x1="4" y1="244" x2="356" y2="244" class="edge-soft"/>
+        <text x="8" y="261" font-size="13" font-weight="600">Technology rules</text>
+        <text x="91" y="279" text-anchor="middle" font-size="13">none; CCS not named</text>
+        <text x="269" y="279" text-anchor="middle" font-size="13">none; CCS not named</text>
+        <line x1="4" y1="290" x2="356" y2="290" class="edge-soft"/>
+        <text x="8" y="312" font-size="13" class="txt-gap">Open question</text>
+        <rect x="4" y="320" width="352" height="62" rx="6" class="soft-gap stroke-gap dash"/>
+        <text x="14" y="339" font-size="13">Design list: “new build, repowering, clean</text>
+        <text x="14" y="355" font-size="13">conversion, upgrade, or life extension”.</text>
+        <text x="14" y="371" font-size="13">Retrofit? Gap</text>
+        <rect x="4" y="394" width="352" height="94" rx="6" class="soft-third stroke-third dash"/>
+        <text x="14" y="413" font-size="13" class="txt-third">Separate track · third party · not GHG Protocol</text>
+        <text x="14" y="431" font-size="13">US 45V final rule (Jan 2025): if CCS equipment</text>
+        <text x="14" y="447" font-size="13">was placed in service ≤ 36 months before the</text>
+        <text x="14" y="463" font-size="13">hydrogen plant, its EACs count as incremental;</text>
+        <text x="14" y="479" font-size="13">such EACs carry a non-zero emissions rate</text>
       </svg>
       <figcaption>Method 1 adds the test a CCS retrofit would have to pass, but the draft does not say whether retrofit capture qualifies. 45V answers that question for hydrogen tax credits only. <a class="cite revision" href="sources.html#r1-s9">MBM Update p.2</a> <a class="cite revision" href="sources.html#r1-s11">TWG #23 deck pp.34, 40</a> <a class="cite third" href="sources.html#r1-t1">45V final rule, 90 FR 2259, 2318</a></figcaption>
     </figure>
@@ -396,7 +490,7 @@ svg .txt-infer { fill: var(--infer); }
     </div>
 
     <figure class="fig-frame">
-      <svg viewBox="0 0 480 236" role="img" aria-label="Boundary comparison. The NorthBridge proposal puts generation and capture, transport and storage emissions into one scope 2 rate. The LSR Guidance buyer rule puts capture-facility fugitive emissions in scope 2 and the rest of the pathway in scope 3 category 3.">
+      <svg class="fig-d" viewBox="0 0 480 236" role="img" aria-label="Boundary comparison. The NorthBridge proposal puts generation and capture, transport and storage emissions into one scope 2 rate. The LSR Guidance buyer rule puts capture-facility fugitive emissions in scope 2 and the rest of the pathway in scope 3 category 3.">
         <rect x="8" y="14" width="148" height="40" rx="6" class="node"/>
         <text x="82" y="39" text-anchor="middle" class="t">Generation + capture</text>
         <rect x="166" y="14" width="148" height="40" rx="6" class="node"/>
@@ -413,6 +507,27 @@ svg .txt-infer { fill: var(--infer); }
         <rect x="166" y="162" width="306" height="62" rx="6" class="soft-inforce"/>
         <text x="319" y="186" text-anchor="middle" class="t-lg">scope 3, category 3</text>
         <text x="319" y="204" text-anchor="middle" class="t">other pathway processes, off-site fugitive</text>
+      </svg>
+      <svg class="fig-m" viewBox="0 0 360 222" role="img" aria-label="Boundary comparison. The NorthBridge proposal puts generation and capture, transport and storage emissions into one scope 2 rate. The LSR Guidance buyer rule puts capture-facility fugitive emissions in scope 2 and the rest of the pathway in scope 3 category 3.">
+        <rect x="4" y="4" width="112" height="46" rx="6" class="node"/>
+        <text x="60" y="23" text-anchor="middle" font-size="13">Generation</text>
+        <text x="60" y="40" text-anchor="middle" font-size="13">+ capture</text>
+        <rect x="124" y="4" width="112" height="46" rx="6" class="node"/>
+        <text x="180" y="32" text-anchor="middle" font-size="13">CO₂ transport</text>
+        <rect x="244" y="4" width="112" height="46" rx="6" class="node"/>
+        <text x="300" y="32" text-anchor="middle" font-size="13">CO₂ storage</text>
+        <text x="4" y="72" font-size="13" class="txt-third">NorthBridge proposal (third party)</text>
+        <rect x="4" y="80" width="352" height="40" rx="6" class="soft-third"/>
+        <text x="180" y="105" text-anchor="middle" class="t-lg">one scope 2 rate ÷ Net MWh</text>
+        <text x="4" y="144" font-size="13" class="txt-capture">LSR Guidance buyer rule (in force 2027)</text>
+        <rect x="4" y="152" width="112" height="66" rx="6" class="soft-inforce"/>
+        <text x="60" y="174" text-anchor="middle" class="t-lg">scope 2</text>
+        <text x="60" y="192" text-anchor="middle" font-size="13">fugitive at</text>
+        <text x="60" y="208" text-anchor="middle" font-size="13">facility</text>
+        <rect x="124" y="152" width="232" height="66" rx="6" class="soft-inforce"/>
+        <text x="240" y="174" text-anchor="middle" class="t-lg">scope 3, category 3</text>
+        <text x="240" y="192" text-anchor="middle" font-size="13">other pathway processes,</text>
+        <text x="240" y="208" text-anchor="middle" font-size="13">off-site fugitive</text>
       </svg>
       <figcaption>The same emissions, two homes. NorthBridge anticipates the clash: if GHG Protocol guidance puts some of these emissions outside scope 2, “the emissions conveyed on a CCS EAC should be allocated between the appropriate scopes”, and “the EAC may bear a Scope 2 emission rate and a Scope 3 emission rate.” <a class="cite third" href="sources.html#r1-t7">NorthBridge p.18, fn.15</a> <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance pp.359–360</a></figcaption>
     </figure>
