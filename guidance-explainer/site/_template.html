@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PAGE TITLE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* page-specific styles only (layouts unique to this page). Use tokens from site.css. */
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
+    <div class="nav-links">
+      <a href="index.html">Start</a>
+      <a href="ccs-removals.html">CCS: removal or reduction?</a>
+      <a href="ccs-eac.html">CCS-backed EACs</a>
+      <a href="scope2-update.html">Oct 2026 update</a>
+      <a href="governance.html">Governance &amp; TWGs</a>
+      <a href="storage-mechanics.html">Storage ledger</a>
+      <a href="storage-revision.html">Storage &amp; incrementality</a>
+      <a href="consequential-basics.html">Impact accounting</a>
+      <a href="consequential-ccus.html">CCUS impact 2×2</a>
+      <a href="sources.html">Sources</a>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Module N · Theme</div>
+    <h1>Page title as a question or claim</h1>
+    <p class="lede">One or two sentences: what the reader will be able to do after this page.</p>
+    <div class="hero-meta"><span><b>Reading time</b> ~8 min</span><span><b>Sources</b> 2015 Scope 2 Guidance · LSR Guidance v1.0</span></div>
+    <div class="tier-legend" aria-label="Source tiers">
+      <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
+      <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
+      <span><i style="background:var(--third)"></i>Third party</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="On this page">
+    <a href="#s1"><span class="k">1</span>Section one</a>
+    <a href="#s2"><span class="k">2</span>Section two</a>
+  </nav>
+
+  <section class="section" id="s1">
+    <div class="section-head">
+      <div class="eyebrow">1 · Eyebrow</div>
+      <h2>Section heading</h2>
+      <p>Subtitle sentence.</p>
+    </div>
+
+    <div class="prose">
+      <p>Body text with a citation chip after the sentence it supports.
+        <a class="cite inforce" href="sources.html#s2g-2015">Scope 2 Guidance 2015 §7.1, p.60</a></p>
+    </div>
+
+    <!-- verbatim quote -->
+    <div class="quote">
+      <blockquote><p>“Verbatim text from the source.”</p></blockquote>
+      <div class="who">Scope 2 Guidance (2015), §7.1, p.60 · <a class="cite inforce" href="sources.html#s2g-2015">source</a></div>
+    </div>
+
+    <!-- definition -->
+    <div class="defn"><div class="term">Term</div><div class="text">“Verbatim definition.”</div><div class="who small">Where defined · <a class="cite revision" href="sources.html#s2-draft-2025">Scope 2 consultation draft (2025)</a></div></div>
+
+    <!-- callouts -->
+    <div class="callout inference"><div class="label">Inference</div><p>Reasoned from the quoted material; not stated by any source.</p></div>
+    <div class="callout gap"><div class="label">Gap</div><p>No source addresses this. State the question precisely.</p></div>
+    <div class="callout signal"><div class="label">Signal of direction</div><p>Dated revision material pointing one way. <a class="cite revision" href="sources.html#x">S2 TWG #23, 6 Oct 2026</a></p></div>
+    <div class="callout key"><div class="label">Takeaway</div><p>The one sentence to remember.</p></div>
+
+    <!-- scrollytelling: figure pins, steps scroll. Elements inside the SVG with data-step="i" or "i-j" or "i,j" are full-opacity when active, dimmed otherwise; data-show="i" toggles visibility. -->
+    <div class="scrolly">
+      <div class="scrolly-figure">
+        <figure class="fig-frame">
+          <svg viewBox="0 0 600 360" role="img" aria-label="What the figure shows">
+            <rect x="20" y="40" width="160" height="60" rx="8" class="node"/>
+            <text x="100" y="75" text-anchor="middle" class="t">Node A</text>
+            <g data-step="1-2"><line x1="180" y1="70" x2="300" y2="70" class="edge" marker-end="url(#arr)"/><text x="240" y="62" text-anchor="middle" class="t-sm">labels the arrow</text></g>
+            <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+          </svg>
+          <figcaption>Caption stating the claim the figure makes.</figcaption>
+        </figure>
+      </div>
+      <div class="scrolly-steps">
+        <div class="step"><div class="step-card"><div class="n">STEP 1</div><h3>Short heading</h3><p>Two to four sentences.</p></div></div>
+        <div class="step"><div class="step-card"><div class="n">STEP 2</div><h3>Short heading</h3><p>…</p></div></div>
+      </div>
+    </div>
+
+    <!-- segmented toggle: sets data-mode on targets; children with data-mode-show="a,b" are shown for those modes -->
+    <div class="seg" data-target="#cmp" role="group" aria-label="View">
+      <button data-value="now" aria-pressed="true">2015 guidance</button>
+      <button data-value="rev" aria-pressed="false">Proposed revision</button>
+    </div>
+    <div id="cmp" data-mode="now"><p data-mode-show="now">Shown for 2015.</p><p data-mode-show="rev" hidden>Shown for revision.</p></div>
+
+    <!-- stepper animation: frames inside #ledger with data-frame="i"; captions with data-frame-caption="i" siblings of .stepper -->
+    <div>
+      <figure class="fig-frame" id="ledger"><svg viewBox="0 0 600 300" role="img" aria-label="…"><g data-frame="0">…</g><g data-frame="1-2">…</g></svg></figure>
+      <div class="stepper" data-target="#ledger" data-frames="3"><button class="btn prev">Back</button><button class="btn primary next">Next</button><span class="count"></span></div>
+      <p data-frame-caption="0">Frame 0 caption.</p><p data-frame-caption="1" hidden>Frame 1 caption.</p><p data-frame-caption="2" hidden>Frame 2 caption.</p>
+    </div>
+
+    <!-- matrix 2x2 with detail -->
+    <div>
+      <div class="matrix">
+        <div class="hd"></div><div class="hd col">Column A</div><div class="hd col">Column B</div>
+        <div class="hd">Row 1</div>
+        <button class="cell" data-detail="a1" aria-pressed="true"><b>Title</b><small>one line</small></button>
+        <button class="cell" data-detail="b1" aria-pressed="false"><b>Title</b><small>one line</small></button>
+        <div class="hd">Row 2</div>
+        <button class="cell" data-detail="a2" aria-pressed="false"><b>Title</b><small>one line</small></button>
+        <button class="cell" data-detail="b2" aria-pressed="false"><b>Title</b><small>one line</small></button>
+      </div>
+      <div class="matrix-detail">
+        <div class="card" data-detail-for="a1">…</div><div class="card" data-detail-for="b1" hidden>…</div>
+        <div class="card" data-detail-for="a2" hidden>…</div><div class="card" data-detail-for="b2" hidden>…</div>
+      </div>
+    </div>
+
+    <!-- checklist -->
+    <div class="checklist">
+      <div class="check pass"><div class="mark">✓</div><div class="body"><b>Criterion</b><span>How it applies.</span></div></div>
+      <div class="check fail"><div class="mark">✕</div><div class="body"><b>Criterion</b><span>…</span></div></div>
+      <div class="check open"><div class="mark">?</div><div class="body"><b>Criterion</b><span>Silent / open.</span></div></div>
+    </div>
+
+    <!-- timeline -->
+    <div class="timeline">
+      <div class="tl revision"><div class="when">2026-10-16</div><div class="what">Event</div><div class="why">Why it matters.</div></div>
+      <div class="tl future"><div class="when">Q2 2027 (planned)</div><div class="what">Event</div></div>
+    </div>
+
+    <!-- table -->
+    <div class="scroll-x"><table class="tbl"><thead><tr><th>Col</th><th class="num">n</th></tr></thead><tbody><tr><td>…</td><td class="num">1</td></tr></tbody></table></div>
+  </section>
+
+  <nav class="pager" aria-label="Pages">
+    <a class="prev" href="index.html"><span class="dir">Previous</span><span class="ttl">Start here</span></a>
+    <a class="next" href="ccs-eac.html"><span class="dir">Next</span><span class="ttl">CCS-backed EACs</span></a>
+  </nav>
+  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
+</main>
+<script src="site.js"></script>
+</body>
+</html>
