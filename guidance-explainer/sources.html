@@ -24,31 +24,33 @@
 <script src="js/scroll-observer.js"></script>
 <script src="js/shared-footer.js"></script>
 <style>
-.tbl td:first-child { white-space: nowrap; } tr:target td { background: var(--accent-soft); }
+/* page-specific styles only (layouts unique to this page). Use tokens from shared.css / guidance.css. */
 </style>
 </head>
 <body>
 <header class="header" id="pageHeader">
   <h1>Sources</h1>
-  <div class="subtitle">Every citation chip on the site links to a row here. Each row names the document, its publisher, its date or version, and its tier. The table is generated from the four research dossiers, so it carries exactly what the pages were allowed to use.</div>
+  <div class="subtitle">Every citation chip on the site links to a row here: the document, its publisher, its date or version, and its tier.</div>
   <div class="header-accent"></div>
 </header>
 
 <div class="content-wrap">
 <main class="wrap">
-  <div class="g-hero"><div class="eyebrow">Reference · Every document behind the pages</div>
+  <div class="g-hero">
+    <div class="eyebrow">Reference</div>
     <div class="hero-meta"><span><b>Documents</b> 152</span><span><b>In force</b> 13</span><span><b>Revision</b> 112</span><span><b>Third party</b> 27</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol standards and guidance</span>
       <span><i style="background:var(--revision)"></i>Revision materials (TWG, ISB, SC, drafts, RFIs, feedback summaries, blogs)</span>
       <span><i style="background:var(--third)"></i>Third party</span>
-    </div></div>
+    </div>
+  </div>
   <section class="section" id="how">
-    <div class="section-head"><div class="eyebrow">How to read a chip</div><h2>Tiering is the method</h2><p>Pages lean on in-force GHG Protocol text first, then on revision materials from the governance repository, then on third parties. Inference and gap callouts mark where no source speaks.</p></div>
+    <div class="section-head"><div class="eyebrow">How to read a chip</div><h2>Three tiers of evidence</h2><p>Pages lean on in-force GHG Protocol text first, then on revision materials from the standards development and governance repository, then on third parties. Inference callouts mark reasoning built from quoted text; gap callouts mark questions no retrieved document answers.</p></div>
     <div class="prose"><p>A chip such as <span class="cite inforce">Scope 2 Guidance 2015 §7.1</span> means the sentence before it is supported by that document at that place. Where a dossier recorded that a document could not be retrieved, the row says so in its title.</p></div>
   </section>
   <section class="section" id="r1">
-    <div class="section-head"><div class="eyebrow">Dossier R1</div><h2>Module 1 · CCS under the removals guidance and CCS-backed EACs</h2><p>24 documents. Chip ids on the module pages are prefixed <code>r1-</code>.</p></div>
+    <div class="section-head"><div class="eyebrow">Research set R1</div><h2>CCS under the removals guidance and CCS-backed EACs</h2><p>24 documents. Chip ids on the pages are prefixed <code>r1-</code>.</p></div>
     <div class="scroll-x"><table class="tbl"><thead><tr><th>Id</th><th>Document</th><th>Publisher</th><th>Date / version</th><th>Tier</th></tr></thead><tbody>
 <tr id="r1-s1"><td class="mono">S1</td><td><a href="https://ghgprotocol.org/sites/default/files/2026-06/Land-Sector-and-Removals-Guidance-v1.0.pdf" target="_blank" rel="noopener">Land Sector and Removals Guidance, Version 1.0 (includes requirements from LSR Standard v1.1). Approved 01 Oct 2025, published 30 Jun 2026, effective 01 Jan 2027</a></td><td>GHG Protocol (WRI/WBCSD)</td><td>v1.0, June 2026</td><td><span class="cite inforce" title="[GHGP-inforce] (published; effective 2027-01-01)">In force</span></td></tr>
 <tr id="r1-s2"><td class="mono">S2</td><td><a href="https://ghgprotocol.org/sites/default/files/2026-06/Land-Sector-and-Removals-Standard-v1.1.pdf" target="_blank" rel="noopener">Land Sector and Removals Standard, Version 1.1</a></td><td>GHG Protocol</td><td>v1.1. Approved 01 Oct 2025, published 30 Jun 2026, effective 01 Jan 2027</td><td><span class="cite inforce" title="[GHGP-inforce]">In force</span></td></tr>
@@ -77,7 +79,7 @@
     </tbody></table></div>
   </section>
   <section class="section" id="r2">
-    <div class="section-head"><div class="eyebrow">Dossier R2</div><h2>Module 2 · October 2026 update, governance, working groups</h2><p>69 documents. Chip ids on the module pages are prefixed <code>r2-</code>.</p></div>
+    <div class="section-head"><div class="eyebrow">Research set R2</div><h2>October 2026 update, governance, working groups</h2><p>69 documents. Chip ids on the pages are prefixed <code>r2-</code>.</p></div>
     <div class="scroll-x"><table class="tbl"><thead><tr><th>Id</th><th>Document</th><th>Publisher</th><th>Date / version</th><th>Tier</th></tr></thead><tbody>
 <tr id="r2-s01"><td class="mono">S01</td><td><a href="https://ghgprotocol.org/blog/scope-2-market-based-method-update-2025-2026-public-consultation-current-status" target="_blank" rel="noopener">Blog: &quot;Scope 2 Market-based Method Update: From 2025-2026 Public Consultation to Current Status&quot;</a></td><td>GHG Protocol</td><td>10.16.2026</td><td><span class="cite revision" title="GHGP-revision">Revision</span></td></tr>
 <tr id="r2-s02"><td class="mono">S02</td><td>&quot;Scope 2 Market-based Method Update: From 2025-2026 Public Consultation to Current Status&quot; (PDF; footer &quot;October 16, 2026&quot;; repository label &quot;Scope 2 Market-based Method Update - 2026.10.16&quot;, listed under TWG Meeting #23) <span class="small">(…/2026-10/S2-Market-Based-Method-Update-20261006.pdf)</span></td><td>GHG Protocol</td><td>Oct 16 2026 (filename says 20261006)</td><td><span class="cite revision" title="GHGP-revision">Revision</span></td></tr>
@@ -151,7 +153,7 @@
     </tbody></table></div>
   </section>
   <section class="section" id="r3">
-    <div class="section-head"><div class="eyebrow">Dossier R3</div><h2>Module 3 · Storage under hourly accounting</h2><p>24 documents. Chip ids on the module pages are prefixed <code>r3-</code>.</p></div>
+    <div class="section-head"><div class="eyebrow">Research set R3</div><h2>Storage under hourly accounting</h2><p>24 documents. Chip ids on the pages are prefixed <code>r3-</code>.</p></div>
     <div class="scroll-x"><table class="tbl"><thead><tr><th>Id</th><th>Document</th><th>Publisher</th><th>Date / version</th><th>Tier</th></tr></thead><tbody>
 <tr id="r3-s1"><td class="mono">S1</td><td><a href="https://ghgprotocol.org/sites/default/files/standards/Scope%202%20Guidance_Final_Sept26.pdf" target="_blank" rel="noopener">GHG Protocol Scope 2 Guidance</a></td><td>WRI/WBCSD</td><td>2015 (file &quot;Final_Sept26&quot;)</td><td><span class="cite inforce" title="[GHGP-inforce]">In force</span></td></tr>
 <tr id="r3-s2"><td class="mono">S2</td><td><a href="https://ghgprotocol.org/sites/default/files/2025-10/GHG-Protocol-Scope2-Public-Consultation.pdf" target="_blank" rel="noopener">Public Consultation – Scope 2</a></td><td>GHG Protocol</td><td>Oct 2025 (consultation 20 Oct 2025–31 Jan 2026)</td><td><span class="cite revision" title="[GHGP-revision]">Revision</span></td></tr>
@@ -180,7 +182,7 @@
     </tbody></table></div>
   </section>
   <section class="section" id="r4">
-    <div class="section-head"><div class="eyebrow">Dossier R4</div><h2>Module 4 · Consequential / impact accounting for CCUS</h2><p>35 documents. Chip ids on the module pages are prefixed <code>r4-</code>.</p></div>
+    <div class="section-head"><div class="eyebrow">Research set R4</div><h2>Consequential and impact accounting for CCUS</h2><p>35 documents. Chip ids on the pages are prefixed <code>r4-</code>.</p></div>
     <div class="scroll-x"><table class="tbl"><thead><tr><th>Id</th><th>Document</th><th>Publisher</th><th>Date / version</th><th>Tier</th></tr></thead><tbody>
 <tr id="r4-s1"><td class="mono">S1</td><td><a href="https://ghgprotocol.org/sites/default/files/2026-03/AMI-Phase1-WhitePaper-RFI.pdf" target="_blank" rel="noopener">Actions and Market Instruments Phase 1 Progress Update White Paper, Version 3, Request for Information</a></td><td>GHG Protocol</td><td>March 2026</td><td><span class="cite revision" title="[GHGP-revision]">Revision</span></td></tr>
 <tr id="r4-s2"><td class="mono">S2</td><td><a href="https://ghgprotocol.org/sites/default/files/2026-03/AMI-Phase1-WhitePaper-RFI-ExplanatoryMemo.pdf" target="_blank" rel="noopener">Explanatory Memo, Request for Information, AMI Phase 1 Progress Update White Paper</a></td><td>GHG Protocol</td><td>March 2026</td><td><span class="cite revision" title="[GHGP-revision]">Revision</span></td></tr>

@@ -5,24 +5,6 @@
   document.documentElement.classList.add('js');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // wide figures on narrow screens: let the drawing keep a readable scale and scroll sideways
-  function wideFigs() {
-    document.querySelectorAll('figure svg[viewBox]').forEach(function (svg) {
-      var vb = (svg.getAttribute('viewBox') || '').split(/[\s,]+/).map(Number);
-      var w = vb[2] || 0, fig = svg.closest('figure'); if (!fig || !w) return;
-      var cw = fig.clientWidth;
-      if (w >= 520 && cw < 440) {
-        var wrap = svg.parentNode;
-        if (!wrap.classList || !wrap.classList.contains('fig-scroll')) {
-          wrap = document.createElement('div'); wrap.className = 'fig-scroll';
-          svg.parentNode.insertBefore(wrap, svg); wrap.appendChild(svg);
-        }
-        svg.style.minWidth = Math.min(w, 600) + 'px';
-      } else { svg.style.minWidth = ''; }
-    });
-  }
-  wideFigs(); window.addEventListener('resize', wideFigs);
-
   // tabs
   document.querySelectorAll('.tabs').forEach(function (tabs) {
     var btns = tabs.querySelectorAll('button[role="tab"]');

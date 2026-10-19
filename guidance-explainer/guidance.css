@@ -115,8 +115,17 @@ small, .small { font-size: 0.86rem; color: var(--text-secondary); }
 .wrap figcaption { font-size: 0.88rem; color: var(--text-secondary); max-width: 65ch; }
 .fig-frame { background: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.6); border-radius: var(--radius-xl); padding: 14px; min-width: 0; box-shadow: var(--shadow-md); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
-.fig-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; max-width: 100%; min-width: 0; }
-.fig-scroll svg { display: block; }
+/* Every figure may carry two drawings: .fig-d (desktop) and .fig-m (phone, re-laid-out
+   for a ~360 px column with larger type). Only one is shown at a time. */
+.wrap figure .fig-m, .wrap figure svg.fig-m { display: none; }
+@media (max-width: 640px) {
+  .wrap figure .fig-d, .wrap figure svg.fig-d { display: none; }
+  .wrap figure .fig-m, .wrap figure svg.fig-m { display: block; }
+  .fig-frame { padding: 8px; }
+  .wrap figure svg.fig-m, .wrap figure .fig-m svg { width: 100%; height: auto; }
+  .scrolly-figure .fig-frame { max-height: 46vh; overflow: hidden; display: grid; place-items: center; }
+  .scrolly-figure .fig-frame svg { max-height: calc(46vh - 20px); width: auto; max-width: 100%; margin: 0 auto; }
+}
 .wrap svg text { font-family: var(--font-body); fill: currentColor; }
 .wrap svg .mono { font-family: var(--font-data); }
 .wrap svg .muted { fill: var(--text-muted); }
