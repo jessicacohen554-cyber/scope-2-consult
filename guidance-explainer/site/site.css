@@ -216,7 +216,7 @@ svg .dim { opacity: .3; }
 svg [data-step] { transition: opacity .35s ease; }
 @media (prefers-reduced-motion: reduce) { svg [data-step] { transition: none; } }
 
-.fig-scroll { -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.fig-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; max-width: 100%; min-width: 0; }
 .fig-scroll svg { display: block; }
 
 /* ---------- scrollytelling ---------- */

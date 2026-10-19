@@ -80,8 +80,14 @@
       var vb = (svg.getAttribute('viewBox') || '').split(/[\s,]+/).map(Number);
       var w = vb[2] || 0, fig = svg.closest('figure'); if (!fig || !w) return;
       var cw = fig.clientWidth;
-      if (w >= 520 && cw < 440) { svg.style.minWidth = Math.min(w, 600) + 'px'; fig.style.overflowX = 'auto'; fig.classList.add('fig-scroll'); }
-      else { svg.style.minWidth = ''; fig.style.overflowX = ''; fig.classList.remove('fig-scroll'); }
+      if (w >= 520 && cw < 440) {
+        var wrap = svg.parentNode;
+        if (!wrap.classList || !wrap.classList.contains('fig-scroll')) {
+          wrap = document.createElement('div'); wrap.className = 'fig-scroll';
+          svg.parentNode.insertBefore(wrap, svg); wrap.appendChild(svg);
+        }
+        svg.style.minWidth = Math.min(w, 600) + 'px';
+      } else { svg.style.minWidth = ''; }
     });
   }
   wideFigs(); window.addEventListener('resize', wideFigs);
