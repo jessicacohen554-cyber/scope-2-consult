@@ -5,7 +5,7 @@ something its dossier does not support, says it more strongly than the source, m
 an inference as sourced, invents a number, breaks a citation, or renders badly.
 
 Inputs
-- Pages: guidance-explainer/site/*.html (not _template.html)
+- Pages: guidance-explainer/*.html (not _template.html)
 - Dossiers: guidance-explainer/research/R1..R4 (the ONLY permitted factual basis;
   pages map to dossiers: ccs-* → R1; scope2-update, governance → R2; storage-* → R3;
   consequential-* → R4; index.html may draw on all four at headline level)
