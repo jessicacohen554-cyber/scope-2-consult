@@ -5,10 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Governance and the Two Working Groups</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Design system styles (verbatim copies of frontend/styles; see frontend/DESIGN_SYSTEM.md) -->
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/article.css">
+<link rel="stylesheet" href="styles/cinematic.css">
+<link rel="stylesheet" href="guidance.css">
+<!-- GSAP for the cinematic scroll background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Design system modules (nav.js and shared-footer.js carry this site's links) -->
+<script src="js/nav.js"></script>
+<script src="js/shared-header.js"></script>
+<script src="js/scroll-observer.js"></script>
+<script src="js/shared-footer.js"></script>
 <style>
 /* page-specific: process flow, criteria ladder, statement map, roles table */
 svg .st-accent { stroke: var(--accent); stroke-width: 1.4; }
@@ -33,37 +47,21 @@ svg .t-b { font-weight: 600; }
 </style>
 </head>
 <body>
-<nav class="nav" aria-label="Site">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
-    <div class="nav-links">
-      <a href="index.html">Start</a>
-      <a href="ccs-removals.html">CCS: removal or reduction?</a>
-      <a href="ccs-eac.html">CCS-backed EACs</a>
-      <a href="scope2-update.html">Oct 2026 update</a>
-      <a href="governance.html">Governance &amp; TWGs</a>
-      <a href="storage-mechanics.html">Storage ledger</a>
-      <a href="storage-revision.html">Storage &amp; incrementality</a>
-      <a href="consequential-basics.html">Impact accounting</a>
-      <a href="consequential-ccus.html">CCUS impact 2×2</a>
-      <a href="sources.html">Sources</a>
-    </div>
-    <div class="progress" aria-hidden="true"></div>
-  </div>
-</nav>
+<header class="header" id="pageHeader">
+  <h1>Who actually decides what goes into Scope 2?</h1>
+  <div class="subtitle">After this page you can trace a Scope 2 proposal from working group to published standard, name which body can decide what, read a pulse check for what it is, and see how the Scope 2 and AMI working groups split the work.</div>
+  <div class="header-accent"></div>
+</header>
 
+<div class="content-wrap">
 <main class="wrap">
-  <header class="hero">
-    <div class="eyebrow">Module 2 · How the standard gets made</div>
-    <h1>Who actually decides what goes into Scope 2?</h1>
-    <p class="lede">After this page you can trace a Scope 2 proposal from working group to published standard, name which body can decide what, read a pulse check for what it is, and see how the Scope 2 and AMI working groups split the work.</p>
+  <div class="g-hero"><div class="eyebrow">Module 2 · How the standard gets made</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> Standard Development and Revision Procedure v1.2 · Governance Overview v1.1 (Annex A) · ISB, SC and TWG Terms of Reference · Consolidated SDP (Jul 2026) · AMI White Paper v3</span><span><b>Status as of</b> 19 Oct 2026</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
       <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
       <span><i style="background:var(--third)"></i>Third party</span>
-    </div>
-  </header>
+    </div></div>
 
   <p class="small" style="max-width:60rem">The procedures and Terms of Reference are in force as governance rules; they carry the revision-tier colour because they govern the revision, not GHG accounting.</p>
 
@@ -338,7 +336,7 @@ svg .t-b { font-weight: 600; }
 
 
     <h3>What moved between the two groups</h3>
-    <div class="timeline">
+    <div class="g-timeline">
       <div class="tl revision"><div class="when">Feb 2025</div><div class="what">Scope 2 TWG forms a consequential subgroup</div><div class="why">"Its remit was to produce sector-specific recommendations and proposals for the AMI TWG." <a class="cite revision" href="sources.html#r2-s27">AMI White Paper v3, Box 2 p.41</a> <a class="cite revision" href="sources.html#r2-s59">S2 consequential subgroup minutes</a></div></div>
       <div class="tl revision"><div class="when">2025-07-14 · formal vote</div><div class="what">ISB keeps the consequential (MIM) proposal out of consultation: Yes 4, No 7, Abstain 0</div><div class="why">"The ISB directed this work to continue within the Actions and Market Instruments TWG, which would enable the issue to be addressed in a cross-sector manner". <a class="cite revision" href="sources.html#r2-s17">ISB #12 summary, pp.2–3</a></div></div>
       <div class="tl revision"><div class="when">2026-01-28</div><div class="what">Division of labour stated</div><div class="why">"scope 2 market-based method will be led by the scope 2 TWG, electricity accounting in scope 3 of contractual inventory and the consequential approach in statement 3 will be led by the AMI TWG." Coordination "will be led by the Secretariat." <a class="cite revision" href="sources.html#r2-s35">AMI TWG #12 minutes, p.3</a></div></div>
@@ -425,8 +423,11 @@ svg .t-b { font-weight: 600; }
     <a class="prev" href="scope2-update.html"><span class="dir">Previous</span><span class="ttl">Oct 2026 update</span></a>
     <a class="next" href="storage-mechanics.html"><span class="dir">Next</span><span class="ttl">Storage ledger</span></a>
   </nav>
-  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
 </main>
+</div>
+
+<footer id="siteFooter"></footer>
+<script src="js/cinematic-bg.js"></script>
 <script src="site.js"></script>
 <script>
 /* Hide non-selected tab panels only when JS runs, so all statements are readable without JS. */

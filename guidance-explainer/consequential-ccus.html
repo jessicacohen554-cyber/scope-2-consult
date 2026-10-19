@@ -5,16 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CCUS Impact Matrix</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Design system styles (verbatim copies of frontend/styles; see frontend/DESIGN_SYSTEM.md) -->
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/article.css">
+<link rel="stylesheet" href="styles/cinematic.css">
+<link rel="stylesheet" href="guidance.css">
+<!-- GSAP for the cinematic scroll background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Design system modules (nav.js and shared-footer.js carry this site's links) -->
+<script src="js/nav.js"></script>
+<script src="js/shared-header.js"></script>
+<script src="js/scroll-observer.js"></script>
+<script src="js/shared-footer.js"></script>
 <style>
 /* page-specific: source/inference badges, comparison strip, test table, mode-switched SVG */
 .badge { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; border: 1px solid currentColor; justify-self: start; font-weight: 600; }
 .badge.src { color: var(--inforce); background: var(--inforce-soft); }
 .badge.inf { color: var(--infer); background: var(--infer-soft); }
-.badge.gap { color: var(--gap); background: var(--gap-soft); }
+.badge.gap { color: var(--g-gap); background: var(--g-gap-soft); }
 .matrix .cell .badge { margin-top: 4px; }
 .mfoot { font-size: 0.85rem; color: var(--fg-2); margin-top: 10px; }
 .strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; }
@@ -38,44 +52,28 @@ svg .bar-cap { fill: var(--capture); }
 svg .bar-bm { fill: var(--grid); }
 svg .ghost { fill: none; stroke: var(--fg-3); stroke-width: 1.2; stroke-dasharray: 4 3; }
 svg .axis { stroke: var(--line); stroke-width: 1; }
-svg .lost { fill: var(--gap-soft); stroke: var(--gap); stroke-width: 1.2; stroke-dasharray: 4 3; }
+svg .lost { fill: var(--g-gap-soft); stroke: var(--g-gap); stroke-width: 1.2; stroke-dasharray: 4 3; }
 svg .bold { font-weight: 600; }
 .fig-frame.narrow { max-width: 820px; }
 </style>
 <noscript><style>.matrix-detail > [hidden], [data-mode-show][hidden] { display: grid !important; }</style></noscript>
 </head>
 <body>
-<nav class="nav" aria-label="Site">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
-    <div class="nav-links">
-      <a href="index.html">Start</a>
-      <a href="ccs-removals.html">CCS: removal or reduction?</a>
-      <a href="ccs-eac.html">CCS-backed EACs</a>
-      <a href="scope2-update.html">Oct 2026 update</a>
-      <a href="governance.html">Governance &amp; TWGs</a>
-      <a href="storage-mechanics.html">Storage ledger</a>
-      <a href="storage-revision.html">Storage &amp; incrementality</a>
-      <a href="consequential-basics.html">Impact accounting</a>
-      <a href="consequential-ccus.html">CCUS impact 2×2</a>
-      <a href="sources.html">Sources</a>
-    </div>
-    <div class="progress" aria-hidden="true"></div>
-  </div>
-</nav>
+<header class="header" id="pageHeader">
+  <h1>Does a CCS retrofit get plant credit or system credit?</h1>
+  <div class="subtitle">No GHG Protocol document answers this directly. This page assembles the answer from in-force building blocks, case by case: retrofit vs new build, coal vs gas, storage vs utilization. Most of it is labelled inference, because that is what it is.</div>
+  <div class="header-accent"></div>
+</header>
 
+<div class="content-wrap">
 <main class="wrap">
-  <header class="hero">
-    <div class="eyebrow">Module 4 · Applying it to CCUS</div>
-    <h1>Does a CCS retrofit get plant credit or system credit?</h1>
-    <p class="lede">No GHG Protocol document answers this directly. This page assembles the answer from in-force building blocks, case by case: retrofit vs new build, coal vs gas, storage vs utilization. Most of it is labelled inference, because that is what it is.</p>
+  <div class="g-hero"><div class="eyebrow">Module 4 · Applying it to CCUS</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min (more in expandable notes)</span><span><b>Sources</b> LSR v1.0 Ch.14 and Ch.16 · Project Protocol (2005) · Grid-Connected Electricity Guidelines (2007) · Consequential electricity consultation and feedback (2025–2026) · AMI TWG materials (2026) · NETL Rev 4a (2022) · IPCC AR5 WGIII Annex III · Grubert &amp; Sawyer (2023)</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
       <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
       <span><i style="background:var(--third)"></i>Third party</span>
-    </div>
-  </header>
+    </div></div>
 
   <nav class="toc" aria-label="On this page">
     <a href="#s1"><span class="k">1</span>The 2×2: retrofit or new build, inventory or impact</a>
@@ -528,8 +526,8 @@ svg .bold { font-weight: 600; }
         <text x="389" y="260" class="t">change</text>
         <text x="389" y="286" class="t-tag">INFERENCE</text>
         <!-- bracket -->
-        <path d="M516,96 H530 V272 H516" class="edge" style="stroke:var(--gap);stroke-width:2"/>
-        <text transform="translate(548 184) rotate(90)" text-anchor="middle" class="t-sm" style="fill:var(--gap)">double-claiming risk · GAP</text>
+        <path d="M516,96 H530 V272 H516" class="edge" style="stroke:var(--g-gap);stroke-width:2"/>
+        <text transform="translate(548 184) rotate(90)" text-anchor="middle" class="t-sm" style="fill:var(--g-gap)">double-claiming risk · GAP</text>
         <rect x="104" y="314" width="406" height="56" rx="8" class="soft-gap"/>
         <text x="307" y="337" text-anchor="middle" class="t">Same physical change, two Statement 3 claims.</text>
         <text x="307" y="356" text-anchor="middle" class="t">Rules to stop both counting it: not written.</text>
@@ -590,8 +588,11 @@ svg .bold { font-weight: 600; }
     <a class="prev" href="consequential-basics.html"><span class="dir">Previous</span><span class="ttl">Impact accounting</span></a>
     <a class="next" href="sources.html"><span class="dir">Next</span><span class="ttl">Sources</span></a>
   </nav>
-  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
 </main>
+</div>
+
+<footer id="siteFooter"></footer>
+<script src="js/cinematic-bg.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

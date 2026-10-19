@@ -5,46 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PAGE TITLE</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Design system styles (verbatim copies of frontend/styles; see frontend/DESIGN_SYSTEM.md) -->
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/article.css">
+<link rel="stylesheet" href="styles/cinematic.css">
+<link rel="stylesheet" href="guidance.css">
+<!-- GSAP for the cinematic scroll background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Design system modules (nav.js and shared-footer.js carry this site's links) -->
+<script src="js/nav.js"></script>
+<script src="js/shared-header.js"></script>
+<script src="js/scroll-observer.js"></script>
+<script src="js/shared-footer.js"></script>
 <style>
-/* page-specific styles only (layouts unique to this page). Use tokens from site.css. */
+/* page-specific styles only (layouts unique to this page). Use tokens from shared.css / guidance.css. */
 </style>
 </head>
 <body>
-<nav class="nav" aria-label="Site">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
-    <div class="nav-links">
-      <a href="index.html">Start</a>
-      <a href="ccs-removals.html">CCS: removal or reduction?</a>
-      <a href="ccs-eac.html">CCS-backed EACs</a>
-      <a href="scope2-update.html">Oct 2026 update</a>
-      <a href="governance.html">Governance &amp; TWGs</a>
-      <a href="storage-mechanics.html">Storage ledger</a>
-      <a href="storage-revision.html">Storage &amp; incrementality</a>
-      <a href="consequential-basics.html">Impact accounting</a>
-      <a href="consequential-ccus.html">CCUS impact 2×2</a>
-      <a href="sources.html">Sources</a>
-    </div>
-    <div class="progress" aria-hidden="true"></div>
-  </div>
-</nav>
+<header class="header" id="pageHeader">
+  <h1>Page title as a question or claim</h1>
+  <div class="subtitle">One or two sentences: what the reader will be able to do after this page.</div>
+  <div class="header-accent"></div>
+</header>
 
+<div class="content-wrap">
 <main class="wrap">
-  <header class="hero">
-    <div class="eyebrow">Module N · Theme</div>
-    <h1>Page title as a question or claim</h1>
-    <p class="lede">One or two sentences: what the reader will be able to do after this page.</p>
+  <div class="g-hero"><div class="eyebrow">Module N · Theme</div>
     <div class="hero-meta"><span><b>Reading time</b> ~8 min</span><span><b>Sources</b> 2015 Scope 2 Guidance · LSR Guidance v1.0</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
       <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
       <span><i style="background:var(--third)"></i>Third party</span>
-    </div>
-  </header>
+    </div></div>
 
   <nav class="toc" aria-label="On this page">
     <a href="#s1"><span class="k">1</span>Section one</a>
@@ -136,7 +134,7 @@
     </div>
 
     <!-- timeline -->
-    <div class="timeline">
+    <div class="g-timeline">
       <div class="tl revision"><div class="when">2026-10-16</div><div class="what">Event</div><div class="why">Why it matters.</div></div>
       <div class="tl future"><div class="when">Q2 2027 (planned)</div><div class="what">Event</div></div>
     </div>
@@ -149,8 +147,11 @@
     <a class="prev" href="index.html"><span class="dir">Previous</span><span class="ttl">Start here</span></a>
     <a class="next" href="ccs-eac.html"><span class="dir">Next</span><span class="ttl">CCS-backed EACs</span></a>
   </nav>
-  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
 </main>
+</div>
+
+<footer id="siteFooter"></footer>
+<script src="js/cinematic-bg.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

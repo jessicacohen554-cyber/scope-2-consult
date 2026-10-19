@@ -5,15 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CCS-Backed EACs</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Design system styles (verbatim copies of frontend/styles; see frontend/DESIGN_SYSTEM.md) -->
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/article.css">
+<link rel="stylesheet" href="styles/cinematic.css">
+<link rel="stylesheet" href="guidance.css">
+<!-- GSAP for the cinematic scroll background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Design system modules (nav.js and shared-footer.js carry this site's links) -->
+<script src="js/nav.js"></script>
+<script src="js/shared-header.js"></script>
+<script src="js/scroll-observer.js"></script>
+<script src="js/shared-footer.js"></script>
 <style>
 /* page-specific: inline tags, QC rows, toggled bar figure, landscape table */
 .tag { display: inline-block; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; vertical-align: middle; font-weight: 600; border: 1px solid var(--line); }
 .tag.inf { background: var(--infer-soft); color: var(--infer); border-color: color-mix(in srgb, var(--infer) 35%, transparent); }
-.tag.gap { background: var(--gap-soft); color: var(--gap); border-color: color-mix(in srgb, var(--gap) 35%, transparent); }
+.tag.gap { background: var(--g-gap-soft); color: var(--g-gap); border-color: color-mix(in srgb, var(--g-gap) 35%, transparent); }
 .tag.src { background: var(--inforce-soft); color: var(--inforce); border-color: color-mix(in srgb, var(--inforce) 35%, transparent); }
 .tag.sig { background: var(--signal-soft); color: var(--signal); border-color: color-mix(in srgb, var(--signal) 35%, transparent); }
 .tag.st { background: var(--bg-3); color: var(--fg); }
@@ -27,17 +41,17 @@
 .qc-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .qc-legend i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; background: var(--fg-3); }
 .qc-legend i.open { background: var(--infer); }
-.qc-legend i.fail { background: var(--gap); }
+.qc-legend i.fail { background: var(--g-gap); }
 .tbl td small { display: block; color: var(--fg-3); }
 #s5 .tbl { min-width: 760px; }
 .tbl .prop { display: block; margin-top: 2px; font-family: var(--font-mono); font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; color: var(--third); }
 svg .stroke-capture { stroke: var(--capture); stroke-width: 2; }
-svg .stroke-gap { stroke: var(--gap); }
+svg .stroke-gap { stroke: var(--g-gap); }
 svg .stroke-third { stroke: var(--third); }
 svg .soft-fossil { fill: color-mix(in srgb, var(--fossil) 20%, var(--bg-2)); stroke: var(--fossil); stroke-width: 1.2; }
 svg .txt-capture { fill: var(--capture); }
 svg .txt-fossil { fill: var(--fossil); }
-svg .txt-gap { fill: var(--gap); }
+svg .txt-gap { fill: var(--g-gap); }
 svg .txt-third { fill: var(--third); }
 svg .txt-rev { fill: var(--revision); }
 svg .st-fossil { stop-color: var(--fossil); }
@@ -48,37 +62,21 @@ svg .txt-infer { fill: var(--infer); }
 </style>
 </head>
 <body>
-<nav class="nav" aria-label="Site">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
-    <div class="nav-links">
-      <a href="index.html">Start</a>
-      <a href="ccs-removals.html">CCS: removal or reduction?</a>
-      <a href="ccs-eac.html">CCS-backed EACs</a>
-      <a href="scope2-update.html">Oct 2026 update</a>
-      <a href="governance.html">Governance &amp; TWGs</a>
-      <a href="storage-mechanics.html">Storage ledger</a>
-      <a href="storage-revision.html">Storage &amp; incrementality</a>
-      <a href="consequential-basics.html">Impact accounting</a>
-      <a href="consequential-ccus.html">CCUS impact 2×2</a>
-      <a href="sources.html">Sources</a>
-    </div>
-    <div class="progress" aria-hidden="true"></div>
-  </div>
-</nav>
+<header class="header" id="pageHeader">
+  <h1>Can a CCS plant’s power be sold as a low-carbon attribute?</h1>
+  <div class="subtitle">The 2015 Scope 2 Guidance does not define it, and on this page’s reading (an inference) nothing in it bars it. This page traces what a certificate can carry, the unresolved emission-rate question, how the eight Quality Criteria apply, where the revision is heading, and which third-party instruments exist today.</div>
+  <div class="header-accent"></div>
+</header>
 
+<div class="content-wrap">
 <main class="wrap">
-  <header class="hero">
-    <div class="eyebrow">Module 1 · Market instruments</div>
-    <h1>Can a CCS plant’s power be sold as a low-carbon attribute?</h1>
-    <p class="lede">The 2015 Scope 2 Guidance does not define it, and on this page’s reading (an inference) nothing in it bars it. This page traces what a certificate can carry, the unresolved emission-rate question, how the eight Quality Criteria apply, where the revision is heading, and which third-party instruments exist today.</p>
+  <div class="g-hero"><div class="eyebrow">Module 1 · Market instruments</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> Scope 2 Guidance 2015 · LSR Guidance v1.0 · Scope 2 consultation draft 2025 · TWG #23 and MBM Update, Oct 2026 · 45V, RED, EnergyTag, registries, NorthBridge</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
       <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
       <span><i style="background:var(--third)"></i>Third party</span>
-    </div>
-  </header>
+    </div></div>
 
   <nav class="toc" aria-label="On this page">
     <a href="#s1"><span class="k">1</span>What an EAC can represent under the 2015 Guidance</a>
@@ -355,7 +353,7 @@ svg .txt-infer { fill: var(--infer); }
 
     <div class="callout signal"><div class="label">Signal of direction · ISO divergence, 6 Oct 2026</div><p>The ISO working group (WG4) “proposed to use the grid average mix as the fallback”, “reached full consensus to remove the Standard Supply Service criterion”, set “monthly matching as the mandatory minimum … hourly matching optional”, and reported that “deliverability was removed as not practical”. Reconciliation with the ISB direction is pending. <a class="cite revision" href="sources.html#r1-s10">TWG #23 minutes, pp.6–7</a></p></div>
 
-    <div class="timeline">
+    <div class="g-timeline">
       <div class="tl inforce"><div class="when">2015</div><div class="what">Scope 2 Guidance</div><div class="why">Market-based method, eight Quality Criteria, no technology list, no age test.</div></div>
       <div class="tl revision"><div class="when">20 Oct 2025 – 31 Jan 2026</div><div class="what">Public consultation on the draft</div><div class="why">Hourly matching, deliverability, Standard Supply Service, fossil fallback. No CCS, no technology list, no incrementality. <a class="cite revision" href="sources.html#r1-s5">Consultation draft p.5</a></div></div>
       <div class="tl revision"><div class="when">29 Jul 2026</div><div class="what">Summary of Feedback and Standard Development Plan</div><div class="why">Nearly 1,100 responses from 56 countries; “multiple reporting approaches are being explored”. The TWG scope includes “additionality, or resource newness” and “technology-specific implications”. <a class="cite revision" href="sources.html#r1-s7">GHGP blog</a> <a class="cite revision" href="sources.html#r1-s8">SDP pp.22–23</a></div></div>
@@ -449,8 +447,11 @@ svg .txt-infer { fill: var(--infer); }
     <a class="prev" href="ccs-removals.html"><span class="dir">Previous</span><span class="ttl">CCS: removal or reduction?</span></a>
     <a class="next" href="scope2-update.html"><span class="dir">Next</span><span class="ttl">Oct 2026 update</span></a>
   </nav>
-  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
 </main>
+</div>
+
+<footer id="siteFooter"></footer>
+<script src="js/cinematic-bg.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

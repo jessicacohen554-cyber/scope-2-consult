@@ -5,10 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CCS Under the Removals Guidance</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Design system styles (verbatim copies of frontend/styles; see frontend/DESIGN_SYSTEM.md) -->
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/article.css">
+<link rel="stylesheet" href="styles/cinematic.css">
+<link rel="stylesheet" href="guidance.css">
+<!-- GSAP for the cinematic scroll background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Design system modules (nav.js and shared-footer.js carry this site's links) -->
+<script src="js/nav.js"></script>
+<script src="js/shared-header.js"></script>
+<script src="js/scroll-observer.js"></script>
+<script src="js/shared-footer.js"></script>
 <style>
 /* page-specific: comparison strip, role grids in steps, small inline tags, toggled SVG states */
 .strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 14px; }
@@ -20,15 +34,15 @@
 .ans { display: inline-block; font-family: var(--font-mono); font-weight: 600; font-size: .8rem; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); }
 .ans.no { background: var(--bg-3); color: var(--fg); }
 .ans.yes { background: var(--signal-soft); color: var(--signal); }
-.strip-gap { border: 1.5px dashed var(--gap); border-radius: 8px; padding: 10px 12px; background: var(--gap-soft); font-size: .95rem; }
-.strip-gap b { color: var(--gap); }
+.strip-gap { border: 1.5px dashed var(--g-gap); border-radius: 8px; padding: 10px 12px; background: var(--g-gap-soft); font-size: .95rem; }
+.strip-gap b { color: var(--g-gap); }
 .roles { display: grid; gap: 0; margin-top: 4px; }
 .roles > div { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); gap: 8px; font-size: .93rem; padding-block: 7px; border-top: 1px solid var(--line); }
 .roles > div > b { font-family: var(--font-mono); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-3); padding-top: 4px; font-weight: 600; }
 @media (max-width: 420px) { .roles > div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
 .tag { display: inline-block; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; vertical-align: middle; font-weight: 600; border: 1px solid var(--line); }
 .tag.inf { background: var(--infer-soft); color: var(--infer); border-color: color-mix(in srgb, var(--infer) 35%, transparent); }
-.tag.gap { background: var(--gap-soft); color: var(--gap); border-color: color-mix(in srgb, var(--gap) 35%, transparent); }
+.tag.gap { background: var(--g-gap-soft); color: var(--g-gap); border-color: color-mix(in srgb, var(--g-gap) 35%, transparent); }
 .tag.src { background: var(--inforce-soft); color: var(--inforce); border-color: color-mix(in srgb, var(--inforce) 35%, transparent); }
 .pos { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; max-width: 70ch; }
 .pos li { padding: 10px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; }
@@ -39,52 +53,36 @@
 .eqvars { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: .95rem; }
 svg .stroke-capture { stroke: var(--capture); stroke-width: 2; }
 svg .stroke-fossil { stroke: var(--fossil); stroke-width: 2; }
-svg .stroke-storage { stroke: var(--storage); }
-svg .stroke-gap { stroke: var(--gap); }
-svg .soft-storage { fill: color-mix(in srgb, var(--storage) 16%, var(--bg-2)); stroke: var(--storage); stroke-width: 1.2; }
+svg .stroke-storage { stroke: var(--g-storage); }
+svg .stroke-gap { stroke: var(--g-gap); }
+svg .soft-storage { fill: color-mix(in srgb, var(--g-storage) 16%, var(--bg-2)); stroke: var(--g-storage); stroke-width: 1.2; }
 svg .soft-fossil { fill: color-mix(in srgb, var(--fossil) 20%, var(--bg-2)); stroke: var(--fossil); stroke-width: 1.2; }
 svg .air { fill: color-mix(in srgb, var(--grid) 14%, var(--bg-2)); stroke: var(--line); stroke-width: 1; }
 svg .txt-capture { fill: var(--capture); }
 svg .txt-fossil { fill: var(--fossil); }
-svg .txt-gap { fill: var(--gap); }
+svg .txt-gap { fill: var(--g-gap); }
 #loss[data-mode="in"] [data-m="out"], #loss[data-mode="out"] [data-m="in"] { display: none; }
 .fig-frame > svg { max-width: 760px; margin-inline: auto; }
 svg .txt-infer { fill: var(--infer); }
 </style>
 </head>
 <body>
-<nav class="nav" aria-label="Site">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
-    <div class="nav-links">
-      <a href="index.html">Start</a>
-      <a href="ccs-removals.html">CCS: removal or reduction?</a>
-      <a href="ccs-eac.html">CCS-backed EACs</a>
-      <a href="scope2-update.html">Oct 2026 update</a>
-      <a href="governance.html">Governance &amp; TWGs</a>
-      <a href="storage-mechanics.html">Storage ledger</a>
-      <a href="storage-revision.html">Storage &amp; incrementality</a>
-      <a href="consequential-basics.html">Impact accounting</a>
-      <a href="consequential-ccus.html">CCUS impact 2×2</a>
-      <a href="sources.html">Sources</a>
-    </div>
-    <div class="progress" aria-hidden="true"></div>
-  </div>
-</nav>
+<header class="header" id="pageHeader">
+  <h1>Is captured CO<sub>2</sub> from a power plant a removal?</h1>
+  <div class="subtitle">No. The Land Sector and Removals (LSR) rules treat fossil point-source capture as a prevented emission, not a removal. This page shows where that line sits, what a capturing generator, its power buyer and the storage operator each report, and where LSR stops short of scope 2 market instruments.
+      <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance v1.0, Table 14.1, p.350</a></div>
+  <div class="header-accent"></div>
+</header>
 
+<div class="content-wrap">
 <main class="wrap">
-  <header class="hero">
-    <div class="eyebrow">Module 1 · Land Sector &amp; Removals Guidance</div>
-    <h1>Is captured CO<sub>2</sub> from a power plant a removal?</h1>
-    <p class="lede">No. The Land Sector and Removals (LSR) rules treat fossil point-source capture as a prevented emission, not a removal. This page shows where that line sits, what a capturing generator, its power buyer and the storage operator each report, and where LSR stops short of scope 2 market instruments.
-      <a class="cite inforce" href="sources.html#r1-s1">LSR Guidance v1.0, Table 14.1, p.350</a></p>
+  <div class="g-hero"><div class="eyebrow">Module 1 · Land Sector &amp; Removals Guidance</div>
     <div class="hero-meta"><span><b>Reading time</b> ~12 min</span><span><b>Sources</b> LSR Standard v1.1 · LSR Guidance v1.0 · Scope 2 Guidance 2015 · Corporate Standard 2004</span><span><b>Status</b> LSR approved 01 Oct 2025, published 30 Jun 2026, effective 01 Jan 2027</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol</span>
       <span><i style="background:var(--revision)"></i>Revision materials (TWG / ISB / drafts)</span>
       <span><i style="background:var(--third)"></i>Third party</span>
-    </div>
-  </header>
+    </div></div>
 
   <nav class="toc" aria-label="On this page">
     <a href="#s1"><span class="k">1</span>Three pathways, one question: fossil CCS, DACCS, BECCS</a>
@@ -642,8 +640,11 @@ svg .txt-infer { fill: var(--infer); }
     <a class="prev" href="index.html"><span class="dir">Previous</span><span class="ttl">Start here</span></a>
     <a class="next" href="ccs-eac.html"><span class="dir">Next</span><span class="ttl">CCS-backed EACs</span></a>
   </nav>
-  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
 </main>
+</div>
+
+<footer id="siteFooter"></footer>
+<script src="js/cinematic-bg.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

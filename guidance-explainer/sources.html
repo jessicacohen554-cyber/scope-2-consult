@@ -5,46 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sources</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Design system styles (verbatim copies of frontend/styles; see frontend/DESIGN_SYSTEM.md) -->
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/article.css">
+<link rel="stylesheet" href="styles/cinematic.css">
+<link rel="stylesheet" href="guidance.css">
+<!-- GSAP for the cinematic scroll background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Design system modules (nav.js and shared-footer.js carry this site's links) -->
+<script src="js/nav.js"></script>
+<script src="js/shared-header.js"></script>
+<script src="js/scroll-observer.js"></script>
+<script src="js/shared-footer.js"></script>
 <style>
 .tbl td:first-child { white-space: nowrap; } tr:target td { background: var(--accent-soft); }
 </style>
 </head>
 <body>
-<nav class="nav" aria-label="Site">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Scope 2 <span>Frontier</span></a>
-    <div class="nav-links">
-      <a href="index.html">Start</a>
-      <a href="ccs-removals.html">CCS: removal or reduction?</a>
-      <a href="ccs-eac.html">CCS-backed EACs</a>
-      <a href="scope2-update.html">Oct 2026 update</a>
-      <a href="governance.html">Governance &amp; TWGs</a>
-      <a href="storage-mechanics.html">Storage ledger</a>
-      <a href="storage-revision.html">Storage &amp; incrementality</a>
-      <a href="consequential-basics.html">Impact accounting</a>
-      <a href="consequential-ccus.html">CCUS impact 2×2</a>
-      <a href="sources.html">Sources</a>
-    </div>
-    <div class="progress" aria-hidden="true"></div>
-  </div>
-</nav>
+<header class="header" id="pageHeader">
+  <h1>Sources</h1>
+  <div class="subtitle">Every citation chip on the site links to a row here. Each row names the document, its publisher, its date or version, and its tier. The table is generated from the four research dossiers, so it carries exactly what the pages were allowed to use.</div>
+  <div class="header-accent"></div>
+</header>
 
+<div class="content-wrap">
 <main class="wrap">
-  <header class="hero">
-    <div class="eyebrow">Reference · Every document behind the pages</div>
-    <h1>Sources</h1>
-    <p class="lede">Every citation chip on the site links to a row here. Each row names the document, its publisher, its date or version, and its tier. The table is generated from the four research dossiers, so it carries exactly what the pages were allowed to use.</p>
+  <div class="g-hero"><div class="eyebrow">Reference · Every document behind the pages</div>
     <div class="hero-meta"><span><b>Documents</b> 152</span><span><b>In force</b> 13</span><span><b>Revision</b> 112</span><span><b>Third party</b> 27</span></div>
     <div class="tier-legend" aria-label="Source tiers">
       <span><i style="background:var(--inforce)"></i>In-force GHG Protocol standards and guidance</span>
       <span><i style="background:var(--revision)"></i>Revision materials (TWG, ISB, SC, drafts, RFIs, feedback summaries, blogs)</span>
       <span><i style="background:var(--third)"></i>Third party</span>
-    </div>
-  </header>
+    </div></div>
   <section class="section" id="how">
     <div class="section-head"><div class="eyebrow">How to read a chip</div><h2>Tiering is the method</h2><p>Pages lean on in-force GHG Protocol text first, then on revision materials from the governance repository, then on third parties. Inference and gap callouts mark where no source speaks.</p></div>
     <div class="prose"><p>A chip such as <span class="cite inforce">Scope 2 Guidance 2015 §7.1</span> means the sentence before it is supported by that document at that place. Where a dossier recorded that a document could not be retrieved, the row says so in its title.</p></div>
@@ -225,8 +223,11 @@
     <a class="prev" href="consequential-ccus.html"><span class="dir">Previous</span><span class="ttl">CCUS impact 2×2</span></a>
     <a class="next" href="index.html"><span class="dir">Back to</span><span class="ttl">Start here</span></a>
   </nav>
-  <div class="foot"><span>Compiled 19 Oct 2026 from GHG Protocol materials and the sources listed. Educational synthesis; not GHG Protocol guidance.</span></div>
 </main>
+</div>
+
+<footer id="siteFooter"></footer>
+<script src="js/cinematic-bg.js"></script>
 <script src="site.js"></script>
 </body>
 </html>
