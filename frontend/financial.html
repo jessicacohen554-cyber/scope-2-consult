@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Institutions &amp; Investors | Scope 2 Public Consultation Response Explorer</title>
+    <meta name="description" content="How banks, insurers, asset managers and investor networks answered the Scope 2 consultation: incrementality, additionality, impact metrics and the legacy clause.">
+
+    <!-- Fonts (design system: Plus Jakarta Sans headings, DM Sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design system styles (see DESIGN_SYSTEM.md — treat as law) -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/article.css">
+    <link rel="stylesheet" href="styles/cinematic.css">
+    <link rel="stylesheet" href="styles/site.css">
+
+    <!-- GSAP for the cinematic scroll background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Chart.js (pinned). Plain script, never defer. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Design system modules -->
+    <script src="js/nav.js"></script>
+    <script src="js/chart-colors.js"></script>
+    <script src="js/shared-header.js"></script>
+    <script src="js/scroll-observer.js"></script>
+    <script src="js/shared-footer.js"></script>
+
+    <!-- Site modules -->
+    <script src="js/data-loader.js"></script>
+    <script src="js/financial-page.js"></script>
+
+    <!-- Page-specific layout ONLY -->
+    <style>
+    .s2-control, .toggle-btn-group { flex-wrap: wrap; min-width: 0; max-width: 100%; }
+    .fi-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: var(--space-md); }
+    .fi-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: var(--space-md); }
+    .fi-brief { margin: 0; padding-left: 1.15em; display: flex; flex-direction: column; gap: var(--space-sm); line-height: 1.65; }
+    .fi-brief strong { color: var(--navy); }
+    .fi-chart-tall { height: 520px; }
+    .fi-chart-mid { height: 400px; }
+    .fi-chart-title { font-family: var(--font-heading); font-size: 1rem; color: var(--navy); margin: 0 0 var(--space-sm); }
+    .fi-quotes { display: flex; flex-direction: column; gap: var(--space-md); margin-top: var(--space-md); }
+    .fi-quote-card { border-left: 3px solid var(--hydro); padding: var(--space-xs) 0 var(--space-xs) var(--space-md); }
+    .fi-quote-text { font-style: italic; color: var(--text-secondary); margin: 0 0 var(--space-xs); }
+    .fi-quote-who { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+    .fi-quote-who strong { color: var(--navy); }
+    .fi-role-chip { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; padding: 2px 9px; border-radius: var(--radius-pill); color: var(--text-secondary); background: var(--bg-alt-warm); margin-left: var(--space-xs); white-space: nowrap; }
+    .fi-num { font-family: var(--font-data); font-variant-numeric: tabular-nums; text-align: center; white-space: nowrap; }
+    .fi-cell { display: inline-block; min-width: 1.9em; padding: 2px 0; border-radius: var(--radius-sm); font-weight: 600; }
+    #respTable { max-height: 75vh; overflow: auto; }
+    #respTable thead th { position: sticky; top: 0; z-index: 1; background: var(--bg-page-white); white-space: nowrap; }
+    #respTable tbody tr.fi-row { cursor: pointer; }
+    #respTable tbody tr.fi-detail td { background: var(--bg-alt-warm); font-size: 0.88rem; line-height: 1.55; }
+    .fi-detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--space-sm) var(--space-lg); }
+    .fi-detail-grid strong { color: var(--navy); }
+    .fi-method summary { cursor: pointer; font-family: var(--font-heading); font-weight: 700; color: var(--navy); }
+    .fi-method ul { margin-top: var(--space-sm); display: flex; flex-direction: column; gap: var(--space-xs); line-height: 1.6; }
+    .fi-def { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--space-md); }
+    .fi-def h3 { font-family: var(--font-heading); font-size: 1rem; color: var(--navy); margin: 0 0 var(--space-xs); }
+    .fi-def p { margin: 0; line-height: 1.6; font-size: 0.95rem; }
+    .fi-def .fi-def-n { font-family: var(--font-data); font-size: 1.6rem; font-weight: 800; color: var(--navy); display: block; }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="pageHeader">
+        <h1>Financial Institutions &amp; Investors</h1>
+        <div class="subtitle">How banks, insurers, asset managers and investor networks answered: three different voices on hourly matching, one shared demand for disclosure, and a split on how far the legacy clause should reach.</div>
+        <div class="header-accent"></div>
+    </header>
+
+    <div class="content-wrap">
+
+        <!-- ===== HEADLINE NUMBERS ===== -->
+        <section class="content-section">
+            <div class="fi-grid-4">
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statCohort">—</div>
+                    <div class="stat-label">Respondents in the cohort: <span id="statTiers">—</span></div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statRedacted">—</div>
+                    <div class="stat-label">Filed with their identity redacted; <span id="statNamed">—</span> named organisations</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statHourly">—</div>
+                    <div class="stat-label">Support hourly matching (Q71), against <span id="statHourlyAll">—</span> of all respondents</div>
+                </div>
+                <div class="stat-card scroll-reveal">
+                    <div class="stat-value" id="statLegacy">—</div>
+                    <div class="stat-label">Support the legacy clause (Q171), against <span id="statLegacyAll">—</span> of all respondents</div>
+                </div>
+            </div>
+            <p class="s2-note">Cohort = 35 institutions that self-classified as a financial institution, were audited as one, or are finance- or insurance-sector companies, plus 14 investor networks and banking or insurance associations. Rule and exclusions in the method note at the foot of the page.</p>
+        </section>
+
+        <!-- ===== IN BRIEF ===== -->
+        <section class="content-section-narrow" id="brief">
+            <h2 class="section-title">In brief</h2>
+            <div class="card card-spacious scroll-reveal">
+                <ul class="fi-brief" id="briefList">
+                    <li><strong>One label, three voices.</strong> The cohort's average on hourly matching (2.17 of 5, 8 of 35 in support) looks like the whole survey (2.07), but it averages opposites. Financial firms reporting their own office and branch footprint oppose it 11 of 11, and capital providers and project financiers 6 of 7. The few investors who use companies' disclosures and answered lean the other way (2 of 3), as do investor networks (2 of 3). Small numbers; the direction, not the ratio, is the finding.</li>
+                    <li><strong>The one thing every role backs is conservatism.</strong> The residual-mix definition (14 of 14 support, mean 4.57 against 3.54 overall), the fossil-based fallback (11 of 12, 4.50 against 3.07) and pro-rata standard supply (10 of 15, 3.80 against 3.14) draw support from users and reporters alike. Investors say it in their own words: errors should fall "on the conservative side".</li>
+                    <li><strong>Additionality is raised by a quarter, by every role except reporters.</strong> 12 of 48 distinct voices say the proposal should recognise whether procurement caused new supply; none argue the opposite. They split on where: seven want it inside the inventory, by differentiating instruments or adding a vintage or standard-supply test (PGIM, Nordea, First Sentier, Just Share, a redacted Canadian banking body); four want a separate capital-impact channel beside a conservative inventory (Ceres and three redacted finance filers); Just Climate asks for both.</li>
+                    <li><strong>Openness to a separate impact metric is well above the survey.</strong> Half of the cohort's Q146 answers say such a metric would change their view at least somewhat (30% overall) and only 10% reject the idea (24% overall). The disagreement is about standing: capital providers want it on "equal footing" with the inventory; investors using disclosures want it separate and explicitly not a reason to loosen inventory rules.</li>
+                    <li><strong>The legacy clause is supported by 29 of 33, but the design asks point in opposite directions.</strong> Banking and insurance bodies, reporters and some financiers want full protection: the whole original term, every instrument type, transfers, renewals, even asset-level grandfathering. Investors using disclosures and investor networks want guardrails: a sunset, a minimum original term, no unbundled certificates, no resale, and side-by-side results with and without legacy treatment. Three of the six investors using disclosures prefer a uniform effective date or parallel reporting instead.</li>
+                    <li><strong>Bankability is the finance-specific argument, disclosure the finance-specific ask.</strong> 20 voices say hourly matching and deliverability would fracture load aggregation, PPA volumes and project finance; none of them are investors using disclosures. 11 ask that whatever flexibility survives (exemptions, legacy, load profiles, standard supply) be disclosed and disaggregated so users can see it; most of those are investors using disclosures or investor networks.</li>
+                    <li><strong>Coordination shows here too.</strong> One redacted UK filing repeats PGIM's submission in 107 sentences and is counted once. Just Share's text is the pro-hourly template (57 other filers share it); two redacted US finance firms carry sentences from the opposing packs; and three banking bodies file near-identical legacy-clause paragraphs.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== THREE VOICES ===== -->
+        <section class="content-section" id="voices">
+            <h2 class="section-title">One stakeholder group, three voices</h2>
+            <p class="section-subtitle">Stance on each market-based-method proposal by the role the respondent speaks from, coded from their own text. Roles with fewer than three answers are pooled.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="voiceQLabel">Proposal</span>
+                        <div class="toggle-btn-group" id="voiceQ" role="group" aria-labelledby="voiceQLabel"></div>
+                    </div>
+                </div>
+                <div class="chart-container fi-chart-mid">
+                    <canvas id="chartVoices" aria-label="Stance by role on the selected proposal"></canvas>
+                </div>
+                <p class="s2-note" id="voiceNote">Support = 4–5, oppose = 1–2. Base is the number in each role who answered the question.</p>
+            </div>
+            <div class="fi-def" style="margin-top: var(--space-md);" id="roleDefs"></div>
+        </section>
+
+        <!-- ===== SEVEN ANCHORS ===== -->
+        <section class="content-section" id="anchors">
+            <h2 class="section-title">The seven proposals: cohort against everyone</h2>
+            <p class="section-subtitle">Where the cohort diverges from the whole survey is on the integrity backstops, not on the requirements.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container fi-chart-tall">
+                    <canvas id="chartAnchors" aria-label="Seven anchor proposals, cohort versus all respondents"></canvas>
+                </div>
+                <p class="s2-note">Each pair of bars: the cohort, then all respondents. Bases differ by question; hover for counts and means. Response rates are low for the cohort on standard supply, residual mix and the fallback (13–16 answers).</p>
+            </div>
+        </section>
+
+        <!-- ===== THEMES ===== -->
+        <section class="content-section" id="themes">
+            <h2 class="section-title">What they said, in their own words</h2>
+            <p class="section-subtitle">Fourteen themes coded from the free text of 48 distinct voices, stacked by role. A theme counts only when the respondent states it; picking a survey option does not.</p>
+            <div class="glass-chart-panel flush scroll-reveal">
+                <div class="chart-container fi-chart-tall">
+                    <canvas id="chartThemes" aria-label="Theme prevalence by role"></canvas>
+                </div>
+                <p class="s2-note">Absence means "not raised", not "disagrees". The redacted duplicate of PGIM's submission is excluded from these counts.</p>
+            </div>
+        </section>
+
+        <!-- ===== ADDITIONALITY ===== -->
+        <section class="content-section" id="additionality">
+            <h2 class="section-title">Additionality and incrementality</h2>
+            <p class="section-subtitle">The survey never asks about it. Who raised it anyway, and what they want.</p>
+            <div class="fi-grid-2">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="fi-chart-title">Who raised it, by role</h3>
+                    <div class="chart-container-sm">
+                        <canvas id="chartAddRole" aria-label="Respondents raising additionality, by role"></canvas>
+                    </div>
+                    <p class="s2-note" id="addNote">—</p>
+                </div>
+                <div class="card scroll-reveal">
+                    <h3 class="fi-chart-title">Two routes to the same goal</h3>
+                    <div class="fi-def">
+                        <div>
+                            <span class="fi-def-n" id="addInventory">—</span>
+                            <h3>Inside the inventory</h3>
+                            <p>Differentiate instruments by whether they stimulated new supply, treat unbundled certificates as weaker, or add a vintage, asset-age or standard-supply incrementality test (PGIM, Nordea Asset Management, First Sentier, Just Share, a redacted Canadian banking body, two redacted finance filers).</p>
+                        </div>
+                        <div>
+                            <span class="fi-def-n" id="addChannel">—</span>
+                            <h3>Through a separate channel</h3>
+                            <p>Keep the inventory conservative and report financed capacity, enabled MW or avoided emissions alongside it (Ceres, three redacted finance filers; Just Climate / Generation asks for both routes).</p>
+                        </div>
+                    </div>
+                    <p class="s2-note" style="margin-top: var(--space-md);">The site's <a href="additionality.html">additionality coder</a> independently found <span id="addExisting">—</span> cohort members using the words; every one was coded as supporting the concept.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== IMPACT METRIC ===== -->
+        <section class="content-section" id="impact">
+            <h2 class="section-title">A separate impact metric</h2>
+            <p class="section-subtitle">Q146 asked whether a metric outside the scope 2 inventory, quantifying the emissions impact of electricity actions, would change the respondent's view of the revisions.</p>
+            <div class="fi-grid-2">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="fi-chart-title">Q146: would a separate metric change your view?</h3>
+                    <div class="chart-container-sm">
+                        <canvas id="chartQ146" aria-label="Q146 answers, cohort versus all"></canvas>
+                    </div>
+                    <p class="s2-note" id="q146Note">—</p>
+                </div>
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="fi-chart-title">In their own words, by role</h3>
+                    <div class="chart-container-sm">
+                        <canvas id="chartImpactRole" aria-label="Text-coded stance on an impact metric, by role"></canvas>
+                    </div>
+                    <p class="s2-note" id="impactNote">—</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LEGACY ===== -->
+        <section class="content-section" id="legacy">
+            <h2 class="section-title">Legacy treatment</h2>
+            <p class="section-subtitle">Near-universal support for a legacy clause, and a clean split on what it should protect.</p>
+            <div class="fi-grid-2">
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="fi-chart-title">Legacy-clause design, by role</h3>
+                    <div class="chart-container">
+                        <canvas id="chartLegacy" aria-label="Legacy clause design preference by role"></canvas>
+                    </div>
+                    <p class="s2-note">Coded from free text. A respondent can ask for guardrails and prefer a uniform date; "supports, no detail" is a scale answer without design comments.</p>
+                </div>
+                <div class="glass-chart-panel flush scroll-reveal">
+                    <h3 class="fi-chart-title">Q181: preferred transition approach</h3>
+                    <div class="chart-container-sm">
+                        <canvas id="chartQ181" aria-label="Q181 transition approach, cohort versus all"></canvas>
+                    </div>
+                    <p class="s2-note" id="q181Note">—</p>
+                </div>
+            </div>
+            <div class="card scroll-reveal" style="margin-top: var(--space-md);">
+                <div class="fi-def" id="legacyAsks"></div>
+            </div>
+        </section>
+
+        <!-- ===== WHO SAID WHAT ===== -->
+        <section class="content-section-narrow" id="said">
+            <h2 class="section-title">Who said what</h2>
+            <p class="section-subtitle">Verbatim sentences by theme. Named organisations are named; redacted filers are described, never identified.</p>
+            <div class="card card-spacious scroll-reveal">
+                <div class="toggle-btn-group" id="quoteTabs" role="group" aria-label="Theme"></div>
+                <div class="fi-quotes" id="quoteList"><p class="s2-loading">Loading…</p></div>
+            </div>
+        </section>
+
+        <!-- ===== RESPONDENTS ===== -->
+        <section class="content-section-wide" id="respondents">
+            <h2 class="section-title">Every respondent in the cohort</h2>
+            <p class="section-subtitle">All 49, with the role they speak from, their seven anchor answers, the themes coded from their text and their legacy and impact-metric positions. Click a row for the quote, the full theme list and any coordination flag.</p>
+            <div class="card scroll-reveal">
+                <div class="s2-controls">
+                    <div class="s2-control">
+                        <span class="s2-control-label" id="respRoleLabel">Role</span>
+                        <div class="toggle-btn-group" id="respRole" role="group" aria-labelledby="respRoleLabel"></div>
+                    </div>
+                    <div class="s2-field">
+                        <label class="s2-control-label" for="respSearch">Search</label>
+                        <input class="s2-input" id="respSearch" type="search" placeholder="Organisation, country or theme">
+                    </div>
+                </div>
+                <p class="s2-note" id="respCount">—</p>
+                <div class="s2-table-scroll" id="respTable"><p class="s2-loading">Loading…</p></div>
+                <p class="s2-note">Anchor cells: 1–2 red (oppose), 3 grey, 4–5 green (support); blank = not answered. Shared-text flag = number of respondents outside the cohort who filed at least one identical sentence of 90+ characters.</p>
+            </div>
+        </section>
+
+        <!-- ===== METHOD ===== -->
+        <section class="content-section-narrow" id="method">
+            <div class="card scroll-reveal">
+                <details class="fi-method">
+                    <summary>How this was measured</summary>
+                    <ul>
+                        <li><strong>Cohort:</strong> institutions = self-classified "Financial Institution" (24), or audited as financial in <code>reference/org_audit.csv</code> (adds 4), or a finance- or insurance-sector company not audited as an individual (adds 6), plus one redacted asset-management company (35 in all). Associations = 14 hand-listed investor networks and banking or insurance bodies. Excluded: an independent advisor, a GRESB contractor, two data vendors in the finance sector, an environmental-commodity trader filing as a consultant, and real-estate investment associations.</li>
+                        <li><strong>Role:</strong> coded from how the respondent describes itself in its text (investor using disclosures; capital provider or project financier; reporter of its own footprint; investor network; banking or insurance association; market intermediary; not stated). Never inferred from the organisation name.</li>
+                        <li><strong>Themes and legacy design:</strong> every submission (561,000 characters of free text) read in full by one AI coder; 14 themes, an impact-metric stance and a legacy-design code per respondent, each with a verbatim quote that the exporter checks against the database. Conservative: a theme is coded only when stated. No second-coder agreement statistic.</li>
+                        <li><strong>Scale answers:</strong> Q71, 83, 97, 113, 124, 153, 171 (1–5 support scales; 4–5 = support). Cohort bases are small (13–36 per question) and are shown on every chart.</li>
+                        <li><strong>Duplication:</strong> respondent 130 (redacted UK individual) shares 107 sentences with PGIM (598) and is excluded from theme, legacy and impact tallies. Sentence sharing with non-cohort filers is flagged per respondent.</li>
+                        <li><strong>Names:</strong> redacted and individual filers are described by claimed type, sector and country, never named, even where their text identifies them.</li>
+                        <li><strong>Files:</strong> <code>reference/financial_codebook.md</code>, <code>reference/financial_cohort.csv</code>, <code>data/derived/financial_themes.csv</code>, <code>reference/financial_quotes.csv</code>, <code>scripts/analytics/financial.py</code>.</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+    </div>
+
+    <footer id="siteFooter" data-footer-note="Financial institutions &amp; investors — three voices on hourly matching, one shared demand for disclosure, and a split on how far the legacy clause should reach."></footer>
+
+    <script src="js/cinematic-bg.js"></script>
+</body>
+</html>
