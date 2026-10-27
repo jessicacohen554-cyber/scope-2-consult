@@ -1,0 +1,62 @@
+theme,respondent_id,question_number,quote
+additionality,598,20,"In our experience, many firms purchase low-cost, unbundled EACs to claim lower scope 2 emissions. While this provides a modest additional revenue stream for renewable projects, this does not appear to be a significant contributor to a project’s viability."
+additionality,272,22,"we do not support positioning MBM as an equivalent or primary basis for abatement planning, emissions reduction target-setting, or claims about influencing the grid supply mix, except in limited, instrument-specific circumstances where procurement is deliverable, temporally aligned, and credibly additional (physical PPAs)."
+additionality,266,22,"the current proposal places significant emphasis on temporal and geographic alignment but does not meaningfully address additionality, which is a critical driver of real-world emissions reductions."
+additionality,325,106,"it would be highly appropriate to implement a vintage requirement, in which certain resources could be automatically qualified as SSS based on asset age (the year of commissioning or repowering)."
+additionality,754,22,"recognising actions that deliver the greatest real-world emissions reductions, not merely the closest temporal or locational match"
+additionality,16,18,"This preserves a conservative Scope 2 while encouraging additionality through distinct, auditable supplemental impact disclosures"
+additionality,553,18,Greater transparency will help investors distinguish companies making substantive progress from those relying primarily on accounting mechanisms.
+impact,925,148,it is essential that GHGP pair any refinements to the market-based method with a required consequential disclosure.
+impact,1101,148,"The consequential metric would be beneficial only if it becomes an equally viable option for Scope 2 reporting, allowing investment decisions to be made based upon carbon impact."
+impact,272,148,A separate impact metric can complement stricter inventory rules by recognising system decarbonisation contributions without weakening deliverability/hourly-matching requirements in Scope 2 reporting.
+impact,883,85,"it is important for the GHG Protocol to clearly signal its intent to develop and release a complementary, third “impact-based” method"
+impact,16,148,"This lets investors see which buyers are genuinely financing the buildout of new clean infrastructure, without blurring the conservative Scope 2 inventory boundary."
+impact,325,149,An outside impact metric cannot offer the same true decarbonisation signals and incentives on every grid in which organisations operate
+impact,533,148,"This impact‑based method should be reported alongside, but distinct from, attributional Scope 2 inventories to preserve comparability while recognizing the value of cross‑regional investments."
+legacy_guardrails,764,175,"there is broad investor alignment on clear guardrails. In particular, the implementation of a concrete sunset date, clear allocation rules, and provision of side-by-side MBM results shown with and without the legacy treatment could be supported."
+legacy_guardrails,754,178,A minimum original contract term (e.g. ≥10 years) should be required to ensure the clause protects genuine long-term commitments rather than short-term optimisation.
+legacy_guardrails,598,175,Continuing to allow weaker instruments the same treatment as in the past would reward the subset of reporters who employed them.
+legacy_guardrails,272,180,"this can be mitigated by mandatory disaggregation and a clear sunset date, and supporting disclosures clearly indicating % of inventory reported under a legacy/non-legacy ruleset."
+legacy_guardrails,325,178,Contractual instruments receiving legacy status must remain with the original offtaker and should not be used in secondary markets to circulate instruments with legacy benefits.
+legacy_guardrails,788,180,"To enable smooth transition while honouring existing commitments, having a sunset provision with an end date and explanation/disclaimer requirement for reporters may alleviate some concerns."
+legacy_full,848,82,legacy protection should be applied at the asset level rather than solely to individual agreements.
+legacy_full,1156,18,All PPAs signed prior to the implementation of the new Scope 2 rules must remain governed by the existing framework for the full term of their contracts. The extension of the PPAs also must be covered.
+legacy_full,966,173,"Contracts should retain legacy status when novated or transferred, so projects are not put at risk if an offtaker exits or restructures."
+legacy_full,629,178,all contracts—regardless of instrument type or contract term length—should remain fully eligible for the legacy clause throughout the entire duration of the contract.
+legacy_full,851,178,There should be no limits to transfer or resale as this would undermine the trust and market confidence in long-term contracts.
+legacy_full,289,173,there is emerging pressure in the market to require the termination of existing offtake agreements after a few years.
+bankability,1101,75,PPAs are the primary mechanism for financing large-scale renewables because they provide the revenue stability required to attract low-cost debt and equity.
+bankability,1156,18,"This change could create a paradox: reported emissions may look more precise but investment, deployment, and grid decarbonization will slow down."
+bankability,966,75,"turning hourly matching into a ""shall"" requirement for market-based reporting will change how capital flows, not just how emissions are counted."
+bankability,146,87,Restricting the types of contractual instruments available to organizations will significantly limit market participation and reduce the pool of investment-grade offtakers.
+bankability,819,173,"Insurers are significant long-term lenders and investors in utilities and power generation project developers, and changes to Scope 2 accounting may have indirect implications for renewable energy financing markets."
+bankability,170,18,"we are concerned that the proposed changes could impose significant financial burdens on utilities and project developers, negatively affecting their profitability and, consequently, the performance of related loans."
+bankability,754,20,"Corporate demand for clean electricity, and the associated investment signals that underpin project bankability, are directly linked to what can be recognised within Scope 2."
+capital_where,598,87,"we do not agree that new renewables on grids where renewable penetration is low is necessarily more ambitious – in fact, it is often less ambitious."
+capital_where,925,141,"Hourly matching would direct investment toward areas with existing clean energy, which would in turn prevent more impactful purchases in dirtier grids."
+capital_where,1101,152,paying a premium to store solar energy in a clean grid (to fix a corporate accounting score) has far less climate impact than deploying that same capital to build new wind capacity in a coal-heavy grid.
+capital_where,643,75,"Capital may also be redirected from adding clean capacity to purchasing hour-specific attributes, reducing total clean MWh added to the grid."
+capital_where,883,85,"with an inflexible deliverability approach, companies might be incentivized to contract output from legacy assets in grids that are already relatively clean, which does little to help add clean power that displaces fossil fuel generation."
+capital_where,754,75,"a mandatory hourly issuance and redemption requirement is premature and risks unintended consequences, including weakening incentives for long-term PPAs and reducing clean energy investment signals—especially in high-emitting and emerging-market grids."
+footprint,629,18,"As a large, geographically dispersed professional services firm with over 850 leased offices, there is no practical way for us to implement hourly matching."
+footprint,598,20,Accessing hourly energy consumption data for landlord areas is challenging but almost impossible for multi-tenant commercial and residential real estate.
+footprint,140,75,"Proposed changes appear to be set with large energy users in mind, such as transportation, data centres, and mining companies, rather than financial services and similar sectors with a small physical footprint."
+footprint,146,75,"Setting an aggregate GWh threshold within market regions unfairly impacts sectors with numerous smaller sites concentrated/localized within a market region, such as retail and banking."
+footprint,917,180,flexible use of market-based instruments such as market RECs and RECs via virtual PPAs remain essential to advancing net-zero transition plans.
+footprint,508,160,"If hourly matching is required, the exemption threshold should be at the site-level (e.g., sites with consumption below 50 GWh annually are exempt)."
+footprint,1159,30,We are a banking institution with a presence in 99% of Brazilian municipalities.
+conservative,598,111,"As users of reporting, we would prefer for any errors to be on the conservative side rather than the aggressive side"
+conservative,272,126,A conservative fossil fallback is preferable to permissive grid-average defaults where residual mix is missing; it both protects integrity and incentivises publication of residual mix factors.
+conservative,764,129,"Accuracy and the avoidance of emissions understatement should remain the priority, alongside practical implementation pathways in markets where data limitations persist."
+conservative,859,18,Replacing generic grid-average fallback factors with fossil-only defaults where residual mix data is unavailable improves scientific transparency and avoids overstating access to carbon-free electricity.
+conservative,925,126,"A conservative fossil EF avoids this problem by clearly preventing unearned clean-energy claims, even if it somewhat overstates emissions."
+disclosure,764,155,"the guidance could require reporting entities to disclose whether an exemption is used, the applicable exemption threshold, the relevant deliverable market boundary, and the alternative accounting interval applied."
+disclosure,16,180,"With strong disclosure (what % of load is covered by legacy, when legacy ends, and pro-forma results under full new criteria), users of climate-related financial risk disclosures can still interpret the results consistently."
+disclosure,598,170,Our experience suggests many investors and ESG data vendors would not make a distinction between different classes of conformance.
+disclosure,819,129,"requiring organizations to disclose disaggregated MBM Scope 2 emissions based on the factor applied (e.g. SSS vs RECs vs Residual vs Fossil), or at minimum, to disclose the basis for calculation would enable users of sustainability data to better contextualize reported results."
+disclosure,553,180,Transparency of legacy contracts will also be an important consideration for the final rules.
+spillover,170,18,"we are concerned that the proposed changes could impose significant financial burdens on utilities and project developers, negatively affecting their profitability and, consequently, the performance of related loans."
+spillover,754,143,"Increased rigidity may affect contract structuring, volume shaping, and settlement profiles, which in turn can complicate own-use assessments, hedge designation/effectiveness (e.g., IFRS 9), and increase the risk of volatility or onerous contract considerations (e.g., IAS 37)."
+spillover,598,20,"buildings that relied on purchased green energy to meet net-zero targets or building codes may no longer qualify, potentially leading to a devaluation of the asset."
+spillover,819,75,"If these no longer qualify due to hourly matching or deliverability rules, existing decarbonization investments may be devalued."
+spillover,145,180,Additional litigation risks as a result of climate-related financial risk disclosure.

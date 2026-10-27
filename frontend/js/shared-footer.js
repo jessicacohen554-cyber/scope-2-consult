@@ -33,6 +33,7 @@
         { href: FOOTER_BASE + 'impact.html', label: 'Emissions Impact' },
         { href: FOOTER_BASE + 'mbm-impact.html', label: 'Impact in the MBM' },
         { href: FOOTER_BASE + 'standard-supply.html', label: 'Standard Supply' },
+        { href: FOOTER_BASE + 'financial.html', label: 'Financial Institutions' },
         { href: FOOTER_BASE + 'methodology.html', label: 'Methodology' }
     ];
 

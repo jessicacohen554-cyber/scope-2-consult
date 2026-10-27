@@ -1,0 +1,50 @@
+respondent_id,tier,role,secondary_role,display_name,basis,note
+16,institution,capital_allocator,,,sector,"Redacted US company in the Finance sector; writes about financing new clean capacity and capital-based impact disclosure"
+130,institution,data_user,,,type,"Redacted UK individual filing under Financial Institution; 107 sentences verbatim with PGIM (598) - counted as one voice in theme tallies"
+132,institution,own_footprint_reporter,,,type,"Redacted Hong Kong insurer"
+145,institution,own_footprint_reporter,,,sector,"Redacted US insurance-sector individual; 15 years as a corporate sustainability practitioner"
+146,institution,own_footprint_reporter,capital_allocator,,type,"Redacted US financial institution with many small sites and a virtual PPA"
+165,institution,unstated,,,type,"Redacted UK asset manager; scale answers only plus two short comments"
+171,institution,unstated,,,type,"Redacted Indian individual filing under Financial Institution"
+272,institution,data_user,,Nordea Asset Management,type;audit,
+273,institution,own_footprint_reporter,,,type,"Redacted US financial institution in the real estate sector; defers every comment to The Real Estate Roundtable"
+289,institution,capital_allocator,,,audit,"Individual at an investment fund manager (Japan); audited financial; individual filers are not named"
+446,institution,own_footprint_reporter,,,manual,"Redacted Singapore asset-management company (sector written in as Asset Management)"
+508,institution,own_footprint_reporter,,,type,"Redacted US financial institution with distributed retail-style load"
+533,institution,data_user,,Trillium Asset Management,type;audit,
+553,institution,data_user,,First Sentier Group,type;audit,
+579,institution,unstated,,,type,"Redacted French financial institution; scale answers only"
+598,institution,data_user,,PGIM,type;audit,"Also comments as a preparer for real assets"
+629,institution,own_footprint_reporter,,,type,"Redacted US financial-services firm with over 850 leased offices"
+643,institution,capital_allocator,own_footprint_reporter,,type,"Redacted Singapore financial institution writing about ASEAN portfolio companies"
+649,institution,unstated,,,sector,"Redacted US company in the Finance sector; exemptions and legacy comments only"
+754,institution,capital_allocator,data_user,Just Climate / Generation Investment Management,audit,"Self-described sustainability and impact focused investor"
+788,institution,own_footprint_reporter,data_user,,type,"Redacted UK insurer with a 6,000-building UK portfolio and an asset-management division"
+803,institution,own_footprint_reporter,,,type,"Redacted Brazilian financial institution"
+839,institution,intermediary,,ACT Group,type,"Self-classified Financial Institution; audited as a company (environmental-commodity trader)"
+851,institution,capital_allocator,,CVC DIF,sector;audit,
+859,institution,data_user,,,type,"Redacted German financial institution writing as representatives of long-term investors"
+876,institution,own_footprint_reporter,,,sector,"Redacted US insurer"
+905,institution,data_user,,Miller/Howard Investments,audit,
+925,institution,unstated,,,sector,"Redacted US company in the Finance sector; advocates consequential impact accounting; shares sentences with 21 other filers"
+966,institution,own_footprint_reporter,capital_allocator,,type,"Redacted US financial institution; corporate buyer of virtual PPAs; shares sentences with 14 other filers"
+1013,institution,unstated,,,sector,"Redacted US individual in the Finance sector with hourly data on most load"
+1053,institution,own_footprint_reporter,,,type,"Redacted UK financial institution with a disparate, largely leased portfolio"
+1101,institution,capital_allocator,,Angeleno Group,type;audit,
+1114,institution,own_footprint_reporter,,,type,"Organisation field is a job title (head of a China sustainability and investment team); not identifiable"
+1131,institution,capital_allocator,own_footprint_reporter,,type,"Redacted US financial institution investing in real estate owners"
+1159,institution,own_footprint_reporter,,,type,"Redacted Brazilian bank present in 99% of municipalities"
+110,association,investor_network,,IIGCC,manual,"Membership organisation for asset owners and managers"
+140,association,sector_association,,Association of British Insurers,manual,
+170,association,sector_association,,Japanese Bankers Association,manual,
+266,association,sector_association,,,manual,"Redacted Canadian banking association"
+325,association,investor_network,,Just Share,manual,"Shareholder-activism non-profit in the Finance sector; 57 sentences shared with other filers (pro-hourly template)"
+466,association,sector_association,,General Insurance Association of Japan,manual,
+764,association,investor_network,,Asia Investor Group on Climate Change (AIGCC),manual,
+819,association,sector_association,,,manual,"Redacted Canadian life and health insurers' group"
+848,association,sector_association,,,manual,"Redacted global financial-industry association; staff comments"
+863,association,sector_association,,B4NZ (Bankers for Net Zero),manual,"Comments only on the location-based method, from an SME lens"
+883,association,investor_network,,Ceres,manual,"Works with institutional investors and companies"
+917,association,sector_association,,,manual,"Redacted Canadian property and casualty insurers' group"
+961,association,investor_network,,Interfaith Center on Corporate Responsibility,manual,
+1156,association,sector_association,,European Banking Federation,manual,
